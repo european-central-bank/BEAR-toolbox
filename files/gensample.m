@@ -29,6 +29,7 @@ if favar.FAVAR==1 % in case we transform the data to first or second differences
     if favar.transformation==1
         startlocation=informationstartlocation;
         endlocation=informationendlocation;
+     % for FVAR without transformations
      else startlocation=startlocationData;
      end
 end
