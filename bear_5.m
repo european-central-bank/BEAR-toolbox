@@ -45,8 +45,9 @@ cd ../
 
 % % now load the settings that we specified in the interface, set other
 % % default options and translate them to the BEAR conventions
-%if runapp==1 run(fullfile('files','bear_appsettings'));
+if runapp==1 run(fullfile('files','bear_appsettings'));
 %else runrun(fullfile('files','bear_settings')); end
+end
 
 % % run main code
-%run(fullfile('files','bear_toolbox_main_code.m'));
+run(fullfile('files','bear_toolbox_main_code.m'));
