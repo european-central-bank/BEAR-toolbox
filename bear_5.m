@@ -33,8 +33,7 @@ clear all
 close all
 warning off;
 clc
-
-%should delete
+%keep
 runapp=1;
 
 % Start BEAR with Graphical User Interface
