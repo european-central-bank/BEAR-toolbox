@@ -30,11 +30,11 @@
 
 
 BEAR toolbox estimates
-Date: 16-Dec-2020   Time: 13:52
+Date: 21-Dec-2020   Time: 16:59
 
 
 Bayesian VAR
-structural decomposition: triangular factorisation (IRFt=3)
+structural decomposition: Cholesky factorisation (IRFt=2)
 endogenous variables:  DOM_GDP  DOM_CPI  STN 
 exogenous variables:  constant 
 estimation sample: 1974q1-2014q4
@@ -53,63 +53,63 @@ VAR coefficients (beta): posterior estimates
 
 Endogenous: DOM_GDP
                                    Median          St.dev       Low.bound       Upp.bound
-              DOM_GDP(-1)           0.892           0.051           0.792           0.994
-              DOM_GDP(-2)          -0.065           0.046          -0.152           0.029
-              DOM_GDP(-3)          -0.098           0.035          -0.165          -0.029
-              DOM_GDP(-4)           0.001           0.028          -0.055           0.056
-              DOM_CPI(-1)          -0.058           0.047          -0.151           0.034
-              DOM_CPI(-2)          -0.016           0.038          -0.088           0.057
-              DOM_CPI(-3)           0.005           0.030          -0.053           0.066
-              DOM_CPI(-4)           0.008           0.022          -0.038           0.053
-                  STN(-1)          -0.008           0.031          -0.070           0.055
-                  STN(-2)          -0.014           0.024          -0.059           0.035
-                  STN(-3)           0.009           0.018          -0.024           0.045
-                  STN(-4)           0.015           0.015          -0.015           0.046
-                 Constant           0.714           0.160           0.410           1.033
+              DOM_GDP(-1)           0.891           0.049           0.790           0.990
+              DOM_GDP(-2)          -0.067           0.046          -0.159           0.024
+              DOM_GDP(-3)          -0.097           0.035          -0.162          -0.026
+              DOM_GDP(-4)           0.000           0.028          -0.053           0.055
+              DOM_CPI(-1)          -0.056           0.048          -0.151           0.035
+              DOM_CPI(-2)          -0.017           0.038          -0.093           0.057
+              DOM_CPI(-3)           0.003           0.029          -0.055           0.061
+              DOM_CPI(-4)           0.006           0.024          -0.042           0.055
+                  STN(-1)          -0.004           0.032          -0.069           0.058
+                  STN(-2)          -0.014           0.024          -0.060           0.035
+                  STN(-3)           0.007           0.019          -0.030           0.044
+                  STN(-4)           0.015           0.015          -0.015           0.043
+                 Constant           0.722           0.174           0.372           1.076
 
-Sum of squared residuals: 135.64
+Sum of squared residuals: 135.79
 R-squared: 0.726
 adj. R-squared: 0.704
 
 
 Endogenous: DOM_CPI
                                    Median          St.dev       Low.bound       Upp.bound
-              DOM_GDP(-1)           0.025           0.023          -0.016           0.075
-              DOM_GDP(-2)           0.006           0.017          -0.029           0.039
-              DOM_GDP(-3)           0.005           0.013          -0.021           0.028
-              DOM_GDP(-4)           0.004           0.010          -0.016           0.024
-              DOM_CPI(-1)           1.013           0.048           0.912           1.107
-              DOM_CPI(-2)          -0.116           0.047          -0.201          -0.021
-              DOM_CPI(-3)          -0.036           0.035          -0.103           0.034
-              DOM_CPI(-4)           0.040           0.028          -0.017           0.096
-                  STN(-1)           0.036           0.021          -0.004           0.077
-                  STN(-2)          -0.001           0.016          -0.032           0.029
-                  STN(-3)          -0.013           0.012          -0.036           0.009
-                  STN(-4)          -0.009           0.010          -0.029           0.010
-                 Constant           0.097           0.104          -0.106           0.305
+              DOM_GDP(-1)           0.024           0.024          -0.021           0.070
+              DOM_GDP(-2)           0.006           0.018          -0.027           0.041
+              DOM_GDP(-3)           0.006           0.013          -0.020           0.030
+              DOM_GDP(-4)           0.003           0.010          -0.016           0.024
+              DOM_CPI(-1)           1.015           0.047           0.918           1.104
+              DOM_CPI(-2)          -0.118           0.047          -0.207          -0.026
+              DOM_CPI(-3)          -0.038           0.035          -0.103           0.033
+              DOM_CPI(-4)           0.040           0.028          -0.015           0.096
+                  STN(-1)           0.038           0.021          -0.004           0.080
+                  STN(-2)          -0.002           0.016          -0.033           0.031
+                  STN(-3)          -0.013           0.012          -0.037           0.011
+                  STN(-4)          -0.009           0.010          -0.027           0.011
+                 Constant           0.098           0.107          -0.106           0.299
 
-Sum of squared residuals: 57.98
+Sum of squared residuals: 57.80
 R-squared: 0.916
-adj. R-squared: 0.909
+adj. R-squared: 0.910
 
 
 Endogenous: STN
                                    Median          St.dev       Low.bound       Upp.bound
-              DOM_GDP(-1)           0.074           0.037           0.005           0.143
-              DOM_GDP(-2)           0.008           0.027          -0.044           0.060
-              DOM_GDP(-3)           0.016           0.021          -0.023           0.058
-              DOM_GDP(-4)           0.010           0.016          -0.023           0.040
-              DOM_CPI(-1)           0.056           0.050          -0.039           0.159
-              DOM_CPI(-2)           0.040           0.042          -0.041           0.120
-              DOM_CPI(-3)           0.016           0.030          -0.042           0.077
-              DOM_CPI(-4)           0.001           0.025          -0.049           0.050
-                  STN(-1)           0.927           0.048           0.835           1.018
-                  STN(-2)          -0.025           0.047          -0.119           0.067
-                  STN(-3)           0.019           0.036          -0.053           0.086
-                  STN(-4)          -0.003           0.029          -0.057           0.051
-                 Constant          -0.170           0.159          -0.509           0.158
+              DOM_GDP(-1)           0.068           0.037          -0.002           0.143
+              DOM_GDP(-2)           0.011           0.026          -0.042           0.061
+              DOM_GDP(-3)           0.017           0.021          -0.023           0.055
+              DOM_GDP(-4)           0.008           0.016          -0.023           0.040
+              DOM_CPI(-1)           0.058           0.049          -0.032           0.158
+              DOM_CPI(-2)           0.040           0.041          -0.040           0.122
+              DOM_CPI(-3)           0.016           0.030          -0.046           0.074
+              DOM_CPI(-4)          -0.000           0.024          -0.046           0.050
+                  STN(-1)           0.928           0.050           0.829           1.030
+                  STN(-2)          -0.023           0.046          -0.116           0.065
+                  STN(-3)           0.021           0.035          -0.047           0.089
+                  STN(-4)          -0.005           0.028          -0.060           0.055
+                 Constant          -0.156           0.157          -0.471           0.141
 
-Sum of squared residuals: 127.06
+Sum of squared residuals: 127.53
 R-squared: 0.948
 adj. R-squared: 0.944
 
@@ -117,31 +117,31 @@ adj. R-squared: 0.944
 Log 10 marginal likelihood: not applicable (improper prior)
 
 
-DIC test result: 1140.37
+DIC test result: 1141.58
 
 
 Roots of the characteristic polynomial (modulus):
-0.939  0.393  0.199
-0.866  0.393  0.199
-0.633  0.314  0.196
-0.633  0.272  0.196
+0.942  0.394  0.204
+0.865  0.394  0.204
+0.630  0.315  0.172
+0.630  0.267  0.172
 No root lies outside the unit circle.
 The estimated VAR model satisfies the stability condition
 
 
 sigma (residual covariance matrix): posterior estimates
- 0.887   0.126   0.320  
- 0.126   0.379   0.121  
- 0.320   0.121   0.832  
+ 0.891   0.127   0.323  
+ 0.127   0.380   0.122  
+ 0.323   0.122   0.838  
 
 
 D (structural decomposition matrix): posterior estimates
- 1.000   0.000   0.000  
- 0.168   1.000   0.000  
- 0.390   0.081   1.000  
+ 0.820   0.000   0.000  
+ 0.123   0.535   0.000  
+ 0.331   0.075   0.831  
 
 
 gamma (structural disturbances covariance matrix): posterior estimates
- 0.639   0.000   0.000  
- 0.000   0.315   0.000  
- 0.000   0.000   0.675  
+ 1.000   0.000   0.000  
+ 0.000   1.000   0.000  
+ 0.000   0.000   1.000  

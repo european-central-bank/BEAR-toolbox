@@ -1,0 +1,134 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                                        %
+%    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR) TOOLBOX                                         %
+%                                                                                                        %
+%    This statistical package has been developed by the external                                         %
+%    developments division of the European Central Bank.                                                 %
+%                                                                                                        %
+%    Authors:                                                                                            %
+%    Romain Legrand  									                                                 %
+%    Alistair Dieppe (adieppe@worldbank.org)                                                             %
+%    Björn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                                                      %
+%                                                                                                        %
+%    Version 5.0                                                                                         %
+%                                                                                                        %
+%    The authors are grateful to the following people for valuable input                                 %
+%    and advice which contributed to improve the quality of the toolbox:                                 %
+%    Paolo Bonomolo, Mirco Balatti, Marta Banbura, Niccolo Battistini, Gabriel Bobeica, Martin Bruns,    %
+%    Fabio Canova, Matteo Ciccarelli, Marek Jarocinski, Michele Lenza, Francesca Loria, Gary Koop,       %
+%    Mirela Miescu, Chiara Osbat, Giorgio Primiceri, Martino Ricci, Michal Rubaszek, Barbara Rossi,      %
+%    Ben Schumann, Marius Schulte, Hugo Vega de la Cruz and Peter Welz.                                  %
+%                                                                                                        %
+%    These programmes are the responsibilities of the authors and not of                                 %
+%    the ECB and all errors and ommissions remain those of the authors.                                  %
+%                                                                                                        %
+%    Using the BEAR toolbox implies acceptance of the End User Licence                                   %
+%    Agreement and appropriate acknowledgement should be made.                                           %
+%                                                                                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+BEAR toolbox estimates
+Date: 21-Dec-2020   Time: 17:34
+
+
+Bayesian VAR
+structural decomposition: Cholesky factorisation (IRFt=2)
+endogenous variables:  DOM_GDP  DOM_CPI  STN 
+exogenous variables:  constant 
+estimation sample: 1974q1-2014q4
+sample size (omitting initial conditions): 160
+number of lags included in regression: 4
+prior: normal-Wishart (sigma as univariate AR)
+hyperparameters:
+autoregressive coefficients (ar):                0.8
+overall tightness (lambda1):                    0.1
+lag decay (lambda3):                            0.8
+
+
+
+VAR coefficients (beta): posterior estimates
+
+Endogenous: DOM_GDP
+                                   Median          St.dev       Low.bound       Upp.bound
+              DOM_GDP(-1)           0.926           0.053           0.821           1.031
+              DOM_GDP(-2)          -0.079           0.049          -0.176           0.017
+              DOM_GDP(-3)          -0.091           0.037          -0.164          -0.018
+              DOM_GDP(-4)           0.013           0.030          -0.045           0.072
+              DOM_CPI(-1)          -0.049           0.075          -0.196           0.098
+              DOM_CPI(-2)          -0.056           0.075          -0.204           0.092
+              DOM_CPI(-3)           0.022           0.057          -0.090           0.133
+              DOM_CPI(-4)           0.034           0.045          -0.053           0.122
+                  STN(-1)           0.015           0.052          -0.087           0.117
+                  STN(-2)          -0.074           0.047          -0.167           0.019
+                  STN(-3)           0.017           0.036          -0.054           0.088
+                  STN(-4)           0.043           0.029          -0.014           0.100
+                 Constant           0.614           0.174           0.274           0.955
+
+Sum of squared residuals: 128.50
+R-squared: 0.741
+adj. R-squared: 0.720
+
+
+Endogenous: DOM_CPI
+                                   Median          St.dev       Low.bound       Upp.bound
+              DOM_GDP(-1)           0.041           0.035          -0.028           0.110
+              DOM_GDP(-2)          -0.011           0.032          -0.075           0.052
+              DOM_GDP(-3)           0.005           0.024          -0.043           0.053
+              DOM_GDP(-4)           0.015           0.020          -0.023           0.054
+              DOM_CPI(-1)           1.003           0.049           0.906           1.099
+              DOM_CPI(-2)          -0.121           0.049          -0.218          -0.024
+              DOM_CPI(-3)          -0.031           0.037          -0.104           0.042
+              DOM_CPI(-4)           0.050           0.029          -0.008           0.108
+                  STN(-1)           0.090           0.034           0.023           0.157
+                  STN(-2)          -0.019           0.031          -0.080           0.042
+                  STN(-3)          -0.038           0.024          -0.084           0.009
+                  STN(-4)          -0.021           0.019          -0.058           0.016
+                 Constant           0.089           0.114          -0.135           0.313
+
+Sum of squared residuals: 54.23
+R-squared: 0.922
+adj. R-squared: 0.915
+
+
+Endogenous: STN
+                                   Median          St.dev       Low.bound       Upp.bound
+              DOM_GDP(-1)           0.143           0.051           0.043           0.244
+              DOM_GDP(-2)          -0.028           0.047          -0.120           0.064
+              DOM_GDP(-3)           0.016           0.036          -0.054           0.086
+              DOM_GDP(-4)           0.034           0.029          -0.022           0.090
+              DOM_CPI(-1)           0.060           0.072          -0.081           0.201
+              DOM_CPI(-2)           0.042           0.072          -0.099           0.184
+              DOM_CPI(-3)           0.031           0.054          -0.076           0.138
+              DOM_CPI(-4)           0.014           0.043          -0.070           0.099
+                  STN(-1)           0.924           0.050           0.826           1.022
+                  STN(-2)          -0.046           0.045          -0.136           0.043
+                  STN(-3)           0.019           0.035          -0.049           0.087
+                  STN(-4)           0.008           0.028          -0.047           0.062
+                 Constant          -0.309           0.167          -0.636           0.018
+
+Sum of squared residuals: 122.03
+R-squared: 0.950
+adj. R-squared: 0.946
+
+
+Log 10 marginal likelihood: -263.68
+
+
+DIC test result: 1129.22
+
+
+Roots of the characteristic polynomial (modulus):
+0.922  0.481  0.347
+0.894  0.481  0.308
+0.663  0.350  0.276
+0.663  0.347  0.276
+No root lies outside the unit circle.
+The estimated VAR model satisfies the stability condition
+
+
+sigma (residual covariance matrix): posterior estimates
+ 0.865   0.114   0.293  
+ 0.114   0.374   0.113  
+ 0.293   0.113   0.795  
