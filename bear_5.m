@@ -33,7 +33,11 @@ clear all
 close all
 warning off;
 clc
+<<<<<<< HEAD
 
+=======
+%keep
+>>>>>>> 7f4bdc2943b03c77ab2c2fe42589aed2851d2a70
 runapp=1;
 
 % Start BEAR with Graphical User Interface
