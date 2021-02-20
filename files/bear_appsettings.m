@@ -15,6 +15,7 @@ elseif appsettings.VARtype.Value(1:2)=='Ba' VARtype=2;
 elseif appsettings.VARtype.Value(1:2)=='Pa' VARtype=4;
 elseif appsettings.VARtype.Value(1:2)=='Ti' VARtype=5;
 %elseif appsettings.VARtype.Value(1:2)=='Ti' VARtype=6;
+elseif appsettings.MFVAR.Value==1 VARtype=7;
 end
 
 % data frequency (1=yearly, 2= quarterly, 3=monthly, 4=weekly, 5=daily, 6=undated)
