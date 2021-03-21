@@ -1,9 +1,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                          %
-%    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR)clnk.org)                               %
-%    Björn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                        %
+%    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR)
+%
+%    Authors:                                                              %
+%    Alistair Dieppe (alistair.dieppe@ecb.europa.eu)                       %
+%    Björn van Roye  (bvanroye@bloomberg.net)                              %
 %                                                                          %
 %    Version 5.0                                                           %
+%                                                                          %
+%    The updated version 5 of BEAR has benefitted from contributions from  %
+%    Boris Blagov, Marius Schulte and Ben Schumann.                        %
+%                                                                          %
+%    This version builds-upon previous versions where Romain Legrand was   %
+%    instrumental in developing BEAR.                                      %
 %                                                                          %
 %    The authors are grateful to the following people for valuable input   %
 %    and advice which contributed to improve the quality of the toolbox:   %
@@ -11,8 +20,7 @@
 %	 Gabriel Bobeica, Martin Bruns, Fabio Canova, Matteo Ciccarelli,       %
 %    Marek Jarocinski, Michele Lenza, Francesca Loria, Mirela Miescu,      %
 %    Gary Koop, Chiara Osbat, Giorgio Primiceri, Martino Ricci,            %
-%    Michal Rubaszek, Barbara Rossi, Ben Schumann, Marius Schulte,         %
-%    Peter Welz and Hugo Vega de la Cruz. 						           %
+%    Michal Rubaszek, Barbara Rossi, Peter Welz and Hugo Vega de la Cruz.  %
 %                                                                          %
 %    These programmes are the responsibilities of the authors and not of   %
 %    the ECB and all errors and ommissions remain those of the authors.    %

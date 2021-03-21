@@ -1,4 +1,4 @@
-%% BEAR 4.5 
+%% BEAR 5.0 
 %  Using the BEAR toolbox implies acceptance of the End User Licence  %
 %  Agreement and appropriate acknowledgement should be made.          %                                                        %
 
@@ -14,8 +14,8 @@ if appsettings.OLS.Value==1 VARtype=1;
 elseif appsettings.VARtype.Value(1:2)=='Ba' VARtype=2;
 elseif appsettings.VARtype.Value(1:2)=='Pa' VARtype=4;
 elseif appsettings.VARtype.Value(1:2)=='Ti' VARtype=5;
-%elseif appsettings.VARtype.Value(1:2)=='Ti' VARtype=6;
 elseif appsettings.MFVAR.Value==1 VARtype=7;
+%elseif appsettings.VARtype.Value(1:2)=='Ti' VARtype=6;
 end
 
 % data frequency (1=yearly, 2= quarterly, 3=monthly, 4=weekly, 5=daily, 6=undated)
@@ -101,6 +101,12 @@ if favar.FAVAR==1
     % (approximate) IRFs for information variables
     favar.IRF.plot=appsettings.favarIRFplot.Value;
     
+    %if favar.IRF.plot==1
+        % choose shock(s) to plot
+    %    favar.IRF.plotXshock='Fedfunds'; % Fedfunds 'USMP'
+    %    favar.IRF.plotXblocks=0;
+    %end
+
     % (approximate) FEVDs for information variables
     favar.FEVD.plot=appsettings.favarFEVDplot.Value;
     
@@ -315,7 +321,7 @@ if VARtype==6
     priorsexogenous=1;
     lambda4=100;
 end
-end
+
 
 % Time-varying BVAR information: will be read only if VARtype=6
 %elseif VARtype==6
@@ -336,6 +342,74 @@ end
 %priorsexogenous=1;
 %lambda4=100;
 %end
+
+%% Mixed frequency VAR will be read only if VARtype == 7
+elseif VARtype==7
+% selected prior
+% 11=Minnesota (univariate AR), 12=Minnesota (diagonal VAR estimates), 13=Minnesota (full VAR estimates)
+% 21=Normal-Wishart(S0 as univariate AR), 22=Normal-Wishart(S0 as identity)
+% 31=Independent Normal-Wishart(S0 as univariate AR), 32=Independent Normal-Wishart(S0 as identity)
+% 41=Normal-diffuse
+% 51=Dummy observations
+if appsettings.BayesianVARpriors.Value(1:2)=='Mi' prior=11;
+elseif appsettings.BayesianVARpriors.Value(1:7)=='NormalW' prior=21;
+elseif appsettings.BayesianVARpriors.Value(1:2)=='In' prior=31;
+elseif appsettings.BayesianVARpriors.Value(1:7)=='NormalD' prior=41;
+elseif appsettings.BayesianVARpriors.Value(1:2)=='Du' prior=51;
+elseif appsettings.BayesianVARpriors.Value(1:2)=='De' prior=61;
+end
+
+% hyperparameter: autoregressive coefficient
+ar=appsettings.ar.Value; % this sets all AR coefficients to the same prior value (if PriorExcel is equal to 0)
+% switch to Excel interface
+PriorExcel=appsettings.PriorExcel.Value; % set to 1 if you want individual priors, 0 for default
+%switch to Excel interface for exogenous variables
+priorsexogenous=0;
+if appsettings.priorexogenous.Value(1:2)=='Ex' priorsexogenous=1; end% set to 1 if you want individual priors, 0 for default
+% hyperparameter: lambda1
+lambda1=appsettings.lambda1.Value;
+% hyperparameter: lambda2
+lambda2=appsettings.lambda2.Value;
+% hyperparameter: lambda3
+lambda3=appsettings.lambda3.Value;
+% hyperparameter: lambda4
+lambda4=0.1;
+if priorsexogenous==0 lambda4=100; end
+    
+%appsettings.lambda4.Value;
+% hyperparameter: lambda5
+lambda5=appsettings.lambda5.Value;
+% hyperparameter: lambda6
+%lambda6=appsettings.lambda6.Value;
+% hyperparameter: lambda7
+%lambda7=appsettings.lambda7.Value;
+% Overall tightness on the long run prior
+%lambda8=appsettings.lambda8.Value;
+% total number of iterations for the Gibbs sampler
+It=appsettings.It.Value;
+% number of burn-in iterations for the Gibbs sampler
+Bu=appsettings.Bu.Value;
+% hyperparameter optimisation by grid search (1=yes, 0=no)
+hogs=0;
+if appsettings.hogs.Value(1:2)=='Ye' hogs=1; end;
+% block exogeneity (1=yes, 0=no)
+bex=0;
+if appsettings.bex.Value(1:2)=='Ye' bex-1; end
+% sum-of-coefficients application (1=yes, 0=no)
+scoeff=appsettings.scoeff.Value;
+% dummy initial observation application (1=yes, 0=no)
+iobs=appsettings.iobs.Value;
+% Long run prior option
+lrp=appsettings.lrp.Value;
+% create H matrix for the long run priors 
+% now taken from excel loadH.m
+% H=[1 1 0 0;-1 1 0 0;0 0 1 1;0 0 -1 1];
+% how many monhtly forecast to do in the original MF-BVAR code. Can be replaced in the future with Fsample_end-Fsample_start from BEAR
+Input.H = 7;                      
+end
+
+
+
 
 
 % Model options

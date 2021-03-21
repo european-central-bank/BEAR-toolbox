@@ -2,15 +2,17 @@
 %                                                                          %
 %    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR) TOOLBOX           %
 %                                                                          %
-%    This statistical package has been developed by the external           %
-%    developments division of the European Central Bank.                   %
-%                                                                          %
 %    Authors:                                                              %
-%    Romain Legrand  									                   %
-%    Alistair Dieppe (adieppe@worldbank.org)                               %
-%    Björn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                        %
+%    Alistair Dieppe (alistair.dieppe@ecb.europa.eu)                       %
+%    Björn van Roye  (bvanroye@bloomberg.net)                              %
 %                                                                          %
 %    Version 5.0                                                           %
+%                                                                          %
+%    The updated version 5 of BEAR has benefitted from contributions from  %
+%    Boris Blagov, Marius Schulte and Ben Schumann.                        %
+%                                                                          %
+%    This version builds-upon previous versions where Romain Legrand was   %
+%    instrumental in developing BEAR.                                      %
 %                                                                          %
 %    The authors are grateful to the following people for valuable input   %
 %    and advice which contributed to improve the quality of the toolbox:   %
@@ -18,8 +20,7 @@
 %	 Gabriel Bobeica, Martin Bruns, Fabio Canova, Matteo Ciccarelli,       %
 %    Marek Jarocinski, Michele Lenza, Francesca Loria, Mirela Miescu,      %
 %    Gary Koop, Chiara Osbat, Giorgio Primiceri, Martino Ricci,            %
-%    Michal Rubaszek, Barbara Rossi, Ben Schumann, Marius Schulte,         %
-%    Peter Welz and Hugo Vega de la Cruz. 						           %
+%    Michal Rubaszek, Barbara Rossi, Peter Welz and Hugo Vega de la Cruz.  %
 %                                                                          %
 %    These programmes are the responsibilities of the authors and not of   %
 %    the ECB and all errors and ommissions remain those of the authors.    %
@@ -94,6 +95,9 @@ elseif VARtype==2 || VARtype==5 || VARtype==6
 elseif VARtype==4
     [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate]...
         =gensamplepan(startdate,enddate,Units,panel,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref);
+elseif VARtype==7
+[names, mf_setup, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate]...
+=gensample_mf(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref);
 end
 
 
@@ -130,13 +134,41 @@ if VARtype==2 && prior==61
 end
 
 % conditional forecast tables (for BVAR, mean-adjusted BVAR, and stochastic volatility BVAR)
-if (VARtype==2 || VARtype==5 || VARtype==6) && CF==1
+if (VARtype==2 || VARtype==5 || VARtype==6||VARtype==7) && CF==1
     [cfconds,cfshocks,cfblocks,cfintervals]=loadcf(endo,CFt,Fstartdate,Fenddate,Fperiods,pref);
-    
     % conditional forecast tables (for panel BVAR model)
 elseif VARtype==4 && CF==1
     [cfconds,cfshocks,cfblocks]=loadcfpan(endo,Units,panel,CFt,Fstartdate,Fenddate,Fperiods,pref);
 end
+
+%   conditional forecast for Mixed frequency model
+% cond forecast for 
+if VARtype==7 && CF==1
+%     if exist('cfconds','var')   % Check if the conditional forecast is an empty matrix, need to be done better later (and add option for nonempty)
+%         if isempty(cell2mat(cfconds))
+%             YMC_orig = exp(99)*ones(size(cfconds));
+%         end
+%     end
+    % converts the cell cfconds to a matrix with NaN values in the appropriate places (where cfconds is empty)
+    YMC_orig = ones(size(cfconds))*exp(99);
+    for ii = 1:size(cfconds,1)
+        for ij = 1:size(cfconds,2)
+            if ~isempty(cfconds{ii,ij})
+                YMC_orig(ii,ij) = cfconds{ii,ij};
+                if  mf_setup.select(1,ij)==0
+                    cfconds{ii,ij} = log(cfconds{ii,ij});   % we need to transform to logs
+                else
+                    cfconds{ii,ij} = cfconds{ii,ij}/100;
+                end
+            end
+        end
+    end
+    YMC_orig(:,mf_setup.select==0) = log(YMC_orig(:,mf_setup.select==0));
+    YMC_orig(:,mf_setup.select==1) = YMC_orig(:,mf_setup.select==1)./100;
+elseif VARtype == 7 && CF~=1
+    YMC_orig=ones(Input.H,mf_setup.Nm+mf_setup.Nq)*exp(99);
+end
+
 
 %--------------------|
 % Excel record phase |
@@ -1728,6 +1760,238 @@ for iteration=1:numt % beginning of forecasting loop
         % here finishes grand loop 6
         % if the model selected is not a time-varying BVAR, this part will not be run
     end
+    
+%%    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Grand loop 7: Mixed frequency BVAR model
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% if the selected model is the Mixed frequency BVAR, run this part
+
+% This code has been adapted by Boris Blagov from code for the Federal reserve Bank of Philadelphia, which is in turn
+% based on the original code by Schorfheide and Song. The original code has been modified at some parts to speed up the computation.
+% All errors are our own
+
+if VARtype == 7
+    mf_setup.H = Input.H;
+    mf_setup.data = data_endo;
+    mf_setup.It     = It;
+    mf_setup.Bu     = Bu;
+    mf_setup.hyp    = [lambda1; lambda2; lambda3; lambda4; lambda5];
+    mf_setup.lags   = lags;
+    mf_setup.YMC_orig    = YMC_orig;
+    mf_setup.nex    = const;
+    Output = MF_BVAR_BEAR(mf_setup);
+    Y           = Output.Y;
+    X           = Output.X;
+    data_endo_a = [data_endo_a(1:mf_setup.lags,:); Y];
+    beta_gibbs = Output.beta_gibbs;
+    sigma_gibbs = Output.sigma_gibbs;
+    n = mf_setup.Nm + mf_setup.Nq;
+    p = mf_setup.lags;
+    m = 1;
+    k = n*p+m;
+    T = size(Y,1);
+    q=n*k;
+    YY_past_forfcast = Output.YY_past_forfcast;
+    [Bcap,betacap,Scap,alphacap,phicap,alphatop]=dopost(X,Y,T,k,n);
+    % compute posterior estimates   
+    [beta_median,B_median,beta_std,beta_lbound,beta_ubound,sigma_median]=doestimates(betacap,phicap,Scap,alphacap,alphatop,n,k,cband);
+    log10ml=NaN;
+    dic=NaN;
+    q=NaN;
+    lambda6=NaN;
+    lambda7=NaN;
+    lambda8=NaN;
+    PriorExcel=0;
+   % merged the disp files, but we need some to provide some extra variables in the case we do not have prior 61
+    theta_median=NaN; TVEH=NaN; indH=NaN;
+    
+    % display the VAR results
+    bvardisp(beta_median,beta_std,beta_lbound,beta_ubound,sigma_median,log10ml,dic,X,Y,n,m,p,k,q,T,prior,bex,hogs,lrp,H,ar,lambda1,lambda2,lambda3,lambda4,lambda5,lambda6,lambda7,lambda8,IRFt,const,beta_gibbs,endo,data_endo,exo,startdate,enddate,decimaldates1,stringdates1,pref,scoeff,iobs,PriorExcel,strctident,favar,theta_median,TVEH,indH);
+     
+    
+    %% BLOCK 5: IRFs
+
+    % compute IRFs if the option has been retained
+
+    if IRF==1
+    % run the Gibbs sampler to obtain posterior draws
+    [irf_record]=irf(beta_gibbs,It,Bu,IRFperiods,n,m,p,k);
+
+       % If IRFs have been set to an unrestricted VAR (IRFt=1):
+       if IRFt==1
+       % run a pseudo Gibbs sampler to obtain records for D and gamma (for the trivial SVAR)
+       [D_record gamma_record]=irfunres(n,It,Bu,sigma_gibbs);
+       % compute posterior estimates
+       [irf_estimates,D_estimates,gamma_estimates]=irfestimates(irf_record,n,IRFperiods,IRFband,IRFt,[],[]);
+       % display the results
+       irfdisp(n,endo,IRFperiods,IRFt,irf_estimates,[],[],pref,[]);
+
+       % If IRFs have been set to an SVAR with Choleski identification (IRFt=2):
+       elseif IRFt==2
+       % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
+       [struct_irf_record D_record gamma_record]=irfchol(sigma_gibbs,irf_record,It,Bu,IRFperiods,n,favar);
+       % compute posterior estimates
+       [irfchol_estimates,D_estimates,gamma_estimates]=irfestimates(struct_irf_record,n,IRFperiods,IRFband,IRFt,D_record,gamma_record,favar);
+       % display the results
+       irfdisp(n,endo,IRFperiods,IRFt,irfchol_estimates,D_estimates,gamma_estimates,pref,[]);
+
+       % If IRFs have been set to an SVAR with triangular factorisation (IRFt=3):
+       elseif IRFt==3
+       % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
+       [struct_irf_record D_record gamma_record]=irftrig(sigma_gibbs,irf_record,It,Bu,IRFperiods,n);
+       % compute posterior estimates
+       [irftrig_estimates,D_estimates,gamma_estimates]=irfestimates(struct_irf_record,n,IRFperiods,IRFband,IRFt,D_record,gamma_record);
+       % display the results
+       irfdisp(n,endo,IRFperiods,IRFt,irftrig_estimates,D_estimates,gamma_estimates,pref,[]);
+
+       % If IRFs have been set to an SVAR with sign restrictions (IRFt=4):
+       elseif IRFt==4
+       % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
+       [struct_irf_record D_record gamma_record]=irfres(beta_gibbs,sigma_gibbs,It,Bu,IRFperiods,n,m,p,k,signrestable,signresperiods);
+       % compute posterior estimates
+       [irfres_estimates,D_estimates,gamma_estimates]=irfestimates(struct_irf_record,n,IRFperiods,IRFband,IRFt,D_record,gamma_record);
+       % display the results
+       irfdisp(n,endo,IRFperiods,IRFt,irfres_estimates,D_estimates,gamma_estimates,pref,signreslabels);
+       end
+
+       % If an SVAR was selected, also compute the structural shock series
+       if IRFt==2||IRFt==3||IRFt==4
+       % compute first the empirical posterior distribution of the structural shocks
+       [strshocks_record]=strshocks(beta_gibbs,D_record,Y,X,n,k,It,Bu,favar);
+       % compute posterior estimates
+       [strshocks_estimates]=strsestimates(strshocks_record,n,T,IRFband);
+       % display the results
+       strsdisp(decimaldates1,stringdates1,strshocks_estimates,endo,pref,IRFt,strctident);
+       end
+
+    end
+
+
+    % estimate IRFs for exogenous variables
+    [exo_irf_record exo_irf_estimates]=irfexo(beta_gibbs,It,Bu,IRFperiods,IRFband,n,m,p,k);
+    % estimate IRFs for exogenous variables
+    irfexodisp(n,m,endo,exo,IRFperiods,exo_irf_estimates,pref);
+
+
+%% BLOCK 6: FORECASTS
+
+% compute forecasts if the option has been retained
+if F==1
+% run the Gibbs sampler to obtain draws form the posterior predictive distribution
+% [forecast_record]=forecast(data_endo_a,data_exo_p,It,Bu,beta_gibbs,sigma_gibbs,Fperiods,n,p,k,const);
+% [forecast_record]=forecast([data_endo_a(1:p,:); Y],[],It,Bu,beta_gibbs,sigma_gibbs,Fperiods,n,p,k,const);
+[forecast_record]=forecast_mf(YY_past_forfcast,[],It,Bu,beta_gibbs,sigma_gibbs,Fperiods,n,p,k,const);
+% compute posterior estimates
+% [forecast_estimates]=festimates(forecast_record,n,Fperiods,Fband);
+[forecast_estimates]=festimates(forecast_record,n,Fperiods,Fband);
+    % Transform the variables
+   Y_trans = Y; forecast_estimates_trans = forecast_estimates;
+   for ii = 1:size(forecast_estimates,1)
+       if mf_setup.select(1,ii) == 0
+            forecast_estimates_trans{ii,1} = exp(forecast_estimates{ii,1});
+            Y_trans(:,ii) = exp(Y(:,ii));
+       else           
+            forecast_estimates_trans{ii,1} = 100*(forecast_estimates{ii,1});
+            Y_trans(:,ii) = 100*(Y(:,ii));
+       end
+   end
+%   Y_trans = Y; forecast_estimates_trans = forecast_estimates_mf;
+%    for ii = 1:size(forecast_estimates,1)
+%        if mf_setup.select(1,ii) == 0
+%             forecast_estimates_trans{ii,1} = exp(forecast_estimates_mf{ii,1});
+%             Y_trans(:,ii) = exp(Y(:,ii));
+%        else           
+%             forecast_estimates_trans{ii,1} = 100*(forecast_estimates{ii,1});
+%             Y_trans(:,ii) = 100*(Y(:,ii));
+%        end
+%    end
+% display the results for the forecasts
+fdisp(Y_trans,n,T,endo,stringdates2,decimaldates2,Fstartlocation,Fendlocation,forecast_estimates_trans,pref);
+% finally, compute forecast evaluation if the option was selected
+   if Feval==1 
+       %OLS single variable with BIC lag selection VAR for Rossi test
+      [OLS_Bhat, OLS_betahat, OLS_sigmahat, OLS_forecast_estimates, biclag]=arbicloop(data_endo,data_endo_a,const,p,n,m,Fperiods,Fband);
+      [Forecasteval]=bvarfeval(data_endo_c,data_endo_c_lags,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,It,Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,names,endo,pref);
+   end
+end
+
+
+
+
+
+
+%% BLOCK 7: FEVD                THIS PART HAS NOT BEEN CHECKED IF IT WORKS AS IT REQUIRES MATLAB2016b
+
+% compute FEVD if the option has been retained
+if FEVD==1
+% run the Gibbs sampler to compute posterior draws
+[fevd_record]=fevd(struct_irf_record,gamma_record,It,Bu,IRFperiods,n);
+% compute posterior estimates
+[fevd_estimates]=fevdestimates(fevd_record,n,IRFperiods,FEVDband);
+% display the results
+fevddisp(n,endo,IRFperiods,fevd_estimates,pref,IRFt,signreslabels);
+end
+
+
+
+
+%% BLOCK 8: historical decomposition  - coded to be done at the median of the monthly gdp estimates
+
+% compute historical decomposition if the option has been retained
+if HD==1
+% run the Gibbs sampler to compute posterior draws 
+[hd_record]=hdecomp(beta_gibbs,D_record,strshocks_record,It,Bu,Y,X,n,m,p,k,T);
+% compute posterior estimates
+[hd_estimates]=hdestimates(hd_record,n,T,HDband);
+% display the results
+hddisp(n,endo,Y,decimaldates1,hd_estimates,stringdates1,T,pref,IRFt,signreslabels);
+end
+
+
+
+
+
+%% BLOCK 9: conditional forecasts
+
+% compute conditional forecasts if the option has been retained
+if CF==1
+   % if the type of conditional forecasts corresponds to the standard methodology
+   if CFt==1||CFt==2
+   % run the Gibbs sampler to obtain draws from the posterior predictive distribution of conditional forecasts
+%    [cforecast_record]=cforecast(data_endo_a,data_exo_a,data_exo_p,It,Bu,Fperiods,cfconds,cfshocks,cfblocks,CFt,const,beta_gibbs,D_record,gamma_record,n,m,p,k,k*n);
+   [cforecast_record]=cforecast_mf(YY_past_forfcast,data_exo_a,data_exo_p,It,Bu,Fperiods,cfconds,cfshocks,cfblocks,CFt,const,beta_gibbs,D_record,gamma_record,n,m,p,k,k*n);
+   % if the type of conditional forecasts corresponds to the tilting methodology
+   elseif CFt==3||CFt==4
+   [cforecast_record]=tcforecast(forecast_record,Fperiods,cfconds,cfintervals,CFt,n,Fband,It,Bu);
+   end
+   % compute posterior estimates
+   [cforecast_estimates]=festimates(cforecast_record,n,Fperiods,Fband);
+   Y_trans = Y; cforecast_estimates_trans = cforecast_estimates;
+   for ii = 1:size(cforecast_estimates,1)
+       if mf_setup.select(1,ii) == 0
+            cforecast_estimates_trans{ii,1} = exp(cforecast_estimates{ii,1});
+            Y_trans(:,ii) = exp(Y(:,ii));
+       else           
+            cforecast_estimates_trans{ii,1} = 100*(cforecast_estimates{ii,1});
+            Y_trans(:,ii) = 100*(Y(:,ii));
+       end
+   end
+   % display the results for the forecasts
+   cfdisp(Y_trans,n,T,endo,stringdates2,decimaldates2,Fstartlocation,Fendlocation,cforecast_estimates_trans,pref);
+end
+
+if numt>1
+    save([pref.datapath '\results\' pref.results_sub Fstartdate '.mat']); % Save Workspace
+end
+
+Fstartdate_rolling=[Fstartdate_rolling; Fstartdate];
+
+% here finishes grand loop 7
+% if the model selected is not a mixed frequency BVAR, this part will not be run
+end
+
     
     
     % End of forecasting loop

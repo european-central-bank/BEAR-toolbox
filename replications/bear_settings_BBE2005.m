@@ -6,8 +6,7 @@
 %    developments division of the European Central Bank.                   %
 %                                                                          %
 %    Authors:                                                              %
-%    Romain Legrand  									                   %
-%    Alistair Dieppe (adieppe@worldbank.org)                               %
+%    Alistair Dieppe (alistair.dieppe@ecb.europa.eu)                               %
 %    Björn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                        %
 %                                                                          %
 %    Version 5.0                                                           %
