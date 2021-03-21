@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                          %
-%    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR)
-%
+%    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR)                   %
+%                                                                          %
 %    Authors:                                                              %
 %    Alistair Dieppe (alistair.dieppe@ecb.europa.eu)                       %
 %    Björn van Roye  (bvanroye@bloomberg.net)                              %
