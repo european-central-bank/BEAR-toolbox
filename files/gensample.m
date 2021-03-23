@@ -30,7 +30,8 @@ if favar.FAVAR==1 % in case we transform the data to first or second differences
         startlocation=informationstartlocation;
         endlocation=informationendlocation;
      % for FVAR without transformations
-     % else startlocation=startlocationData;
+    else
+        startlocation=startlocationData;
      end
 end
 
@@ -145,10 +146,10 @@ if favar.FAVAR==1
     
     % IRF shock to plot
     if favar.IRF.plot==1
+        favar.IRF.npltXshck=size(favar.IRF.pltXshck,1);
         if IRFt==1||IRFt==2||IRFt==3
             plotXshock_indexlogical=ismember(endo,favar.IRF.pltXshck);
             favar.IRF.plotXshock_index=find(plotXshock_indexlogical==1)';
-            favar.IRF.npltXshck=size(favar.IRF.pltXshck,1);
             if favar.IRF.npltXshck==0
                 % error if no shock to plot is found, otherwise code crashes at a later stage
                 message=['Error: Shock(' favar.IRF.npltXshck ') cannot be found.'];
