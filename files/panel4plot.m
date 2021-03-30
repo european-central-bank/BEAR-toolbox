@@ -1,4 +1,4 @@
-function []=panel4plot(endo,Units,Xi,Yi,N,n,m,p,k,T,beta_median,beta_gibbs,It,Bu,decimaldates1,stringdates1,pref,cband)
+function []=panel4plot(endo,Units,Xi,Yi,N,n,m,p,k,T,beta_median,beta_gibbs,It,Bu,decimaldates1,stringdates1,pref,cband,favar)
 
 
 
@@ -161,18 +161,19 @@ end
 % initiate the cell storing the steady-state draws
 ss_record={};
 ss_estimates={};
-ss_estimates_constant={};
-ss_estimates_exogneous={};
+% % ss_estimates_constant={};
+% % ss_estimates_exogneous={};
 % run the Gibbs sampler for the steady-state (common to all units)
-ss_record=ssgibbs(n,m,p,k,Xi(:,:,1),beta_gibbs,It,Bu);
-% run the Gibbs sampler for the steady-state constant part (common to all units)
-ss_record_constant=ssgibbs(n,m,p,k,Xi(:,:,1),beta_gibbs,It,Bu);
-% run the Gibbs sampler for the steady-state constant part (common to all units)
-ss_record_exogenous=ssgibbs(n,m,p,k,Xi(:,:,1),beta_gibbs,It,Bu);
+ss_record=ssgibbs(n,m,p,k,Xi(:,:,1),beta_gibbs,It,Bu,favar);
+% % % run the Gibbs sampler for the steady-state constant part (common to all units)
+% % ss_record_constant=ssgibbs(n,m,p,k,Xi(:,:,1),beta_gibbs,It,Bu,favar);
+% % % run the Gibbs sampler for the steady-state constant part (common to all units)
+% % ss_record_exogenous=ssgibbs(n,m,p,k,Xi(:,:,1),beta_gibbs,It,Bu,favar);
 % obtain point estimates and credibility interval
-ss_estimates=ssestimates(ss_record,ss_record_constant,ss_record_exogenous,n,m,T,cband);
-ss_estimates_constant=ssestimates(ss_record,ss_record_constant,ss_record_exogenous,n,m,T,cband);
-ss_estimates_exogenous=ssestimates(ss_record,ss_record_constant,ss_record_exogenous,n,m,T,cband);
+ss_estimates=ssestimates(ss_record,n,T,cband);
+% % ss_estimates=ssestimates(ss_record,ss_record_constant,ss_record_exogenous,n,m,T,cband);
+% % ss_estimates_constant=ssestimates(ss_record,ss_record_constant,ss_record_exogenous,n,m,T,cband);
+% % ss_estimates_exogenous=ssestimates(ss_record,ss_record_constant,ss_record_exogenous,n,m,T,cband);
 
 if pref.plot
 % then plot the figure

@@ -25,7 +25,7 @@ elseif IRFt==2
 D=chol(nspd(sigmahat),'lower');
 gamma=eye(n);
 elseif IRFt==3
-[D gamma]=triangf(sigmahat);  
+[D,gamma]=triangf(sigmahat);  
 end
 gamma_estimates=vec(gamma);
 D_estimates=vec(D);

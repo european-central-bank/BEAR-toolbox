@@ -1,4 +1,4 @@
-function [beta_gibbs,sigma_gibbs,favar,It,Bu]=favar_dogibbs(It,Bu,B,EPS,n,T,lags,data_endo,data_exo,const,favar,ar,arvar,lambda1,lambda3,lambda4,m,p,k,priorexo,Y,X,cband)
+function [beta_gibbs,sigma_gibbs,favar,It,Bu]=favar_dogibbs(It,Bu,B,EPS,n,T,lags,data_endo,data_exo,const,favar,ar,arvar,lambda1,lambda3,lambda4,m,p,k,priorexo,Y,X,cband,Tstar)
 
 %% the methodolgy closely follows Bernanke, Boivin, Eliasz (2005) and lends from the FAVAR model of Koop & Korobilis 
 
@@ -48,9 +48,9 @@ sigmahat=(1/T)*(EPS'*EPS);
 % preallocation
 beta_gibbs=zeros(size(B(:),1),It-Bu);
 sigma_gibbs=zeros(size(sigmahat(:),1),It-Bu);
-X_gibbs=zeros(size(X(:),1),It-Bu);
-Y_gibbs=zeros(size(Y(:),1),It-Bu);
-FY_gibbs=zeros(size(data_endo(:),1),It-Bu);
+% X_gibbs=zeros(size(X(:),1),It-Bu);
+% Y_gibbs=zeros(size(Y(:),1),It-Bu);
+% FY_gibbs=zeros(size(data_endo(:),1),It-Bu);
 L_gibbs=zeros(size(L(:),1),It-Bu);
 R2_gibbs=zeros(size(favarX,2),It-Bu);
 
@@ -62,9 +62,10 @@ elseif onestep==1
 end
 
 % state-space representation
+if onestep==1
 B_ss=[B';eye(n*(lags-1)) zeros(n*(lags-1),n)];
 sigma_ss=[sigmahat zeros(n,n*(lags-1));zeros(n*(lags-1),n*lags)];
-
+end
 
 % create a progress bar
 hbar = parfor_progressbar(It,['Progress of the Gibbs sampler (',pbstring,').']);
@@ -108,7 +109,7 @@ end
 %% record the values if the number of burn-in iterations is exceeded
 if ii>Bu
 % values of vector beta
-beta_gibbs(:,ii-Bu)=beta;
+beta_gibbs(:,ii-Bu)=B(:);
 % values of sigma (in vectorized form)
 sigma_gibbs(:,ii-Bu)=sigma(:);
 

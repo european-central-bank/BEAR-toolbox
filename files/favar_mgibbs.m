@@ -1,22 +1,23 @@
 function [beta_gibbs,sigma_gibbs,favar,It,Bu]=favar_mgibbs(It,Bu,B,EPS,n,T,q,lags,data_endo,data_exo,const,favar,ar,arvar,lambda1,lambda2,lambda3,lambda4,lambda5,m,p,k,prior,bex,blockexo,priorexo,Y,X,y)
 
-%% the methodolgy closely follows Bernanke, Boivin, Eliasz (2005) and lends from the FAVAR model of Koop & Korobilis 
+%% references: Bernanke, Boivin, Eliasz (2005), Koop & Korobilis
 
 %% preliminary tasks
 % initialise variables
 nfactorvar=favar.nfactorvar;
 numpc=favar.numpc;
 favarX=favar.X(:,favar.plotX_index);
+favarplotX_index=favar.plotX_index;
 onestep=favar.onestep;
-    % initial conditions XZ0~N(XZ0mean,XZ0var)
-    favar.XZ0mean=zeros(n*lags,1);
-    favar.XZ0var=favar.L0*eye(n*lags);
-    
+% initial conditions XZ0~N(XZ0mean,XZ0var)
+favar.XZ0mean=zeros(n*lags,1);
+favar.XZ0var=favar.L0*eye(n*lags);
+
 XY=favar.XY;
 L=favar.L;
 Sigma=nspd(favar.Sigma);
 if onestep==1
-indexnM=favar.indexnM;
+    indexnM=favar.indexnM;
 end
 XZ0mean=favar.XZ0mean;
 XZ0var=favar.XZ0var;
@@ -43,9 +44,15 @@ elseif onestep==1
 end
 
 % state-space representation
-B_ss=[B';eye(n*(lags-1)) zeros(n*(lags-1),n)];
-sigma_ss=[sigmahat zeros(n,n*(lags-1));zeros(n*(lags-1),n*lags)];
-
+if onestep==1
+    B_ss=[B';eye(n*(lags-1)) zeros(n*(lags-1),n)];
+    sigma_ss=[sigmahat zeros(n,n*(lags-1));zeros(n*(lags-1),n*lags)];
+elseif onestep==0
+    % set prior values
+    [beta0,omega0,sigma]=mprior(ar,arvar,sigmahat,lambda1,lambda2,lambda3,lambda4,lambda5,n,m,p,k,q,prior,bex,blockexo,priorexo);
+    % obtain posterior distribution parameters
+    [betabar,omegabar]=mpost(beta0,omega0,sigma,X,y,q,n);
+end
 
 %% create a progress bar
 hbar = parfor_progressbar(It,['Progress of the Gibbs sampler (',pbstring,').']);
@@ -60,58 +67,56 @@ for ii=1:It
         % Sample autoregressive coefficients B,in the twostep procedure FY is static, and we want to use updated B
         [~,~,~,X,~,Y,y]=olsvar(FY,data_exo,const,lags);
         [arvar]=arloop(FY,const,p,n);
+        % set prior values
+        [beta0,omega0,sigma]=mprior(ar,arvar,sigmahat,lambda1,lambda2,lambda3,lambda4,lambda5,n,m,p,k,q,prior,bex,blockexo,priorexo);
+        % obtain posterior distribution parameters
+        [betabar,omegabar]=mpost(beta0,omega0,sigma,X,y,q,n);
     end
     
-   % set prior values
-   [beta0,omega0,sigma]=mprior(ar,arvar,sigmahat,lambda1,lambda2,lambda3,lambda4,lambda5,n,m,p,k,q,prior,bex,blockexo,priorexo);
-   % obtain posterior distribution parameters
-   [betabar,omegabar]=mpost(beta0,omega0,sigma,X,y,q,n);
-
-if onestep==1
-sigma_ss(1:n,1:n)=sigma;
-end
-
-% draw beta from N(betabar,omegabar);
-stationary=0;
-while stationary==0 
-beta=betabar+chol(nspd(omegabar),'lower')*mvnrnd(zeros(q,1),eye(q))';
-    [stationary]=checkstable(beta,n,lags,size(B,1)); %switches stationary to 0, if the draw is not stationary
-end
-
-% update matrix B with each draw
-if onestep==1
-B=reshape(beta,size(B));
-B_ss(1:n,:)=B';
-end
-
-%% Sample Sigma and L
-[Sigma,L]=favar_SigmaL(Sigma,L,nfactorvar,numpc,onestep,n,favar_X,FY,a0,b0,T,lags,L0);
-
-%% record the values if the number of burn-in iterations is exceeded
-if ii>Bu
-% values of vector beta
-beta_gibbs(:,ii-Bu)=beta;
-% values of sigma (in vectorized form)
-sigma_gibbs(:,ii-Bu)=sigma(:);
-
-% save the factors and loadings
-X_gibbs(:,ii-Bu)=X(:);
-Y_gibbs(:,ii-Bu)=Y(:);
-FY_gibbs(:,ii-Bu)=FY(:);
-L_gibbs(:,ii-Bu)=L(:);
-
-% compute R2 (Coefficient of Determination) for plotX variables
-R2=favar_R2(favarX,FY);
-R2_gibbs(:,ii-Bu)=R2(:);
-
-% if current iteration is still a burn iteration, do not record the result
-else
-end
-
-% update progress by one iteration
-hbar.iterate(1);
-
-% go for next iteration
+    if onestep==1
+        sigma_ss(1:n,1:n)=sigma;
+    end
+    
+    % draw beta from N(betabar,omegabar);
+    stationary=0;
+    while stationary==0
+        beta=betabar+chol(nspd(omegabar),'lower')*mvnrnd(zeros(q,1),eye(q))';
+        [stationary]=checkstable(beta,n,lags,size(B,1)); %switches stationary to 0, if the draw is not stationary
+    end
+    
+    % update matrix B with each draw
+    if onestep==1
+        B=reshape(beta,size(B));
+        B_ss(1:n,:)=B';
+        % Sample Sigma and L
+        [Sigma,L]=favar_SigmaL(Sigma,L,nfactorvar,numpc,onestep,n,favar_X,FY,a0,b0,T,lags,L0);
+    end
+    
+    %% record the values if the number of burn-in iterations is exceeded
+    if ii>Bu
+        % values of vector beta
+        beta_gibbs(:,ii-Bu)=beta;
+        % values of sigma (in vectorized form)
+        sigma_gibbs(:,ii-Bu)=sigma(:);
+        
+        % save the factors and loadings
+        X_gibbs(:,ii-Bu)=X(:);
+        Y_gibbs(:,ii-Bu)=Y(:);
+        FY_gibbs(:,ii-Bu)=FY(:);
+        L_gibbs(:,ii-Bu)=L(:);
+        
+        % compute R2 (Coefficient of Determination) for plotX variables
+        R2=favar_R2(favarX,FY,L,favarplotX_index);
+        R2_gibbs(:,ii-Bu)=R2(:);
+        
+        % if current iteration is still a burn iteration, do not record the result
+    else
+    end
+    
+    % update progress by one iteration
+    hbar.iterate(1);
+    
+    % go for next iteration
 end
 
 % in case we have thinning of the draws,

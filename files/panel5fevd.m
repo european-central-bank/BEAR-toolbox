@@ -1,4 +1,4 @@
-function [fevd_record fevd_estimates]=panel5fevd(N,n,struct_irf_record,gamma_record,It,Bu,IRFperiods,FEVDband)
+function [fevd_record,fevd_estimates]=panel5fevd(N,n,struct_irf_record,gamma_record,It,Bu,IRFperiods,FEVDband)
 
 
 
@@ -6,7 +6,7 @@ function [fevd_record fevd_estimates]=panel5fevd(N,n,struct_irf_record,gamma_rec
 
 
 % run the Gibbs sampler to obtain FEVD draws
-[fevd_record]=fevd(struct_irf_record,gamma_record,It,Bu,IRFperiods,N*n);
+[fevd_record]=fevd(struct_irf_record,gamma_record,It,Bu,N*n,IRFperiods,FEVDband);
 % obtain point estimates and credibility intervals
 [fevd_estimates]=fevdestimates(fevd_record,N*n,IRFperiods,FEVDband);
 

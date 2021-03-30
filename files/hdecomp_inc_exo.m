@@ -83,8 +83,10 @@ end
 if favar.FAVAR==1 && favar.HD.plot==1
     for ii=1:It-Bu %loop over draws
         for kk=1:contributors+2 %loop over contributors
+            for ll=1:n %loop over variables
             for ww=1:favar.npltX
-                favar_hd_record{kk,ww}(ii,:)=favar_HDstorage{ii,1}{kk,ww};
+                favar_hd_record{kk,ll,ww}(ii,:)=favar_HDstorage{ii,1}{kk,ll,ww};
+            end
             end
         end
     end

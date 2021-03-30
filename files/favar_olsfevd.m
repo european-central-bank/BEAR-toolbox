@@ -87,7 +87,7 @@ end
 
 % create the output cell fevd_record, scale the shocks with R2 in spirit of BBE (2005)
 favar_fevd_estimates=cell(npltX,identified);
-R2=favar_R2(favar.X(:,favar.plotX_index),favar.FY);
+R2=favar_R2(favar.X(:,favar.plotX_index),favar.FY,favar.L,favar.plotX_index);
 % fill the cell
 % loop over rows of fevd_estimates
 for ii=1:npltX

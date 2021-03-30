@@ -141,18 +141,3 @@ end
 
 close(hbar);   %close progress bar
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

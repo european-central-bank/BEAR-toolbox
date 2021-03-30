@@ -307,20 +307,33 @@ end
 
 %% FAVAR
 if favar.FAVAR==1
-% all rows that are not empty
+    % strings of restricted information variables
+signresX_init=strngs1(max(rows)+1:end,min(clmns)-1); %strngs1 is already adjusted for empty rows and columns
+% which information variables are restricted?
+Xsignres=ismember(signresX_init,favar.informationvariablestrings);
+% number of restricted variables in X
+favar.nrelmagnresX=sum(Xsignres);
+% keep only the ones that are actually in X
+favar.relmagnresX=signresX_init(Xsignres==1,:);
+if favar.nrelmagnresX==0
+favar.relmagnresX_index=[];
+end
+
+% % all rows that are not empty
 neclmns1index=neclmns1==1;
 nerows1index=nerows1(neclmns1index,1);
-nerows1indexend=find(nerows1index==rows(end,1));
-if nerows1indexend==size(nerows1index,1)
-    favar.nrelmagnresX=0;
-else
-% only information variables in X that are restricted
+% nerows1indexend=find(nerows1index==rows(end,1));
+% if nerows1indexend==size(nerows1index,1)
+%     favar.nrelmagnresX=0;
+%     favar.relmagnresX_index=[];
+% else
+% % only information variables in X that are restricted
 Xnerows1index=nerows1index(size(rows,1)+1:end,1);
-% strings of restricted information variables
-favar.relmagnresX=strngs1(max(rows)+1:end,min(clmns)-1); %strngs1 is already adjusted for empty rows and columns
-%number of restricted information variables
-favar.nrelmagnresX=size(favar.relmagnresX,1);
-end
+% % strings of restricted information variables
+% favar.relmagnresX=strngs1(max(rows)+1:end,min(clmns)-1); %strngs1 is already adjusted for empty rows and columns
+% %number of restricted information variables
+% favar.nrelmagnresX=size(favar.relmagnresX,1);
+% end
 %create indices for restricted information variables (advantage here: ordering in the sign res table is irrelevant)
     for jj=1:favar.nrelmagnresX
         for ii=1:favar.nfactorvar
@@ -328,8 +341,6 @@ end
         end
     end
     for jj=1:favar.nrelmagnresX
-        %%%%%% here could be an empty check, to check wheter variables that
-        %%%%%% are provided are actually in factor data
         favar.relmagnresX_index(jj,1)=find(favar.relmagnresX_indexlogical{jj,1});
     end
     
@@ -368,8 +379,6 @@ for ii=1:favar.nrelmagnresX % loop over restricted information variables
    favar.relmagnresperiods{ii,jj}=str2num(strngs2{Xnerows1index(ii,1),clmns(jj,1)});
    end
 end
-
-%%%%% case for IRFt6 hre, delte also  favar.relmagnresperiods
 
 % check if we have restrictions
 if sum(strctident.favar_relmagnrestableempty==0)~=0
@@ -446,10 +455,16 @@ strctident.signreslabels_shocks=strctident.signreslabels(strctident.signreslabel
 signreslabels=strctident.signreslabels;
 
 % create indices for plotXshock
-if favar.IRF.plot==1
+if favar.IRF.plot==1 && favar.npltX>0
         IRFplotXshock_indexlogical=ismember(signreslabels,favar.IRF.pltXshck);
         favar.IRF.plotXshock_index=find(IRFplotXshock_indexlogical==1)';
         favar.IRF.npltXshck=size(favar.IRF.pltXshck,1);
+        if favar.IRF.npltXshck==0
+        % error if no shock to plot is found, otherwise code crashes at a later stage
+        message=['Error: at least one Shock (' favar.IRF.plotXshock ') cannot be found.'];
+        msgbox(message,'favar.IRF.npltXshck error');
+        error('programme termination: favar.IRF.plotXshock error');
+        end
 end
 if favar.FEVD.plot==1
         FEVDplotXshock_indexlogical=ismember(signreslabels,favar.FEVD.pltXshck);
@@ -473,10 +488,6 @@ else % when no rel. mag res are found here
 strctident.favar_relmagnres=0;
 strctident.hbartext_favar_relmagnres='';
 end
-
-
-
-
 
 
 else %no favar

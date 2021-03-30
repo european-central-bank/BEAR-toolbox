@@ -2,11 +2,15 @@ function [Sigma,L]=favar_SigmaL(Sigma,L,nfactorvar,numpc,onestep,n,favar_X,FY,a0
 
 % Sample Sigma and L for favar gibbs sampler
 for jj=1:nfactorvar
-    if jj <= numpc && onestep==1
+    if onestep==1
+    if jj <= numpc
         Ld=zeros(n,1);
         Ld(jj)=1;
     else
         Ld=favar_olssvd(favar_X(:,jj),FY);
+    end
+    elseif onestep==0
+        Ld=L(jj,:)';
     end
     ed=favar_X(:,jj)-FY*Ld;
     
@@ -22,16 +26,17 @@ for jj=1:nfactorvar
         Sigmad=a_bar/Sigmad;
     
     Sigma(jj,jj)=Sigmad;
-    
+    if onestep==1
     % draw L(n,1:n):
     if jj > numpc
         L_bar=inv(L0+FY'*FY);
         L_barmean=L_bar*(FY'*FY)*Ld;
         Ld=L_barmean'+randn(1,n)*chol(Sigma(jj,jj)*L_bar);
-%         % should be quasi equivalent, why different results?
+%         % should be quasi equivalent
 %             L_bar=L0+FY'*FY;
 %             L_barmean=L_bar\(FY'*FY)*Ld;
 %             Ld=L_barmean'+randn(1,n)*chol(Sigma(jj,jj))/L_bar';
         L(jj,1:n)=Ld;
+    end
     end
 end

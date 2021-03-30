@@ -12,8 +12,8 @@ if levels==1 % only cum sum, also for second differences
             if transformationindex(oo)==1 %1: no transformation, Level
                 retransformed_irf_record{oo,ll}=irf_record{oo,ll};
             elseif transformationindex(oo)==2
-                %retransformed_irf_record{oo,ll}=cumsum(irf_record{oo,ll},2); %2: First Difference
-                retransformed_irf_record{oo,ll}=irf_record{oo,ll};
+                retransformed_irf_record{oo,ll}=cumsum(irf_record{oo,ll},2); %2: First Difference
+%                 retransformed_irf_record{oo,ll}=irf_record{oo,ll};
             elseif transformationindex(oo)==3
                 %retransformed_irf_record{oo,ll}=cumsum(irf_record{oo,ll},2);    %3: Second Difference
                 retransformed_irf_record{oo,ll}=irf_record{oo,ll};
@@ -21,8 +21,8 @@ if levels==1 % only cum sum, also for second differences
                 %retransformed_irf_record{oo,ll}=irf_record{oo,ll};
                 retransformed_irf_record{oo,ll}=exp(irf_record{oo,ll})-ones(ItBu,1);       %4: Log-Level
             elseif transformationindex(oo)==5
-                %retransformed_irf_record{oo,ll}=cumsum(irf_record{oo,ll}(:,:),2); %5: Log-First-Difference
-                retransformed_irf_record{oo,ll}=exp(cumsum(irf_record{oo,ll},2))-ones(ItBu,1); %5: Log-First-Difference
+                retransformed_irf_record{oo,ll}=cumsum(irf_record{oo,ll}(:,:),2); %5: Log-First-Difference
+%                 retransformed_irf_record{oo,ll}=exp(cumsum(irf_record{oo,ll},2))-ones(ItBu,1); %5: Log-First-Difference
             elseif transformationindex(oo)==6
                 %retransformed_irf_record{oo,ll}=cumsum(irf_record{oo,ll}(:,:),2); %6: Log-Second-Difference
                 retransformed_irf_record{oo,ll}=exp(cumsum(irf_record{oo,ll},2))-ones(ItBu,1); %5: Log-First-Difference

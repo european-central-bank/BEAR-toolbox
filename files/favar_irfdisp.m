@@ -6,14 +6,14 @@ function [favar]=favar_irfdisp(favar,IRFperiods,endo,IRFt,strctident,pref)
     
     % plot the IRFs of the factors
     if favar.IRF.plot==1
-    % one window for each shock, as we possbily plot a lot of variables in X  
+    % one window for each shock, as we possibly plot a lot of variables in X  
     for px=1:favar.IRF.npltXshck
     irf_favar=figure;
     % shock label
            if IRFt==1||IRFt==2||IRFt==3
             printlabels=endo{favar.IRF.plotXshock_index(1,px),1};
             elseif IRFt==4||IRFt==5||IRFt==6
-            printlabels=strctident.signreslabels{strctident.signreslabels_shocksindex(px,1)};
+            printlabels=strctident.signreslabels{favar.IRF.plotXshock_index(1,px)};
            end
     set(irf_favar,'name',['approximate impulse response functions (FAVAR) to shock ',printlabels]);
     

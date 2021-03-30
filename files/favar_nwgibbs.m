@@ -1,10 +1,10 @@
 function [beta_gibbs,sigma_gibbs,favar,It,Bu]=favar_nwgibbs(It,Bu,Bhat,EPS,n,m,p,k,T,q,lags,data_endo,ar,arvar,lambda1,lambda3,lambda4,prior,priorexo,const,data_exo,favar,Y,X)
 
-%% the methodolgy closely follows Bernanke, Boivin, Eliasz (2005) and lends from the FAVAR model of Koop & Korobilis 
+%% references: Bernanke, Boivin, Eliasz (2005), Koop & Korobilis
 
 % function [beta_gibbs sigma_gibbs]=nwgibbs(It,Bu,Bbar,phibar,alphatilde,Sbar,alphabar,n,k)
 % performs the Gibbs algortihm 2.1.3 for the normal-Wishart prior, and returns draws from posterior distribution
-% inputs:  - integer 'It': total number of iterations of the Gibbs sampler (defined p 28 of technical guide) 
+% inputs:  - integer 'It': total number of iterations of the Gibbs sampler (defined p 28 of technical guide)
 %          - integer 'Bu': number of burn-in iterations of the Gibbs sampler (defined p 28 of technical guide)
 %          - matrix 'Bbar': posterior matrix of VAR coefficients for the normal-Wishart prior (defined in 1.4.17)
 %          - matrix 'phibar':posterior covariance matrix for the VAR coefficients in the case of a normal-Wishart prior (defined in 1.4.16)
@@ -13,7 +13,7 @@ function [beta_gibbs,sigma_gibbs,favar,It,Bu]=favar_nwgibbs(It,Bu,Bhat,EPS,n,m,p
 %          - integer 'alphatilde': degrees of freedom of the matrix student distribution (defined in 1.4.23)
 %          - integer 'n': number of endogenous variables in the BVAR model (defined p 7 of technical guide)
 %          - integer 'k': number of coefficients to estimate for each equation in the BVAR model (defined p 7 of technical guide)
-% outputs: - matrix 'beta_gibbs': record of the gibbs sampler draws for the beta vector 
+% outputs: - matrix 'beta_gibbs': record of the gibbs sampler draws for the beta vector
 %          - matrix'sigma_gibbs': record of the gibbs sampler draws for the sigma matrix (vectorised)
 
 %% preliminary tasks
@@ -21,16 +21,17 @@ function [beta_gibbs,sigma_gibbs,favar,It,Bu]=favar_nwgibbs(It,Bu,Bhat,EPS,n,m,p
 nfactorvar=favar.nfactorvar;
 numpc=favar.numpc;
 favarX=favar.X(:,favar.plotX_index);
+favarplotX_index=favar.plotX_index;
 onestep=favar.onestep;
-    % initial conditions XZ0~N(XZ0mean,XZ0var)
-    favar.XZ0mean=zeros(n*lags,1);
-    favar.XZ0var=favar.L0*eye(n*lags); %BBE set-up
-    
+% initial conditions XZ0~N(XZ0mean,XZ0var)
+favar.XZ0mean=zeros(n*lags,1);
+favar.XZ0var=favar.L0*eye(n*lags); %BBE set-up
+
 XY=favar.XY;
 L=favar.L;
 Sigma=nspd(favar.Sigma);
 if onestep==1
-indexnM=favar.indexnM;
+    indexnM=favar.indexnM;
 end
 XZ0mean=favar.XZ0mean;
 XZ0var=favar.XZ0var;
@@ -58,8 +59,15 @@ elseif onestep==1
 end
 
 % state-space representation
-B_ss=[Bhat';eye(n*(lags-1)) zeros(n*(lags-1),n)];
-sigma_ss=[sigmahat zeros(n,n*(lags-1));zeros(n*(lags-1),n*lags)];
+if onestep==1
+    B_ss=[Bhat';eye(n*(lags-1)) zeros(n*(lags-1),n)];
+    sigma_ss=[sigmahat zeros(n,n*(lags-1));zeros(n*(lags-1),n*lags)];
+elseif onestep==0
+    % set prior values
+    [B0,~,phi0,S0,alpha0]=nwprior(ar,arvar,lambda1,lambda3,lambda4,n,m,p,k,q,prior,priorexo);
+    % obtain posterior distribution parameters
+    [Bbar,~,phibar,Sbar,alphabar,alphatilde]=nwpost(B0,phi0,S0,alpha0,X,Y,n,T,k);
+end
 
 % create a progress bar
 hbar = parfor_progressbar(It,['Progress of the Gibbs sampler (',pbstring,').']);
@@ -71,59 +79,61 @@ for ii=1:It
         FY=favar_kfgibbsnv(XY,XZ0mean,XZ0var,L,Sigma,B_ss,sigma_ss,indexnM);
         % demean generated factors
         FY=favar_demean(FY);
-        % Sample autoregressive coefficients B,in the twostep procedure FY is static, and we want to use updated B
+        % Sample autoregressive coefficients B
         [~,~,~,X,~,Y]=olsvar(FY,data_exo,const,lags);
         [arvar]=arloop(FY,const,p,n);
-    end   
+        % set prior values, new with every iteration for onestep only
+        [B0,~,phi0,S0,alpha0]=nwprior(ar,arvar,lambda1,lambda3,lambda4,n,m,p,k,q,prior,priorexo);
+        % obtain posterior distribution parameters, new with every iteration for onestep only
+        [Bbar,~,phibar,Sbar,alphabar,alphatilde]=nwpost(B0,phi0,S0,alpha0,X,Y,n,T,k);
+    end
     
-   % set prior values
-   [B0,~,phi0,S0,alpha0]=nwprior(ar,arvar,lambda1,lambda3,lambda4,n,m,p,k,q,prior,priorexo);
-   % obtain posterior distribution parameters
-   [Bbar,~,phibar,Sbar,alphabar,alphatilde]=nwpost(B0,phi0,S0,alpha0,X,Y,n,T,k);
-
-% draw B from a matrix-variate student distribution with location Bbar, scale Sbar and phibar and degrees of freedom alphatilde (step 2)
-stationary=0;
-while stationary==0 
-B=matrixtdraw(Bbar,Sbar,phibar,alphatilde,k,n);
-    [stationary]=checkstable(B(:),n,lags,size(B,1)); %switches stationary to 0, if the draw is not stationary
-end
-if onestep==1
-B_ss(1:n,:)=B';
-end
-
-% then draw sigma from an inverse Wishart distribution with scale matrix Sbar and degrees of freedom alphabar (step 3)
-sigma=iwdraw(Sbar,alphabar);
-if onestep==1
-sigma_ss(1:n,1:n)=sigma;
-end    
+    % draw B from a matrix-variate student distribution with location Bbar, scale Sbar and phibar and degrees of freedom alphatilde (step 2)
+    stationary=0;
+    while stationary==0
+        B=matrixtdraw(Bbar,Sbar,phibar,alphatilde,k,n);
+        [stationary]=checkstable(B(:),n,lags,size(B,1)); %switches stationary to 0, if the draw is not stationary
+    end
     
-%% Sample Sigma and L
-[Sigma,L]=favar_SigmaL(Sigma,L,nfactorvar,numpc,onestep,n,favar_X,FY,a0,b0,T,lags,L0);
-
-%% record the values if the number of burn-in iterations is exceeded
-if ii>Bu
-% values of vector beta
-beta_gibbs(:,ii-Bu)=B(:);
-% values of sigma (in vectorized form)
-sigma_gibbs(:,ii-Bu)=sigma(:);
-
-% save the factors and loadings
-X_gibbs(:,ii-Bu)=X(:);
-Y_gibbs(:,ii-Bu)=Y(:);
-FY_gibbs(:,ii-Bu)=FY(:);
-L_gibbs(:,ii-Bu)=L(:);
-
-% compute R2 (Coefficient of Determination) for plotX variables
-R2=favar_R2(favarX,FY);
-R2_gibbs(:,ii-Bu)=R2(:);
-
-% if current iteration is still a burn iteration, do not record the result
-else
-end
-
-% update progress by one iteration
-hbar.iterate(1);
-% go for next iteration
+    if onestep==1
+        B_ss(1:n,:)=B';
+    end
+    
+    % then draw sigma from an inverse Wishart distribution with scale matrix Sbar and degrees of freedom alphabar (step 3)
+    sigma=iwdraw(Sbar,alphabar);
+    
+    if onestep==1
+        sigma_ss(1:n,1:n)=sigma;
+        % Sample Sigma and L
+        [Sigma,L]=favar_SigmaL(Sigma,L,nfactorvar,numpc,onestep,n,favar_X,FY,a0,b0,T,lags,L0);
+    end
+    
+    
+    
+    %% record the values if the number of burn-in iterations is exceeded
+    if ii>Bu
+        % values of vector beta
+        beta_gibbs(:,ii-Bu)=B(:);
+        % values of sigma (in vectorized form)
+        sigma_gibbs(:,ii-Bu)=sigma(:);
+        
+        % save the factors and loadings
+        X_gibbs(:,ii-Bu)=X(:);
+        Y_gibbs(:,ii-Bu)=Y(:);
+        FY_gibbs(:,ii-Bu)=FY(:);
+        L_gibbs(:,ii-Bu)=L(:);
+        
+        % compute R2 (Coefficient of Determination) for plotX variables
+        R2=favar_R2(favarX,FY,L,favarplotX_index);
+        R2_gibbs(:,ii-Bu)=R2(:);
+        
+        % if current iteration is still a burn iteration, do not record the result
+    else
+    end
+    
+    % update progress by one iteration
+    hbar.iterate(1);
+    % go for next iteration
 end
 
 % in case we have thinning of the draws,

@@ -55,7 +55,7 @@ for ii=1:N
 temp=lagx(data_endo(:,:,ii),lags);
 % then take off the n initial columns of current data, and concatenate the exogenous
 % record this as the corresponding page of X data
-Xmat(:,:,ii)=[temp(:,n+1:end) data_exo];;
+Xmat(:,:,ii)=[temp(:,n+1:end) data_exo];
 % save the n first columns of temp as Y
 Ymat(:,:,ii)=temp(:,1:n);
 end

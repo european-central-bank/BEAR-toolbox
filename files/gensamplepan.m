@@ -1,4 +1,5 @@
-function [names data data_endo data_endo_a data_endo_c data_endo_c_lags data_exo data_exo_a data_exo_p data_exo_c data_exo_c_lags Fperiods Fcomp Fcperiods Fcenddate]=gensamplepan(startdate,enddate,Units,panel,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref)
+function [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,ar,priorexo,lambda4]=...
+    gensamplepan(startdate,enddate,Units,panel,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,ar,PriorExcel,priorsexogenous)
 
 
 
@@ -22,7 +23,7 @@ function [names data data_endo data_endo_a data_endo_c data_endo_c_lags data_exo
 numunits=size(Units,1);
 
 % read the data from Excel
-[sheetdata names]=xlsread('data.xlsx',Units{1,1});
+[sheetdata,names]=xlsread('data.xlsx',Units{1,1});
 data(:,:,1)=sheetdata;
 for ii=2:numunits
 [sheetdata,~]=xlsread('data.xlsx',Units{ii,1});
@@ -140,7 +141,31 @@ data_exo=[data_exo data(startlocation:endlocation,exolocation(ii,1))];
 end
 
 
+% Prior values settings for the AR coefficients (either default same for all or individually in Excel in AR prior sheet)
+if PriorExcel==0
+    ar_default=NaN(numendo,1);
+    ar_default(:,1)=ar;
+    ar=ar_default;
+else
+    [ar]=xlsread('data.xlsx','AR priors');
+end
 
+
+if priorsexogenous==0
+    exo_default=zeros(numendo,numexo+1);
+    lambda4_default=zeros(numendo,numexo+1);
+    for ii=1:numendo
+        for jj=1:numexo+1
+            priorexo(ii,jj)=0;
+            lambda4(ii,jj)=100;
+        end
+    end
+else
+    [priorexo]=xlsread('data.xlsx','exo mean priors');
+    [lambda4]=xlsread('data.xlsx','exo tight priors');
+    priorexo=priorexo(1:numendo,1:numexo+1);
+    lambda4=lambda4(1:numendo,1:numexo+1);
+end
 
 
 % Phase 3: determination of the position of the forecast start and end periods

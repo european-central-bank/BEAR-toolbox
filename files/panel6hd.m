@@ -1,4 +1,4 @@
-function [hd_record hd_estimates]=panel6hd(Xi,theta_gibbs,D_record,strshocks_record,It,Bu,Ymat,N,n,m,p,k,T,d,HDband)
+function [hd_record,hd_estimates]=panel6hd(Xi,theta_gibbs,D_record,strshocks_record,It,Bu,Ymat,N,n,m,p,k,T,d,HDband)
 
 
 
@@ -92,15 +92,4 @@ end
 
 % finally, obtain point esimates and credibility intervals
 [hd_estimates]=hdestimates(hd_record,N*n,T,HDband);
-
-
-
-
-
-
-
-
-
-
-
 

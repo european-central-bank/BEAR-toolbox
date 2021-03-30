@@ -6,7 +6,8 @@ function [omegab]=panel4prior(N,n,m,p,T,k,data_endo,q,lambda3,lambda2,lambda4)
 
 
 
-
+% lambda4 is no vector here
+lambda4=lambda4(1,1);
 
 
 
@@ -45,39 +46,4 @@ for ii=1:n
    omegab(ii*k-m+jj,ii*k-m+jj)=arvar(ii,1)*(lambda4^2);
    end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -13,8 +13,8 @@ if levels==1 % only cum sum, also for second differences
                 if transformationindex(oo)==1 %1: no transformation, Level
                     retransformed_irf_estimates{oo,ll}(ii,:)=irf_estimates{oo,ll}(ii,:);
                 elseif transformationindex(oo)==2
-                    %retransformed_irf_record{oo,ll}(ii,:)=cumsum(irf_record{oo,ll}(ii,:),2); %2: First Difference
-                    retransformed_irf_estimates{oo,ll}(ii,:)=irf_estimates{oo,ll}(ii,:);
+                    retransformed_irf_estimates{oo,ll}(ii,:)=cumsum(irf_estimates{oo,ll}(ii,:),2); %2: First Difference
+%                     retransformed_irf_estimates{oo,ll}(ii,:)=irf_estimates{oo,ll}(ii,:);
                 elseif transformationindex(oo)==3
                     %retransformed_irf_record{oo,ll}(ii,:)=cumsum(irf_record{oo,ll}(ii,:),2);    %3: Second Difference
                     retransformed_irf_estimates{oo,ll}(ii,:)=irf_estimates{oo,ll}(ii,:);
@@ -22,8 +22,8 @@ if levels==1 % only cum sum, also for second differences
                     %retransformed_irf_record{oo,ll}(ii,:)=irf_record{oo,ll}(ii,:);
                     retransformed_irf_estimates{oo,ll}(ii,:)=exp(irf_estimates{oo,ll}(ii,:))-ones(ItBu,1);       %4: Log-Level
                 elseif transformationindex(oo)==5
-                    %retransformed_irf_record{oo,ll}(ii,:)=cumsum(irf_record{oo,ll}(ii,:),2); %5: Log-First-Difference
-                    retransformed_irf_estimates{oo,ll}(ii,:)=exp(cumsum(irf_estimates{oo,ll}(ii,:),2))-ones(ItBu,1); %5: Log-First-Difference
+                    retransformed_irf_estimates{oo,ll}(ii,:)=cumsum(irf_estimates{oo,ll}(ii,:),2); %5: Log-First-Difference
+%                     retransformed_irf_estimates{oo,ll}(ii,:)=exp(cumsum(irf_estimates{oo,ll}(ii,:),2))-ones(ItBu,1); %5: Log-First-Difference
                 elseif transformationindex(oo)==6
                     %retransformed_irf_record{oo,ll}(ii,:)=cumsum(irf_record{oo,ll}(ii,:),2); %6: Log-Second-Difference
                     retransformed_irf_estimates{oo,ll}(ii,:)=exp(cumsum(irf_estimates{oo,ll}(ii,:),2))-ones(ItBu,1); %5: Log-First-Difference

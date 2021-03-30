@@ -365,27 +365,16 @@ end
 
 %% FAVAR restrictions
 if favar.FAVAR==1
-% all rows that are not empty
-neclmns1index=neclmns1==1;
-nerows1index=nerows1(neclmns1index,1);
-nerows1indexend=find(nerows1index==rows(end,1));
-if nerows1indexend==size(nerows1index,1)
-    favar.nsignresX=0;
-else
-% only information variables in X that are restricted
-Xnerows1index=nerows1index(size(rows,1)+1:end,1);
 % strings of restricted information variables
-favar.signresX=strngs1(max(rows)+1:end,min(clmns)-1); %strngs1 is already adjusted for empty rows and columns
-%number of restricted information variables
-favar.nsignresX=size(favar.signresX,1);
-end
+signresX_init=strngs1(max(rows)+1:end,min(clmns)-1); %strngs1 is already adjusted for empty rows and columns
+% which information variables are restricted?
+Xsignres=ismember(signresX_init,favar.informationvariablestrings);
+% number of restricted variables in X
+favar.nsignresX=sum(Xsignres);
+% keep only the ones that are actually in X
+favar.signresX=signresX_init(Xsignres==1,:);
+
 if favar.nsignresX~=0
-% check if the variable names provided in the sign restriction sheet are actually part of X
-if sum(ismember(favar.informationvariablestrings,favar.signresX))-favar.nsignresX~=0
-    message=['Please verify that the ''sign res values'' and ''sign res periods'' sheets of the Excel data file are properly filled.'];
-    msgbox(message,'Sign restriction error (FAVAR)');
-    error('programme termination: sign restriction (FAVAR) error');
-end
 
 %create indices for restricted information variables (ordering in the sign res table is irrelevant)
     for jj=1:favar.nsignresX
@@ -563,18 +552,7 @@ strctident.signreslabels_shocks=strctident.signreslabels(strctident.signreslabel
 signreslabels=strctident.signreslabels;
 
 
-% create indices for plotXshock
-if favar.IRF.plot==1
-        IRFplotXshock_indexlogical=ismember(signreslabels,favar.IRF.pltXshck);
-        favar.IRF.plotXshock_index=find(IRFplotXshock_indexlogical==1)';
-        favar.IRF.npltXshck=size(favar.IRF.pltXshck,1);
-        if favar.IRF.npltXshck==0
-        % error if no shock to plot is found, otherwise code crashes at a later stage
-        message=['Error: Shock(' favar.IRF.plotXshock ') cannot be found.'];
-        msgbox(message,'favar.IRF.npltXshck error');
-        error('programme termination: favar.IRF.plotXshock error');
-        end
-end
+
 % % % if favar.FEVD.plot==1
 % % %         FEVDplotXshock_indexlogical=ismember(signreslabels,favar.FEVD.pltXshck);
 % % %         favar.FEVD.plotXshock_index=find(FEVDplotXshock_indexlogical==1)';
@@ -604,7 +582,22 @@ strctident.hbartext_favar_zerores='';
 strctident.favar_magnres=0;
 strctident.hbartext_favar_magnres='';
 strctident.favar_signrestableempty=ones(n,1);
+favar.signresX_index=[];
 end
+
+% create indices for plotXshock
+if favar.IRF.plot==1 && favar.npltX>0
+        IRFplotXshock_indexlogical=ismember(signreslabels,favar.IRF.pltXshck);
+        favar.IRF.plotXshock_index=find(IRFplotXshock_indexlogical==1)';
+        favar.IRF.npltXshck=size(favar.IRF.pltXshck,1);
+        if favar.IRF.npltXshck==0
+        % error if no shock to plot is found, otherwise code crashes at a later stage
+        message=['Error: at least one Shock (' favar.IRF.plotXshock ') cannot be found.'];
+        msgbox(message,'favar.IRF.npltXshck error');
+        error('programme termination: favar.IRF.plotXshock error');
+        end
+end
+
 else %if favar.FAVAR is not =1, we do not have favar restrictions anyway
 strctident.favar_signres=0;
 strctident.hbartext_favar_signres='';

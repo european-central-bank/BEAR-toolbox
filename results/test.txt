@@ -1,134 +1,143 @@
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                                                        %
-%    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR) TOOLBOX                                         %
-%                                                                                                        %
-%    This statistical package has been developed by the external                                         %
-%    developments division of the European Central Bank.                                                 %
-%                                                                                                        %
-%    Authors:                                                                                            %
-%    Romain Legrand  									                                                 %
-%    Alistair Dieppe (adieppe@worldbank.org)                                                             %
-%    Björn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                                                      %
-%                                                                                                        %
-%    Version 5.0                                                                                         %
-%                                                                                                        %
-%    The authors are grateful to the following people for valuable input                                 %
-%    and advice which contributed to improve the quality of the toolbox:                                 %
-%    Paolo Bonomolo, Mirco Balatti, Marta Banbura, Niccolo Battistini, Gabriel Bobeica, Martin Bruns,    %
-%    Fabio Canova, Matteo Ciccarelli, Marek Jarocinski, Michele Lenza, Francesca Loria, Gary Koop,       %
-%    Mirela Miescu, Chiara Osbat, Giorgio Primiceri, Martino Ricci, Michal Rubaszek, Barbara Rossi,      %
-%    Ben Schumann, Marius Schulte, Hugo Vega de la Cruz and Peter Welz.                                  %
-%                                                                                                        %
-%    These programmes are the responsibilities of the authors and not of                                 %
-%    the ECB and all errors and ommissions remain those of the authors.                                  %
-%                                                                                                        %
-%    Using the BEAR toolbox implies acceptance of the End User Licence                                   %
-%    Agreement and appropriate acknowledgement should be made.                                           %
-%                                                                                                        %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                          %
+%    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR) TOOLBOX           %
+%                                                                          %
+%    This statistical package has been developed by the external           %
+%    developments division of the European Central Bank.                   %
+%                                                                          %
+%    Authors:                                                              %
+%    Alistair Dieppe (alistair.dieppe@ecb.europa.eu)                       %
+%    Björn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                        %
+%                                                                          %
+%    Version 5.0                                                           %
+%                                                                          %
+% The updated version 5 of BEAR has benefitted from contributions from     %
+%   Boris Blagov, Marius Schulte and Ben Schumann.                         %
+%                                                                          %
+%  This version builds-upon previous versions where Romain Legrand was     %
+%   instrumental in developing BEAR.                                       %
+%                                                                          %
+%    The authors are grateful to the following people for valuable input   %
+%    and advice which contributed to improve the quality of the toolbox:   %
+%    Paolo Bonomolo, Mirco Balatti, Marta Banbura, Niccolo Battistini,     %
+%	 Gabriel Bobeica, Martin Bruns, Fabio Canova, Matteo Ciccarelli,       %
+%    Marek Jarocinski, Michele Lenza, Francesca Loria, Mirela Miescu,      %
+%    Gary Koop, Chiara Osbat, Giorgio Primiceri, Martino Ricci,            %
+%    Michal Rubaszek, Barbara Rossi, Fabian Schupp,                        %
+%    Peter Welz and Hugo Vega de la Cruz. 						           %
+%                                                                          %
+%    These programmes are the responsibilities of the authors and not of   %
+%    the ECB and all errors and ommissions remain those of the authors.    %
+%                                                                          %
+%    Using the BEAR toolbox implies acceptance of the End User Licence     %
+%    Agreement and appropriate acknowledgement should be made.             %
+%                                                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 BEAR toolbox estimates
-Date: 21-Dec-2020   Time: 17:34
+Date: 29-Mar-2021   Time: 21:30
 
 
 Bayesian VAR
-structural decomposition: Cholesky factorisation (IRFt=2)
-endogenous variables:  DOM_GDP  DOM_CPI  STN 
+structural decomposition: sign restrictions (IRFt=4)
+endogenous variables:  YER  HICSA  STN 
 exogenous variables:  constant 
-estimation sample: 1974q1-2014q4
-sample size (omitting initial conditions): 160
-number of lags included in regression: 4
+estimation sample: 1971q1-2020q1
+sample size (omitting initial conditions): 194
+number of lags included in regression: 3
 prior: normal-Wishart (sigma as univariate AR)
 hyperparameters:
 autoregressive coefficients (ar):                0.8
 overall tightness (lambda1):                    0.1
-lag decay (lambda3):                            0.8
+lag decay (lambda3):                            0.5
 
 
 
 VAR coefficients (beta): posterior estimates
 
-Endogenous: DOM_GDP
+Endogenous: YER
                                    Median          St.dev       Low.bound       Upp.bound
-              DOM_GDP(-1)           0.926           0.053           0.821           1.031
-              DOM_GDP(-2)          -0.079           0.049          -0.176           0.017
-              DOM_GDP(-3)          -0.091           0.037          -0.164          -0.018
-              DOM_GDP(-4)           0.013           0.030          -0.045           0.072
-              DOM_CPI(-1)          -0.049           0.075          -0.196           0.098
-              DOM_CPI(-2)          -0.056           0.075          -0.204           0.092
-              DOM_CPI(-3)           0.022           0.057          -0.090           0.133
-              DOM_CPI(-4)           0.034           0.045          -0.053           0.122
-                  STN(-1)           0.015           0.052          -0.087           0.117
-                  STN(-2)          -0.074           0.047          -0.167           0.019
-                  STN(-3)           0.017           0.036          -0.054           0.088
-                  STN(-4)           0.043           0.029          -0.014           0.100
-                 Constant           0.614           0.174           0.274           0.955
+                  YER(-1)           0.539           0.059           0.490           0.599
+                  YER(-2)           0.055           0.050           0.010           0.105
+                  YER(-3)           0.011           0.044          -0.026           0.059
+                HICSA(-1)           0.123           0.103           0.027           0.220
+                HICSA(-2)          -0.014           0.099          -0.110           0.087
+                HICSA(-3)          -0.109           0.082          -0.183          -0.029
+                  STN(-1)          -0.026           0.048          -0.076           0.019
+                  STN(-2)          -0.031           0.055          -0.083           0.024
+                  STN(-3)           0.058           0.036           0.020           0.090
+                 Constant           0.188           0.079           0.120           0.269
 
-Sum of squared residuals: 128.50
-R-squared: 0.741
-adj. R-squared: 0.720
+Sum of squared residuals: 55.43
+R-squared: 0.244
+adj. R-squared: 0.208
 
 
-Endogenous: DOM_CPI
+Endogenous: HICSA
                                    Median          St.dev       Low.bound       Upp.bound
-              DOM_GDP(-1)           0.041           0.035          -0.028           0.110
-              DOM_GDP(-2)          -0.011           0.032          -0.075           0.052
-              DOM_GDP(-3)           0.005           0.024          -0.043           0.053
-              DOM_GDP(-4)           0.015           0.020          -0.023           0.054
-              DOM_CPI(-1)           1.003           0.049           0.906           1.099
-              DOM_CPI(-2)          -0.121           0.049          -0.218          -0.024
-              DOM_CPI(-3)          -0.031           0.037          -0.104           0.042
-              DOM_CPI(-4)           0.050           0.029          -0.008           0.108
-                  STN(-1)           0.090           0.034           0.023           0.157
-                  STN(-2)          -0.019           0.031          -0.080           0.042
-                  STN(-3)          -0.038           0.024          -0.084           0.009
-                  STN(-4)          -0.021           0.019          -0.058           0.016
-                 Constant           0.089           0.114          -0.135           0.313
+                  YER(-1)           0.057           0.029           0.031           0.082
+                  YER(-2)          -0.001           0.025          -0.023           0.023
+                  YER(-3)           0.011           0.022          -0.011           0.034
+                HICSA(-1)           0.701           0.049           0.651           0.745
+                HICSA(-2)           0.053           0.049           0.013           0.105
+                HICSA(-3)           0.141           0.045           0.094           0.180
+                  STN(-1)           0.017           0.025          -0.007           0.043
+                  STN(-2)           0.003           0.029          -0.022           0.032
+                  STN(-3)          -0.014           0.020          -0.033           0.005
+                 Constant           0.013           0.038          -0.019           0.048
 
-Sum of squared residuals: 54.23
-R-squared: 0.922
-adj. R-squared: 0.915
+Sum of squared residuals: 14.43
+R-squared: 0.851
+adj. R-squared: 0.844
 
 
 Endogenous: STN
                                    Median          St.dev       Low.bound       Upp.bound
-              DOM_GDP(-1)           0.143           0.051           0.043           0.244
-              DOM_GDP(-2)          -0.028           0.047          -0.120           0.064
-              DOM_GDP(-3)           0.016           0.036          -0.054           0.086
-              DOM_GDP(-4)           0.034           0.029          -0.022           0.090
-              DOM_CPI(-1)           0.060           0.072          -0.081           0.201
-              DOM_CPI(-2)           0.042           0.072          -0.099           0.184
-              DOM_CPI(-3)           0.031           0.054          -0.076           0.138
-              DOM_CPI(-4)           0.014           0.043          -0.070           0.099
-                  STN(-1)           0.924           0.050           0.826           1.022
-                  STN(-2)          -0.046           0.045          -0.136           0.043
-                  STN(-3)           0.019           0.035          -0.049           0.087
-                  STN(-4)           0.008           0.028          -0.047           0.062
-                 Constant          -0.309           0.167          -0.636           0.018
+                  YER(-1)           0.224           0.058           0.167           0.279
+                  YER(-2)           0.102           0.048           0.053           0.147
+                  YER(-3)           0.037           0.045          -0.008           0.078
+                HICSA(-1)           0.420           0.109           0.319           0.540
+                HICSA(-2)          -0.165           0.106          -0.260          -0.057
+                HICSA(-3)          -0.064           0.087          -0.154           0.015
+                  STN(-1)           1.058           0.048           1.011           1.108
+                  STN(-2)          -0.075           0.054          -0.125          -0.019
+                  STN(-3)          -0.029           0.039          -0.060           0.009
+                 Constant          -0.164           0.078          -0.240          -0.088
 
-Sum of squared residuals: 122.03
-R-squared: 0.950
-adj. R-squared: 0.946
+Sum of squared residuals: 48.90
+R-squared: 0.987
+adj. R-squared: 0.986
 
 
-Log 10 marginal likelihood: -263.68
+Log 10 marginal likelihood: -166.66
 
 
-DIC test result: 1129.22
+DIC test result: 665.89
 
 
 Roots of the characteristic polynomial (modulus):
-0.922  0.481  0.347
-0.894  0.481  0.308
-0.663  0.350  0.276
-0.663  0.347  0.276
+0.969  0.513  0.227
+0.909  0.393  0.227
+0.513  0.393  0.203
 No root lies outside the unit circle.
 The estimated VAR model satisfies the stability condition
 
 
 sigma (residual covariance matrix): posterior estimates
- 0.865   0.114   0.293  
- 0.114   0.374   0.113  
- 0.293   0.113   0.795  
+ 0.301   0.011   0.049  
+ 0.011   0.076   0.027  
+ 0.049   0.027   0.282  
+
+
+D (structural decomposition matrix): posterior estimates
+ 0.523   0.060  -0.201  
+ 0.002  -0.236  -0.143  
+ 0.256  -0.353   0.319  
+
+
+gamma (structural disturbances covariance matrix): posterior estimates
+ 1.000   0.000   0.000  
+ 0.000   1.000   0.000  
+ 0.000   0.000   1.000  

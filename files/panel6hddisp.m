@@ -123,7 +123,7 @@ end
 hdcell=hdcell(3:end-2,2:end);
 % write in excel
 if pref.results==1
-    xlswrite([pref.datapath '\results\' pref.results_sub '.xlsx'],hdcell,'hist decomposition','B2');
+    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],hdcell,'hist decomposition','B2');
 end
 
 

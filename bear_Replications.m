@@ -19,8 +19,8 @@
 %    Paolo Bonomolo, Mirco Balatti, Marta Banbura, Niccolo Battistini,     %
 %	 Gabriel Bobeica, Martin Bruns, Fabio Canova, Matteo Ciccarelli,       %
 %    Marek Jarocinski, Michele Lenza, Francesca Loria, Mirela Miescu,      %
-%    Gary Koop, Chiara Osbat, Giorgio Primiceri, Martino Ricci,            %
-%    Michal Rubaszek, Barbara Rossi, Peter Welz and Hugo Vega de la Cruz.  %
+%    Michal Rubaszek, Barbara Rossi, Fabian Schupp, Peter Welz and         % 
+%    Hugo Vega de la Cruz.                                                 %
 %                                                                          %
 %    These programmes are the responsibilities of the authors and not of   %
 %    the ECB and all errors and ommissions remain those of the authors.    %

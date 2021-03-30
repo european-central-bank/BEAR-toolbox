@@ -96,8 +96,7 @@ end
 
 % creation of favar.informationdata, sensitive to adjusted startdate
 informationdata2=informationdata2(informationstartlocation:end,:);
-% check if we have NaNs, and replace the NaNs with estimates, why complex
-% numbers?
+% check if we have NaNs, and replace the NaNs with estimates
 if sum(isnan(informationdata2(:)))>0
     msgbox('"factor data" sheet contains NaNs which will be replaced with estimates.','Detected NaNs','warn','warning');
     % % estimates values to replace NaNs
@@ -171,6 +170,8 @@ if favar.blocks==1 % categories: for example slow/fast moving variables BBE (200
         % percent variability explained by principal components
         favar.bvariaexpl{ii,1}=explained(1:favar.bnumpc{ii,1},1);
         favar.bsumvariaexpl{ii,1}=sum(favar.bvariaexpl{ii,1});
+        %save the loadings
+        favar.l_block{ii,1}=l;
         
         % creation of favar.informationdata, sensitive to adjusted startdate and enddate
         favar.XZ_block{ii,1}=XZ(1:favar.informationendlocation_sub,:);

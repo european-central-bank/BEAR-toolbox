@@ -1,4 +1,4 @@
-function [beta_gibbs sigma_gibbs]=panel3gibbs(It,Bu,betabar,omegabarb,sigeps,h,N,n,q)
+function [beta_gibbs,sigma_gibbs]=panel3gibbs(It,Bu,betabar,omegabarb,sigeps,h,N,n,q)
 
 
 
@@ -11,7 +11,7 @@ function [beta_gibbs sigma_gibbs]=panel3gibbs(It,Bu,betabar,omegabarb,sigeps,h,N
 
 beta_gibbs=[];
 % start iterations
-hbar = parfor_progressbar(It-Bu,'Progress of Panel BVAR Gibbs Sampler');  %create the progress bar
+hbar = parfor_progressbar(It-Bu,'Progress of Panel BVAR Gibbs Sampler.');  %create the progress bar
 for ii=1:(It-Bu)
 % draw a random vector beta from N(betabar,omegabarb)
 beta=betabar+chol(nspd(omegabarb),'lower')*mvnrnd(zeros(h,1),eye(h))';

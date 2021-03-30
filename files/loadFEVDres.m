@@ -315,20 +315,22 @@ end
 
 %% FAVAR FEVD
 if favar.FAVAR==1
+
 % all rows that are not empty
 neclmns1index=neclmns1==1;
 nerows1index=nerows1(neclmns1index,1);
-nerows1indexend=find(nerows1index==rows(end,1));
-if nerows1indexend==size(nerows1index,1)
-    favar.nFEVDresX=0;
-else
 % only information variables in X that are restricted
 Xnerows1index=nerows1index(size(rows,1)+1:end,1);
+
 % strings of restricted information variables
-favar.FEVDresX=strngs1(max(rows)+1:end,min(clmns)-1); %strngs1 is already adjusted for empty rows and columns
-%number of restricted information variables
-favar.nFEVDresX=size(favar.FEVDresX,1);
-end
+signresX_init=strngs1(max(rows)+1:end,min(clmns)-1); %strngs1 is already adjusted for empty rows and columns
+% which information variables are restricted?
+Xsignres=ismember(signresX_init,favar.informationvariablestrings);
+% number of restricted variables in X
+favar.nFEVDresX=sum(Xsignres);
+% keep only the ones that are actually in X
+favar.FEVDresX=signresX_init(Xsignres==1,:);
+
 
 if favar.nFEVDresX~=0
 %create indices for restricted information variables (advantage here: ordering in the sign res table is irrelevant)
@@ -488,16 +490,22 @@ strctident.signreslabels_shocks=strctident.signreslabels(strctident.signreslabel
 signreslabels=strctident.signreslabels;
 
 % create indices for plotXshock
-if favar.IRF.plot==1
+if favar.IRF.plot==1 && favar.npltX>0
         IRFplotXshock_indexlogical=ismember(signreslabels,favar.IRF.pltXshck);
         favar.IRF.plotXshock_index=find(IRFplotXshock_indexlogical==1)';
         favar.IRF.npltXshck=size(favar.IRF.pltXshck,1);
+        if favar.IRF.npltXshck==0
+        % error if no shock to plot is found, otherwise code crashes at a later stage
+        message=['Error: at least one Shock (' favar.IRF.plotXshock ') cannot be found.'];
+        msgbox(message,'favar.IRF.npltXshck error');
+        error('programme termination: favar.IRF.plotXshock error');
+        end
 end
-if favar.FEVD.plot==1
-        FEVDplotXshock_indexlogical=ismember(signreslabels,favar.FEVD.pltXshck);
-        favar.FEVD.plotXshock_index=find(FEVDplotXshock_indexlogical==1)';
-        favar.FEVD.npltXshck=size(favar.FEVD.pltXshck,1);
-end
+% if favar.FEVD.plot==1
+%         FEVDplotXshock_indexlogical=ismember(signreslabels,favar.FEVD.pltXshck);
+%         favar.FEVD.plotXshock_index=find(FEVDplotXshock_indexlogical==1)';
+%         favar.FEVD.npltXshck=size(favar.FEVD.pltXshck,1);
+% end
 
 end
 
@@ -506,6 +514,7 @@ else % when no FEVD res are found here
     strctident.favar_FEVDres=0;
     strctident.hbartext_favar_FEVDres='';
     strctident.favar_FEVDrestableempty=ones(n,1);
+    favar.FEVDresX_index=[];
 end
 
 

@@ -1,4 +1,4 @@
-function [beta_median, beta_std, beta_lbound, beta_ubound, sigma_median]=IRFt456_estimates(beta_gibbs,sigma_gibbs,cband,q,n,k)
+function [beta_median, beta_std, beta_lbound, beta_ubound, sigma_median]=IRFt456_estimates(beta_gibbs,sigma_gibbs,cband,q,n)
 
 
 
@@ -26,15 +26,13 @@ beta_lbound(ii,:)=[quantile(beta_gibbs(ii,:),(1-cband)/2)];
 beta_ubound(ii,:)=[quantile(beta_gibbs(ii,:),1-(1-cband)/2)];
 end
 
-
+sigma_gibbs2=reshape(sigma_gibbs,n,n,size(sigma_gibbs,2));
 % compute the mean for the posterior distribution of sigma
 for ii=1:n
     for jj=1:n
-        sigma_median(ii,jj)=[quantile(sigma_gibbs(ii,jj,:),0.5)];
+        sigma_median(ii,jj)=[quantile(sigma_gibbs2(ii,jj,:),0.5)];
     end
 end
-%sigma_median=reshape(sigma_median,n,n);
-
 
 
 

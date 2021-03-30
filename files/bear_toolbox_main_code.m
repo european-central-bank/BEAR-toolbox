@@ -93,11 +93,11 @@ elseif VARtype==2 || VARtype==5 || VARtype==6
         =gensample(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,ar,lambda4,PriorExcel,priorsexogenous,pref,favar,IRFt);
     % else, if the model is the panel BVAR
 elseif VARtype==4
-    [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate]...
-        =gensamplepan(startdate,enddate,Units,panel,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref);
+    [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,ar,priorexo,lambda4]...
+        =gensamplepan(startdate,enddate,Units,panel,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,ar,0,0);
 elseif VARtype==7
-[names, mf_setup, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate]...
-=gensample_mf(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref);
+   [names, mf_setup, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate]...
+        =gensample_mf(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref);
 end
 
 
@@ -124,7 +124,7 @@ if IRFt==4 || IRFt==6
     [signrestable,signresperiods,signreslabels,strctident,favar]=loadsignres(n,endo,pref,favar,IRFt,strctident);
     [relmagnrestable,relmagnresperiods,signreslabels,strctident,favar]=loadrelmagnres(n,endo,pref,favar,IRFt,strctident);
     [FEVDrestable,FEVDresperiods,signreslabels,strctident,favar]=loadFEVDres(n,endo,pref,favar,IRFt,strctident);
-    [strctident,signreslabels]=loadcorrelres(strctident,names,startdate,enddate,lags,n,IRFt,favar);
+    [strctident,signreslabels]=loadcorrelres(strctident,endo,names,startdate,enddate,lags,n,IRFt,favar);
 end
 
 
@@ -247,8 +247,8 @@ for iteration=1:numt % beginning of forecasting loop
                 =gensample(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,ar,lambda4,PriorExcel,priorsexogenous,pref,favar,IRFt);
             % else, if the model is the panel BVAR
         elseif VARtype==4
-            [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate]...
-                =gensamplepan(startdate,enddate,Units,panel,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref);
+            [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,ar,priorexo,lambda4]...
+                =gensamplepan(startdate,enddate,Units,panel,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,ar,0,0);
         end
         
         
@@ -390,7 +390,7 @@ for iteration=1:numt % beginning of forecasting loop
             % FAVAR: scale hd_estimates with loadings
             if favar.FAVAR==1
                 if favar.HD.plot==1 && favar.pX==1
-                    [favar]=favar_hdestimates(favar,hd_estimates,n,IRFt,endo,strctident,[]);
+                    [favar,favar.HD.hd_estimates]=favar_hdestimates(favar,hd_estimates,n,IRFt,endo,strctident,favar.L(favar.plotX_index,:));
                 end
             end
             % finally display
@@ -535,7 +535,7 @@ for iteration=1:numt % beginning of forecasting loop
                 % compute posterior estimates
                 [beta_median,B_median,beta_std,beta_lbound,beta_ubound,sigma_median]=doestimates(betacap,phicap,Scap,alphacap,alphatop,n,k,cband);
             elseif favar.FAVAR==1
-                [beta_gibbs,sigma_gibbs,favar,It,Bu]=favar_dogibbs(It,Bu,Bhat,EPS,n,T,lags,data_endo,data_exo,const,favar,ar,arvar,lambda1,lambda3,lambda4,m,p,k,priorexo,Y,X,cband);
+                [beta_gibbs,sigma_gibbs,favar,It,Bu]=favar_dogibbs(It,Bu,Bhat,EPS,n,T,lags,data_endo,data_exo,const,favar,ar,arvar,lambda1,lambda3,lambda4,m,p,k,priorexo,Y,X,cband,Tstar);
                 % median of the posterior estimates in this case
                 [beta_median,B_median,beta_std,beta_lbound,beta_ubound,sigma_median]=favar_doestimates(favar);
             end
@@ -569,7 +569,7 @@ for iteration=1:numt % beginning of forecasting loop
                     =irfres_prior(beta_gibbs,sigma_gibbs,[],[],IRFperiods,n,m,p,k,T,Y,X,signreslabels,FEVDresperiods,data_exo,HD,const,exo,strctident,pref,favar,IRFt,It,Bu,prior);
             end
             if prior~=61
-                [beta_median,beta_std,beta_lbound,beta_ubound,sigma_median]=IRFt456_estimates(beta_gibbs,sigma_gibbs,cband,q,n,k);
+                [beta_median,beta_std,beta_lbound,beta_ubound,sigma_median]=IRFt456_estimates(beta_gibbs,sigma_gibbs,cband,q,n);
             elseif prior==61
                 [beta_median, beta_std, beta_lbound, beta_ubound, theta_median, theta_std, theta_lbound, theta_ubound, sigma_median]=TVEmaestimates(beta_gibbs,theta_gibbs,sigma_gibbs,cband,q1,q2,n);
             end
@@ -587,7 +587,7 @@ for iteration=1:numt % beginning of forecasting loop
         
         % FAVARs: we estimated the factors in data_endo (FY) It-Bu times, so compute a median estimate for X and Y
         if favar.FAVAR==1
-            [X,Y,favar]=favar_XYestimates(T,n,p,It,Bu,favar);
+            [X,Y,favar]=favar_XYestimates(T,n,p,m,It,Bu,favar);
         end
         
         %% BLOCK 4: MODEL EVALUATION
@@ -745,7 +745,7 @@ for iteration=1:numt % beginning of forecasting loop
             [fevd_estimates]=fevd(struct_irf_record,gamma_record,It,Bu,n,IRFperiods,FEVDband);
             % compute approximate favar fevd estimates
             if favar.FEVD.plot==1
-                [favar]=favar_fevd(gamma_record,It,Bu,n,IRFperiods,FEVDband,favar,IRFt);
+                [favar]=favar_fevd(gamma_record,It,Bu,n,IRFperiods,FEVDband,favar,IRFt,strctident);
             end
             % display the results
             fevddisp(n,endo,IRFperiods,fevd_estimates,pref,IRFt,strctident,FEVD,favar);
@@ -851,7 +851,7 @@ for iteration=1:numt % beginning of forecasting loop
             % compute preliminary elements
             [X, Xmat, Y, Ymat, N, n, m, p, T, k, q]=panel2prelim(data_endo,data_exo,const,lags,Units);
             % obtain prior elements (from a standard normal-Wishart)
-            [B0, beta0, phi0, S0, alpha0]=panel2prior(N,n,m,p,T,k,q,data_endo,ar,lambda1,lambda3,lambda4);
+            [B0, beta0, phi0, S0, alpha0]=panel2prior(N,n,m,p,T,k,q,data_endo,ar,lambda1,lambda3,lambda4,priorexo);
             % obtain posterior distribution parameters
             [Bbar, betabar, phibar, Sbar, alphabar, alphatilde]=nwpost(B0,phi0,S0,alpha0,X,Y,n,N*T,k);
             % run the Gibbs sampler
@@ -859,7 +859,7 @@ for iteration=1:numt % beginning of forecasting loop
             % compute posterior estimates
             [beta_median, B_median, beta_std, beta_lbound, beta_ubound, sigma_median]=nwestimates(betabar,phibar,Sbar,alphabar,alphatilde,n,k,cband);
             % plot a first set of results
-            panel2plot(endo,Units,Xmat,Ymat,N,n,m,p,k,T,beta_median,beta_gibbs,It,Bu,decimaldates1,stringdates1,pref,cband);
+            panel2plot(endo,Units,Xmat,Ymat,N,n,m,p,k,T,beta_median,beta_gibbs,It,Bu,decimaldates1,stringdates1,pref,cband,favar);
             
             % else, if the model is the random effect model (Zellner and Hong)
         elseif panel==3
@@ -874,7 +874,7 @@ for iteration=1:numt % beginning of forecasting loop
             % compute posterior estimates
             [beta_median, beta_std, beta_lbound, beta_ubound, sigma_median]=panel3estimates(N,n,q,betabar,omegabarb,sigeps,cband);
             % plot a first set of results
-            panel3plot(endo,Units,Xi,Yi,N,n,m,p,k,T,beta_median,beta_gibbs,It,Bu,decimaldates1,stringdates1,pref,cband);
+            panel3plot(endo,Units,Xi,Yi,N,n,m,p,k,T,beta_median,beta_gibbs,It,Bu,decimaldates1,stringdates1,pref,cband,favar);
             
             % else, if the model is the random effect model (hierarchical)
         elseif panel==4
@@ -885,9 +885,9 @@ for iteration=1:numt % beginning of forecasting loop
             % run the Gibbs sampler
             [beta_gibbs,sigma_gibbs]=panel4gibbs(N,n,h,T,k,q,Yi,Xi,s0,omegab,v0,It,Bu,pick,pickf);
             % compute posterior estimates
-            [beta_median, beta_std, beta_lbound, beta_ubound, sigma_median]=panel4estimates(N,n,q,beta_gibbs,sigma_gibbs,cband, beta_mean,sigma_mean);
+            [beta_median, beta_std, beta_lbound, beta_ubound, sigma_median]=panel4estimates(N,n,q,beta_gibbs,sigma_gibbs,cband,[],[]); % beta_mean,sigma_mean
             % plot a first set of results
-            panel4plot(endo,Units,Xi,Yi,N,n,m,p,k,T,beta_median,beta_gibbs,It,Bu,decimaldates1,stringdates1,pref,cband);
+            panel4plot(endo,Units,Xi,Yi,N,n,m,p,k,T,beta_median,beta_gibbs,It,Bu,decimaldates1,stringdates1,pref,cband,favar);
             
             % else, if the model is the factor model (static)
         elseif panel==5
@@ -896,9 +896,9 @@ for iteration=1:numt % beginning of forecasting loop
             % obtain prior elements
             [d1, d2, d3, d4, d5, d, Xi1, Xi2, Xi3, Xi4, Xi5, Xi, Y, y, Xtilde, Xdot, theta0, Theta0]=panel5prior(N,n,p,m,k,q,h,T,Ymat,Xmat);
             % run the Gibbs sampler
-            [theta_gibbs sigma_gibbs sigmatilde_gibbs sig_gibbs]=panel5gibbs(y,Y,Xtilde,Xdot,N,n,T,d,theta0,Theta0,alpha0,delta0,It,Bu,pick,pickf);
+            [theta_gibbs,sigma_gibbs,sigmatilde_gibbs,sig_gibbs]=panel5gibbs(y,Y,Xtilde,Xdot,N,n,T,d,theta0,Theta0,alpha0,delta0,It,Bu,pick,pickf);
             % compute posterior estimates
-            [theta_median theta_std theta_lbound theta_ubound sigma_median]=panel5estimates(d,N,n,theta_gibbs,sigma_gibbs,cband);
+            [theta_median,theta_std,theta_lbound,theta_ubound,sigma_median]=panel5estimates(d,N,n,theta_gibbs,sigma_gibbs,cband);
             % plot a first set of results
             panel5plot(endo,Units,Xmat,Xdot,Ymat,N,n,m,p,k,T,theta_median,theta_gibbs,Xi,It,Bu,decimaldates1,stringdates1,pref,cband)
             
@@ -932,36 +932,53 @@ for iteration=1:numt % beginning of forecasting loop
                 
                 % else, if the model is the Bayesian pooled estimator
             elseif panel==2
+                if IRFt==1 || IRFt==2 || IRFt==3
+                    signrestable=[];
+                    signresperiods=[];
+                end
                 % estimate the IRFs
-                [irf_record, D_record, gamma_record, struct_irf_record, irf_estimates, D_estimates, gamma_estimates, strshocks_record, strshocks_estimates]=panel2irf(Ymat,Xmat,beta_gibbs,sigma_gibbs,It,Bu,IRFperiods,IRFband,N,n,m,p,k,T,Y,X,signreslabels,FEVDresperiods,data_exo,const,exo,IRFt,HD,strctident,favar,signrestable,signresperiods);
+                [irf_record, D_record, gamma_record, struct_irf_record, irf_estimates, D_estimates, gamma_estimates, strshocks_record, strshocks_estimates]=...
+                    panel2irf(Ymat,Xmat,beta_gibbs,sigma_gibbs,It,Bu,IRFperiods,IRFband,N,n,m,p,k,T,Y,X,signreslabels,[],data_exo,const,exo,IRFt,strctident,favar,signrestable,signresperiods);
                 % display the results
                 panel2irfdisp(N,n,Units,endo,irf_estimates,strshocks_estimates,IRFperiods,IRFt,stringdates1,T,decimaldates1,pref);
                 
                 % else, if the model is the random effect model (Zellner and Hong)
             elseif panel==3
+                if IRFt==1 || IRFt==2 || IRFt==3
+                    signrestable=[];
+                    signresperiods=[];
+                end
                 % estimate the IRFs
-                [irf_record, D_record, gamma_record, struct_irf_record, irf_estimates, D_estimates, gamma_estimates, strshocks_record, strshocks_estimates]=panel3irf(Yi,Xi,beta_gibbs,sigma_gibbs,It,Bu,IRFperiods,IRFband,N,n,m,p,k,T,IRFt,signrestable,signresperiods);
+                [irf_record, D_record, gamma_record, struct_irf_record, irf_estimates, D_estimates, gamma_estimates, strshocks_record, strshocks_estimates]=...
+                    panel3irf(Yi,Xi,beta_gibbs,sigma_gibbs,It,Bu,IRFperiods,IRFband,N,n,m,p,k,T,IRFt,signrestable,signresperiods,favar);
                 % display the results
                 panel3irfdisp(N,n,Units,endo,irf_estimates,strshocks_estimates,IRFperiods,IRFt,stringdates1,T,decimaldates1,pref);
                 
                 % else, if the model is the random effect model (hierarchical)
             elseif panel==4
+                if IRFt==1 || IRFt==2 || IRFt==3
+                    signrestable=[];
+                    signresperiods=[];
+                end
                 % estimate the IRFs
-                [irf_record, D_record, gamma_record, struct_irf_record, irf_estimates, D_estimates, gamma_estimates, strshocks_record, strshocks_estimates]=panel4irf(Yi,Xi,beta_gibbs,sigma_gibbs,It,Bu,IRFperiods,IRFband,N,n,m,p,k,T,IRFt,signrestable,signresperiods,0,relmagnrestable, relmagnresperiods);
+                [irf_record, D_record, gamma_record, struct_irf_record, irf_estimates, D_estimates, gamma_estimates, strshocks_record, strshocks_estimates]=...
+                    panel4irf(Yi,Xi,beta_gibbs,sigma_gibbs,It,Bu,IRFperiods,IRFband,N,n,m,p,k,T,IRFt,signrestable,signresperiods,0,[],[],favar);
                 % display the results
                 panel4irfdisp(N,n,Units,endo,irf_estimates,strshocks_estimates,IRFperiods,IRFt,stringdates1,T,decimaldates1,pref);
                 
                 % else, if the model is the factor model (static)
             elseif panel==5
                 % estimate the IRFs
-                [irf_record, D_record, gamma_record, struct_irf_record, irf_estimates, D_estimates, gamma_estimates, strshocks_record, strshocks_estimates]=panel5irf(Y,Xdot,theta_gibbs,sigma_gibbs,Xi,It,Bu,IRFperiods,IRFband,N,n,m,p,k,T,IRFt);
+                [irf_record, D_record, gamma_record, struct_irf_record, irf_estimates, D_estimates, gamma_estimates, strshocks_record, strshocks_estimates]=...
+                    panel5irf(Y,Xdot,theta_gibbs,sigma_gibbs,Xi,It,Bu,IRFperiods,IRFband,N,n,m,p,k,T,IRFt,favar);
                 % display the results
                 panel5irfdisp(N,n,Units,endo,irf_estimates,strshocks_estimates,IRFperiods,IRFt,stringdates1,T,decimaldates1,pref);
                 
                 % else, if the model is the factor model (dynamic)
             elseif panel==6
                 % estimate the IRFs
-                [irf_record, D_record, gamma_record, struct_irf_record, irf_estimates, D_estimates, gamma_estimates, strshocks_record, strshocks_estimates]=panel6irf(y,Xtilde,theta_gibbs,sigma_gibbs,B_gibbs,Xi,It,Bu,IRFperiods,IRFband,IRFt,rho,thetabar,N,n,m,p,T,d);
+                [irf_record, D_record, gamma_record, struct_irf_record, irf_estimates, D_estimates, gamma_estimates, strshocks_record, strshocks_estimates]=...
+                    panel6irf(y,Xtilde,theta_gibbs,sigma_gibbs,B_gibbs,Xi,It,Bu,IRFperiods,IRFband,IRFt,rho,thetabar,N,n,m,p,T,d,favar);
                 % display the results
                 panel6irfdisp(N,n,Units,endo,irf_estimates,strshocks_estimates,IRFperiods,IRFt,stringdates1,T,decimaldates1,pref);
             end
@@ -985,35 +1002,40 @@ for iteration=1:numt % beginning of forecasting loop
                 % else, if the model is the Bayesian pooled estimator
             elseif panel==2
                 % estimate the forecasts
-                [forecast_record, forecast_estimates]=panel2forecast(N,n,p,k,data_endo_a,data_exo_p,It,Bu,beta_gibbs,sigma_gibbs,Fperiods,const,Fband);
+                [forecast_record, forecast_estimates]=...
+                    panel2forecast(N,n,p,k,data_endo_a,data_exo_p,It,Bu,beta_gibbs,sigma_gibbs,Fperiods,const,Fband,Fstartlocation,favar);
                 % display the results
                 panel2fdisp(N,n,T,Units,endo,Ymat,stringdates2,decimaldates2,Fstartlocation,Fendlocation,forecast_estimates,pref);
                 
                 % else, if the model is the random effect model (Zellner and Hong)
             elseif panel==3
                 % estimate the forecasts
-                [forecast_record, forecast_estimates]=panel3forecast(N,n,p,k,data_endo_a,data_exo_p,It,Bu,beta_gibbs,sigma_gibbs,Fperiods,const,Fband);
+                [forecast_record, forecast_estimates]=...
+                    panel3forecast(N,n,p,k,data_endo_a,data_exo_p,It,Bu,beta_gibbs,sigma_gibbs,Fperiods,const,Fband,Fstartlocation,favar);
                 % display the results
                 panel3fdisp(N,n,T,Units,endo,Yi,stringdates2,decimaldates2,Fstartlocation,Fendlocation,forecast_estimates,pref);
                 
                 % else, if the model is the random effect model (hierarchical)
             elseif panel==4
                 % estimate the forecasts
-                [forecast_record, forecast_estimates]=panel4forecast(N,n,p,k,data_endo_a,data_exo_p,It,Bu,beta_gibbs,sigma_gibbs,Fperiods,const,Fband);
+                [forecast_record, forecast_estimates]=...
+                    panel4forecast(N,n,p,k,data_endo_a,data_exo_p,It,Bu,beta_gibbs,sigma_gibbs,Fperiods,const,Fband,Fstartlocation,favar);
                 % display the results
                 panel4fdisp(N,n,T,Units,endo,Yi,stringdates2,decimaldates2,Fstartlocation,Fendlocation,forecast_estimates,pref);
                 
                 % else, if the model is the factor model (static)
             elseif panel==5
                 % estimate the forecasts
-                [forecast_record, forecast_estimates]=panel5forecast(N,n,p,data_endo_a,data_exo_p,It,Bu,theta_gibbs,sigma_gibbs,Xi,Fperiods,const,Fband);
+                [forecast_record, forecast_estimates]=...
+                    panel5forecast(N,n,p,data_endo_a,data_exo_p,It,Bu,theta_gibbs,sigma_gibbs,Xi,Fperiods,const,Fband);
                 % display the results
                 panel5fdisp(N,n,T,Units,endo,Ymat,stringdates2,decimaldates2,Fstartlocation,Fendlocation,forecast_estimates,pref);
                 
                 % else, if the model is the factor model (dynamic)
             elseif panel==6
                 % estimate the forecasts
-                [forecast_record, forecast_estimates]=panel6forecast(const,data_exo_p,Fstartlocation,It,Bu,data_endo_a,p,B_gibbs,sigmatilde_gibbs,N,n,phi_gibbs,theta_gibbs,Zeta_gibbs,Fperiods,d,rho,thetabar,gama,Xi,Fband);
+                [forecast_record, forecast_estimates]=...
+                    panel6forecast(const,data_exo_p,Fstartlocation,It,Bu,data_endo_a,p,B_gibbs,sigmatilde_gibbs,N,n,phi_gibbs,theta_gibbs,Zeta_gibbs,Fperiods,d,rho,thetabar,gama,Xi,Fband);
                 % display the results
                 panel6fdisp(N,n,T,Units,endo,Ymat,stringdates2,decimaldates2,Fstartlocation,Fendlocation,forecast_estimates,pref)
             end
@@ -1131,35 +1153,40 @@ for iteration=1:numt % beginning of forecasting loop
             % if the model is the Bayesian pooled estimator
             if panel==2
                 % estimate conditional forecasts
-                [nconds, cforecast_record, cforecast_estimates]=panel2cf(N,n,m,p,k,q,cfconds,cfshocks,cfblocks,data_endo_a,data_exo_a,data_exo_p,It,Bu,Fperiods,const,beta_gibbs,D_record,gamma_record,CFt,Fband);
+                [nconds, cforecast_record, cforecast_estimates]=...
+                    panel2cf(N,n,m,p,k,q,cfconds,cfshocks,cfblocks,data_endo_a,data_exo_a,data_exo_p,It,Bu,Fperiods,const,beta_gibbs,D_record,gamma_record,CFt,Fband);
                 % display the results
                 panel2cfdisp(N,n,T,Units,endo,Ymat,stringdates2,decimaldates2,Fstartlocation,Fendlocation,cforecast_estimates,pref,nconds);
                 
                 % else, if the model is the random effect model (Zellner and Hong)
             elseif panel==3
                 % estimate conditional forecasts
-                [nconds, cforecast_record, cforecast_estimates]=panel3cf(N,n,m,p,k,q,cfconds,cfshocks,cfblocks,data_endo_a,data_exo_a,data_exo_p,It,Bu,Fperiods,const,beta_gibbs,D_record,gamma_record,CFt,Fband);
+                [nconds, cforecast_record, cforecast_estimates]=...
+                    panel3cf(N,n,m,p,k,q,cfconds,cfshocks,cfblocks,data_endo_a,data_exo_a,data_exo_p,It,Bu,Fperiods,const,beta_gibbs,D_record,gamma_record,CFt,Fband);
                 % display the results
                 panel3cfdisp(N,n,T,Units,endo,Yi,stringdates2,decimaldates2,Fstartlocation,Fendlocation,cforecast_estimates,pref,nconds);
                 
                 % else, if the model is the random effect model (hierarchical)
             elseif panel==4
                 % estimate conditional forecasts
-                [nconds, cforecast_record, cforecast_estimates]=panel4cf(N,n,m,p,k,q,cfconds,cfshocks,cfblocks,data_endo_a,data_exo_a,data_exo_p,It,Bu,Fperiods,const,beta_gibbs,D_record,gamma_record,CFt,Fband);
+                [nconds, cforecast_record, cforecast_estimates]=...
+                    panel4cf(N,n,m,p,k,q,cfconds,cfshocks,cfblocks,data_endo_a,data_exo_a,data_exo_p,It,Bu,Fperiods,const,beta_gibbs,D_record,gamma_record,CFt,Fband);
                 % display the results
                 panel4cfdisp(N,n,T,Units,endo,Yi,stringdates2,decimaldates2,Fstartlocation,Fendlocation,cforecast_estimates,pref,nconds);
                 
                 % else, if the model is the factor model (static)
             elseif panel==5
                 % estimate conditional forecasts
-                [cforecast_record, cforecast_estimates]=panel5cf(N,n,m,p,k,q,cfconds,cfshocks,cfblocks,data_endo_a,data_exo_a,data_exo_p,It,Bu,Fperiods,const,Xi,theta_gibbs,D_record,gamma_record,CFt,Fband);
+                [cforecast_record, cforecast_estimates]=...
+                    panel5cf(N,n,m,p,k,q,cfconds,cfshocks,cfblocks,data_endo_a,data_exo_a,data_exo_p,It,Bu,Fperiods,const,Xi,theta_gibbs,D_record,gamma_record,CFt,Fband);
                 % display the results
                 panel5cfdisp(N,n,T,Units,endo,Ymat,stringdates2,decimaldates2,Fstartlocation,Fendlocation,cforecast_estimates,pref);
                 
                 % else, if the model is the factor model (dynamic)
             elseif panel==6
                 % estimate conditional forecasts
-                [cforecast_record, cforecast_estimates]=panel6cf(N,n,m,p,k,d,cfconds,cfshocks,cfblocks,It,Bu,Fperiods,const,Xi,data_exo_p,theta_gibbs,B_gibbs,phi_gibbs,Zeta_gibbs,sigmatilde_gibbs,Fstartlocation,Ymat,rho,thetabar,gama,CFt,Fband);
+                [cforecast_record, cforecast_estimates]=...
+                    panel6cf(N,n,m,p,k,d,cfconds,cfshocks,cfblocks,It,Bu,Fperiods,const,Xi,data_exo_p,theta_gibbs,B_gibbs,phi_gibbs,Zeta_gibbs,sigmatilde_gibbs,Fstartlocation,Ymat,rho,thetabar,gama,CFt,Fband);
                 % display the results
                 panel6cfdisp(N,n,T,Units,endo,Ymat,stringdates2,decimaldates2,Fstartlocation,Fendlocation,cforecast_estimates,pref);
             end
@@ -1183,13 +1210,13 @@ for iteration=1:numt % beginning of forecasting loop
         elseif panel==2
             panel2disp(n,N,m,p,k,T,Ymat,Xmat,Units,endo,exo,const,beta_gibbs,B_median,beta_median,beta_std,beta_lbound,beta_ubound,sigma_gibbs,...
                 sigma_median,D_estimates,gamma_estimates,ar,lambda1,lambda3,lambda4,startdate,enddate,forecast_record,forecast_estimates,Fcperiods,...
-                stringdates3,Fstartdate,Fcenddate,Feval,Fcomp,data_endo_c,data_endo_c_lags,data_exo_c,It,Bu,IRF,IRFt,pref,names);
+                stringdates3,Fstartdate,Fcenddate,Feval,Fcomp,data_endo_c,data_endo_c_lags,data_exo_c,It,Bu,IRF,IRFt,pref,names,0);
             
             % else, if the model is the random effect model (Zellner and Hong)
         elseif panel==3
             panel3disp(n,N,m,p,k,T,Yi,Xi,Units,endo,exo,const,beta_gibbs,beta_median,beta_std,beta_lbound,beta_ubound,sigma_gibbs,...
                 sigma_median,D_estimates,gamma_estimates,lambda1,startdate,enddate,forecast_record,forecast_estimates,Fcperiods,stringdates3,...
-                Fstartdate,Fcenddate,Feval,Fcomp,data_endo_c,data_endo_c_lags,data_exo_c,It,Bu,IRF,IRFt,pref,names,PriorExcel);
+                Fstartdate,Fcenddate,Feval,Fcomp,data_endo_c,data_endo_c_lags,data_exo_c,It,Bu,IRF,IRFt,pref,names);
             
             % else, if the model is the random effect model (hierarchical)
         elseif panel==4
@@ -1569,7 +1596,8 @@ for iteration=1:numt % beginning of forecasting loop
                     favar_tvbvar1gibbs(S,sigmahat,T,chi,psi,kappa,betahat,q,n,It,Bu,I_tau,H,Xbar,y,data_endo,lags,favar);
             end
             % compute posterior estimates
-            [beta_t_median, beta_t_std, beta_t_lbound, beta_t_ubound, omega_median, sigma_median, sigma_t_median, sigma_t_lbound, sigma_t_ubound]=tvbvar1estimates(beta_gibbs,omega_gibbs,sigma_gibbs,q,T,cband);
+            [beta_t_median, beta_t_std, beta_t_lbound, beta_t_ubound, omega_median, sigma_median, sigma_t_median, sigma_t_lbound, sigma_t_ubound]=...
+                tvbvar1estimates(beta_gibbs,omega_gibbs,sigma_gibbs,q,T,cband);
             
             
             % if the model is the general time-varying

@@ -118,7 +118,7 @@ end
 
 % check if the variables have been transformed
 if favar.FAVAR==1
-    if favar.transformation==1 || favar.plot_transform==1
+    if (IRF==1 | favar.IRF.plot==1) && (favar.transformation==1 || favar.plot_transform==1)
         % re-transform irf_estimates
         favar.IRF.irf_estimates_nottransformed=irf_estimates; % before, save untransformed IRFs
         % re-transform

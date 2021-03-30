@@ -105,7 +105,7 @@ end
 irfcell=irfcell(3:end-2,2:end-1);
 % write in excel
 if pref.results==1
-    xlswrite([pref.datapath '\results\' pref.results_sub '.xlsx'],irfcell,'IRF','B2');
+    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],irfcell,'IRF','B2');
 end
 
 
@@ -181,7 +181,7 @@ horzspace=repmat({''},3,5*n);
 strshockcell=strshockcell(4:end,1:end-1);
 % write in excel
 if pref.results==1
-    xlswrite([pref.datapath '\results\' pref.results_sub '.xlsx'],strshockcell,'shocks','B2');
+    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],strshockcell,'shocks','B2');
 end
 end
 

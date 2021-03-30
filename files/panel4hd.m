@@ -1,4 +1,4 @@
-function [hd_record hd_estimates]=panel4hd(beta_gibbs,D_record,strshocks_record,It,Bu,Yi,Xi,N,n,m,p,k,T,HDband)
+function [hd_record,hd_estimates]=panel4hd(beta_gibbs,D_record,strshocks_record,It,Bu,Yi,Xi,N,n,m,p,k,T,HDband)
 
 
 

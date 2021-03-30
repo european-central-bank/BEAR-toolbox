@@ -1,4 +1,4 @@
-function [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,ar,priorexo,lambda4,numendo,favar]=...
+function [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,ar,priorexo,lambda4_2,numendo,favar]=...
     gensample(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,ar,lambda4,PriorExcel,priorsexogenous,pref,favar,IRFt)
 
 
@@ -21,26 +21,27 @@ end
 % identify the date strings
 datestrings=names(2:end,1);
 % identify the position of the string corresponding to the start period
-startlocation=find(strcmp(datestrings,startdate));
+startlocationData=find(strcmp(datestrings,startdate));
 % identify the position of the string corresponding to the end period
 endlocation=find(strcmp(datestrings,enddate));
-
+startlocation=startlocationData;
 if favar.FAVAR==1 % in case we transform the data to first or second differences, we have a different startlocation
     if favar.transformation==1
         startlocation=informationstartlocation;
         endlocation=informationendlocation;
-     % for FVAR without transformations
+        % check is correct
     else
         startlocation=startlocationData;
-     end
+    end
 end
 
 
 % save the whole sample temporarily
 data1=data;
-
 % adjust data to startdate and enddate
-data=data(startlocation:endlocation,:);
+% data1=data(startlocationData:endlocation,:);
+data=data(startlocationData:endlocation,:);
+
 
 % identify the variable strings, endogenous and exogenous
 variablestrings=names(1,2:end);
@@ -124,7 +125,7 @@ end
 
 
 
-%% FAVAR: if we want to compute Bayesian factors
+%% FAVAR
 
 if favar.FAVAR==1
     if favar.transformation==1
@@ -179,13 +180,13 @@ count2=0;
 for ii=1:size(favar.XY,2)
     adf(ii,1)=adftest(favar.XY(:,ii));
     kpss(ii,1)=kpsstest(favar.XY(:,ii));
-    if adf(ii,1)==0 || kpss(ii,1)==0
+    if adf(ii,1)==0 %|| kpss(ii,1)==1
         count=count+1;
         NSTallstrings{count,1}=allstrings(1,ii);
         NSTindex=[NSTindex;ii];
         catallstrings=strcat(catallstrings,', ',NSTallstrings{count,1});
     end
-    if kpss(ii,1)==0
+    if kpss(ii,1)==1
         count2=count2+1;
         NST2allstrings{count2,1}=allstrings(1,ii);
         NST2index=[NST2index;ii];
@@ -247,14 +248,14 @@ if priorsexogenous==0
     for ii=1:numendo
         for jj=1:numexo+1
             priorexo(ii,jj)=0;
-            lambda4(ii,jj)=100;
+            lambda4_2(ii,jj)=lambda4;
         end
     end
 else
     [priorexo]=xlsread('data.xlsx','exo mean priors');
     [lambda4]=xlsread('data.xlsx','exo tight priors');
     priorexo=priorexo(1:numendo,1:numexo+1);
-    lambda4=lambda4(1:numendo,1:numexo+1);
+    lambda4_2=lambda4(1:numendo,1:numexo+1);
 end
 
 % Phase 3: determination of the position of the forecast start and end periods

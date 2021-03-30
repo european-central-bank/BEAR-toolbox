@@ -6,7 +6,7 @@ vertspace=repmat({''},T+2,1);
 for jj=1:favar.npltX
 tempcell={};
    % loop over shocks (horizontal dimension)
-   for ii=1:size(contributions2_all{jj},2)
+   for ii=1:size(contributions2_all{jj,1},2)
    % create cell of hd record for the contribution of shock jj in variable ii fluctuation
    temp=['contribution of ' labelsfavar_all{ii,1} ' shocks in ' favar.pltX{jj,1} ' fluctuation'];
    hd_ij=[temp {''} ;{''} {''};stringdates1 num2cell((contributions2_all{jj}(:,ii)))];

@@ -1,4 +1,4 @@
-function [favar]=favar_fevd(gamma_record,It,Bu,n,IRFperiods,FEVDband,favar,IRFt)
+function [favar]=favar_fevd(gamma_record,It,Bu,n,IRFperiods,FEVDband,favar,IRFt,strctident)
 
 % function [fevd_estimates]=olsfevd(irf_estimates,IRFperiods,gamma,n,endo,datapath)
 % computes and displays fevd values for the OLS VAR model
@@ -21,7 +21,7 @@ favar_irf_record=favar.IRF.favar_irf_record;
 if IRFt==1||IRFt==2||IRFt==3
     identified=n; % fully identified
 elseif IRFt==4 || IRFt==6 %if the model is identified by sign restrictions or sign restrictions (+ IV)
-    identified=size(strctident.signreslabels_shocks,1); % count the labels provided in the sign res sheet (+ IV)
+    identified=size(strctident.signreslabels,1); % count the labels provided in the sign res sheet (+ IV)
 elseif IRFt==5
     identified=1; % one IV shock
 end
@@ -112,11 +112,11 @@ for ii=1:npltX
     for jj=1:identified
         % define the matrix Vfij as the division (pairwise entry) of Tfij by Tfj
         shock=(temp{ii,jj}./temp{ii,identified+1})*scale;
-        favar_fevd_record{ii,jj}=shock;
+        favar_fevd_record{ii,jj}=shock; % changed to abs(shock) from shock here
         % save shocks to compute residual
         shocks(:,:,jj)=shock;
     end
-    % finally add the share explained by the idiosyncratic component (residual)
+    % finally add the residual, reflecting the share explained by the idiosyncratic component (residual)
     favar_fevd_record{ii,jj+1}=1-sum(shocks,3);
 end
 

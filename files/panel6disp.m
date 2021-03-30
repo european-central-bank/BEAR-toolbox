@@ -10,7 +10,7 @@ betatilde=Xi*theta_median(:,:,end);
 Btilde=reshape(betatilde,k,N*n);
 
 % check whether the model is stationary
-[stationary eigmodulus]=checkstable(betatilde,N*n,p,k);
+[stationary,eigmodulus]=checkstable(betatilde,N*n,p,k);
 
 % estimate the in-sample evaluation criteria
 
@@ -63,7 +63,7 @@ forecast_estimates=reshape(forecast_estimates,N*n,1);
 data_endo_c=reshape(data_endo_c,Fcperiods,N*n);
 
 % compute forecast evaluation
-[RMSE MAE MAPE Ustat CRPS_estimates]=panel6feval(N,n,forecast_record,forecast_estimates,Fcperiods,data_endo_c);
+[RMSE,MAE,MAPE,Ustat,CRPS_estimates]=panel6feval(N,n,forecast_record,forecast_estimates,Fcperiods,data_endo_c);
 
 end
 
@@ -83,56 +83,8 @@ fid=fopen(filelocation,'wt');
 fprintf('%s\n','');
 fprintf(fid,'%s\n','');
 
-fprintf('%s\n','%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
-fprintf(fid,'%s\n','%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
-fprintf('%s\n','%                                                                                                       %%');
-fprintf(fid,'%s\n','%                                                                                                    %');
-fprintf('%s\n','%    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR) TOOLBOX                                         %');
-fprintf(fid,'%s\n','%    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR) TOOLBOX                                     %');
-fprintf('%s\n','%                                                                                                        %');
-fprintf(fid,'%s\n','%                                                                                                    %');
-fprintf('%s\n','%    This statistical package has been developed by the external developments division of the ECB.       %');
-fprintf(fid,'%s\n','%    This statistical package has been developed by the external developments division of the ECB.   %');
-fprintf('%s\n','%                                                                                                        %');
-fprintf(fid,'%s\n','%                                                                                                    %');
-fprintf('%s\n','%    Authors:                                                                                            %');
-fprintf(fid,'%s\n','%    Authors:                                                                                        %');
-fprintf('%s\n','%    Romain Legrand  (Romain Legrand <b00148883@essec.edu>)                                              %');
-fprintf(fid,'%s\n','%    Romain Legrand  (Romain Legrand <b00148883@essec.edu>)                                          %');
-fprintf('%s\n','%    Alistair Dieppe (adieppe@worldbank.org)                                                             %');
-fprintf(fid,'%s\n','%    Alistair Dieppe (adieppe@worldbank.org)                                                         %');
-fprintf('%s\n','%    Björn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                                                      %');
-fprintf(fid,'%s\n','%    Björn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                                                  %');
-fprintf('%s\n','%                                                                                                        %');
-fprintf(fid,'%s\n','%                                                                                                    %');
-fprintf('%s\n','%    Version 4.4                                                                                         %');
-fprintf(fid,'%s\n','%    Version 4.4                                                                                     %');
-fprintf('%s\n','%                                                                                                        %');
-fprintf(fid,'%s\n','%                                                                                                    %');
-fprintf('%s\n','%    The authors are grateful to Paolo Bonomolo, Marta Banbura, Martin Bruns, Fabio Canova,              %');
-fprintf(fid,'%s\n','%    The authors are grateful to Paolo Bonomolo, Marta Banbura, Martin Bruns, Fabio Canova,          %');
-fprintf('%s\n','%    Matteo Ciccarelli, Marek Jarocinski, Niccolo Battistini, Gabriel Bobeica                            %');
-fprintf(fid,'%s\n','%    Matteo Ciccarelli, Marek Jarocinski, Niccolo Battistini, Gabriel Bobeica                        %');
-fprintf('%s\n','%    Michele Lenza, Chiara Osbat, Mirela Miescu, Gary Koop, Giorgio Primiceri                            %');
-fprintf(fid,'%s\n','%    Michele Lenza, Chiara Osbat, Mirela Miescu, Gary Koop, Giorgio Primiceri,                       %');
-fprintf('%s\n','%    Michal Rubaszek, Barbara Rossi, Ben Schumann, Peter Welz, Hugo Vega de la Cruz and Francesca Loria. %');
-fprintf(fid,'%s\n','%  Michal Rubaszek, Barbara Rossi, Ben Schumann, Peter Welz, Hugo Vega de la Cruz and Francesca Loria%');
-fprintf('%s\n','%    valuable input and advice which contributed to improve the quality of this work.                    %');
-fprintf(fid,'%s\n','%  valuable input and advice which contributed to improve the quality of this work.                  %');
-fprintf('%s\n','%                                                                                                        %');
-fprintf(fid,'%s\n','%                                                                                                    %');
-fprintf('%s\n','%   These programmes are the responsibilities of the authors and not of the ECB and the Worldbank.       %'); 
-fprintf(fid,'%s\n','%   These programmes are the responsibilities of the authors and not of the ECB and the Worldbank.   %'); 
-fprintf('%s\n','%   Errors and ommissions remain those of the authors.                                                   %'); 
-fprintf(fid,'%s\n','%   Errors and ommissions remain those of the authors.                                               %');
-fprintf('%s\n','%                                                                                                        %');
-fprintf(fid,'%s\n','%                                                                                                    %');
-fprintf('%s\n','%    Please do not use or quote this work without permission.                                            %');
-fprintf(fid,'%s\n','%    Please do not use or quote this work without permission.                                        %');
-fprintf('%s\n','%                                                                                                        %');
-fprintf(fid,'%s\n','%                                                                                                    %');    
-fprintf('%s\n','%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
-fprintf(fid,'%s\n','%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+% print the list of contributors
+printcontributors;
 
 % print then estimation results
 

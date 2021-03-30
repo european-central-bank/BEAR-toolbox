@@ -71,9 +71,21 @@ elseif favar.onestep==0 % two-step
     favar.XY=[favar.X,favar.data_exfactors];
     % new loadings
     favar.L=(favar_olssvd(favar.XY,data_endo))';
-    % % %         if favar.slowfast==1 %manipulating the loadings matrix such that slow moving variables do not load onto the ffr
-    % % %             favar.L(favar.blockindex_each{1,1},end) = 0; %1,1, first block in the slow block %end, FFR ordered last
-    % % %         end
+    % manipulate loadings matrix for blocks
+    if favar.blocks==1
+        for bb=1:favar.nbnames
+            Xbindex=favar.blockindex_each{bb,1};
+            Xbindex2=favar.blockindex_each{bb,1}==0;
+            %
+            favar.L(Xbindex,favar.blocks_index{bb,1})=favar.l_block{bb,1};
+            favar.L(Xbindex2,favar.blocks_index{bb,1})=0;
+            favar.L(1:favar.nfactorvar,favar.variablestrings_exfactors)=0;
+            favar.L(favar.nfactorvar+1:end,favar.variablestrings_factorsonly)=0;
+        end
+        for vv=1:favar.numdata_exfactors
+            favar.L(favar.nfactorvar+1:end,favar.variablestrings_exfactors(vv,1))=1;
+        end
+    end
     
     %errors of factor equation (observation equation)
     favar.evf=favar.XY-data_endo*favar.L';

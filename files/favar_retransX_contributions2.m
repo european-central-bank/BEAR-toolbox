@@ -3,6 +3,9 @@ function [retransformed_contributions2,retransformed_HDTobeexplained_plotX]=...
 % number of variables and shocks, and iterations (It-Bu)
 %[n1,n2]=size(contributions2);
 ItBu=1;
+%%% skip the restransformation in the HD
+levels=0;
+%%%
 % initialise
 % different treatment for different cases
 if levels==1
@@ -19,7 +22,7 @@ if levels==1
     elseif transformationindex==4
 %         retransformed_contributions2=exp(contributions2)-ones(ItBu,1);
 %         retransformed_HDTobeexplained_plotX=exp(HDTobeexplained_plotX)-ones(ItBu,1);
-        retransformed_contributions2=contributions2;
+        retransformed_contributions2=exp(contributions2)-ones(ItBu,1);
         retransformed_HDTobeexplained_plotX=exp(HDTobeexplained_plotX)-ones(ItBu,1);
     elseif transformationindex==5
 %         retransformed_contributions2=exp(cumsum(contributions2))-ones(ItBu,1);
@@ -75,4 +78,5 @@ elseif levels==3
     
 else % do nothing, e.g. levels=0
     retransformed_contributions2=contributions2;
+    retransformed_HDTobeexplained_plotX=HDTobeexplained_plotX;
 end

@@ -1,4 +1,4 @@
-function [strctident,signreslabels]=loadcorrelres(strctident,names,startdate,enddate,lags,n,IRFt,favar)
+function [strctident,signreslabels]=loadcorrelres(strctident,endo,names,startdate,enddate,lags,n,IRFt,favar)
 
 signreslabels=strctident.signreslabels;
 signreslabels_shocksindex=strctident.signreslabels_shocksindex;
@@ -35,6 +35,87 @@ end
 checkCorrelInstrument_index=ismember(txtcorrel(1,2:end),strctident.CorrelInstrument);
 checkCorrelShock_index=ismember(strctident.signreslabels,strctident.CorrelShock); %%%%% evt. change to strcmp loop
 
+%% we might have a correl shock only (no other restrictions), identify
+if sum(checkCorrelShock_index)==0
+% load the data from Excel
+% sign restrictions values
+if strctident.signres==1
+    [~,~,strngs1]=xlsread('data.xlsx','sign res values');
+elseif strctident.relmagnres==1
+    [~,~,strngs1]=xlsread('data.xlsx','relmagn res values');
+elseif strctident.FEVDres==1
+    [~,~,strngs1]=xlsread('data.xlsx','FEVD res values');
+else
+    [~,~,strngs1]=xlsread('data.xlsx','sign res values');
+end
+% replace NaN entries by blanks
+strngs1(cellfun(@(x) any(isnan(x)),strngs1))={[]};
+% convert all numeric entries into strings
+strngs1(cellfun(@isnumeric,strngs1))=cellfun(@num2str,strngs1(cellfun(@isnumeric,strngs1)),'UniformOutput',0);
+% identify the non-empty entries (pairs of rows and columns), changed the
+% routine here
+% empty strngs1 columns and rows, to make sure empty rows (with empty strings) are dismissed
+for ii=1:size(strngs1,1) %rows
+    strngs1emptyrows(ii,1)=isempty(cat(2,strngs1{ii,:}));
+end
+strngs1emptyrows_index=find(strngs1emptyrows==0);
+
+for ii=1:size(strngs1,2) %columns
+    strngs1emptycolumns(1,ii)=isempty(cat(2,strngs1{:,ii}));
+end
+strngs1emptycolumns_index=find(strngs1emptycolumns==0);
+%
+strngs1=strngs1(strngs1emptyrows_index,strngs1emptycolumns_index);
+
+[nerows1,neclmns1]=find(~cellfun('isempty',strngs1));
+% count the number of such entries
+neentries1=size(nerows1,1);
+% all these entries contrain strings: fix them to correct potential user formatting errors
+% loop over entries (value table)
+for ii=1:neentries1
+strngs1{nerows1(ii,1),neclmns1(ii,1)}=fixstring(strngs1{nerows1(ii,1),neclmns1(ii,1)});
+end
+
+% loop over endogenous variables
+for ii=1:n
+% for each variable, there should be two entries in the table corresponding to its name
+% one is the column lable, the other is the row label
+[r,c]=find(strcmp(strngs1,endo{ii,1}));
+   % if it is not possible to find two entries, return an error
+   if size(r,1)<2
+   message=['Endogenous variable ' endo{ii,1} ' cannot be found in both rows and columns of the table. Please verify that the ''sign res values'' sheet of the Excel data file is properly filled.'];
+   msgbox(message,'Sign restriction error');
+   error('programme termination: sign restriction error');   
+   end
+% otherwise, the greatest number in r corresponds to the row of the column labels: record it
+rows(ii,1)=max(r);
+% the greatest number in c corresponds to the column of the row labels: record it
+clmns(ii,1)=max(c);
+end
+
+% find the shock, %%here a user specified label is provided in  the res
+% sheets in the excel file
+[r2,c2]=find(strcmp(strngs1,strctident.CorrelShock));
+
+if ~isempty(r2)==1 && ~isempty(c2)==1
+c2index=find(c2==clmns);
+signreslabels{c2index,1}=strctident.CorrelShock;
+signreslabels_shocksindex=[signreslabels_shocksindex;c2index];
+
+%save in structure
+strctident.signreslabels=signreslabels;
+strctident.signreslabels_shocksindex=sort(signreslabels_shocksindex);
+
+%again, check if we have IV correlation restrictions
+[IVcorrel,txtcorrel]=xlsread('data.xlsx','IV');
+checkCorrelInstrument_index=ismember(txtcorrel(1,2:end),strctident.CorrelInstrument);
+checkCorrelShock_index=ismember(strctident.signreslabels,strctident.CorrelShock); %%%%% evt. change to strcmp loop
+elseif isempty(r2)==1 && isempty(c2)==1
+    % do nothing in this case
+end
+
+
+end
 % check for correlation restrictions
     % when there is no shock with an extra instrument
 if sum(checkCorrelShock_index)==0 && sum(checkCorrelInstrument_index)==0
@@ -54,7 +135,8 @@ elseif sum(checkCorrelShock_index)==0 && sum(checkCorrelInstrument_index)~=0 && 
    msgbox(message,'Correlation restriction warning');
     % we found a CorrelInstrument and a CorrelShock
 elseif sum(checkCorrelInstrument_index)~=0 && sum(checkCorrelShock_index)~=0 | strcmp(strctident.CorrelShock,'CorrelShock')==1
-    % find index for the Shock with correlation restriction
+    % find index for the Shock with correlation restriction, %%here no
+    % label is provided in the res sheets in the excel file
     strctident.CorrelShock_index=find(checkCorrelShock_index); %save index
     strctident.checkCorrelInstrumentShock=1;   
     Index = strcmp(txtcorrel(1,:),strctident.CorrelInstrument);           %find the instrument in the IV sheet

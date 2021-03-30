@@ -1,4 +1,5 @@
-function [irf_record D_record gamma_record struct_irf_record irf_estimates D_estimates gamma_estimates strshocks_record strshocks_estimates]=panel6irf(y,Xtilde,theta_gibbs,sigma_gibbs,B_gibbs,Xi,It,Bu,IRFperiods,IRFband,IRFt,rho,thetabar,N,n,m,p,T,d)
+function [irf_record,D_record,gamma_record,struct_irf_record,irf_estimates,D_estimates,gamma_estimates,strshocks_record,strshocks_estimates]=...
+    panel6irf(y,Xtilde,theta_gibbs,sigma_gibbs,B_gibbs,Xi,It,Bu,IRFperiods,IRFband,IRFt,rho,thetabar,N,n,m,p,T,d,favar)
 
 
 
@@ -81,19 +82,19 @@ if IRFt==1
 % generate empty structural IRFs (just to be consistent with subsequent parts of the code
 struct_irf_record=[];
 % compute posterior estimates
-[irf_estimates,D_estimates,gamma_estimates]=irfestimates(irf_record,N*n,IRFperiods,IRFband,IRFt,[],[]);
+[irf_estimates,D_estimates,gamma_estimates]=irfestimates(irf_record,N*n,IRFperiods,IRFband,IRFt,[],[],favar);
 % if IRFs have been set to an SVAR with Choleski identification (IRFt=2):
 elseif IRFt==2
 % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
-[struct_irf_record D_record gamma_record]=irfchol(sigma_gibbs(:,:,T),irf_record,It,Bu,IRFperiods,N*n);
+[struct_irf_record,D_record,gamma_record]=irfchol(sigma_gibbs(:,:,T),irf_record,It,Bu,IRFperiods,N*n,favar);
 % compute posterior estimates
-[irf_estimates,D_estimates,gamma_estimates]=irfestimates(struct_irf_record,N*n,IRFperiods,IRFband,IRFt,D_record,gamma_record);
+[irf_estimates,D_estimates,gamma_estimates]=irfestimates(struct_irf_record,N*n,IRFperiods,IRFband,IRFt,D_record,gamma_record,favar);
 % if IRFs have been set to an SVAR with triangular factorisation (IRFt=3):
 elseif IRFt==3
 % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
-[struct_irf_record D_record gamma_record]=irftrig(sigma_gibbs(:,:,T),irf_record,It,Bu,IRFperiods,N*n);
+[struct_irf_record,D_record,gamma_record]=irftrig(sigma_gibbs(:,:,T),irf_record,It,Bu,IRFperiods,N*n,favar);
 % compute posterior estimates
-[irf_estimates,D_estimates,gamma_estimates]=irfestimates(struct_irf_record,N*n,IRFperiods,IRFband,IRFt,D_record,gamma_record);
+[irf_estimates,D_estimates,gamma_estimates]=irfestimates(struct_irf_record,N*n,IRFperiods,IRFband,IRFt,D_record,gamma_record,favar);
 end
 
 
@@ -115,7 +116,7 @@ D_estimates=repmat(reshape(eye(N*n),(N*n)^2,1),[1 1 T]);
    end
 elseif IRFt==2
 % run the Gibbs sampler
-[strshocks_record D_record gamma_record]=strshockspan6(theta_gibbs,sigma_gibbs,y,Xtilde,N,n,T,It,Bu,IRFt); 
+[strshocks_record,D_record,gamma_record]=strshockspan6(theta_gibbs,sigma_gibbs,y,Xtilde,N,n,T,It,Bu,IRFt); 
 % obtain point estimates and credibility intervals
 [strshocks_estimates]=strsestimates(strshocks_record,N*n,T,IRFband);
 % reshape
@@ -127,7 +128,7 @@ strshocks_estimates=reshape(strshocks_estimates,[n 1 N]);
 gamma_estimates=repmat(reshape(eye(N*n),(N*n)^2,1),[1 1 T]);
 elseif IRFt==3
 % run the Gibbs sampler
-[strshocks_record D_record gamma_record]=strshockspan6(theta_gibbs,sigma_gibbs,y,Xtilde,N,n,T,It,Bu,IRFt); 
+[strshocks_record,D_record,gamma_record]=strshockspan6(theta_gibbs,sigma_gibbs,y,Xtilde,N,n,T,It,Bu,IRFt); 
 % obtain point estimates and credibility intervals
 [strshocks_estimates]=strsestimates(strshocks_record,N*n,T,IRFband);
 % reshape
@@ -138,28 +139,4 @@ strshocks_estimates=reshape(strshocks_estimates,[n 1 N]);
    gamma_estimates(:,1,ii)=quantile(gamma_record(:,:,ii),0.5,2);
    end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

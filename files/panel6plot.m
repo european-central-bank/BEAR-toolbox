@@ -81,7 +81,7 @@ end
 afcell=afcell(4:end,1:end-1);
 % write in excel
 if pref.results==1
-    xlswrite([pref.datapath '\results\' pref.results_sub '.xlsx'],afcell,'actual fitted','B2');
+    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],afcell,'actual fitted','B2');
 end
 
 
@@ -149,7 +149,7 @@ end
 residcell=residcell(4:end,1:end-1);
 % write in excel
 if pref.results==1
-    xlswrite([pref.datapath '\results\' pref.results_sub '.xlsx'],residcell,'resids','B2');
+    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],residcell,'resids','B2');
 end
 
 
@@ -157,7 +157,7 @@ end
 % steady-state
 
 % run the Gibbs sampler for the steady-state 
-[ss_record ss_estimates]=ssgibbspan6(n,N,m,p,k,T,Xmat,theta_gibbs,Xi,It,Bu,cband);
+[ss_record,ss_estimates]=ssgibbspan6(n,N,m,p,k,T,Xmat,theta_gibbs,Xi,It,Bu,cband);
 if pref.plot
 % then plot the figure
 sstate=figure;
@@ -231,7 +231,7 @@ end
 sscell=sscell(4:end,1:end-1);
 % write in excel
 if pref.results==1
-    xlswrite([pref.datapath '\results\' pref.results_sub '.xlsx'],sscell,'steady state','B2');
+    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],sscell,'steady state','B2');
 end
 
 
@@ -562,6 +562,6 @@ tvcell=[tvcell;horzspace;factorcell];
 
 % write in excel
 if pref.results==1
-    xlswrite([pref.datapath '\results\' pref.results_sub '.xlsx'],tvcell,'time variation','B2');
+    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],tvcell,'time variation','B2');
 end
 

@@ -156,7 +156,7 @@ end
 % steady-state
 
 % run the Gibbs sampler for the steady-state 
-[ss_record ss_estimates]=ssgibbspan5(n,N,m,p,k,T,Xmat,theta_gibbs,Xi,It,Bu,cband);
+[ss_record,ss_estimates]=ssgibbspan5(n,N,m,p,k,T,Xmat,theta_gibbs,Xi,It,Bu,cband);
 % then plot the figure
 if pref.plot
 sstate=figure;

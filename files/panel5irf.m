@@ -1,4 +1,5 @@
-function [irf_record D_record gamma_record struct_irf_record irf_estimates D_estimates gamma_estimates strshocks_record strshocks_estimates]=panel5irf(Y,Xdot,theta_gibbs,sigma_gibbs,Xi,It,Bu,IRFperiods,IRFband,N,n,m,p,k,T,IRFt)
+function [irf_record,D_record,gamma_record,struct_irf_record,irf_estimates,D_estimates,gamma_estimates,strshocks_record,strshocks_estimates]=...
+    panel5irf(Y,Xdot,theta_gibbs,sigma_gibbs,Xi,It,Bu,IRFperiods,IRFband,N,n,m,p,k,T,IRFt,favar)
 
 
 
@@ -73,21 +74,21 @@ end
 % if IRFs have been set to an unrestricted VAR (IRFt=1):
 if IRFt==1
 % run a pseudo Gibbs sampler to obtain records for D and gamma (for the trivial SVAR)
-[D_record gamma_record]=irfunres(N*n,It,Bu,sigma_gibbs);
+[D_record,gamma_record]=irfunres(N*n,It,Bu,sigma_gibbs);
 struct_irf_record=[];
 % compute posterior estimates
-[irf_estimates,D_estimates,gamma_estimates]=irfestimates(irf_record,N*n,IRFperiods,IRFband,IRFt,[],[]);
+[irf_estimates,D_estimates,gamma_estimates]=irfestimates(irf_record,N*n,IRFperiods,IRFband,IRFt,[],[],favar);
 % if IRFs have been set to an SVAR with Choleski identification (IRFt=2):
 elseif IRFt==2
 % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
-[struct_irf_record D_record gamma_record]=irfchol(sigma_gibbs,irf_record,It,Bu,IRFperiods,N*n);
+[struct_irf_record,D_record,gamma_record]=irfchol(sigma_gibbs,irf_record,It,Bu,IRFperiods,N*n,favar);
 % compute posterior estimates
-[irf_estimates,D_estimates,gamma_estimates]=irfestimates(struct_irf_record,N*n,IRFperiods,IRFband,IRFt,D_record,gamma_record);
+[irf_estimates,D_estimates,gamma_estimates]=irfestimates(struct_irf_record,N*n,IRFperiods,IRFband,IRFt,D_record,gamma_record,favar);
 elseif IRFt==3
 % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
-[struct_irf_record D_record gamma_record]=irftrig(sigma_gibbs,irf_record,It,Bu,IRFperiods,N*n);
+[struct_irf_record,D_record,gamma_record]=irftrig(sigma_gibbs,irf_record,It,Bu,IRFperiods,N*n,favar);
 % compute posterior estimates
-[irf_estimates,D_estimates,gamma_estimates]=irfestimates(struct_irf_record,N*n,IRFperiods,IRFband,IRFt,D_record,gamma_record);
+[irf_estimates,D_estimates,gamma_estimates]=irfestimates(struct_irf_record,N*n,IRFperiods,IRFband,IRFt,D_record,gamma_record,favar);
 end
 
 

@@ -1,4 +1,4 @@
-function [forecast_record forecast_estimates]=panel5forecast(N,n,p,data_endo_a,data_exo_p,It,Bu,theta_gibbs,sigma_gibbs,Xi,Fperiods,const,Fband)
+function [forecast_record,forecast_estimates]=panel5forecast(N,n,p,data_endo_a,data_exo_p,It,Bu,theta_gibbs,sigma_gibbs,Xi,Fperiods,const,Fband)
 
 
 

@@ -109,10 +109,14 @@ favar_relmagnres=strctident.favar_relmagnres;
 favar_FEVDres=strctident.favar_FEVDres;
 
 if favar.FAVAR==1
+    favarFAVAR=favar.FAVAR;
     if favar.npltX==0
         favar.plotX_index=[];
         npltX=0;
+    else
+        npltX=favar.npltX;
     end
+    
     % the relevant variables in X that we restrict and\or plot
     relLindex=[favar.signresX_index;favar.plotX_index];
     % realted to transformation
@@ -258,7 +262,7 @@ else % we do not have a favar, provide NaNs for parfor loop
     Lgibbs_relmagn=NaN;
     Lgibbs_FEVD=NaN;
     favar_retransres=0;
-    
+    favarFAVAR=0;
 end
 
 checkperiods={
@@ -411,12 +415,12 @@ parfor ii=1:Acc %parfor
 
             % generate the stacked IRF matrix
             stackedirfmat=[];
-            for kk=1:numel(periods)
-                stackedirfmat=[stackedirfmat;ortirfmatrix(:,:,periods(kk,1)+1)];
+            for kk=1:numel(periodsmax) %periods
+                stackedirfmat=[stackedirfmat;ortirfmatrix(:,:,periodsmax(kk,1)+1)]; %periods
             end
             
             % if we have FAVAR restrictions we scale the ortirfmatrix from the previous step
-            if favar_signres==1 | favar_magnres==1
+            if npltX+nsignresX~=0%favar_signres==1 | favar_magnres==1
                 favar_ortirfmatrix=[];
                 % scale with loading
                 for uu=1:nsignresX+npltX %over variables in X that we choose to restrict
@@ -438,9 +442,11 @@ parfor ii=1:Acc %parfor
                 end
                 
                 %stack over periods
+                if nsignresX~=0
                 favar_stackedirfmat=[];
                 for ll=1:numel(favar_periods)
                     favar_stackedirfmat=[favar_stackedirfmat;favar_ortirfmatrix(1:nsignresX,:,favar_periods(ll,1)+1)];
+                end
                 end
             end
             
@@ -701,9 +707,9 @@ parfor ii=1:Acc %parfor
     for pp=1:IRFperiods
         storage1{ii,1}(:,:,pp)=ortirfmatrix2(:,:,pp)*Q;
     end
-    if favar_signres==1 | favar_magnres==1
+    if npltX>0
         for pp=1:IRFperiods
-            favar_storage1{ii,1}(:,:,pp)=favar_ortirfmatrix2(end-npltX+1:end,:,pp)*Q; % already loaded and transformed
+            favar_storage1{ii,1}(:,:,pp)=favar_ortirfmatrix2(end-npltX+1:end,:,pp)*Q;
         end
     end
     % store D
@@ -741,7 +747,7 @@ for ii=1:Acc % loop over iterations
 end
 
 if favar.FAVAR==1
-    if favar_signres==1 | favar_magnres==1
+    if npltX>0
         for ii=1:Acc % loop over iterations
             for kk=1:npltX % loop over variables
                 for ll=1:n % loop over shocks

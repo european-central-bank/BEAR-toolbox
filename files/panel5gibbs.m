@@ -1,4 +1,4 @@
-function [theta_gibbs sigma_gibbs sigmatilde_gibbs sig_gibbs]=panel5gibbs(y,Y,Xtilde,Xdot,N,n,T,d,theta0,Theta0,alpha0,delta0,It,Bu,pick,pickf)
+function [theta_gibbs,sigma_gibbs,sigmatilde_gibbs,sig_gibbs]=panel5gibbs(y,Y,Xtilde,Xdot,N,n,T,d,theta0,Theta0,alpha0,delta0,It,Bu,pick,pickf)
 
 
 
@@ -50,7 +50,7 @@ eyesigma=kron(speye(T),invsigma);
 % finally, initiate eyetheta
 eyetheta=kron(speye(T),theta);
 
-hbar = parfor_progressbar(It-Bu,'Progress of Panel BVAR Gibbs Sampler');  %create the progress bar
+hbar = parfor_progressbar(It-Bu,'Progress of Panel BVAR Gibbs Sampler.');  %create the progress bar
 
 % run the Gibbs sampler
 while count<=It
@@ -133,32 +133,4 @@ eyetheta=kron(speye(T),theta);
 end
 
 close(hbar);   %close progress bar
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

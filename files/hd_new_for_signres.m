@@ -26,6 +26,8 @@ elseif IRFt==4 || IRFt==6 %if the model is identified by sign restrictions or si
     identified=size(signreslabels_shocks,1); % count the labels provided in the sign res sheet (+ IV)
 elseif IRFt==5
     identified=1; % one IV shock
+elseif IRFt==1
+    identified=0;
 end
 
 %===============================================
@@ -78,12 +80,15 @@ ETA=(D\EPS');                        %get structural shocks
         end
     end
         
- % Contribution of exogenous variables
+ % Contribution of exogenous variables, no lags of exogenous variables just
+ % the contemporaneous values
  if m > 1
     HDexo_storage = zeros(p*n,T+1);
     HDexo_estimates = zeros(n,T+1);
-    Coefficients_exo = zeros(p*n,(m-1)*(1));
-    data_exocut=data_exo(p+1:end,:); %cut initial conditions from exogenous
+%     Coefficients_exo = zeros(p*n,(m-const)*(1+p));
+    Coefficients_exo = zeros(p*n,m-const);
+    data_exocut=X(:,n*p+const+1:end); % take exogenous data from X
+%     Coefficients_exo(1:n,:) = Bfull(n*p+const+1:end,:)'; %get the corresponding coefficients
     Coefficients_exo(1:n,:) = Bfull(n*p+const+1:end,:)'; %get the corresponding coefficients
         for i = 2:T+1
             HDexo_storage(:,i) = Coefficients_exo*data_exocut(i-1,:)' + Bcomp*HDexo_storage(:,i-1);

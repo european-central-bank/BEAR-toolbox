@@ -1,4 +1,4 @@
-function []=panel2plot(endo,Units,Xmat,Ymat,N,n,m,p,k,T,beta_median,beta_gibbs,It,Bu,decimaldates1,stringdates1,pref,cband)
+function []=panel2plot(endo,Units,Xmat,Ymat,N,n,m,p,k,T,beta_median,beta_gibbs,It,Bu,decimaldates1,stringdates1,pref,cband,favar)
 
 
 
@@ -162,7 +162,7 @@ end
 ss_record={};
 ss_estimates={};
 % run the Gibbs sampler for the steady-state (common to all units)
-ss_record=ssgibbs(n,m,p,k,Xmat(:,:,1),beta_gibbs,It,Bu);
+ss_record=ssgibbs(n,m,p,k,Xmat(:,:,1),beta_gibbs,It,Bu,favar);
 % obtain point estimates and credibility interval
 ss_estimates=ssestimates(ss_record,n,T,cband);
 if pref.plot

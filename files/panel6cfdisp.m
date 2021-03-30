@@ -104,26 +104,3 @@ if pref.results==1
     xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],cforecastcell,'cond forecasts','B2');
 end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

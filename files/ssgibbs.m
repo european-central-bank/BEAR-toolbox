@@ -19,7 +19,7 @@ function [ss_record]=ssgibbs(n,m,p,k,X,beta_gibbs,It,Bu,favar)
 % first create the cell storing the steady-state draws
 ss_record=cell(n,1);
 
-Bgibbs=reshape(beta_gibbs,k,n,It-Bu);
+% Bgibbs=reshape(beta_gibbs,k,n,It-Bu);
 
 % recall X and Y from the sampling process in this case, analogue to beta and sigma
 if favar.FAVAR==1
@@ -36,10 +36,17 @@ end
 % run the Gibbs sampler
 for ii=1:It-Bu
 
+% % draw beta from its posterior distribution
+% % recover the coefficient matrices A1,...,Ap and C
+% % first, calculate B and take its transpose BT
+% BT=squeeze(Bgibbs(:,:,ii))';
+
 % draw beta from its posterior distribution
+beta=beta_gibbs(:,ii);
+
 % recover the coefficient matrices A1,...,Ap and C
 % first, calculate B and take its transpose BT
-BT=squeeze(Bgibbs(:,:,ii))';
+BT=reshape(beta,k,n)';
 
     if bvarXY==1
         X=squeeze(Xgibbs(:,:,ii));
