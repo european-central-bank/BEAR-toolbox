@@ -15,7 +15,7 @@ irf_record(:,:,ii)=irf(beta_gibbs(:,:,ii),It,Bu,IRFperiods,n,m,p,k);
    [D_record(:,:,ii),gamma_record(:,:,ii)]=irfunres(n,It,Bu,sigma_gibbs(:,:,ii));
    struct_irf_record=[];
    % compute posterior estimates
-   [irf_estimates(:,:,ii),D_estimates(:,:,ii),gamma_estimates(:,:,ii)]=irfestimates(irf_record(:,:,ii),n,IRFperiods,IRFband,IRFt,[],[]);
+   [irf_estimates(:,:,ii),D_estimates(:,:,ii),gamma_estimates(:,:,ii)]=irfestimates(irf_record(:,:,ii),n,IRFperiods,IRFband,IRFt,[],[],favar);
 
    % if IRFs have been set to an SVAR with Choleski identification (IRFt=2):
    elseif IRFt==2

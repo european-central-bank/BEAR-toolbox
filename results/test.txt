@@ -37,107 +37,146 @@
 
 
 BEAR toolbox estimates
-Date: 29-Mar-2021   Time: 21:30
+Date: 30-Mar-2021   Time: 22:49
 
 
-Bayesian VAR
-structural decomposition: sign restrictions (IRFt=4)
-endogenous variables:  YER  HICSA  STN 
-exogenous variables:  constant 
-estimation sample: 1971q1-2020q1
-sample size (omitting initial conditions): 194
+Panel VAR: Mean-Group Estimator (OLS)
+structural decomposition: none
+units:  US  EA  UK 
+endogenous variables:  DOM_GDP  DOM_CPI  STN 
+exogenous variables:  constant  Oil 
+estimation sample: 1971q1-2014q4
+sample size (omitting initial conditions): 173
 number of lags included in regression: 3
-prior: normal-Wishart (sigma as univariate AR)
-hyperparameters:
-autoregressive coefficients (ar):                0.8
-overall tightness (lambda1):                    0.1
-lag decay (lambda3):                            0.5
 
 
 
-VAR coefficients (beta): posterior estimates
+VAR coefficients (Common to all units):
 
-Endogenous: YER
+Endogenous: DOM_GDP
                                    Median          St.dev       Low.bound       Upp.bound
-                  YER(-1)           0.539           0.059           0.490           0.599
-                  YER(-2)           0.055           0.050           0.010           0.105
-                  YER(-3)           0.011           0.044          -0.026           0.059
-                HICSA(-1)           0.123           0.103           0.027           0.220
-                HICSA(-2)          -0.014           0.099          -0.110           0.087
-                HICSA(-3)          -0.109           0.082          -0.183          -0.029
-                  STN(-1)          -0.026           0.048          -0.076           0.019
-                  STN(-2)          -0.031           0.055          -0.083           0.024
-                  STN(-3)           0.058           0.036           0.020           0.090
-                 Constant           0.188           0.079           0.120           0.269
+              DOM_GDP(-1)           0.944           0.001           0.943           0.945
+              DOM_GDP(-2)          -0.019           0.000          -0.019          -0.019
+              DOM_GDP(-3)          -0.246           0.002          -0.249          -0.244
+              DOM_CPI(-1)           0.089           0.002           0.087           0.091
+              DOM_CPI(-2)          -0.220           0.001          -0.221          -0.220
+              DOM_CPI(-3)           0.212           0.000           0.211           0.212
+                  STN(-1)           0.136           0.000           0.136           0.136
+                  STN(-2)          -0.396           0.000          -0.396          -0.396
+                  STN(-3)           0.222           0.000           0.222           0.222
+                 Constant           1.043           0.034           1.010           1.077
+                      Oil          -0.007           0.000          -0.007          -0.007
 
-Sum of squared residuals: 55.43
-R-squared: 0.244
-adj. R-squared: 0.208
+unit: US
+Sum of squared residuals: 145.81
+R-squared: 0.744
+adj. R-squared: 0.729
+
+unit: EA
+Sum of squared residuals: 81.94
+R-squared: 0.870
+adj. R-squared: 0.862
+
+unit: UK
+Sum of squared residuals: 319.78
+R-squared: 0.679
+adj. R-squared: 0.659
 
 
-Endogenous: HICSA
+
+Endogenous: DOM_CPI
                                    Median          St.dev       Low.bound       Upp.bound
-                  YER(-1)           0.057           0.029           0.031           0.082
-                  YER(-2)          -0.001           0.025          -0.023           0.023
-                  YER(-3)           0.011           0.022          -0.011           0.034
-                HICSA(-1)           0.701           0.049           0.651           0.745
-                HICSA(-2)           0.053           0.049           0.013           0.105
-                HICSA(-3)           0.141           0.045           0.094           0.180
-                  STN(-1)           0.017           0.025          -0.007           0.043
-                  STN(-2)           0.003           0.029          -0.022           0.032
-                  STN(-3)          -0.014           0.020          -0.033           0.005
-                 Constant           0.013           0.038          -0.019           0.048
+              DOM_GDP(-1)           0.012           0.004           0.008           0.015
+              DOM_GDP(-2)           0.006           0.009          -0.003           0.014
+              DOM_GDP(-3)          -0.044           0.003          -0.047          -0.042
+              DOM_CPI(-1)           1.235           0.009           1.227           1.244
+              DOM_CPI(-2)          -0.416           0.004          -0.420          -0.413
+              DOM_CPI(-3)           0.115           0.001           0.115           0.116
+                  STN(-1)           0.133           0.000           0.132           0.133
+                  STN(-2)          -0.097           0.001          -0.098          -0.096
+                  STN(-3)          -0.030           0.001          -0.031          -0.028
+                 Constant           0.296           0.031           0.266           0.325
+                      Oil          -0.002           0.000          -0.002          -0.002
 
-Sum of squared residuals: 14.43
-R-squared: 0.851
-adj. R-squared: 0.844
+unit: US
+Sum of squared residuals: 56.79
+R-squared: 0.931
+adj. R-squared: 0.926
+
+unit: EA
+Sum of squared residuals: 81.34
+R-squared: 0.812
+adj. R-squared: 0.800
+
+unit: UK
+Sum of squared residuals: 176.90
+R-squared: 0.959
+adj. R-squared: 0.957
+
 
 
 Endogenous: STN
                                    Median          St.dev       Low.bound       Upp.bound
-                  YER(-1)           0.224           0.058           0.167           0.279
-                  YER(-2)           0.102           0.048           0.053           0.147
-                  YER(-3)           0.037           0.045          -0.008           0.078
-                HICSA(-1)           0.420           0.109           0.319           0.540
-                HICSA(-2)          -0.165           0.106          -0.260          -0.057
-                HICSA(-3)          -0.064           0.087          -0.154           0.015
-                  STN(-1)           1.058           0.048           1.011           1.108
-                  STN(-2)          -0.075           0.054          -0.125          -0.019
-                  STN(-3)          -0.029           0.039          -0.060           0.009
-                 Constant          -0.164           0.078          -0.240          -0.088
+              DOM_GDP(-1)           0.146           0.003           0.143           0.149
+              DOM_GDP(-2)          -0.086           0.007          -0.092          -0.079
+              DOM_GDP(-3)           0.051           0.001           0.050           0.052
+              DOM_CPI(-1)           0.098           0.000           0.098           0.098
+              DOM_CPI(-2)          -0.023           0.004          -0.027          -0.019
+              DOM_CPI(-3)           0.052           0.002           0.050           0.054
+                  STN(-1)           1.160           0.001           1.159           1.160
+                  STN(-2)          -0.332           0.006          -0.338          -0.326
+                  STN(-3)           0.117           0.003           0.114           0.121
+                 Constant          -0.294           0.033          -0.326          -0.262
+                      Oil           0.001           0.000           0.001           0.001
 
-Sum of squared residuals: 48.90
-R-squared: 0.987
-adj. R-squared: 0.986
+unit: US
+Sum of squared residuals: 140.09
+R-squared: 0.947
+adj. R-squared: 0.943
+
+unit: EA
+Sum of squared residuals: 58.87
+R-squared: 0.979
+adj. R-squared: 0.978
+
+unit: UK
+Sum of squared residuals: 205.80
+R-squared: 0.936
+adj. R-squared: 0.932
 
 
-Log 10 marginal likelihood: -166.66
 
+sigma (residual covariance matrix): posterior estimates
+ 0.930   0.009   0.138  
+ 0.009   0.511   0.093  
+ 0.138   0.093   0.664  
 
-DIC test result: 665.89
 
 
 Roots of the characteristic polynomial (modulus):
-0.969  0.513  0.227
-0.909  0.393  0.227
-0.513  0.393  0.203
+0.937  0.780  0.444
+0.937  0.463  0.312
+0.780  0.444  0.312
 No root lies outside the unit circle.
 The estimated VAR model satisfies the stability condition
 
 
-sigma (residual covariance matrix): posterior estimates
- 0.301   0.011   0.049  
- 0.011   0.076   0.027  
- 0.049   0.027   0.282  
 
+unit-specific components: US
 
-D (structural decomposition matrix): posterior estimates
- 0.523   0.060  -0.201  
- 0.002  -0.236  -0.143  
- 0.256  -0.353   0.319  
+Model information criteria:
+Akaike Information Criterion (AIC):   7.212
+Bayesian Information Criterion (BIC): 7.813
 
+unit-specific components: EA
 
-gamma (structural disturbances covariance matrix): posterior estimates
- 1.000   0.000   0.000  
- 0.000   1.000   0.000  
- 0.000   0.000   1.000  
+Model information criteria:
+Akaike Information Criterion (AIC):   6.022
+Bayesian Information Criterion (BIC): 6.623
+
+unit-specific components: UK
+
+Model information criteria:
+Akaike Information Criterion (AIC):   9.549
+Bayesian Information Criterion (BIC): 10.150
+
