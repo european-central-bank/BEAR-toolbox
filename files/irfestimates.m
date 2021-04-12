@@ -129,24 +129,24 @@ if IRFt==1
     % if the chosen scheme is Choleski, return the median of the choleski factors D, and identity for gamma
 elseif IRFt==2
     for ii=1:n^2
-        D_estimates(ii,1)=quantile(D_record(ii,1),0.5);
+        D_estimates(ii,1)=quantile(D_record(ii,:),0.5);
     end
     gamma_estimates=reshape(eye(n),n^2,1);
     % if the chosen scheme is triangular factorisation, return the median of the Gibbs estimates for both matrices
 elseif IRFt==3
     for ii=1:n^2
-        D_estimates(ii,1)=quantile(D_record(ii,1),0.5);
-        gamma_estimates(ii,1)=quantile(gamma_record(ii,1),0.5);
+        D_estimates(ii,1)=quantile(D_record(ii,:),0.5);
+        gamma_estimates(ii,1)=quantile(gamma_record(ii,:),0.5);
     end
     % if the chosen scheme is sign restrictions, return the median of the structural matrix D, and identity for gamma
 elseif IRFt==4
     for ii=1:n^2
-        D_estimates(ii,1)=quantile(D_record(ii,1),0.5);
+        D_estimates(ii,1)=quantile(D_record(ii,:),0.5);
     end
     gamma_estimates=reshape(eye(n),n^2,1);
 elseif IRFt==5 % for Vartype1
     for ii=1:n^2
-        D_estimates(ii,1)=quantile(D_record(ii,1),0.5);
+        D_estimates(ii,1)=quantile(D_record(ii,:),0.5);
     end
     gamma_estimates=reshape(eye(n),n^2,1);
 end
