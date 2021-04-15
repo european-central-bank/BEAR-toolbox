@@ -451,7 +451,7 @@ Fendsmpl=1;
 % step ahead evaluation
 hstep=1;
 % window_size for iterative forecasting 0 if no iterative forecasting
-window_size=240; 
+window_size=0; 
 % evaluation_size as percent of window_size                                      <                                                                                    -
 evaluation_size=0.5;                          
 % confidence/credibility level for VAR coefficients

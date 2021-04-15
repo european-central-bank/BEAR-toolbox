@@ -115,7 +115,10 @@ estimationinfo{18,1}='dummy observations';
 end
 
 % ar coefficient
-estimationinfo{19,1}=num2str(ar);
+%estimationinfo{19,1}=num2str(ar);
+for ii=1:size(endo,1)
+estimationinfo{19,ii}=num2str(ar(ii));
+end
 
 % lambda 1
 estimationinfo{20,1}=num2str(lambda1);
@@ -127,7 +130,10 @@ estimationinfo{21,1}=num2str(lambda2);
 estimationinfo{22,1}=num2str(lambda3);
 
 % lambda 4
-estimationinfo{23,1}=num2str(lambda4);
+%estimationinfo{23,1}=num2str(lambda4);
+for ii=1:size(endo,1)
+estimationinfo{23,ii}=num2str(lambda4(ii));
+end
 
 % lambda 5
 estimationinfo{24,1}=num2str(lambda5);
