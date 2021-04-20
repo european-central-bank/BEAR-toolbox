@@ -37,21 +37,20 @@
 
 
 BEAR toolbox estimates
-Date: 15-Apr-2021   Time: 21:25
+Date: 20-Apr-2021   Time: 22:39
 
 
 Bayesian VAR
-structural decomposition: Cholesky factorisation (IRFt=2)
+structural decomposition: sign, rel. magnitude, FEVD restrictions (IRFt=4)
 endogenous variables:  YER  HICSA  STN 
 exogenous variables:  none
 estimation sample: 1971q1-2018q4
 sample size (omitting initial conditions): 190
 number of lags included in regression: 2
-prior: independent normal-Wishart (sigma as univariate AR)
+prior: normal-Wishart (sigma as univariate AR)
 hyperparameters:
 autoregressive coefficients (ar):                0.8
 overall tightness (lambda1):                    0.1
-cross-variable weighting (lambda2):             0.5
 lag decay (lambda3):                            1
 
 
@@ -60,69 +59,69 @@ VAR coefficients (beta): posterior estimates
 
 Endogenous: YER
                                    Median          St.dev       Low.bound       Upp.bound
-                  YER(-1)           0.585           0.056           0.480           0.699
-                  YER(-2)           0.035           0.040          -0.044           0.116
-                HICSA(-1)           0.048           0.066          -0.082           0.177
-                HICSA(-2)           0.002           0.045          -0.080           0.094
-                  STN(-1)          -0.002           0.025          -0.051           0.043
-                  STN(-2)           0.014           0.022          -0.029           0.057
+                  YER(-1)           0.610           0.058           0.549           0.663
+                  YER(-2)           0.040           0.043          -0.002           0.080
+                HICSA(-1)           0.111           0.097           0.012           0.198
+                HICSA(-2)          -0.019           0.077          -0.096           0.058
+                  STN(-1)          -0.018           0.041          -0.057           0.024
+                  STN(-2)           0.025           0.039          -0.016           0.062
 
-Sum of squared residuals: 61.37
-R-squared: 0.172
-adj. R-squared: 0.150
+Sum of squared residuals: 61.29
+R-squared: 0.173
+adj. R-squared: 0.151
 
 
 Endogenous: HICSA
                                    Median          St.dev       Low.bound       Upp.bound
-                  YER(-1)           0.027           0.020          -0.012           0.066
-                  YER(-2)           0.003           0.012          -0.021           0.025
-                HICSA(-1)           0.773           0.046           0.680           0.859
-                HICSA(-2)           0.082           0.038           0.008           0.157
-                  STN(-1)           0.011           0.012          -0.011           0.036
-                  STN(-2)           0.005           0.011          -0.016           0.025
+                  YER(-1)           0.059           0.029           0.028           0.088
+                  YER(-2)           0.005           0.021          -0.015           0.025
+                HICSA(-1)           0.781           0.049           0.738           0.833
+                HICSA(-2)           0.063           0.041           0.028           0.108
+                  STN(-1)           0.012           0.021          -0.009           0.033
+                  STN(-2)           0.003           0.020          -0.015           0.023
 
-Sum of squared residuals: 15.69
-R-squared: 0.834
-adj. R-squared: 0.830
+Sum of squared residuals: 15.57
+R-squared: 0.835
+adj. R-squared: 0.831
 
 
 Endogenous: STN
                                    Median          St.dev       Low.bound       Upp.bound
-                  YER(-1)           0.126           0.040           0.051           0.205
-                  YER(-2)           0.029           0.023          -0.015           0.076
-                HICSA(-1)           0.210           0.064           0.079           0.331
-                HICSA(-2)          -0.028           0.042          -0.110           0.053
-                  STN(-1)           1.075           0.039           1.001           1.152
-                  STN(-2)          -0.115           0.037          -0.186          -0.041
+                  YER(-1)           0.209           0.050           0.159           0.259
+                  YER(-2)           0.067           0.041           0.025           0.104
+                HICSA(-1)           0.334           0.093           0.244           0.427
+                HICSA(-2)          -0.123           0.076          -0.201          -0.043
+                  STN(-1)           1.037           0.039           1.004           1.081
+                  STN(-2)          -0.091           0.036          -0.130          -0.059
 
-Sum of squared residuals: 55.87
-R-squared: 0.984
-adj. R-squared: 0.984
-
-
-Log 10 marginal likelihood: -169.56
+Sum of squared residuals: 52.39
+R-squared: 0.985
+adj. R-squared: 0.985
 
 
-DIC test result: 713.84
+Log 10 marginal likelihood: -167.40
+
+
+DIC test result: 706.58
 
 
 Roots of the characteristic polynomial (modulus):
-0.990  0.625  0.094
-0.840  0.129  0.057
+0.988  0.634  0.074
+0.832  0.121  0.074
 No root lies outside the unit circle.
 The estimated VAR model satisfies the stability condition
 
 
 sigma (residual covariance matrix): posterior estimates
- 0.327   0.007   0.050  
- 0.007   0.083   0.025  
- 0.050   0.025   0.298  
+ 0.329   0.006   0.041  
+ 0.006   0.083   0.025  
+ 0.041   0.025   0.306  
 
 
 D (structural decomposition matrix): posterior estimates
- 0.571   0.000   0.000  
- 0.013   0.287   0.000  
- 0.088   0.084   0.529  
+ 0.434   0.371   0.060  
+ 0.177  -0.208   0.034  
+ 0.018   0.032   0.537  
 
 
 gamma (structural disturbances covariance matrix): posterior estimates

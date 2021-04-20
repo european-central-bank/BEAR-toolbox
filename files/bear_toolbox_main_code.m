@@ -2,7 +2,8 @@
 %                                                                          %
 %    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR) TOOLBOX           %
 %                                                                          %
-%    Authors:                                                              %
+%    Authors:                             
+                                 %
 %    Alistair Dieppe (alistair.dieppe@ecb.europa.eu)                       %
 %    Björn van Roye  (bvanroye@bloomberg.net)                              %
 %                                                                          %

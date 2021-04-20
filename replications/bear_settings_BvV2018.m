@@ -170,7 +170,7 @@ elseif VARtype==3
 
 elseif VARtype==5
 % choice of stochastic volatility model 
-% 1=standard, 2=random scaling, 3=large BVAR %TVESLM Model
+% 1=standard, 2=random scaling, 3=large BVAR 4=TVESLM Model
 stvol=4;
 % choice of retaining only one post burn iteration over 'pickf' iterations (1=yes, 0=no)
 pick=0;
@@ -212,8 +212,9 @@ gamma=1;
 % gamma0=0;
 % % hyperparameter: zeta0
 % zeta0=10000;
-% panel Bayesian VAR specific information: will be read only if VARtype=4
 
+
+% panel Bayesian VAR specific information: will be read only if VARtype=4
 elseif VARtype==4
 % choice of panel model 
 % 1=OLS mean group estimator, 2=pooled estimator

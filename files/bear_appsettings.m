@@ -263,6 +263,7 @@ elseif VARtype==5
 if appsettings.Standard.Value==1 stvol=1;
 elseif appsettings.RandomInertia.Value==1 stvol=2;
 elseif appsettings.LargeVAR.Value==1 stvol=3;
+elseif appsettings.Stochastictrend.Value==1 stvol=4;
 elseif appsettings.VARcoefficientstime.Value==1 tvbvar=1; VARtype=6;
 elseif appsettings.Generaltime.Value==1 tvbvar=2; VARtype=6;
 end

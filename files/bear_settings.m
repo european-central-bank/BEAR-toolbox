@@ -33,27 +33,27 @@
 %% general data and model information
 
 % VAR model selected (1=OLS VAR, 2=BVAR, 3=mean-adjusted BVAR, 4=panel Bayesian VAR, 5=Stochastic volatility BVAR, 6=Time varying, 7 Mixed frequency)
-VARtype=7;
+VARtype=2;
 % data frequency (1=yearly, 2= quarterly, 3=monthly, 4=weekly, 5=daily, 6=undated)
-frequency=3;
+frequency=2;
 % sample start date; must be a string consistent with the date formats of the toolbox
-startdate='2000m2';
+startdate='1971q1';
 % sample end date; must be a string consistent with the date formats of the toolbox
-enddate='2021m2';
+enddate='2018q4';
 % endogenous variables; must be a single string, with variable names separated by a space
-varendo='ipi	ZEW	DAX	ifoclimate	ifoexpectations	Retail Manufacturingsales	Autprod	Worldtrade	WorldIP	ygdp'; % Germany
+varendo='YER	HICSA	STN';
 % endogenous variables; must be a single string, with variable names separated by a space
 varexo='';
 % number of lags
-lags=6;
+lags=2;
 % inclusion of a constant (1=yes, 0=no)
-const=1;
+const=0;
 % path to data; must be a single string
 cd ..\
 pref.datapath=pwd; % main BEAR folder, specify otherwise
 cd .\files
 % excel results file name
-pref.results_sub='results_MFVAR_DE';
+pref.results_sub='test';
 % to output results in excel
 pref.results=1;
 % output charts
@@ -81,17 +81,17 @@ prior=31;
 % hyperparameter: autoregressive coefficient
 ar=0.8; % this sets all AR coefficients to the same prior value (if PriorExcel is equal to 0)
 % switch to Excel interface
-PriorExcel=1; % set to 1 if you want individual priors, 0 for default
+PriorExcel=0; % set to 1 if you want individual priors, 0 for default
 %switch to Excel interface for exogenous variables
-priorsexogenous=1; % set to 1 if you want individual priors, 0 for default
+priorsexogenous=0; % set to 1 if you want individual priors, 0 for default
 % hyperparameter: lambda1
-lambda1=0.01;
+lambda1=0.1;
 % hyperparameter: lambda2
 lambda2=0.5;
 % hyperparameter: lambda3
 lambda3=1;
 % hyperparameter: lambda4
-lambda4=1;
+lambda4=100;
 % hyperparameter: lambda5
 lambda5=0.001;
 % hyperparameter: lambda6
@@ -367,12 +367,12 @@ IRFperiods=20;
 % activate unconditional forecasts (1=yes, 0=no)
 F=1;
 % activate forecast error variance decomposition (1=yes, 0=no)
-FEVD=0;
+FEVD=1;
 % activate historical decomposition (1=yes, 0=no)
-HD=0; 
+HD=1; 
 HDall=0;%if we want to plot the entire decomposition, all contributions (includes deterministic part)HDall
 % activate conditional forecasts (1=yes, 0=no)
-CF=0;
+CF=1;
 % structural identification (1=none, 2=Cholesky, 3=triangular factorisation, 4=sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions,
 %                            5=IV identification, 6=IV identification & sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions)
 IRFt=2;
@@ -442,9 +442,9 @@ Feval=0;
 % 3=tilting (median), 4=tilting (interval)
 CFt=1;
 % start date for forecasts (has to be an in-sample date; otherwise, ignore and set Fendsmpl=1)
-Fstartdate='2020m2';
+Fstartdate='2019q1';
 % end date for forecasts
-Fenddate='2021m12';
+Fenddate='2021q4';
 % start forecasts immediately after the final sample period (1=yes, 0=no)
 % has to be set to 1 if start date for forecasts is not in-sample
 Fendsmpl=1;
@@ -461,6 +461,6 @@ IRFband=0.68;
 % confidence/credibility level for forecasts
 Fband=0.68;
 % confidence/credibility level for forecast error variance decomposition
-FEVDband=0.95;
+FEVDband=0.68;
 % confidence/credibility level for historical decomposition
 HDband=0.68;

@@ -327,6 +327,10 @@ elseif stvol==3
 estimationinfo{71,1}='large BVAR';
 elseif stvol==4
 estimationinfo{71,1}='Survey Local Mean Model';
+elseif tvbvar==1
+estimationinfo{71,1}='Var Coefficients';
+elseif tvbvar==2
+estimationinfo{71,1}='General Time varying';
 end
 
 % total number of iterations

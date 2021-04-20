@@ -35,7 +35,7 @@ warning off;
 clc
 
 %% Run:
-Run='BBE2005'; 
+Run='BvV2018'; 
 %% this will replace the data.xlsx file in BEAR folder and the
 %% bear_settings.m file in the BEAR\files folder
 
