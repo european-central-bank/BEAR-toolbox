@@ -50,10 +50,10 @@ cd ../
 % % default options and translate them to the BEAR conventions
 if runapp==1 
     run(fullfile('files','bear_appsettings'));
-
+    run(fullfile('files','bear_toolbox_main_code.m'));
 else
     run(fullfile('files','bear_settings'));
+    run(fullfile('files','bear_toolbox_main_code.m'));
 end
 
-% run main code
-run(fullfile('files','bear_toolbox_main_code.m'));
+
