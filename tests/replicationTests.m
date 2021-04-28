@@ -1,9 +1,24 @@
 classdef replicationTests < matlab.unittest.TestCase
     
-    methods (TestMethodSetup)
-        function
-            
+    properties
+        testLoc
     end
+    
+    methods (TestClassSetup)
+        function saveTestLocation(tc)
+           tc.testLoc = fileparts(mfilename('fullpath')); 
+        end
+    end
+    
+    methods (TestMethodSetup)
+        
+        function prepareTest(tc)
+            close all
+            cd(tc.testLoc)
+        end
+        
+    end
+    
     methods (Test)
         
         function Run_Var(tc)
