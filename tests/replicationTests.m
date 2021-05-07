@@ -55,6 +55,10 @@ classdef replicationTests < matlab.unittest.TestCase
             
         end
         
+    end
+    
+    methods (Test)
+        
         function Run_VAR_AAU2009(tc)
             
             %% replication of Amir Ahmadi & Uhlig (2009): Measuring the Dynamic Effects
