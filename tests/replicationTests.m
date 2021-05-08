@@ -41,7 +41,7 @@ classdef replicationTests < matlab.unittest.TestCase
             resultsFile = fullfile(testFolder,'results','results_test_data_temp.mat');
             currentResults = load(resultsFile);
             for f = fields(previousResults)'
-                fld = f{1};
+                fld = f{1}
                 if ~ismember(fld, ["checkRun","destinationfile","estimationinfo"])
                     tc.verifyEqual(currentResults.(fld), previousResults.(fld));
                 end
