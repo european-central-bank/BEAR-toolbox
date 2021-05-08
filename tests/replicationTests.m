@@ -19,7 +19,7 @@ classdef replicationTests < matlab.unittest.TestCase
         
     end
     
-    methods (Test)
+    methods (Test, TestTags = {'QuickReplications'})
         
         function Run_Var(tc)
             
@@ -38,6 +38,10 @@ classdef replicationTests < matlab.unittest.TestCase
             
         end
         
+    end
+    
+    methods (Test)        
+        
         function Run_VAR_61(tc)
             
             %% testing prior 61
@@ -46,7 +50,7 @@ classdef replicationTests < matlab.unittest.TestCase
             %% bear_settings.m file in the BEAR\files folder
             
             %% specify data file name:
-            dataxlsx='data_61.xlsx';
+            dataxlsx='../replications/data_61.xlsx';
             %% and the settings file name:
             settingsm='bear_settings_61.m';
             %(and copy both to the replications\data folder)
@@ -54,10 +58,6 @@ classdef replicationTests < matlab.unittest.TestCase
             runprelim;
             
         end
-        
-    end
-    
-    methods (Test)
         
         function Run_VAR_AAU2009(tc)
             
