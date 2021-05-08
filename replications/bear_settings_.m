@@ -29,7 +29,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % general data and model information
-
+rng('default')
 % VAR model selected (1=OLS VAR, 2=BVAR, 3=mean-adjusted BVAR, 4=panel Bayesian VAR, 5=Stochastic volatility BVAR, 6=Time varying)
 VARtype = 2;
 % data frequency (1=yearly, 2= quarterly, 3=monthly, 4=weekly, 5=daily, 6=undated)
@@ -53,13 +53,13 @@ cd .\files
 % excel results file name
 pref.results_sub='results_bvr';
 % to output results in excel
-pref.results=1;
+pref.results=0;
 % output charts
 pref.plot=1;
 % pref: useless by itself, just here to avoid code to crash
 pref.pref=0;
 % save matlab workspace (1=yes, 0=no (default))
-pref.workspace=0;
+pref.workspace=1;
 
 % FAVAR options
 favar.FAVAR=0; % augment VAR model with factors (1=yes, 0=no)

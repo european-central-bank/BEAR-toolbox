@@ -6,7 +6,7 @@ classdef replicationTests < matlab.unittest.TestCase
     
     methods (TestClassSetup)
         function saveTestLocation(tc)
-           tc.testLoc = fileparts(mfilename('fullpath')); 
+            tc.testLoc = fileparts(mfilename('fullpath'));
         end
     end
     
@@ -34,13 +34,22 @@ classdef replicationTests < matlab.unittest.TestCase
             settingsm='bear_settings_.m';
             %(and copy both to the replications\data folder)
             % then run other preliminaries
-            runprelim;
+            runprelim;            
+            
+            previousResults = load('results_test_data.mat');
+            testFolder = fileparts(fileparts(mfilename('fullpath')));
+            currentResults = load(fullfile(testFolder,'results','results_bvr.mat'));
+            for f = fields(previousResults)'
+                fld = f{1};
+                tc.verifyEqual(currentResults.(fld), previousResults.(fld));
+            end
+            delete(currentResults);
             
         end
         
     end
     
-    methods (Test)        
+    methods (Test)
         
         function Run_VAR_61(tc)
             
