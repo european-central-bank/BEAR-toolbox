@@ -22,7 +22,7 @@ classdef replicationTests < matlab.unittest.TestCase
     methods (Test, TestTags = {'QuickReplications'})
         
         function Run_Var(tc)
-            
+            pctRunOnAll('rng(0)');
             %% The default data set
             
             %% this will replace the data.xlsx file in BEAR folder and the
