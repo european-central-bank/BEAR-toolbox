@@ -51,7 +51,7 @@ cd ..\
 pref.datapath=pwd; % main BEAR folder, specify otherwise
 cd .\files
 % excel results file name
-pref.results_sub='results_bvr';
+pref.results_sub='results_test_data_temp';
 % to output results in excel
 pref.results=0;
 % output charts
