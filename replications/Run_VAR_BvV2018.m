@@ -6,7 +6,6 @@ clear all
 close all
 warning off;
 clc
-rng('default')
 %% specify data file name:
 dataxlsx='data_BvV2018.xlsx';
 %% and the settings file name:
