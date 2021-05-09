@@ -9,10 +9,10 @@ BEARpath=pwd;
 filespath=[BEARpath filesep 'files' filesep];
 
 % replace the previous datafile with the one for the replication
-copyfile(datapath,[BEARpath filesep 'data.xlsx']);
+system(sprintf('copy %s %s',datapath, [BEARpath filesep 'data.xlsx']))
 
 % replace the previous BEAR settings file with the one for the replication
-copyfile(settingspath,[filespath 'bear_settings.m']);
+system(sprintf('copy %s %s',settingspath, [filespath 'bear_settings.m']))
 
 % load the settings directly
 run(fullfile([filespath 'bear_settings']));

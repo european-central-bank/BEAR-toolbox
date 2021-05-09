@@ -15,8 +15,6 @@ classdef replicationTests < matlab.unittest.TestCase
         function prepareTest(tc)
             close all
             cd(tc.testLoc)
-            projectRoot = fileparts(tc.testLoc);
-            delete(fullfile(projectRoot, 'files', 'bear_settings.m'));
         end
         
     end
