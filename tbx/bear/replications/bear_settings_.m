@@ -1,5 +1,3 @@
-function bear_settings_()
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                          %
 %    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR) TOOLBOX           %
@@ -49,7 +47,7 @@ lags=4;
 % inclusion of a constant (1=yes, 0=no)
 const=1;
 % path to data
-pref.datapath=fileparts(mfilename('fullpath')); % next to settings
+pref.datapath=bearroot(); % fileparts(mfilename('fullpath')); % next to settings
 % excel results file name
 pref.results_sub='results_bvr';
 % to output results in excel
