@@ -5,9 +5,20 @@ classdef replicationTests < matlab.unittest.TestCase
     end
     
     methods (TestClassSetup)
+        
         function saveTestLocation(tc)
+            
             tc.testLoc = fileparts(mfilename('fullpath'));
+            % Need to run single threaded to get all the rng defaults
+            % correct.
+            ps = parallel.Settings;
+            if ps.Pool.AutoCreate
+                ps.Pool.AutoCreate=false;
+                tc.addTeardown(@() set(ps.Pool,'AutoCreate',true))
+            end
+            
         end
+        
     end
     
     methods (TestMethodSetup)
@@ -15,14 +26,14 @@ classdef replicationTests < matlab.unittest.TestCase
         function prepareTest(tc)
             close all
             cd(tc.testLoc)
+            rng('default');
         end
         
     end
     
     methods (Test, TestTags = {'QuickReplications'})
         
-        function Run_Var(tc)
-            rng(0);
+        function Run_Var(tc)            
             % The default data set
             
             % this will replace the data.xlsx file in BEAR folder and the
@@ -51,13 +62,13 @@ classdef replicationTests < matlab.unittest.TestCase
         end
         
         function Run_VAR_61(tc)
-            rng(0);
-            %% testing prior 61
             
-            %% this will replace the data.xlsx file in BEAR folder and the
-            %% bear_settings.m file in the BEAR\files folder
+            % testing prior 61
             
-            %% specify data file name:
+            % this will replace the data.xlsx file in BEAR folder and the
+            % bear_settings.m file in the BEAR\files folder
+            
+            % specify data file name:
             dataxlsx='data_61.xlsx';
             %% and the settings file name:
             settingsm='bear_settings_61.m';
@@ -81,9 +92,39 @@ classdef replicationTests < matlab.unittest.TestCase
         
     end
     
+    methods (Test, TestTags = {'MediumReplications'})
+        
+        function Run_VAR_CH2019(tc)
+            
+            % replication of Caldara & Herbst (2019): Monetary Policy, Real Activity, and Credit Spreads: Evidence from Bayesian Proxy SVARs
+            
+            % this will replace the data.xlsx file in BEAR folder and the
+            % bear_settings.m file in the BEAR\files folder
+            % specify data file name:
+            dataxlsx='data_CH2019.xlsx';
+            % and the settings file name:
+            settingsm='bear_settings_CH2019.m';
+            %(and copy both to the replications\data folder)
+            % then run other preliminaries
+            runprelim;
+            
+            previousResults = load('results_test_data_CH2019.mat');
+            testFolder = fileparts(fileparts(mfilename('fullpath')));
+            resultsFile = fullfile(testFolder,'results','results_test_data_CH2019_temp.mat');
+            currentResults = load(resultsFile);
+            for f = fields(previousResults)'
+                fld = f{1};
+                if ~ismember(fld, ["checkRun","destinationfile","estimationinfo"])
+                    tc.verifyEqual(currentResults.(fld), previousResults.(fld));
+                end
+            end
+            delete(resultsFile);
+            
+        end
+        
+    end
+    
     methods (Test)
-        
-        
         
         function Run_VAR_AAU2009(tc)
             
@@ -135,23 +176,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-        end
-        
-        function Run_VAR_CH2019(tc)
-            
-            %% replication of Caldara & Herbst (2019): Monetary Policy, Real Activity, and Credit Spreads: Evidence from Bayesian Proxy SVARs
-            
-            %% this will replace the data.xlsx file in BEAR folder and the
-            %% bear_settings.m file in the BEAR\files folder
-            %% specify data file name:
-            dataxlsx='data_CH2019.xlsx';
-            %% and the settings file name:
-            settingsm='bear_settings_CH2019.m';
-            %(and copy both to the replications\data folder)
-            % then run other preliminaries
-            runprelim;
-            
-        end
+        end             
         
         function Run_VAR_WGP20016(tc)
             
