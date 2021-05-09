@@ -52,13 +52,13 @@ cd .\files
 % excel results file name
 pref.results_sub='results_BvV2018';
 % to output results in excel
-pref.results=1;
+pref.results=0;
 % output charts
-pref.plot=1;
+pref.plot=0;
 % pref: useless by itself, just here to avoid code to crash
 pref.pref=0;
 % save matlab workspace (1=yes, 0=no)
-pref.workspace=0;
+pref.workspace=1;
 
 % OLS VAR specific information: will be read only if VARtype=1
 if VARtype==1

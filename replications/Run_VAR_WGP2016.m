@@ -10,6 +10,7 @@ clear all
 close all
 warning off;
 clc
+rng('default')
 %% specify data file name:
 dataxlsx='data_WGP2016.xlsx';
 %% and the settings file name:

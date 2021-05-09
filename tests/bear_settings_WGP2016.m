@@ -51,15 +51,15 @@ cd ..\
 pref.datapath=pwd; % main BEAR folder, specify otherwise with a string 'C:\BEAR'
 cd .\files
 % excel results file name
-pref.results_sub='results_WGP2016';
+pref.results_sub='results_test_data_WGP2016_temp';
 % to output results in excel
-pref.results=1;
+pref.results=0;
 % output charts
-pref.plot=1;
+pref.plot=0;
 % pref: useless by itself, just here to avoid code to crash
 pref.pref=0;
 % save matlab workspace (1=yes, 0=no (standard))
-pref.workspace=0;
+pref.workspace=1;
 
 
 % FAVAR options
