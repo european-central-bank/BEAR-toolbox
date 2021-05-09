@@ -33,7 +33,7 @@ classdef replicationTests < matlab.unittest.TestCase
     
     methods (Test, TestTags = {'QuickReplications'})
         
-        function Run_Var(tc)            
+        function Run_Var(tc)
             % The default data set
             
             % this will replace the data.xlsx file in BEAR folder and the
@@ -120,13 +120,13 @@ classdef replicationTests < matlab.unittest.TestCase
             end
             delete(resultsFile);
             
-        end         
+        end
         
     end
     
     methods (Test, TestTags = {'LongReplications'})
         
-         function Run_VAR_WGP20016(tc)
+        function Run_VAR_WGP20016(tc)
             
             % extended replication of Wieladek & Garcia Pascual (2016): The European Central Bank's QE: A New Hope
             % who lend the approach from Weale & Wieladek (2016): What are the macroeconomic effects of asset purchases?
@@ -156,9 +156,9 @@ classdef replicationTests < matlab.unittest.TestCase
             end
             delete(resultsFile);
             
-         end
-         
-         function Run_VAR_BvV2018(tc)
+        end
+        
+        function Run_VAR_BvV2018(tc)
             
             % replication of Banbura & van Vlodrop (2018): Forecasting with Bayesian Vector Autoregressions with Time Variation in the Mean
             
