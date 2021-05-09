@@ -1,4 +1,4 @@
-function [irf_record,D_record,gamma_record,hd_record,ETA_record,beta_record,sigma_record,favar]=irfres(beta_gibbs,sigma_gibbs,C_draws,IV_draws,IRFperiods,n,m,p,k,T,Y,X,signreslabels,FEVDresperiods,data_exo,HD,const,exo,strctident,pref,favar,IRFt,It,Bu,prior)
+function [irf_record,D_record,gamma_record,hd_record,ETA_record,beta_record,sigma_record,favar]=irfres_prior(beta_gibbs,sigma_gibbs,C_draws,IV_draws,IRFperiods,n,m,p,k,T,Y,X,signreslabels,FEVDresperiods,data_exo,HD,const,exo,strctident,pref,favar,IRFt,It,Bu,prior)
 
 
 % inputs:  - matrix 'betahat': OLS estimate for beta
