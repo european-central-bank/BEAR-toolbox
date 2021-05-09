@@ -15,6 +15,8 @@ classdef replicationTests < matlab.unittest.TestCase
         function prepareTest(tc)
             close all
             cd(tc.testLoc)
+            projectRoot = fileparts(tc.testLoc);
+            delete(fullfile(projectRoot, 'files', 'bear_settings.m'));
         end
         
     end
@@ -23,14 +25,14 @@ classdef replicationTests < matlab.unittest.TestCase
         
         function Run_Var(tc)
             rng(0);
-            %% The default data set
+            % The default data set
             
-            %% this will replace the data.xlsx file in BEAR folder and the
-            %% bear_settings.m file in the BEAR\files folder
+            % this will replace the data.xlsx file in BEAR folder and the
+            % bear_settings.m file in the BEAR\files folder
             
-            %% specify data file name:
+            % specify data file name:
             dataxlsx='data_.xlsx';
-            %% and the settings file name:
+            % and the settings file name:
             settingsm='bear_settings_.m';
             %(and copy both to the replications\data folder)
             % then run other preliminaries
@@ -41,7 +43,36 @@ classdef replicationTests < matlab.unittest.TestCase
             resultsFile = fullfile(testFolder,'results','results_test_data_temp.mat');
             currentResults = load(resultsFile);
             for f = fields(previousResults)'
-                fld = f{1}
+                fld = f{1};
+                if ~ismember(fld, ["checkRun","destinationfile","estimationinfo"])
+                    tc.verifyEqual(currentResults.(fld), previousResults.(fld));
+                end
+            end
+            delete(resultsFile);
+            
+        end
+        
+        function Run_VAR_61(tc)
+            rng(0);
+            %% testing prior 61
+            
+            %% this will replace the data.xlsx file in BEAR folder and the
+            %% bear_settings.m file in the BEAR\files folder
+            
+            %% specify data file name:
+            dataxlsx='data_61.xlsx';
+            %% and the settings file name:
+            settingsm='bear_settings_61.m';
+            %(and copy both to the replications\data folder)
+            % then run other preliminaries
+            runprelim;
+            
+            previousResults = load('results_test_data_61.mat');
+            testFolder = fileparts(fileparts(mfilename('fullpath')));
+            resultsFile = fullfile(testFolder,'results','results_test_data_61_temp.mat');
+            currentResults = load(resultsFile);
+            for f = fields(previousResults)'
+                fld = f{1};
                 if ~ismember(fld, ["checkRun","destinationfile","estimationinfo"])
                     tc.verifyEqual(currentResults.(fld), previousResults.(fld));
                 end
@@ -54,22 +85,7 @@ classdef replicationTests < matlab.unittest.TestCase
     
     methods (Test)
         
-        function Run_VAR_61(tc)
-            
-            %% testing prior 61
-            
-            %% this will replace the data.xlsx file in BEAR folder and the
-            %% bear_settings.m file in the BEAR\files folder
-            
-            %% specify data file name:
-            dataxlsx='../replications/data_61.xlsx';
-            %% and the settings file name:
-            settingsm='bear_settings_61.m';
-            %(and copy both to the replications\data folder)
-            % then run other preliminaries
-            runprelim;
-            
-        end
+        
         
         function Run_VAR_AAU2009(tc)
             
