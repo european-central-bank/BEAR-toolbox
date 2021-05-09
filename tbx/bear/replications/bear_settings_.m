@@ -1,3 +1,5 @@
+function bear_settings_()
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                          %
 %    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR) TOOLBOX           %
@@ -46,10 +48,8 @@ varexo='';
 lags=4;
 % inclusion of a constant (1=yes, 0=no)
 const=1;
-% path to data; must be a single string
-cd ..\
-pref.datapath=pwd; % main BEAR folder, specify otherwise
-cd .\files
+% path to data
+pref.datapath=fileparts(mfilename('fullpath')); % next to settings
 % excel results file name
 pref.results_sub='results_bvr';
 % to output results in excel

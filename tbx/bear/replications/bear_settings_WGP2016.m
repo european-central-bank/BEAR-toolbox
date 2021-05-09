@@ -46,10 +46,8 @@ varexo='';
 lags=2;
 % inclusion of a constant (1=yes, 0=no)
 const=1;
-% path to data; must be a single string
-cd ..\
-pref.datapath=pwd; % main BEAR folder, specify otherwise with a string 'C:\BEAR'
-cd .\files
+% path to data
+pref.datapath=fileparts(mfilename('fullpath')); % next to settings
 % excel results file name
 pref.results_sub='results_WGP2016';
 % to output results in excel
