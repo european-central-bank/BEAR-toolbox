@@ -38,6 +38,6 @@ warning off;
 clc
 
 % load the settings directly
-run(fullfile('files','bear_settings'));
+bear_settings
 % run main code
-run(fullfile('files','bear_toolbox_main_code'));
+bear_toolbox_main_code

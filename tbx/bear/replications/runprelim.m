@@ -15,6 +15,6 @@ copyfile(datapath,[BEARpath filesep 'data.xlsx']);
 copyfile(settingspath,[filespath 'bear_settings.m']);
 
 % load the settings directly
-run(fullfile([filespath 'bear_settings']));
+bear_settings
 % run main code
-run(fullfile([filespath 'bear_toolbox_main_code']));
+bear_toolbox_main_code

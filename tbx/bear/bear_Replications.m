@@ -90,6 +90,6 @@ checkRun.checkRun1=datetime;
 save([filespath 'checkRun'],'checkRun');
 
 % load the settings directly
-run([filespath 'bear_settings']);
+bear_settings
 % run main code
-run([filespath 'bear_toolbox_main_code'])
+bear_toolbox_main_code
