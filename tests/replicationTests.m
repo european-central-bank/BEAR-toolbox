@@ -2,6 +2,7 @@ classdef replicationTests < matlab.unittest.TestCase
     
     properties
         testLoc
+        tol = 1e-10
     end
     
     methods (TestClassSetup)
@@ -54,7 +55,7 @@ classdef replicationTests < matlab.unittest.TestCase
             for f = fields(previousResults)'
                 fld = f{1};
                 if ~ismember(fld, ["checkRun","destinationfile","estimationinfo"])
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld));
+                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'AbsTol',tc.tol);
                 end
             end
             delete(resultsFile);
@@ -83,7 +84,7 @@ classdef replicationTests < matlab.unittest.TestCase
             for f = fields(previousResults)'
                 fld = f{1};
                 if ~ismember(fld, ["checkRun","destinationfile","estimationinfo"])
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld));
+                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'AbsTol',tc.tol);
                 end
             end
             delete(resultsFile);
@@ -95,7 +96,7 @@ classdef replicationTests < matlab.unittest.TestCase
     methods (Test, TestTags = {'MediumReplications'})
         
         function Run_VAR_CH2019(tc)
-            
+            warning('off')
             % replication of Caldara & Herbst (2019): Monetary Policy, Real Activity, and Credit Spreads: Evidence from Bayesian Proxy SVARs
             
             % this will replace the data.xlsx file in BEAR folder and the
@@ -115,11 +116,11 @@ classdef replicationTests < matlab.unittest.TestCase
             for f = fields(previousResults)'
                 fld = f{1};
                 if ~ismember(fld, ["checkRun","destinationfile","estimationinfo"])
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld));
+                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'AbsTol',tc.tol);
                 end
             end
             delete(resultsFile);
-            
+            warning('on')
         end
         
     end
@@ -151,7 +152,7 @@ classdef replicationTests < matlab.unittest.TestCase
             for f = fields(previousResults)'
                 fld = f{1};
                 if ~ismember(fld, ["checkRun","destinationfile","estimationinfo"])
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld));
+                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'AbsTol',tc.tol);
                 end
             end
             delete(resultsFile);
@@ -179,7 +180,7 @@ classdef replicationTests < matlab.unittest.TestCase
             for f = fields(previousResults)'
                 fld = f{1};
                 if ~ismember(fld, ["checkRun","destinationfile","estimationinfo"])
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld));
+                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'AbsTol',tc.tol);
                 end
             end
             delete(resultsFile);
