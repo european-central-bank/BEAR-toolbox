@@ -1,20 +1,20 @@
 % the data file path and the settings file path
 replicationpath=pwd;
-datapath=[replicationpath filesep dataxlsx];
-settingspath=[replicationpath filesep settingsm];
+datapath=fullfile(replicationpath, dataxlsx);
+settingspath=fullfile(replicationpath, settingsm);
 
 %BEAR path
 cd ..\
-BEARpath=pwd;
-filespath=[BEARpath filesep 'files' filesep];
+BEARpath  = fullfile(pwd, 'tbx','bear');
+filespath = fullfile(BEARpath, 'files');
 
 % replace the previous datafile with the one for the replication
-system(sprintf('copy %s %s',datapath, [BEARpath filesep 'data.xlsx']))
+system( sprintf('copy %s %s',datapath, fullfile(BEARpath, 'data.xlsx') ) )
 
 % replace the previous BEAR settings file with the one for the replication
-system(sprintf('copy %s %s',settingspath, [filespath 'bear_settings.m']))
+system(sprintf('copy %s %s',settingspath, fullfile(filespath, 'bear_settings.m')))
 
 % load the settings directly
-run(fullfile([filespath 'bear_settings']));
+run(fullfile(filespath, 'bear_settings'));
 % run main code
-run(fullfile([filespath 'bear_toolbox_main_code']));
+run(fullfile(filespath, 'bear_toolbox_main_code'));
