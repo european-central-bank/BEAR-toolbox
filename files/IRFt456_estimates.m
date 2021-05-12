@@ -1,4 +1,4 @@
-function [beta_median, beta_std, beta_lbound, beta_ubound, sigma_median]=IRFt456_estimates(beta_gibbs,sigma_gibbs,cband,q,n)
+function [beta_median, beta_std, beta_lbound, beta_ubound, sigma_median]=IRFt456_estimates(beta_gibbs,sigma_gibbs,cband,q,n,k)
 
 
 

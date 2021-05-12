@@ -2,8 +2,7 @@
 %                                                                          %
 %    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR) TOOLBOX           %
 %                                                                          %
-%    Authors:                             
-                                 %
+%    Authors:                                                              %
 %    Alistair Dieppe (alistair.dieppe@ecb.europa.eu)                       %
 %    Björn van Roye  (bvanroye@bloomberg.net)                              %
 %                                                                          %
@@ -570,7 +569,7 @@ for iteration=1:numt % beginning of forecasting loop
                     =irfres_prior(beta_gibbs,sigma_gibbs,[],[],IRFperiods,n,m,p,k,T,Y,X,signreslabels,FEVDresperiods,data_exo,HD,const,exo,strctident,pref,favar,IRFt,It,Bu,prior);
             end
             if prior~=61
-                [beta_median,beta_std,beta_lbound,beta_ubound,sigma_median]=IRFt456_estimates(beta_gibbs,sigma_gibbs,cband,q,n);
+                [beta_median,beta_std,beta_lbound,beta_ubound,sigma_median]=IRFt456_estimates(beta_gibbs,sigma_gibbs,cband,q,n,k);
             elseif prior==61
                 [beta_median, beta_std, beta_lbound, beta_ubound, theta_median, theta_std, theta_lbound, theta_ubound, sigma_median]=TVEmaestimates(beta_gibbs,theta_gibbs,sigma_gibbs,cband,q1,q2,n);
             end
