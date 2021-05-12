@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                          %
-%    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR)                   %
+%    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR) TOOLBOX           %
 %                                                                          %
 %    Authors:                                                              %
 %    Alistair Dieppe (alistair.dieppe@ecb.europa.eu)                       %
@@ -31,13 +31,29 @@
 %                                                                          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Developers Version: Start BEAR without GUI, more options
 clear all
 close all
 warning off;
 clc
 
-% load the settings directly
-run(fullfile('files','bear_settings'));
-% run main code
-run(fullfile('files','bear_toolbox_main_code'));
+%keep
+runapp=1;
+
+% Start BEAR with Graphical User Interface
+cd files
+
+waitfor(interface);
+
+cd ../
+
+% % now load the settings that we specified in the interface, set other
+% % default options and translate them to the BEAR conventions
+if runapp==1 
+    bear_appsettings
+    bear_toolbox_main_code
+else
+    bear_settings
+    bear_toolbox_main_code
+end
+
+

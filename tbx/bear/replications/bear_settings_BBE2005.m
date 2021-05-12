@@ -1,93 +1,133 @@
-%% BEAR 4.5
-%  Using the BEAR toolbox implies acceptance of the End User Licence  %
-%  Agreement and appropriate acknowledgement should be made.          %                                                        %
-
-
-%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                          %
+%    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR) TOOLBOX           %
+%                                                                          %
+%    This statistical package has been developed by the external           %
+%    developments division of the European Central Bank.                   %
+%                                                                          %
+%    Authors:                                                              %
+%    Alistair Dieppe (alistair.dieppe@ecb.europa.eu)                               %
+%    Björn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                        %
+%                                                                          %
+%    Version 5.0                                                           %
+%                                                                          %
+%    The authors are grateful to the following people for valuable input   %
+%    and advice which contributed to improve the quality of the toolbox:   %
+%    Paolo Bonomolo, Mirco Balatti, Marta Banbura, Niccolo Battistini,     %
+%	 Gabriel Bobeica, Martin Bruns, Fabio Canova, Matteo Ciccarelli,       %
+%    Marek Jarocinski, Michele Lenza, Francesca Loria, Mirela Miescu,      %
+%    Gary Koop, Chiara Osbat, Giorgio Primiceri, Martino Ricci,            %
+%    Michal Rubaszek, Barbara Rossi, Ben Schumann, Marius Schulte,         %
+%    Peter Welz and Hugo Vega de la Cruz. 						           %
+%                                                                          %
+%    These programmes are the responsibilities of the authors and not of   %
+%    the ECB and all errors and ommissions remain those of the authors.    %
+%                                                                          %
+%    Using the BEAR toolbox implies acceptance of the End User Licence     %
+%    Agreement and appropriate acknowledgement should be made.             %
+%                                                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % general data and model information
 
 % VAR model selected (1=OLS VAR, 2=BVAR, 3=mean-adjusted BVAR, 4=panel Bayesian VAR, 5=Stochastic volatility BVAR, 6=Time varying)
 VARtype=2;
 % data frequency (1=yearly, 2= quarterly, 3=monthly, 4=weekly, 5=daily, 6=undated)
-frequency=2;
+frequency=3;
 % sample start date; must be a string consistent with the date formats of the toolbox
-startdate='1974q1';
+startdate='1959m2'; %(first differnces)
 % sample end date; must be a string consistent with the date formats of the toolbox
-enddate='2014q4';
+enddate='2001m8';
 % endogenous variables; must be a single string, with variable names separated by a space
-varendo='DOM_GDP DOM_CPI STN';
+varendo='';
 % exogenous variables, if any; must be a single string, with variable names separated by a space
 varexo='';
 % number of lags
-lags=4; %12
+lags=13;
 % inclusion of a constant (1=yes, 0=no)
-const=1;
-% path to data; must be a single string
-cd ..\
-pref.datapath=pwd; % main BEAR folder, specify otherwise
-cd .\files
+const=0; %(demeaned, no constant)
+% path to data
+pref.datapath=fileparts(mfilename('fullpath')); % next to settings
 % excel results file name
-pref.results_sub='results';
+pref.results_sub='results_BBE2005';
 % to output results in excel
 pref.results=1;
 % output charts
 pref.plot=1;
 % pref: useless by itself, just here to avoid code to crash
 pref.pref=0;
-% save matlab workspace (1=yes, 0=no (standard))
+% save matlab workspace (1=yes, 0=no (default))
 pref.workspace=0;
 
+
 % FAVAR options
-favar.FAVAR=0; % augment VAR model with factors (1=yes, 0=no)
+favar.FAVAR=1; % augment VAR model with factors (1=yes, 0=no)
     if favar.FAVAR==1
     % transform information variables in excel sheet 'factor data' (following Stock & Watson: 1 Level, 2 First Difference, 3 Second Difference, 4 Log-Level, 5 Log-First-Difference, 6 Log-Second-Difference)
-    favar.transformation=1; % (1=yes, 0=no) // 'factor data' must contain values for startdate -1 in the case we have First Difference (2,5) transformation types and startdate -2 in the case we have Second Difference (3,6) transformation types
-		favar.transform_endo='6 2'; %'2 6' transformation codes of varendo variables other than factors
-    % standardises (information) data in excel sheets 'data' and 'factor data' 
-    favar.standardise=1; % (1=yes (default), 0=no)
-	% demeans (information) data in excel sheets 'data' and 'factor data' 
-    favar.demean=1; % (1=yes, 0=no)
-    % specify the ordering of endogenpous factors and variables
-    varendo='factor1 factor2 factor3 factor4 PUNEW FYFF';
+    favar.transformation=0; % (1=yes, 0=no) // 'factor data' must contain values for startdate -1 in the case we have First Difference (2,5) transformation types and startdate -2 in the case we have Second Difference (3,6) transformation types
+		favar.transform_endo=''; %transformation codes of varendo variables other than factors (ordering follows 'data' sheet!)
+        
+    % number of factors to include
+    favar.numpc=3;
+    
+    % specify the ordering of endogenous factors and variables
+    varendo='factor1 factor2 factor3 FYFF'; 
+    
+    % slow fast scheme for recursive identification (IRFt 2, 3) as in BBE (2005)
+    favar.slowfast=1;  % assign variables in the excel sheet 'factor data' in the 'block' row to "slow" or "fast"
+    
+    % VARtype specific FAVAR options
+    if VARtype==2 || VARtype==5 || VARtype==6 % supported priors: 1x, 2x, 3x, 41
+    favar.onestep=1; % Bayesian estimation of factors and the model in an one-step estimation (1=yes, 0=no (two-step))   
+    % thining of Gibbs draws
+    favar.thin=1; % (=1 default, no thinning)
+    % priors on factor equation
+        % Loadings L~N(0,L0*eye)
+        favar.L0=1; %BBE set-up
+        % Covariance Sigma~IG(a,b)
+        favar.a0=3; %BBE set-up
+        favar.b0=0.001; %BBE set-up
+    end
     
     % blocks/categories (1=yes, 0=no), specify in excel sheet
     favar.blocks=0;
-        if favar.blocks==0 % basic favar model without blocks (basically one block)
-            favar.numpc=4; % choose number of factors (principal components) to include
-        elseif favar.blocks==1 % assign information variables to blocks
+        if favar.blocks==1 % assign information variables to blocks
             favar.blocknames='slow fast'; % specify in excel sheet 'factor data'
             favar.blocknumpc='2 2'; %block-specific number of factors (principal components)
         end
-        
       
-    % specify information variables of interest (plot and excel output) (HD & IRFs)
-    favar.plotX='IPS10 PMCP LHEM LHUR';
-    % (approximate) HD for information variables
-    favar.HD.plot=0; % (1=yes, 0=no)
-    if favar.HD.plot==1
-        favar.HD.sumShockcontributions=0; % sum contributions over shocks (=1), or over variables (=0, standard), only for IRFt2,3\\this option makes no sense in IRFt4,6
-        favar.HD.plotXblocks=1; % sum contributions of factors blockwise
-            favar.HD.HDallsumblock=0; % include all components of HDall(=1) other than shock contributions, but display them sumed under blocks\shocks
-    end
+    % specify information variables of interest (IRF, FEVD, HD)
+    favar.plotX='IP PUNEW FYGM3 FYGT5 FMFBA FM2 EXRJAN PMCP IPXMCA GMCQ GMCDQ GMCNQ LHUR PMEMP LEHCC HSFR PMNO FSDXP HHSNTN';
+    
+	% choose shock(s) to plot
+    favar.plotXshock='FYFF'; 
+	
+    % re-tranform transformed variables
+    favar.levels=1; % =0 no re-transformation (default), =1 cumsum, =2 exp cumsum
+		favar.retransres=1; % re-transform the candidate IRFs in IRFt4, before checking the restrictions
+    
     % (approximate) IRFs for information variables 
-    favar.IRF.plot=1; % (1=yes, 0=no)
-    if favar.IRF.plot==1
-        % choose shock(s) to plot
-        favar.IRF.plotXshock=varendo;%'FEVDshock';%'FYFF'; % FYFF 'USMP' % we need this atm only for IRFt2,3 provide =varendo for all shocks; in IRFt456 the identified shocks are plotted 
-        favar.IRF.plotXblocks=0;
-    end
+    favar.IRF.plot=1; % (1=yes, 0=no)   
+    
     % (approximate) FEVDs for information variables
     favar.FEVD.plot=1; % (1=yes, 0=no)
-    if favar.FEVD.plot==1
-		% choose shock(s) to plot
-        favar.FEVD.plotXshock=favar.IRF.plotXshock;%'EA.factor1 EA.factor2 EA.factor3 EA.factor4 EA.factor5 EA.factor6';
+    
+    % (approximate) HDs for information variables
+    favar.HD.plot=0; % (1=yes, 0=no)
+    if favar.HD.plot==1
+        favar.HD.sumShockcontributions=0; % sum contributions over shocks (origin ,=1), or over variables (impact, =0 (default))
+        if favar.blocks==1 % plotting options
+        favar.HD.plotXblocks=1; % sum contributions of factors blockwise
+            favar.HD.HDallsumblock=1; % include all components of HDall(=1) other than shock contributions, but display them sumed under blocks\shocks (=0, default)
+        end
     end
     end
     
-% OLS VAR specific information: will be read only if VARtype=1
-if VARtype==1    
+
     
+ % OLS VAR specific information: will be read only if VARtype=1
+if VARtype==1   
+
 % BVAR specific information: will be read only if VARtype=2
 elseif VARtype==2
 % selected prior
@@ -97,7 +137,7 @@ elseif VARtype==2
 % 41=Normal-diffuse
 % 51=Dummy observations
 % 61=Mean-adjusted
-prior=61;
+prior=21;
 % hyperparameter: autoregressive coefficient
 ar=0.8; % this sets all AR coefficients to the same prior value (if PriorExcel is equal to 0)
 % switch to Excel interface
@@ -105,7 +145,7 @@ PriorExcel=0; % set to 1 if you want individual priors, 0 for default
 %switch to Excel interface for exogenous variables
 priorsexogenous=0; % set to 1 if you want individual priors, 0 for default
 % hyperparameter: lambda1
-lambda1=10000;
+lambda1=1; % rather diffuse prior
 % hyperparameter: lambda2
 lambda2=0.5;
 % hyperparameter: lambda3
@@ -121,9 +161,9 @@ lambda7=0.1;
 % Overall tightness on the long run prior
 lambda8=1;
 % total number of iterations for the Gibbs sampler
-It=1000;
+It=10000;
 % number of burn-in iterations for the Gibbs sampler
-Bu=500;
+Bu=2000;
 % hyperparameter optimisation by grid search (1=yes, 0=no)
 hogs=0;
 % block exogeneity (1=yes, 0=no)
@@ -142,10 +182,6 @@ priorf=100;
 
 
 elseif VARtype==3
-
-
-
-
 
 
 % Stochastic volatility BVAR information: will be read only if VARtype=5
@@ -279,26 +315,26 @@ end
 % activate impulse response functions (1=yes, 0=no)
 IRF=1;
 % number of periods for impulse response functions
-IRFperiods=20;
+IRFperiods=48;
 % activate unconditional forecasts (1=yes, 0=no)
-F=1;
+F=0;
 % activate forecast error variance decomposition (1=yes, 0=no)
-FEVD=1;
+FEVD=0;
 % activate historical decomposition (1=yes, 0=no)
-HD=1; HDall=0;%if we want to plot the entire decomposition, all contributions (includes deterministic part)HDall
+HD=0; HDall=1;%if we want to plot the entire decomposition, all contributions (includes deterministic part)HDall
 % activate conditional forecasts (1=yes, 0=no)
 CF=0;
 % structural identification (1=none, 2=Cholesky, 3=triangular factorisation, 4=sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions,
 %                            5=IV identification, 6=IV identification & sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions)
-IRFt=4;
+IRFt=2;
 % IRFt options
     % strctident settings for OLS model
     if VARtype==1
         if IRFt==4
         strctident.MM=0; % option for Median model (0=no (standard), 1=yes)
         % Correlation restriction options:
-        strctident.CorrelShock='CorrelShock'; % exact labelname of the shock defined in one of the "...res values" excel sheets, otherwise if the shock is not identified yet name it 'CorrelShock'
-        strctident.CorrelInstrument='MHF'; % provide the IV variable in excel sheet "IV"        
+        strctident.CorrelShock=''; % exact labelname of the shock defined in one of the "...res values" excel sheets, otherwise if the shock is not identified yet name it 'CorrelShock'
+        strctident.CorrelInstrument=''; % provide the IV variable in excel sheet "IV"        
         elseif IRFt==5
         % IV options:
         strctident.Instrument='MHF';% specify Instrument to identfy Shock
@@ -370,12 +406,12 @@ window_size=0;
 % evaluation_size as percent of window_size                                      <                                                                                    -
 evaluation_size=0.5;                          
 % confidence/credibility level for VAR coefficients
-cband=0.95;
+cband=0.9;
 % confidence/credibility level for impusle response functions
-IRFband=0.68;
+IRFband=0.9;
 % confidence/credibility level for forecasts
-Fband=0.95;
+Fband=0.9;
 % confidence/credibility level for forecast error variance decomposition
-FEVDband=0.95;
+FEVDband=0.9;
 % confidence/credibility level for historical decomposition
-HDband=0.68;
+HDband=0.9;

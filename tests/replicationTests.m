@@ -3,6 +3,10 @@ classdef replicationTests < matlab.unittest.TestCase
     properties
         testLoc
         tol = 1e-10
+        ToAvoid = [...
+            "checkRun", "destinationfile", "estimationinfo", ...
+            "BEARpath","datapath","filespath","pref", ...
+            "replicationpath","settingspath","sourcefile"]
     end
     
     methods (TestClassSetup)
@@ -50,11 +54,12 @@ classdef replicationTests < matlab.unittest.TestCase
             
             previousResults = load('results_test_data.mat');
             testFolder = fileparts(fileparts(mfilename('fullpath')));
-            resultsFile = fullfile(testFolder,'results','results_test_data_temp.mat');
+            resultsFile = fullfile(testFolder,'tbx','bear','results','results_test_data_temp.mat');
             currentResults = load(resultsFile);
             for f = fields(previousResults)'
                 fld = f{1};
-                if ~ismember(fld, ["checkRun","destinationfile","estimationinfo"])
+                if ~ismember(fld, tc.ToAvoid)
+                    f{1}
                     tc.verifyEqual(currentResults.(fld), previousResults.(fld),'AbsTol',tc.tol);
                 end
             end
@@ -62,34 +67,34 @@ classdef replicationTests < matlab.unittest.TestCase
             
         end
         
-        function Run_VAR_61(tc)
-            
-            % testing prior 61
-            
-            % this will replace the data.xlsx file in BEAR folder and the
-            % bear_settings.m file in the BEAR\files folder
-            
-            % specify data file name:
-            dataxlsx='data_61.xlsx';
-            %% and the settings file name:
-            settingsm='bear_settings_61.m';
-            %(and copy both to the replications\data folder)
-            % then run other preliminaries
-            runprelim;
-            
-            previousResults = load('results_test_data_61.mat');
-            testFolder = fileparts(fileparts(mfilename('fullpath')));
-            resultsFile = fullfile(testFolder,'results','results_test_data_61_temp.mat');
-            currentResults = load(resultsFile);
-            for f = fields(previousResults)'
-                fld = f{1};
-                if ~ismember(fld, ["checkRun","destinationfile","estimationinfo"])
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'AbsTol',tc.tol);
-                end
-            end
-            delete(resultsFile);
-            
-        end
+%         function Run_VAR_61(tc)
+%             
+%             % testing prior 61
+%             
+%             % this will replace the data.xlsx file in BEAR folder and the
+%             % bear_settings.m file in the BEAR\files folder
+%             
+%             % specify data file name:
+%             dataxlsx='data_61.xlsx';
+%             %% and the settings file name:
+%             settingsm='bear_settings_61.m';
+%             %(and copy both to the replications\data folder)
+%             % then run other preliminaries
+%             runprelim;
+%             
+%             previousResults = load('results_test_data_61.mat');
+%             testFolder = fileparts(fileparts(mfilename('fullpath')));
+%             resultsFile = fullfile(testFolder,'tbx','bear','results','results_test_data_61_temp.mat');
+%             currentResults = load(resultsFile);
+%             for f = fields(previousResults)'
+%                 fld = f{1};
+%                 if ~ismember(fld, tc.ToAvoid)
+%                     tc.verifyEqual(currentResults.(fld), previousResults.(fld),'AbsTol',tc.tol);
+%                 end
+%             end
+%             delete(resultsFile);
+%             
+%         end
         
     end
     
@@ -111,11 +116,11 @@ classdef replicationTests < matlab.unittest.TestCase
             
             previousResults = load('results_test_data_CH2019.mat');
             testFolder = fileparts(fileparts(mfilename('fullpath')));
-            resultsFile = fullfile(testFolder,'results','results_test_data_CH2019_temp.mat');
+            resultsFile = fullfile(testFolder,'tbx','bear','results','results_test_data_CH2019_temp.mat');
             currentResults = load(resultsFile);
             for f = fields(previousResults)'
                 fld = f{1};
-                if ~ismember(fld, ["checkRun","destinationfile","estimationinfo"])
+                if ~ismember(fld, tc.ToAvoid)
                     tc.verifyEqual(currentResults.(fld), previousResults.(fld),'AbsTol',tc.tol);
                 end
             end
@@ -147,11 +152,11 @@ classdef replicationTests < matlab.unittest.TestCase
             
             previousResults = load('results_test_data_WGP2016.mat');
             testFolder = fileparts(fileparts(mfilename('fullpath')));
-            resultsFile = fullfile(testFolder,'results','results_test_data_WGP2016_temp.mat');
+            resultsFile = fullfile(testFolder,'tbx','bear','results','results_test_data_WGP2016_temp.mat');
             currentResults = load(resultsFile);
             for f = fields(previousResults)'
                 fld = f{1};
-                if ~ismember(fld, ["checkRun","destinationfile","estimationinfo"])
+                if ~ismember(fld, tc.ToAvoid)
                     tc.verifyEqual(currentResults.(fld), previousResults.(fld),'AbsTol',tc.tol);
                 end
             end
@@ -175,11 +180,11 @@ classdef replicationTests < matlab.unittest.TestCase
             
             previousResults = load('results_test_data_BvV2018.mat');
             testFolder = fileparts(fileparts(mfilename('fullpath')));
-            resultsFile = fullfile(testFolder,'results','results_test_data_BvV2018_temp.mat');
+            resultsFile = fullfile(testFolder,'tbx','bear','results','results_test_data_BvV2018_temp.mat');
             currentResults = load(resultsFile);
             for f = fields(previousResults)'
                 fld = f{1};
-                if ~ismember(fld, ["checkRun","destinationfile","estimationinfo"])
+                if ~ismember(fld, tc.ToAvoid)
                     tc.verifyEqual(currentResults.(fld), previousResults.(fld),'AbsTol',tc.tol);
                 end
             end

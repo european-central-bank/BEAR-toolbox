@@ -31,34 +31,31 @@
 % general data and model information
 
 % VAR model selected (1=OLS VAR, 2=BVAR, 3=mean-adjusted BVAR, 4=panel Bayesian VAR, 5=Stochastic volatility BVAR, 6=Time varying)
-VARtype=2;
+VARtype=2; %as the Caldara Herbst approach works with IRFt==5 one has to choose a normal wishart prior as the posterior distribution of it is known
 % data frequency (1=yearly, 2= quarterly, 3=monthly, 4=weekly, 5=daily, 6=undated)
 frequency=3;
 % sample start date; must be a string consistent with the date formats of the toolbox
-startdate='2014m5';
+startdate='1993m1';
 % sample end date; must be a string consistent with the date formats of the toolbox
-enddate='2018m12';
+enddate='2007m6';
 % endogenous variables; must be a single string, with variable names separated by a space
-varendo='hicp gdp app 10y stockindex';
-% exogenous variables, if any; must be a single string, with variable names separated by a space
+varendo='EFFR_LW LIPM UNRATE LPPI BAA10YMOODY';
 varexo='';
 % number of lags
-lags=2;
+lags=12;
 % inclusion of a constant (1=yes, 0=no)
 const=1;
-% path to data; must be a single string
-cd ..\
-pref.datapath=pwd; % main BEAR folder, specify otherwise with a string 'C:\BEAR'
-cd .\files
+% path to data
+pref.datapath=fileparts(mfilename('fullpath')); % next to settings
 % excel results file name
-pref.results_sub='results_WGP2016';
+pref.results_sub='results_CH2019';
 % to output results in excel
 pref.results=1;
 % output charts
 pref.plot=1;
 % pref: useless by itself, just here to avoid code to crash
 pref.pref=0;
-% save matlab workspace (1=yes, 0=no (standard))
+% save matlab workspace (1=yes, 0=no)
 pref.workspace=0;
 
 
@@ -124,39 +121,37 @@ favar.FAVAR=0; % augment VAR model with factors (1=yes, 0=no)
         end
     end
     end
-    
 
 % OLS VAR specific information: will be read only if VARtype=1
 if VARtype==1
-   
+
     
 % BVAR specific information: will be read only if VARtype=2
 
-elseif VARtype==2
+elseif VARtype==2 %this one is used for the replication
 % selected prior
 % 11=Minnesota (univariate AR), 12=Minnesota (diagonal VAR estimates), 13=Minnesota (full VAR estimates)
 % 21=Normal-Wishart(S0 as univariate AR), 22=Normal-Wishart(S0 as identity)
 % 31=Independent Normal-Wishart(S0 as univariate AR), 32=Independent Normal-Wishart(S0 as identity)
 % 41=Normal-diffuse
 % 51=Dummy observations
-% 61=Mean-adjusted
-prior=41;
+prior=21; %the only prior possible with IRFt==5
 % hyperparameter: autoregressive coefficient
-ar=0.8; % this sets all AR coefficients to the same prior value (if PriorExcel is equal to 0)
+ar=1; % this sets all AR coefficients to the same prior value (if PriorExcel is equal to 0)
 % switch to Excel interface
 PriorExcel=0; % set to 1 if you want individual priors, 0 for default
 %switch to Excel interface for exogenous variables
 priorsexogenous=0; % set to 1 if you want individual priors, 0 for default
 % hyperparameter: lambda1
-lambda1=1000; % quasi-flat (diffuse) normal-wishart prior here, in the spirit of Uhlig (2005)
+lambda1=0.1; %not used for CH replication as nwprior only for IRFt==5
 % hyperparameter: lambda2
-lambda2=0.5;
+lambda2=0.5;            %not used for Replication as the prior is of the normal wishart family
 % hyperparameter: lambda3
 lambda3=1;
 % hyperparameter: lambda4
-lambda4=1;
+lambda4=100;             
 % hyperparameter: lambda5
-lambda5=0.001;
+lambda5=0.001; 
 % hyperparameter: lambda6
 lambda6=1;
 % hyperparameter: lambda7
@@ -164,7 +159,7 @@ lambda7=0.1;
 % Overall tightness on the long run prior
 lambda8=1;
 % total number of iterations for the Gibbs sampler
-It=5000;
+It=2000;
 % number of burn-in iterations for the Gibbs sampler
 Bu=1000;
 % hyperparameter optimisation by grid search (1=yes, 0=no)
@@ -182,7 +177,6 @@ lrp=0;
 % H=[1 1 0 0;-1 1 0 0;0 0 1 1;0 0 -1 1];
 % (61=Mean-adjusted BVAR) Scale up the variance of the prior of factor f
 priorf=100;
-
 
 elseif VARtype==3
 
@@ -322,18 +316,19 @@ end
 % activate impulse response functions (1=yes, 0=no)
 IRF=1;
 % number of periods for impulse response functions
-IRFperiods=36;
+IRFperiods=48;
 % activate unconditional forecasts (1=yes, 0=no)
-F=0;
+F=1;
 % activate forecast error variance decomposition (1=yes, 0=no)
-FEVD=0;
+FEVD=1;
 % activate historical decomposition (1=yes, 0=no)
-HD=0; HDall=0;%if we want to plot the entire decomposition, all contributions (includes deterministic part)HDall
+HD=1; 
+HDall=0;%if we want to plot the entire decomposition, all contributions (includes deterministic part)HDall
 % activate conditional forecasts (1=yes, 0=no)
-CF=0;
+CF=1;
 % structural identification (1=none, 2=Cholesky, 3=triangular factorisation, 4=sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions,
 %                            5=IV identification, 6=IV identification & sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions)
-IRFt=4;
+IRFt=5;
 % IRFt options
     % strctident settings for OLS model
     if VARtype==1
@@ -365,44 +360,44 @@ IRFt=4;
         if IRFt==4
         strctident.MM=0; % option for Median model (0=no (standard), 1=yes)
         % Correlation restriction options:
-        strctident.CorrelShock=''; % exact labelname of the shock defined in one of the "...res values" excel sheets, otherwise if the shock is not identified yet name it 'CorrelShock'
-        strctident.CorrelInstrument=''; % provide the IV variable in excel sheet "IV"            
+        strctident.CorrelShock='money'; % exact labelname of the shock defined in one of the "...res values" excel sheets, otherwise if the shock is not identified yet name it 'CorrelShock'
+        strctident.CorrelInstrument='gkmpshock_footnote'; % provide the IV variable in excel sheet "IV"            
         elseif IRFt==5
         strctident.MM=0; % option for Median model (0=no (standard), 1=yes)
         % IV options:
         strctident.Instrument='MHF'; % specify Instrument to identfy Shock
-        strctident.startdateIV='1992m2';
-        strctident.enddateIV='2003m12';
+        strctident.startdateIV='1993m1';
+        strctident.enddateIV='2007m6';
         strctident.Thin=10;
-        strctident.prior_type_reduced_form=1; %1=flat (standard), 2=normal wishart , related to the IV routine
+        strctident.prior_type_reduced_form=2; %1=flat (standard), 2=normal wishart , related to the IV routine
         strctident.Switchprobability=0; % (=0 standard) related to the IV routine, governs the believe of the researcher if the posterior distribution of Sigma|Y as specified by the standard inverse Wishart distribution, is a good proposal distribution for Sigma|Y, IV. If gamma = 1, beta and sigma are drawn from multivariate normal and inverse wishart. If not Sigma may be drawn around its previous value if randnumber < gamma
         strctident.prior_type_proxy=1; %1=inverse gamma (standard) 2=high relevance , related to the IV routine, priortype for the proxy equation (relevance of the proxy)
         elseif IRFt==6
         strctident.MM=0; % option for Median model (0=no (standard), 1=yes)
         % IV options:
         strctident.Instrument='MHF'; % specify Instrument to identfy Shock
-        strctident.startdateIV='1992m2';
-        strctident.enddateIV='2003m12';
+        strctident.startdateIV='1993m1';
+        strctident.enddateIV='2007m6';
         strctident.Thin=10;
-        strctident.prior_type_reduced_form=1; %1=flat (standard), 2=normal wishart , related to the IV routine
+        strctident.prior_type_reduced_form=2; %1=flat (default), 2=normal wishart , related to the IV routine
         strctident.Switchprobability=0; % (=0 standard) related to the IV routine, governs the believe of the researcher if the posterior distribution of Sigma|Y as specified by the standard inverse Wishart distribution, is a good proposal distribution for Sigma|Y, IV. If gamma = 1, beta and sigma are drawn from multivariate normal and inverse wishart. If not Sigma may be drawn around its previous value if randnumber < gamma
         strctident.prior_type_proxy=1; %1=inverse gamma (standard) 2=high relevance , related to the IV routine, priortype for the proxy equation (relevance of the proxy)
         % Correlation restriction options:
-        strctident.CorrelShock='CorrelShock'; % exact labelname of the shock defined in one of the "...res values" excel sheets, otherwise if the shock is not identified yet name it 'correl.shock'
-        strctident.CorrelInstrument='MHF'; % provide the IV variable in excel sheet "IV"
+        strctident.CorrelShock='money'; % exact labelname of the shock defined in one of the "...res values" excel sheets, otherwise if the shock is not identified yet name it 'correl.shock'
+        strctident.CorrelInstrument='gkmpshock_footnote'; % provide the IV variable in excel sheet "IV"
         end
     end
     
 % activate forecast evaluation (1=yes, 0=no)
-Feval=0;
+Feval=1;
 % type of conditional forecasts 
 % 1=standard (all shocks), 2=standard (shock-specific)
 % 3=tilting (median), 4=tilting (interval)
-CFt=1;
+CFt=2;
 % start date for forecasts (has to be an in-sample date; otherwise, ignore and set Fendsmpl=1)
-Fstartdate='2014q1';
+Fstartdate='2006m8';
 % end date for forecasts
-Fenddate='2016q4';
+Fenddate='2007m6';
 % start forecasts immediately after the final sample period (1=yes, 0=no)
 % has to be set to 1 if start date for forecasts is not in-sample
 Fendsmpl=0;
@@ -415,10 +410,10 @@ evaluation_size=0.5;
 % confidence/credibility level for VAR coefficients
 cband=0.95;
 % confidence/credibility level for impusle response functions
-IRFband=0.68;
+IRFband=0.9;
 % confidence/credibility level for forecasts
 Fband=0.68;
 % confidence/credibility level for forecast error variance decomposition
-FEVDband=0.68;
+FEVDband=0.95;
 % confidence/credibility level for historical decomposition
 HDband=0.68;
