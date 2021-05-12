@@ -37,7 +37,7 @@
 
 
 BEAR toolbox estimates
-Date: 21-Apr-2021   Time: 20:31
+Date: 28-Apr-2021   Time: 14:13
 
 
 Bayesian VAR

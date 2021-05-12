@@ -4,9 +4,9 @@
 %% bear_settings.m file in the BEAR\files folder
 
 %% specify data file name:
-dataxlsx='data.xlsx';
+dataxlsx='data_.xlsx';
 %% and the settings file name:
-settingsm='bear_settings.m';
+settingsm='bear_settings_.m';
 %(and copy both to the replications\data folder)
 % then run other preliminaries
 runprelim;
