@@ -35,48 +35,45 @@ VARtype=2;
 % data frequency (1=yearly, 2= quarterly, 3=monthly, 4=weekly, 5=daily, 6=undated)
 frequency=3;
 % sample start date; must be a string consistent with the date formats of the toolbox
-startdate='2014m5';
+startdate='1960m2';
 % sample end date; must be a string consistent with the date formats of the toolbox
-enddate='2018m12';
+enddate='2001m7';
 % endogenous variables; must be a single string, with variable names separated by a space
-varendo='hicp gdp app 10y stockindex';
+varendo='';
 % exogenous variables, if any; must be a single string, with variable names separated by a space
 varexo='';
 % number of lags
-lags=2;
+lags=12;
 % inclusion of a constant (1=yes, 0=no)
-const=1;
-% path to data; must be a single string
-cd ..\
-pref.datapath=pwd; % main BEAR folder, specify otherwise with a string 'C:\BEAR'
-cd .\files
+const=0;
+% path to data
+pref.datapath=fileparts(mfilename('fullpath')); % next to settings
 % excel results file name
-pref.results_sub='results_WGP2016';
+pref.results_sub='resultsAAU4';
 % to output results in excel
 pref.results=1;
 % output charts
 pref.plot=1;
 % pref: useless by itself, just here to avoid code to crash
 pref.pref=0;
-% save matlab workspace (1=yes, 0=no (standard))
+% save matlab workspace (1=yes, 0=no (default))
 pref.workspace=0;
 
-
 % FAVAR options
-favar.FAVAR=0; % augment VAR model with factors (1=yes, 0=no)
+favar.FAVAR=1; % augment VAR model with factors (1=yes, 0=no)
     if favar.FAVAR==1
     % transform information variables in excel sheet 'factor data' (following Stock & Watson: 1 Level, 2 First Difference, 3 Second Difference, 4 Log-Level, 5 Log-First-Difference, 6 Log-Second-Difference)
-    favar.transformation=0; % (1=yes, 0=no) // 'factor data' must contain values for startdate -1 in the case we have First Difference (2,5) transformation types and startdate -2 in the case we have Second Difference (3,6) transformation types
-		favar.transform_endo=''; %transformation codes of varendo variables other than factors (ordering follows 'data' sheet!)
+    favar.transformation=1; % (1=yes, 0=no) // 'factor data' must contain values for startdate -1 in the case we have First Difference (2,5) transformation types and startdate -2 in the case we have Second Difference (3,6) transformation types
+		favar.transform_endo='5 1'; %transformation codes of varendo variables other than factors (ordering follows 'data' sheet!)
         
     % number of factors to include
-    favar.numpc=3;
+    favar.numpc=4;
     
     % specify the ordering of endogenous factors and variables
-    varendo='factor1 factor2 factor3 FYFF'; 
+    varendo='factor1 factor2 factor3 factor4 PUNEW FYFF'; 
     
     % slow fast scheme for recursive identification (IRFt 2, 3) as in BBE (2005)
-    favar.slowfast=1;  % assign variables in the excel sheet 'factor data' in the 'block' row to "slow" or "fast"
+    favar.slowfast=0;  % assign variables in the excel sheet 'factor data' in the 'block' row to "slow" or "fast"
     
     % VARtype specific FAVAR options
     if VARtype==2 % supported priors: 1x, 2x, 3x, 41
@@ -99,20 +96,20 @@ favar.FAVAR=0; % augment VAR model with factors (1=yes, 0=no)
         end
       
     % specify information variables of interest (IRF, FEVD, HD)
-    favar.plotX='IP PUNEW FYGM3 FYGT5 FMFBA FM2 EXRJAN PMCP IPXMCA GMCQ GMCDQ GMCNQ LHUR PMEMP LEHCC HSFR PMNO FSDXP HHSNTN';
+    favar.plotX='IPS10 FYGM3 FYGT5 FMFBA LHUR EXRJAN PMCP A0m082 GMDC GMDCD GMDCN FMRNBA PMEMP CES275 HSFR PMNO FSDXP HHSNTN';
     
+	% choose shock(s) to plot
+    favar.plotXshock='USMP'; 
+	
     % re-tranform transformed variables
     favar.levels=1; % =0 no re-transformation (default), =1 cumsum, =2 exp cumsum
-    
+        favar.retransres=1; % re-transform the candidate IRFs in IRFt4, before checking the restrictions
+        
     % (approximate) IRFs for information variables 
-    favar.IRF.plot=1; % (1=yes, 0=no)   
-    if favar.IRF.plot==1
-        % choose shock(s) to plot
-        favar.IRF.plotXshock='FYFF';%'FYFF';'USMP' % only for IRFt 2,3; in IRFt 4 all identified shocks are plotted
-    end
+    favar.IRF.plot=1; % (1=yes, 0=no)
     
     % (approximate) FEVDs for information variables
-    favar.FEVD.plot=1; % (1=yes, 0=no)
+    favar.FEVD.plot=0; % (1=yes, 0=no)
     
     % (approximate) HDs for information variables
     favar.HD.plot=0; % (1=yes, 0=no)
@@ -125,11 +122,8 @@ favar.FAVAR=0; % augment VAR model with factors (1=yes, 0=no)
     end
     end
     
-
-% OLS VAR specific information: will be read only if VARtype=1
-if VARtype==1
-   
-    
+ % OLS VAR specific information: will be read only if VARtype=1
+if VARtype==1   
 % BVAR specific information: will be read only if VARtype=2
 
 elseif VARtype==2
@@ -148,7 +142,7 @@ PriorExcel=0; % set to 1 if you want individual priors, 0 for default
 %switch to Excel interface for exogenous variables
 priorsexogenous=0; % set to 1 if you want individual priors, 0 for default
 % hyperparameter: lambda1
-lambda1=1000; % quasi-flat (diffuse) normal-wishart prior here, in the spirit of Uhlig (2005)
+lambda1=1000; % diffuse prior
 % hyperparameter: lambda2
 lambda2=0.5;
 % hyperparameter: lambda3
@@ -164,9 +158,9 @@ lambda7=0.1;
 % Overall tightness on the long run prior
 lambda8=1;
 % total number of iterations for the Gibbs sampler
-It=5000;
+It=10000; % 25000 draws with favar.thin=2 in AAU 2009 
 % number of burn-in iterations for the Gibbs sampler
-Bu=1000;
+Bu=5000;
 % hyperparameter optimisation by grid search (1=yes, 0=no)
 hogs=0;
 % block exogeneity (1=yes, 0=no)
@@ -322,13 +316,13 @@ end
 % activate impulse response functions (1=yes, 0=no)
 IRF=1;
 % number of periods for impulse response functions
-IRFperiods=36;
+IRFperiods=48;
 % activate unconditional forecasts (1=yes, 0=no)
 F=0;
 % activate forecast error variance decomposition (1=yes, 0=no)
 FEVD=0;
 % activate historical decomposition (1=yes, 0=no)
-HD=0; HDall=0;%if we want to plot the entire decomposition, all contributions (includes deterministic part)HDall
+HD=0; HDall=1;%if we want to plot the entire decomposition, all contributions (includes deterministic part)HDall
 % activate conditional forecasts (1=yes, 0=no)
 CF=0;
 % structural identification (1=none, 2=Cholesky, 3=triangular factorisation, 4=sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions,
@@ -413,12 +407,12 @@ window_size=0;
 % evaluation_size as percent of window_size                                      <                                                                                    -
 evaluation_size=0.5;                          
 % confidence/credibility level for VAR coefficients
-cband=0.95;
+cband=0.9;
 % confidence/credibility level for impusle response functions
-IRFband=0.68;
+IRFband=0.9;
 % confidence/credibility level for forecasts
-Fband=0.68;
+Fband=0.9;
 % confidence/credibility level for forecast error variance decomposition
-FEVDband=0.68;
+FEVDband=0.9;
 % confidence/credibility level for historical decomposition
-HDband=0.68;
+HDband=0.9;
