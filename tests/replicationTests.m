@@ -2,7 +2,8 @@ classdef replicationTests < matlab.unittest.TestCase
     
     properties
         testLoc
-        tol = 1e-7
+        RelTol = 1e-5
+        AbsTol = 1e-6
         ToAvoid = [...
             "checkRun", "destinationfile", "estimationinfo", ...
             "BEARpath","datapath","filespath","pref", ...
@@ -59,7 +60,7 @@ classdef replicationTests < matlab.unittest.TestCase
             for f = fields(previousResults)'
                 fld = f{1};
                 if ~ismember(fld, tc.ToAvoid)
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.tol);
+                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.RelTol,'AbsTol',tc.AbsTol);
                 end
             end
             delete(resultsFile);
@@ -92,7 +93,7 @@ classdef replicationTests < matlab.unittest.TestCase
             for f = fields(previousResults)'
                 fld = f{1};
                 if ~ismember(fld, tc.ToAvoid)
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.tol);
+                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.RelTol,'AbsTol',tc.AbsTol);
                 end
             end
             delete(resultsFile);
@@ -120,7 +121,7 @@ classdef replicationTests < matlab.unittest.TestCase
             for f = fields(previousResults)'
                 fld = f{1};
                 if ~ismember(fld, tc.ToAvoid)
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.tol);
+                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.RelTol,'AbsTol',tc.AbsTol);
                 end
             end
             delete(resultsFile);
@@ -156,7 +157,7 @@ classdef replicationTests < matlab.unittest.TestCase
             for f = fields(previousResults)'
                 fld = f{1};
                 if ~ismember(fld, tc.ToAvoid)
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.tol);
+                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.RelTol,'AbsTol',tc.AbsTol);
                 end
             end
             delete(resultsFile);
@@ -184,7 +185,7 @@ classdef replicationTests < matlab.unittest.TestCase
             for f = fields(previousResults)'
                 fld = f{1};
                 if ~ismember(fld, tc.ToAvoid)
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.tol);
+                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.RelTol,'AbsTol',tc.AbsTol);
                 end
             end
             delete(resultsFile);
