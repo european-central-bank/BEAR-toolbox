@@ -59,7 +59,6 @@ classdef replicationTests < matlab.unittest.TestCase
             for f = fields(previousResults)'
                 fld = f{1};
                 if ~ismember(fld, tc.ToAvoid)
-                    f{1}
                     tc.verifyEqual(currentResults.(fld), previousResults.(fld),'AbsTol',tc.tol);
                 end
             end

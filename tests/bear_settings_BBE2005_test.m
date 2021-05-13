@@ -47,9 +47,7 @@ lags=13;
 % inclusion of a constant (1=yes, 0=no)
 const=0; %(demeaned, no constant)
 % path to data; must be a single string
-cd ..\
-pref.datapath=pwd; % main BEAR folder, specify otherwise
-cd .\files
+pref.datapath=bearrot(); % main BEAR folder, specify otherwise
 % excel results file name
 pref.results_sub='results_BBE2005';
 % to output results in excel
