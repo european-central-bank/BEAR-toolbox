@@ -51,13 +51,13 @@ pref.datapath=bearroot(); % main BEAR folder, specify otherwise
 % excel results file name
 pref.results_sub='resultsAAU4';
 % to output results in excel
-pref.results=1;
+pref.results=0;
 % output charts
-pref.plot=1;
+pref.plot=0;
 % pref: useless by itself, just here to avoid code to crash
 pref.pref=0;
 % save matlab workspace (1=yes, 0=no (default))
-pref.workspace=0;
+pref.workspace=1;
 
 % FAVAR options
 favar.FAVAR=1; % augment VAR model with factors (1=yes, 0=no)
