@@ -46,20 +46,18 @@ varexo='';
 lags=4;
 % inclusion of a constant (1=yes, 0=no)
 const=1;
-% path to data; must be a single string
-cd ..\
-pref.datapath=pwd; % main BEAR folder, specify otherwise
-cd .\files
+% path to data
+pref.datapath=bearroot(); % fileparts(mfilename('fullpath')); % next to settings
 % excel results file name
-pref.results_sub='results_test_data_temp';
+pref.results_sub='results_bvr';
 % to output results in excel
-pref.results=0;
+pref.results=1;
 % output charts
-pref.plot=0;
+pref.plot=1;
 % pref: useless by itself, just here to avoid code to crash
 pref.pref=0;
 % save matlab workspace (1=yes, 0=no (default))
-pref.workspace=1;
+pref.workspace=0;
 
 % FAVAR options
 favar.FAVAR=0; % augment VAR model with factors (1=yes, 0=no)

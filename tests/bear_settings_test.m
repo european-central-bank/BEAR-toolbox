@@ -47,9 +47,7 @@ lags=4;
 % inclusion of a constant (1=yes, 0=no)
 const=1;
 % path to data; must be a single string
-cd ..\
-pref.datapath=pwd; % main BEAR folder, specify otherwise
-cd .\files
+pref.datapath = bearroot(); % fileparts(mfilename('fullpath')); % next to settings
 % excel results file name
 pref.results_sub='results_test_data_temp';
 % to output results in excel
