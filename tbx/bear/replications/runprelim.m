@@ -3,18 +3,16 @@ replicationpath=pwd;
 datapath=[replicationpath filesep dataxlsx];
 settingspath=[replicationpath filesep settingsm];
 
+% load the settings directly
+[~,bear_settings] = fileparts(settingspath);
+eval(bear_settings);
+
 %BEAR path
-cd ..\
-BEARpath=pwd;
-filespath=[BEARpath filesep 'files' filesep];
+BEARpath=bearroot();
+filespath = fullfile(BEARpath, 'files');
 
 % replace the previous datafile with the one for the replication
 copyfile(datapath,[BEARpath filesep 'data.xlsx']);
 
-% replace the previous BEAR settings file with the one for the replication
-copyfile(settingspath,[filespath 'bear_settings.m']);
-
-% load the settings directly
-bear_settings
 % run main code
 bear_toolbox_main_code
