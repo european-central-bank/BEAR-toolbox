@@ -1,4 +1,4 @@
-function [strctident,signreslabels]=loadcorrelres(strctident,endo,names,startdate,enddate,lags,n,IRFt,favar)
+function [strctident,signreslabels]=loadcorrelres(strctident,endo,names,startdate,enddate,lags,n,IRFt,favar,pref)
 
 signreslabels=strctident.signreslabels;
 signreslabels_shocksindex=strctident.signreslabels_shocksindex;

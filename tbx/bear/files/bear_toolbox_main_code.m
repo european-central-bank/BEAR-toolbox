@@ -125,7 +125,7 @@ if IRFt==4 || IRFt==6
     [signrestable,signresperiods,signreslabels,strctident,favar]=loadsignres(n,endo,pref,favar,IRFt,strctident);
     [relmagnrestable,relmagnresperiods,signreslabels,strctident,favar]=loadrelmagnres(n,endo,pref,favar,IRFt,strctident);
     [FEVDrestable,FEVDresperiods,signreslabels,strctident,favar]=loadFEVDres(n,endo,pref,favar,IRFt,strctident);
-    [strctident,signreslabels]=loadcorrelres(strctident,endo,names,startdate,enddate,lags,n,IRFt,favar);
+    [strctident,signreslabels]=loadcorrelres(strctident,endo,names,startdate,enddate,lags,n,IRFt,favar,pref);
 end
 
 
