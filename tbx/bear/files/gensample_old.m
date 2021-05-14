@@ -1,12 +1,12 @@
 function [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,ar,priorexo,lambda4,numendo,favar]=...
-    gensample(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,ar,lambda4,PriorExcel,priorsexogenous,pref,favar,IRFt)
+    gensample_old(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,ar,lambda4,PriorExcel,priorsexogenous,pref,favar,IRFt)
 
 
 % Phase 1: data loading and error checking
 
 % if we have a FAVAR: read information data, data transformation, create indices, compute factors (PC)
 if favar.FAVAR==1
-    [informationstartlocation,informationendlocation,favar]=favar_gensample1(startdate,enddate,favar);
+    [informationstartlocation,informationendlocation,favar]=favar_gensample1(startdate,enddate,favar,pref);
 end
 
 

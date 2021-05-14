@@ -6,7 +6,7 @@ function [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo
 
 % if we have a FAVAR: read information data, data transformation, create indices, compute factors (PC)
 if favar.FAVAR==1
-    [informationstartlocation,informationendlocation,favar]=favar_gensample1(startdate,enddate,favar);
+    [informationstartlocation,informationendlocation,favar]=favar_gensample1(startdate,enddate,favar,pref);
 end
 
 

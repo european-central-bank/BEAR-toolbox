@@ -1,4 +1,4 @@
-function[dataSLM,datesSLM,namesSLM]=loadSLM(names,data_endo,p)
+function[dataSLM,datesSLM,namesSLM]=loadSLM(names,data_endo,p,pref)
 T=size(data_endo,1)-p;
 %first check for which variables the survey local mean is available and the read the local mean data
 [dataSLM, namesSLM, rawSLM]=xlsread(pref.excelFile,'Survey Local Mean');

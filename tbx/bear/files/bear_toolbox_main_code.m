@@ -117,7 +117,7 @@ end
 % Long run prior table
 H=[];
 if (VARtype==2) && lrp==1
-    H=loadH;
+    H=loadH(pref);
 end
 
 % load sign and magnitude restrictions table, relative magnitude restrictions table, FEVD restrictions table
@@ -1324,7 +1324,7 @@ for iteration=1:numt % beginning of forecasting loop
             % if the Survey Local Mean VAR with stochastic volatility
         elseif stvol==4
             % load Survey local mean data
-            [dataSLM,datesSLM,namesSLM]=loadSLM(names,data_endo,lags);
+            [dataSLM,datesSLM,namesSLM]=loadSLM(names,data_endo,lags,pref);
             % set priors and preliminaries for local mean model
             [Ys, Yt, YincLags, data_post_training, const, priorValues, dataValues, sizetraining]=...
                 TVESLM_prior(data_endo, data_exo, names, endo, lags, lambda1, lambda2, lambda3, lambda5, ar, bex, dataSLM, namesSLM, datesSLM, const, priorexo, gamma);

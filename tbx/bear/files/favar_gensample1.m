@@ -1,4 +1,4 @@
-function [informationstartlocation,informationendlocation,favar]=favar_gensample1(startdate,enddate,favar)
+function [informationstartlocation,informationendlocation,favar]=favar_gensample1(startdate,enddate,favar,pref)
 % information data table
 [informationdata,informationnames]=xlsread(pref.excelFile,'factor data');
 % also here: now, as a preliminary step: check if there is any Nan in the data; if yes, return an error since the model won't be able to run with missing data
