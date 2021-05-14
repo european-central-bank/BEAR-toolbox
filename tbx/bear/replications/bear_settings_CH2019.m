@@ -47,6 +47,7 @@ lags=12;
 const=1;
 % path to data
 pref.datapath=fileparts(mfilename('fullpath')); % next to settings
+pref.excelFile = excelPath;
 % excel results file name
 pref.results_sub='results_CH2019';
 % to output results in excel

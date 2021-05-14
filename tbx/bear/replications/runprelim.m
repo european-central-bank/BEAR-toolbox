@@ -11,8 +11,5 @@ eval(bear_settings);
 BEARpath=bearroot();
 filespath = fullfile(BEARpath, 'files');
 
-% replace the previous datafile with the one for the replication
-system( sprintf('copy %s %s',datapath, fullfile(BEARpath, 'data.xlsx') ) )
-
 % run main code
 bear_toolbox_main_code

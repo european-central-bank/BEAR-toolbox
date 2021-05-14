@@ -48,6 +48,7 @@ lags=2;
 const=1;
 % path to data
 pref.datapath=fileparts(mfilename('fullpath')); % next to settings
+pref.excelFile = excelPath;
 % excel results file name
 pref.results_sub='results_WGP2016';
 % to output results in excel

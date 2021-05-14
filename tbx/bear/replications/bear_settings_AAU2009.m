@@ -48,6 +48,7 @@ lags=12;
 const=0;
 % path to data
 pref.datapath=fileparts(mfilename('fullpath')); % next to settings
+pref.excelFile = excelPath;
 % excel results file name
 pref.results_sub='resultsAAU4';
 % to output results in excel
