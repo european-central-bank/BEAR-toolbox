@@ -1,6 +1,6 @@
 % the data file path and the settings file path
 replicationpath=pwd;
-excelPath=fullfile(replicationpath, dataxlsx);
+excelPath=fullfile(fullfile(bearroot(),'replications'), dataxlsx);
 settingspath=fullfile(replicationpath, settingsm);
 
 % load the settings directly
