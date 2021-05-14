@@ -5,7 +5,7 @@
 %    Authors:                                                              % 
 %                                                                          %
 %    Alistair Dieppe (alistair.dieppe@ecb.europa.eu)                       %
-%    Björn van Roye  (bvanroye@bloomberg.net)                              %
+%    BjÃ¶rn van Roye  (bvanroye@bloomberg.net)                              %
 %                                                                          %
 %    Version 5.0                                                           %
 %                                                                          %
@@ -2041,6 +2041,6 @@ end
 
 % if we started bear_Run, restore data and settings files
 if checkRun.bear_Run_dummy==1
-    copyfile([checkRun.filespath 'data_previous.xlsx'],[checkRun.BEARpath filesep 'data.xlsx']);
+    copyfile([checkRun.filespath 'data_previous.xlsx'],[checkRun.BEARpath filesep pref.excelFile]);
     copyfile([checkRun.filespath 'bear_settings_previous.m'],[checkRun.filespath 'bear_settings.m']);
 end

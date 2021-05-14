@@ -1,7 +1,7 @@
 function[dataSLM,datesSLM,namesSLM]=loadSLM(names,data_endo,p)
 T=size(data_endo,1)-p;
 %first check for which variables the survey local mean is available and the read the local mean data
-[dataSLM, namesSLM, rawSLM]=xlsread('data.xlsx','Survey Local Mean');
+[dataSLM, namesSLM, rawSLM]=xlsread(pref.excelFile,'Survey Local Mean');
 datesSLM = namesSLM(2:end,1); %get the datevector for the survey local mean
 namesSLM = namesSLM(1,2:end); %and the corresponding names
 

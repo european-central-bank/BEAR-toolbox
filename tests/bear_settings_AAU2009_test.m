@@ -48,6 +48,7 @@ lags=12;
 const=0;
 % path to data; must be a single string
 pref.datapath=bearroot(); % main BEAR folder, specify otherwise
+pref.excelFile = excelPath;
 % excel results file name
 pref.results_sub='resultsAAU4';
 % to output results in excel

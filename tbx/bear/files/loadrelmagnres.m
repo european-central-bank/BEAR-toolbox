@@ -9,7 +9,7 @@ signreslabels=strctident.signreslabels;
 signreslabels_shocksindex=strctident.signreslabels_shocksindex;
 % load the data from Excel
 % sign restrictions values
-[~,~,strngs1]=xlsread('data.xlsx','relmagn res values');
+[~,~,strngs1]=xlsread(pref.excelFile,'relmagn res values');
 % replace NaN entries by blanks
 strngs1(cellfun(@(x) any(isnan(x)),strngs1))={[]};
 % convert all numeric entries into strings
@@ -131,7 +131,7 @@ if IRFt==6
 end
 
 % magnitude restriction periods
-[~,~,strngs2]=xlsread('data.xlsx','relmagn res periods');
+[~,~,strngs2]=xlsread(pref.excelFile,'relmagn res periods');
 strngs2(cellfun(@(x) any(isnan(x)),strngs2))={[]};
 strngs2(cellfun(@isnumeric,strngs2))=cellfun(@num2str,strngs2(cellfun(@isnumeric,strngs2)),'UniformOutput',0);
 [nerows2,neclmns2]=find(~cellfun('isempty',strngs2));

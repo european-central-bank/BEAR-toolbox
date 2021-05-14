@@ -31,7 +31,7 @@ end
 
 
 % check if we have IV correlation restrictions
-[IVcorrel,txtcorrel]=xlsread('data.xlsx','IV');
+[IVcorrel,txtcorrel]=xlsread(pref.excelFile,'IV');
 checkCorrelInstrument_index=ismember(txtcorrel(1,2:end),strctident.CorrelInstrument);
 checkCorrelShock_index=ismember(strctident.signreslabels,strctident.CorrelShock); %%%%% evt. change to strcmp loop
 
@@ -40,13 +40,13 @@ if sum(checkCorrelShock_index)==0
 % load the data from Excel
 % sign restrictions values
 if strctident.signres==1
-    [~,~,strngs1]=xlsread('data.xlsx','sign res values');
+    [~,~,strngs1]=xlsread(pref.excelFile,'sign res values');
 elseif strctident.relmagnres==1
-    [~,~,strngs1]=xlsread('data.xlsx','relmagn res values');
+    [~,~,strngs1]=xlsread(pref.excelFile,'relmagn res values');
 elseif strctident.FEVDres==1
-    [~,~,strngs1]=xlsread('data.xlsx','FEVD res values');
+    [~,~,strngs1]=xlsread(pref.excelFile,'FEVD res values');
 else
-    [~,~,strngs1]=xlsread('data.xlsx','sign res values');
+    [~,~,strngs1]=xlsread(pref.excelFile,'sign res values');
 end
 % replace NaN entries by blanks
 strngs1(cellfun(@(x) any(isnan(x)),strngs1))={[]};
@@ -107,7 +107,7 @@ strctident.signreslabels=signreslabels;
 strctident.signreslabels_shocksindex=sort(signreslabels_shocksindex);
 
 %again, check if we have IV correlation restrictions
-[IVcorrel,txtcorrel]=xlsread('data.xlsx','IV');
+[IVcorrel,txtcorrel]=xlsread(pref.excelFile,'IV');
 checkCorrelInstrument_index=ismember(txtcorrel(1,2:end),strctident.CorrelInstrument);
 checkCorrelShock_index=ismember(strctident.signreslabels,strctident.CorrelShock); %%%%% evt. change to strcmp loop
 elseif isempty(r2)==1 && isempty(c2)==1

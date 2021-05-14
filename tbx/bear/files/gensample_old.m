@@ -11,7 +11,7 @@ end
 
 
 % first read the data from Excel
-[data,names]=xlsread('data.xlsx','data');
+[data,names]=xlsread(pref.excelFile,'data');
 
 % now, as a preliminary step: check if there is any Nan in the data; if yes, return an error since the model won't be able to run with missing data
 % a simple way to test for NaN is to check for "smaller or equal to infinity": Nan is the only number for which matlab will return 'false' when asked so
@@ -237,7 +237,7 @@ if PriorExcel==0
     ar_default(:,1)=ar;
     ar=ar_default;
 else
-    [ar]=xlsread('data.xlsx','AR priors');
+    [ar]=xlsread(pref.excelFile,'AR priors');
 end
 
 
@@ -251,8 +251,8 @@ if priorsexogenous==0
         end
     end
 else
-    [priorexo]=xlsread('data.xlsx','exo mean priors');
-    [lambda4]=xlsread('data.xlsx','exo tight priors');
+    [priorexo]=xlsread(pref.excelFile,'exo mean priors');
+    [lambda4]=xlsread(pref.excelFile,'exo tight priors');
     priorexo=priorexo(1:numendo,1:numexo+1);
     lambda4=lambda4(1:numendo,1:numexo+1);
 end
@@ -537,7 +537,7 @@ else
         % if there are exogenous variables, load from excel
     else
         % load the data from Excel
-        [num txt strngs]=xlsread('data.xlsx','pred exo');
+        [num txt strngs]=xlsread(pref.excelFile,'pred exo');
         
         % obtain the row location of the forecast start date
         [Fstartlocation,~]=find(strcmp(strngs,Fstartdate));

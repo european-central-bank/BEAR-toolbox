@@ -627,8 +627,8 @@ classdef interface_exported < matlab.apps.AppBase
                 
                 % replace the previous datafile with the one for the replication
                 % but first save the previous one
-                copyfile([BEARpath filesep 'data.xlsx'],[filespath 'data_previous.xlsx']);
-                copyfile(datapath1,[BEARpath filesep 'data.xlsx']);
+                copyfile([BEARpath filesep pref.excelFile],[filespath 'data_previous.xlsx']);
+                copyfile(datapath1,[BEARpath filesep pref.excelFile]);
                 
                 % replace the previous BEAR settings file with the one for the replication
                 % but first save the previous one

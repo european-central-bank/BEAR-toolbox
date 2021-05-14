@@ -48,6 +48,7 @@ lags=4;
 const=1;
 % path to data; must be a single string
 pref.datapath = bearroot(); % fileparts(mfilename('fullpath')); % next to settings
+pref.excelFile = excelPath;
 % excel results file name
 pref.results_sub='results_test_data_temp';
 % to output results in excel

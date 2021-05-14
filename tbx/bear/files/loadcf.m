@@ -14,7 +14,7 @@ cfintervals={};
 % recover the cfconds cell (for all types of conditional forecasts)
 
 % load the data from Excel
-[num txt strngs]=xlsread('data.xlsx','conditions');
+[num txt strngs]=xlsread(pref.excelFile,'conditions');
 % replace NaN entries by blanks
 strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
 % convert potential numeric entries into strings
@@ -82,7 +82,7 @@ end
 
 if CFt==2
 % load the data from Excel
-[num txt strngs]=xlsread('data.xlsx','shocks');
+[num txt strngs]=xlsread(pref.excelFile,'shocks');
 % replace NaN entries by blanks
 strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
 % convert potential numeric entries into strings
@@ -155,7 +155,7 @@ if CFt==2
 % initiate the cfblocks matrix
 cfblocks=zeros(Fperiods,numendo);
 % load the data from Excel
-[num txt strngs]=xlsread('data.xlsx','blocks');
+[num txt strngs]=xlsread(pref.excelFile,'blocks');
 % replace NaN entries by blanks
 strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
 % convert potential numeric entries into strings
@@ -232,7 +232,7 @@ end
 
 if CFt==4
 % load the data from Excel
-[num txt strngs]=xlsread('data.xlsx','intervals');
+[num txt strngs]=xlsread(pref.excelFile,'intervals');
 % replace NaN entries by blanks
 strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
 % convert potential numeric entries into strings

@@ -11,7 +11,7 @@ function [grid]=loadhogs(scoeff,iobs,pref)
 grid=cell(7,3);
 
 % load the data from Excel
-[num txt strngs]=xlsread('data.xlsx','grid');
+[num txt strngs]=xlsread(pref.excelFile,'grid');
 
 % replace NaN entries by blanks
 strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};

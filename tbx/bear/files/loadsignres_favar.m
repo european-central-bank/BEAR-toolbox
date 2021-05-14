@@ -11,8 +11,8 @@ favar.numendo=size(endo,1);
 % favar.signreslabels=favar.informationvariablestrings{1,1}; %number of information variables to be restricted, one for the moment
 % load the data from Excel
 % sign restrictions values
-[~,~,strngs1]=xlsread('data.xlsx','favar.sign res values');
-[~,~,strngs2]=xlsread('data.xlsx','favar.sign res periods');
+[~,~,strngs1]=xlsread(pref.excelFile,'favar.sign res values');
+[~,~,strngs2]=xlsread(pref.excelFile,'favar.sign res periods');
 % replace NaN entries by blanks
 strngs1(cellfun(@(x) any(isnan(x)),strngs1))={[]};
 strngs2(cellfun(@(x) any(isnan(x)),strngs2))={[]};

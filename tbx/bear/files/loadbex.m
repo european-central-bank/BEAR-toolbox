@@ -16,7 +16,7 @@ numendo=size(endo,1);
 % initiate the matrix blockexo
 blockexo=zeros(numendo,numendo);
 % load the data from Excel
-[num txt strngs]=xlsread('data.xlsx','block exo');
+[num txt strngs]=xlsread(pref.excelFile,'block exo');
 % replace NaN entries by blanks
 strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
 % convert all numeric entries into strings

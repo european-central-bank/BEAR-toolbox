@@ -35,7 +35,7 @@ cfblocks=[];
 % recover the cfconds cell (for all types of conditional forecasts)
 
 % load the data from Excel
-[num txt strngs]=xlsread('data.xlsx','pan conditions');
+[num txt strngs]=xlsread(pref.excelFile,'pan conditions');
 % replace NaN entries by blanks
 strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
 % convert potential numeric entries into strings
@@ -144,7 +144,7 @@ end
 
 if CFt==2
 % load the data from Excel
-[num txt strngs]=xlsread('data.xlsx','pan shocks');
+[num txt strngs]=xlsread(pref.excelFile,'pan shocks');
 % replace NaN entries by blanks
 strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
 % convert potential numeric entries into strings
@@ -256,7 +256,7 @@ end
 
 if CFt==2
 % load the data from Excel
-[num txt strngs]=xlsread('data.xlsx','pan blocks');
+[num txt strngs]=xlsread(pref.excelFile,'pan blocks');
 % replace NaN entries by blanks
 strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
 % convert potential numeric entries into strings

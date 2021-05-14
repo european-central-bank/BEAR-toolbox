@@ -9,8 +9,8 @@ signreslabels=cell(n,1);
 signreslabels_shocksindex=[];
 % load the data from Excel
 % sign restrictions values
-[~,~,strngs1]=xlsread('data.xlsx','sign res values');
-[~,~,strngs2]=xlsread('data.xlsx','sign res periods');
+[~,~,strngs1]=xlsread(pref.excelFile,'sign res values');
+[~,~,strngs2]=xlsread(pref.excelFile,'sign res periods');
 % replace NaN entries by blanks
 strngs1(cellfun(@(x) any(isnan(x)),strngs1))={[]};
 strngs2(cellfun(@(x) any(isnan(x)),strngs2))={[]};

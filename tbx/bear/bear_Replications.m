@@ -4,7 +4,7 @@
 %                                                                          %
 %    Authors:                                                              %
 %    Alistair Dieppe (alistair.dieppe@ecb.europa.eu)                       %
-%    Björn van Roye  (bvanroye@bloomberg.net)                              %
+%    BjÃ¶rn van Roye  (bvanroye@bloomberg.net)                              %
 %                                                                          %
 %    Version 5.0                                                           %
 %                                                                          %
@@ -77,8 +77,8 @@ settingspath=[replicationpath filesep settingsm];
 
 % replace the previous datafile with the one for the replication
 % but first save the previous one
-copyfile([BEARpath filesep 'data.xlsx'],[filespath 'data_previous.xlsx']);
-copyfile(datapath,[BEARpath filesep 'data.xlsx']);
+copyfile([BEARpath filesep pref.excelFile],[filespath 'data_previous.xlsx']);
+copyfile(datapath,[BEARpath filesep pref.excelFile]);
 
 % replace the previous BEAR settings file with the one for the replication
 % but first save the previous one

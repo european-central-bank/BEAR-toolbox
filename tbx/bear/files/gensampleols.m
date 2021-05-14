@@ -8,7 +8,7 @@ end
 %% endo data
 % Phase 1: data loading and error checking
 % first read the data from Excel
-[data, names]=xlsread('data.xlsx','data');
+[data, names]=xlsread(pref.excelFile,'data');
 
 % identify the date strings
 datestrings=names(2:end,1);
@@ -481,7 +481,7 @@ else
         % if there are exogenous variables, load from excel
     else
         % load the data from Excel
-        [~,~,strngs]=xlsread('data.xlsx','pred exo');
+        [~,~,strngs]=xlsread(pref.excelFile,'pred exo');
         
         % obtain the row location of the forecast start date
         [Fstartlocation,~]=find(strcmp(strngs,Fstartdate));

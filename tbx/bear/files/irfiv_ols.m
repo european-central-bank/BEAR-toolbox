@@ -20,7 +20,7 @@ function [D, gamma, beginInstrument,EndInstrument, IV]=irfiv_ols(names, betahat,
 %          - matrix 'gamma': record of the draws for the structural disturbances variance-covariance matrix gamma
 
 % Load IV and make it comparable with the reduced form errors
-[IV txt]=xlsread('data.xlsx','IV');
+[IV txt]=xlsread(pref.excelFile,'IV');
 
 namesIV = txt(1,2:end);
 datesIV = txt(2:end,1);

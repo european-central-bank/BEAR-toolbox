@@ -173,7 +173,7 @@ else
     IVcorrelcheck=1;
 end
 if IVcorrelcheck==1
-    [IVcorrel txtcorrel]=xlsread('data.xlsx','IV');
+    [IVcorrel txtcorrel]=xlsread(pref.excelFile,'IV');
     
     Index = strcmp(txtcorrel(1,:), InstrumentforCorrel);           %find the instrument in the IV sheet
     IVnum = find(Index==1, 1, 'first')-1;
@@ -485,7 +485,7 @@ parfor ii=1:Acc
             end
             % repeat this loop until a succesful draw is obtained
 
-        end %end of while loop ´
+        end %end of while loop Â´
         % with succesful Qj at hand, eventually set Q as Qj
         Q=Qj;
    end %end of if loop
