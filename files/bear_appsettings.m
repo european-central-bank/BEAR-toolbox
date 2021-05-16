@@ -457,7 +457,8 @@ end;
         % options for Bayesian IV model
         if IRFt==5 || IRFt==6
             strctident.MM=0; % option for Median model (0=no (standard), 1=yes)
-            strctident.Thin=appsettings.Thin.Value;
+    %        strctident.Thin=appsettings.Thin.Value;
+            strctident.Thin=10;
             strctident.prior_type_reduced_form=1; %1=flat NW as in Uhlig 2006, 2=normal wishart , related to the IV routine
     if appsettings.prior_type_reduced_form.Value(1:2)=='No' strctident.prior_type_reduced_form=2; end;
     

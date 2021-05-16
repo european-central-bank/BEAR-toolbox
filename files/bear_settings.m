@@ -372,10 +372,10 @@ FEVD=1;
 HD=1; 
 HDall=0;%if we want to plot the entire decomposition, all contributions (includes deterministic part)HDall
 % activate conditional forecasts (1=yes, 0=no)
-CF=1;
+CF=0;
 % structural identification (1=none, 2=Cholesky, 3=triangular factorisation, 4=sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions,
 %                            5=IV identification, 6=IV identification & sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions)
-IRFt=2;
+IRFt=4;
 % IRFt options
     % strctident settings for OLS model
     if VARtype==1
