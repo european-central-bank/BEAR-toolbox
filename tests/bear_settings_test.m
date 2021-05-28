@@ -50,6 +50,7 @@ const=1;
 pref.datapath = bearroot(); % fileparts(mfilename('fullpath')); % next to settings
 pref.excelFile = excelPath;
 % excel results file name
+pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
 pref.results_sub='results_test_data_temp';
 % to output results in excel
 pref.results=0;
