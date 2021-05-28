@@ -51,6 +51,7 @@ pref.datapath=bearroot(); % fileparts(mfilename('fullpath')); % next to settings
 pref.excelFile = excelPath;
 % excel results file name
 pref.results_sub='results_bvr';
+pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
 % to output results in excel
 pref.results=1;
 % output charts

@@ -27,6 +27,7 @@ const=1;
 pref.datapath=fileparts(mfilename('fullpath')); % next to settings
 pref.excelFile = excelPath;
 % excel results file name
+pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
 pref.results_sub='results';
 % to output results in excel
 pref.results=1;
