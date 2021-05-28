@@ -60,7 +60,7 @@ r2bar=diag(R2bar);
 
 % preliminary task: create and open the txt file used to save the results
 
-filelocation=[pref.datapath '\results\' pref.results_sub '.txt'];
+filelocation=fullfile(pref.results_path, [pref.results_sub '.txt']);
 fid=fopen(filelocation,'wt');
 
 % print toolbox header
@@ -516,7 +516,7 @@ end
 afcell=afcell(:,1:end-1);
 % write in excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],afcell,'actual fitted','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),afcell,'actual fitted','B2');
 end
 
 % then compute the cell for the residuals
@@ -525,7 +525,7 @@ horzspace=repmat({''},1,n);
 rescell=[{'residuals'} horzspace;{''} horzspace;{''} endo';stringdates1 num2cell(EPStilde)];
 % write in excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],rescell,'resids','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),rescell,'resids','B2');
 end
 
 % finally compute the cell for the time varying variance and covariance
@@ -560,6 +560,6 @@ end
 varcovcell=varcovcell(3:end,1:end-1);
 % write in excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],varcovcell,'time variation','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),varcovcell,'time variation','B2');
 end
 

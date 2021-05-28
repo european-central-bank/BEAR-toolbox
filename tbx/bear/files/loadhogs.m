@@ -142,7 +142,7 @@ end
 
 % if no error is returned, record on Excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],grid,'grid search','C3');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),grid,'grid search','C3');
 end 
  
  

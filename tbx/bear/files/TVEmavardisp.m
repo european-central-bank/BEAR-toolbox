@@ -118,7 +118,7 @@ r2bar=diag(R2bar);
 % filelocation=[filelocation '\results.txt'];
 % fid=fopen(filelocation,'wt');
 
-filelocation=[pref.datapath '\results\' pref.results_sub '.txt'];
+filelocation=fullfile(pref.results_path, [pref.results_sub '.txt']);
 fid=fopen(filelocation,'wt');
 
 % print toolbox header
@@ -144,8 +144,8 @@ fprintf('%s\n','%    Romain Legrand  (Romain Legrand <b00148883@essec.edu>)     
 fprintf(fid,'%s\n','%    Romain Legrand  (Romain Legrand <b00148883@essec.edu>)                                          %');
 fprintf('%s\n','%    Alistair Dieppe (adieppe@worldbank.org)                                                             %');
 fprintf(fid,'%s\n','%    Alistair Dieppe (adieppe@worldbank.org)                                                         %');
-fprintf('%s\n','%    Björn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                                                      %');
-fprintf(fid,'%s\n','%    Björn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                                                  %');
+fprintf('%s\n','%    BjÃ¶rn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                                                      %');
+fprintf(fid,'%s\n','%    BjÃ¶rn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                                                  %');
 fprintf('%s\n','%                                                                                                        %');
 fprintf(fid,'%s\n','%                                                                                                    %');
 fprintf('%s\n','%    Version 4.4                                                                                         %');

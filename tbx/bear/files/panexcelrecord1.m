@@ -3,11 +3,11 @@
 
 
 % start by deleting the previous excel save
-delete([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx']);
+delete(fullfile(pref.results_path, [pref.results_sub '.xlsx']));
 
 % then copy the blank excel file from the files to the data folder
 sourcefile=[pwd filesep 'results panel.xlsx'];
-destinationfile=[pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'];
+destinationfile=fullfile(pref.results_path, [pref.results_sub '.xlsx']);
 copyfile(sourcefile,destinationfile);
 
 
@@ -270,7 +270,7 @@ end
 
 % write on excel file
 if pref.results==1
-        xlswritegeneral([pref.datapath filesep 'results' pref.results_sub '.xlsx'],generalinfo,'estimation info','C2');
+        xlswritegeneral(fullfile(pref.results_path,[pref.results_sub '.xlsx']),generalinfo,'estimation info','C2');
 end
 
 
@@ -307,7 +307,7 @@ if CF==1
       end
    % write on excel file
    if pref.results==1
-       xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],cfcell,'cond forecasts prior','B2');
+       xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),cfcell,'cond forecasts prior','B2');
    end
 end
 
@@ -333,7 +333,7 @@ if (F==1 || CF==1)
    pexocell=[label horzspace;{' '} horzspace;{' '} exo';Fstrings num2cell(data_exo_p)];
    % write on excel file
    if pref.results==1
-       xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],pexocell,'predicted exo','B2');
+       xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),pexocell,'predicted exo','B2');
    end
    end
 end

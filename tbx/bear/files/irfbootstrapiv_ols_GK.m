@@ -85,7 +85,7 @@ for kk=1
     table.Properties.VariableNames(kk) = cellstr(char('Validitytest'));
 end
 
-filelocation=[pref.datapath '\results\' pref.results_sub '.txt'];
+filelocation=fullfile(pref.results_path, [pref.results_sub '.txt']);
 fid=fopen(filelocation,'at');
 %two empty lines
 fprintf('%s\n','');

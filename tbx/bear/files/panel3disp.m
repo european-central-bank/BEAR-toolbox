@@ -20,7 +20,7 @@ function []=panel3disp(n,N,m,p,k,T,Yi,Xi,Units,endo,exo,const,beta_gibbs,beta_me
 
 % preliminary task: create and open the txt file used to save the results
 
-filelocation=[pref.datapath '\results\' pref.results_sub '.txt'];
+filelocation=fullfile(pref.results_path, [pref.results_sub '.txt']);
 fid=fopen(filelocation,'wt');
 
 % print toolbox header

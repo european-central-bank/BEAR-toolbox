@@ -84,7 +84,7 @@ for kk=1
 end
 
 % print proxy var statistics in the command window and in the results file 
-filelocation=[pref.datapath '\results\' pref.results_sub '.txt'];
+filelocation=fullfile(pref.results_path, [pref.results_sub '.txt']);
 fid=fopen(filelocation,'at');
 %two empty lines
 fprintf('%s\n','');

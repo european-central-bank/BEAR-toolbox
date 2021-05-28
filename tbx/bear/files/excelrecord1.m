@@ -552,6 +552,6 @@ end
 
 % write on excel file
 if pref.results==1
-    [status,message]=xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],estimationinfo ,'estimation info','C2');
+    [status,message]=xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),estimationinfo ,'estimation info','C2');
 end
 

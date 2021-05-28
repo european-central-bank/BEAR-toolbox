@@ -476,7 +476,7 @@ else
         strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
         % then save on Excel
         if pref.results==1
-            xlswrite([pref.datapath '\results\' pref.results_sub '.xlsx'],strngs,'pred exo','A1');
+            xlswrite(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'pred exo','A1');
         end
     end
     

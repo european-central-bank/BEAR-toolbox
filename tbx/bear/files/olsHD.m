@@ -524,7 +524,7 @@ end
 hdcell=hdcell(1:end,1:end-1);
 % write in excel
 if pref.results==1
-    xlswritegeneral([pref.datapath '\results\' pref.results_sub '.xlsx'],hdcell,'hist decomp','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),hdcell,'hist decomp','B2');
 end
 end
 
@@ -912,7 +912,7 @@ end
 hdcell_plotX=hdcell_plotX(1:end,1:end-1);
 % write in excel
 if pref.results==1
-    xlswritegeneral([pref.datapath '\results\' pref.results_sub '.xlsx'],hdcell_plotX,'hist decomp FAVAR','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),hdcell_plotX,'hist decomp FAVAR','B2');
 end
 end
   

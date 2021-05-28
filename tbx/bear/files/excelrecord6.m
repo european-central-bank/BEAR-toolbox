@@ -27,4 +27,4 @@ end
 fevdcell=fevdcell(3:end,1:end-1);
 
 % write in excel
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],fevdcell,'FEVD','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),fevdcell,'FEVD','B2');

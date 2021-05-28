@@ -21,7 +21,7 @@ for i=1:numt
 
 Fstartdate=char(Fstartdate_rolling(i,:));
 
-   output = char(strcat([pref.datapath '\results\' pref.results_sub Fstartdate '.mat']));
+   output = char(strcat(fullfile(pref.results_path, [pref.results_sub Fstartdate '.mat'])));
    
 % load forecasts
    load(output,'forecast_estimates','forecast_record','varendo','names','frequency', 'Forecasteval')

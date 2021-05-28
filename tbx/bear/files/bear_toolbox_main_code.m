@@ -81,7 +81,7 @@ convertstrngs;
 
 addpath(pref.datapath);
 % initiation of Excel result file
-initexcel;
+initexcel(pref);
 
 % generate the different sets of data
 % if the model is the OLS VAR,
@@ -813,7 +813,7 @@ for iteration=1:numt % beginning of forecasting loop
         % option to save matlab workspace
         if pref.workspace==1
             if numt>1
-                save([pref.datapath filesep 'results' filesep pref.results_sub Fstartdate '.mat']); % Save Workspace
+                save(fullfile(pref.results_path, [ pref.results_sub Fstartdate '.mat'] )); % Save Workspace
             end
         end
         
@@ -2013,7 +2013,7 @@ if CF==1
 end
 
 if numt>1
-    save([pref.datapath '\results\' pref.results_sub Fstartdate '.mat']); % Save Workspace
+    save(fullfile(pref.results_path,[pref.results_sub Fstartdate '.mat'])); % Save Workspace
 end
 
 Fstartdate_rolling=[Fstartdate_rolling; Fstartdate];
@@ -2036,7 +2036,7 @@ end
 
 % option to save matlab workspace
 if pref.workspace==1
-    save([pref.datapath filesep 'results' filesep pref.results_sub '.mat']);
+    save( fullfile(pref.results_path, [pref.results_sub '.mat']) );
 end
 
 % if we started bear_Run, restore data and settings files

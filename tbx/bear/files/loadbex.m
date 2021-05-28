@@ -73,7 +73,7 @@ blockexo = blockexo';
 
 % finally, record on Excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],strngs,'block exogeneity','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'block exogeneity','B2');
 end
 
 

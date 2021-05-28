@@ -50,6 +50,7 @@ const=1;
 pref.datapath=bearroot(); % main BEAR folder, specify otherwise with a string 'C:\BEAR'
 pref.excelFile = excelPath;
 % excel results file name
+pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
 pref.results_sub='results_test_data_WGP2016_temp';
 % to output results in excel
 pref.results=0;

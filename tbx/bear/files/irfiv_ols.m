@@ -135,7 +135,7 @@ for kk=1
 end
 
 F_test_name=strcat(pref.results_sub,'_Proxy_VAR_F_Test');
-filelocation=[pref.datapath '\results\', F_test_name];
+filelocation=fullfile(pref.results_path, F_test_name);
 fid=fopen(filelocation,'wt');
 
 fprintf('%s\n','');

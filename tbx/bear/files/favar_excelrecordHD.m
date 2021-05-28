@@ -19,4 +19,4 @@ end
 % trim
 hdcell_plotX=hdcell_plotX(1:end,1:end-1);
 % write in excel
-    xlswritegeneral([pref.datapath '\results\' pref.results_sub '.xlsx'],hdcell_plotX,'favar_hist decomp','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),hdcell_plotX,'favar_hist decomp','B2');

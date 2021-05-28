@@ -41,5 +41,5 @@ horzspace=repmat({''},1,identified);
 strshockcell=[{'structural shocks'} horzspace;{''} horzspace;{''} labels';stringdates1 num2cell(strshocks_estimates')];
 
 % write in excel
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],strshockcell,'structshocks','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strshockcell,'structshocks','B2');
 end

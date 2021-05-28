@@ -49,6 +49,7 @@ const=0;
 pref.datapath=bearroot(); % main BEAR folder, specify otherwise
 pref.excelFile = excelPath;
 % excel results file name
+pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
 pref.results_sub='results_test_data_BvV2018_temp';
 % to output results in excel
 pref.results=0;

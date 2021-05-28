@@ -168,7 +168,7 @@ end
 % now, print the results and display them
 
 
-filelocation=[pref.datapath '\results\' pref.results_sub '.txt'];
+filelocation=fullfile(pref.results_path, [pref.results_sub '.txt']);
 fid=fopen(filelocation,'at');
 
 

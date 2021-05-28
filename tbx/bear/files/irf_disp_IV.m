@@ -95,7 +95,7 @@ set(get(ax,'Ylabel'),'Visible','on')
 
 if IRFt==2 || IRFt==3 || IRFt==4 || IRFt==5 || IRFt==6
 
-filelocation=[pref.datapath '\results\' pref.results_sub '.txt'];
+filelocation=fullfile(pref.results_path, [pref.results_sub '.txt']);
 fid=fopen(filelocation,'at');
 
 fprintf('%s\n','');

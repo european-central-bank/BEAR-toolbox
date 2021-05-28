@@ -84,7 +84,7 @@ end
 irfcell=irfcell(4:end,1:end-1);
 % write in excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],irfcell,'IRF','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),irfcell,'IRF','B2');
 end
 
 
@@ -152,7 +152,7 @@ if IRFt~=1
    strshockcell=strshockcell(4:end,1:end-1);
    % write in excel
    if pref.results==1
-        xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],strshockcell,'shocks','B2');
+        xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strshockcell,'shocks','B2');
    end
 end
 

@@ -270,7 +270,7 @@ close(hbar);   %close progress bar
 %compute relevance
 median_relevance = median(relevance_draws);
 % print accepted draws in command window and results file
-filelocation=[pref.datapath '\results\' pref.results_sub '.txt'];
+filelocation=fullfile(pref.results_path, [pref.results_sub '.txt']);
 fid=fopen(filelocation,'at');
 
 

@@ -55,4 +55,4 @@ end
 % trim
 hdcell=hdcell(1:end,1:end-1);
 % write in excel
-    xlswritegeneral([pref.datapath '\results\' pref.results_sub '.xlsx'],hdcell,'hist decomp','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),hdcell,'hist decomp','B2');
