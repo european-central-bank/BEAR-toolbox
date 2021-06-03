@@ -112,7 +112,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            previousResults = load('results_test_data_CH2019.mat');
+            previousResults = load('results_test_data_CH2019_2.mat');
             resultsFile = fullfile(pref.results_path,'results_test_data_CH2019_temp.mat');
             currentResults = load(resultsFile);
             for f = fields(previousResults)'
@@ -147,7 +147,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            previousResults = load('results_test_data_WGP2016.mat');
+            previousResults = load('results_test_data_WGP2016_2.mat');
             resultsFile = fullfile(pref.results_path,'results_test_data_WGP2016_temp.mat');
             currentResults = load(resultsFile);
             for f = fields(previousResults)'
@@ -174,7 +174,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            previousResults = load('results_test_data_BvV2018.mat');
+            previousResults = load('results_test_data_BvV2018_2.mat');
             resultsFile = fullfile(pref.results_path,'results_test_data_BvV2018_temp.mat');
             currentResults = load(resultsFile);
             for f = fields(previousResults)'
