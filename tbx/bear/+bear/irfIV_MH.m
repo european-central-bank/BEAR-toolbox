@@ -32,7 +32,7 @@ IVpIVi = (IVpredtemp'*IVpredtemp)\eye(nvar);
 betaIV2=IVpIVi*(IVpredtemp'*Shock);
 ImpactIRFIV(hh,1) = betaIV2(2,1); %should be equal to Mu from 2:end
 end
-C=chol(nspd(sigmahatIV),'lower');
+C=chol(bear.nspd(sigmahatIV),'lower');
 b=ImpactIRFIV;
 %%Recover the vector q that maps the first column of C into b such that Cq=b;
 qols = C\b;
@@ -70,9 +70,9 @@ if strctident.prior_type_reduced_form==2
 %lambda1 = 0.1; %overall tightness
 %lambda3=1; %scaling coefficient for lags
 %lambda4=100; %tightness for exogenous variables
-[Bbar,~,aux1,vt,Sbar]=nwprior_for_IV(arvar,lambda1,lambda3,lambda4,m,p,k,q,X,Y,T,sigma_hat,betahat,n);
-betahat=vec(Bbar);
-%sigmahat_prior=nspd(St);
+[Bbar,~,aux1,vt,Sbar]=bear.nwprior_for_IV(arvar,lambda1,lambda3,lambda4,m,p,k,q,X,Y,T,sigma_hat,betahat,n);
+betahat=bear.vec(Bbar);
+%sigmahat_prior=bear.nspd(St);
 % inv_sigma_hat=sigmahat\eye(n);
 elseif strctident.prior_type_reduced_form==1
     vt=T;
@@ -85,7 +85,7 @@ Q=qols;
 sigma_draw=sigma_hat;
 %inv_sigma_draw=inv_sigma_hat_ols;
 B_draw    = reshape(betahat,k,n); %reshape
-hsigma=chol(nspd(sigma_draw),'lower'); %get the cholesky decomposition of the proposal matrix
+hsigma=chol(bear.nspd(sigma_draw),'lower'); %get the cholesky decomposition of the proposal matrix
 EPS_draw  = Y-X*B_draw; %calculate reduced form residuals
 [EPScut,IVcut]=bear.cut_EPS_IV_GK_new(txt, names, EPS_draw, IV, cut1, cut2, cut3, cut4, startdate, enddate, p); %cut the reduced form residuals
 D1inv = Q'/hsigma; %Compute A0inv(:,1);
@@ -100,7 +100,7 @@ aux2 = kron(sigma_draw, aux1);
 beta_draw = mvnrnd(betahat,aux2);%% Draw beta from a multivariate normal given the draw for sigma
 B_draw    = reshape(beta_draw,k,n); %reshape
 EPS_draw  = Y-X*B_draw; %calculate reduced form residuals
-hsigma=chol(nspd(sigma_draw),'lower'); %get the cholesky decomposition of the proposal matrix
+hsigma=chol(bear.nspd(sigma_draw),'lower'); %get the cholesky decomposition of the proposal matrix
 %proposal draw for structural form
 Rotationdraws = randn(n, 1); %draw a random column of the rotation matrix
 Q = Rotationdraws / norm(Rotationdraws);
@@ -108,14 +108,14 @@ Q = Rotationdraws / norm(Rotationdraws);
 [EPScut, IVcut]=bear.cut_EPS_IV_GK_new(txt, names, EPS_draw, IV, cut1, cut2, cut3, cut4, startdate, enddate, p); %cut the reduced form residuals
 end
 %compute the conditional likelihood of the proxy given the reduced form residuals
-c_ll_proxy0 = loglik_proxy_given_data(IVcut, EPScut(1:end, :), hsigma, Q, bet, signu); %log likelihood of the proxy given the draw for beta and sigma
+c_ll_proxy0 = bear.loglik_proxy_given_data(IVcut, EPScut(1:end, :), hsigma, Q, bet, signu); %log likelihood of the proxy given the draw for beta and sigma
 
 AA=0; 
 acpt_reduced_form=0;
 acpt_Q=0;
 keep = 0;   
 %% Metropolis Hastings within Gibs Sampling Algorithm
-hbar=parfor_progressbar(Acc+Bu,'Posterior draws of the Proxy SVAR');
+hbar=bear.parfor_progressbar(Acc+Bu,'Posterior draws of the Proxy SVAR');
 while AA<Acc+Bu
         %------------------------------------------------------------
         % Draw from the conditional probability of the reduced form VAR
@@ -135,10 +135,10 @@ while AA<Acc+Bu
          beta_draw_star = mvnrnd(betahat,aux2);%% Draw beta from a multivariate normal given the draw for sigma
          B_draw_star    = reshape(beta_draw_star,k,n); %reshape
          EPS_draw_star  = Y-X*B_draw_star; %compute reduced form residuals
-         hsigma_star=chol(nspd(sigma_draw_star),'lower'); %get the cholesky decomposition of the proposal matrix
+         hsigma_star=chol(bear.nspd(sigma_draw_star),'lower'); %get the cholesky decomposition of the proposal matrix
          %A0cholstar    = (hsigma_star')\eye(size(hsigma_star,1)); %get A0 of cholesky;
          [EPScut_star,IVcut]=bear.cut_EPS_IV_GK_new(txt, names, EPS_draw_star, IV, cut1, cut2, cut3, cut4, startdate, enddate, p); %cut the reduced form residuals
-         c_ll_proxy_star = loglik_proxy_given_data(IVcut, EPScut_star(1:end, :), hsigma_star, Q, bet, signu); %log likelihood of the proxy given the draw for beta and sigma
+         c_ll_proxy_star = bear.loglik_proxy_given_data(IVcut, EPScut_star(1:end, :), hsigma_star, Q, bet, signu); %log likelihood of the proxy given the draw for beta and sigma
          
          % metropolis hastings acceptance probability
          mhap = exp(c_ll_proxy_star - c_ll_proxy0);
@@ -153,12 +153,12 @@ while AA<Acc+Bu
         beta_draw_star = mvnrnd(betahat,aux2);%% Draw beta from a multivariate normal given the draw for sigma
         B_draw_star    = reshape(beta_draw_star,k,n); %reshape
         EPS_draw_star  = Y-X*B_draw_star; %compute reduced form residuals
-        hsigma_star=chol(nspd(sigma_draw_star),'lower'); %get the cholesky decomposition of the proposal matrix
+        hsigma_star=chol(bear.nspd(sigma_draw_star),'lower'); %get the cholesky decomposition of the proposal matrix
         [EPScut_star, IVcut, ~, ~, ~]=bear.cut_EPS_IV_GK_new(txt, names, EPS_draw_star, IV, cut1, cut2, cut3, cut4, startdate, enddate, p); %cut the reduced form residuals
                 
         %compute likelihood of the new draw, given the previous rotation
         %matrix, beta and sign (variance of the mesurement error)
-        c_ll_proxy_star = loglik_proxy_given_data(IVcut, EPScut_star(1:end, :), hsigma_star, Q, bet, signu); %log likelihood of the proxy given the draw for beta and sigma
+        c_ll_proxy_star = bear.loglik_proxy_given_data(IVcut, EPScut_star(1:end, :), hsigma_star, Q, bet, signu); %log likelihood of the proxy given the draw for beta and sigma
         
         c_lpdf_of_sigma_star      = pdf_ln_iwish(sigma_draw*vt, vt+n+1, sigma_draw_star); %likelihood of sigmadraw condition on sigmadraw_star
         c_lpdf_of_sigma0          = pdf_ln_iwish(sigma_draw_star*vt, vt+n+1, sigma_draw); %likelihood of sigmadraw_star condition on sigmadraw
@@ -195,7 +195,7 @@ while AA<Acc+Bu
             %D1star = hsigma*Qstar;
         end     
         
-        c_ll_proxy_star = loglik_proxy_given_data(IVcut, EPScut(1:end, :), hsigma, Qstar, bet, signu); %calculate conditional likelihood of the proxy given the new rotation matrix
+        c_ll_proxy_star = bear.loglik_proxy_given_data(IVcut, EPScut(1:end, :), hsigma, Qstar, bet, signu); %calculate conditional likelihood of the proxy given the new rotation matrix
         %metropolis hastings acceptance probability
         mhap = exp(c_ll_proxy_star - c_ll_proxy0);
         
@@ -227,7 +227,7 @@ while AA<Acc+Bu
  
         bet = mvnrnd(Bhat, signu^2*Vp); %update believe about bet
         %finally reset log likelihood for the entire draw
-        c_ll_proxy0 = loglik_proxy_given_data(IVcut, EPScut_star(1:end, :), hsigma_star, Q, bet, signu); %calculate conditional likelihood of the proxy given the new rotation matrix
+        c_ll_proxy0 = bear.loglik_proxy_given_data(IVcut, EPScut_star(1:end, :), hsigma_star, Q, bet, signu); %calculate conditional likelihood of the proxy given the new rotation matrix
         AA=AA+1;
         
         if AA > Bu
@@ -235,11 +235,11 @@ while AA<Acc+Bu
         if floor(rem)==rem
         keep=keep+1;
         beta_draws(:,keep)=beta_draw; %reduced form coefficients
-        sigma_draws(:,keep)=vec(sigma_draw); %reduced form variance covariance
+        sigma_draws(:,keep)=bear.vec(sigma_draw); %reduced form variance covariance
         relevance_draws(1,keep) = bet^2/(bet^2 + signu^2);
         D=zeros(n,n);
         D(:,1)=hsigma*Q;
-        D_draws(:,keep)=vec(D);
+        D_draws(:,keep)=bear.vec(D);
         if IRFt==5
             [~, ortirfmatrix]=bear.irfsim(beta_draw,hsigma,n,m,p,k,IRFperiods);
             % store
@@ -255,10 +255,10 @@ while AA<Acc+Bu
                end 
             end
             ETA_storage{keep,1}=Etatemp;
-            gamma_draws(:,keep)=vec(eye(n,n));
+            gamma_draws(:,keep)=bear.vec(eye(n,n));
         elseif IRFt==6
         IV_draws(:,keep)=Q;
-        C_draws(:,keep)=vec(hsigma);
+        C_draws(:,keep)=bear.vec(hsigma);
         end
         end
         end

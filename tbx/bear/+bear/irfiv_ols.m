@@ -216,7 +216,7 @@ D=eye(n,n);
 D(1:end,1) = ImpactIRFIV*b11;
 gamma=eye(n);
 %%another way to retrieve b11 (the scalar that scales the IRF to be a 1sdt Shock) is simply
-C=chol(nspd(sigmahatIV),'lower');
+C=chol(bear.nspd(sigmahatIV),'lower');
 b=ImpactIRFIV;
 %%Recover the vector q that maps the first column of C into b such that Cq=b;
 q = C\b;

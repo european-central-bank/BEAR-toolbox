@@ -45,10 +45,10 @@ function [favar]=favar_irfols(irf_estimates,favar,const,Bhat,data_exo,n,m,k,lags
 % % %         end
 % % %
 % % %         % reestimate the model with bs data
-% % %         [~,betahat_bs,sigmahat_bs]=olsvar(data_endo_bs,data_exo,const,lags); %%%%% what if we have data_exo?
+% % %         [~,betahat_bs,sigmahat_bs]=bear.olsvar(data_endo_bs,data_exo,const,lags); %%%%% what if we have data_exo?
 % % %         % D_bs
 % % %         %D_bs=chol(sigmahat_bs(1:e,1:e))'; % are the indices her necessary?
-% % %         D_bs=chol(nspd(sigmahat_bs),'lower');
+% % %         D_bs=chol(bear.nspd(sigmahat_bs),'lower');
 % % %         %calculating the impulse responses
 % % %         [~,ortirfmatrix]=bear.irfsim(betahat_bs,D_bs,n,m,lags,k,IRFperiods);
 % % %

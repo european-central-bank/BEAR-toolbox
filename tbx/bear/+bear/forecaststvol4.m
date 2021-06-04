@@ -13,7 +13,7 @@ forecast_record=cell(n,1);
 Mz=size(dataValues.Ppsi,1); %get the number of variables with survey local mean
 
 %create the state space matrices
-[KFSmatrices] = makeMatricesSLMfullSV(dataValues,p);
+[KFSmatrices] = bear.makeMatricesSLMfullSV(dataValues,p);
 Zv1=KFSmatrices.Zmatrix(Mz+1:end,:); %Meausrement equation matrix 
 Rv1=KFSmatrices.R;                   %variance covariance of transition equation
 % Lv1=KFSmatrices.L;
@@ -96,7 +96,7 @@ Yp=[]; %iniate forecast saving matrix
    % step 6: recover sigma_t and draw the residuals
    sigma=full(F*diag(lambda)*F');
    % draw the vector of residuals
-   res=trns(chol(nspd(sigma),'Lower')*randn(n,1));
+   res=bear.trns(chol(bear.nspd(sigma),'Lower')*randn(n,1));
 
    %step 7: update V_t
     stdPhi=diag(phi_V.^0.5);

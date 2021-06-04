@@ -46,7 +46,7 @@ elseif (scoeff==0 && iobs==0)
 % reshape beta to obtain B
 B_median=reshape(beta_median,k,n);
 % obtain the inverse of sigma
-C=trns(chol(nspd(sigma_median),'Lower'));
+C=bear.trns(chol(bear.nspd(sigma_median),'Lower'));
 invC=C\speye(n);
 invsigmamedian=invC*invC';
 % obtain the residual sum of squares
@@ -61,7 +61,7 @@ Fomega=spdiags(diag(omega0).^0.5,0,q,q);
 alphahat=T+alpha0;
 
 % step 1: compute the constant terms
-temp1=-n*T/2*log(2*pi)-alpha0*n/2*log(2)-mgamma(alpha0/2,n);
+temp1=-n*T/2*log(2*pi)-alpha0*n/2*log(2)-bear.mgamma(alpha0/2,n);
 
 % step 2: determinants on S0 and sigmabar
 temp2=alpha0/2*log(det(S0))-(T+alpha0+n+1)/2*log(det(sigma_median));

@@ -171,7 +171,7 @@ if Fcomp==1
     Mz=size(dataValues.Ppsi,1); %get the number of variables with survey local mean
     
     %create the state space matrices
-    [KFSmatrices] = makeMatricesSLMfullSV(dataValues,p);
+    [KFSmatrices] = bear.makeMatricesSLMfullSV(dataValues,p);
     Zv1=KFSmatrices.Zmatrix(Mz+1:end,:); %Meausrement equation matrix
     Rv1=KFSmatrices.R;                   %variance covariance of transition equation
     % Lv1=KFSmatrices.L;
@@ -313,7 +313,7 @@ if Fcomp==1
                 % define the actual value
                 actual=data_endo_c(jj,ii);
                 % determine the density
-                [~,density]=mndensity(actual,mean,covar,1);
+                [~,density]=bear.mndensity(actual,mean,covar,1);
                 % record the result
                 S1{ii,1}(ll,jj)=density;
             end
@@ -334,7 +334,7 @@ if Fcomp==1
                 % define the vector of actual values
                 actual=data_endo_c(1:jj,ii);
                 % determine the density
-                [~,density]=mndensity(actual,mean,covar,jj);
+                [~,density]=bear.mndensity(actual,mean,covar,jj);
                 % record the result
                 S2{ii,1}(ll,jj)=density;
             end

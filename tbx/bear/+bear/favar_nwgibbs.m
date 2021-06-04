@@ -2,7 +2,7 @@ function [beta_gibbs,sigma_gibbs,favar,It,Bu]=favar_nwgibbs(It,Bu,Bhat,EPS,n,m,p
 
 %% references: Bernanke, Boivin, Eliasz (2005), Koop & Korobilis
 
-% function [beta_gibbs sigma_gibbs]=nwgibbs(It,Bu,Bbar,phibar,alphatilde,Sbar,alphabar,n,k)
+% function [beta_gibbs sigma_gibbs]=bear.nwgibbs(It,Bu,Bbar,phibar,alphatilde,Sbar,alphabar,n,k)
 % performs the Gibbs algortihm 2.1.3 for the normal-Wishart prior, and returns draws from posterior distribution
 % inputs:  - integer 'It': total number of iterations of the Gibbs sampler (defined p 28 of technical guide)
 %          - integer 'Bu': number of burn-in iterations of the Gibbs sampler (defined p 28 of technical guide)
@@ -29,7 +29,7 @@ favar.XZ0var=favar.L0*eye(n*lags); %BBE set-up
 
 XY=favar.XY;
 L=favar.L;
-Sigma=nspd(favar.Sigma);
+Sigma=bear.nspd(favar.Sigma);
 if onestep==1
     indexnM=favar.indexnM;
 end
@@ -64,13 +64,13 @@ if onestep==1
     sigma_ss=[sigmahat zeros(n,n*(lags-1));zeros(n*(lags-1),n*lags)];
 elseif onestep==0
     % set prior values
-    [B0,~,phi0,S0,alpha0]=nwprior(ar,arvar,lambda1,lambda3,lambda4,n,m,p,k,q,prior,priorexo);
+    [B0,~,phi0,S0,alpha0]=bear.nwprior(ar,arvar,lambda1,lambda3,lambda4,n,m,p,k,q,prior,priorexo);
     % obtain posterior distribution parameters
-    [Bbar,~,phibar,Sbar,alphabar,alphatilde]=nwpost(B0,phi0,S0,alpha0,X,Y,n,T,k);
+    [Bbar,~,phibar,Sbar,alphabar,alphatilde]=bear.nwpost(B0,phi0,S0,alpha0,X,Y,n,T,k);
 end
 
 % create a progress bar
-hbar = parfor_progressbar(It,['Progress of the Gibbs sampler (',pbstring,').']);
+hbar = bear.parfor_progressbar(It,['Progress of the Gibbs sampler (',pbstring,').']);
 
 %% start iterations
 for ii=1:It
@@ -80,18 +80,18 @@ for ii=1:It
         % demean generated factors
         FY=bear.favar_demean(FY);
         % Sample autoregressive coefficients B
-        [~,~,~,X,~,Y]=olsvar(FY,data_exo,const,lags);
+        [~,~,~,X,~,Y]=bear.olsvar(FY,data_exo,const,lags);
         [arvar]=bear.arloop(FY,const,p,n);
         % set prior values, new with every iteration for onestep only
-        [B0,~,phi0,S0,alpha0]=nwprior(ar,arvar,lambda1,lambda3,lambda4,n,m,p,k,q,prior,priorexo);
+        [B0,~,phi0,S0,alpha0]=bear.nwprior(ar,arvar,lambda1,lambda3,lambda4,n,m,p,k,q,prior,priorexo);
         % obtain posterior distribution parameters, new with every iteration for onestep only
-        [Bbar,~,phibar,Sbar,alphabar,alphatilde]=nwpost(B0,phi0,S0,alpha0,X,Y,n,T,k);
+        [Bbar,~,phibar,Sbar,alphabar,alphatilde]=bear.nwpost(B0,phi0,S0,alpha0,X,Y,n,T,k);
     end
     
     % draw B from a matrix-variate student distribution with location Bbar, scale Sbar and phibar and degrees of freedom alphatilde (step 2)
     stationary=0;
     while stationary==0
-        B=matrixtdraw(Bbar,Sbar,phibar,alphatilde,k,n);
+        B=bear.matrixtdraw(Bbar,Sbar,phibar,alphatilde,k,n);
         [stationary]=bear.checkstable(B(:),n,lags,size(B,1)); %switches stationary to 0, if the draw is not stationary
     end
     

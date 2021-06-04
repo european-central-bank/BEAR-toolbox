@@ -10,7 +10,7 @@ y = actualdata(ind_var,:)'-forecasts(ind_feval(1),:)'; % construct forecast erro
 fT=length(y);
 x = [ones(fT,1),forecasts(ind_feval(1),:)'];                 % construct matrix of regressors
 
-result = RS_PF_Rationality(rs_pf_windowSize,y,x,pdate);         % perform rationality test
+result = bear.RS_PF_Rationality(rs_pf_windowSize,y,x,pdate);         % perform rationality test
 
 ptruncdate = result.ptruncdate; % truncated date vector
 resultt    = result.resultt;    % test statistic

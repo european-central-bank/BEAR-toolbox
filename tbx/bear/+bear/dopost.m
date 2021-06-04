@@ -18,7 +18,7 @@ alphacap=T-k;
 
 
 % finally, generate the matrix student parameters
-C=trns(chol(nspd(X'*X),'Lower'));
+C=bear.trns(chol(bear.nspd(X'*X),'Lower'));
 invC=C\speye(k);
 phicap=invC*invC';
 alphatop=T-n-k+1;

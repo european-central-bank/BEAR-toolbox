@@ -149,6 +149,6 @@ if pref.results==1
     end
     
     % write in excel
-    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),IRFcell,'IRF time variation','B2');
+    bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),IRFcell,'IRF time variation','B2');
 end
 

@@ -7,7 +7,7 @@ nfactorvar=favar.nfactorvar;
 numpc=favar.numpc;
 favarX=favar.X(:,favar.plotX_index);
 onestep=favar.onestep;
-Sigma=nspd(favar.Sigma);
+Sigma=bear.nspd(favar.Sigma);
 %favar.L=favar.L(1:end-n+numpc,:);
 Ll=favar.L;
 favar_X=favar.X;
@@ -68,7 +68,7 @@ omega=diag(diag(betahat*betahat'));
 invomega=diag(1./diag(omega));
 % initial value for f_2,...,f_n
 % obtain the triangular factorisation of sigmahat
-[Fhat,Lambdahat]=triangf(sigmahat);
+[Fhat,Lambdahat]=bear.triangf(sigmahat);
 % obtain the inverse of Fhat
 [invFhat]=bear.invltod(Fhat,n);
 % create the cell storing the different vectors of invF
@@ -97,7 +97,7 @@ lambda_t=repmat(diag(sbar),1,1,T);
 sigma_t=repmat(sigmahat,1,1,T);
 
 % create a progress bar
-hbar = parfor_progressbar(It,['Progress of the Gibbs sampler (',pbstring,').']);
+hbar = bear.parfor_progressbar(It,['Progress of the Gibbs sampler (',pbstring,').']);
 
 % run the Gibbs sampler
 while count<=It
@@ -105,7 +105,7 @@ while count<=It
     % step 4: draw B
     invomegabar=H'*kron(I_tau,invomega)*H+Xbar'*invsigmabar*Xbar;
     % compute the choleski of invomegabar
-    C=chol(nspds(invomegabar),'Lower');
+    C=chol(bear.nspds(invomegabar),'Lower');
     % compute temporary value
     temp=Xbar'*invsigmabar*y;
     % smoothing phase: solve by back substitution
@@ -157,13 +157,13 @@ while count<=It
         invupsilon0=diag(1./diag(upsilon0{jj,1}));
         % obtain upsilonbar
         invupsilonbar=summ1+invupsilon0;
-        C=chol(nspd(invupsilonbar));
+        C=chol(bear.nspd(invupsilonbar));
         invC=C\speye(jj-1);
         upsilonbar=full(invC*invC');
         % recover fbar
         fbar=upsilonbar*(summ2+invupsilon0*f0{jj,1});
         % finally draw f_i^(-1)
-        Finv{jj,1}=fbar+chol(nspd(upsilonbar),'lower')*randn(jj-1,1);
+        Finv{jj,1}=fbar+chol(bear.nspd(upsilonbar),'lower')*randn(jj-1,1);
     end
     % recover the inverse of F
     invF=eye(n);
@@ -212,7 +212,7 @@ while count<=It
             % now draw the candidate
             cand=lambdabar+phibar^0.5*randn;
             % compute the acceptance probability
-            prob=mhprob2(jj,cand,L(kk,jj),sbar(jj,1),epst(:,1,kk),Finv{jj,1});
+            prob=bear.mhprob2(jj,cand,L(kk,jj),sbar(jj,1),epst(:,1,kk),Finv{jj,1});
             % draw a uniform random number
             draw=rand;
             % keep the candidate if the draw value is lower than the prob

@@ -15,7 +15,7 @@ favar.XZ0var=favar.L0*eye(n*lags);
 
 XY=favar.XY;
 L=favar.L;
-Sigma=nspd(favar.Sigma);
+Sigma=bear.nspd(favar.Sigma);
 if onestep==1
     indexnM=favar.indexnM;
 end
@@ -49,13 +49,13 @@ if onestep==1
     sigma_ss=[sigmahat zeros(n,n*(lags-1));zeros(n*(lags-1),n*lags)];
 elseif onestep==0
     % set prior values
-    [beta0,omega0,sigma]=mprior(ar,arvar,sigmahat,lambda1,lambda2,lambda3,lambda4,lambda5,n,m,p,k,q,prior,bex,blockexo,priorexo);
+    [beta0,omega0,sigma]=bear.mprior(ar,arvar,sigmahat,lambda1,lambda2,lambda3,lambda4,lambda5,n,m,p,k,q,prior,bex,blockexo,priorexo);
     % obtain posterior distribution parameters
-    [betabar,omegabar]=mpost(beta0,omega0,sigma,X,y,q,n);
+    [betabar,omegabar]=bear.mpost(beta0,omega0,sigma,X,y,q,n);
 end
 
 %% create a progress bar
-hbar = parfor_progressbar(It,['Progress of the Gibbs sampler (',pbstring,').']);
+hbar = bear.parfor_progressbar(It,['Progress of the Gibbs sampler (',pbstring,').']);
 
 % start iterations
 for ii=1:It
@@ -65,12 +65,12 @@ for ii=1:It
         % demean generated factors
         FY=bear.favar_demean(FY);
         % Sample autoregressive coefficients B,in the twostep procedure FY is static, and we want to use updated B
-        [~,~,~,X,~,Y,y]=olsvar(FY,data_exo,const,lags);
+        [~,~,~,X,~,Y,y]=bear.olsvar(FY,data_exo,const,lags);
         [arvar]=bear.arloop(FY,const,p,n);
         % set prior values
-        [beta0,omega0,sigma]=mprior(ar,arvar,sigmahat,lambda1,lambda2,lambda3,lambda4,lambda5,n,m,p,k,q,prior,bex,blockexo,priorexo);
+        [beta0,omega0,sigma]=bear.mprior(ar,arvar,sigmahat,lambda1,lambda2,lambda3,lambda4,lambda5,n,m,p,k,q,prior,bex,blockexo,priorexo);
         % obtain posterior distribution parameters
-        [betabar,omegabar]=mpost(beta0,omega0,sigma,X,y,q,n);
+        [betabar,omegabar]=bear.mpost(beta0,omega0,sigma,X,y,q,n);
     end
     
     if onestep==1
@@ -80,7 +80,7 @@ for ii=1:It
     % draw beta from N(betabar,omegabar);
     stationary=0;
     while stationary==0
-        beta=betabar+chol(nspd(omegabar),'lower')*mvnrnd(zeros(q,1),eye(q))';
+        beta=betabar+chol(bear.nspd(omegabar),'lower')*mvnrnd(zeros(q,1),eye(q))';
         [stationary]=bear.checkstable(beta,n,lags,size(B,1)); %switches stationary to 0, if the draw is not stationary
     end
     

@@ -41,20 +41,20 @@ for ii=1:It
 % obtain first Shat, defined in (1.5.15)
 Shat=(Y-X*B)'*(Y-X*B)+S0;
 % Correct potential asymmetries due to rounding errors from Matlab
-Shat=nspd(Shat);
+Shat=bear.nspd(Shat);
 
 % next draw from IW(Shat,alphahat)
 sigma=bear.iwdraw(Shat,alphahat);
 
 % step 4: with sigma drawn, continue iteration ii by drawing beta from a multivariate Normal, conditional on sigma obtained in current iteration
 % first invert sigma
-C=trns(chol(nspd(sigma),'Lower'));
+C=bear.trns(chol(bear.nspd(sigma),'Lower'));
 invC=C\speye(n);
 invsigma=invC*invC';
 
 % then obtain the omegabar matrix
 invomegabar=invomega0+kron(invsigma,X'*X);
-C=chol(nspd(invomegabar));
+C=chol(bear.nspd(invomegabar));
 invC=C\speye(q);
 omegabar=invC*invC';
 
@@ -62,7 +62,7 @@ omegabar=invC*invC';
 betabar=omegabar*(invomega0*beta0+kron(invsigma,X')*y);
 
 % draw from N(betabar,omegabar);
-beta=betabar+chol(nspd(omegabar),'lower')*randn(q,1);
+beta=betabar+chol(bear.nspd(omegabar),'lower')*randn(q,1);
 
 % update matrix B with each draw
 B=reshape(beta,size(B));

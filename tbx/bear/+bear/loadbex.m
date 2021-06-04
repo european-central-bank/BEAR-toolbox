@@ -73,7 +73,7 @@ blockexo = blockexo';
 
 % finally, record on Excel
 if pref.results==1
-    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'block exogeneity','B2');
+    bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'block exogeneity','B2');
 end
 
 

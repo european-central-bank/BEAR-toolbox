@@ -35,7 +35,7 @@ function S = FIS(Y,Z,R,T,Q,S);
   r = zeros(m,1);
 
   for t = nobs:-1:1
-	[~,Z_t] = MissData(Y(:,t),Z,R,zeros(length(Y(:,t)),1));
+	[~,Z_t] = bear.MissData(Y(:,t),Z,R,zeros(length(Y(:,t)),1));
     %r = Z*Ft^(-1)*Vt + Lt'*r_t-1
 	r = S.ZF{t}*S.V{t}+(T*(eye(m)-squeeze(S.Pm(:,:,t))*S.ZF{t}*Z_t))'*r; %construct the period specific r by
     %S.ZF{t} = measurement equation matrix divided by variance of

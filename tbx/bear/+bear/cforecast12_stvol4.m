@@ -12,7 +12,7 @@ forecast_record=cell(n,1);
 Mz=size(dataValues.Ppsi,1); %get the number of variables with survey local mean
 
 %create the state space matrices
-[KFSmatrices] = makeMatricesSLMfullSV(dataValues,p);
+[KFSmatrices] = bear.makeMatricesSLMfullSV(dataValues,p);
 Zv1=KFSmatrices.Zmatrix(Mz+1:end,:); %Meausrement equation matrix 
 Rv1=KFSmatrices.R;                   %variance covariance of transition equation
 % Lv1=KFSmatrices.L;
@@ -109,10 +109,10 @@ gamma=reshape(gamma_record(:,ii),n,n);
 %obtain the vector of shocks generating the conditions, depending on the type of conditional forecasts selected by the user
    % if the user selected the basic setting (all the shocks are used)
    if CFt==1
-   eta=shocksim1(cfconds,Fperiods,n,fmat,ortirfmat);
+   eta=bear.shocksim1(cfconds,Fperiods,n,fmat,ortirfmat);
    % if instead the user selected the shock-specific setting
    elseif CFt==2
-   eta=shocksim2(cfconds,cfshocks,cfblocks,Fperiods,n,gamma,fmat,ortirfmat);
+   eta=bear.shocksim2(cfconds,cfshocks,cfblocks,Fperiods,n,gamma,fmat,ortirfmat);
    end
 eta=reshape(eta,n,Fperiods);
 

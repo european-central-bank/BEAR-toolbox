@@ -12,7 +12,7 @@ function [draw]=iwdraw(S,alpha)
 
 
 % first obtain a stabilised lower Cholesky factor of S
-C=chol(nspd(S),'Lower');
+C=chol(bear.nspd(S),'Lower');
 
 % draw the matrix Z of alpha multivariate standard normal vectors
 Z=randn(alpha,size(S,1));

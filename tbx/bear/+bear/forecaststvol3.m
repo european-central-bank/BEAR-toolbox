@@ -69,7 +69,7 @@ lambda=L_gibbs(Fstartlocation-1,1,ii);
    % step 6: recover sigma_t and draw the residuals
    sigma=full(F*Lambda*F');
    % draw the vector of residuals
-   res=trns(chol(nspd(sigma),'Lower')*randn(n,1));
+   res=bear.trns(chol(bear.nspd(sigma),'Lower')*randn(n,1));
 
    
    % step 7: obtain predicted value for T+jj

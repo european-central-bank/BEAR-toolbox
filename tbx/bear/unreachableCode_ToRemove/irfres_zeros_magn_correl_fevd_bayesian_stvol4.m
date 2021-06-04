@@ -326,7 +326,7 @@ In= eye(n);
 
 % initiate rotation draws
 not_successful = 0;
-hbar = parfor_progressbar(Acc,'Progress of Sign, Magnitude, Zero, Correlation and FEVD Restriction Draws');  %create the progress bar
+hbar = bear.parfor_progressbar(Acc,'Progress of Sign, Magnitude, Zero, Correlation and FEVD Restriction Draws');  %create the progress bar
 
 %rearrange Psidraw such that it can be accessed in a parfor loop
 for yyy=1:It-Bu
@@ -345,7 +345,7 @@ parfor ii=1:Acc
    % draw beta and sigma
    beta=beta_gibbs(:,ii);
    sigma=reshape(sigma_gibbs(:,ii),n,n);
-   hsigma=chol(nspd(sigma),'lower');
+   hsigma=chol(bear.nspd(sigma),'lower');
    % obtain orthogonalised IRFs
    [~, ortirfmatrix]=bear.irfsim(beta,hsigma,n,m,p,k,max(IRFperiods,max(periods)));
    % generate the stacked IRF matrix
@@ -354,7 +354,7 @@ parfor ii=1:Acc
       stackedirfmat=[stackedirfmat;ortirfmatrix(:,:,periods(kk,1)+1)];
       end
    % draw an entire random matrix Q satisfying the zero restrictions
-   [Q]=qzerores(n,Zcell,stackedirfmat);
+   [Q]=bear.qzerores(n,Zcell,stackedirfmat);
    % there is no need to verify the restrictions: there are satisfied by construction
 
 
@@ -373,7 +373,7 @@ parfor ii=1:Acc
             % then draw a random set of beta and sigma corresponding to this index (this is done to make it possible to draw, if required, an infinite number of values from the gibbs sampler record, with equal probability on each value)
             beta=beta_gibbs(:,index);
             sigma=reshape(sigma_gibbs(:,index),n,n);
-            hsigma=chol(nspd(sigma),'lower');
+            hsigma=chol(bear.nspd(sigma),'lower');
             %also draw the corresponding local mean
             Psidraw = Psi_gibbs_new(:,:,index)
             %create the vector Ydraw by subtracting the local mean from the data
@@ -401,7 +401,7 @@ parfor ii=1:Acc
             while success==1 && jj<=n && sum(okay)<n
                     % draw a random vector from the standard normal
                     if okay(1,1)==0 %first find the first column
-                        qj=qrandj(n,Zcell{1,jj},stackedirfmat,Qj);
+                        qj=bear.qrandj(n,Zcell{1,jj},stackedirfmat,Qj);
                         % obtain the candidate column fj
                         fj=stackedirfmat*qj;
                         [success qj]=bear.checksignres(Scell{1,jj},qj,fj);
@@ -500,7 +500,7 @@ parfor ii=1:Acc
         storage4{ii,1}=ETA;
     end
     storage5(:,ii) = beta;
-    storage6(:,ii) = vec(sigma);
+    storage6(:,ii) = bear.vec(sigma);
 
     %lpdf = irfpdf(hsigma*Q,betahat,aux1,T,sigmahat,beta);
     %lpdfirf(ii,1)=lpdf;
@@ -533,7 +533,7 @@ for ii=1:Acc
         end
     end
     D_record(:,ii)=storage2{ii,1}(:);
-    gamma_record(:,ii)=vec(eye(n));
+    gamma_record(:,ii)=bear.vec(eye(n));
 end
 %reorganize historical decompositions
 hd_record=cell(contributors+2,n);

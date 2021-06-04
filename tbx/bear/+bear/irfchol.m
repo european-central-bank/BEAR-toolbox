@@ -47,7 +47,7 @@ for ii=1:It-Bu
     % step 2: recover sigma
     sigma=squeeze(sigma_gibbs(:,:,ii));
     % step 3: Obtain the Choleski factor of sigma
-    D=chol(nspd(sigma),'lower');
+    D=chol(bear.nspd(sigma),'lower');
     
     
     % step 4: obtain orthogonalised IRFs

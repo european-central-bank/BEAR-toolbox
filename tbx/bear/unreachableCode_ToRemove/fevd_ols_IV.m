@@ -1,7 +1,7 @@
 function [fevd_record]=fevd_ols_IV(struct_irf_record,gamma_record,It,Bu,IRFperiods,n)
 
 
-% function [fevd_record]=fevd(struct_irf_record,gamma_record,It,Bu,IRFperiods,n)
+% function [fevd_record]=bear.fevd(struct_irf_record,gamma_record,It,Bu,IRFperiods,n)
 % runs the gibbs sampler to obtain draws from the posterior distribution of FEVD
 % inputs:  - cell 'struct_irf_record': record of the gibbs sampler draws for the orthogonalised IRFs
 %          - matrix 'gamma_record': record of the gibbs sampler draws for the structural disturbances variance-covariance matrix gamma

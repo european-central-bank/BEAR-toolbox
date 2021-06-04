@@ -217,9 +217,9 @@ end
 
 % Create D Matrix
 T=length(data_endo(:,1));
-Dmatrix = TVEregimesDummy(startdate,regimeperiods,T);
+Dmatrix = bear.TVEregimesDummy(startdate,regimeperiods,T);
 
 % finally, record on Excel
-xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'mean-adj prior','B2');
+bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'mean-adj prior','B2');
 
 

@@ -30,4 +30,4 @@ for j = 1:length(gridDF)-1
 end
 
 %% Obtain PIT Histogram and RS Test-Statistic
-result = RS_DF_Test(densitygrid,actualdata(ind_deval(1),:)',gridDF_mid',hstep,el,bootMC); 
+result = bear.RS_DF_Test(densitygrid,actualdata(ind_deval(1),:)',gridDF_mid',hstep,el,bootMC); 

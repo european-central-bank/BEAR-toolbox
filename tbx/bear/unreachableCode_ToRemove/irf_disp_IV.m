@@ -110,7 +110,7 @@ fprintf(fid,'%s\n',svarinfo1);
 % recover D
 D=reshape(D_estimates,n,n);
 % calculate the (integer) length of the largest number in D, for formatting purpose
-width=length(sprintf('%d',floor(max(abs(vec(D))))));
+width=length(sprintf('%d',floor(max(abs(bear.vec(D))))));
 % add a separator, a potential minus sign and three digits (total=5) to obtain the total space for each entry in the matrix
 width=width+5;
 for ii=1:n
@@ -141,7 +141,7 @@ fprintf(fid,'%s\n',svarinfo2);
 % recover gamma
 gamma=reshape(gamma_estimates,n,n);
 % calculate the (integer) length of the largest number in D, for formatting purpose
-width=length(sprintf('%d',floor(max(abs(vec(gamma))))));
+width=length(sprintf('%d',floor(max(abs(bear.vec(gamma))))));
 % add a separator, a potential minus sign and three digits (total=5) to obtain the total space for each entry in the matrix
 width=width+5;
 for ii=1:n

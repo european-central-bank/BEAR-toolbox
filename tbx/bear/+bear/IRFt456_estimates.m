@@ -2,7 +2,7 @@ function [beta_median, beta_std, beta_lbound, beta_ubound, sigma_median]=IRFt456
 
 
 
-% function [beta_median beta_std beta_lbound beta_ubound sigma_median]=ndestimates(beta_gibbs,sigma_gibbs,cband,q,n,k)
+% function [beta_median beta_std beta_lbound beta_ubound sigma_median]=bear.ndestimates(beta_gibbs,sigma_gibbs,cband,q,n,k)
 % estimates the posterior mean, standard deviation and confidence interval for the VAR coefficients (normal diffuse prior)
 % inputs:  - matrix 'beta_gibbs': record of the gibbs sampler draws for the beta vector
 %          - matrix'sigma_gibbs': record of the gibbs sampler draws for the sigma matrix (vectorised)

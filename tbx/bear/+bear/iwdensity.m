@@ -15,7 +15,7 @@ function [logval val]=iwdensity(sigma,S,alpha,n)
 % calculates the density (a.2.10)
 
 temp(1,1)=-(alpha*n/2)*log(2);
-temp(2,1)=-mgamma(alpha/2,n);
+temp(2,1)=-bear.mgamma(alpha/2,n);
 temp(3,1)=(alpha/2)*log(det(S));
 temp(4,1)=-((alpha+n+1)/2)*log(det(sigma));
 temp(5,1)=-0.5*trace(sigma\S);

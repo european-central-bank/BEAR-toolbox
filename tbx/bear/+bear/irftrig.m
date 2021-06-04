@@ -47,7 +47,7 @@ for ii=1:It-Bu
     sigma=squeeze(sigma_gibbs(:,:,ii));
     
     % step 3: obtain the triangular factorisation of sigma
-    [D,gamma]=triangf(sigma);
+    [D,gamma]=bear.triangf(sigma);
     
     % step 4: obtain orthogonalised IRFs
     % loop over periods

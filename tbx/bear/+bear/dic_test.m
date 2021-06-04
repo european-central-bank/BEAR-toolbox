@@ -2,7 +2,7 @@ function [dic]=dic_test(Y,X,N,beta_gibbs,sigma_gibbs,Acc,favar)
 
 
 %This function calculates the Deviance Information Criteria.
-%Introduced in Spiegelhalter et al.(2002), the DIC is a generalization of the Akaike information criterion —
+%Introduced in Spiegelhalter et al.(2002), the DIC is a generalization of the Akaike information criterion â€”
 %it penalizes model complexity while rewarding fit to the data
 
 
@@ -27,7 +27,7 @@ for i=1:size(beta_dic,1)
     Y=squeeze(Ygibbs_dic(:,:,i));
     end
 
-    [l,problem]=loglik(reshape(beta_dic(i,:),par,N),sigma,Y,X);%likelihood linear model
+    [l,problem]=bear.loglik(reshape(beta_dic(i,:),par,N),sigma,Y,X);%likelihood linear model
     if problem
       break 
       
@@ -50,7 +50,7 @@ Y=squeeze(mean(Ygibbs_dic,3));
 end
 %Calculate the loglikelihood at the posterior mean
 
-D_mean=-2*loglik(reshape(betam,par,N),sigmam,Y,X);%the likelihood evaluated at the posterior mean
+D_mean=-2*bear.loglik(reshape(betam,par,N),sigmam,Y,X);%the likelihood evaluated at the posterior mean
 
 % Calculate the effective number of parameters
 D=squeeze(mean(-2*likelihood));% the mean of the likelihood evaluated at each saved draw

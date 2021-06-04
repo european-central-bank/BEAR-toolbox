@@ -514,7 +514,7 @@ data_endo_a=[];
    strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
    % then save on Excel
    if pref.results==1
-       xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'pred exo','A1');
+       bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'pred exo','A1');
    end
    end
 

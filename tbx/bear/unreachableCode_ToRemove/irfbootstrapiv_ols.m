@@ -81,8 +81,8 @@ while AA<=BB
     end
 
 %% STEP 3: estimate reduced form VAR on artificial data. 
-[~, betadraw, sigmadraw, Xdraw, ~, Ydraw, ~, ~, ~, ~, ~, ~, ~, ~, ~]=olsvar(endo_artificial,data_exo,const,p);
-%[Bdraw betadraw sigmadraw Xdraw Xbardraw Ydraw ydraw EPSdraw epsdraw n m p T k q]=olsvar(endo_artificial,data_exo,const,lags);
+[~, betadraw, sigmadraw, Xdraw, ~, Ydraw, ~, ~, ~, ~, ~, ~, ~, ~, ~]=bear.olsvar(endo_artificial,data_exo,const,p);
+%[Bdraw betadraw sigmadraw Xdraw Xbardraw Ydraw ydraw EPSdraw epsdraw n m p T k q]=bear.olsvar(endo_artificial,data_exo,const,lags);
 
 %% STEP 4: identify the model
 [Ddraw, gammadraw]=irfiv_ols_for_bootstrap(beginInstrument,EndInstrument, names,IVrotate, betadraw,sigmadraw,m,n,Xdraw,Ydraw,k,p,enddate,startdate, endo, IRFperiods, pref);
@@ -95,7 +95,7 @@ while AA<=BB
        end
        storage2{AA,1}=Ddraw; 
        beta_gibbs(:,AA)=betadraw;
-       sigma_gibbs(:,AA)=vec(sigmadraw);
+       sigma_gibbs(:,AA)=bear.vec(sigmadraw);
        AA = AA+1 ;
 end
 disp('-- Done!');
@@ -115,6 +115,6 @@ for ii=1:BB
       end
    end
 D_record(:,ii)=storage2{ii,1}(:);
-gamma_record(:,ii)=vec(eye(n));
+gamma_record(:,ii)=bear.vec(eye(n));
 end 
 end 

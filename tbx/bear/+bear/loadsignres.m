@@ -623,7 +623,7 @@ end
 
 % finally, record on Excel
 if pref.results==1
-    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs1,'sign res values','B2');
-    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs2,'sign res periods','B2');
+    bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs1,'sign res values','B2');
+    bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs2,'sign res periods','B2');
 end
 end

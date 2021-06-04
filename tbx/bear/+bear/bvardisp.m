@@ -113,7 +113,7 @@ fprintf('%s\n','');
 fprintf(fid,'%s\n','');
 
 % print the list of contributors
-printcontributors;
+bear.printcontributors(fid);
 
 % print then estimation results
 
@@ -504,7 +504,7 @@ sigmainfo=['sigma (residual covariance matrix): posterior estimates'];
 fprintf('%s\n',sigmainfo);
 fprintf(fid,'%s\n',sigmainfo);
 % calculate the (integer) length of the largest number in sigma, for formatting purpose
-width=length(sprintf('%d',floor(max(abs(vec(sigma_median))))));
+width=length(sprintf('%d',floor(max(abs(bear.vec(sigma_median))))));
 % add a separator, a potential minus sign, and three digits (total=5) to obtain the total space for each entry in the matrix
 width=width+5;
 for ii=1:n

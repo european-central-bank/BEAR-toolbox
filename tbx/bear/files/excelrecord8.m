@@ -25,7 +25,7 @@ cforecastcell=cforecastcell(:,1:end-1);
 
 % write in excel
 if pref.results==1
-    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),cforecastcell,'cond forecasts','B2');
+    bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),cforecastcell,'cond forecasts','B2');
 end
 
 

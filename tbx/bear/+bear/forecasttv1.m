@@ -59,7 +59,7 @@ sigma=reshape(sigma,n,n);
       end
 
     % step 3:draw the residuals from N(0,sigma)
-   res=trns(chol(nspd(sigma),'Lower')*randn(n,1));
+   res=bear.trns(chol(bear.nspd(sigma),'Lower')*randn(n,1));
 
    % obtain predicted value for T+jj
    yp=X*B+res;

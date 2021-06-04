@@ -7,7 +7,7 @@ nfactorvar=favar.nfactorvar;
 numpc=favar.numpc;
 favarX=favar.X(:,favar.plotX_index);
 onestep=favar.onestep;
-Sigma=nspd(favar.Sigma);
+Sigma=bear.nspd(favar.Sigma);
 Ll=favar.L;
 favar_X=favar.X;
 % load priors
@@ -54,7 +54,7 @@ sigma_t_gibbs={};
 beta=betahat;
 % initial value for f_2,...,f_n
 % obtain the triangular factorisation of sigmahat
-[Fhat,Lambdahat]=triangf(sigmahat);
+[Fhat,Lambdahat]=bear.triangf(sigmahat);
 % obtain the inverse of Fhat
 [invFhat]=bear.invltod(Fhat,n);
 % create the cell storing the different vectors of invF
@@ -77,7 +77,7 @@ lambda_t=repmat(diag(sbar),[1 1 T]);
 sigma_t=repmat(sigmahat,[1 1 T]);
 
 % create a progress bar
-hbar = parfor_progressbar(It,['Progress of the Gibbs sampler (',pbstring,').']);
+hbar = bear.parfor_progressbar(It,['Progress of the Gibbs sampler (',pbstring,').']);
 
 %% run the Gibbs sampler
 while count<=It
@@ -97,13 +97,13 @@ while count<=It
     % obtain the inverse of omegabar
     invomegabar=summ1+invomega0;
     % recover omegabar
-    C=chol(nspd(invomegabar),'Lower')';
+    C=chol(bear.nspd(invomegabar),'Lower')';
     invC=C\speye(q);
     omegabar=invC*invC';
     % recover betabar
     betabar=omegabar*(summ2+invomega0*beta0);
     % finally, draw beta from its posterior
-    beta=betabar+chol(nspd(omegabar),'lower')*randn(q,1);
+    beta=betabar+chol(bear.nspd(omegabar),'lower')*randn(q,1);
     
     % step 5: draw the series f_2,...,f_n from their conditional posteriors
     % recover first the residuals
@@ -127,13 +127,13 @@ while count<=It
         invupsilon0=diag(1./diag(upsilon0{jj,1}));
         % obtain upsilonbar
         invupsilonbar=summ1+invupsilon0;
-        C=chol(nspd(invupsilonbar));
+        C=chol(bear.nspd(invupsilonbar));
         invC=C\speye(jj-1);
         upsilonbar=full(invC*invC');
         % recover fbar
         fbar=upsilonbar*(summ2+invupsilon0*f0{jj,1});
         % finally draw f_i^(-1)
-        Finv{jj,1}=fbar+chol(nspd(upsilonbar),'lower')*randn(jj-1,1);
+        Finv{jj,1}=fbar+chol(bear.nspd(upsilonbar),'lower')*randn(jj-1,1);
     end
     % recover the inverse of F
     invF=eye(n);
@@ -177,7 +177,7 @@ while count<=It
             % now draw the candidate
             cand=lambdabar+phibar^0.5*randn;
             % compute the acceptance probability
-            prob=mhprob2(jj,cand,L(kk,jj),sbar(jj,1),epst(:,1,kk),Finv{jj,1});
+            prob=bear.mhprob2(jj,cand,L(kk,jj),sbar(jj,1),epst(:,1,kk),Finv{jj,1});
             % draw a uniform random number
             draw=rand;
             % keep the candidate if the draw value is lower than the prob

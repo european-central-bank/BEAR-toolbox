@@ -163,7 +163,7 @@ D=eye(n,n);
 
 gamma=eye(n);
 %%another way to retrieve b11 (the scalar that scales the IRF to be a 1sdt Shock) is simply
-C=chol(nspd(sigmahatIV),'lower');
+C=chol(bear.nspd(sigmahatIV),'lower');
 b=ImpactIRFIV;
 %%Recover the vector q that maps the first column of C into b such that Cq=b;
 q = C\b;
@@ -329,7 +329,7 @@ end
     end
 
 %% STEP 3: estimate reduced form VAR on artificial data. 
-[~,betadraw,sigmadraw,Xdraw,~,Ydraw]=olsvar(endo_artificial,data_exo,const,p);
+[~,betadraw,sigmadraw,Xdraw,~,Ydraw]=bear.olsvar(endo_artificial,data_exo,const,p);
 
 %% STEP 4: identify the model
 [Ddraw]=bear.irfiv_ols_for_bootstrap_GK(txt,beginInstrument,EndInstrument,names,IVrotate,betadraw,sigmadraw,m,n,Xdraw,Ydraw,k,p,enddate,startdate,endo,IRFperiods,pref,cut1,cut2,cut3,cut4,strctident);

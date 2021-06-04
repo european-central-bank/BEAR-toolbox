@@ -6,7 +6,7 @@ nfactorvar=favar.nfactorvar;
 numpc=favar.numpc;
 favarX=favar.X(:,favar.plotX_index);
 onestep=favar.onestep;
-Sigma=nspd(favar.Sigma);
+Sigma=bear.nspd(favar.Sigma);
 favar_X=favar.X;
 L=favar.L;
 % load priors
@@ -64,7 +64,7 @@ invomega=diag(1./diag(omega));
 % initial value for sigma
 sigma=sigmahat;
 % invert sigma
-C=trns(chol(nspd(sigma),'Lower'));
+C=bear.trns(chol(bear.nspd(sigma),'Lower'));
 invC=C\speye(n);
 invsigma=invC*invC';
 % obtain the inverse of sigmabar
@@ -80,7 +80,7 @@ for i=1:T
 end
 
 % create a progress bar
-hbar = parfor_progressbar(It,['Progress of the Gibbs sampler (',pbstring,').']);
+hbar = bear.parfor_progressbar(It,['Progress of the Gibbs sampler (',pbstring,').']);
 
 %% run the Gibbs sampler
 while count<=It
@@ -118,7 +118,7 @@ while count<=It
     % draw sigma
     sigma=bear.iwdraw(Sbar,kappabar);
     % invert it for next iteration
-    C=trns(chol(nspd(sigma),'Lower'));
+    C=bear.trns(chol(bear.nspd(sigma),'Lower'));
     invC=C\speye(n);
     invsigma=invC*invC';
     

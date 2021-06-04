@@ -2,7 +2,7 @@ function [forecast_record]=forecast_mf(data_endo_a,data_exo_p,It,Bu,beta_gibbs,s
 
 
 
-% function [forecast_record]=forecast(data_endo_a,data_exo_p,It,Bu,beta_gibbs,sigma_gibbs,Fperiods,n,p,k,const)
+% function [forecast_record]=bear.forecast(data_endo_a,data_exo_p,It,Bu,beta_gibbs,sigma_gibbs,Fperiods,n,p,k,const)
 % runs the gibbs sampler to obtain draws from the posterior predictive distribution, that is the distribution of forecasts
 % inputs:  - matrix 'data_endo_a': matrix of pre-forecast endogenous data
 %          - matrix 'data_exo_p': predicted values for the exogenous variables over the forecast periods
@@ -73,7 +73,7 @@ sigma=reshape(sigma,n,n);
    end
 
    % step 3:draw the residuals from N(0,sigma)
-   res=trns(chol(nspd(sigma),'Lower')*randn(n,1));
+   res=bear.trns(chol(bear.nspd(sigma),'Lower')*randn(n,1));
 
    % obtain predicted value for T+jj
    yp=X*B+res;

@@ -30,9 +30,9 @@ end
 % loop over columns of data_endo
 for ii=1:n
 % Estimating BIC optimised VAR and record parameters and residual variance
-[OLS_Bhat{ii}, OLS_betahat{ii}, OLS_sigmahat{ii},~,~,~,~,~,~,~,~,~,~,~,~]=olsvar(data_endo(:,ii),[],const,biclag(ii));
+[OLS_Bhat{ii}, OLS_betahat{ii}, OLS_sigmahat{ii},~,~,~,~,~,~,~,~,~,~,~,~]=bear.olsvar(data_endo(:,ii),[],const,biclag(ii));
 % Forecasting for BIC optimised model
-[OLS_forecast_estimates{ii}]=olsforecast(data_endo_a(:,ii),[],Fperiods,OLS_betahat{ii},OLS_Bhat{ii},OLS_sigmahat{ii},1,m,biclag(ii),biclag(ii)+1,const,Fband);
+[OLS_forecast_estimates{ii}]=bear.olsforecast(data_endo_a(:,ii),[],Fperiods,OLS_betahat{ii},OLS_Bhat{ii},OLS_sigmahat{ii},1,m,biclag(ii),biclag(ii)+1,const,Fband);
 end
 
 

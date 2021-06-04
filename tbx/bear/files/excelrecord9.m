@@ -23,7 +23,7 @@ end
 shockcell=shockcell(:,1:end-1);
 
 % write in excel
-    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),shockcell,'struct shocks','B2');
+    bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),shockcell,'struct shocks','B2');
 
 
 

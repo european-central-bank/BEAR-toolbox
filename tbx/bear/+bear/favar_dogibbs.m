@@ -32,7 +32,7 @@ XY=favar.XY;
     favar.XZ0var=favar.L0*eye(n*lags); %BBE set-up
 
 L=favar.L;
-Sigma=nspd(favar.Sigma);
+Sigma=bear.nspd(favar.Sigma);
 if onestep==1
 indexnM=favar.indexnM;
 end
@@ -68,7 +68,7 @@ sigma_ss=[sigmahat zeros(n,n*(lags-1));zeros(n*(lags-1),n*lags)];
 end
 
 % create a progress bar
-hbar = parfor_progressbar(It,['Progress of the Gibbs sampler (',pbstring,').']);
+hbar = bear.parfor_progressbar(It,['Progress of the Gibbs sampler (',pbstring,').']);
 
 %% start iterations
 for ii=1:It
@@ -78,7 +78,7 @@ for ii=1:It
         % demean generated factors
         FY=bear.favar_demean(FY);
         % Sample autoregressive coefficients B,in the twostep procedure FY is static, and we want to use updated B
-        [B,~,~,X,~,Y]=olsvar(FY,data_exo,const,lags);
+        [B,~,~,X,~,Y]=bear.olsvar(FY,data_exo,const,lags);
         [arvar]=bear.arloop(FY,const,p,n);
     end
     
@@ -90,7 +90,7 @@ for ii=1:It
 % draw B from a matrix-variate student distribution with location Bcap, scale Scap and phicap and degrees of freedom alphatop
 stationary=0;
 while stationary==0
-B=matrixtdraw(Bcap,Scap,phicap,alphatop,k,n);
+B=bear.matrixtdraw(Bcap,Scap,phicap,alphatop,k,n);
    [stationary]=bear.checkstable(B(:),n,lags,size(B,1)); %switches stationary to 0, if the draw is not stationary
 end
 if onestep==1

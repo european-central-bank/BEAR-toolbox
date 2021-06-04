@@ -134,7 +134,7 @@ clmncount=0;
 end
 % if no error is returned, record on Excel
 if pref.results==1
-    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'cf conditions','B2');
+    bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'cf conditions','B2');
 end
 
 
@@ -244,7 +244,7 @@ rows(2,1)=temp;
    
 % if no error is returned, record on Excel
 if pref.results==1
-    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'cf shocks','B2');
+    bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'cf shocks','B2');
 end
 end
 
@@ -368,7 +368,7 @@ rows(2,1)=temp;
    
 % if no error is returned, record on Excel
 if pref.results==1
-    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'cf blocks','B2');
+    bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'cf blocks','B2');
 end
 end
 

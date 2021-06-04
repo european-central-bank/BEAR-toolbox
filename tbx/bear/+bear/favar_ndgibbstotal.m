@@ -33,7 +33,7 @@ favar.XZ0var=favar.L0*eye(n*lags); %BBE set-up
 
 XY=favar.XY;
 L=favar.L;
-Sigma=nspd(favar.Sigma);
+Sigma=bear.nspd(favar.Sigma);
 if onestep==1
     indexnM=favar.indexnM;
 end
@@ -69,7 +69,7 @@ if onestep==1
 end
 
 % create a progress bar
-hbar = parfor_progressbar(It,['Progress of the Gibbs sampler (',pbstring,').']);
+hbar = bear.parfor_progressbar(It,['Progress of the Gibbs sampler (',pbstring,').']);
 
 %% start iterations
 for ii=1:It
@@ -79,14 +79,14 @@ for ii=1:It
         % demean generated factors
         FY=bear.favar_demean(FY);
         % Sample autoregressive coefficients B
-        [B,~,~,X,~,Y,y]=olsvar(FY,data_exo,const,lags);
+        [B,~,~,X,~,Y,y]=bear.olsvar(FY,data_exo,const,lags);
     end
     
     % Step 3: at iteration ii, first draw sigma from IW, conditional on beta from previous iteration
     % obtain first Shat, defined in (1.6.10)
     Shat=(Y-X*B)'*(Y-X*B);
     % Correct potential asymmetries due to rounding errors from Matlab
-    C=chol(nspd(Shat));
+    C=chol(bear.nspd(Shat));
     Shat=C'*C;
     
     % next draw from IW(Shat,T)
@@ -97,13 +97,13 @@ for ii=1:It
     
     % step 4: with sigma drawn, continue iteration ii by drawing beta from a multivariate Normal, conditional on sigma obtained in current iteration
     % first invert sigma
-    C=chol(nspd(sigma));
+    C=chol(bear.nspd(sigma));
     invC=C\speye(n);
     invsigma=invC*invC';
     
     % then obtain the omegabar matrix, Uhlig05 prior
     invomegabar=kron(invsigma,X'*X);
-    C=chol(nspd(invomegabar));
+    C=chol(bear.nspd(invomegabar));
     invC=C\speye(q);
     omegabar=invC*invC';
     
@@ -114,7 +114,7 @@ for ii=1:It
     stationary=0;
     while stationary==0
         % draw from N(betabar,omegabar);
-        beta=betabar+chol(nspd(omegabar),'lower')*mvnrnd(zeros(q,1),eye(q))';
+        beta=betabar+chol(bear.nspd(omegabar),'lower')*mvnrnd(zeros(q,1),eye(q))';
         [stationary]=bear.checkstable(beta,n,lags,size(B,1)); %switches stationary to 0, if the draw is not stationary
     end
     

@@ -272,7 +272,7 @@ not_successful=0;
 % create the progress bar
 hbartext=['Progress of ',hbartext_signres,hbartext_favar_signres,hbartext_zerores,hbartext_favar_zerores,hbartext_magnres,hbartext_favar_magnres,hbartext_relmagnres,hbartext_favar_relmagnres,hbartext_FEVDres,hbartext_favar_FEVDres,hbartext_CorrelInstrumentShock,':::',' Restriction Draws.'];
 hbartext=erase(hbartext,', :::'); % delete the last ,
-hbar=parfor_progressbar(Acc,hbartext);
+hbar=bear.parfor_progressbar(Acc,hbartext);
 parfor ii=1:Acc %parfor
     % initiate the variable 'success'; this variable will be used to check whether the restrictions are satisfied
     % if there are only zero restrictions, they will be satisfied by construction, and 'success' will simply be ignored
@@ -283,7 +283,7 @@ parfor ii=1:Acc %parfor
         % draw beta and sigma
         beta=beta_gibbs(:,ii);
         sigma=reshape(sigma_gibbs(:,ii),n,n);
-        hsigma=chol(nspd(sigma),'lower');
+        hsigma=chol(bear.nspd(sigma),'lower');
         % obtain orthogonalised IRFs
         [~,ortirfmatrix]=bear.irfsim(beta,hsigma,n,m,p,k,max(IRFperiods,max(periods)));
         % generate the stacked IRF matrix
@@ -292,7 +292,7 @@ parfor ii=1:Acc %parfor
             stackedirfmat=[stackedirfmat;ortirfmatrix(:,:,periods(kk,1)+1)];
         end
         % draw an entire random matrix Q satisfying the zero restrictions
-        [Q]=qzerores(n,Zcell,stackedirfmat);
+        [Q]=bear.qzerores(n,Zcell,stackedirfmat);
         % there is no need to verify the restrictions: there are satisfied by construction
         
         %%%%% FAVAR
@@ -319,7 +319,7 @@ parfor ii=1:Acc %parfor
                 % then draw a random set of beta and sigma corresponding to this index (this is done to make it possible to draw, if required, an infinite number of values from the gibbs sampler record, with equal probability on each value)
                 beta=beta_gibbs(:,index);
                 sigma=reshape(sigma_gibbs(:,index),n,n);
-                hsigma=chol(nspd(sigma),'lower');
+                hsigma=chol(bear.nspd(sigma),'lower');
                 %also draw the corresponding local mean
                 Psidraw = Psi_gibbs_new(:,:,index);
                 %create the vector Ydraw by subtracting the local mean from the data
@@ -396,7 +396,7 @@ parfor ii=1:Acc %parfor
             while success==1 && jj<=n && sum(okay)<n
                 % build column j of the random matrix Q
                 if IRFt==4 && zerores==1 || magnres==1 %if we have zero restrictions, we cannot reshuffle the columns %%%%%what is with magnres==1
-                    qj=qrandj(n,Zcell{1,jj},stackedirfmat,Qj);
+                    qj=bear.qrandj(n,Zcell{1,jj},stackedirfmat,Qj);
                     % obtain the candidate column fj
                     fj=stackedirfmat*qj;
                     % check restrictions: first sign restrictions
@@ -433,7 +433,7 @@ parfor ii=1:Acc %parfor
                     if okay(1,1)==0 %first find the first column
                         %jj=1;
                         % build column j of the random matrix Q
-                        qj=qrandj(n,Zcell{1,jj},stackedirfmat,Qj); % why is it build with Zcell
+                        qj=bear.qrandj(n,Zcell{1,jj},stackedirfmat,Qj); % why is it build with Zcell
                         % obtain the candidate column fj
                         fj=stackedirfmat*qj;
                         if signres==1
@@ -464,7 +464,7 @@ parfor ii=1:Acc %parfor
                     else % when success is 0, okay is 0, then check if potential qj suits other shocks
  
                         if IRFt==6 && zerores ==1 % different computation of qj if we have zero res in IRFt6, we cannot reshuffle
-                            qj=qrandj(n,Zcell{1,jj},stackedirfmat,Qj);
+                            qj=bear.qrandj(n,Zcell{1,jj},stackedirfmat,Qj);
                         else
                             x=normrnd(0,1,n,1);
                             qj=(In-Qj*Qj')*x/norm((In-Qj*Qj')*x);
@@ -637,8 +637,8 @@ parfor ii=1:Acc %parfor
     storage4{ii,1}=ETA;
     
     % store betas and sigmas
-    beta_record(:,ii)=vec(B);
-    sigma_record(:,ii)=vec(sigma);
+    beta_record(:,ii)=bear.vec(B);
+    sigma_record(:,ii)=bear.vec(sigma);
     
     % correl res statistics
     if checkCorrelInstrumentShock==1
@@ -661,7 +661,7 @@ for ii=1:Acc % loop over iterations
         end
     end
     D_record(:,ii)=storage2{ii,1}(:);
-    gamma_record(:,ii)=vec(eye(n));
+    gamma_record(:,ii)=bear.vec(eye(n));
 end
 
 %reorganize historical decompositions

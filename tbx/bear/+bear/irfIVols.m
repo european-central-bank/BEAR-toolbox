@@ -128,7 +128,7 @@ B=reshape(beta,k,n);
 
 %%%%while AA<=BB with BB=1000;
 %%%%%%%%%%%%%%%%%%%%Bootstrap to approximate distribution of reduced form and IV coefficients%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-hbar=parfor_progressbar(Acc*10,'Progress of IV draws.');
+hbar=bear.parfor_progressbar(Acc*10,'Progress of IV draws.');
 for AA=1:Acc*10 %parfor loop possible here? %%%% are 100000 draws necessary? parfor AA=1:Acc*100
 % % %     stationary=0; 
 % % % while stationary==0
@@ -245,7 +245,7 @@ for AA=1:Acc*10 %parfor loop possible here? %%%% are 100000 draws necessary? par
         [endo_artificial_gen]=bear.gen_fake_data(endo_artificial,data_endo,B,EPSrotate,const,p,n,T);
         
         %% STEP 3: estimate reduced form VAR on artificial data.
-        [~,betadraw,sigmadraw,Xdraw,~,Ydraw]=olsvar(endo_artificial_gen,data_exo,const,p);
+        [~,betadraw,sigmadraw,Xdraw,~,Ydraw]=bear.olsvar(endo_artificial_gen,data_exo,const,p);
 % % %         if IRFt==5
 % % %         stationary=1;
 % % %         elseif IRFt==6
@@ -266,10 +266,10 @@ for AA=1:Acc*10 %parfor loop possible here? %%%% are 100000 draws necessary? par
         [D,D1ols,q,C]=bear.irfiv_ols_for_bootstrap_GK(txt,names,IVrotate,betadraw,n,Xdraw,Ydraw,k,p,enddate,startdate,cut1,cut2,cut3,cut4);
         %save draws
         beta_draws(:,AA)=betadraw;
-        sigma_draws(:,AA)=vec(sigmadraw);
+        sigma_draws(:,AA)=bear.vec(sigmadraw);
         %D_draws(:,AA)=vec(D);
         IV_draws(:,AA)=q/norm(q);
-        C_draws(:,AA)=vec(C);
+        C_draws(:,AA)=bear.vec(C);
         %IVrotate_draws(:,AA)=IVrotate;
         end
 %%%AA = AA+1 ;

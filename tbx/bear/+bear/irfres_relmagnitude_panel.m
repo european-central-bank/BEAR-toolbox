@@ -183,7 +183,7 @@ end
 
 % initiate Gibbs algorithm
 not_successful = 0;
-hbar = parfor_progressbar(It-Bu,'Progress of Sign Restriction Draws');  %create the progress bar
+hbar = bear.parfor_progressbar(It-Bu,'Progress of Sign Restriction Draws');  %create the progress bar
 for ii=1:It-Bu
 % initiate the variable 'success'; this variable will be used to check whether the restrictions are satisfied
 % if there are only zero restrictions, they will be satisfied by construction, and 'success' will simply be ignored
@@ -196,7 +196,7 @@ success=0;
    % draw beta and sigma
    beta=beta_gibbs(:,ii);
    sigma=reshape(sigma_gibbs(:,ii),n,n);
-   hsigma=chol(nspd(sigma),'lower');
+   hsigma=chol(bear.nspd(sigma),'lower');
    % obtain orthogonalised IRFs
    [irfmatrix ortirfmatrix]=bear.irfsim(beta,hsigma,n,m,p,k,max(IRFperiods,max(periods)));
    % generate the stacked IRF matrix
@@ -205,7 +205,7 @@ success=0;
       stackedirfmat=[stackedirfmat;ortirfmatrix(:,:,periods(jj,1)+1)];
       end
    % draw an entire random matrix Q satisfying the zero restrictions
-   [Q]=qzerores(n,Zcell,stackedirfmat);
+   [Q]=bear.qzerores(n,Zcell,stackedirfmat);
    % there is no need to verify the restrictions: there are satisfied by construction
 
 
@@ -224,7 +224,7 @@ success=0;
       % then draw a random set of beta and sigma corresponding to this index (this is done to make it possible to draw, if required, an infinite number of values from the gibbs sampler record, with equal probability on each value)
       beta=beta_gibbs(:,index);
       sigma=reshape(sigma_gibbs(:,index),n,n);
-      hsigma=chol(nspd(sigma),'lower');
+      hsigma=chol(bear.nspd(sigma),'lower');
       % obtain orthogonalised IRFs
       [irfmatrix ortirfmatrix]=bear.irfsim(beta,hsigma,n,m,p,k,max(IRFperiods,max(periods)));
       % generate the stacked IRF matrix
@@ -239,7 +239,7 @@ success=0;
          jj=1;
          while success==1 && jj<=n
          % build column j of the random matrix Q
-         [qj]=qrandj(n,Zcell{1,jj},stackedirfmat,Qj);
+         [qj]=bear.qrandj(n,Zcell{1,jj},stackedirfmat,Qj);
          % obtain the candidate column fj
          fj=stackedirfmat*qj;
          % check restrictions: first sign restrictions
@@ -302,7 +302,7 @@ for ii=1:It-Bu
       end
    end
 D_record(:,ii)=storage2{ii,1}(:);
-gamma_record(:,ii)=vec(eye(n));
+gamma_record(:,ii)=bear.vec(eye(n));
 end
 
 

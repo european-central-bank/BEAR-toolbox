@@ -45,7 +45,7 @@ sigmahatIV=(1/(length(EPSIV)-k))*(EPSIV'*EPSIV);
 %get b12 as in Michelle Piffers notes
 %b12b12t = (Sigma21-Mu*Sigma11)'*Gamma^(-1)*(Sigma21-Mu*Sigma11);
 %b11b11t = Sigma11 - b12b12t;
-% b11 = chol(nspd(b11b11t)); %%this is the scaling vector 
+% b11 = chol(bear.nspd(b11b11t)); %%this is the scaling vector 
 
 %% first stage regression (this results in the same vector as Mu)
 
@@ -82,7 +82,7 @@ D=zeros(n,n);
 % Step 6: Replace the first Column in the Cholesky Decomposition by 
 %the structural impact matrix computed above
 %%another way to retrieve b11 (the scalar that scales the IRF to be a 1sdt Shock) is simply
-C=chol(nspd(sigmahatIV),'lower');
+C=chol(bear.nspd(sigmahatIV),'lower');
 b=ImpactIRFIV;
 %%Recover the vector q that maps the first column of C into b such that Cq=b;
 q = C\b;

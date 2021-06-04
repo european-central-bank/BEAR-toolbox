@@ -2,7 +2,7 @@ function [favar]=favar_fevdols(gamma_record,It,Bu,n,IRFperiods,FEVDband,favar)
 
 
 
-% function [fevd_estimates]=olsfevd(irf_estimates,IRFperiods,gamma,n,endo,datapath)
+% function [fevd_estimates]=bear.olsfevd(irf_estimates,IRFperiods,gamma,n,endo,datapath)
 % computes and displays fevd values for the OLS VAR model
 % inputs:  - cell 'irf_estimates': lower bound, point estimates, and upper bound for the IRFs  
 %          - integer 'IRFperiods': number of periods for IRFs

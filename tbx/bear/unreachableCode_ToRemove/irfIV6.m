@@ -139,7 +139,7 @@ end
 % this is the only one identified
 %Dols=eye(n,n);
 %%another way to retrieve b11 (the scalar that scales the IRF to be a 1sdt Shock) is simply
-C=chol(nspd(sigmahatIV),'lower');
+C=chol(bear.nspd(sigmahatIV),'lower');
 
 
 
@@ -185,7 +185,7 @@ B=reshape(beta,k,n);
 
 %%%%while AA<=BB with BB=1000;
 %%%%%%%%%%%%%%%%%%%%Bootstrap to approximate distribution of reduced form and IV coefficients%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-hbar=parfor_progressbar(Acc*10,'IV progress');
+hbar=bear.parfor_progressbar(Acc*10,'IV progress');
 for AA=1:Acc*10 %parfor loop possible here? %%%% are 100000 draws necessary? parfor AA=1:Acc*100
     stationary=0; 
 while stationary==0
@@ -302,7 +302,7 @@ while stationary==0
         [endo_artificial_gen]=bear.gen_fake_data(endo_artificial,data_endo,B,EPSrotate,const,p,n,T);
         
         %% STEP 3: estimate reduced form VAR on artificial data.
-        [~,betadraw,sigmadraw,Xdraw,~,Ydraw]=olsvar(endo_artificial_gen,data_exo,const,p);
+        [~,betadraw,sigmadraw,Xdraw,~,Ydraw]=bear.olsvar(endo_artificial_gen,data_exo,const,p);
         %%%%% do we need this test for irft6 only? or is it also useful for
         %%%%% IRFt5
         if IRFt==5
@@ -321,15 +321,15 @@ end
        end
        storage2{AA,1}=Ddraw; 
 %        beta_gibbs(:,AA)=betadraw;
-%        sigma_gibbs(:,AA)=vec(sigmadraw);
+%        sigma_gibbs(:,AA)=bear.vec(sigmadraw);
         elseif IRFt==6
         %% Step 4: Identifity the proxy VAR equation
         [~,~,q,C]=irfiv_ols_for_ivres(txt,names,IVrotate, betadraw,sigmadraw,m,n,Xdraw,Ydraw,k,p,enddate,startdate, endo, cut1, cut2,cut3,cut4);
 beta_draws(:,AA)=betadraw;
-sigma_draws(:,AA)=vec(sigmadraw);
-%D_draws(:,AA)=vec(D);
+sigma_draws(:,AA)=bear.vec(sigmadraw);
+%D_draws(:,AA)=bear.vec(D);
 IV_draws(:,AA)=q/norm(q);
-C_draws(:,AA)=vec(C);
+C_draws(:,AA)=bear.vec(C);
 %IVrotate_draws(:,AA)=IVrotate;
         end
 %%%AA = AA+1 ;

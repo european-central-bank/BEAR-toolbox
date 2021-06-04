@@ -142,7 +142,7 @@ end
 
 % if no error is returned, record on Excel
 if pref.results==1
-    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),grid,'grid search','C3');
+    bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),grid,'grid search','C3');
 end 
  
  
