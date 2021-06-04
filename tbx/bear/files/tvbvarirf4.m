@@ -126,7 +126,7 @@ success=0;
    sigma=sigma_t_gibbs{tt,1}(:,:,ii);
    D=chol(nspd(sigma),'lower');
    % obtain orthogonalised IRFs
-   [~,ortirfmatrix]=irfsim(beta,D,n,m,p,k,max(IRFperiods,max(periods)));
+   [~,ortirfmatrix]=bear.irfsim(beta,D,n,m,p,k,max(IRFperiods,max(periods)));
    % generate the stacked IRF matrix
    stackedirfmat=[];
       for jj=1:numel(periods)
@@ -152,7 +152,7 @@ success=0;
       sigma=sigma_t_gibbs{tt,1}(:,:,index);
       D=chol(nspd(sigma),'lower');
       % obtain orthogonalised IRFs
-      [~,ortirfmatrix]=irfsim(beta,D,n,m,p,k,max(IRFperiods,max(periods)));
+      [~,ortirfmatrix]=bear.irfsim(beta,D,n,m,p,k,max(IRFperiods,max(periods)));
       % generate the stacked IRF matrix
       stackedirfmat=[];
          for jj=1:numel(periods)
@@ -169,10 +169,10 @@ success=0;
          % obtain the candidate column fj
          fj=stackedirfmat*qj;
          % check restrictions: first sign restrictions
-         [success qj]=checksignres(Scell{1,jj},qj,fj);
+         [success qj]=bear.checksignres(Scell{1,jj},qj,fj);
          % if 'success' is still equal to 1, also check for magnitude restrictions
             if success==1
-            [success]=checkmagres(Mcell{1,jj},Mlcell{1,jj},Mucell{1,jj},fj);
+            [success]=bear.checkmagres(Mcell{1,jj},Mlcell{1,jj},Mucell{1,jj},fj);
             end
          % also, if 'success' is still equal to 1, update Qj by concatenating qj
             if success==1

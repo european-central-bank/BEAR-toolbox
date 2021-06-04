@@ -14,8 +14,8 @@ b1=priorD+(T-1);
 
 %% Take a draw form the posterior distribution
 %gammaDraw=gamrnd(a1/2,2/b1);
-%gammaDraw=grandn(a1/2,2/b1);
-gammaDraw=grandn(b1/2,2/a1);
+%gammaDraw=bear.grandn(a1/2,2/b1);
+gammaDraw=bear.grandn(b1/2,2/a1);
 phiDraw=1/gammaDraw;
    
 end

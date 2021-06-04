@@ -58,21 +58,21 @@ pii=repmat(1/(It-Bu),It-Bu,1);
 for ii=1:It-Bu
    % loop over columns of G, using the indicator function (XXX.7) for g(y)
    for jj=1:L
-   G(ii,jj)=gy(forecast_record{rec(jj,1),1}(ii,rec(jj,2)),rec(jj,3))-rec(jj,4);
+   G(ii,jj)=bear.gy(forecast_record{rec(jj,1),1}(ii,rec(jj,2)),rec(jj,3))-rec(jj,4);
    end
 end
 
 
 % now minimise (XXX.18), reformulated as (XXX.20), to obtain the Lagrange multipliers
 % minimize
-[~,lambda,~,~,~,~,~]=sims_csminwel(@(lambdatilde) lagrange(lambdatilde,pii,G),zeros(L,1),eye(L),[],1e-20,1000);
+[~,lambda,~,~,~,~,~]=sims_csminwel(@(lambdatilde) bear.lagrange(lambdatilde,pii,G),zeros(L,1),eye(L),[],1e-20,1000);
 
 
 % generate g and eyepi
 for ii=1:It-Bu
    % loop over columns of G, using the indicator function (XXX.7) for g(y)
    for jj=1:L
-   g(ii,jj)=gy(forecast_record{rec(jj,1),1}(ii,rec(jj,2)),rec(jj,3));
+   g(ii,jj)=bear.gy(forecast_record{rec(jj,1),1}(ii,rec(jj,2)),rec(jj,3));
    end
 end
 eyepi=spdiags(pii,0,It-Bu,It-Bu);

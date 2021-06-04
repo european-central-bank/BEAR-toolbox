@@ -26,7 +26,7 @@ betatilde=beta_median;
 Btilde=reshape(betatilde,k,n);
 
 % check whether the model is stationary
-[stationary eigmodulus]=checkstable(betatilde,n,p,k);
+[stationary eigmodulus]=bear.checkstable(betatilde,n,p,k);
 
 
 

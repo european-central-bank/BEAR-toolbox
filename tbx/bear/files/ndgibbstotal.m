@@ -42,7 +42,7 @@ C=chol(nspd(Shat));
 Shat=C'*C;
 
 % next draw from IW(Shat,T)
-sigma=iwdraw(Shat,T);
+sigma=bear.iwdraw(Shat,T);
 
 % step 4: with sigma drawn, continue iteration ii by drawing beta from a multivariate Normal, conditional on sigma obtained in current iteration
 % first invert sigma

@@ -81,7 +81,7 @@ Beta=reshape(B,q,T);
 % compute psibar
 psibar=(1/tau)*Beta(:,1).^2+sum((Beta(:,2:T)-Beta(:,1:T-1)).^2,2)+psi;
 % draw omega
-omega=diag(arrayfun(@igrandn,kron(ones(q,1),chibar),psibar/2));
+omega=diag(arrayfun(@bear.igrandn,kron(ones(q,1),chibar),psibar/2));
 % invert it for next iteration
 invomega=diag(1./diag(omega));
 
@@ -94,7 +94,7 @@ Eps=reshape(eps,n,T);
 % estimate Sbar
 Sbar=Eps*Eps'+S;
 % draw sigma
-sigma=iwdraw(Sbar,kappabar);
+sigma=bear.iwdraw(Sbar,kappabar);
 % invert it for next iteration
 C=trns(chol(nspd(sigma),'Lower'));
 invC=C\speye(n);

@@ -110,7 +110,7 @@ for ii=1:N*n
    % loop over forecast periods on which actual data is known
    for jj=1:Fcperiods    
    % compute the continuous ranked probability score
-   score=crps(forecast_record{ii,1}(:,jj),forecast_estimates{ii,1}(2,jj));
+   score=bear.crps(forecast_record{ii,1}(:,jj),forecast_estimates{ii,1}(2,jj));
    CRPS{ii,1}(1,jj)=score;
    end
 end

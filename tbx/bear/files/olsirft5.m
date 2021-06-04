@@ -26,7 +26,7 @@ Acc=It-Bu;
 
 %% IV routine
 [~,~,~,~,~,irf_storage,storage2]=...
-    irfIVols(betahat,n,m,p,k,T,names,startdate,enddate,X,Y,endo,data_endo,data_exo,const,pref,strctident,IRFt,IRFperiods,It,Bu);
+    bear.irfIVols(betahat,n,m,p,k,T,names,startdate,enddate,X,Y,endo,data_endo,data_exo,const,pref,strctident,IRFt,IRFperiods,It,Bu);
 
 
 %% reorganise storage
@@ -80,7 +80,7 @@ if favar.FAVAR==1
         % re-transform irf_estimates
         favar.IRF.irf_estimates_nottransformed=irf_estimates; % before, save untransformed IRFs
         % re-transform
-        [irf_estimates]=favar_retransX_irf_estimates(irf_estimates,favar.transformationindex_endo,favar.levels);
+        [irf_estimates]=bear.favar_retransX_irf_estimates(irf_estimates,favar.transformationindex_endo,favar.levels);
     end
 end
 

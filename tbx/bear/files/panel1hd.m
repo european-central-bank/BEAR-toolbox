@@ -17,7 +17,7 @@ hd_estimates={};
 % recover Bhat
 Bhat=reshape(bhat,k,n);
 % obtain irfs and orthogonalised irfs
-[~,ortirfmatrix]=irfsim(bhat,D,n,m,p,k,T);
+[~,ortirfmatrix]=bear.irfsim(bhat,D,n,m,p,k,T);
 % loop over units
 for ii=1:N
 temp={};

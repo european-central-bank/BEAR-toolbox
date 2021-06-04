@@ -126,7 +126,7 @@ for isim = 1:It
     % sample the local mean
     PsiDraw_prop = samplePsi_DK(YData,YsData, Bdraw,Hdraw,Vdraw,Gdraw,CDdraw,meanTS,priorValues.kappa,dataValues,KFSmatrices);
     % sample missing survey data
-    zData_prop = constructMissingSurvey(YsDataTrue, Gdraw, PsiDraw_prop, dataValues);
+    zData_prop = bear.constructMissingSurvey(YsDataTrue, Gdraw, PsiDraw_prop, dataValues);
     % sample the stochastic volatility components in the measurement equation for the survey data and their variances    
    [Gdraw_prop,phi_Gdraw_prop] = sampleG(zData_prop,PsiDraw_prop,CDdraw,phi_Gdraw,Gdraw,priorValues,dataValues);
     % sample the stochastic volatility components of the VAR residuals   

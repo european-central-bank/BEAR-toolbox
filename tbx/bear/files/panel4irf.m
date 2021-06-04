@@ -12,35 +12,35 @@ irf_record(:,:,ii)=irf(beta_gibbs(:,:,ii),It,Bu,IRFperiods,n,m,p,k);
    % if IRFs have been set to an unrestricted VAR (IRFt=1):
    if IRFt==1
    % run a pseudo Gibbs sampler to obtain records for D and gamma (for the trivial SVAR)
-   [D_record(:,:,ii),gamma_record(:,:,ii)]=irfunres(n,It,Bu,sigma_gibbs(:,:,ii));
+   [D_record(:,:,ii),gamma_record(:,:,ii)]=bear.irfunres(n,It,Bu,sigma_gibbs(:,:,ii));
    struct_irf_record=[];
    % compute posterior estimates
-   [irf_estimates(:,:,ii),D_estimates(:,:,ii),gamma_estimates(:,:,ii)]=irfestimates(irf_record(:,:,ii),n,IRFperiods,IRFband,IRFt,[],[],favar);
+   [irf_estimates(:,:,ii),D_estimates(:,:,ii),gamma_estimates(:,:,ii)]=bear.irfestimates(irf_record(:,:,ii),n,IRFperiods,IRFband,IRFt,[],[],favar);
 
    % if IRFs have been set to an SVAR with Choleski identification (IRFt=2):
    elseif IRFt==2
    % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
-   [struct_irf_record(:,:,ii),D_record(:,:,ii),gamma_record(:,:,ii)]=irfchol(sigma_gibbs(:,:,ii),irf_record(:,:,ii),It,Bu,IRFperiods,n,favar);
+   [struct_irf_record(:,:,ii),D_record(:,:,ii),gamma_record(:,:,ii)]=bear.irfchol(sigma_gibbs(:,:,ii),irf_record(:,:,ii),It,Bu,IRFperiods,n,favar);
    % compute posterior estimates
-   [irf_estimates(:,:,ii),D_estimates(:,:,ii),gamma_estimates(:,:,ii)]=irfestimates(struct_irf_record(:,:,ii),n,IRFperiods,IRFband,IRFt,D_record(:,:,ii),gamma_record(:,:,ii),favar);
+   [irf_estimates(:,:,ii),D_estimates(:,:,ii),gamma_estimates(:,:,ii)]=bear.irfestimates(struct_irf_record(:,:,ii),n,IRFperiods,IRFband,IRFt,D_record(:,:,ii),gamma_record(:,:,ii),favar);
    
    % if IRFs have been set to an SVAR with triangular factorisation (IRFt=3):
    elseif IRFt==3
    % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
-   [struct_irf_record(:,:,ii),D_record(:,:,ii),gamma_record(:,:,ii)]=irftrig(sigma_gibbs(:,:,ii),irf_record(:,:,ii),It,Bu,IRFperiods,n,favar);
+   [struct_irf_record(:,:,ii),D_record(:,:,ii),gamma_record(:,:,ii)]=bear.irftrig(sigma_gibbs(:,:,ii),irf_record(:,:,ii),It,Bu,IRFperiods,n,favar);
    % compute posterior estimates
-   [irf_estimates(:,:,ii),D_estimates(:,:,ii),gamma_estimates(:,:,ii)]=irfestimates(struct_irf_record(:,:,ii),n,IRFperiods,IRFband,IRFt,D_record(:,:,ii),gamma_record(:,:,ii),favar);
+   [irf_estimates(:,:,ii),D_estimates(:,:,ii),gamma_estimates(:,:,ii)]=bear.irfestimates(struct_irf_record(:,:,ii),n,IRFperiods,IRFband,IRFt,D_record(:,:,ii),gamma_record(:,:,ii),favar);
    
    % if IRFs have been set to an SVAR with sign restrictions
    elseif IRFt==4
    if Magres==1 %this should be adjusted to strctident options
-   [struct_irf_record(:,:,ii),D_record(:,:,ii),gamma_record(:,:,ii)]=irfres_relmagnitude_panel(beta_gibbs(:,:,ii),sigma_gibbs(:,:,ii),It,Bu,IRFperiods,n,m,p,k,signrestable,signresperiods,relmagrestable,relmagresperiods);
+   [struct_irf_record(:,:,ii),D_record(:,:,ii),gamma_record(:,:,ii)]=bear.irfres_relmagnitude_panel(beta_gibbs(:,:,ii),sigma_gibbs(:,:,ii),It,Bu,IRFperiods,n,m,p,k,signrestable,signresperiods,relmagrestable,relmagresperiods);
    % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
    else
-   [struct_irf_record(:,:,ii),D_record(:,:,ii),gamma_record(:,:,ii)]=irfsignrespanel(beta_gibbs(:,:,ii),sigma_gibbs(:,:,ii),It,Bu,IRFperiods,n,p,m,k,signrestable,signresperiods);
+   [struct_irf_record(:,:,ii),D_record(:,:,ii),gamma_record(:,:,ii)]=bear.irfsignrespanel(beta_gibbs(:,:,ii),sigma_gibbs(:,:,ii),It,Bu,IRFperiods,n,p,m,k,signrestable,signresperiods);
    end
    % compute posterior estimates
-   [irf_estimates(:,:,ii),D_estimates(:,:,ii),gamma_estimates(:,:,ii)]=irfestimates(struct_irf_record(:,:,ii),n,IRFperiods,IRFband,IRFt,D_record(:,:,ii),gamma_record(:,:,ii),favar);
+   [irf_estimates(:,:,ii),D_estimates(:,:,ii),gamma_estimates(:,:,ii)]=bear.irfestimates(struct_irf_record(:,:,ii),n,IRFperiods,IRFband,IRFt,D_record(:,:,ii),gamma_record(:,:,ii),favar);
    end
 
 end

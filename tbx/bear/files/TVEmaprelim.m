@@ -66,7 +66,7 @@ q3=n*k3;
 
 % obtain the matrices Y and X, defined in (3.6.10)
 % to do so, use the lagx function on the data matrix
-temp=lagx(data_endo,lags);
+temp=bear.lagx(data_endo,lags);
 
 % to build X, take off the n initial columns of current data
 X=temp(:,n+1:end);
@@ -81,7 +81,7 @@ Y=temp(:,1:n);
 Y1=temp(:,1:n);
 
 % obtain the matrix Z, defined in (3.6.10)
-temp=lagx(data_exo,lags);
+temp=bear.lagx(data_exo,lags);
 temp(:,m+1:end)=-temp(:,m+1:end);
 Z=temp;
 

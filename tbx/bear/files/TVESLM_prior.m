@@ -73,7 +73,7 @@ dataValues.Ys = Ys;                 %Survey local mean after training sample
 
 %% prior for stochastic volatility in VAR residuals priors (H = A^-1'*Lambda_t*A^-1')
 %estimate an ar(p) process for setting the prior variances
-[arvar]=arloop(Yt,1,lags,n);
+[arvar]=bear.arloop(Yt,1,lags,n);
 arvar = arvar*((size(Yt,1)-lags-lags-1)/(size(Yt,1)-lags-1)); %translate bear into Banbura et al (2017) estimate of ar(4) VCV
 
 priorValues.priorVarAscaling_H =10;  %prior variance for the below diagonal elements of A (constant part of VCV

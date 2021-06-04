@@ -57,7 +57,7 @@ irf_record=cell(n,n);
 irf_estimates=cell(n,n);
 
 % obtain point estimates for orthogonalised IRFs
-[~,ortirfmatrix]=irfsim(betahat,D,n,m,p,k,IRFperiods);
+[~,ortirfmatrix]=bear.irfsim(betahat,D,n,m,p,k,IRFperiods);
 
 % save the results in the cell irf_estimates
 % deal with shocks in turn
@@ -76,14 +76,14 @@ for ii=1:1000
 % draw a random vector beta from its distribution
 % if the produced VAR model is not stationary, draw another vector, and keep drawing till a stationary VAR is obtained
 beta=betahat+chol(nspd(omegahat),'lower')*randn(q,1);
-% % % [stationary,~]=checkstable(beta,n,p,k);
+% % % [stationary,~]=bear.checkstable(beta,n,p,k);
 % % %    while stationary==0
 % % %    beta=betahat+chol(nspd(omegahat),'lower')*randn(q,1);
-% % %    [stationary,~]=checkstable(beta,n,p,k);
+% % %    [stationary,~]=bear.checkstable(beta,n,p,k);
 % % %    end
 
 % obtain orthogonalised IRFs from this beta vector
-[~,ortirfmatrix]=irfsim(beta,D,n,m,p,k,IRFperiods);
+[~,ortirfmatrix]=bear.irfsim(beta,D,n,m,p,k,IRFperiods);
 
 % record the results in the cell irf_record
 % deal with shocks in turn
@@ -120,7 +120,7 @@ end
 %% compute HD
 hd_estimates=[];
 if HD==1
-    [hd_estimates]=hdols123(const,exo,betahat,k,n,p,D,m,T,X,Y,data_exo);
+    [hd_estimates]=bear.hdols123(const,exo,betahat,k,n,p,D,m,T,X,Y,data_exo);
 end
 
 

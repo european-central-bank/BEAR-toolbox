@@ -3,7 +3,7 @@ function [out, problem]=loglik(beta,sigma,y,x)
 % This function returns  the log-likelihood for the linear VAR model 
 v=y-x*beta;
 sterm=0;
-isigma=invpd(sigma);
+isigma=bear.invpd(sigma);
 % Check if chol(isigma) exists 
 problem=0;
 try
@@ -15,7 +15,7 @@ end
 
  if  ~problem
      
-dsigma=logdet(isigma);% logdet returns the log of the determinant of a matrix
+dsigma=bear.logdet(isigma);% bear.logdet returns the log of the determinant of a matrix
 T=size(y,1);
 N=size(y,2);
 for i=1:T

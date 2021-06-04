@@ -37,7 +37,7 @@ for ii=1:n
       % step 4: for each iteration kk, repeat the algorithm for periods T+1 to T+h
       for jj=1:IRFperiods-1
       % use the function lagx to obtain a matrix temp, containing the endogenous regressors
-      temp=lagx(Y,p-1);
+      temp=bear.lagx(Y,p-1);
       % define the vector X
       X=[temp(end,:) zeros(1,m)];
       % obtain the predicted value for T+jj
@@ -50,7 +50,7 @@ for ii=1:n
 % 	  % for each iteration kk, repeat the algorithm for periods T+1 to T+h
 %       for jj=1:IRFperiods
 %       % use the function lagx to obtain the matrix X
-%       X=lagx(Y,p-1);
+%       X=bear.lagx(Y,p-1);
 %       X=X(end,:);
 %       % obtain predicted value for T+jj
 %       yp=X*B;

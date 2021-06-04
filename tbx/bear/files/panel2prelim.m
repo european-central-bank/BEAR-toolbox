@@ -52,7 +52,7 @@ Ymat=[];
 for ii=1:N
 % first use the lagx function on the data matrix
 % this will basically return the matrix X without the exogenous variables, but with n additional columns of current period data
-temp=lagx(data_endo(:,:,ii),lags);
+temp=bear.lagx(data_endo(:,:,ii),lags);
 % then take off the n initial columns of current data, and concatenate the exogenous
 % record this as the corresponding page of X data
 Xmat(:,:,ii)=[temp(:,n+1:end) data_exo];

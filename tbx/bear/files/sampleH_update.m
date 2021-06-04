@@ -35,7 +35,7 @@ nu_h = priorD_H*ones(n,1);
 Y_Psi=yData-Psi;  %subtract the local mean
 Y_Psi(1:p,:)=yData(1:p,:)-ones(p,1)*mean(yData(1:p,:)); %also generate initial conditions for the construction of the lagmatrix
 % X_Psi = lagmatrix(Y_Psi,1:p); %create RHS of the VAR part                          
-X_Psi = lagx(Y_Psi,p-1);
+X_Psi = bear.lagx(Y_Psi,p-1);
 X_Psi = X_Psi(1:end-1,:);
 % X_Psi = X_Psi(p+1:end,:);     %remove the first p rows of RHS
 Y_Psi=Y_Psi(p+1:end,:);       %and do so for LHS
@@ -63,7 +63,7 @@ for i=1:M
     [yStarAdj, Ht] = statesMix(yStar,lnSigma2);
     
     % sample log variances
-    [logVarsDraw_Hi]=KF_CKsimSV(yStarAdj,Ht,phi,startMean,startVar);
+    [logVarsDraw_Hi]=bear.KF_CKsimSV(yStarAdj,Ht,phi,startMean,startVar);
     Hvars(:,i)=exp([zeros(1,p) logVarsDraw_Hi']');
     
 %     % sample phi
@@ -88,7 +88,7 @@ a1=priorD_H*priorPhi_H+sum(vDiffSV.^2); %scale parameter
 b1=priorD_H+(T1-1); %shape parameter
 
 %% Take a draw form the posterior distribution
-gammaDraw=grandn(b1/2,2/a1);
+gammaDraw=bear.grandn(b1/2,2/a1);
 phiDrawkk=1/gammaDraw;
 phi_Hdraw(1,kk)=phiDrawkk;
 end  

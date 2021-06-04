@@ -25,7 +25,7 @@ EPStilde=EPStilde';
 
 
 % check first whether the model is stationary, using (a.7.2)
-[stationary eigmodulus]=checkstable(B_t_median(:,end),n,p,k);
+[stationary eigmodulus]=bear.checkstable(B_t_median(:,end),n,p,k);
 
 
 % Compute then the sum of squared residuals

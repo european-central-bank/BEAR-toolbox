@@ -50,11 +50,11 @@ gamma=reshape(gamma_record(:,ii),n,n);
 
 
 % step 2: compute regular forecasts for the data (without shocks)
-fmat=forecastsim(data_endo_a,data_exo_p,beta,n,p,k,Fperiods);
+fmat=bear.forecastsim(data_endo_a,data_exo_p,beta,n,p,k,Fperiods);
 
 
 % step 3: compute IRFs and orthogonalised IRFs matrices
-[~,ortirfmat]=irfsim(beta,D,n,m,p,k,Fperiods);
+[~,ortirfmat]=bear.irfsim(beta,D,n,m,p,k,Fperiods);
 
 
 % step 4: obtain the vector of shocks generating the conditions, depending on the type of conditional forecasts selected by the user

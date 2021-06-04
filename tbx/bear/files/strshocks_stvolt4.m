@@ -19,7 +19,7 @@ B=reshape(beta_gibbs(:,ii),k,n);
 %create the vector Ydraw by subtracting the local mean from the data
 Ypsi = YincLags(p+1:end,:)-Psidraw(p+1:end,:);
 % ultimately create the RHS and LHS of the demeaned data VAR
-temp=lagx(Ypsi,p);
+temp=bear.lagx(Ypsi,p);
 % to build X, take off the n initial columns of current data
 Xdraw=[temp(:,n+1:end)];
 Ydraw=temp(:,1:n);

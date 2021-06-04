@@ -48,7 +48,7 @@ for i=1:M
         [yStarAdj, Ht] = statesMix(yStar,lnSigma2);
     
         % sample log variances
-        [logVarsDraw_Vi]=KF_CKsimSV(yStarAdj,Ht,phi,startMean,startVar);
+        [logVarsDraw_Vi]=bear.KF_CKsimSV(yStarAdj,Ht,phi,startMean,startVar);
         Vvars(:,i)=[0.00000001*ones(zEntry,1) ;exp(logVarsDraw_Vi)];
     
         % sample phi

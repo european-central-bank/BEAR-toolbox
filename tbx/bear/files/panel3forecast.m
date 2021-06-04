@@ -17,7 +17,7 @@ for ii=1:N
 % run the Gibbs sampler for unit ii
 forecast_record(:,:,ii)=forecast(data_endo_a(:,:,ii),data_exo_p,It,Bu,beta_gibbs(:,:,ii),sigma_gibbs(:,:,ii),Fperiods,n,p,k,const,Fstartlocation,favar);
 % obtain point estimates and credibility intervals for unit ii
-forecast_estimates(:,:,ii)=festimates(forecast_record(:,:,ii),n,Fperiods,Fband);
+forecast_estimates(:,:,ii)=bear.festimates(forecast_record(:,:,ii),n,Fperiods,Fband);
 end
 
 

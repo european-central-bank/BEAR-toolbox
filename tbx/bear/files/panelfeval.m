@@ -110,7 +110,7 @@ for ii=1:n
    % loop over forecast periods on which actual data is known
    for jj=1:Fcperiods    
    % compute the continuous ranked probability score
-   score=crps(forecast_record{ii,1}(:,jj),forecast_estimates{ii,1}(2,jj));
+   score=bear.crps(forecast_record{ii,1}(:,jj),forecast_estimates{ii,1}(2,jj));
    CRPS{ii,1}(1,jj)=score;
    end
 end
@@ -142,7 +142,7 @@ for ll=1:It-Bu
 
 
    % step 3: obtain mu, the mean vector, from (a.8.19)
-   temp=forecastsim(data_endo_c_lags,data_exo_c,beta,n,p,k,Fcperiods);
+   temp=bear.forecastsim(data_endo_c_lags,data_exo_c,beta,n,p,k,Fcperiods);
    mu=reshape(temp',n*Fcperiods,1);
 
 

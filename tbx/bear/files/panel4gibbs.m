@@ -57,7 +57,7 @@ temp(1,ii)=(beta(:,ii)-b)'*invomegab*(beta(:,ii)-b);
 end
 vbar=v0+sum(temp,2);
 % compute lambda1
-lambda1=igrandn(sbar/2,vbar/2);
+lambda1=bear.igrandn(sbar/2,vbar/2);
 % recover sigmab
 sigmab=lambda1*omegab;
 
@@ -90,7 +90,7 @@ for ii=1:N
 % compute Stilde
 Stilde=(Yi(:,:,ii)-Xi(:,:,ii)*reshape(beta(:,ii),k,n))'*(Yi(:,:,ii)-Xi(:,:,ii)*reshape(beta(:,ii),k,n));
 % draw sigma
-sigma(:,:,ii)=iwdraw(Stilde,T);
+sigma(:,:,ii)=bear.iwdraw(Stilde,T);
 end
 
 

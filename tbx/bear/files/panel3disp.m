@@ -276,7 +276,7 @@ fprintf(fid,'%s\n','');
 % display VAR stability results
 
 % check whether the model is stationary
-[stationary eigmodulus]=checkstable(beta_median(:,:,hh),n,p,k);
+[stationary eigmodulus]=bear.checkstable(beta_median(:,:,hh),n,p,k);
 eigmodulus=reshape(eigmodulus,p,n);
 stabilityinfo1=['Roots of the characteristic polynomial (modulus):'];
 fprintf('%s\n',stabilityinfo1);

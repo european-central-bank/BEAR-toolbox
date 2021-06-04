@@ -74,11 +74,11 @@ sigma=reshape(sigma,n,n);
    temp2=[temp2;data_exo_p(jj,:)];
 
    % use the function lagx on temp1 to obtain the matrix Y; retain only the last row
-   X=lagx(temp1,p-1);
+   X=bear.lagx(temp1,p-1);
    X=X(end,:);
 
    % use the function lagx on temp2 to obtain the matrix Z; retain only the last row
-   Z=lagx(temp2,p);
+   Z=bear.lagx(temp2,p);
    Z(:,m+1:end)=-Z(:,m+1:end);
    Z=Z(end,:);
 

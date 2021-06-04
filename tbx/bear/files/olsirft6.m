@@ -27,11 +27,11 @@ Bu=0;
 
 %% compute the IV part
 [beta_draws,sigma_draws,IV_draws,C_draws,D1ols]...
-    =irfIVols(betahat,n,m,p,k,T,names,startdate,enddate,X,Y,endo,data_endo,data_exo,const,pref,strctident,IRFt,IRFperiods,It,Bu);
+    =bear.irfIVols(betahat,n,m,p,k,T,names,startdate,enddate,X,Y,endo,data_endo,data_exo,const,pref,strctident,IRFt,IRFperiods,It,Bu);
 
 %% check the restrictions
 [irf_record,D_record,~,ETA_record,beta_gibbs]...
-    =irfres(beta_draws,sigma_draws,C_draws,IV_draws,IRFperiods,n,m,p,k,Y,X,FEVDresperiods,strctident,pref,favar,IRFt,It,Bu);
+    =bear.irfres(beta_draws,sigma_draws,C_draws,IV_draws,IRFperiods,n,m,p,k,Y,X,FEVDresperiods,strctident,pref,favar,IRFt,It,Bu);
 
 
 % save the median/OLS results in the cell irf_estimates
@@ -43,7 +43,7 @@ if favar.FAVAR==1
     %check if the variables have been transformed
     if favar.transformation==1 || favar.plot_transform==1
         favar.IRF.irf_record_nottransformed=irf_record; % before, save untransformed IRFs
-        [irf_record]=favar_retransX_irf_record(irf_record,favar.transformationindex_endo,favar.levels);
+        [irf_record]=bear.favar_retransX_irf_record(irf_record,favar.transformationindex_endo,favar.levels);
     end
 end
 
@@ -70,7 +70,7 @@ if strctident.MM==0
     end
     medianmodel=0;
 elseif strctident.MM==1 %if median model has been chosen
-    [medianmodel,~,~]=find_medianmodel(n,irf_record,IRFperiods,IRFband);
+    [medianmodel,~,~]=bear.find_medianmodel(n,irf_record,IRFperiods,IRFband);
     for ii=1:n
         % loop over variables
         for jj=1:n
@@ -94,7 +94,7 @@ if strctident.TakeOLS==1
     D=reshape(D1ols,n,n);
     D_estimates=D(:);
     % obtain point estimates for orthogonalised IRFs
-    [~,ortirfmatrix]=irfsim(betahat,D(:,1),n,m,p,k,IRFperiods);
+    [~,ortirfmatrix]=bear.irfsim(betahat,D(:,1),n,m,p,k,IRFperiods);
     for ii=1
         % loop over variables
         for jj=1:n
@@ -129,7 +129,7 @@ if favar.FAVAR==1
         % re-transform irf_estimates
         favar.IRF.irf_estimates_nottransformed=irf_estimates; % before, save untransformed IRFs
         % re-transform
-        [irf_estimates]=favar_retransX_irf_estimates(irf_estimates,favar.transformationindex_endo,favar.levels);
+        [irf_estimates]=bear.favar_retransX_irf_estimates(irf_estimates,favar.transformationindex_endo,favar.levels);
     end
 end
 

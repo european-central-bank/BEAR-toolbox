@@ -45,7 +45,7 @@ theta=theta_gibbs(:,ii);
    for jj=1:Fperiods
 
    % use the function lagx to obtain the matrix temp
-   temp=lagx(Y,p-1);
+   temp=bear.lagx(Y,p-1);
 
    % define the reduced regressor matrix X
    % if no exogenous variable is present at all in the model (neither constant nor other exogenous), define X only from the endogenous variables
@@ -90,7 +90,7 @@ end
 % then obtain point estimates and credibility intervals
 % loop over units
 for ii=1:N
-forecast_estimates(:,:,ii)=festimates(forecast_record(:,:,ii),n,Fperiods,Fband);
+forecast_estimates(:,:,ii)=bear.festimates(forecast_record(:,:,ii),n,Fperiods,Fband);
 end
 
 

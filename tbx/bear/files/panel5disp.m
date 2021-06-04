@@ -10,7 +10,7 @@ betatilde=Xi*theta_median;
 Btilde=reshape(betatilde,k,N*n);
 
 % check whether the model is stationary
-[stationary,eigmodulus]=checkstable(betatilde,N*n,p,k);
+[stationary,eigmodulus]=bear.checkstable(betatilde,N*n,p,k);
 
 % estimate the in-sample evaluation criteria
 

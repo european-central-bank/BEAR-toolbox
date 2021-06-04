@@ -2,7 +2,7 @@ function [struct_irf_record,D_record,gamma_record,favar]=tvirfres(beta_gibbs,ome
 
 
 
-% function [struct_irf_record D_record gamma_record Qdraw Qsuccess]=irfres(beta_gibbs,sigma_gibbs,It,Bu,IRFperiods,n,m,p,k,signrestable,signresperiods)
+% function [struct_irf_record D_record gamma_record Qdraw Qsuccess]=bear.irfres(beta_gibbs,sigma_gibbs,It,Bu,IRFperiods,n,m,p,k,signrestable,signresperiods)
 % runs the gibbs sampler to obtain draws from the posterior distribution of IRFs, orthogonalised with a sign restriction setting
 % inputs:  - matrix 'beta_gibbs': record of the gibbs sampler draws for the beta vector
 %          - matrix 'sigma_gibbs': record of the gibbs sampler draws for the sigma matrix (vectorised)
@@ -261,10 +261,10 @@ parfor ii=1:It-Bu
                 % obtain the candidate column fj
                 fj=stackedirfmat*qj;
                 % check restrictions: first sign restrictions
-                [success,qj]=checksignres(Scell{1,jj},qj,fj);
+                [success,qj]=bear.checksignres(Scell{1,jj},qj,fj);
                 % if 'success' is still equal to 1, also check for magnitude restrictions
                 if success==1
-                    [success]=checkmagres(Mcell{1,jj},Mlcell{1,jj},Mucell{1,jj},fj);
+                    [success]=bear.checkmagres(Mcell{1,jj},Mlcell{1,jj},Mucell{1,jj},fj);
                 end
                 % also, if 'success' is still equal to 1, update Qj by concatenating qj
                 if success==1

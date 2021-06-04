@@ -66,7 +66,7 @@ zetamat=sparse(diag(exp(-Zeta)));
 % obtain Sbar
 Sbar=full(eps*zetamat*eps');
 % finally draw sigmatilde
-sigmatilde=iwdraw(Sbar,T);
+sigmatilde=bear.iwdraw(Sbar,T);
 invsigmatilde=sigmatilde\speye(n*N);
 
 
@@ -110,7 +110,7 @@ end
 % obtain deltabar
 deltabar=Zeta'*G'*G*Zeta+delta0;
 % draw phi
-phi=igrandn(alphabar/2,deltabar/2);
+phi=bear.igrandn(alphabar/2,deltabar/2);
 
 
 
@@ -131,7 +131,7 @@ summ1=vec(theta1diff)'*vec(theta1diff);
 % obtain b1bar
 b1bar=summ1+b0;
 % draw b1
-b1=igrandn(a1bar/2,b1bar/2);
+b1=bear.igrandn(a1bar/2,b1bar/2);
 
 % factor 2 (unit component)
 % extract the theta component related to structural factor 2 (for all periods)
@@ -145,7 +145,7 @@ summ2=vec(theta2diff)'*vec(theta2diff);
 % obtain b1bar
 b2bar=summ2+b0;
 % draw b2
-b2=igrandn(a2bar/2,b2bar/2);
+b2=bear.igrandn(a2bar/2,b2bar/2);
 
 % factor 3 (endogenous variable component)
 % extract the theta component related to structural factor 3 (for all periods)
@@ -159,7 +159,7 @@ summ3=vec(theta3diff)'*vec(theta3diff);
 % obtain b1bar
 b3bar=summ3+b0;
 % draw b3
-b3=igrandn(a3bar/2,b3bar/2);
+b3=bear.igrandn(a3bar/2,b3bar/2);
 
 % factor 4 (lag component, only if the model includes more than one lag)
    if d4~=0
@@ -174,7 +174,7 @@ b3=igrandn(a3bar/2,b3bar/2);
    % obtain b1bar
    b4bar=summ4+b0;
    % draw b4
-   b4=igrandn(a4bar/2,b4bar/2);
+   b4=bear.igrandn(a4bar/2,b4bar/2);
    else 
    b4=nan;
    end
@@ -192,7 +192,7 @@ b3=igrandn(a3bar/2,b3bar/2);
    % obtain b1bar
    b5bar=summ5+b0;
    % draw b5
-   b5=igrandn(a5bar/2,b5bar/2);
+   b5=bear.igrandn(a5bar/2,b5bar/2);
    else 
    b5=nan;
    end

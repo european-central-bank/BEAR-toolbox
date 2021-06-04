@@ -105,7 +105,7 @@ Xhat=temp3(:,n+1:end);
 % obtain first Stilde
 Stilde=(Yhat-Xhat*B)'*(Yhat-Xhat*B);
 % next draw from IW(Stilde,T)
-sigma=iwdraw(Stilde,T);
+sigma=bear.iwdraw(Stilde,T);
 % invert sigma
 C=trns(chol(nspd(sigma),'Lower'));
 invC=C\speye(n);

@@ -26,7 +26,7 @@ for it=1:T
 end
 
 temp2=data_endo-eq;
-temp3=lagx(temp2,p);
+temp3=bear.lagx(temp2,p);
 Yhat=temp3(:,1:n);
 Xhat=temp3(:,n+1:end);
 

@@ -27,7 +27,7 @@ nconds(ii,1)=numel(temp(cellfun(@(x) any(~isempty(x)),temp)));
    % run the Gibbs sampler for unit ii
    cforecast_record(:,:,ii)=cforecast(data_endo_a(:,:,ii),data_exo_a,data_exo_p,It,Bu,Fperiods,temp1,temp2,temp3,CFt,const,beta_gibbs,D_record,gamma_record,n,m,p,k,q);
    % then obtain point estimates and credibility intervals
-   cforecast_estimates(:,:,ii)=festimates(cforecast_record(:,:,ii),n,Fperiods,Fband);
+   cforecast_estimates(:,:,ii)=bear.festimates(cforecast_record(:,:,ii),n,Fperiods,Fband);
 
    % if there are no conditions, return empty elements
    elseif nconds(ii,1)==0

@@ -18,7 +18,7 @@ data_endo_a=reshape(data_endo_a,[],N*n,1);
 
 
 % obtain point estimates and credibility interval
-[cforecast_estimates]=festimates(cforecast_record,N*n,Fperiods,Fband);
+[cforecast_estimates]=bear.festimates(cforecast_record,N*n,Fperiods,Fband);
 
 
 % reorganise to obtain a record similar to that of the unconditional forecasts

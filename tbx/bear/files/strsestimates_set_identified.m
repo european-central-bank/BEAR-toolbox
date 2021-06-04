@@ -18,7 +18,7 @@ for ii=1:n
    end 
 end 
 elseif strctident.MM==1
-[medianmodel,~,~]=find_medianmodel(n,irf_record,IRFperiods, IRFband); 
+[medianmodel,~,~]=bear.find_medianmodel(n,irf_record,IRFperiods, IRFband); 
 for ii=1:n
    % consider sample periods in turn
    for jj=1:T

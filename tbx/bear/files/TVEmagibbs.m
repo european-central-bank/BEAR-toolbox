@@ -115,7 +115,7 @@ end
 
 % step 4: now that psi/F has been drawn, it is possible to generate Yhat, Xhat and yhat
 temp2=data_endo-eq;
-temp3=lagx(temp2,p);
+temp3=bear.lagx(temp2,p);
 Yhat=temp3(:,1:n);
 yhat=Yhat(:);
 Xhat=temp3(:,n+1:end);
@@ -125,7 +125,7 @@ Xhat=temp3(:,n+1:end);
 % obtain first Stilde
 Stilde=(Yhat-Xhat*B)'*(Yhat-Xhat*B);
 % next draw from IW(Stilde,T)
-sigma=iwdraw(Stilde,T);
+sigma=bear.iwdraw(Stilde,T);
 % invert sigma
 C=trns(chol(nspd(sigma),'Lower'));
 invC=C\speye(n);

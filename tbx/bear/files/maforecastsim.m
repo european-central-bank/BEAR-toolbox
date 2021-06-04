@@ -33,11 +33,11 @@ for jj=1:horizon
 exo=[exo;data_exo_p(jj,:)];
 
 % use the function lagx on Y to obtain the matrix X; retain only the last row
-X=lagx(Y,p-1);
+X=bear.lagx(Y,p-1);
 X=X(end,:);
 
 % use the function lagx on exo to obtain the matrix Z; retain only the last row
-Z=lagx(exo,p);
+Z=bear.lagx(exo,p);
 Z=Z(end,:);
 Z(:,m+1:end)=-Z(:,m+1:end);
 

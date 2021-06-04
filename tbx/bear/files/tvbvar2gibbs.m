@@ -46,7 +46,7 @@ invomega=diag(1./diag(omega));
 % obtain the triangular factorisation of sigmahat
 [Fhat Lambdahat]=triangf(sigmahat);
 % obtain the inverse of Fhat
-[invFhat]=invltod(Fhat,n);
+[invFhat]=bear.invltod(Fhat,n);
 % create the cell storing the different vectors of invF
 Finv=cell(n,1);
 % store the vectors
@@ -108,7 +108,7 @@ summ=diag(summ);
 % obtain Qbar
 psibar=summ+psi;
 % draw omega
-omega=diag(arrayfun(@igrandn,kron(ones(q,1),chibar),psibar));
+omega=diag(arrayfun(@bear.igrandn,kron(ones(q,1),chibar),psibar));
 % invert it for next iteration
 invomega=diag(1./diag(omega));
 
@@ -150,7 +150,7 @@ invF=eye(n);
    invF(jj,1:jj-1)=Finv{jj,1};
    end
 % eventually recover F
-F=invltod(invF,n);
+F=bear.invltod(invF,n);
 % then update sigma
 sigma=F*Lambda*F';
 
@@ -162,7 +162,7 @@ sigma=F*Lambda*F';
    % estimate deltabar
    deltabar=L(:,jj)'*GIG*L(:,jj)+delta0;
    % draw the value phi_i
-   phi(1,jj)=igrandn(alphabar/2,deltabar/2);
+   phi(1,jj)=bear.igrandn(alphabar/2,deltabar/2);
    end
 
 

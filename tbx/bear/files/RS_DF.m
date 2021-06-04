@@ -7,7 +7,7 @@ T = size(actualdata,2);
 % date_vec = date;
 % startdate = char(date_vec(end-numt+1,:));
 % enddate   = char(date_vec(end,:));
-% [pdate,stringdate] = genpdate(names,0,frequency,startdate,enddate);
+% [pdate,stringdate] = bear.genpdate(names,0,frequency,startdate,enddate);
 
 
 %% Rossi-Sekhposyan (2016) Tests for Correct Specification of Forecast Densities

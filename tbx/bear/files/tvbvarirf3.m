@@ -45,7 +45,7 @@ for tt=1:T
         elseif IRFt==3
             [D,~]=triangf(sigma);
         end
-        [~,ortirfmatrix]=irfsim(beta,D,n,m,p,k,IRFperiods);
+        [~,ortirfmatrix]=bear.irfsim(beta,D,n,m,p,k,IRFperiods);
         
         % if we have FAVAR restrictions we scale the ortirfmatrix from the previous step
         if favar_FAVAR==1

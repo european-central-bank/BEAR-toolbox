@@ -44,7 +44,7 @@ for jj=1:Fcperiods
 % % % % concatenate the transpose of predicted exogenous to the top of actual exogenous
 
 % % % % use the function lagx on Y to obtain the matrix X; retain only the last row
-% % % X=lagx(Y,p-1);
+% % % X=bear.lagx(Y,p-1);
 % % % X=X(end,:);
 % % % 
 % % % % use the function lagx on exo to obtain the matrix Z; retain only the last row

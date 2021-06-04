@@ -51,7 +51,7 @@ for i=1:Mz
     %run the kalman filter/smoother on the mean and variance adjusted
     %residuals of the measurement equation to sample the variance
     %covariance matrix
-    [logVarsDraw_Gi]=KF_CKsimSV(yStarAdj,Ht,phi,startMean,startVar);
+    [logVarsDraw_Gi]=bear.KF_CKsimSV(yStarAdj,Ht,phi,startMean,startVar);
     Gvars(:,i)=exp([zeros(1,zEntry-1) logVarsDraw_Gi']');
     
     % sample phi

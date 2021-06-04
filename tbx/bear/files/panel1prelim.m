@@ -43,7 +43,7 @@ q=n*k;
 for ii=1:N
 
 % use the lagx function on the data matrix
-temp=lagx(data_endo(:,:,ii),lags);
+temp=bear.lagx(data_endo(:,:,ii),lags);
 
 % set Yi as the first n columns of the result
 Y(:,:,ii)=temp(:,1:n);

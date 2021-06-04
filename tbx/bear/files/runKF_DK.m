@@ -22,7 +22,7 @@ end
 % run the filter
 S = SKF(y,C,R,A,Q, x_0, Sig_0,c1,c2);
 % run the smoother
-S = FIS(y,C,R,A,Q,S); 
+S = bear.FIS(y,C,R,A,Q,S); 
 
 xFS = S.AmT;
 

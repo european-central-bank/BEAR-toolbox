@@ -46,7 +46,7 @@ end
 
 
 % obtain irfs and orthogonalised irfs
-[~,ortirfmatrix]=irfsim(betahat,D,n,m,p,k,T);
+[~,ortirfmatrix]=bear.irfsim(betahat,D,n,m,p,k,T);
 
 
 % step 4: obtain residuals and structural disturbances

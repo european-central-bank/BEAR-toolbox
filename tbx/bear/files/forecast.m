@@ -73,7 +73,7 @@ sigma=reshape(sigma,n,n);
    for jj=1:Fperiods
 
    % use the function lagx to obtain the matrix temp
-   temp=lagx(Y,p-1);
+   temp=bear.lagx(Y,p-1);
 
    % define the reduced regressor matrix X
    % if no exogenous variable is present at all in the model (neither constant nor other exogenous), define X only from the endogenous variables

@@ -61,7 +61,7 @@ q=n*k;
 % obtain X as defined in (1.1.8)
 % to do so, use the lagx function on the data matrix
 % this will basically return the matrix X without the exogenous variables, but with n additional columns of current period data
-temp=lagx(data_endo,lags);
+temp=bear.lagx(data_endo,lags);
 % to build X, take off the n initial columns of current data, and concatenate the exogenous
 X=[temp(:,n+1:end) data_exo];
 

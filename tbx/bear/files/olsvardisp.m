@@ -43,7 +43,7 @@ EPStilde=Y-Ytilde;
 
 
 % check first whether the model is stationary, using (1.9.1)
-[stationary,eigmodulus]=checkstable(betatilde,n,p,k);
+[stationary,eigmodulus]=bear.checkstable(betatilde,n,p,k);
 
 
 % Compute then the sum of squared residuals

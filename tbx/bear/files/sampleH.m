@@ -56,7 +56,7 @@ for i=1:M
 %     Hvars(:,i)=exp([zeros(1,p) logVarsDraw_Hi']');
 
     % sample log variances
-    [logVarsDraw_Hi]=KF_CKsimSV(yStarAdj,Ht,phi,startMean,startVar);
+    [logVarsDraw_Hi]=bear.KF_CKsimSV(yStarAdj,Ht,phi,startMean,startVar);
     Hvars(:,i)=exp([zeros(1,p) logVarsDraw_Hi']');
     
      % sample phi

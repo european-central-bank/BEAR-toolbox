@@ -58,7 +58,7 @@ while count<=It
 % step 2: obtain sigmatilde
 % compute Sbar
 Sbar=(1/sig)*(Y-Xdot*eyetheta)*(Y-Xdot*eyetheta)';
-sigmatilde=iwdraw(Sbar,T);
+sigmatilde=bear.iwdraw(Sbar,T);
 
 % step 3: obtain sig
 % compute the inverse of sigmatilde
@@ -68,7 +68,7 @@ invsigmatilde=invC*invC';
 % compute deltabar
 deltabar=trace((Y-Xdot*eyetheta)*(Y-Xdot*eyetheta)'*invsigmatilde)+delta0;
 % draw sig
-sig=igrandn(alphabar/2,deltabar/2);
+sig=bear.igrandn(alphabar/2,deltabar/2);
 
 % step 4: compute sigma and eyesigma
 sigma=sig*sigmatilde;

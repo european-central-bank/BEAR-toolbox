@@ -9,7 +9,7 @@ Y_Psi(1:p,:)=yData(1:p,:)-ones(p,1)*mean(yData(1:p,:));
 %X_Psi = X_Psi(p+1:end,:);
 %Y_Psi=Y_Psi(p+1:end,:);
 
-X_Psi = lagx(Y_Psi,p-1);
+X_Psi = bear.lagx(Y_Psi,p-1);
 X_Psi = X_Psi(1:end-1,:);
 % X_Psi = X_Psi(p+1:end,:);     %remove the first p rows of RHS
 Y_Psi=Y_Psi(p+1:end,:);       %and do so for LHS
@@ -44,5 +44,5 @@ beta=betabar+chol(nspd(omegabar),'lower')*randn(q,1);
 
 Bdraw = reshape(beta,k,n);
 
-[stationary,~]=checkstable(beta,n,p,k);
+[stationary,~]=bear.checkstable(beta,n,p,k);
 

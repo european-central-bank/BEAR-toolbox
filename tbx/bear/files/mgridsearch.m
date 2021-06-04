@@ -61,7 +61,7 @@ for ii=grid{1,1}:grid{1,3}:grid{1,2}
                   % loop over lambda6 values
                   for nn=grid{6,1}:grid{6,3}:grid{6,2}
                   % generate the dummy observations
-                  [Ystar ystar Xstar Tstar Ydum ydum Xdum Tdum]=gendummy(data_endo,data_exo,Y,X,n,m,p,T,const,lambda6,lambda7,lambda8,scoeff,iobs,lrp,H);
+                  [Ystar ystar Xstar Tstar Ydum ydum Xdum Tdum]=bear.gendummy(data_endo,data_exo,Y,X,n,m,p,T,const,lambda6,lambda7,lambda8,scoeff,iobs,lrp,H);
                   % obtain prior elements
                   [beta0 omega0 sigma]=mprior(ii,arvar,sigmahat,jj,kk,ll,mm,lambda5,n,m,p,k,q,prior,bex,blockexo);
                   % obtain posterior elements for the dummy-augmented data
@@ -97,7 +97,7 @@ for ii=grid{1,1}:grid{1,3}:grid{1,2}
                   % loop over lambda7 values
                   for nn=grid{7,1}:grid{7,3}:grid{7,2}
                   % generate the dummy observations
-                  [Ystar ystar Xstar Tstar Ydum ydum Xdum Tdum]=gendummy(data_endo,data_exo,Y,X,n,m,p,T,const,lambda6,lambda7,lambda8,scoeff,iobs,lrp,H);
+                  [Ystar ystar Xstar Tstar Ydum ydum Xdum Tdum]=bear.gendummy(data_endo,data_exo,Y,X,n,m,p,T,const,lambda6,lambda7,lambda8,scoeff,iobs,lrp,H);
                   % obtain prior elements
                   [beta0 omega0 sigma]=mprior(ii,arvar,sigmahat,jj,kk,ll,mm,lambda5,n,m,p,k,q,prior,bex,blockexo);
                   % obtain posterior elements for the dummy-augmented data
@@ -135,7 +135,7 @@ for ii=grid{1,1}:grid{1,3}:grid{1,2}
                      % loop over lambda7 values
                      for oo=grid{7,1}:grid{7,3}:grid{7,2}
                      % generate the dummy observations
-                     [Ystar ystar Xstar Tstar Ydum ydum Xdum Tdum]=gendummy(data_endo,data_exo,Y,X,n,m,p,T,const,lambda6,lambda7,lambda8,scoeff,iobs,lrp,H);
+                     [Ystar ystar Xstar Tstar Ydum ydum Xdum Tdum]=bear.gendummy(data_endo,data_exo,Y,X,n,m,p,T,const,lambda6,lambda7,lambda8,scoeff,iobs,lrp,H);
                      % obtain prior elements
                      [beta0 omega0 sigma]=mprior(ii,arvar,sigmahat,jj,kk,ll,mm,lambda5,n,m,p,k,q,prior,bex,blockexo);
                      % obtain posterior elements for the dummy-augmented data

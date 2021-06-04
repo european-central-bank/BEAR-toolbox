@@ -46,11 +46,11 @@ for jj=1:Fperiods
 % Define the matrix of regressors X by using lagX on temp; retain only the last row of the matrix
    % if no exogenous variable is present at all in the model (neither constant nor other exogenous), define X from the endogenous variables only
    if isempty(data_exo_p)
-   X=lagx(temp,p-1);
+   X=bear.lagx(temp,p-1);
    X=X(end,:);
    % if there are exogenous vaiables, concatenate them next to the endogenous
    else
-   X=lagx(temp,p-1);
+   X=bear.lagx(temp,p-1);
    X=[X(end,:) data_exo_p(jj,:)];
    end
 % obtain predicted value for T+jj
@@ -65,7 +65,7 @@ end
 % finally, generate the confidence bands
 % this requires to estimate the forecast error matrix sigmaf for each forecast period
 % to do so, it is first necessary to obtain irfs
-[irfmatrix,~]=irfsim(bhat,eye(n),n,m,p,k,Fperiods);
+[irfmatrix,~]=bear.irfsim(bhat,eye(n),n,m,p,k,Fperiods);
 % then initiate sigmaf for period 1
 sigmaf=irfmatrix(:,:,1)*sigmahat*irfmatrix(:,:,1)';
 % and increment for each forecast period

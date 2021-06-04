@@ -71,7 +71,7 @@ for it=1:T+p
 end
 
 temp2=data_endo-eq;
-temp3=lagx(temp2,p);
+temp3=bear.lagx(temp2,p);
 Yhat=temp3(:,1:n);
 Xhat=temp3(:,n+1:end);
 
@@ -80,7 +80,7 @@ EPStilde=Yhat-Xhat*Btilde;
 Ytilde=Y-EPStilde;
 
 % check first whether the model is stationary, using (1.9.1)
-[stationary eigmodulus]=macheckstable(Btilde,n,p);
+[stationary eigmodulus]=mabear.checkstable(Btilde,n,p);
 
 % Compute then the sum of squared residuals
 % compute first the RSS matrix, defined in (1.9.5)
@@ -444,7 +444,7 @@ temp=[temp;beta_gibbs((ii-1)*k1+1:ii*k1,:)];
    end
 end
 beta_reshape=temp;
-[beta_swap]=betaswap(beta_reshape,n,m,p,k1+m);
+[beta_swap]=bear.betaswap(beta_reshape,n,m,p,k1+m);
 plotvar=1;
 plotlag=1;
 plotexo=1;

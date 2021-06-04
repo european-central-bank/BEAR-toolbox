@@ -52,7 +52,7 @@ for ii=1:N
 temp=[temp data_endo(:,:,ii)];
 end
 % use the lagx function on this matrix
-temp=lagx(temp,lags);
+temp=bear.lagx(temp,lags);
 
 % set Ymat as the first Nn columns of the result
 Ymat=temp(:,1:N*n);

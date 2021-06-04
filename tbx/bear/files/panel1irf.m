@@ -32,7 +32,7 @@ D_estimates=vec(D);
 
 
 % obtain point estimates for orthogonalised IRFs
-[~,ortirfmatrix]=irfsim(bhat,D,n,m,p,k,IRFperiods);
+[~,ortirfmatrix]=bear.irfsim(bhat,D,n,m,p,k,IRFperiods);
 
 % save the results in the cell irf_estimates
 % loop over variables
@@ -53,14 +53,14 @@ for ii=1:1000
 % draw a random vector beta from its distribution
 % if the produced VAR model is not stationary, draw another vector, and keep drawing till a stationary VAR is obtained
 beta=bhat+chol(nspd(sigmahatb),'lower')*randn(q,1);
-[stationary,~]=checkstable(beta,n,p,k);
+[stationary,~]=bear.checkstable(beta,n,p,k);
    while stationary==0
    beta=bhat+chol(nspd(sigmahatb),'lower')*randn(q,1);
-   [stationary,~]=checkstable(beta,n,p,k);
+   [stationary,~]=bear.checkstable(beta,n,p,k);
    end
 
 % obtain orthogonalised IRFs from this beta vector
-[~,ortirfmatrix]=irfsim(beta,D,n,m,p,k,IRFperiods);
+[~,ortirfmatrix]=bear.irfsim(beta,D,n,m,p,k,IRFperiods);
 
 % record the results in the cell irf_record
 % loop over variables

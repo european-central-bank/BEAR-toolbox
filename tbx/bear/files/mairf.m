@@ -46,7 +46,7 @@ for ii=1:n
       for jj=1:IRFperiods
 
       % use the function lagx to obtain the matrix X
-      X=lagx(Y,p-1);
+      X=bear.lagx(Y,p-1);
       X=X(end,:);
 
       % obtain predicted value for T+jj

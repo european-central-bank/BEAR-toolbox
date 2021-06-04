@@ -5,9 +5,9 @@ aalpha = 0.05; % significance level
 
 % two competing forecasts AR(p) - with p BIC selected - Forecasts vs selected BEAR model Forecasts
 [F,cvlow_1,cvup_1,tforgraph,cvupplot_1,cvlowplot_1]=...     % 2018_06_18: add actualdata as input argument
-    GR_PF_Fluctuation(forecasts(ind_feval(1),:)',ols_forecasts(ind_feval(1),:)',actualdata(ind_feval(1),:)',max_nlag,pdate,gr_pf_windowSize,aalpha,1); % one-sided
+    bear.GR_PF_Fluctuation(forecasts(ind_feval(1),:)',ols_forecasts(ind_feval(1),:)',actualdata(ind_feval(1),:)',max_nlag,pdate,gr_pf_windowSize,aalpha,1); % one-sided
 [~,cvlow_2,cvup_2,~,cvupplot_2,cvlowplot_2]=...             % 2018_06_18: add actualdata as input argument
-    GR_PF_Fluctuation(forecasts(ind_feval(1),:)',ols_forecasts(ind_feval(1),:)',actualdata(ind_feval(1),:)',max_nlag,pdate,gr_pf_windowSize,aalpha,2); % two-sided
+    bear.GR_PF_Fluctuation(forecasts(ind_feval(1),:)',ols_forecasts(ind_feval(1),:)',actualdata(ind_feval(1),:)',max_nlag,pdate,gr_pf_windowSize,aalpha,2); % two-sided
 
 x=tforgraph;
 y=F;

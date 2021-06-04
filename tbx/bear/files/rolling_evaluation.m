@@ -93,7 +93,7 @@ gridDF = min(floor(min(forecasts_dist(:,ind_feval(1),:)))):tdiff:max(ceil(max(fo
 
 startdate = char(Fstartdate_rolling(1,:));
 enddate   = char(Fstartdate_rolling(end,:));
-[pdate,stringdate] = genpdate(names,0,frequency,startdate,enddate); 
+[pdate,stringdate] = bear.genpdate(names,0,frequency,startdate,enddate); 
 
     RS_PF; % Rossi-Sekhposyan (JAE,2016) Fluctuation Rationality Test
     RS_DF; % Rossi-Sekhposyan (2016) Tests for Correct Specification of Forecast Densities

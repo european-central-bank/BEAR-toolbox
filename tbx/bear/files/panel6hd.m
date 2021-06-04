@@ -91,5 +91,5 @@ end
 
 
 % finally, obtain point esimates and credibility intervals
-[hd_estimates]=hdestimates(hd_record,N*n,T,HDband);
+[hd_estimates]=bear.hdestimates(hd_record,N*n,T,HDband);
 

@@ -2,7 +2,7 @@ function [ortirfmatrix]=tvirfsim(beta,omega,D,n,m,p,k,q,horizon)
 
 
 
-% [irfmatrix ortirfmatrix]=irfsim(beta,D,n,m,p,k,horizon)
+% [irfmatrix ortirfmatrix]=bear.irfsim(beta,D,n,m,p,k,horizon)
 % computes IRF matrices and orthogonalised IRF matrices
 % inputs:  - vector 'beta': vectorised form of VAR coefficients (defined in 1.1.12)
 %          - matrix 'D': structural matrix for the OLS model (defined in 2.3.3)
@@ -39,7 +39,7 @@ Y(p,ii)=1;
  
    % step 1
    % use the function lagx to obtain the matrix temp, containing the endogenous regressors
-   temp=lagx(Y,p-1);
+   temp=bear.lagx(Y,p-1);
 
    % step 2
    % define the vector X

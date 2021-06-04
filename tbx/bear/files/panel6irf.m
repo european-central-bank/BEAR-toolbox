@@ -38,7 +38,7 @@ for ii=1:N*n
       theta=(1-rho)*thetabar+rho*theta+cholB*mvnrnd(zeros(d,1),eye(d))';
 
       % use the function lagx to obtain a matrix temp, containing the endogenous regressors
-      temp=lagx(Ysim,p-1);
+      temp=bear.lagx(Ysim,p-1);
 
       % define the vector X for the period
       Xsim_t=[temp(end,:) zeros(1,m)];
@@ -82,19 +82,19 @@ if IRFt==1
 % generate empty structural IRFs (just to be consistent with subsequent parts of the code
 struct_irf_record=[];
 % compute posterior estimates
-[irf_estimates,D_estimates,gamma_estimates]=irfestimates(irf_record,N*n,IRFperiods,IRFband,IRFt,[],[],favar);
+[irf_estimates,D_estimates,gamma_estimates]=bear.irfestimates(irf_record,N*n,IRFperiods,IRFband,IRFt,[],[],favar);
 % if IRFs have been set to an SVAR with Choleski identification (IRFt=2):
 elseif IRFt==2
 % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
-[struct_irf_record,D_record,gamma_record]=irfchol(sigma_gibbs(:,:,T),irf_record,It,Bu,IRFperiods,N*n,favar);
+[struct_irf_record,D_record,gamma_record]=bear.irfchol(sigma_gibbs(:,:,T),irf_record,It,Bu,IRFperiods,N*n,favar);
 % compute posterior estimates
-[irf_estimates,D_estimates,gamma_estimates]=irfestimates(struct_irf_record,N*n,IRFperiods,IRFband,IRFt,D_record,gamma_record,favar);
+[irf_estimates,D_estimates,gamma_estimates]=bear.irfestimates(struct_irf_record,N*n,IRFperiods,IRFband,IRFt,D_record,gamma_record,favar);
 % if IRFs have been set to an SVAR with triangular factorisation (IRFt=3):
 elseif IRFt==3
 % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
-[struct_irf_record,D_record,gamma_record]=irftrig(sigma_gibbs(:,:,T),irf_record,It,Bu,IRFperiods,N*n,favar);
+[struct_irf_record,D_record,gamma_record]=bear.irftrig(sigma_gibbs(:,:,T),irf_record,It,Bu,IRFperiods,N*n,favar);
 % compute posterior estimates
-[irf_estimates,D_estimates,gamma_estimates]=irfestimates(struct_irf_record,N*n,IRFperiods,IRFband,IRFt,D_record,gamma_record,favar);
+[irf_estimates,D_estimates,gamma_estimates]=bear.irfestimates(struct_irf_record,N*n,IRFperiods,IRFband,IRFt,D_record,gamma_record,favar);
 end
 
 

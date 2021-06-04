@@ -18,7 +18,7 @@ X=[];
    % loop over Units
    for jj=1:N
    % lag the data
-   temp=lagx(data_endo(:,ii,jj),p);
+   temp=bear.lagx(data_endo(:,ii,jj),p);
    % add a column of ones for the constant
    temp=[temp ones(T,1)];
    % increment Y from the first column

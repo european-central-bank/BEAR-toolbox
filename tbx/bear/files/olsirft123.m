@@ -54,7 +54,7 @@ if IRF==1 | favar.IRF.plot==1
     irf_record=cell(n,n);
     
     % obtain point estimates for orthogonalised IRFs
-    [~,ortirfmatrix]=irfsim(betahat,D,n,m,p,k,IRFperiods);
+    [~,ortirfmatrix]=bear.irfsim(betahat,D,n,m,p,k,IRFperiods);
     
     % save the results in the cell irf_estimates
     % deal with shocks in turn
@@ -73,14 +73,14 @@ if IRF==1 | favar.IRF.plot==1
         % draw a random vector beta from its distribution
         % if the produced VAR model is not stationary, draw another vector, and keep drawing till a stationary VAR is obtained
         beta=betahat+chol(nspd(omegahat),'lower')*randn(q,1);
-        % % % [stationary,~]=checkstable(beta,n,p,k);
+        % % % [stationary,~]=bear.checkstable(beta,n,p,k);
         % % %    while stationary==0
         % % %    beta=betahat+chol(nspd(omegahat),'lower')*randn(q,1);
-        % % %    [stationary,~]=checkstable(beta,n,p,k);
+        % % %    [stationary,~]=bear.checkstable(beta,n,p,k);
         % % %    end
         
         % obtain orthogonalised IRFs from this beta vector
-        [~,ortirfmatrix]=irfsim(beta,D,n,m,p,k,IRFperiods);
+        [~,ortirfmatrix]=bear.irfsim(beta,D,n,m,p,k,IRFperiods);
         
         % record the results in the cell irf_record
         % deal with shocks in turn
@@ -122,6 +122,6 @@ if favar.FAVAR==1
         % re-transform irf_estimates
         favar.IRF.irf_estimates_nottransformed=irf_estimates; % before, save untransformed IRFs
         % re-transform
-        [irf_estimates]=favar_retransX_irf_estimates(irf_estimates,favar.transformationindex_endo,favar.levels);
+        [irf_estimates]=bear.favar_retransX_irf_estimates(irf_estimates,favar.transformationindex_endo,favar.levels);
     end
 end

@@ -25,7 +25,7 @@ for ii=1:It-Bu
 B=matrixtdraw(Bbar,Sbar,phibar,alphatilde,k,n);
 
 % then draw sigma from an inverse Wishart distribution with scale matrix Sbar and degrees of freedom alphabar (step 3)
-sigma=iwdraw(Sbar,alphabar);
+sigma=bear.iwdraw(Sbar,alphabar);
 
 % record values before starting next iteration
 beta_gibbs(:,ii)=B(:);

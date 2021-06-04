@@ -38,10 +38,10 @@ for ii=1:Acc
     aux1 = inv(X'*X);
     aux2 = kron(sigma_draw,aux1);
     betadraw = mvnrnd(betahat,aux2);
-    %[stationary]=checkstable(betadraw,n,p,k); %only retain stationary draws
+    %[stationary]=bear.checkstable(betadraw,n,p,k); %only retain stationary draws
     %    while stationary==0
     %    betadraw = mvnrnd(betahat,aux2);
-    %    [stationary]=checkstable(betadraw,n,p,k);
+    %    [stationary]=bear.checkstable(betadraw,n,p,k);
     %    end
     %B=reshape(beta,size(B));
     beta_gibbs(:,ii)=betadraw;
@@ -50,7 +50,7 @@ end
 
 %% now, check the restrictions
 [irf_record,D_record,~,ETA_record,beta_record]...
-    =irfres(beta_gibbs,sigma_gibbs,[],[],IRFperiods,n,m,p,k,Y,X,FEVDresperiods,strctident,pref,favar,IRFt,It,Bu);
+    =bear.irfres(beta_gibbs,sigma_gibbs,[],[],IRFperiods,n,m,p,k,Y,X,FEVDresperiods,strctident,pref,favar,IRFt,It,Bu);
 % create then the cell storing the point estimates and confidence bands
 irf_estimates=cell(n,n);
 
@@ -59,7 +59,7 @@ if favar.FAVAR==1
     %check if the variables have been transformed
     if favar.transformation==1 || favar.plot_transform==1
         favar.IRF.irf_record_nottransformed=irf_record; % before, save untransformed IRFs
-        [irf_record]=favar_retransX_irf_record(irf_record,favar.transformationindex_endo,favar.levels);
+        [irf_record]=bear.favar_retransX_irf_record(irf_record,favar.transformationindex_endo,favar.levels);
     end
 end
 
@@ -87,7 +87,7 @@ if strctident.MM==0
     medianmodel=NaN; % no medianmodel
     
 elseif strctident.MM==1 % if median model has been chosen
-    [medianmodel,~,~]=find_medianmodel(n,irf_record,IRFperiods,IRFband);
+    [medianmodel,~,~]=bear.find_medianmodel(n,irf_record,IRFperiods,IRFband);
     for ii=1:n
         % loop over variables
         for jj=1:n
@@ -122,7 +122,7 @@ if favar.FAVAR==1
         % re-transform irf_estimates
         favar.IRF.irf_estimates_nottransformed=irf_estimates; % before, save untransformed IRFs
         % re-transform
-        [irf_estimates]=favar_retransX_irf_estimates(irf_estimates,favar.transformationindex_endo,favar.levels);
+        [irf_estimates]=bear.favar_retransX_irf_estimates(irf_estimates,favar.transformationindex_endo,favar.levels);
     end
 end
 

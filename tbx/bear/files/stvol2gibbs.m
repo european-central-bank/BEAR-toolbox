@@ -32,7 +32,7 @@ beta=betahat;
 % obtain the triangular factorisation of sigmahat
 [Fhat Lambdahat]=triangf(sigmahat);
 % obtain the inverse of Fhat
-[invFhat]=invltod(Fhat,n);
+[invFhat]=bear.invltod(Fhat,n);
 % create the cell storing the different vectors of invF
 Finv=cell(n,1);
 % store the vectors
@@ -132,7 +132,7 @@ invF=eye(n);
    invF(jj,1:jj-1)=Finv{jj,1};
    end
 % eventually recover F
-F=invltod(invF,n);
+F=bear.invltod(invF,n);
 % then update sigma
 sigma=F*Lambda*F';
 
@@ -159,7 +159,7 @@ sigma=F*Lambda*F';
    % estimate deltabar
    deltabar=L(:,jj)'*G{jj,1}'*I_o*G{jj,1}*L(:,jj)+delta0;
    % draw the value phi_i
-   phi(1,jj)=igrandn(alphabar/2,deltabar/2);
+   phi(1,jj)=bear.igrandn(alphabar/2,deltabar/2);
    end
 
 

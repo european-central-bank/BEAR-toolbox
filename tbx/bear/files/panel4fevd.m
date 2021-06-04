@@ -16,7 +16,7 @@ fevd_estimates={};
 for ii=1:N
 [fevd_record(:,:,ii)]=fevd(struct_irf_record(:,:,ii),gamma_record(:,:,ii),It,Bu,n,IRFperiods,FEVDband);
 % compute posterior estimates
-[fevd_estimates(:,:,ii)]=fevdestimates(fevd_record(:,:,ii),n,IRFperiods,FEVDband);
+[fevd_estimates(:,:,ii)]=bear.fevdestimates(fevd_record(:,:,ii),n,IRFperiods,FEVDband);
 end
 
 

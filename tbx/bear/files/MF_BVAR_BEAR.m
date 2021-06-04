@@ -340,8 +340,8 @@ for j=1:nsim
         kkk = t-nobs;
         
         % Define New Data (ND) and New Z matrix (NZ)
-        ND  = [delif(YDATA(nobs+T0+kkk,:)',index_NY(:,kkk))];       % deletes the missing obs, the NaN values
-        NZ  = delif(ZZ,index_NY(:,kkk));
+        ND  = [bear.delif(YDATA(nobs+T0+kkk,:)',index_NY(:,kkk))];       % deletes the missing obs, the NaN values
+        NZ  = bear.delif(ZZ,index_NY(:,kkk));
         
         BAt1 = BAt;
         BPt1 = BPt;
@@ -787,7 +787,7 @@ By = reshape(By,nv,nlags,nv);  % variables, lags, equations
 By = permute(By,[3,1,2]); %equations, variables, lags to match impulsdt.m
 
 irfperiods = 24;
-phi_irf = impulsdtrf(By,eye(nv),irfperiods);
+phi_irf = bear.impulsdtrf(By,eye(nv),irfperiods);
 
 % Drawing graphs
 % Response of equation n to shocks to each variable in turn
@@ -796,7 +796,7 @@ i = 0;
 x = (1:irfperiods)';
 plotct = 0;
 
-[Nrows,Ncols] = ConstructOptimalSubplot(nv);
+[Nrows,Ncols] = bear.ConstructOptimalSubplot(nv);
 
 for i = 1:nv
     plotct = plotct + 1;

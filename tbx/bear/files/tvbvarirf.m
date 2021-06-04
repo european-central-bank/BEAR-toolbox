@@ -36,7 +36,7 @@ for ii=1:n
       B=reshape(beta,k,n); 
           
       % use the function lagx to obtain a matrix temp, containing the endogenous regressors
-      temp=lagx(Y,p-1);
+      temp=bear.lagx(Y,p-1);
 
       % define the vector X
       X=[temp(end,:) zeros(1,m)];

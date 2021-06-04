@@ -23,7 +23,7 @@ end
 sigma_median=sigmahat;
 
 % check first whether the model is stationary, using (1.9.1)
-[stationary eigmodulus]=checkstable(bhat,n,p,k);
+[stationary eigmodulus]=bear.checkstable(bhat,n,p,k);
 Bhat=reshape(bhat,k,n);
 
 

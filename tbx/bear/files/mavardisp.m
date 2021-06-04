@@ -133,8 +133,8 @@ fprintf('%s\n','%    Romain Legrand  (Romain Legrand <b00148883@essec.edu>)     
 fprintf(fid,'%s\n','%    Romain Legrand  (Romain Legrand <b00148883@essec.edu>)                                          %');
 fprintf('%s\n','%    Alistair Dieppe (adieppe@worldbank.org)                                                             %');
 fprintf(fid,'%s\n','%    Alistair Dieppe (adieppe@worldbank.org)                                                         %');
-fprintf('%s\n','%    Björn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                                                      %');
-fprintf(fid,'%s\n','%    Björn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                                                  %');
+fprintf('%s\n','%    BjÃ¶rn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                                                      %');
+fprintf(fid,'%s\n','%    BjÃ¶rn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                                                  %');
 fprintf('%s\n','%                                                                                                        %');
 fprintf(fid,'%s\n','%                                                                                                    %');
 fprintf('%s\n','%    Version 4.4                                                                                         %');
@@ -431,7 +431,7 @@ temp=[temp;beta_gibbs((ii-1)*k1+1:ii*k1,:)];
    end
 end
 beta_reshape=temp;
-[beta_swap]=betaswap(beta_reshape,n,m,p,k1+m);
+[beta_swap]=bear.betaswap(beta_reshape,n,m,p,k1+m);
 plotvar=1;
 plotlag=1;
 plotexo=1;

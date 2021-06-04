@@ -37,7 +37,7 @@ B=reshape(beta,k,n);
 % obtain the initial value for F
 F=Fhat;
 % obtain the inverse of Fhat
-[invFhat]=invltod(Fhat,n);
+[invFhat]=bear.invltod(Fhat,n);
 % create the cell storing the different vectors of invF
 Finv=cell(n,1);
 % store the vectors
@@ -133,7 +133,7 @@ invF=eye(n);
    invF(jj,1:jj-1)=Finv{jj,1};
    end
 % eventually recover F
-F=invltod(invF,n);
+F=bear.invltod(invF,n);
 % update sigma
 sigma=F*Lambda*F';
 
@@ -142,7 +142,7 @@ sigma=F*Lambda*F';
 % estimate deltabar
 deltabar=L'*GIG*L+delta0;
 % draw the value phi_i
-phi=igrandn(alphabar/2,deltabar/2);
+phi=bear.igrandn(alphabar/2,deltabar/2);
 
 
 % step 7: draw the series lambda_t from their conditional posteriors, t=1,...,T

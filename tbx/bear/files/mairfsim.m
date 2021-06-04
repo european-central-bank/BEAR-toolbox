@@ -28,7 +28,7 @@ Y(p,ii)=1;
    for jj=1:horizon-1
   
    % use the function lagx to obtain the matrix X; retain only the last row
-   X=lagx(Y,p-1);
+   X=bear.lagx(Y,p-1);
    X=X(end,:);
 
    % obtain predicted value for T+jj

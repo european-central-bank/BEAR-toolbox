@@ -35,7 +35,7 @@ Y_Psi(1:p,:)=yData(1:p,:)-ones(p,1)*(Psi(p+1,:)); %also generate initial conditi
 
 % X_Psi = lagmatrix(Y_Psi,1:p); %create RHS of the VAR part                          
 % X_Psi = X_Psi(p+1:end,:);     %remove the first p rows of RHS
-X_Psi = lagx(Y_Psi,p-1);
+X_Psi = bear.lagx(Y_Psi,p-1);
 X_Psi = X_Psi(1:end-1,:);
 Y_Psi=Y_Psi(p+1:end,:);       %and do so for LHS
 
@@ -114,7 +114,7 @@ delta0=0.01;
    % estimate deltabar
    deltabar=logHdraw(1:end,jj)'*GIG*logHdraw(1:end,jj)+delta0;
    % draw the value phi_i
-   phi_Hdraw(jj)=igrandn(alphabar/2,deltabar/2);
+   phi_Hdraw(jj)=bear.igrandn(alphabar/2,deltabar/2);
    end
    
 

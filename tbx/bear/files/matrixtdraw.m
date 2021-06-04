@@ -14,7 +14,7 @@ function draw=matrixtdraw(B,S,phi,alpha,k,n)
 % this funtion uses the matrix-t algorithm provided in Karlsson (2012): see algorithm 22
 
 % first draw a n*n matrix sigma from IW(S,alpha)
-sigma=iwdraw(S,alpha);
+sigma=bear.iwdraw(S,alpha);
 
 % compute the lower Choleski factor of sigma
 C=chol(nspd(sigma),'lower');
