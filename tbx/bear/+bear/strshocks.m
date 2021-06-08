@@ -1,4 +1,4 @@
-function [strshocks_record]=bear.strshocks(beta_gibbs,D_record,Y,X,n,k,It,Bu,favar)
+function [strshocks_record]=strshocks(beta_gibbs,D_record,Y,X,n,k,It,Bu,favar)
 
 % first create the call storing the results
 strshocks_record=cell(n,1);
