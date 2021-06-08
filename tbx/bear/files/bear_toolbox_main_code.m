@@ -31,32 +31,6 @@
 %                                                                          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-%---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-% If operating system is OSX, check whether poi_library by Alec de Zegher is in the Java path and add it if not (for writing to xlsx-format)
-% On Mac you may add the poi_library via startup file % https://de.mathworks.com/matlabcentral/fileexchange/38591-xlwrite-generate-xls-x-files-without-excel-on-mac-linux-win
-%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-if ismac
-    javaPath = javaclasspath;
-    onPath   = ~isempty(cell2mat(strfind(javaPath,'poi_library')));
-    if ~onPath
-        root = cd;
-        javaaddpath(fullfile(root,'poi_library','poi-3.8-20120326.jar'));
-        javaaddpath(fullfile(root,'poi_library','poi-ooxml-3.8-20120326.jar'));
-        javaaddpath(fullfile(root,'poi_library','poi-ooxml-schemas-3.8-20120326.jar'));
-        javaaddpath(fullfile(root,'poi_library','xmlbeans-2.3.0.jar'));
-        javaaddpath(fullfile(root,'poi_library','dom4j-1.6.1.jar'));
-        javaaddpath(fullfile(root,'poi_library','stax-api-1.0.1.jar'));
-    end
-    javaPath = javaclasspath;
-    onPath   = ~isempty(cell2mat(strfind(javaPath,'poi_library')));
-    if ~onPath
-        error('Java poi_library not properly installed.')
-    end
-end
-
-
 %%
 %---------------------|
 % Initilisation phase |
