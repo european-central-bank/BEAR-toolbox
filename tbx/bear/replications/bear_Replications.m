@@ -35,6 +35,7 @@ warning off;
 clc
 
 %% Run:
+% Run='BvV2018'; 
 Run='BvV2018'; 
 %% this will replace the data.xlsx file in BEAR folder and the
 %% bear_settings.m file in the BEAR\files folder
@@ -59,37 +60,14 @@ Run='BvV2018';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% load data and settings
 %BEAR path
-BEARpath=pwd;
-filespath=[BEARpath filesep 'files' filesep];
-% save them
-checkRun.BEARpath=BEARpath;
-checkRun.filespath=filespath;
+BEARpath = bearroot();
 
 % data file name
-dataxlsx=['data_',Run,'.xlsx'];
+excelPath=['data_',Run,'.xlsx'];
 % settings file name
 settingsm=['bear_settings_',Run,'.m'];
 
-% the data file path and the settings file path
-replicationpath=[BEARpath filesep 'replications' filesep];
-datapath=[replicationpath filesep dataxlsx];
-settingspath=[replicationpath filesep settingsm];
-
-% replace the previous datafile with the one for the replication
-% but first save the previous one
-copyfile([BEARpath filesep pref.excelFile],[filespath 'data_previous.xlsx']);
-copyfile(datapath,[BEARpath filesep pref.excelFile]);
-
-% replace the previous BEAR settings file with the one for the replication
-% but first save the previous one
-copyfile([filespath 'bear_settings.m'],[filespath  'bear_settings_previous.m']);
-copyfile(settingspath,[filespath 'bear_settings.m']);
-
-% create this one to let BEAR check if we started it via this Run file
-checkRun.checkRun1=datetime;
-save([filespath 'checkRun'],'checkRun');
-
 % load the settings directly
-bear_settings
+run(settingsm)
 % run main code
 bear_toolbox_main_code
