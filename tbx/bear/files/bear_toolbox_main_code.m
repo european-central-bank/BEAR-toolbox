@@ -38,14 +38,7 @@
 
 %% init.m
 % first create initial elements to avoid later crash of the code
-% interinfo cells: required to save data when the back button is used with the interfaces
-interinfo1={};
-interinfo2={};
-interinfo3={};
-interinfo4={};
-interinfo5={};
-interinfo6={};
-interinfo7={};
+
 % panel scalar (non-model value): required to have the argument for interface 6, even if a non-panel model is selected 
 if VARtype==4
 else 
