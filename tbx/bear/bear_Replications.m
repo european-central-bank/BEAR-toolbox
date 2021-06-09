@@ -75,20 +75,6 @@ replicationpath=[BEARpath filesep 'replications' filesep];
 datapath=[replicationpath filesep dataxlsx];
 settingspath=[replicationpath filesep settingsm];
 
-% replace the previous datafile with the one for the replication
-% but first save the previous one
-copyfile([BEARpath filesep pref.excelFile],[filespath 'data_previous.xlsx']);
-copyfile(datapath,[BEARpath filesep pref.excelFile]);
-
-% replace the previous BEAR settings file with the one for the replication
-% but first save the previous one
-copyfile([filespath 'bear_settings.m'],[filespath  'bear_settings_previous.m']);
-copyfile(settingspath,[filespath 'bear_settings.m']);
-
-% create this one to let BEAR check if we started it via this Run file
-checkRun.checkRun1=datetime;
-save([filespath 'checkRun'],'checkRun');
-
 % load the settings directly
 bear_settings
 % run main code
