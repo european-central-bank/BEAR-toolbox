@@ -35,6 +35,7 @@ warning off;
 clc
 
 %% Run:
+% Run='BvV2018'; 
 Run='BvV2018'; 
 %% this will replace the data.xlsx file in BEAR folder and the
 %% bear_settings.m file in the BEAR\files folder
@@ -59,23 +60,14 @@ Run='BvV2018';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% load data and settings
 %BEAR path
-BEARpath=pwd;
-filespath=[BEARpath filesep 'files' filesep];
-% save them
-checkRun.BEARpath=BEARpath;
-checkRun.filespath=filespath;
+BEARpath = bearroot();
 
 % data file name
-dataxlsx=['data_',Run,'.xlsx'];
+excelPath=['data_',Run,'.xlsx'];
 % settings file name
 settingsm=['bear_settings_',Run,'.m'];
 
-% the data file path and the settings file path
-replicationpath=[BEARpath filesep 'replications' filesep];
-datapath=[replicationpath filesep dataxlsx];
-settingspath=[replicationpath filesep settingsm];
-
 % load the settings directly
-bear_settings
+run(settingsm)
 % run main code
 bear_toolbox_main_code
