@@ -1,0 +1,61 @@
+classdef PanelBayesianVARSettings < bear.settings.BaseSettings
+    
+    properties
+        % choice of panel model
+        % 1=OLS mean group estimator, 2=pooled estimator
+        % 3=random effect (Zellner and Hong), 4=random effect (hierarchical)
+        % 5=static factor approach, 6=dynamic factor approach
+        panel=2;
+        % units; must be single sstring, with names separated by a space
+        unitnames='US EA UK';
+        % total number of iterations for the Gibbs sampler
+        It=2000;
+        % number of burn-in iterations for the Gibbs sampler
+        Bu=1000;
+        % choice of retaining only one post burn iteration over 'pickf' iterations (1=yes, 0=no)
+        pick=0;
+        % frequency of iteration picking (e.g. pickf=20 implies that only 1 out of 20 iterations will be retained)
+        pickf=20;
+        % hyperparameter: autoregressive coefficient
+        ar=0.8;
+        % hyperparameter: lambda1
+        lambda1=0.1;
+        % hyperparameter: lambda2
+        lambda2=0.5;
+        % hyperparameter: lambda3
+        lambda3=1;
+        % hyperparameter: lambda4
+        lambda4=100;
+        % hyperparameter: s0
+        s0=0.001;
+        % hyperparameter: v0
+        v0=0.001;
+        % hyperparameter: alpha0
+        alpha0=1000;
+        % hyperparameter: delta0
+        delta0=1;
+        % hyperparameter: gama
+        gama=0.85;
+        % hyperparameter: a0
+        a0=1000;
+        % hyperparameter: b0
+        b0=1;
+        % hyperparameter: rho
+        rho=0.75;
+        % hyperparameter: psi
+        psi=0.1;
+    end
+    
+    methods
+        
+        function obj = PanelBayesianVARSettings(excelPath, varargin)
+            
+            obj@bear.settings.BaseSettings(4, excelPath)           
+            
+            obj = parseBEARSettings(obj, varargin{:});
+            
+        end
+        
+    end
+    
+end
