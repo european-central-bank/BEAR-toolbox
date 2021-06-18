@@ -1,4 +1,4 @@
-classdef TVPBVARsettings < bear.settings.BASELINESettings
+classdef TVPBVARsettings < bear.settings.BASELINEsettings
     
     properties
         % choice of time-varying BVAR model
@@ -31,7 +31,7 @@ classdef TVPBVARsettings < bear.settings.BASELINESettings
         
         function obj = TVPBVARsettings(excelPath, varargin)
             
-            obj@bear.settings.BASELINESettings(6, excelPath)
+            obj@bear.settings.BASELINEsettings(6, excelPath)
             
             obj = parseBEARSettings(obj, varargin{:});
             

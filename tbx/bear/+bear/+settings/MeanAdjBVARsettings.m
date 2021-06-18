@@ -1,10 +1,10 @@
-classdef MeanAdjBVARsettings < bear.settings.BASELINESettings
+classdef MeanAdjBVARsettings < bear.settings.BASELINEsettings
 
     methods
         
         function obj = MeanAdjBVARsettings(excelPath, varargin)
             
-            obj@bear.settings.BASELINESettings(3, excelPath)
+            obj@bear.settings.BASELINEsettings(3, excelPath)
             
             obj = parseBEARSettings(obj, varargin{:});
             

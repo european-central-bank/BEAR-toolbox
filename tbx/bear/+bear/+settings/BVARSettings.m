@@ -1,4 +1,4 @@
-classdef BVARSettings < bear.settings.BASELINESettings
+classdef BVARSettings < bear.settings.BASELINEsettings
     
     properties
         strctident
@@ -58,7 +58,7 @@ classdef BVARSettings < bear.settings.BASELINESettings
         
         function obj = BVARSettings(excelPath, varargin)
 
-            obj@bear.settings.BASELINESettings(2, excelPath)
+            obj@bear.settings.BASELINEsettings(2, excelPath)
             
             if obj.IRFt==4
                 strctident.MM=0; % option for Median model (0=no (standard), 1=yes)
