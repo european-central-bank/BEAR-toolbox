@@ -1,4 +1,4 @@
-function [settings] = getBEARSettings(VARType, ExcelPath, varargin)
+function [settings] = BEARSettings(VARType, ExcelPath, varargin)
 %GETBEARSETTINGS Summary of this function goes here
 %   Detailed explanation goes here
 VARType = bear.VARtype(VARType);

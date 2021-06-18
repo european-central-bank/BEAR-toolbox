@@ -1,4 +1,4 @@
-classdef StochasticVolatilityBVARSettings < bear.settings.BaseSettings
+classdef StochasticVolatilityBVARSettings < bear.settings.BASELINESettings
     
     properties
         % choice of stochastic volatility model
@@ -48,7 +48,7 @@ classdef StochasticVolatilityBVARSettings < bear.settings.BaseSettings
         
         function obj = StochasticVolatilityBVARSettings(excelPath, varargin)
             
-            obj@bear.settings.BaseSettings(5, excelPath)
+            obj@bear.settings.BASELINESettings(5, excelPath)
             
             obj = parseBEARSettings(obj, varargin{:});
             
