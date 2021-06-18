@@ -28,14 +28,14 @@ classdef (Abstract) BASELINEsettings
         
         % structural identification (1=none, 2=Cholesky, 3=triangular factorisation, 4=sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions,
         %                            5=IV identification, 6=IV identification & sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions)
-        IRFt  (1,1) double = 4;
+        IRFt  bear.IRFtype = bear.IRFtype(4);
         
         Feval (1,1) logical = false; % activate forecast evaluation (1=yes, 0=no)
         
         % type of conditional forecasts
         % 1=standard (all shocks), 2=standard (shock-specific)
         % 3=tilting (median), 4=tilting (interval)
-        CFt = 1;
+        CFt bear.CFtype = bear.CFtype(1);
         
         Fstartdate = '2014q1'; % start date for forecasts (has to be an in-sample date; otherwise, ignore and set Fendsmpl=1)
         Fenddate   = '2016q4'; % end date for forecasts
@@ -64,20 +64,13 @@ classdef (Abstract) BASELINEsettings
             
         end
         
-        function obj = set.favar(obj, varargin)
-            
-            obj.favar = bear.settings.FAVARsettings;
-
-            
-        end
-        
     end
     
     methods (Access = protected)
         
         function obj = parseBEARSettings( obj, varargin )
             
-            obj = bear.util.pvset(obj, varargin{:});
+            obj = bear.utils.pvset(obj, varargin{:});
             
         end
         

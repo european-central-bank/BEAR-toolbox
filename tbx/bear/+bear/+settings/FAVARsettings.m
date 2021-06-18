@@ -31,7 +31,7 @@ classdef FAVARsettings < matlab.mixin.CustomDisplay
     methods 
         function obj = FAVARsettings(varargin)
             
-            obj = bear.util.pvset(obj, varargin{:});
+            obj = bear.utils.pvset(obj, varargin{:});
 
         end
     end
@@ -46,11 +46,11 @@ classdef FAVARsettings < matlab.mixin.CustomDisplay
             else
                 if obj.blocks == 0
                     proplist = properties(obj);
-                    proplist = proplist(~ismember(p, {'blocknames','blocknumpc'}));
+                    proplist = proplist(~ismember(proplist, {'blocknames','blocknumpc'}));
                     propgrp = matlab.mixin.util.PropertyGroup(proplist);
                 else
                     proplist = properties(obj);
-                    proplist = proplist(~ismember(p, {'numpc'}));
+                    proplist = proplist(~ismember(proplist, {'numpc'}));
                     propgrp = matlab.mixin.util.PropertyGroup(proplist);
                 end
 

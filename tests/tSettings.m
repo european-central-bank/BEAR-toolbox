@@ -41,6 +41,15 @@ classdef tSettings < matlab.unittest.TestCase
             s = BEARSettings("TVPBVAR", "data.xlsx");
             tc.verifyClass(s, 'bear.settings.TVPBVARsettings')
         end
+
+        function tFavar(tc)
+            s = BEARSettings(1, 'data.xlsx');
+            tc.verifyEqual(s.favar.FAVAR, false)
+            s.favar.FAVAR = 1;
+            tc.verifyClass(s.favar, 'bear.settings.FAVARsettings')
+            tc.verifyEqual(s.favar.FAVAR, true)
+        end
+
     end
 
 end
