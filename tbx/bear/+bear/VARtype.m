@@ -1,6 +1,6 @@
 classdef VARtype < uint8
-    %VARTYPE Summary of this class goes here
-    %   Detailed explanation goes here
+    %VARTYPE enmieration class to define the differnt type of VAR problems
+    %that can be solved in BEAR toolbox
     
     enumeration
         OLSVAR      (1) % OLS VAR
@@ -10,5 +10,5 @@ classdef VARtype < uint8
         SVBVAR      (5) % Stochastic Volatility BVAR
         TVPBVAR     (6) % Time-Varying Parameter BVAR
     end
-    
+
 end

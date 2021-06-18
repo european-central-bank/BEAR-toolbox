@@ -1,6 +1,7 @@
 function [settings] = BEARSettings(VARType, ExcelPath, varargin)
-%GETBEARSETTINGS Summary of this function goes here
-%   Detailed explanation goes here
+%GETBEARSETTINGS gets the corresponding settings object based on the given
+%VARtype.
+
 VARType = bear.VARtype(VARType);
 
 switch VARType
