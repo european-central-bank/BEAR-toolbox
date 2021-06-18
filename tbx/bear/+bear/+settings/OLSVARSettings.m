@@ -1,4 +1,4 @@
-classdef OLSVARSettings < bear.settings.BASELINESettings
+classdef OLSVARsettings < bear.settings.BASELINESettings
     
     properties
         strctident
@@ -6,7 +6,7 @@ classdef OLSVARSettings < bear.settings.BASELINESettings
     
     methods
         
-        function obj = OLSVARSettings(excelPath, varargin)
+        function obj = OLSVARsettings(excelPath, varargin)
             
             obj@bear.settings.BASELINESettings(1, excelPath, varargin{:})
                         

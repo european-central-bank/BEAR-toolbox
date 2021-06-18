@@ -1,8 +1,8 @@
-classdef MeanAdjustedBVARSettings < bear.settings.BASELINESettings
+classdef MeanAdjBVARsettings < bear.settings.BASELINESettings
 
     methods
         
-        function obj = MeanAdjustedBVARSettings(excelPath, varargin)
+        function obj = MeanAdjBVARsettings(excelPath, varargin)
             
             obj@bear.settings.BASELINESettings(3, excelPath)
             

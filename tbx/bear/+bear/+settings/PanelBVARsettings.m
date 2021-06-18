@@ -1,4 +1,4 @@
-classdef PanelBayesianVARSettings < bear.settings.BASELINESettings
+classdef PanelBVARsettings < bear.settings.BASELINESettings
     
     properties
         % choice of panel model
@@ -48,7 +48,7 @@ classdef PanelBayesianVARSettings < bear.settings.BASELINESettings
     
     methods
         
-        function obj = PanelBayesianVARSettings(excelPath, varargin)
+        function obj = PanelBVARsettings(excelPath, varargin)
             
             obj@bear.settings.BASELINESettings(4, excelPath)           
             
