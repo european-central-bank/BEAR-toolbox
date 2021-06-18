@@ -59,38 +59,15 @@ classdef BVARSettings < bear.settings.BASELINEsettings
         function obj = BVARSettings(excelPath, varargin)
 
             obj@bear.settings.BASELINEsettings(2, excelPath)
-            
-            if obj.IRFt==4
-                strctident.MM=0; % option for Median model (0=no (standard), 1=yes)
-                % Correlation restriction options:
-                strctident.CorrelShock=''; % exact labelname of the shock defined in one of the "...res values" excel sheets, otherwise if the shock is not identified yet name it 'CorrelShock'
-                strctident.CorrelInstrument=''; % provide the IV variable in excel sheet "IV"
-            elseif obj.IRFt==5
-                strctident.MM=0; % option for Median model (0=no (standard), 1=yes)
-                % IV options:
-                strctident.Instrument='MHF'; % specify Instrument to identfy Shock
-                strctident.startdateIV='1992m2';
-                strctident.enddateIV='2003m12';
-                strctident.Thin=10;
-                strctident.prior_type_reduced_form=1; %1=flat (standard), 2=normal wishart , related to the IV routine
-                strctident.Switchprobability=0; % (=0 standard) related to the IV routine, governs the believe of the researcher if the posterior distribution of Sigma|Y as specified by the standard inverse Wishart distribution, is a good proposal distribution for Sigma|Y, IV. If gamma = 1, beta and sigma are drawn from multivariate normal and inverse wishart. If not Sigma may be drawn around its previous value if randnumber < gamma
-                strctident.prior_type_proxy=1; %1=inverse gamma (standard) 2=high relevance , related to the IV routine, priortype for the proxy equation (relevance of the proxy)
-            elseif obj.IRFt==6
-                strctident.MM=0; % option for Median model (0=no (standard), 1=yes)
-                % IV options:
-                strctident.Instrument='MHF'; % specify Instrument to identfy Shock
-                strctident.startdateIV='1992m2';
-                strctident.enddateIV='2003m12';
-                strctident.Thin=10;
-                strctident.prior_type_reduced_form=1; %1=flat (standard), 2=normal wishart , related to the IV routine
-                strctident.Switchprobability=0; % (=0 standard) related to the IV routine, governs the believe of the researcher if the posterior distribution of Sigma|Y as specified by the standard inverse Wishart distribution, is a good proposal distribution for Sigma|Y, IV. If gamma = 1, beta and sigma are drawn from multivariate normal and inverse wishart. If not Sigma may be drawn around its previous value if randnumber < gamma
-                strctident.prior_type_proxy=1; %1=inverse gamma (standard) 2=high relevance , related to the IV routine, priortype for the proxy equation (relevance of the proxy)
-                % Correlation restriction options:
-                strctident.CorrelShock='CorrelShock'; % exact labelname of the shock defined in one of the "...res values" excel sheets, otherwise if the shock is not identified yet name it 'correl.shock'
-                strctident.CorrelInstrument='MHF'; % provide the IV variable in excel sheet "IV"
+
+            switch obj.IRFt
+                case 4
+                    obj.strctident = bear.settings.StrctidentIRFt4;
+                case 5                    
+                    obj.strctident = bear.settings.StrctidentIRFt5;
+                case 6
+                    obj.strctident = bear.settings.StrctidentIRFt6;
             end
-            
-            obj.strctident = strctident;
             
             obj = parseBEARSettings(obj, varargin{:});
             
