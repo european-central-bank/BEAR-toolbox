@@ -15,7 +15,7 @@ classdef (Abstract) BASELINEsettings
         pref = struct();
         
         % FAVAR options
-        favar = struct('FAVAR',0); % augment VAR model with factors (1=yes, 0=no)
+        favar (1,1) bear.settings.FAVARsettings = bear.settings.FAVARsettings(); % augment VAR model with factors (1=yes, 0=no)
         
         % Model options
         IRF        (1,1) logical = true;  % activate impulse response functions (1=yes, 0=no)
@@ -28,7 +28,7 @@ classdef (Abstract) BASELINEsettings
         
         % structural identification (1=none, 2=Cholesky, 3=triangular factorisation, 4=sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions,
         %                            5=IV identification, 6=IV identification & sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions)
-        IRFt (1,1) double = 4;
+        IRFt  (1,1) double = 4;
         
         Feval (1,1) logical = false; % activate forecast evaluation (1=yes, 0=no)
         
@@ -54,7 +54,7 @@ classdef (Abstract) BASELINEsettings
         HDband          (1,1) double = 0.68; % confidence/credibility level for historical decomposition
         
     end
-    
+
     methods
         
         function obj = BASELINEsettings(VARtype, excelPath)
@@ -64,55 +64,10 @@ classdef (Abstract) BASELINEsettings
             
         end
         
-        function obj = set.favar(obj, value)
+        function obj = set.favar(obj, varargin)
             
-            obj.favar = value;
-            
-            % FAVAR options
-            if obj.favar.FAVAR==1
-                % transform information variables in excel sheet 'factor data' (following Stock & Watson: 1 Level, 2 First Difference, 3 Second Difference, 4 Log-Level, 5 Log-First-Difference, 6 Log-Second-Difference)
-                obj.favar.transformation=1; % (1=yes, 0=no) // 'factor data' must contain values for startdate -1 in the case we have First Difference (2,5) transformation types and startdate -2 in the case we have Second Difference (3,6) transformation types
-                obj.favar.transform_endo='6 2'; %'2 6' transformation codes of varendo variables other than factors
-                % standardises (information) data in excel sheets 'data' and 'factor data'
-                obj.favar.standardise=1; % (1=yes (default), 0=no)
-                % demeans (information) data in excel sheets 'data' and 'factor data'
-                obj.favar.demean=1; % (1=yes, 0=no)
-                % specify the ordering of endogenpous factors and variables
-                obj.varendo = 'factor1 factor2 factor3 factor4 PUNEW FYFF';
-                
-                % blocks/categories (1=yes, 0=no), specify in excel sheet
-                obj.favar.blocks=0;
-                if obj.favar.blocks==0 % basic favar model without blocks (basically one block)
-                    obj.favar.numpc=4; % choose number of factors (principal components) to include
-                elseif obj.favar.blocks==1 % assign information variables to blocks
-                    obj.favar.blocknames='slow fast'; % specify in excel sheet 'factor data'
-                    obj.favar.blocknumpc='2 2'; %block-specific number of factors (principal components)
-                end
-                
-                
-                % specify information variables of interest (plot and excel output) (HD & IRFs)
-                obj.favar.plotX='IPS10 PMCP LHEM LHUR';
-                % (approximate) HD for information variables
-                obj.favar.HD.plot=0; % (1=yes, 0=no)
-                if obj.favar.HD.plot==1
-                    obj.favar.HD.sumShockcontributions=0; % sum contributions over shocks (=1), or over variables (=0, standard), only for IRFt2,3\\this option makes no sense in IRFt4,6
-                    obj.favar.HD.plotXblocks=1; % sum contributions of factors blockwise
-                    obj.favar.HD.HDallsumblock=0; % include all components of HDall(=1) other than shock contributions, but display them sumed under blocks\shocks
-                end
-                % (approximate) IRFs for information variables
-                obj.favar.IRF.plot=1; % (1=yes, 0=no)
-                if obj.favar.IRF.plot==1
-                    % choose shock(s) to plot
-                    obj.favar.IRF.plotXshock  = obj.varendo;%'FEVDshock';%'FYFF'; % FYFF 'USMP' % we need this atm only for IRFt2,3 provide =varendo for all shocks; in IRFt456 the identified shocks are plotted
-                    obj.favar.IRF.plotXblocks = 0;
-                end
-                % (approximate) FEVDs for information variables
-                obj.favar.FEVD.plot=1; % (1=yes, 0=no)
-                if obj.favar.FEVD.plot==1
-                    % choose shock(s) to plot
-                    obj.favar.FEVD.plotXshock=obj.favar.IRF.plotXshock;%'EA.factor1 EA.factor2 EA.factor3 EA.factor4 EA.factor5 EA.factor6';
-                end
-            end
+            obj.favar = bear.settings.FAVARsettings;
+
             
         end
         
@@ -122,22 +77,7 @@ classdef (Abstract) BASELINEsettings
         
         function obj = parseBEARSettings( obj, varargin )
             
-            nInputs = numel(varargin);
-            if rem(nInputs, 2) ~= 0
-                error('bear:BASESettings:incorrectNumberOfInputs', 'You need to put an input for each output')
-            end
-            
-            for i = 1 : 2 : nInputs
-                try
-                    obj.(varargin{i}) = varargin{i+1};
-                catch e
-                    if ~isprop(obj, varargin{i})
-                        warning('bear:BaseSettings:SettingsDoesNotExist','The input %s does not exist, ignoring it', varargin{i})
-                    else
-                        rethrow(e)
-                    end
-                end
-            end
+            obj = bear.util.pvset(obj, varargin{:});
             
         end
         
