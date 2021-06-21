@@ -63,6 +63,16 @@ classdef (Abstract) BASELINEsettings
             obj.pref = iGetDefaultPref(excelPath);
             
         end
+
+        function obj = set.IRFt(obj, value)
+            % call another function to check the value as desired,
+            % and possibly even update it using some computation
+            obj = checkIRFt(obj, value);
+
+            % set set the property using the validated value
+            % (only place we do assignment to avoid infinite recursion)
+            obj.IRFt = value;
+        end
         
     end
     
@@ -72,6 +82,11 @@ classdef (Abstract) BASELINEsettings
             
             obj = bear.utils.pvset(obj, varargin{:});
             
+        end
+
+        function obj = checkIRFt(obj, value)
+            % Check values
+            validateattributes(value, {'numeric', 'char', 'string', 'bear.IRFtype'}, {'scalar'});
         end
         
     end

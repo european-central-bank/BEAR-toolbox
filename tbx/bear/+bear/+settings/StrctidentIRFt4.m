@@ -1,4 +1,4 @@
-classdef StrctidentIRt4 < bear.settings.Strctident
+classdef StrctidentIRFt4 < bear.settings.Strctident
 
     properties
         CorrelShock = 'CorrelShock'; % exact labelname of the shock defined in one of the "...res values" excel sheets, otherwise if the shock is not identified yet name it 'CorrelShock'

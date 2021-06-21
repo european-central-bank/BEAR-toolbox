@@ -50,6 +50,36 @@ classdef tSettings < matlab.unittest.TestCase
             tc.verifyEqual(s.favar.FAVAR, true)
         end
 
+        function tStrctident(tc)
+            s = BEARSettings(1, 'data.xlsx');
+
+            tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt4');
+            tc.verifyEqual(s.IRFt, bear.IRFtype(4))
+
+            s.IRFt = 5;
+            tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt5');
+
+            s.IRFt = 6;
+            tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt6');
+
+            s = BEARSettings(3, 'data.xlsx');
+
+            tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt4');
+            tc.verifyEqual(s.IRFt, bear.IRFtype(4))
+
+            s.IRFt = 5;
+            tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt5');
+
+            s.IRFt = 6;
+            tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt6');
+
+            s = BEARSettings(1, 'data.xlsx', 'IRFt', 5);
+            tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt5');
+
+            s = BEARSettings(3, 'data.xlsx', 'IRFt', 6);
+            tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt6');
+        end
+
     end
 
 end

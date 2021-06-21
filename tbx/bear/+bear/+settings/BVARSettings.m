@@ -38,9 +38,9 @@ classdef BVARSettings < bear.settings.BASELINEsettings
         % number of burn-in iterations for the Gibbs sampler
         Bu=500;
         % hyperparameter optimisation by grid search (1=yes, 0=no)
-        hogs=0;
+        hogs (1,1) logical =0;
         % block exogeneity (1=yes, 0=no)
-        bex=0;
+        bex (1,1) logical = 0;
         % sum-of-coefficients application (1=yes, 0=no)
         scoeff=0;
         % dummy initial observation application (1=yes, 0=no)
@@ -60,7 +60,29 @@ classdef BVARSettings < bear.settings.BASELINEsettings
 
             obj@bear.settings.BASELINEsettings(2, excelPath)
 
-            switch obj.IRFt
+            obj = obj.setStrctident(obj.IRFt);
+            
+            obj = parseBEARSettings(obj, varargin{:});
+            
+        end
+        
+    end
+
+    methods (Access = protected)
+
+        function obj = checkIRFt(obj, value)
+            % we could call superclass method to combine effect
+            obj = checkIRFt@bear.settings.BASELINEsettings(obj, value);
+            obj = obj.setStrctident(value);
+        end
+        
+    end
+
+    methods (Access = private)
+
+        function obj = setStrctident(obj, value)
+            
+            switch value
                 case 4
                     obj.strctident = bear.settings.StrctidentIRFt4;
                 case 5                    
@@ -69,9 +91,7 @@ classdef BVARSettings < bear.settings.BASELINEsettings
                     obj.strctident = bear.settings.StrctidentIRFt6;
             end
             
-            obj = parseBEARSettings(obj, varargin{:});
-            
         end
-        
+
     end
 end
