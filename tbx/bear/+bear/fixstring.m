@@ -12,37 +12,37 @@ function [fixedstring]=fixstring(string)
 
 
 
+string = regexprep(strtrim(string), '[ ]{2,}',' ');
 
-
-% the first task is to eliminate any possible initial space
-% initiate the elimination process
-initspace=1;
-while initspace==1
-% check whether the first character is a space
-  % first check that the string is not empty; if it is empty, just return it as an empty string
-   if size(string,2)==0
-   string='';
-   % and indicate there is no more initial space to clear
-   initspace=0;
-   % if the string is non empty
-   elseif size(string,2)>=1
-      % check for the first character: if it is a space, clear it
-      % if the string contains exactly one character, turn it to empty
-      if isspace(string(1,1)) && size(string,2)==1
-      string='';  
-      % and indicate there is no more initial space to clear
-      initspace=0;
-      % if the string contains more than one character, clear only the first one
-      % and do not turn initspace to 0; this indicates there may still remain initial spaces to clear
-      elseif isspace(string(1,1)) && size(string,2)>=1
-      string=string(1,2:end);
-      % finally, if the first character is not a space
-      elseif ~isspace(string(1,1))
-      % then don't change the string, but turn initspace to 0 to inidicate there is no more initial space to clear
-      initspace=0;
-      end
-   end
-end
+% % the first task is to eliminate any possible initial space
+% % initiate the elimination process
+% initspace=1;
+% while initspace==1
+% % check whether the first character is a space
+%   % first check that the string is not empty; if it is empty, just return it as an empty string
+%    if size(string,2)==0
+%    string='';
+%    % and indicate there is no more initial space to clear
+%    initspace=0;
+%    % if the string is non empty
+%    elseif size(string,2)>=1
+%       % check for the first character: if it is a space, clear it
+%       % if the string contains exactly one character, turn it to empty
+%       if isspace(string(1,1)) && size(string,2)==1
+%       string='';  
+%       % and indicate there is no more initial space to clear
+%       initspace=0;
+%       % if the string contains more than one character, clear only the first one
+%       % and do not turn initspace to 0; this indicates there may still remain initial spaces to clear
+%       elseif isspace(string(1,1)) && size(string,2)>=1
+%       string=string(1,2:end);
+%       % finally, if the first character is not a space
+%       elseif ~isspace(string(1,1))
+%       % then don't change the string, but turn initspace to 0 to inidicate there is no more initial space to clear
+%       initspace=0;
+%       end
+%    end
+% end
       
 
 
@@ -79,24 +79,24 @@ for ii=1:nchar
 end
 
 
-% this new repaired string may now have a final space (no more than one as repeated spaces have been suppressed) that we want to clear
-% this will however depend on the size of the repaired string
-% if the new string is empty, just leave it as an empty string
-if size(fixedstring,2)==0
-fixedstring='';
-% if it is not empty
-else
-   % if the final character is not a space, just leave the string as it is (don't do anything)
-   if ~isspace(fixedstring(1,end))
-   % if the final character is a space, take it away
-   elseif isspace(fixedstring(1,end))
-      % if there is only one character in fixedstring, turn it into an empty string
-      if size(fixedstring,2)==1
-      fixedstring='';
-      % if there is more than one character, just take away the final one
-      elseif size(fixedstring,2)>1
-      fixedstring=fixedstring(1,1:end-1);
-      end
-   end
-end
+% % this new repaired string may now have a final space (no more than one as repeated spaces have been suppressed) that we want to clear
+% % this will however depend on the size of the repaired string
+% % if the new string is empty, just leave it as an empty string
+% if size(fixedstring,2)==0
+% fixedstring='';
+% % if it is not empty
+% else
+%    % if the final character is not a space, just leave the string as it is (don't do anything)
+%    if ~isspace(fixedstring(1,end))
+%    % if the final character is a space, take it away
+%    elseif isspace(fixedstring(1,end))
+%       % if there is only one character in fixedstring, turn it into an empty string
+%       if size(fixedstring,2)==1
+%       fixedstring='';
+%       % if there is more than one character, just take away the final one
+%       elseif size(fixedstring,2)>1
+%       fixedstring=fixedstring(1,1:end-1);
+%       end
+%    end
+% end
 
