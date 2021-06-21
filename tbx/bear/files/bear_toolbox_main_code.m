@@ -143,31 +143,31 @@ end
 %% convertstrngs.m
 % run a script to convert string into a list of endogenous, exogenous, and units (if applicable)
 % as a preliminary task, fix all the strings that may require it
-startdate=bear.fixstring(startdate);
-enddate=bear.fixstring(enddate);
-varendo=bear.fixstring(varendo);
-varexo=bear.fixstring(varexo);
-datapath=bear.fixstring(pref.datapath);
+startdate=bear.utils.fixstring(startdate);
+enddate=bear.utils.fixstring(enddate);
+varendo=bear.utils.fixstring(varendo);
+varexo=bear.utils.fixstring(varexo);
+datapath=bear.utils.fixstring(pref.datapath);
 % FAVAR: additional strings
 if favar.FAVAR==1
-    favar.plotX=bear.fixstring(favar.plotX);
+    favar.plotX=bear.utils.fixstring(favar.plotX);
     if favar.blocks==1 || favar.slowfast==1
-        favar.blocknames=bear.fixstring(favar.blocknames);
+        favar.blocknames=bear.utils.fixstring(favar.blocknames);
     end
         if favar.blocks==1
-            favar.blocknumpc=bear.fixstring(favar.blocknumpc);
+            favar.blocknumpc=bear.utils.fixstring(favar.blocknumpc);
         end
         if favar.IRF.plot==1
-            favar.IRF.plotXshock=bear.fixstring(favar.IRF.plotXshock);
+            favar.IRF.plotXshock=bear.utils.fixstring(favar.IRF.plotXshock);
         end
-    favar.transform_endo=bear.fixstring(favar.transform_endo);
+    favar.transform_endo=bear.utils.fixstring(favar.transform_endo);
 end
 if F==1
-Fstartdate=bear.fixstring(Fstartdate);
-Fenddate=bear.fixstring(Fenddate);
+Fstartdate=bear.utils.fixstring(Fstartdate);
+Fenddate=bear.utils.fixstring(Fenddate);
 end
 if VARtype==4
-unitnames=bear.fixstring(unitnames);
+unitnames=bear.utils.fixstring(unitnames);
 end
 
 % first recover the names of the different endogenous variables; 

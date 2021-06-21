@@ -35,7 +35,7 @@ neentries1=size(nerows1,1);
 % all these entries contrain strings: fix them to correct potential user formatting errors
 % loop over entries (value table)
 for ii=1:neentries1
-strngs1{nerows1(ii,1),neclmns1(ii,1)}=bear.fixstring(strngs1{nerows1(ii,1),neclmns1(ii,1)});
+strngs1{nerows1(ii,1),neclmns1(ii,1)}=bear.utils.fixstring(strngs1{nerows1(ii,1),neclmns1(ii,1)});
 end
 
 
@@ -135,7 +135,7 @@ strngs2(cellfun(@isnumeric,strngs2))=cellfun(@num2str,strngs2(cellfun(@isnumeric
 neentries2=size(nerows2,1);
 % loop over entries (period table)
 for ii=1:neentries2
-strngs2{nerows2(ii,1),neclmns2(ii,1)}=bear.fixstring(strngs2{nerows2(ii,1),neclmns2(ii,1)});
+strngs2{nerows2(ii,1),neclmns2(ii,1)}=bear.utils.fixstring(strngs2{nerows2(ii,1),neclmns2(ii,1)});
 end
 
 % recover the rows and columns of each endogenous variable

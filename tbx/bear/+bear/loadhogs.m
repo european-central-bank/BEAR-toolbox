@@ -26,7 +26,7 @@ neentries=size(nerows,1);
 % all these entries contrain strings: fix them to correct potential user formatting errors
 % loop over entries
 for ii=1:neentries
-strngs{nerows(ii,1),neclmns(ii,1)}=bear.fixstring(strngs{nerows(ii,1),neclmns(ii,1)});
+strngs{nerows(ii,1),neclmns(ii,1)}=bear.utils.fixstring(strngs{nerows(ii,1),neclmns(ii,1)});
 end
 
 % fill the grid
