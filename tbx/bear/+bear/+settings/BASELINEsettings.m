@@ -97,6 +97,7 @@ function pref = iGetDefaultPref(excelPath)
 % path to data; must be a single string
 pref.datapath  = bearroot(); % main BEAR folder, specify otherwise
 pref.excelFile = excelPath;
+pref.results_path = '';
 % excel results file name
 pref.results_sub='results_test_data_61_temp';
 % to output results in excel

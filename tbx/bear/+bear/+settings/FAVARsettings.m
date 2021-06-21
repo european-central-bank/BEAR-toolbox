@@ -41,7 +41,7 @@ classdef FAVARsettings < matlab.mixin.CustomDisplay
         function propgrp = getPropertyGroups(obj)
 
             if obj.FAVAR == 0
-                proplist = {'FAVAR'};
+                proplist = {'FAVAR', 'HD', 'IRF', 'FEVD'};
                 propgrp = matlab.mixin.util.PropertyGroup(proplist);
             else
                 if obj.blocks == 0

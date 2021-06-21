@@ -3,47 +3,53 @@ classdef tSettings < matlab.unittest.TestCase
     methods(Test)
         
         function tSetterFcnByNumber(tc)
-            s = BEARSettings(1, 'data.xlsx');
+            s = BEARsettings(1, 'data.xlsx');
             tc.verifyClass(s, 'bear.settings.OLSVARsettings')
+            tc.verifyEqual(s.VARtype, bear.VARtype(1))
 
-            s = BEARSettings(2, "data.xlsx");
+            s = BEARsettings(2, "data.xlsx");
+            tc.verifyClass(s, 'bear.settings.BVARsettings')
+            tc.verifyEqual(s.VARtype, bear.VARtype(2))
+
+            s = BEARsettings(3, "data.xlsx");
             tc.verifyClass(s, 'bear.settings.MeanAdjBVARsettings')
+            tc.verifyEqual(s.VARtype, bear.VARtype(3))
 
-            s = BEARSettings(3, "data.xlsx");
-            tc.verifyClass(s, 'bear.settings.BVARSettings')
-
-            s = BEARSettings(4, "data.xlsx");
+            s = BEARsettings(4, "data.xlsx");
             tc.verifyClass(s, 'bear.settings.PanelBVARsettings')
+            tc.verifyEqual(s.VARtype, bear.VARtype(4))
 
-            s = BEARSettings(5, "data.xlsx");
+            s = BEARsettings(5, "data.xlsx");
             tc.verifyClass(s, 'bear.settings.SVBVARsettings')
+            tc.verifyEqual(s.VARtype, bear.VARtype(5))
 
-            s = BEARSettings(6, "data.xlsx");
+            s = BEARsettings(6, "data.xlsx");
             tc.verifyClass(s, 'bear.settings.TVPBVARsettings')
+            tc.verifyEqual(s.VARtype, bear.VARtype(6))
         end
 
         function tSetterFcnByName(tc)
-            s = BEARSettings("OLSVAR", 'data.xlsx');
+            s = BEARsettings("OLSVAR", 'data.xlsx');
             tc.verifyClass(s, 'bear.settings.OLSVARsettings')
 
-            s = BEARSettings("MeanAdjBVAR", "data.xlsx");
+            s = BEARsettings("BVAR", "data.xlsx");
+            tc.verifyClass(s, 'bear.settings.BVARsettings')
+
+            s = BEARsettings("MeanAdjBVAR", "data.xlsx");
             tc.verifyClass(s, 'bear.settings.MeanAdjBVARsettings')
 
-            s = BEARSettings("BVAR", "data.xlsx");
-            tc.verifyClass(s, 'bear.settings.BVARSettings')
-
-            s = BEARSettings("PanelBVAR", "data.xlsx");
+            s = BEARsettings("PanelBVAR", "data.xlsx");
             tc.verifyClass(s, 'bear.settings.PanelBVARsettings')
 
-            s = BEARSettings("SVBVAR", "data.xlsx");
+            s = BEARsettings("SVBVAR", "data.xlsx");
             tc.verifyClass(s, 'bear.settings.SVBVARsettings')
 
-            s = BEARSettings("TVPBVAR", "data.xlsx");
+            s = BEARsettings("TVPBVAR", "data.xlsx");
             tc.verifyClass(s, 'bear.settings.TVPBVARsettings')
         end
 
         function tFavar(tc)
-            s = BEARSettings(1, 'data.xlsx');
+            s = BEARsettings(1, 'data.xlsx');
             tc.verifyEqual(s.favar.FAVAR, false)
             s.favar.FAVAR = 1;
             tc.verifyClass(s.favar, 'bear.settings.FAVARsettings')
@@ -51,7 +57,7 @@ classdef tSettings < matlab.unittest.TestCase
         end
 
         function tStrctident(tc)
-            s = BEARSettings(1, 'data.xlsx');
+            s = BEARsettings(1, 'data.xlsx');
 
             tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt4');
             tc.verifyEqual(s.IRFt, bear.IRFtype(4))
@@ -62,7 +68,7 @@ classdef tSettings < matlab.unittest.TestCase
             s.IRFt = 6;
             tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt6');
 
-            s = BEARSettings(3, 'data.xlsx');
+            s = BEARsettings(2, 'data.xlsx');
 
             tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt4');
             tc.verifyEqual(s.IRFt, bear.IRFtype(4))
@@ -73,10 +79,10 @@ classdef tSettings < matlab.unittest.TestCase
             s.IRFt = 6;
             tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt6');
 
-            s = BEARSettings(1, 'data.xlsx', 'IRFt', 5);
+            s = BEARsettings(1, 'data.xlsx', 'IRFt', 5);
             tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt5');
 
-            s = BEARSettings(3, 'data.xlsx', 'IRFt', 6);
+            s = BEARsettings(2, 'data.xlsx', 'IRFt', 6);
             tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt6');
         end
 

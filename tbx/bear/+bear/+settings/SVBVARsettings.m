@@ -44,6 +44,10 @@ classdef SVBVARsettings < bear.settings.BASELINEsettings
         % panel Bayesian VAR specific information: will be read only if VARtype=4
     end
     
+    properties (SetAccess = private)
+        panel (1,1) double = 10; % panel scalar (non-model value): required to have the argument for interface 6, even if a non-panel model is selected
+    end
+    
     methods
         
         function obj = SVBVARsettings(excelPath, varargin)
