@@ -1,18 +1,12 @@
 function [fixedstring]=fixstring(string)
-
-
-
-
-% several purposes: 
+%FIXSTRING utility function with several purposes:
 % - clear possible initial spaces
 % - turn possible multiple spaces into single spaces
 % - replace irregular spaces (e.g. tab space) with regular spaces
 % - suppress possible final spaces
 % this guarantees good behaviour of the code
 
-
-
-string = regexprep(strtrim(string), '[ ]{2,}',' ');
+fixedstring = regexprep(strtrim(string), '[ ]{2,}',' ');
 
 % % the first task is to eliminate any possible initial space
 % % initiate the elimination process
@@ -43,41 +37,37 @@ string = regexprep(strtrim(string), '[ ]{2,}',' ');
 %       end
 %    end
 % end
-      
 
-
-
-% once this is done, it is possible to start repairing the string
-% initiate the fixed string
-fixedstring='';
-
-% count the total number of characters in the string (including spaces)
-nchar=size(string,2);
-
-% initiate the count of spaces
-spaces=0;
-
-% loop over those characters
-for ii=1:nchar
-   % check if the character is a space
-   % if it is a space
-   if isspace(string(1,ii))
-   % add one to the count of spaces
-   spaces=spaces+1;
-   % and check if spaces is larger than 1; 
-      % if yes, the previous character was also a space; then don't copy it as it is repeated space
-      if spaces>1
-      % if spaces is 1 at most, include a normal space in the string
-      elseif spaces<=1
-      fixedstring=[fixedstring ' '];
-      end
-   % if the character is not a space, then copy it normally and reset the space count to 0
-   else
-   fixedstring=[fixedstring string(1,ii)];
-   spaces=0;
-   end
-end
-
+% % once this is done, it is possible to start repairing the string
+% % initiate the fixed string
+% fixedstring='';
+% 
+% % count the total number of characters in the string (including spaces)
+% nchar=size(string,2);
+% 
+% % initiate the count of spaces
+% spaces=0;
+% 
+% % loop over those characters
+% for ii=1:nchar
+%    % check if the character is a space
+%    % if it is a space
+%    if isspace(string(1,ii))
+%    % add one to the count of spaces
+%    spaces=spaces+1;
+%    % and check if spaces is larger than 1; 
+%       % if yes, the previous character was also a space; then don't copy it as it is repeated space
+%       if spaces>1
+%       % if spaces is 1 at most, include a normal space in the string
+%       elseif spaces<=1
+%       fixedstring=[fixedstring ' '];
+%       end
+%    % if the character is not a space, then copy it normally and reset the space count to 0
+%    else
+%    fixedstring=[fixedstring string(1,ii)];
+%    spaces=0;
+%    end
+% end
 
 % % this new repaired string may now have a final space (no more than one as repeated spaces have been suppressed) that we want to clear
 % % this will however depend on the size of the repaired string
