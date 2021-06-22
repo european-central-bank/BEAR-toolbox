@@ -92,7 +92,9 @@ classdef BVARsettings < bear.settings.BASELINEsettings
                 case 5                    
                     obj.strctident = bear.settings.StrctidentIRFt5;
                 case 6
-                    obj.strctident = bear.settings.StrctidentIRFt6;
+                    obj.strctident = bear.settings.StrctidentIRFt6;                
+                otherwise
+                    obj.strctident = bear.settings.Strctident.empty();
             end
             
         end

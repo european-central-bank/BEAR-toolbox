@@ -43,6 +43,8 @@ classdef OLSVARsettings < bear.settings.BASELINEsettings
                     obj.strctident = bear.settings.StrctidentIRFt5;
                 case 6
                     obj.strctident = bear.settings.StrctidentIRFt6;
+                otherwise
+                    obj.strctident = bear.settings.Strctident.empty();
             end
             
         end

@@ -2,7 +2,7 @@
 %                                                                          %
 %    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR) TOOLBOX           %
 %                                                                          %
-%    Authors:                                                              % 
+%    Authors:                                                              %
 %                                                                          %
 %    Alistair Dieppe (alistair.dieppe@ecb.europa.eu)                       %
 %    Björn van Roye  (bvanroye@bloomberg.net)                              %
@@ -39,12 +39,12 @@
 %% init.m
 % first create initial elements to avoid later crash of the code
 
-% panel scalar (non-model value): required to have the argument for interface 6, even if a non-panel model is selected 
+% panel scalar (non-model value): required to have the argument for interface 6, even if a non-panel model is selected
 if VARtype==4
-else 
-panel=10;
+else
+    panel=10;
 end
-% signreslabels empty element: required to have the argument for IRF plots, even if sign restriction is not selected 
+% signreslabels empty element: required to have the argument for IRF plots, even if sign restriction is not selected
 signreslabels=[];
 % Units empty element: required to record estimation information on Excel even if the selected model is not a panel VAR
 Units=[];
@@ -74,12 +74,12 @@ if favar.FAVAR==1
     if VARtype~=2
         favar.onestep=0; % always two-step (factors are static, principal components)
     end
-	
-	if favar.onestep==1 && favar.blocks==1
-	    message='Please select two-step estimation (favar.onestep==0) to use Blocks.';
+    
+    if favar.onestep==1 && favar.blocks==1
+        message='Please select two-step estimation (favar.onestep==0) to use Blocks.';
         msgbox(message,'FAVAR error','Error','error');
         error('programme termination');
-	end
+    end
     if favar.onestep==1 || IRFt>3 || favar.blocks==1
         favar.slowfast=0;
     end
@@ -154,23 +154,23 @@ if favar.FAVAR==1
     if favar.blocks==1 || favar.slowfast==1
         favar.blocknames=bear.utils.fixstring(favar.blocknames);
     end
-        if favar.blocks==1
-            favar.blocknumpc=bear.utils.fixstring(favar.blocknumpc);
-        end
-        if favar.IRF.plot==1
-            favar.IRF.plotXshock=bear.utils.fixstring(favar.IRF.plotXshock);
-        end
+    if favar.blocks==1
+        favar.blocknumpc=bear.utils.fixstring(favar.blocknumpc);
+    end
+    if favar.IRF.plot==1
+        favar.IRF.plotXshock=bear.utils.fixstring(favar.IRF.plotXshock);
+    end
     favar.transform_endo=bear.utils.fixstring(favar.transform_endo);
 end
 if F==1
-Fstartdate=bear.utils.fixstring(Fstartdate);
-Fenddate=bear.utils.fixstring(Fenddate);
+    Fstartdate=bear.utils.fixstring(Fstartdate);
+    Fenddate=bear.utils.fixstring(Fenddate);
 end
 if VARtype==4
-unitnames=bear.utils.fixstring(unitnames);
+    unitnames=bear.utils.fixstring(unitnames);
 end
 
-% first recover the names of the different endogenous variables; 
+% first recover the names of the different endogenous variables;
 % to do so, separate the string 'varendo' into individual names
 % look for the spaces and identify their locations
 findspace=isspace(varendo);
@@ -185,130 +185,130 @@ numendo=nspace+1;
 % now finally identify the endogenous
 endo=cell(numendo,1);
 for ii=1:numendo
-endo{ii,1}=varendo(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
+    endo{ii,1}=varendo(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
 end
 
-% FAVAR: additional strings 
+% FAVAR: additional strings
 if favar.FAVAR==1
-% favar.plotX
-findspace=isspace(favar.plotX);
-locspace=find(findspace);
-% use this to set the delimiters: each variable string is located between two delimiters
-delimiters=[0 locspace numel(favar.plotX)+1];
-% count the number of endogenous variables
-% first count the number of spaces
-nspaceplotX=sum(findspace(:)==1);
-% each space is a separation between two variable names, so there is one variable more than the number of spaces
-numplotX=nspaceplotX+1;
-% now finally identify the endogenous
-favar.pltX=cell(numplotX,1);
-for ii=1:numplotX
-favar.pltX{ii,1}=favar.plotX(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
-end
-
-if favar.blocks==1 || favar.slowfast==1
-findspace=isspace(favar.blocknames);
-locspace=find(findspace);
-% use this to set the delimiters: each variable string is located between two delimiters
-delimiters=[0 locspace numel(favar.blocknames)+1];
-% count the number of endogenous variables
-% first count the number of spaces
-nspaceblocknames=sum(findspace(:)==1);
-% each space is a separation between two variable names, so there is one variable more than the number of spaces
-numblocknames=nspaceblocknames+1;
-% now finally identify the endogenous
-favar.bnames=cell(numblocknames,1);
-for ii=1:numblocknames
-favar.bnames{ii,1}=favar.blocknames(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
-end
-end
-
-if favar.blocks==1
-findspace=isspace(favar.blocknumpc);
-locspace=find(findspace);
-% use this to set the delimiters: each variable string is located between two delimiters
-delimiters=[0 locspace numel(favar.blocknumpc)+1];
-% count the number of endogenous variables
-% first count the number of spaces
-nspaceblocknumpc=sum(findspace(:)==1);
-% each space is a separation between two variable names, so there is one variable more than the number of spaces
-numblocknumpc=nspaceblocknumpc+1;
-% now finally identify the endogenous
-favar.bnumpc=cell(numblocknumpc,1);
-for ii=1:numblocknumpc
-favar.bnumpc{ii,1}=str2num(favar.blocknumpc(delimiters(1,ii)+1:delimiters(1,ii+1)-1)); %convert strings here to numbers
-end
-end
-        
-if favar.IRF.plot==1
-findspace=isspace(favar.IRF.plotXshock);
-locspace=find(findspace);
-% use this to set the delimiters: each variable string is located between two delimiters
-delimiters=[0 locspace numel(favar.IRF.plotXshock)+1];
-% count the number of endogenous variables
-% first count the number of spaces
-nspaceplotXshock=sum(findspace(:)==1);
-% each space is a separation between two variable names, so there is one variable more than the number of spaces
-numplotXshock=nspaceplotXshock+1;
-% now finally identify the endogenous
-favar.IRF.pltXshck=cell(numplotXshock,1);
-for ii=1:numplotXshock
-favar.IRF.pltXshck{ii,1}=favar.IRF.plotXshock(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
-end
-end
- 
-findspace=isspace(favar.transform_endo);
-locspace=find(findspace);
-% use this to set the delimiters: each variable string is located between two delimiters
-delimiters=[0 locspace numel(favar.transform_endo)+1];
-% count the number of endogenous variables
-% first count the number of spaces
-nspacetransform_endo=sum(findspace(:)==1);
-% each space is a separation between two variable names, so there is one variable more than the number of spaces
-numtransform_endo=nspacetransform_endo+1;
-% now finally identify the endogenous
-favar.trnsfrm_endo=cell(numtransform_endo,1);
-for ii=1:numtransform_endo
-favar.trnsfrm_endo{ii,1}=str2num(favar.transform_endo(delimiters(1,ii)+1:delimiters(1,ii+1)-1)); %convert strings here to numbers
-end
-        
+    % favar.plotX
+    findspace=isspace(favar.plotX);
+    locspace=find(findspace);
+    % use this to set the delimiters: each variable string is located between two delimiters
+    delimiters=[0 locspace numel(favar.plotX)+1];
+    % count the number of endogenous variables
+    % first count the number of spaces
+    nspaceplotX=sum(findspace(:)==1);
+    % each space is a separation between two variable names, so there is one variable more than the number of spaces
+    numplotX=nspaceplotX+1;
+    % now finally identify the endogenous
+    favar.pltX=cell(numplotX,1);
+    for ii=1:numplotX
+        favar.pltX{ii,1}=favar.plotX(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
+    end
+    
+    if favar.blocks==1 || favar.slowfast==1
+        findspace=isspace(favar.blocknames);
+        locspace=find(findspace);
+        % use this to set the delimiters: each variable string is located between two delimiters
+        delimiters=[0 locspace numel(favar.blocknames)+1];
+        % count the number of endogenous variables
+        % first count the number of spaces
+        nspaceblocknames=sum(findspace(:)==1);
+        % each space is a separation between two variable names, so there is one variable more than the number of spaces
+        numblocknames=nspaceblocknames+1;
+        % now finally identify the endogenous
+        favar.bnames=cell(numblocknames,1);
+        for ii=1:numblocknames
+            favar.bnames{ii,1}=favar.blocknames(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
+        end
+    end
+    
+    if favar.blocks==1
+        findspace=isspace(favar.blocknumpc);
+        locspace=find(findspace);
+        % use this to set the delimiters: each variable string is located between two delimiters
+        delimiters=[0 locspace numel(favar.blocknumpc)+1];
+        % count the number of endogenous variables
+        % first count the number of spaces
+        nspaceblocknumpc=sum(findspace(:)==1);
+        % each space is a separation between two variable names, so there is one variable more than the number of spaces
+        numblocknumpc=nspaceblocknumpc+1;
+        % now finally identify the endogenous
+        favar.bnumpc=cell(numblocknumpc,1);
+        for ii=1:numblocknumpc
+            favar.bnumpc{ii,1}=str2num(favar.blocknumpc(delimiters(1,ii)+1:delimiters(1,ii+1)-1)); %convert strings here to numbers
+        end
+    end
+    
+    if favar.IRF.plot==1
+        findspace=isspace(favar.IRF.plotXshock);
+        locspace=find(findspace);
+        % use this to set the delimiters: each variable string is located between two delimiters
+        delimiters=[0 locspace numel(favar.IRF.plotXshock)+1];
+        % count the number of endogenous variables
+        % first count the number of spaces
+        nspaceplotXshock=sum(findspace(:)==1);
+        % each space is a separation between two variable names, so there is one variable more than the number of spaces
+        numplotXshock=nspaceplotXshock+1;
+        % now finally identify the endogenous
+        favar.IRF.pltXshck=cell(numplotXshock,1);
+        for ii=1:numplotXshock
+            favar.IRF.pltXshck{ii,1}=favar.IRF.plotXshock(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
+        end
+    end
+    
+    findspace=isspace(favar.transform_endo);
+    locspace=find(findspace);
+    % use this to set the delimiters: each variable string is located between two delimiters
+    delimiters=[0 locspace numel(favar.transform_endo)+1];
+    % count the number of endogenous variables
+    % first count the number of spaces
+    nspacetransform_endo=sum(findspace(:)==1);
+    % each space is a separation between two variable names, so there is one variable more than the number of spaces
+    numtransform_endo=nspacetransform_endo+1;
+    % now finally identify the endogenous
+    favar.trnsfrm_endo=cell(numtransform_endo,1);
+    for ii=1:numtransform_endo
+        favar.trnsfrm_endo{ii,1}=str2num(favar.transform_endo(delimiters(1,ii)+1:delimiters(1,ii+1)-1)); %convert strings here to numbers
+    end
+    
 end
 
 
 % proceed similarly for exogenous series; note however that it may be empty
 % so check first whether there are exogenous variables altogether
 if isempty(varexo==1)
-exo={};
-% if not empty, repeat what has been done with the exogenous
+    exo={};
+    % if not empty, repeat what has been done with the exogenous
 else
-findspace=isspace(varexo);
-locspace=find(findspace);
-delimiters=[0 locspace numel(varexo)+1];
-nspace=sum(findspace(:)==1);
-numexo=nspace+1;
-exo=cell(numexo,1);
-   for ii=1:numexo
-   exo{ii,1}=varexo(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
-   end
+    findspace=isspace(varexo);
+    locspace=find(findspace);
+    delimiters=[0 locspace numel(varexo)+1];
+    nspace=sum(findspace(:)==1);
+    numexo=nspace+1;
+    exo=cell(numexo,1);
+    for ii=1:numexo
+        exo{ii,1}=varexo(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
+    end
 end
 
 % finally, if applicable, recover the names of the different units
 if VARtype==4
-% look for the spaces and identify their locations
-findspace=isspace(unitnames);
-locspace=find(findspace);
-% use this to set the delimiters: each unit string is located between two delimiters
-delimiters=[0 locspace numel(unitnames)+1];
-% count the number of units
-% first count the number of spaces
-nspace=sum(findspace(:)==1);
-% each space is a separation between two unit names, so there is one unit more than the number of spaces
-numunits=nspace+1;
-% now finally identify the units
-Units=cell(numunits,1);
-   for ii=1:numunits
-   Units{ii,1}=unitnames(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
-   end 
+    % look for the spaces and identify their locations
+    findspace=isspace(unitnames);
+    locspace=find(findspace);
+    % use this to set the delimiters: each unit string is located between two delimiters
+    delimiters=[0 locspace numel(unitnames)+1];
+    % count the number of units
+    % first count the number of spaces
+    nspace=sum(findspace(:)==1);
+    % each space is a separation between two unit names, so there is one unit more than the number of spaces
+    numunits=nspace+1;
+    % now finally identify the units
+    Units=cell(numunits,1);
+    for ii=1:numunits
+        Units{ii,1}=unitnames(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
+    end
 end
 
 
@@ -334,7 +334,7 @@ elseif VARtype==4
     [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,ar,priorexo,lambda4]...
         =bear.gensamplepan(startdate,enddate,Units,panel,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,ar,0,0);
 elseif VARtype==7
-   [names, mf_setup, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate]...
+    [names, mf_setup, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate]...
         =bear.gensample_mf(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref);
 end
 
@@ -380,13 +380,13 @@ elseif VARtype==4 && CF==1
 end
 
 %   conditional forecast for Mixed frequency model
-% cond forecast for 
+% cond forecast for
 if VARtype==7 && CF==1
-%     if exist('cfconds','var')   % Check if the conditional forecast is an empty matrix, need to be done better later (and add option for nonempty)
-%         if isempty(cell2mat(cfconds))
-%             YMC_orig = exp(99)*ones(size(cfconds));
-%         end
-%     end
+    %     if exist('cfconds','var')   % Check if the conditional forecast is an empty matrix, need to be done better later (and add option for nonempty)
+    %         if isempty(cell2mat(cfconds))
+    %             YMC_orig = exp(99)*ones(size(cfconds));
+    %         end
+    %     end
     % converts the cell cfconds to a matrix with NaN values in the appropriate places (where cfconds is empty)
     YMC_orig = ones(size(cfconds))*exp(99);
     for ii = 1:size(cfconds,1)
@@ -1621,7 +1621,7 @@ for iteration=1:numt % beginning of forecasting loop
                     =bear.irfres_stvol4(beta_gibbs,sigma_gibbs,[],[],IRFperiods,n,m,p,k,T,Y,X,signreslabels,FEVDresperiods,data_exo,HD,0,exo,strctident,pref,favar,IRFt,It,Bu,YincLags, Psi_gibbs, sizetraining);
             else
                 % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
-%                [struct_irf_record,D_record,gamma_record,hd_record,ETA_record,beta_gibbs,sigma_gibbs,favar]...
+                %                [struct_irf_record,D_record,gamma_record,hd_record,ETA_record,beta_gibbs,sigma_gibbs,favar]...
                 [struct_irf_record,D_record,gamma_record,ETA_record,beta_gibbs,sigma_gibbs,favar]...
                     =bear.irfres(beta_gibbs,sigma_gibbs,[],[],IRFperiods,n,m,p,k,Y,X,FEVDresperiods,strctident,pref,favar,IRFt,It,Bu);
                 %    [struct_irf_record, D_record, gamma_record,hd_record,ETA_record]=bear.irfres(beta_gibbs,sigma_gibbs,It,Bu,IRFperiods,n,m,p,k,signrestable,signresperiods);
@@ -2028,237 +2028,237 @@ for iteration=1:numt % beginning of forecasting loop
         % if the model selected is not a time-varying BVAR, this part will not be run
     end
     
-%%    
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Grand loop 7: Mixed frequency BVAR model
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% if the selected model is the Mixed frequency BVAR, run this part
-
-% This code has been adapted by Boris Blagov from code for the Federal reserve Bank of Philadelphia, which is in turn
-% based on the original code by Schorfheide and Song. The original code has been modified at some parts to speed up the computation.
-% All errors are our own
-
-if VARtype == 7
-    mf_setup.H = Input.H;
-    mf_setup.data = data_endo;
-    mf_setup.It     = It;
-    mf_setup.Bu     = Bu;
-    mf_setup.hyp    = [lambda1; lambda2; lambda3; lambda4; lambda5];
-    mf_setup.lags   = lags;
-    mf_setup.YMC_orig    = YMC_orig;
-    mf_setup.nex    = const;
-    Output = bear.MF_BVAR_BEAR(mf_setup);
-    Y           = Output.Y;
-    X           = Output.X;
-    data_endo_a = [data_endo_a(1:mf_setup.lags,:); Y];
-    beta_gibbs = Output.beta_gibbs;
-    sigma_gibbs = Output.sigma_gibbs;
-    n = mf_setup.Nm + mf_setup.Nq;
-    p = mf_setup.lags;
-    m = 1;
-    k = n*p+m;
-    T = size(Y,1);
-    q=n*k;
-    YY_past_forfcast = Output.YY_past_forfcast;
-    [Bcap,betacap,Scap,alphacap,phicap,alphatop]=bear.dopost(X,Y,T,k,n);
-    % compute posterior estimates   
-    [beta_median,B_median,beta_std,beta_lbound,beta_ubound,sigma_median]=bear.doestimates(betacap,phicap,Scap,alphacap,alphatop,n,k,cband);
-    log10ml=NaN;
-    dic=NaN;
-    q=NaN;
-    lambda6=NaN;
-    lambda7=NaN;
-    lambda8=NaN;
-    PriorExcel=0;
-   % merged the disp files, but we need some to provide some extra variables in the case we do not have prior 61
-    theta_median=NaN; TVEH=NaN; indH=NaN;
+    %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Grand loop 7: Mixed frequency BVAR model
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    % display the VAR results
-    bear.bvardisp(beta_median,beta_std,beta_lbound,beta_ubound,sigma_median,log10ml,dic,X,Y,n,m,p,k,q,T,prior,bex,hogs,lrp,H,ar,lambda1,lambda2,lambda3,lambda4,lambda5,lambda6,lambda7,lambda8,IRFt,const,beta_gibbs,endo,data_endo,exo,startdate,enddate,decimaldates1,stringdates1,pref,scoeff,iobs,PriorExcel,strctident,favar,theta_median,TVEH,indH);
-     
+    % if the selected model is the Mixed frequency BVAR, run this part
     
-    %% BLOCK 5: IRFs
-
-    % compute IRFs if the option has been retained
-
-    if IRF==1
-    % run the Gibbs sampler to obtain posterior draws
-    [irf_record]=bear.irf(beta_gibbs,It,Bu,IRFperiods,n,m,p,k);
-
-       % If IRFs have been set to an unrestricted VAR (IRFt=1):
-       if IRFt==1
-       % run a pseudo Gibbs sampler to obtain records for D and gamma (for the trivial SVAR)
-       [D_record gamma_record]=bear.irfunres(n,It,Bu,sigma_gibbs);
-       % compute posterior estimates
-       [irf_estimates,D_estimates,gamma_estimates]=bear.irfestimates(irf_record,n,IRFperiods,IRFband,IRFt,[],[]);
-       % display the results
-       bear.irfdisp(n,endo,IRFperiods,IRFt,irf_estimates,[],[],pref,[]);
-
-       % If IRFs have been set to an SVAR with Choleski identification (IRFt=2):
-       elseif IRFt==2
-       % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
-       [struct_irf_record D_record gamma_record]=bear.irfchol(sigma_gibbs,irf_record,It,Bu,IRFperiods,n,favar);
-       % compute posterior estimates
-       [irfchol_estimates,D_estimates,gamma_estimates]=bear.irfestimates(struct_irf_record,n,IRFperiods,IRFband,IRFt,D_record,gamma_record,favar);
-       % display the results
-       bear.irfdisp(n,endo,IRFperiods,IRFt,irfchol_estimates,D_estimates,gamma_estimates,pref,[]);
-
-       % If IRFs have been set to an SVAR with triangular factorisation (IRFt=3):
-       elseif IRFt==3
-       % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
-       [struct_irf_record D_record gamma_record]=bear.irftrig(sigma_gibbs,irf_record,It,Bu,IRFperiods,n);
-       % compute posterior estimates
-       [irftrig_estimates,D_estimates,gamma_estimates]=bear.irfestimates(struct_irf_record,n,IRFperiods,IRFband,IRFt,D_record,gamma_record);
-       % display the results
-       bear.irfdisp(n,endo,IRFperiods,IRFt,irftrig_estimates,D_estimates,gamma_estimates,pref,[]);
-
-       % If IRFs have been set to an SVAR with sign restrictions (IRFt=4):
-       elseif IRFt==4
-       % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
-       [struct_irf_record D_record gamma_record]=bear.irfres(beta_gibbs,sigma_gibbs,It,Bu,IRFperiods,n,m,p,k,signrestable,signresperiods);
-       % compute posterior estimates
-       [irfres_estimates,D_estimates,gamma_estimates]=bear.irfestimates(struct_irf_record,n,IRFperiods,IRFband,IRFt,D_record,gamma_record);
-       % display the results
-       bear.irfdisp(n,endo,IRFperiods,IRFt,irfres_estimates,D_estimates,gamma_estimates,pref,signreslabels);
-       end
-
-       % If an SVAR was selected, also compute the structural shock series
-       if IRFt==2||IRFt==3||IRFt==4
-       % compute first the empirical posterior distribution of the structural shocks
-       [strshocks_record]=bear.strshocks(beta_gibbs,D_record,Y,X,n,k,It,Bu,favar);
-       % compute posterior estimates
-       [strshocks_estimates]=bear.strsestimates(strshocks_record,n,T,IRFband);
-       % display the results
-       bear.strsdisp(decimaldates1,stringdates1,strshocks_estimates,endo,pref,IRFt,strctident);
-       end
-
+    % This code has been adapted by Boris Blagov from code for the Federal reserve Bank of Philadelphia, which is in turn
+    % based on the original code by Schorfheide and Song. The original code has been modified at some parts to speed up the computation.
+    % All errors are our own
+    
+    if VARtype == 7
+        mf_setup.H = Input.H;
+        mf_setup.data = data_endo;
+        mf_setup.It     = It;
+        mf_setup.Bu     = Bu;
+        mf_setup.hyp    = [lambda1; lambda2; lambda3; lambda4; lambda5];
+        mf_setup.lags   = lags;
+        mf_setup.YMC_orig    = YMC_orig;
+        mf_setup.nex    = const;
+        Output = bear.MF_BVAR_BEAR(mf_setup);
+        Y           = Output.Y;
+        X           = Output.X;
+        data_endo_a = [data_endo_a(1:mf_setup.lags,:); Y];
+        beta_gibbs = Output.beta_gibbs;
+        sigma_gibbs = Output.sigma_gibbs;
+        n = mf_setup.Nm + mf_setup.Nq;
+        p = mf_setup.lags;
+        m = 1;
+        k = n*p+m;
+        T = size(Y,1);
+        q=n*k;
+        YY_past_forfcast = Output.YY_past_forfcast;
+        [Bcap,betacap,Scap,alphacap,phicap,alphatop]=bear.dopost(X,Y,T,k,n);
+        % compute posterior estimates
+        [beta_median,B_median,beta_std,beta_lbound,beta_ubound,sigma_median]=bear.doestimates(betacap,phicap,Scap,alphacap,alphatop,n,k,cband);
+        log10ml=NaN;
+        dic=NaN;
+        q=NaN;
+        lambda6=NaN;
+        lambda7=NaN;
+        lambda8=NaN;
+        PriorExcel=0;
+        % merged the disp files, but we need some to provide some extra variables in the case we do not have prior 61
+        theta_median=NaN; TVEH=NaN; indH=NaN;
+        
+        % display the VAR results
+        bear.bvardisp(beta_median,beta_std,beta_lbound,beta_ubound,sigma_median,log10ml,dic,X,Y,n,m,p,k,q,T,prior,bex,hogs,lrp,H,ar,lambda1,lambda2,lambda3,lambda4,lambda5,lambda6,lambda7,lambda8,IRFt,const,beta_gibbs,endo,data_endo,exo,startdate,enddate,decimaldates1,stringdates1,pref,scoeff,iobs,PriorExcel,strctident,favar,theta_median,TVEH,indH);
+        
+        
+        %% BLOCK 5: IRFs
+        
+        % compute IRFs if the option has been retained
+        
+        if IRF==1
+            % run the Gibbs sampler to obtain posterior draws
+            [irf_record]=bear.irf(beta_gibbs,It,Bu,IRFperiods,n,m,p,k);
+            
+            % If IRFs have been set to an unrestricted VAR (IRFt=1):
+            if IRFt==1
+                % run a pseudo Gibbs sampler to obtain records for D and gamma (for the trivial SVAR)
+                [D_record gamma_record]=bear.irfunres(n,It,Bu,sigma_gibbs);
+                % compute posterior estimates
+                [irf_estimates,D_estimates,gamma_estimates]=bear.irfestimates(irf_record,n,IRFperiods,IRFband,IRFt,[],[]);
+                % display the results
+                bear.irfdisp(n,endo,IRFperiods,IRFt,irf_estimates,[],[],pref,[]);
+                
+                % If IRFs have been set to an SVAR with Choleski identification (IRFt=2):
+            elseif IRFt==2
+                % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
+                [struct_irf_record D_record gamma_record]=bear.irfchol(sigma_gibbs,irf_record,It,Bu,IRFperiods,n,favar);
+                % compute posterior estimates
+                [irfchol_estimates,D_estimates,gamma_estimates]=bear.irfestimates(struct_irf_record,n,IRFperiods,IRFband,IRFt,D_record,gamma_record,favar);
+                % display the results
+                bear.irfdisp(n,endo,IRFperiods,IRFt,irfchol_estimates,D_estimates,gamma_estimates,pref,[]);
+                
+                % If IRFs have been set to an SVAR with triangular factorisation (IRFt=3):
+            elseif IRFt==3
+                % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
+                [struct_irf_record D_record gamma_record]=bear.irftrig(sigma_gibbs,irf_record,It,Bu,IRFperiods,n);
+                % compute posterior estimates
+                [irftrig_estimates,D_estimates,gamma_estimates]=bear.irfestimates(struct_irf_record,n,IRFperiods,IRFband,IRFt,D_record,gamma_record);
+                % display the results
+                bear.irfdisp(n,endo,IRFperiods,IRFt,irftrig_estimates,D_estimates,gamma_estimates,pref,[]);
+                
+                % If IRFs have been set to an SVAR with sign restrictions (IRFt=4):
+            elseif IRFt==4
+                % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
+                [struct_irf_record D_record gamma_record]=bear.irfres(beta_gibbs,sigma_gibbs,It,Bu,IRFperiods,n,m,p,k,signrestable,signresperiods);
+                % compute posterior estimates
+                [irfres_estimates,D_estimates,gamma_estimates]=bear.irfestimates(struct_irf_record,n,IRFperiods,IRFband,IRFt,D_record,gamma_record);
+                % display the results
+                bear.irfdisp(n,endo,IRFperiods,IRFt,irfres_estimates,D_estimates,gamma_estimates,pref,signreslabels);
+            end
+            
+            % If an SVAR was selected, also compute the structural shock series
+            if IRFt==2||IRFt==3||IRFt==4
+                % compute first the empirical posterior distribution of the structural shocks
+                [strshocks_record]=bear.strshocks(beta_gibbs,D_record,Y,X,n,k,It,Bu,favar);
+                % compute posterior estimates
+                [strshocks_estimates]=bear.strsestimates(strshocks_record,n,T,IRFband);
+                % display the results
+                bear.strsdisp(decimaldates1,stringdates1,strshocks_estimates,endo,pref,IRFt,strctident);
+            end
+            
+        end
+        
+        
+        % estimate IRFs for exogenous variables
+        [exo_irf_record exo_irf_estimates]=bear.irfexo(beta_gibbs,It,Bu,IRFperiods,IRFband,n,m,p,k);
+        % estimate IRFs for exogenous variables
+        bear.irfexodisp(n,m,endo,exo,IRFperiods,exo_irf_estimates,pref);
+        
+        
+        %% BLOCK 6: FORECASTS
+        
+        % compute forecasts if the option has been retained
+        if F==1
+            % run the Gibbs sampler to obtain draws form the posterior predictive distribution
+            % [forecast_record]=bear.forecast(data_endo_a,data_exo_p,It,Bu,beta_gibbs,sigma_gibbs,Fperiods,n,p,k,const);
+            % [forecast_record]=bear.forecast([data_endo_a(1:p,:); Y],[],It,Bu,beta_gibbs,sigma_gibbs,Fperiods,n,p,k,const);
+            [forecast_record]=bear.forecast_mf(YY_past_forfcast,[],It,Bu,beta_gibbs,sigma_gibbs,Fperiods,n,p,k,const);
+            % compute posterior estimates
+            % [forecast_estimates]=bear.festimates(forecast_record,n,Fperiods,Fband);
+            [forecast_estimates]=bear.festimates(forecast_record,n,Fperiods,Fband);
+            % Transform the variables
+            Y_trans = Y; forecast_estimates_trans = forecast_estimates;
+            for ii = 1:size(forecast_estimates,1)
+                if mf_setup.select(1,ii) == 0
+                    forecast_estimates_trans{ii,1} = exp(forecast_estimates{ii,1});
+                    Y_trans(:,ii) = exp(Y(:,ii));
+                else
+                    forecast_estimates_trans{ii,1} = 100*(forecast_estimates{ii,1});
+                    Y_trans(:,ii) = 100*(Y(:,ii));
+                end
+            end
+            %   Y_trans = Y; forecast_estimates_trans = forecast_estimates_mf;
+            %    for ii = 1:size(forecast_estimates,1)
+            %        if mf_setup.select(1,ii) == 0
+            %             forecast_estimates_trans{ii,1} = exp(forecast_estimates_mf{ii,1});
+            %             Y_trans(:,ii) = exp(Y(:,ii));
+            %        else
+            %             forecast_estimates_trans{ii,1} = 100*(forecast_estimates{ii,1});
+            %             Y_trans(:,ii) = 100*(Y(:,ii));
+            %        end
+            %    end
+            % display the results for the forecasts
+            bear.fdisp(Y_trans,n,T,endo,stringdates2,decimaldates2,Fstartlocation,Fendlocation,forecast_estimates_trans,pref);
+            % finally, compute forecast evaluation if the option was selected
+            if Feval==1
+                %OLS single variable with BIC lag selection VAR for Rossi test
+                [OLS_Bhat, OLS_betahat, OLS_sigmahat, OLS_forecast_estimates, biclag]=bear.arbicloop(data_endo,data_endo_a,const,p,n,m,Fperiods,Fband);
+                [Forecasteval]=bear.bvarfeval(data_endo_c,data_endo_c_lags,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,It,Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,names,endo,pref);
+            end
+        end
+        
+        
+        
+        
+        
+        
+        %% BLOCK 7: FEVD                THIS PART HAS NOT BEEN CHECKED IF IT WORKS AS IT REQUIRES MATLAB2016b
+        
+        % compute FEVD if the option has been retained
+        if FEVD==1
+            % run the Gibbs sampler to compute posterior draws
+            [fevd_record]=bear.fevd(struct_irf_record,gamma_record,It,Bu,IRFperiods,n);
+            % compute posterior estimates
+            [fevd_estimates]=bear.fevdestimates(fevd_record,n,IRFperiods,FEVDband);
+            % display the results
+            bear.fevddisp(n,endo,IRFperiods,fevd_estimates,pref,IRFt,signreslabels);
+        end
+        
+        
+        
+        
+        %% BLOCK 8: historical decomposition  - coded to be done at the median of the monthly gdp estimates
+        
+        % compute historical decomposition if the option has been retained
+        if HD==1
+            % run the Gibbs sampler to compute posterior draws
+            [hd_record]=bear.hdecomp(beta_gibbs,D_record,strshocks_record,It,Bu,Y,X,n,m,p,k,T);
+            % compute posterior estimates
+            [hd_estimates]=bear.hdestimates(hd_record,n,T,HDband);
+            % display the results
+            bear.hddisp(n,endo,Y,decimaldates1,hd_estimates,stringdates1,T,pref,IRFt,signreslabels);
+        end
+        
+        
+        
+        
+        
+        %% BLOCK 9: conditional forecasts
+        
+        % compute conditional forecasts if the option has been retained
+        if CF==1
+            % if the type of conditional forecasts corresponds to the standard methodology
+            if CFt==1||CFt==2
+                % run the Gibbs sampler to obtain draws from the posterior predictive distribution of conditional forecasts
+                %    [cforecast_record]=bear.cforecast(data_endo_a,data_exo_a,data_exo_p,It,Bu,Fperiods,cfconds,cfshocks,cfblocks,CFt,const,beta_gibbs,D_record,gamma_record,n,m,p,k,k*n);
+                [cforecast_record]=cforecast_mf(YY_past_forfcast,data_exo_a,data_exo_p,It,Bu,Fperiods,cfconds,cfshocks,cfblocks,CFt,const,beta_gibbs,D_record,gamma_record,n,m,p,k,k*n);
+                % if the type of conditional forecasts corresponds to the tilting methodology
+            elseif CFt==3||CFt==4
+                [cforecast_record]=bear.tcforecast(forecast_record,Fperiods,cfconds,cfintervals,CFt,n,Fband,It,Bu);
+            end
+            % compute posterior estimates
+            [cforecast_estimates]=bear.festimates(cforecast_record,n,Fperiods,Fband);
+            Y_trans = Y; cforecast_estimates_trans = cforecast_estimates;
+            for ii = 1:size(cforecast_estimates,1)
+                if mf_setup.select(1,ii) == 0
+                    cforecast_estimates_trans{ii,1} = exp(cforecast_estimates{ii,1});
+                    Y_trans(:,ii) = exp(Y(:,ii));
+                else
+                    cforecast_estimates_trans{ii,1} = 100*(cforecast_estimates{ii,1});
+                    Y_trans(:,ii) = 100*(Y(:,ii));
+                end
+            end
+            % display the results for the forecasts
+            bear.cfdisp(Y_trans,n,T,endo,stringdates2,decimaldates2,Fstartlocation,Fendlocation,cforecast_estimates_trans,pref);
+        end
+        
+        if numt>1
+            save(fullfile(pref.results_path,[pref.results_sub Fstartdate '.mat'])); % Save Workspace
+        end
+        
+        Fstartdate_rolling=[Fstartdate_rolling; Fstartdate];
+        
+        % here finishes grand loop 7
+        % if the model selected is not a mixed frequency BVAR, this part will not be run
     end
-
-
-    % estimate IRFs for exogenous variables
-    [exo_irf_record exo_irf_estimates]=bear.irfexo(beta_gibbs,It,Bu,IRFperiods,IRFband,n,m,p,k);
-    % estimate IRFs for exogenous variables
-    bear.irfexodisp(n,m,endo,exo,IRFperiods,exo_irf_estimates,pref);
-
-
-%% BLOCK 6: FORECASTS
-
-% compute forecasts if the option has been retained
-if F==1
-% run the Gibbs sampler to obtain draws form the posterior predictive distribution
-% [forecast_record]=bear.forecast(data_endo_a,data_exo_p,It,Bu,beta_gibbs,sigma_gibbs,Fperiods,n,p,k,const);
-% [forecast_record]=bear.forecast([data_endo_a(1:p,:); Y],[],It,Bu,beta_gibbs,sigma_gibbs,Fperiods,n,p,k,const);
-[forecast_record]=bear.forecast_mf(YY_past_forfcast,[],It,Bu,beta_gibbs,sigma_gibbs,Fperiods,n,p,k,const);
-% compute posterior estimates
-% [forecast_estimates]=bear.festimates(forecast_record,n,Fperiods,Fband);
-[forecast_estimates]=bear.festimates(forecast_record,n,Fperiods,Fband);
-    % Transform the variables
-   Y_trans = Y; forecast_estimates_trans = forecast_estimates;
-   for ii = 1:size(forecast_estimates,1)
-       if mf_setup.select(1,ii) == 0
-            forecast_estimates_trans{ii,1} = exp(forecast_estimates{ii,1});
-            Y_trans(:,ii) = exp(Y(:,ii));
-       else           
-            forecast_estimates_trans{ii,1} = 100*(forecast_estimates{ii,1});
-            Y_trans(:,ii) = 100*(Y(:,ii));
-       end
-   end
-%   Y_trans = Y; forecast_estimates_trans = forecast_estimates_mf;
-%    for ii = 1:size(forecast_estimates,1)
-%        if mf_setup.select(1,ii) == 0
-%             forecast_estimates_trans{ii,1} = exp(forecast_estimates_mf{ii,1});
-%             Y_trans(:,ii) = exp(Y(:,ii));
-%        else           
-%             forecast_estimates_trans{ii,1} = 100*(forecast_estimates{ii,1});
-%             Y_trans(:,ii) = 100*(Y(:,ii));
-%        end
-%    end
-% display the results for the forecasts
-bear.fdisp(Y_trans,n,T,endo,stringdates2,decimaldates2,Fstartlocation,Fendlocation,forecast_estimates_trans,pref);
-% finally, compute forecast evaluation if the option was selected
-   if Feval==1 
-       %OLS single variable with BIC lag selection VAR for Rossi test
-      [OLS_Bhat, OLS_betahat, OLS_sigmahat, OLS_forecast_estimates, biclag]=bear.arbicloop(data_endo,data_endo_a,const,p,n,m,Fperiods,Fband);
-      [Forecasteval]=bear.bvarfeval(data_endo_c,data_endo_c_lags,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,It,Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,names,endo,pref);
-   end
-end
-
-
-
-
-
-
-%% BLOCK 7: FEVD                THIS PART HAS NOT BEEN CHECKED IF IT WORKS AS IT REQUIRES MATLAB2016b
-
-% compute FEVD if the option has been retained
-if FEVD==1
-% run the Gibbs sampler to compute posterior draws
-[fevd_record]=bear.fevd(struct_irf_record,gamma_record,It,Bu,IRFperiods,n);
-% compute posterior estimates
-[fevd_estimates]=bear.fevdestimates(fevd_record,n,IRFperiods,FEVDband);
-% display the results
-bear.fevddisp(n,endo,IRFperiods,fevd_estimates,pref,IRFt,signreslabels);
-end
-
-
-
-
-%% BLOCK 8: historical decomposition  - coded to be done at the median of the monthly gdp estimates
-
-% compute historical decomposition if the option has been retained
-if HD==1
-% run the Gibbs sampler to compute posterior draws 
-[hd_record]=bear.hdecomp(beta_gibbs,D_record,strshocks_record,It,Bu,Y,X,n,m,p,k,T);
-% compute posterior estimates
-[hd_estimates]=bear.hdestimates(hd_record,n,T,HDband);
-% display the results
-bear.hddisp(n,endo,Y,decimaldates1,hd_estimates,stringdates1,T,pref,IRFt,signreslabels);
-end
-
-
-
-
-
-%% BLOCK 9: conditional forecasts
-
-% compute conditional forecasts if the option has been retained
-if CF==1
-   % if the type of conditional forecasts corresponds to the standard methodology
-   if CFt==1||CFt==2
-   % run the Gibbs sampler to obtain draws from the posterior predictive distribution of conditional forecasts
-%    [cforecast_record]=bear.cforecast(data_endo_a,data_exo_a,data_exo_p,It,Bu,Fperiods,cfconds,cfshocks,cfblocks,CFt,const,beta_gibbs,D_record,gamma_record,n,m,p,k,k*n);
-   [cforecast_record]=cforecast_mf(YY_past_forfcast,data_exo_a,data_exo_p,It,Bu,Fperiods,cfconds,cfshocks,cfblocks,CFt,const,beta_gibbs,D_record,gamma_record,n,m,p,k,k*n);
-   % if the type of conditional forecasts corresponds to the tilting methodology
-   elseif CFt==3||CFt==4
-   [cforecast_record]=bear.tcforecast(forecast_record,Fperiods,cfconds,cfintervals,CFt,n,Fband,It,Bu);
-   end
-   % compute posterior estimates
-   [cforecast_estimates]=bear.festimates(cforecast_record,n,Fperiods,Fband);
-   Y_trans = Y; cforecast_estimates_trans = cforecast_estimates;
-   for ii = 1:size(cforecast_estimates,1)
-       if mf_setup.select(1,ii) == 0
-            cforecast_estimates_trans{ii,1} = exp(cforecast_estimates{ii,1});
-            Y_trans(:,ii) = exp(Y(:,ii));
-       else           
-            cforecast_estimates_trans{ii,1} = 100*(cforecast_estimates{ii,1});
-            Y_trans(:,ii) = 100*(Y(:,ii));
-       end
-   end
-   % display the results for the forecasts
-   bear.cfdisp(Y_trans,n,T,endo,stringdates2,decimaldates2,Fstartlocation,Fendlocation,cforecast_estimates_trans,pref);
-end
-
-if numt>1
-    save(fullfile(pref.results_path,[pref.results_sub Fstartdate '.mat'])); % Save Workspace
-end
-
-Fstartdate_rolling=[Fstartdate_rolling; Fstartdate];
-
-% here finishes grand loop 7
-% if the model selected is not a mixed frequency BVAR, this part will not be run
-end
-
+    
     
     
     % End of forecasting loop
