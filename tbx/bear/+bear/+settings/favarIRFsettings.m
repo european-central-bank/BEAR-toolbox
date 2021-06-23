@@ -9,7 +9,14 @@ classdef favarIRFsettings < matlab.mixin.CustomDisplay
     end
     
     properties % Results
-        favar_irf_record cell = {};
+        favar_irf_record cell = {};        
+        pltXshck (:,:) cell = {};
+        npltXshck
+        plotXshock_index
+        favar_irf_estimates
+        favar_irf_record_nottransformed
+        irf_record_nottransformed
+        favar_irf_record_allt
     end
 
     methods (Access = protected)

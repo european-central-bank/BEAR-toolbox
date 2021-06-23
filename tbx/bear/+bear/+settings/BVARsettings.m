@@ -46,12 +46,16 @@ classdef BVARsettings < bear.settings.BASELINEsettings
         % dummy initial observation application (1=yes, 0=no)
         iobs=0;
         % Long run prior option
-        lrp=0;
+        lrp=0;        
         % create H matrix for the long run priors
         % now taken from excel loadH.m
         % H=[1 1 0 0;-1 1 0 0;0 0 1 1;0 0 -1 1];
         % (61=Mean-adjusted BVAR) Scale up the variance of the prior of factor f
         priorf=100;
+        
+        %% Setting or result?
+        % hyperparameter: alpha0
+        alpha0=1000;
     end
     
     properties (SetAccess = private)

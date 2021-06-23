@@ -1,8 +1,12 @@
 classdef (Abstract) BASELINEsettings
     
-    properties
+    properties (SetAccess = private)
         
         VARtype   bear.VARtype = bear.VARtype.empty      % VAR model selected (1=OLS VAR, 2=BVAR, 3=mean-adjusted BVAR, 4=panel Bayesian VAR, 5=Stochastic volatility BVAR, 6=Time varying)
+        
+    end
+    
+    properties
         
         frequency (1,1) double  = 2;                     % data frequency (1=yearly, 2= quarterly, 3=monthly, 4=weekly, 5=daily, 6=undated)
         startdate               = '1974q1';              % sample start date; must be a string consistent with the date formats of the toolbox
@@ -61,6 +65,10 @@ classdef (Abstract) BASELINEsettings
             
             obj.VARtype = VARtype;
             obj.pref = iGetDefaultPref(excelPath);
+            
+            if VARtype==2 || VARtype==5 || VARtype==6 % supported priors: 1x, 2x, 3x, 41
+                obj.favar = bear.settings.VARtypeSpecificFAVARsettings;                
+            end
             
         end
 
