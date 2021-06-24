@@ -7,7 +7,7 @@ classdef favarHDsettings < matlab.mixin.CustomDisplay
         HDallsumblock         (1,1) logical = 0; % include all components of HDall(=1) other than shock contributions, but display them sumed under blocks\shocks
     end
     
-    properties
+    properties % Results
        hd_estimates 
        favar_hd_record
     end

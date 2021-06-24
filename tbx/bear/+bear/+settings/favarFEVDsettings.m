@@ -6,7 +6,7 @@ classdef favarFEVDsettings < matlab.mixin.CustomDisplay
         plotXblocks               = ''; % sum contributions of factors blockwise
     end
     
-    properties
+    properties % Results properties accumulated
        favar_fevd_estimates 
     end
 
