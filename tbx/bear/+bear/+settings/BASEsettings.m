@@ -1,4 +1,4 @@
-classdef (Abstract) BASELINEsettings
+classdef (Abstract) BASEsettings
     
     properties (SetAccess = private)
         
@@ -61,7 +61,7 @@ classdef (Abstract) BASELINEsettings
 
     methods
         
-        function obj = BASELINEsettings(VARtype, excelPath)
+        function obj = BASEsettings(VARtype, excelPath)
             
             obj.VARtype = VARtype;
             obj.pref = iGetDefaultPref(excelPath);

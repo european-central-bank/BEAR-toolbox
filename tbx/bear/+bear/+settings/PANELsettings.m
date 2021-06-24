@@ -1,4 +1,4 @@
-classdef PanelBVARsettings < bear.settings.BASELINEsettings
+classdef PANELsettings < bear.settings.BASEsettings
     
     properties
         % choice of panel model
@@ -48,9 +48,9 @@ classdef PanelBVARsettings < bear.settings.BASELINEsettings
     
     methods
         
-        function obj = PanelBVARsettings(excelPath, varargin)
+        function obj = PANELsettings(excelPath, varargin)
             
-            obj@bear.settings.BASELINEsettings(4, excelPath)           
+            obj@bear.settings.BASEsettings(4, excelPath)           
             
             obj = parseBEARSettings(obj, varargin{:});
             

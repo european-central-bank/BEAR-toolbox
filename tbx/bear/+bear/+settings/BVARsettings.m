@@ -1,4 +1,4 @@
-classdef BVARsettings < bear.settings.BASELINEsettings
+classdef BVARsettings < bear.settings.BASEsettings
     
     properties
         strctident
@@ -66,7 +66,7 @@ classdef BVARsettings < bear.settings.BASELINEsettings
         
         function obj = BVARsettings(excelPath, varargin)
 
-            obj@bear.settings.BASELINEsettings(2, excelPath)
+            obj@bear.settings.BASEsettings(2, excelPath)
 
             obj = obj.setStrctident(obj.IRFt);
             
@@ -80,7 +80,7 @@ classdef BVARsettings < bear.settings.BASELINEsettings
 
         function obj = checkIRFt(obj, value)
             % we could call superclass method to combine effect
-            obj = checkIRFt@bear.settings.BASELINEsettings(obj, value);
+            obj = checkIRFt@bear.settings.BASEsettings(obj, value);
             obj = obj.setStrctident(value);
         end
         

@@ -4,7 +4,7 @@ classdef tSettings < matlab.unittest.TestCase
         
         function tSetterFcnByNumber(tc)
             s = BEARsettings(1, 'data.xlsx');
-            tc.verifyClass(s, 'bear.settings.OLSVARsettings')
+            tc.verifyClass(s, 'bear.settings.OLSsettings')
             tc.verifyEqual(s.VARtype, bear.VARtype(1))
 
             s = BEARsettings(2, "data.xlsx");
@@ -12,40 +12,40 @@ classdef tSettings < matlab.unittest.TestCase
             tc.verifyEqual(s.VARtype, bear.VARtype(2))
 
             s = BEARsettings(3, "data.xlsx");
-            tc.verifyClass(s, 'bear.settings.MeanAdjBVARsettings')
+            tc.verifyClass(s, 'bear.settings.MADJsettings')
             tc.verifyEqual(s.VARtype, bear.VARtype(3))
 
             s = BEARsettings(4, "data.xlsx");
-            tc.verifyClass(s, 'bear.settings.PanelBVARsettings')
+            tc.verifyClass(s, 'bear.settings.PANELsettings')
             tc.verifyEqual(s.VARtype, bear.VARtype(4))
 
             s = BEARsettings(5, "data.xlsx");
-            tc.verifyClass(s, 'bear.settings.SVBVARsettings')
+            tc.verifyClass(s, 'bear.settings.SVsettings')
             tc.verifyEqual(s.VARtype, bear.VARtype(5))
 
             s = BEARsettings(6, "data.xlsx");
-            tc.verifyClass(s, 'bear.settings.TVPBVARsettings')
+            tc.verifyClass(s, 'bear.settings.TVPsettings')
             tc.verifyEqual(s.VARtype, bear.VARtype(6))
         end
 
         function tSetterFcnByName(tc)
-            s = BEARsettings("OLSVAR", 'data.xlsx');
-            tc.verifyClass(s, 'bear.settings.OLSVARsettings')
+            s = BEARsettings("OLS", 'data.xlsx');
+            tc.verifyClass(s, 'bear.settings.OLSsettings')
 
             s = BEARsettings("BVAR", "data.xlsx");
             tc.verifyClass(s, 'bear.settings.BVARsettings')
 
-            s = BEARsettings("MeanAdjBVAR", "data.xlsx");
-            tc.verifyClass(s, 'bear.settings.MeanAdjBVARsettings')
+            s = BEARsettings("MADJ", "data.xlsx");
+            tc.verifyClass(s, 'bear.settings.MADJsettings')
 
-            s = BEARsettings("PanelBVAR", "data.xlsx");
-            tc.verifyClass(s, 'bear.settings.PanelBVARsettings')
+            s = BEARsettings("PANEL", "data.xlsx");
+            tc.verifyClass(s, 'bear.settings.PANELsettings')
 
-            s = BEARsettings("SVBVAR", "data.xlsx");
-            tc.verifyClass(s, 'bear.settings.SVBVARsettings')
+            s = BEARsettings("SV", "data.xlsx");
+            tc.verifyClass(s, 'bear.settings.SVsettings')
 
-            s = BEARsettings("TVPBVAR", "data.xlsx");
-            tc.verifyClass(s, 'bear.settings.TVPBVARsettings')
+            s = BEARsettings("TVP", "data.xlsx");
+            tc.verifyClass(s, 'bear.settings.TVPsettings')
         end
 
         function tFavar(tc)

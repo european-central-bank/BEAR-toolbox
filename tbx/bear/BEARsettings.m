@@ -7,17 +7,17 @@ VARType = bear.VARtype(VARType);
 switch VARType
     
     case 1
-        settings = bear.settings.OLSVARsettings(ExcelPath, varargin{:});
+        settings = bear.settings.OLSsettings(ExcelPath, varargin{:});
     case 2        
         settings = bear.settings.BVARsettings(ExcelPath, varargin{:});
     case 3        
-        settings = bear.settings.MeanAdjBVARsettings(ExcelPath, varargin{:});
+        settings = bear.settings.MADJsettings(ExcelPath, varargin{:});
     case 4
-        settings = bear.settings.PanelBVARsettings(ExcelPath, varargin{:});
+        settings = bear.settings.PANELsettings(ExcelPath, varargin{:});
     case 5
-        settings = bear.settings.SVBVARsettings(ExcelPath, varargin{:});
+        settings = bear.settings.SVsettings(ExcelPath, varargin{:});
     case 6
-        settings = bear.settings.TVPBVARsettings(ExcelPath, varargin{:});
+        settings = bear.settings.TVPsettings(ExcelPath, varargin{:});
         
 end
 
