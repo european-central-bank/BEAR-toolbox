@@ -43,11 +43,13 @@ if p > 0
 end
 
 if m1 == c
-  mu = mu';
+  mu = mu(ones(cases,1),:);
+else
+  mu = mu(:,ones(cases,1));
 end
 
-mu = mu(ones(cases,1),:);
-
+% mu = mu(ones(cases,1),:);
+% 
 r = randn(cases,size(T,1)) * T + mu;
 
 %---------------------------------------

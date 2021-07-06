@@ -29,8 +29,8 @@ classdef FAVARsettings < matlab.mixin.CustomDisplay
         plotX = 'IPS10 PMCP LHEM LHUR'
         plotXshock = '';
         
-        levels (1,1) bear.Levels = 1; % =0 no re-transformation (default), =1 cumsum, =2 exp cumsum
-        retransres = 1;               % re-transform the candidate IRFs in IRFt4, before checking the restrictions
+        levels (1,1) bear.FAVARlevels = 1; % =0 no re-transformation (default), =1 cumsum, =2 exp cumsum
+        retransres = 1;                    % re-transform the candidate IRFs in IRFt4, before checking the restrictions
         
         HD   (1,1) bear.settings.favarHDsettings   = bear.settings.favarHDsettings
         IRF  (1,1) bear.settings.favarIRFsettings  = bear.settings.favarIRFsettings

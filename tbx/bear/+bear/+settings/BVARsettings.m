@@ -10,7 +10,7 @@ classdef BVARsettings < bear.settings.BASEsettings
         % 41=Normal-diffuse
         % 51=Dummy observations
         % 61=Mean-adjusted
-        prior (1,1) bear.Prior = 61;
+        prior (1,1) bear.PRIORtype = 61;
         % hyperparameter: autoregressive coefficient
         ar=0.8; % this sets all AR coefficients to the same prior value (if PriorExcel is equal to 0)
         % switch to Excel interface

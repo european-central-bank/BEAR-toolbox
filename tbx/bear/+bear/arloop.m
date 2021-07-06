@@ -11,7 +11,7 @@ function arvar=arloop(data_endo,const,p,n)
 
 
 
-
+arvar = zeros(n, 1);
 %loop over the columns of data_endo
 for ii=1:n
 % estimate an AR model with p lags for each series

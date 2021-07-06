@@ -12,7 +12,7 @@ function out=lagx(X,p)
 
 % Compute the number of rows and columns of input matrix X, and save the values as r and c
 [r,c]=size(X);
-
+out = zeros(numel(p+1:r), size(X,2));
 % start with the reformating of the original vectors
 out(:,1:c)=X(p+1:r,:);
 
