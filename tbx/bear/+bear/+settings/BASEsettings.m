@@ -7,7 +7,7 @@ classdef (Abstract) BASEsettings
     end
     
     properties
-        
+        %% App settings on constant panel
         frequency (1,1) double  = 2;                     % data frequency (1=yearly, 2= quarterly, 3=monthly, 4=weekly, 5=daily, 6=undated)
         startdate               = '1974q1';              % sample start date; must be a string consistent with the date formats of the toolbox
         enddate                 = '2014q4';              % sample end date; must be a string consistent with the date formats of the toolbox
@@ -18,6 +18,7 @@ classdef (Abstract) BASEsettings
         
         pref = struct();
         
+        %% Settings that do not seem to be as generic.
         % FAVAR options
         favar (1,1) bear.settings.FAVARsettings = bear.settings.FAVARsettings(); % augment VAR model with factors (1=yes, 0=no)
         
