@@ -81,7 +81,8 @@ classdef replicationTests < matlab.unittest.TestCase
         end
         
         function Run_VAR_CH2019(tc)
-            warning('off')
+            ws = warning('off');
+            tc.addTeardown(@() warning(ws));
             % replication of Caldara & Herbst (2019): Monetary Policy, Real Activity, and Credit Spreads: Evidence from Bayesian Proxy SVARs
             
             % this will replace the data.xlsx file in BEAR folder and the
@@ -95,7 +96,6 @@ classdef replicationTests < matlab.unittest.TestCase
             runprelim;
             
             compareResults(tc, 'results_test_data_CH2019')
-            warning('off')
         end
         
     end
