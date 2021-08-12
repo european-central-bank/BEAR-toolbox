@@ -12,7 +12,7 @@ classdef replicationTests < matlab.unittest.TestCase
     
     methods (TestClassSetup)
         
-        function saveTestLocation(tc)
+        function setup(tc)
             
             tc.testLoc = fileparts(mfilename('fullpath'));
             % Need to run single threaded to get all the rng defaults
@@ -33,6 +33,8 @@ classdef replicationTests < matlab.unittest.TestCase
             close all
             cd(tc.testLoc)
             rng('default');
+            s = rng;
+            addTeardown(tc, @() rng(s))
         end
         
     end
@@ -53,19 +55,9 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            previousResults = load('results_test_data.mat');
-            resultsFile = fullfile(pref.results_path,'results_test_data_temp.mat');
-            currentResults = load(resultsFile);
-            for f = fields(previousResults)'
-                fld = f{1};
-                if ~ismember(fld, tc.ToAvoid)
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.RelTol,'AbsTol',tc.AbsTol);
-                end
-            end
-            delete(resultsFile);
-            
+            compareResults(tc, 'results_test_data', pref)
         end
-                
+        
     end
     
     methods (Test, TestTags = {'MediumReplications'})
@@ -85,21 +77,12 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            previousResults = load('results_test_data_61.mat');
-            resultsFile = fullfile(pref.results_path,'results_test_data_61_temp.mat');
-            currentResults = load(resultsFile);
-            for f = fields(previousResults)'
-                fld = f{1};
-                if ~ismember(fld, tc.ToAvoid)
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.RelTol,'AbsTol',tc.AbsTol);
-                end
-            end
-            delete(resultsFile);
-            
+            compareResults(tc, 'results_test_data_61', pref)
         end
         
         function Run_VAR_CH2019(tc)
-            warning('off')
+            ws = warning('off');
+            tc.addTeardown(@() warning(ws));
             % replication of Caldara & Herbst (2019): Monetary Policy, Real Activity, and Credit Spreads: Evidence from Bayesian Proxy SVARs
             
             % this will replace the data.xlsx file in BEAR folder and the
@@ -112,17 +95,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            previousResults = load('results_test_data_CH2019.mat');
-            resultsFile = fullfile(pref.results_path,'results_test_data_CH2019_temp.mat');
-            currentResults = load(resultsFile);
-            for f = fields(previousResults)'
-                fld = f{1};
-                if ~ismember(fld, tc.ToAvoid)
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.RelTol,'AbsTol',tc.AbsTol);
-                end
-            end
-            delete(resultsFile);
-            warning('on')
+            compareResults(tc, 'results_test_data_CH2019', pref)
         end
         
     end
@@ -147,17 +120,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            previousResults = load('results_test_data_WGP2016.mat');
-            resultsFile = fullfile(pref.results_path,'results_test_data_WGP2016_temp.mat');
-            currentResults = load(resultsFile);
-            for f = fields(previousResults)'
-                fld = f{1};
-                if ~ismember(fld, tc.ToAvoid)
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.RelTol,'AbsTol',tc.AbsTol);
-                end
-            end
-            delete(resultsFile);
-            
+            compareResults(tc, 'results_test_data_WGP2016', pref)
         end
         
         function Run_VAR_BvV2018(tc)
@@ -174,8 +137,17 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            previousResults = load('results_test_data_BvV2018.mat');
-            resultsFile = fullfile(pref.results_path,'results_test_data_BvV2018_temp.mat');
+            compareResults(tc, 'results_test_data_BvV2018', pref)
+        end
+        
+    end
+    
+    methods (Access = private)
+        
+        function compareResults(tc, name, pref)
+            
+            previousResults = load( name + ".mat");
+            resultsFile = fullfile(pref.results_path, name + "_temp" + ".mat");
             currentResults = load(resultsFile);
             for f = fields(previousResults)'
                 fld = f{1};
@@ -188,16 +160,16 @@ classdef replicationTests < matlab.unittest.TestCase
         end
         
     end
-% This replications take extremely long, they will be not part of the tests for now.    
+% This replications take extremely long, they will be not part of the tests for now.
 %     methods (Test)
-%         
+%
 %         function Run_VAR_AAU2009(tc)
-%             
+%
 %             %% replication of Amir Ahmadi & Uhlig (2009): Measuring the Dynamic Effects
 %             % of Monetary Policy Shocks: A Bayesian FAVAR Approach with Sign Restriction
 %             % One-Step Bayesian estimation (Gibbs Sampling) with four factors, CPI and FFR
 %             % baseline sign-restriciton scheme
-%             
+%
 %             %% this will replace the data.xlsx file in BEAR folder and the
 %             %% bear_settings.m file in the BEAR\files folder
 %             %% specify data file name:
@@ -207,14 +179,14 @@ classdef replicationTests < matlab.unittest.TestCase
 %             %(and copy both to the replications\data folder)
 %             % then run other preliminaries
 %             runprelim;
-%             
+%
 %         end
-%         
+%
 %         function Run_VAR_BBE2005(tc)
 %             % replication of Bernanke, Boivin, Eliasz (2005): MEASURING THE EFFECTS OF
 %             % MONETARY POLICY: A FACTOR-AUGMENTED VECTOR AUTOREGRESSIVE (FAVAR) APPROACH
 %             % One-Step Bayesian estimation (Gibbs Sampling) with three factors and FFR
-%             
+%
 %             % this will replace the data.xlsx file in BEAR folder and the
 %             % bear_settings.m file in the BEAR\files folder
 %             % specify data file name:
@@ -224,9 +196,9 @@ classdef replicationTests < matlab.unittest.TestCase
 %             %(and copy both to the replications\data folder)
 %             % then run other preliminaries
 %             runprelim;
-%             
+%
 %         end
-%         
+%
 %     end
     
 end
