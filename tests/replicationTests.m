@@ -55,7 +55,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            compareResults(tc, 'results_test_data')
+            compareResults(tc, 'results_test_data', pref)
         end
         
     end
@@ -77,7 +77,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            compareResults(tc, 'results_test_data_61')
+            compareResults(tc, 'results_test_data_61', pref)
         end
         
         function Run_VAR_CH2019(tc)
@@ -95,7 +95,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            compareResults(tc, 'results_test_data_CH2019')
+            compareResults(tc, 'results_test_data_CH2019', pref)
         end
         
     end
@@ -120,7 +120,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            compareResults(tc, 'results_test_data_WGP2016')
+            compareResults(tc, 'results_test_data_WGP2016', pref)
         end
         
         function Run_VAR_BvV2018(tc)
@@ -137,18 +137,17 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            compareResults(tc, 'results_test_data_BvV2018')
+            compareResults(tc, 'results_test_data_BvV2018', pref)
         end
         
     end
     
     methods (Access = private)
         
-        function compareResults(tc, name)
+        function compareResults(tc, name, pref)
             
             previousResults = load( name + ".mat");
-            testFolder = fileparts(fileparts(mfilename('fullpath')));
-            resultsFile = fullfile(testFolder,'tbx','bear','results', name + "_temp" + ".mat");
+            resultsFile = fullfile(pref.results_path, name + "_temp" + ".mat");
             currentResults = load(resultsFile);
             for f = fields(previousResults)'
                 fld = f{1};
