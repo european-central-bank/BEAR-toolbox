@@ -35,7 +35,7 @@ cfblocks=[];
 % recover the cfconds cell (for all types of conditional forecasts)
 
 % load the data from Excel
-[num txt strngs]=xlsread('data.xlsx','pan conditions');
+[num txt strngs]=xlsread(pref.excelFile,'pan conditions');
 % replace NaN entries by blanks
 strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
 % convert potential numeric entries into strings
@@ -134,7 +134,7 @@ clmncount=0;
 end
 % if no error is returned, record on Excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],strngs,'cf conditions','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'cf conditions','B2');
 end
 
 
@@ -144,7 +144,7 @@ end
 
 if CFt==2
 % load the data from Excel
-[num txt strngs]=xlsread('data.xlsx','pan shocks');
+[num txt strngs]=xlsread(pref.excelFile,'pan shocks');
 % replace NaN entries by blanks
 strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
 % convert potential numeric entries into strings
@@ -244,7 +244,7 @@ rows(2,1)=temp;
    
 % if no error is returned, record on Excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],strngs,'cf shocks','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'cf shocks','B2');
 end
 end
 
@@ -256,7 +256,7 @@ end
 
 if CFt==2
 % load the data from Excel
-[num txt strngs]=xlsread('data.xlsx','pan blocks');
+[num txt strngs]=xlsread(pref.excelFile,'pan blocks');
 % replace NaN entries by blanks
 strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
 % convert potential numeric entries into strings
@@ -368,7 +368,7 @@ rows(2,1)=temp;
    
 % if no error is returned, record on Excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],strngs,'cf blocks','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'cf blocks','B2');
 end
 end
 

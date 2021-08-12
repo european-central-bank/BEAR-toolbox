@@ -5,7 +5,7 @@ function [struct_irf_record,D_draws,gamma_draws,ETA_record,It,Bu,beta_draws,sigm
 %% IV identification
 %Load IV and make it comparable with the reduced form errors
 [EPSIV,IVcut,~,sigmahatIV,sigma_hat,inv_sigma_hat,IV,txt,~,cut1,cut2,cut3,cut4]...
-    =loadIV(betahat,k,n,Y,X,T,p,names,startdate,enddate,strctident);
+    =loadIV(betahat,k,n,Y,X,T,p,names,startdate,enddate,strctident,pref);
 
 % IV routine
 [beta_draws,sigma_draws,~,~,D_draws,gamma_draws,irf_storage,ETA_storage,It,Bu]=...

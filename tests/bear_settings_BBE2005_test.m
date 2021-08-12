@@ -48,7 +48,9 @@ lags=13;
 const=0; %(demeaned, no constant)
 % path to data; must be a single string
 pref.datapath=bearrot(); % main BEAR folder, specify otherwise
+pref.excelFile = excelPath;
 % excel results file name
+pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
 pref.results_sub='results_BBE2005';
 % to output results in excel
 pref.results=0;

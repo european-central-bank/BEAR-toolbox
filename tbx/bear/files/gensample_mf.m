@@ -6,9 +6,9 @@ function [names mf_settings data data_endo data_endo_a data_endo_c data_endo_c_l
 % Phase 1: data loading and error checking
 
 % first read the data from Excel
-[data_m, names_m]=xlsread('data.xlsx','mfvar_monthly');
-[data_q, names_q]=xlsread('data.xlsx','mfvar_quarterly');
-[select, names_s] = xlsread('data.xlsx','mf_var_trans');
+[data_m, names_m]=xlsread(pref.excelFile,'mfvar_monthly');
+[data_q, names_q]=xlsread(pref.excelFile,'mfvar_quarterly');
+[select, names_s] = xlsread(pref.excelFile,'mf_var_trans');
 
 n_m = size(data_m,2);           mf_settings.Nm = n_m;
 n_q = size(data_q,2);           mf_settings.Nq = n_q;
@@ -412,7 +412,7 @@ else
         % if there are exogenous variables, load from excel
     else
         % load the data from Excel
-        [num txt strngs]=xlsread('data.xlsx','pred exo');
+        [num txt strngs]=xlsread(pref.excelFile,'pred exo');
         
         % obtain the row location of the forecast start date
         [Fstartlocation,~]=find(strcmp(strngs,Fstartdate));
@@ -476,7 +476,7 @@ else
         strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
         % then save on Excel
         if pref.results==1
-            xlswrite([pref.datapath '\results\' pref.results_sub '.xlsx'],strngs,'pred exo','A1');
+            xlswrite(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'pred exo','A1');
         end
     end
     

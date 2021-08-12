@@ -23,10 +23,10 @@ function [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo
 numunits=size(Units,1);
 
 % read the data from Excel
-[sheetdata,names]=xlsread('data.xlsx',Units{1,1});
+[sheetdata,names]=xlsread(pref.excelFile,Units{1,1});
 data(:,:,1)=sheetdata;
 for ii=2:numunits
-[sheetdata,~]=xlsread('data.xlsx',Units{ii,1});
+[sheetdata,~]=xlsread(pref.excelFile,Units{ii,1});
 data(:,:,ii)=sheetdata;
 end
 
@@ -147,7 +147,7 @@ if PriorExcel==0
     ar_default(:,1)=ar;
     ar=ar_default;
 else
-    [ar]=xlsread('data.xlsx','AR priors');
+    [ar]=xlsread(pref.excelFile,'AR priors');
 end
 
 
@@ -161,8 +161,8 @@ if priorsexogenous==0
         end
     end
 else
-    [priorexo]=xlsread('data.xlsx','exo mean priors');
-    [lambda4]=xlsread('data.xlsx','exo tight priors');
+    [priorexo]=xlsread(pref.excelFile,'exo mean priors');
+    [lambda4]=xlsread(pref.excelFile,'exo tight priors');
     priorexo=priorexo(1:numendo,1:numexo+1);
     lambda4=lambda4(1:numendo,1:numexo+1);
 end
@@ -450,7 +450,7 @@ data_endo_a=[];
    % if there are exogenous variables, load from excel
    else
    % load the data from Excel
-   [num txt strngs]=xlsread('data.xlsx','pan pred exo');
+   [num txt strngs]=xlsread(pref.excelFile,'pan pred exo');
 
    % obtain the row location of the forecast start date
    [Fstartlocation,~]=find(strcmp(strngs,Fstartdate));
@@ -514,7 +514,7 @@ data_endo_a=[];
    strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
    % then save on Excel
    if pref.results==1
-       xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],strngs,'pred exo','A1');
+       xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'pred exo','A1');
    end
    end
 

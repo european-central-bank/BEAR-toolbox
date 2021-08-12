@@ -2,13 +2,13 @@ function [names, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, da
 
 % if we have a FaVAR: read information data, data transformation, create indices, compute factors (PC)
 if favar.FAVAR==1
-    [informationstartlocation,informationendlocation,favar]=favar_gensample1(startdate,enddate,favar);
+    [informationstartlocation,informationendlocation,favar]=favar_gensample1(startdate,enddate,favar,pref);
 end
 
 %% endo data
 % Phase 1: data loading and error checking
 % first read the data from Excel
-[data, names]=xlsread('data.xlsx','data');
+[data, names]=xlsread(pref.excelFile,'data');
 
 % identify the date strings
 datestrings=names(2:end,1);
@@ -481,7 +481,7 @@ else
         % if there are exogenous variables, load from excel
     else
         % load the data from Excel
-        [~,~,strngs]=xlsread('data.xlsx','pred exo');
+        [~,~,strngs]=xlsread(pref.excelFile,'pred exo');
         
         % obtain the row location of the forecast start date
         [Fstartlocation,~]=find(strcmp(strngs,Fstartdate));
@@ -545,7 +545,7 @@ else
         strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
         % then save on Excel
         if pref.results==1
-            xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],strngs,'pred exo','A1');
+            xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'pred exo','A1');
         end
     end
     

@@ -167,7 +167,7 @@ horzspace=repmat({''},3,5*n);
 strshockcell=strshockcell(4:end,1:end-1);
 % write in excel
 if pref.results==1
-xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],strshockcell,'shocks','B2');
+xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strshockcell,'shocks','B2');
 end
 end
 

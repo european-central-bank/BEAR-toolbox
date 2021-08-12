@@ -24,7 +24,7 @@ afcell=afcell(:,1:end-1);
 
 % write in excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],afcell,'actual fitted','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),afcell,'actual fitted','B2');
 end
 
 
@@ -37,7 +37,7 @@ rescell=[{'residuals'} horzspace;{''} horzspace;{''} endo';stringdates1 num2cell
 
 % write in excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],rescell,'resids','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),rescell,'resids','B2');
 end
 
 

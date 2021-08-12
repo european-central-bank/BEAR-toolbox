@@ -82,6 +82,6 @@ exo_irfcell=exo_irfcell(3:end,1:end-1);
 
 % write in excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],exo_irfcell,'exogenous IRFs','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),exo_irfcell,'exogenous IRFs','B2');
 end
 

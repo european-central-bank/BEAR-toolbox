@@ -20,7 +20,7 @@ function [D, gamma, beginInstrument,EndInstrument, IV]=irfiv_ols(names, betahat,
 %          - matrix 'gamma': record of the draws for the structural disturbances variance-covariance matrix gamma
 
 % Load IV and make it comparable with the reduced form errors
-[IV txt]=xlsread('data.xlsx','IV');
+[IV txt]=xlsread(pref.excelFile,'IV');
 
 namesIV = txt(1,2:end);
 datesIV = txt(2:end,1);
@@ -135,7 +135,7 @@ for kk=1
 end
 
 F_test_name=strcat(pref.results_sub,'_Proxy_VAR_F_Test');
-filelocation=[pref.datapath '\results\', F_test_name];
+filelocation=fullfile(pref.results_path, F_test_name);
 fid=fopen(filelocation,'wt');
 
 fprintf('%s\n','');

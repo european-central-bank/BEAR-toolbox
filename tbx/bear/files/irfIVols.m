@@ -22,7 +22,7 @@ function [beta_draws,sigma_draws,IV_draws,C_draws,D,storage1,storage2,D1ols]=irf
 %% Phase 1:% %% IV F-Test
 % Load IV and make it comparable with the reduced form errors
 [~,IVcut,EPSt,~,~,~,IV,txt,OverlapIVinY,cut1,cut2,cut3,cut4]=...
-    loadIV(betahat,k,n,Y,X,T,p,names,startdate,enddate,strctident);
+    loadIV(betahat,k,n,Y,X,T,p,names,startdate,enddate,strctident,pref);
 
 %%  Check strength of instrument
 F_stat_test_unc   = NaN*ones(1,n);
@@ -85,7 +85,7 @@ for kk=1
 end
 
 % print proxy var statistics in the command window and in the results file 
-filelocation=[pref.datapath '\results\' pref.results_sub '.txt'];
+filelocation=fullfile(pref.results_path, [pref.results_sub '.txt']);
 fid=fopen(filelocation,'at');
 %two empty lines
 fprintf('%s\n','');

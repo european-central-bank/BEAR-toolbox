@@ -10,7 +10,7 @@ signreslabels=strctident.signreslabels;
 signreslabels_shocksindex=strctident.signreslabels_shocksindex;
 % load the data from Excel
 % sign restrictions values
-[~,~,strngs1]=xlsread('data.xlsx','FEVD res values');
+[~,~,strngs1]=xlsread(pref.excelFile,'FEVD res values');
 % replace NaN entries by blanks
 strngs1(cellfun(@(x) any(isnan(x)),strngs1))={[]};
 % convert all numeric entries into strings
@@ -128,7 +128,7 @@ end
 
 
 % FEVD restriction periods
-[~,~,strngs2]=xlsread('data.xlsx','FEVD res periods');
+[~,~,strngs2]=xlsread(pref.excelFile,'FEVD res periods');
 strngs2(cellfun(@(x) any(isnan(x)),strngs2))={[]};
 strngs2(cellfun(@isnumeric,strngs2))=cellfun(@num2str,strngs2(cellfun(@isnumeric,strngs2)),'UniformOutput',0);
 [nerows2,neclmns2]=find(~cellfun('isempty',strngs2));
@@ -528,7 +528,7 @@ end
 
 % finally, record on Excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],strngs1,'FEVD res values','B2');
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],strngs2,'FEVD res periods','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs1,'FEVD res values','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs2,'FEVD res periods','B2');
 end
 end

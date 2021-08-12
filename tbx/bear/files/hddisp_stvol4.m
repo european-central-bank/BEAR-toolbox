@@ -225,9 +225,9 @@ annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize', 8, 'Linest
 set(gcf, 'Position', [500, 0, 1000, 1000])
 legend boxoff
 PrintName = strcat('HD_',endo{ii});
-fname = strcat(pref.datapath, '\results\');
-saveas(gcf,[fname,PrintName],'epsc')
-saveas(gcf,[fname,PrintName],'png')
+fname = fullfile(pref.results_path, PrintName);
+saveas(gcf,fname,'epsc')
+saveas(gcf,fname,'png')
 end 
 end
 %% record in excel
@@ -291,6 +291,6 @@ end
 hdcell=hdcell(1:end,1:end-1);
 % write in excel
 if pref.results==1
-    xlswritegeneral([pref.datapath '\results\' pref.results_sub '.xlsx'],hdcell,'hist decomp','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),hdcell,'hist decomp','B2');
 end
 

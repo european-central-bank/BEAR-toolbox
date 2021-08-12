@@ -1,17 +1,17 @@
 function [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,ar,priorexo,lambda4,numendo,favar]=...
-    gensample(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,ar,lambda4,PriorExcel,priorsexogenous,pref,favar,IRFt)
+    gensample_old(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,ar,lambda4,PriorExcel,priorsexogenous,pref,favar,IRFt)
 
 
 % Phase 1: data loading and error checking
 
 % if we have a FAVAR: read information data, data transformation, create indices, compute factors (PC)
 if favar.FAVAR==1
-    [informationstartlocation,informationendlocation,favar]=favar_gensample1(startdate,enddate,favar);
+    [informationstartlocation,informationendlocation,favar]=favar_gensample1(startdate,enddate,favar,pref);
 end
 
 
 % first read the data from Excel
-[data,names]=xlsread('data.xlsx','data');
+[data,names]=xlsread(pref.excelFile,'data');
 
 % now, as a preliminary step: check if there is any Nan in the data; if yes, return an error since the model won't be able to run with missing data
 % a simple way to test for NaN is to check for "smaller or equal to infinity": Nan is the only number for which matlab will return 'false' when asked so
@@ -237,7 +237,7 @@ if PriorExcel==0
     ar_default(:,1)=ar;
     ar=ar_default;
 else
-    [ar]=xlsread('data.xlsx','AR priors');
+    [ar]=xlsread(pref.excelFile,'AR priors');
 end
 
 
@@ -251,8 +251,8 @@ if priorsexogenous==0
         end
     end
 else
-    [priorexo]=xlsread('data.xlsx','exo mean priors');
-    [lambda4]=xlsread('data.xlsx','exo tight priors');
+    [priorexo]=xlsread(pref.excelFile,'exo mean priors');
+    [lambda4]=xlsread(pref.excelFile,'exo tight priors');
     priorexo=priorexo(1:numendo,1:numexo+1);
     lambda4=lambda4(1:numendo,1:numexo+1);
 end
@@ -537,7 +537,7 @@ else
         % if there are exogenous variables, load from excel
     else
         % load the data from Excel
-        [num txt strngs]=xlsread('data.xlsx','pred exo');
+        [num txt strngs]=xlsread(pref.excelFile,'pred exo');
         
         % obtain the row location of the forecast start date
         [Fstartlocation,~]=find(strcmp(strngs,Fstartdate));
@@ -601,7 +601,7 @@ else
         strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
         % then save on Excel
         if pref.results==1
-            xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],strngs,'pred exo','A1');
+            xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'pred exo','A1');
         end
     end
     

@@ -34,7 +34,7 @@ regime2=cell(numendo,numexo+1);
 Dmatrix=[];
 
 % load the data from Excel
-[num txt strngs]=xlsread('data.xlsx','mean adj prior');
+[num txt strngs]=xlsread(pref.excelFile,'mean adj prior');
 % replace NaN entries by blanks
 strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
 % identify the non_empty entries (pairs of rows and columns)
@@ -220,6 +220,6 @@ T=length(data_endo(:,1));
 Dmatrix = TVEregimesDummy(startdate,regimeperiods,T);
 
 % finally, record on Excel
-xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],strngs,'mean-adj prior','B2');
+xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'mean-adj prior','B2');
 
 

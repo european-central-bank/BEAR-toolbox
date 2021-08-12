@@ -1,7 +1,7 @@
 function [EPSIV,IVcut,EPSt,sigmahatIV,sigma_hat,inv_sigma_hat,IV,txt,OverlapIVinY,cut1,cut2,cut3,cut4]=...
-    loadIV(betahat,k,n,Y,X,T,lags,names,startdate,enddate,strctident)
+    loadIV(betahat,k,n,Y,X,T,lags,names,startdate,enddate,strctident,pref)
 
-[IV,txt]=xlsread('data.xlsx','IV');
+[IV,txt]=xlsread(pref.excelFile,'IV');
 
 Index=strcmp(txt(1,:),strctident.Instrument);
 IVnum=find(Index==1,1,'first')-1;

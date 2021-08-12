@@ -14,7 +14,7 @@ cfintervals={};
 % recover the cfconds cell (for all types of conditional forecasts)
 
 % load the data from Excel
-[num txt strngs]=xlsread('data.xlsx','conditions');
+[num txt strngs]=xlsread(pref.excelFile,'conditions');
 % replace NaN entries by blanks
 strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
 % convert potential numeric entries into strings
@@ -72,7 +72,7 @@ for ii=1:numendo
 end
 % if no error is returned, record on Excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],strngs,'cf conditions','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'cf conditions','B2');
 end
 
 
@@ -82,7 +82,7 @@ end
 
 if CFt==2
 % load the data from Excel
-[num txt strngs]=xlsread('data.xlsx','shocks');
+[num txt strngs]=xlsread(pref.excelFile,'shocks');
 % replace NaN entries by blanks
 strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
 % convert potential numeric entries into strings
@@ -140,7 +140,7 @@ rows(2,1)=temp;
    end
 % if no error is returned, record on Excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],strngs,'cf shocks','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'cf shocks','B2');
 end
 end
 
@@ -155,7 +155,7 @@ if CFt==2
 % initiate the cfblocks matrix
 cfblocks=zeros(Fperiods,numendo);
 % load the data from Excel
-[num txt strngs]=xlsread('data.xlsx','blocks');
+[num txt strngs]=xlsread(pref.excelFile,'blocks');
 % replace NaN entries by blanks
 strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
 % convert potential numeric entries into strings
@@ -219,7 +219,7 @@ rows(2,1)=temp;
    end
 % if no error is returned, record on Excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],strngs,'cf blocks','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'cf blocks','B2');
 end
 end
 
@@ -232,7 +232,7 @@ end
 
 if CFt==4
 % load the data from Excel
-[num txt strngs]=xlsread('data.xlsx','intervals');
+[num txt strngs]=xlsread(pref.excelFile,'intervals');
 % replace NaN entries by blanks
 strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
 % convert potential numeric entries into strings
@@ -290,7 +290,7 @@ rows(2,1)=temp;
    end
 % if no error is returned, record on Excel
 if pref.results==1
-        xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],strngs,'cf intervals','B2');
+        xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'cf intervals','B2');
 end
 end
 

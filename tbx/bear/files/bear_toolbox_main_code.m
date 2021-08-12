@@ -5,7 +5,7 @@
 %    Authors:                                                              % 
 %                                                                          %
 %    Alistair Dieppe (alistair.dieppe@ecb.europa.eu)                       %
-%    Björn van Roye  (bvanroye@bloomberg.net)                              %
+%    BjÃ¶rn van Roye  (bvanroye@bloomberg.net)                              %
 %                                                                          %
 %    Version 5.0                                                           %
 %                                                                          %
@@ -57,31 +57,316 @@ if ismac
 end
 
 
-
+%%
 %---------------------|
 % Initilisation phase |
 %-------------------- |
 
+%% init.m
 % first create initial elements to avoid later crash of the code
-init;
+% interinfo cells: required to save data when the back button is used with the interfaces
+interinfo1={};
+interinfo2={};
+interinfo3={};
+interinfo4={};
+interinfo5={};
+interinfo6={};
+interinfo7={};
+% panel scalar (non-model value): required to have the argument for interface 6, even if a non-panel model is selected 
+if VARtype==4
+else 
+panel=10;
+end
+% signreslabels empty element: required to have the argument for IRF plots, even if sign restriction is not selected 
+signreslabels=[];
+% Units empty element: required to record estimation information on Excel even if the selected model is not a panel VAR
+Units=[];
+% blockexo empty element: required to have the code run properly for the BVAR model if block exogeneity is not selected
+blockexo=[];
+% forecast and IRFs empty elements: required for the display of panel results if forecast/IRFs are disactivated
+forecast_record=[];
+forecast_estimates=[];
+gamma_estimates=[];
+D_estimates=[];
+% gamma empty elements: required for the display of stochastic volatility results if selected model is not random inertia
+gamma_median=[];
 
+%% bear_checkRun.m
 % check wheter we started BEAR via the bear_Run file
-bear_checkRun;
+% peform some routines to check wheter we started BEAR via bear_Run
+load('checkRun.mat')
+checkRun.checkRun2=datetime;
 
+% check wheter we just started the run file (in the last five seconds)
+if milliseconds(checkRun.checkRun2-checkRun.checkRun1) < 5000 
+    checkRun.bear_Run_dummy=1;
+% % %     % turn off the the GUI in this case
+% % %     GUI=0;
+else % perform the normal routines
+    checkRun.bear_Run_dummy=0;
+end
+
+%% prelim.m
 % other checks and preliminaries
-prelim;
+% turn off incompatible combinations of options and other preliminaries
+% these steps have to be done before convertsrings
+% first check for favar, turn off routines if favar doesn't exist (for VARtypes other than =1)
+if exist('favar','var')~=1 | favar.FAVAR==0
+    favar.FAVAR=0;
+    favar.HD.plot=0;
+    favar.IRF.plot=0;
+    favar.FEVD.plot=0;
+end
 
+if favar.FAVAR==1
+    if VARtype~=2
+        favar.onestep=0; % always two-step (factors are static, principal components)
+    end
+	
+	if favar.onestep==1 && favar.blocks==1
+	    message='Please select two-step estimation (favar.onestep==0) to use Blocks.';
+        msgbox(message,'FAVAR error','Error','error');
+        error('programme termination');
+	end
+    if favar.onestep==1 || IRFt>3 || favar.blocks==1
+        favar.slowfast=0;
+    end
+    
+    if favar.slowfast==1
+        favar.blocknames='slow fast'; % specify in excel sheet 'factor data'
+    end
+    
+    % changed the variable name in the settings for clarity to favar.plotXshock
+    favar.IRF.plotXshock=favar.plotXshock;
+    
+    if favar.FEVD.plot==1
+        % choose shock(s) to plot
+        favar.FEVD.plotXshock=favar.IRF.plotXshock; % this option should be removed
+    end
+    if IRFt>4
+        message='It is currently not recommended to use IRFt 5 and IRFt 6 in a FAVAR.';
+        msgbox(message,'FAVAR warning','warn','warning');
+    end
+    
+    if favar.blocks==0
+        favar.HD.plotXblocks=0;
+        favar.HD.HDallsumblock=0;
+    end
+    
+    if VARtype==2 && (prior==51 || prior==61)
+        message='Please choose other prior (51, 61 are currently not supported in FAVARs.';
+        msgbox(message,'FAVAR error','Error','error');
+        error('programme termination');
+    end
+    
+    if VARtype==5 && stvol==4
+        message='stvol4 is currently not supported in FAVARs.';
+        msgbox(message,'FAVAR error','Error','error');
+        error('programme termination');
+    end
+end
+
+if VARtype==2 && (IRFt==5 || IRFt==6)
+    if  prior==21 || prior==22
+    else
+        message='Please choose Normal-Wishart prior (21, 22) for IRFt 5 and 6.';
+        msgbox(message,'IRFt warning','Error','error');
+        error('programme termination');
+    end
+end
+
+if exist('strctident','var')~=1
+    strctident.strctident=0;
+end
+
+if VARtype==4 || VARtype==6 % turn off the correl res routines
+    strctident.CorrelInstrument="";
+    strctident.CorrelShock="";
+end
+
+if IRFt==5
+    strctident.MM=0; %no medianmodel in this case
+end
+
+%% convertstrngs.m
 % run a script to convert string into a list of endogenous, exogenous, and units (if applicable)
-convertstrngs;
+% as a preliminary task, fix all the strings that may require it
+startdate=fixstring(startdate);
+enddate=fixstring(enddate);
+varendo=fixstring(varendo);
+varexo=fixstring(varexo);
+datapath=fixstring(pref.datapath);
+% FAVAR: additional strings
+if favar.FAVAR==1
+    favar.plotX=fixstring(favar.plotX);
+    if favar.blocks==1 || favar.slowfast==1
+        favar.blocknames=fixstring(favar.blocknames);
+    end
+        if favar.blocks==1
+            favar.blocknumpc=fixstring(favar.blocknumpc);
+        end
+        if favar.IRF.plot==1
+            favar.IRF.plotXshock=fixstring(favar.IRF.plotXshock);
+        end
+    favar.transform_endo=fixstring(favar.transform_endo);
+end
+if F==1
+Fstartdate=fixstring(Fstartdate);
+Fenddate=fixstring(Fenddate);
+end
+if VARtype==4
+unitnames=fixstring(unitnames);
+end
+
+% first recover the names of the different endogenous variables; 
+% to do so, separate the string 'varendo' into individual names
+% look for the spaces and identify their locations
+findspace=isspace(varendo);
+locspace=find(findspace);
+% use this to set the delimiters: each variable string is located between two delimiters
+delimiters=[0 locspace numel(varendo)+1];
+% count the number of endogenous variables
+% first count the number of spaces
+nspace=sum(findspace(:)==1);
+% each space is a separation between two variable names, so there is one variable more than the number of spaces
+numendo=nspace+1;
+% now finally identify the endogenous
+endo=cell(numendo,1);
+for ii=1:numendo
+endo{ii,1}=varendo(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
+end
+
+% FAVAR: additional strings 
+if favar.FAVAR==1
+% favar.plotX
+findspace=isspace(favar.plotX);
+locspace=find(findspace);
+% use this to set the delimiters: each variable string is located between two delimiters
+delimiters=[0 locspace numel(favar.plotX)+1];
+% count the number of endogenous variables
+% first count the number of spaces
+nspaceplotX=sum(findspace(:)==1);
+% each space is a separation between two variable names, so there is one variable more than the number of spaces
+numplotX=nspaceplotX+1;
+% now finally identify the endogenous
+favar.pltX=cell(numplotX,1);
+for ii=1:numplotX
+favar.pltX{ii,1}=favar.plotX(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
+end
+
+if favar.blocks==1 || favar.slowfast==1
+findspace=isspace(favar.blocknames);
+locspace=find(findspace);
+% use this to set the delimiters: each variable string is located between two delimiters
+delimiters=[0 locspace numel(favar.blocknames)+1];
+% count the number of endogenous variables
+% first count the number of spaces
+nspaceblocknames=sum(findspace(:)==1);
+% each space is a separation between two variable names, so there is one variable more than the number of spaces
+numblocknames=nspaceblocknames+1;
+% now finally identify the endogenous
+favar.bnames=cell(numblocknames,1);
+for ii=1:numblocknames
+favar.bnames{ii,1}=favar.blocknames(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
+end
+end
+
+if favar.blocks==1
+findspace=isspace(favar.blocknumpc);
+locspace=find(findspace);
+% use this to set the delimiters: each variable string is located between two delimiters
+delimiters=[0 locspace numel(favar.blocknumpc)+1];
+% count the number of endogenous variables
+% first count the number of spaces
+nspaceblocknumpc=sum(findspace(:)==1);
+% each space is a separation between two variable names, so there is one variable more than the number of spaces
+numblocknumpc=nspaceblocknumpc+1;
+% now finally identify the endogenous
+favar.bnumpc=cell(numblocknumpc,1);
+for ii=1:numblocknumpc
+favar.bnumpc{ii,1}=str2num(favar.blocknumpc(delimiters(1,ii)+1:delimiters(1,ii+1)-1)); %convert strings here to numbers
+end
+end
+        
+if favar.IRF.plot==1
+findspace=isspace(favar.IRF.plotXshock);
+locspace=find(findspace);
+% use this to set the delimiters: each variable string is located between two delimiters
+delimiters=[0 locspace numel(favar.IRF.plotXshock)+1];
+% count the number of endogenous variables
+% first count the number of spaces
+nspaceplotXshock=sum(findspace(:)==1);
+% each space is a separation between two variable names, so there is one variable more than the number of spaces
+numplotXshock=nspaceplotXshock+1;
+% now finally identify the endogenous
+favar.IRF.pltXshck=cell(numplotXshock,1);
+for ii=1:numplotXshock
+favar.IRF.pltXshck{ii,1}=favar.IRF.plotXshock(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
+end
+end
+ 
+findspace=isspace(favar.transform_endo);
+locspace=find(findspace);
+% use this to set the delimiters: each variable string is located between two delimiters
+delimiters=[0 locspace numel(favar.transform_endo)+1];
+% count the number of endogenous variables
+% first count the number of spaces
+nspacetransform_endo=sum(findspace(:)==1);
+% each space is a separation between two variable names, so there is one variable more than the number of spaces
+numtransform_endo=nspacetransform_endo+1;
+% now finally identify the endogenous
+favar.trnsfrm_endo=cell(numtransform_endo,1);
+for ii=1:numtransform_endo
+favar.trnsfrm_endo{ii,1}=str2num(favar.transform_endo(delimiters(1,ii)+1:delimiters(1,ii+1)-1)); %convert strings here to numbers
+end
+        
+end
 
 
+% proceed similarly for exogenous series; note however that it may be empty
+% so check first whether there are exogenous variables altogether
+if isempty(varexo==1)
+exo={};
+% if not empty, repeat what has been done with the exogenous
+else
+findspace=isspace(varexo);
+locspace=find(findspace);
+delimiters=[0 locspace numel(varexo)+1];
+nspace=sum(findspace(:)==1);
+numexo=nspace+1;
+exo=cell(numexo,1);
+   for ii=1:numexo
+   exo{ii,1}=varexo(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
+   end
+end
+
+% finally, if applicable, recover the names of the different units
+if VARtype==4
+% look for the spaces and identify their locations
+findspace=isspace(unitnames);
+locspace=find(findspace);
+% use this to set the delimiters: each unit string is located between two delimiters
+delimiters=[0 locspace numel(unitnames)+1];
+% count the number of units
+% first count the number of spaces
+nspace=sum(findspace(:)==1);
+% each space is a separation between two unit names, so there is one unit more than the number of spaces
+numunits=nspace+1;
+% now finally identify the units
+Units=cell(numunits,1);
+   for ii=1:numunits
+   Units{ii,1}=unitnames(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
+   end 
+end
+
+
+%%
 %--------------------|
 % Data loading phase |
 %------------------- |
 
-addpath(pref.datapath);
 % initiation of Excel result file
-initexcel;
+initexcel(pref);
 
 % generate the different sets of data
 % if the model is the OLS VAR,
@@ -117,7 +402,7 @@ end
 % Long run prior table
 H=[];
 if (VARtype==2) && lrp==1
-    H=loadH;
+    H=loadH(pref);
 end
 
 % load sign and magnitude restrictions table, relative magnitude restrictions table, FEVD restrictions table
@@ -125,7 +410,7 @@ if IRFt==4 || IRFt==6
     [signrestable,signresperiods,signreslabels,strctident,favar]=loadsignres(n,endo,pref,favar,IRFt,strctident);
     [relmagnrestable,relmagnresperiods,signreslabels,strctident,favar]=loadrelmagnres(n,endo,pref,favar,IRFt,strctident);
     [FEVDrestable,FEVDresperiods,signreslabels,strctident,favar]=loadFEVDres(n,endo,pref,favar,IRFt,strctident);
-    [strctident,signreslabels]=loadcorrelres(strctident,endo,names,startdate,enddate,lags,n,IRFt,favar);
+    [strctident,signreslabels]=loadcorrelres(strctident,endo,names,startdate,enddate,lags,n,IRFt,favar,pref);
 end
 
 
@@ -813,7 +1098,7 @@ for iteration=1:numt % beginning of forecasting loop
         % option to save matlab workspace
         if pref.workspace==1
             if numt>1
-                save([pref.datapath filesep 'results' filesep pref.results_sub Fstartdate '.mat']); % Save Workspace
+                save(fullfile(pref.results_path, [ pref.results_sub Fstartdate '.mat'] )); % Save Workspace
             end
         end
         
@@ -1324,7 +1609,7 @@ for iteration=1:numt % beginning of forecasting loop
             % if the Survey Local Mean VAR with stochastic volatility
         elseif stvol==4
             % load Survey local mean data
-            [dataSLM,datesSLM,namesSLM]=loadSLM(names,data_endo,lags);
+            [dataSLM,datesSLM,namesSLM]=loadSLM(names,data_endo,lags,pref);
             % set priors and preliminaries for local mean model
             [Ys, Yt, YincLags, data_post_training, const, priorValues, dataValues, sizetraining]=...
                 TVESLM_prior(data_endo, data_exo, names, endo, lags, lambda1, lambda2, lambda3, lambda5, ar, bex, dataSLM, namesSLM, datesSLM, const, priorexo, gamma);
@@ -2013,7 +2298,7 @@ if CF==1
 end
 
 if numt>1
-    save([pref.datapath '\results\' pref.results_sub Fstartdate '.mat']); % Save Workspace
+    save(fullfile(pref.results_path,[pref.results_sub Fstartdate '.mat'])); % Save Workspace
 end
 
 Fstartdate_rolling=[Fstartdate_rolling; Fstartdate];
@@ -2036,11 +2321,11 @@ end
 
 % option to save matlab workspace
 if pref.workspace==1
-    save([pref.datapath filesep 'results' filesep pref.results_sub '.mat']);
+    save( fullfile(pref.results_path, [pref.results_sub '.mat']) );
 end
 
 % if we started bear_Run, restore data and settings files
 if checkRun.bear_Run_dummy==1
-    copyfile([checkRun.filespath 'data_previous.xlsx'],[checkRun.BEARpath filesep 'data.xlsx']);
+    copyfile([checkRun.filespath 'data_previous.xlsx'],[checkRun.BEARpath filesep pref.excelFile]);
     copyfile([checkRun.filespath 'bear_settings_previous.m'],[checkRun.filespath 'bear_settings.m']);
 end

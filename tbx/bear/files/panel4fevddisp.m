@@ -88,7 +88,7 @@ end
 fevdcell=fevdcell(3:end-2,1:end-1);
 % write in excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],fevdcell,'FEVD','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),fevdcell,'FEVD','B2');
 end
 
 

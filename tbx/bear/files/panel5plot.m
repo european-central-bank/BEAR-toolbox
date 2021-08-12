@@ -80,7 +80,7 @@ end
 afcell=afcell(4:end,1:end-1);
 % write in excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],afcell,'actual fitted','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),afcell,'actual fitted','B2');
 end
 
 
@@ -148,7 +148,7 @@ end
 residcell=residcell(4:end,1:end-1);
 % write in excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],residcell,'resids','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),residcell,'resids','B2');
 end
 
 
@@ -230,7 +230,7 @@ end
 sscell=sscell(4:end,1:end-1);
 % write in excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],sscell,'steady state','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),sscell,'steady state','B2');
 end
 
 

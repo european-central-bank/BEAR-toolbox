@@ -40,5 +40,5 @@ hdcell=hdcell(3:end,1:end-1);
 
 % write in excel
 if pref.results==1
-    xlswritegeneral([pref.datapath filesep 'results' filesep pref.results_sub '.xlsx'],hdcell,'hist decomposition','B2');
+    xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),hdcell,'hist decomposition','B2');
 end

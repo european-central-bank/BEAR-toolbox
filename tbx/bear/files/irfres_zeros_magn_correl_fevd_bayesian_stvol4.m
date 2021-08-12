@@ -1,4 +1,4 @@
-function [struct_irf_record D_record gamma_record hd_record ETA_record IVcorrelation PofIVcorrelation beta_gibbs_reshuffle sigma_gibbs_reshuffle]=irfres_zeros_magn_correl_fevd_bayesian_stvol4(beta_gibbs, sigma_gibbs, It, Bu,betahat,sigmahat,IRFperiods,n,m,p,k,T,signrestable,signresperiods, relmagnrestable, relmagnresperiods, names, startdate, enddate, ShockwithInstrument, Ycycle, Xcycle, signreslabels, FEVDresperiods, FEVDrestable, data_exo, HD, const, exo, InstrumentforCorrel, IRFt, YincLags, Psi_gibbs)
+function [struct_irf_record D_record gamma_record hd_record ETA_record IVcorrelation PofIVcorrelation beta_gibbs_reshuffle sigma_gibbs_reshuffle]=irfres_zeros_magn_correl_fevd_bayesian_stvol4(beta_gibbs, sigma_gibbs, It, Bu,betahat,sigmahat,IRFperiods,n,m,p,k,T,signrestable,signresperiods, relmagnrestable, relmagnresperiods, names, startdate, enddate, ShockwithInstrument, Ycycle, Xcycle, signreslabels, FEVDresperiods, FEVDrestable, data_exo, HD, const, exo, InstrumentforCorrel, IRFt, YincLags, Psi_gibbs, pref)
 %betahat = betahatcycle                                                                                                       irfres_zeros_magn_correl_fevd_bayesian_stvol4(beta_gibbs, sigma_gibbs, It, Bu,betahatcycle,sigmahatcycle,IRFperiods,n,m,p,k,T,signrestable,signresperiods, relmagnrestable, relmagnresperiods, namespostratining, startdateposttraining, enddate, strctident.ShockwithInstrument, Ycycle, Xcycle, signreslabels, FEVDresperiods, FEVDrestable,data_exo, HD, 0, exo, strctident.InstrumentforCorrel, IRFt, YincLags);
 %sigmahat = sigmahatcycle
 %names =namespostraining
@@ -173,7 +173,7 @@ else
     IVcorrelcheck=1;
 end
 if IVcorrelcheck==1
-    [IVcorrel txtcorrel]=xlsread('data.xlsx','IV');
+    [IVcorrel txtcorrel]=xlsread(pref.excelFile,'IV');
     
     Index = strcmp(txtcorrel(1,:), InstrumentforCorrel);           %find the instrument in the IV sheet
     IVnum = find(Index==1, 1, 'first')-1;
@@ -485,7 +485,7 @@ parfor ii=1:Acc
             end
             % repeat this loop until a succesful draw is obtained
 
-        end %end of while loop ´
+        end %end of while loop Â´
         % with succesful Qj at hand, eventually set Q as Qj
         Q=Qj;
    end %end of if loop

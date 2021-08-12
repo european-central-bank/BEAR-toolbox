@@ -22,7 +22,7 @@ function [struct_irf_record, D_record,D,gamma_record,gamma]=irfbootstrapiv_ols_G
 
 %% Create the matrices for the loop
 % Load IV and make it comparable with the reduced form errors
-[EPSIV,IVcut,EPSt,sigmahatIV,B,EPS,df,sigma_hat,inv_sigma_hat,beginInstrument,EndInstrument,IV,txt,OverlapIVinY,cut1,cut2,cut3,cut4]=loadIV(betahat,k,n,Y,X,T,p,names,startdate,enddate,strctident);
+[EPSIV,IVcut,EPSt,sigmahatIV,B,EPS,df,sigma_hat,inv_sigma_hat,beginInstrument,EndInstrument,IV,txt,OverlapIVinY,cut1,cut2,cut3,cut4]=loadIV(betahat,k,n,Y,X,T,p,names,startdate,enddate,strctident,pref);
 
 
 %%  Check strength of instrument
@@ -85,7 +85,7 @@ for kk=1
     table.Properties.VariableNames(kk) = cellstr(char('Validitytest'));
 end
 
-filelocation=[pref.datapath '\results\' pref.results_sub '.txt'];
+filelocation=fullfile(pref.results_path, [pref.results_sub '.txt']);
 fid=fopen(filelocation,'at');
 %two empty lines
 fprintf('%s\n','');
