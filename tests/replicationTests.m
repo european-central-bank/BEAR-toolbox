@@ -55,9 +55,9 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            compareResults(tc, 'results_test_data')            
+            compareResults(tc, 'results_test_data')
         end
-                
+        
     end
     
     methods (Test, TestTags = {'MediumReplications'})
@@ -77,7 +77,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            compareResults(tc, 'results_test_data_61')            
+            compareResults(tc, 'results_test_data_61')
         end
         
         function Run_VAR_CH2019(tc)
@@ -94,7 +94,8 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            compareResults(tc, 'results_test_data_CH2019')            
+            compareResults(tc, 'results_test_data_CH2019')
+            warning('off')
         end
         
     end
@@ -119,7 +120,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            compareResults(tc, 'results_test_data_WGP2016')            
+            compareResults(tc, 'results_test_data_WGP2016')
         end
         
         function Run_VAR_BvV2018(tc)
@@ -136,7 +137,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            compareResults(tc, 'results_test_data_BvV2018')            
+            compareResults(tc, 'results_test_data_BvV2018')
         end
         
     end
@@ -160,16 +161,16 @@ classdef replicationTests < matlab.unittest.TestCase
         end
         
     end
-% This replications take extremely long, they will be not part of the tests for now.    
+% This replications take extremely long, they will be not part of the tests for now.
 %     methods (Test)
-%         
+%
 %         function Run_VAR_AAU2009(tc)
-%             
+%
 %             %% replication of Amir Ahmadi & Uhlig (2009): Measuring the Dynamic Effects
 %             % of Monetary Policy Shocks: A Bayesian FAVAR Approach with Sign Restriction
 %             % One-Step Bayesian estimation (Gibbs Sampling) with four factors, CPI and FFR
 %             % baseline sign-restriciton scheme
-%             
+%
 %             %% this will replace the data.xlsx file in BEAR folder and the
 %             %% bear_settings.m file in the BEAR\files folder
 %             %% specify data file name:
@@ -179,14 +180,14 @@ classdef replicationTests < matlab.unittest.TestCase
 %             %(and copy both to the replications\data folder)
 %             % then run other preliminaries
 %             runprelim;
-%             
+%
 %         end
-%         
+%
 %         function Run_VAR_BBE2005(tc)
 %             % replication of Bernanke, Boivin, Eliasz (2005): MEASURING THE EFFECTS OF
 %             % MONETARY POLICY: A FACTOR-AUGMENTED VECTOR AUTOREGRESSIVE (FAVAR) APPROACH
 %             % One-Step Bayesian estimation (Gibbs Sampling) with three factors and FFR
-%             
+%
 %             % this will replace the data.xlsx file in BEAR folder and the
 %             % bear_settings.m file in the BEAR\files folder
 %             % specify data file name:
@@ -196,9 +197,9 @@ classdef replicationTests < matlab.unittest.TestCase
 %             %(and copy both to the replications\data folder)
 %             % then run other preliminaries
 %             runprelim;
-%             
+%
 %         end
-%         
+%
 %     end
     
 end
