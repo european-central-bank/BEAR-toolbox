@@ -1,4 +1,4 @@
-function [beta_median beta_std beta_lbound beta_ubound sigma_median]=mestimates(betabar,omegabar,sigma,q,cband)
+function [beta_median, beta_std, beta_lbound, beta_ubound, sigma_median]=mestimates(betabar,omegabar,sigma,q,cband)
 
 
 % function [beta_mean beta_std beta_lbound beta_ubound sigma_vec]=mestimates(betabar,omegabar,sigma,q,cband)
