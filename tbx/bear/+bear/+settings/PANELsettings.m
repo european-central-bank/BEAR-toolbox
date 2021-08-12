@@ -1,5 +1,6 @@
 classdef PANELsettings < bear.settings.BASEsettings
-    
+%bear.settings.PANELsettings panel settings class
+
     properties
         % choice of panel model
         % 1=OLS mean group estimator, 2=pooled estimator
