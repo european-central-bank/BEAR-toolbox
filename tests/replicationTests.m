@@ -12,7 +12,7 @@ classdef replicationTests < matlab.unittest.TestCase
     
     methods (TestClassSetup)
         
-        function saveTestLocation(tc)
+        function setup(tc)
             
             tc.testLoc = fileparts(mfilename('fullpath'));
             % Need to run single threaded to get all the rng defaults
@@ -33,6 +33,8 @@ classdef replicationTests < matlab.unittest.TestCase
             close all
             cd(tc.testLoc)
             rng('default');
+            s = rng;
+            addTeardown(tc, @() rng(s))
         end
         
     end
@@ -53,18 +55,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            previousResults = load('results_test_data.mat');
-            testFolder = fileparts(fileparts(mfilename('fullpath')));
-            resultsFile = fullfile(testFolder,'tbx','bear','results','results_test_data_temp.mat');
-            currentResults = load(resultsFile);
-            for f = fields(previousResults)'
-                fld = f{1};
-                if ~ismember(fld, tc.ToAvoid)
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.RelTol,'AbsTol',tc.AbsTol);
-                end
-            end
-            delete(resultsFile);
-            
+            compareResults(tc, 'results_test_data')            
         end
                 
     end
@@ -86,18 +77,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            previousResults = load('results_test_data_61.mat');
-            testFolder = fileparts(fileparts(mfilename('fullpath')));
-            resultsFile = fullfile(testFolder,'tbx','bear','results','results_test_data_61_temp.mat');
-            currentResults = load(resultsFile);
-            for f = fields(previousResults)'
-                fld = f{1};
-                if ~ismember(fld, tc.ToAvoid)
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.RelTol,'AbsTol',tc.AbsTol);
-                end
-            end
-            delete(resultsFile);
-            
+            compareResults(tc, 'results_test_data_61')            
         end
         
         function Run_VAR_CH2019(tc)
@@ -114,18 +94,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            previousResults = load('results_test_data_CH2019.mat');
-            testFolder = fileparts(fileparts(mfilename('fullpath')));
-            resultsFile = fullfile(testFolder,'tbx','bear','results','results_test_data_CH2019_temp.mat');
-            currentResults = load(resultsFile);
-            for f = fields(previousResults)'
-                fld = f{1};
-                if ~ismember(fld, tc.ToAvoid)
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.RelTol,'AbsTol',tc.AbsTol);
-                end
-            end
-            delete(resultsFile);
-            warning('on')
+            compareResults(tc, 'results_test_data_CH2019')            
         end
         
     end
@@ -150,18 +119,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            previousResults = load('results_test_data_WGP2016.mat');
-            testFolder = fileparts(fileparts(mfilename('fullpath')));
-            resultsFile = fullfile(testFolder,'tbx','bear','results','results_test_data_WGP2016_temp.mat');
-            currentResults = load(resultsFile);
-            for f = fields(previousResults)'
-                fld = f{1};
-                if ~ismember(fld, tc.ToAvoid)
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.RelTol,'AbsTol',tc.AbsTol);
-                end
-            end
-            delete(resultsFile);
-            
+            compareResults(tc, 'results_test_data_WGP2016')            
         end
         
         function Run_VAR_BvV2018(tc)
@@ -178,9 +136,18 @@ classdef replicationTests < matlab.unittest.TestCase
             % then run other preliminaries
             runprelim;
             
-            previousResults = load('results_test_data_BvV2018.mat');
+            compareResults(tc, 'results_test_data_BvV2018')            
+        end
+        
+    end
+    
+    methods (Access = private)
+        
+        function compareResults(tc, name)
+            
+            previousResults = load( name + ".mat");
             testFolder = fileparts(fileparts(mfilename('fullpath')));
-            resultsFile = fullfile(testFolder,'tbx','bear','results','results_test_data_BvV2018_temp.mat');
+            resultsFile = fullfile(testFolder,'tbx','bear','results', name + "_temp" + ".mat");
             currentResults = load(resultsFile);
             for f = fields(previousResults)'
                 fld = f{1};
