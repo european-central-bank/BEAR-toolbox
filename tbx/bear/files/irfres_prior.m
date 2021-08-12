@@ -1,4 +1,4 @@
-function [irf_record,D_record,gamma_record,hd_record,ETA_record,beta_record,sigma_record,favar]=irfres(beta_gibbs,sigma_gibbs,C_draws,IV_draws,IRFperiods,n,m,p,k,T,Y,X,signreslabels,FEVDresperiods,data_exo,HD,const,exo,strctident,pref,favar,IRFt,It,Bu,prior)
+function [irf_record,D_record,gamma_record,hd_record,ETA_record,beta_record,sigma_record,favar]=irfres_prior(beta_gibbs,sigma_gibbs,C_draws,IV_draws,IRFperiods,n,m,p,k,T,Y,X,signreslabels,FEVDresperiods,data_exo,HD,const,exo,strctident,pref,favar,IRFt,It,Bu,prior)
 
 
 % inputs:  - matrix 'betahat': OLS estimate for beta
@@ -305,7 +305,7 @@ not_successful=0;
 hbartext=['Progress of ',hbartext_signres,hbartext_favar_signres,hbartext_zerores,hbartext_favar_zerores,hbartext_magnres,hbartext_favar_magnres,hbartext_relmagnres,hbartext_favar_relmagnres,hbartext_FEVDres,hbartext_favar_FEVDres,hbartext_CorrelInstrumentShock,':::',' Restriction Draws.'];
 hbartext=erase(hbartext,', :::'); % delete the last ,
 hbar=parfor_progressbar(Acc,hbartext);
-parfor ii=1:Acc %parfor
+for ii=1:Acc %parfor
     % initiate the variable 'success'; this variable will be used to check whether the restrictions are satisfied
     % if there are only zero restrictions, they will be satisfied by construction, and 'success' will simply be ignored
     success=0;
