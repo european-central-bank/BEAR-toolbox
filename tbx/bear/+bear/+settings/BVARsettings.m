@@ -38,7 +38,7 @@ classdef BVARsettings < bear.settings.BASEsettings
         % number of burn-in iterations for the Gibbs sampler
         Bu=500;
         % hyperparameter optimisation by grid search (1=yes, 0=no)
-        hogs (1,1) logical =0;
+        hogs (1,1) logical = 0;
         % block exogeneity (1=yes, 0=no)
         bex (1,1) logical = 0;
         % sum-of-coefficients application (1=yes, 0=no)
