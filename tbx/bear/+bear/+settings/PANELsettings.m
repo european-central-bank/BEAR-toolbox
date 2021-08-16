@@ -1,11 +1,45 @@
 classdef PANELsettings < bear.settings.BASEsettings
-%bear.settings.PANELsettings panel settings class
+    %PANELSETTINGS Panel VAR settings class
+    %   The bear.settings.PANELsettings class is a class that creates a
+    %   settings object to run a Panel VAR. It can be created directly by
+    %   running:
+    %
+    %   bear.settings.PANELsettings(ExcelPath, varargin)
+    %
+    %   or in its more convenient form:
+    %
+    %   BEARsettings('panel', ExcelPath = 'path/To/file.xlsx')
+    %
+    % PANELsettings Properties:
+    %    panel     - Choice of panel model
+    %    unitnames - units
+    %    It        - Gibbs sampler iterations
+    %    Bu        - Gibbs sampler burn-in iterations
+    %    pick      - retain only one post burn iteration
+    %    pickf     - frequency of iteration picking
+    %    ar        - autoregressive coefficient
+    %    lambda1   - hyperparameter
+    %    lambda2   - hyperparameter
+    %    lambda3   - hyperparameter
+    %    lambda4   - hyperparameter
+    %    s0        - hyperparameter
+    %    v0        - hyperparameter
+    %    alpha0    - hyperparameter
+    %    delta0    - hyperparameter
+    %    gama      - hyperparameter
+    %    a0        - hyperparameter
+    %    b0        - hyperparameter
+    %    rho       - hyperparameter
+    %    psi       - hyperparameter
 
     properties
-        % choice of panel model
-        % 1=OLS mean group estimator, 2=pooled estimator
-        % 3=random effect (Zellner and Hong), 4=random effect (hierarchical)
-        % 5=static factor approach, 6=dynamic factor approach
+        % Choice of panel model: 
+        % 1 = OLS mean group estimator (Mge),
+        % 2 = pooled estimator (Pooled) 
+        % 3 = random effect Zellner and Hong (Random_zh),
+        % 4 = random effect hierarchical (Random_hierarchical) 
+        % 5 = static factor approach (Factor_static)
+        % 6 = dynamic factor approach (Factor_dynamic)
         panel (1,1) bear.PANELtype = 2;
         % units; must be single sstring, with names separated by a space
         unitnames='US EA UK';

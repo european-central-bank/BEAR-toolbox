@@ -1,10 +1,38 @@
 classdef SVsettings < bear.settings.BASEsettings
+    %SVSETTINGS Panel VAR settings class
+    %   The bear.settings.SVsettings class is a class that creates a
+    %   settings object to run a stochastic volatility model. It can be created directly by
+    %   running:
+    %
+    %   bear.settings.SVsettings(ExcelPath, varargin)
+    %
+    %   or in its more convenient form:
+    %
+    %   BEARsettings('SV', ExcelPath = 'path/To/file.xlsx')
+    %
+    % SVsettings Properties:
+    %    stvol           - Choice of stochastic volatility model
+    %    pick            - retain only one post burn iteration
+    %    pickf           - frequency of iteration picking
+    %    bex             - block exogeneity
+    %    ar              - autoregressive coefficient
+    %    PriorExcel      - Select individual priors
+    %    priorsexogenous - Gibbs sampler burn-in iterations
+    %    It              - Gibbs sampler iterations
+    %    Bu              - Gibbs sampler burn-in iterations
+    %    lambda1         - hyperparameter
+    %    lambda2         - hyperparameter
+    %    lambda3         - hyperparameter
+    %    lambda4         - hyperparameter
+    %    lambda5         - hyperparameter
+    %    gamma           - hyperparameter
+    %    strctident      - strctident
     
     properties
-        strctident
-        
-        % choice of stochastic volatility model
-        % 1=standard, 2=random scaling, 3=large BVAR %TVESLM Model
+        % Choice of stochastic volatility model
+        % 1 = standard, 
+        % 2 = random scaling
+        % 3 = large BVAR %TVESLM Model
         stvol (1,1) bear.SVtype = 4;
         % choice of retaining only one post burn iteration over 'pickf' iterations (1=yes, 0=no)
         pick=0;
@@ -35,15 +63,8 @@ classdef SVsettings < bear.settings.BASEsettings
         lambda5=0.001;
         % hyperparameter: gama
         gamma=1;
-        % % hyperparameter: alpha0
-        % alpha0=0.001;
-        % % hyperparameter: delta0
-        % delta0=0.001;
-        % % hyperparameter: gamma0
-        % gamma0=0;
-        % % hyperparameter: zeta0
-        % zeta0=10000;
-        % panel Bayesian VAR specific information: will be read only if VARtype=4
+        % strctident
+        strctident
     end
         
     methods
