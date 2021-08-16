@@ -148,9 +148,9 @@ if opts.VARtype==2
     end
     
     % block exogeneity
-    if opts.bex==1
+    if opts.opts.bex==1
         estimationinfo{30,1}='yes';
-    elseif opts.bex==0
+    elseif opts.opts.bex==0
         estimationinfo{30,1}='no';
     end
     
@@ -202,9 +202,9 @@ if opts.VARtype==3
     estimationinfo{43,1}=num2str(opts.Bu);
     
     % block exogeneity
-    if bex==1
+    if opts.bex==1
         estimationinfo{44,1}='yes';
-    elseif bex==0
+    elseif opts.bex==0
         estimationinfo{44,1}='no';
     end
     
@@ -245,16 +245,16 @@ if opts.VARtype==4
     
     % post burn selection
     if opts.panel==4 || opts.panel==5 || opts.panel==6
-        if pick==1
+        if opts.pick==1
             estimationinfo{52,1}='yes';
-        elseif pick==0
+        elseif opts.pick==0
             estimationinfo{52,1}='no';
         end
     end
     
     % opts.frequency of draw selection
-    if pick==1
-        estimationinfo{53,1}=num2str(opts.pickf);
+    if opts.pick==1
+        estimationinfo{53,1}=num2str(opts.opts.pickf);
     end
     
     % ar coefficient
@@ -309,13 +309,13 @@ end
 if opts.VARtype==5
     
     % Stochastic volatility model
-    if stvol==1
+    if opts.stvol==1
         estimationinfo{71,1}='standard';
-    elseif stvol==2
+    elseif opts.stvol==2
         estimationinfo{71,1}='random inertia';
-    elseif stvol==3
+    elseif opts.stvol==3
         estimationinfo{71,1}='large BVAR';
-    elseif stvol==4
+    elseif opts.stvol==4
         estimationinfo{71,1}='Survey Local Mean Model';
     elseif tvbvar==1
         estimationinfo{71,1}='Var Coefficients';
@@ -329,21 +329,21 @@ if opts.VARtype==5
     % burn-in iterations
     estimationinfo{73,1}=num2str(opts.Bu);
     
-    if pick==1 || stvol==4
+    if opts.pick==1 || opts.stvol==4
         estimationinfo{74,1}='yes';
-    elseif pick==0
+    elseif opts.pick==0
         estimationinfo{74,1}='no';
     end
     
     % opts.frequency of draw selection
-    if pick==1
-        estimationinfo{75,1}=num2str(opts.pickf);
+    if opts.pick==1
+        estimationinfo{75,1}=num2str(opts.opts.pickf);
     end
     
     % block exogeneity
-    if bex==1
+    if opts.bex==1
         estimationinfo{76,1}='yes';
-    elseif bex==0
+    elseif opts.bex==0
         estimationinfo{76,1}='no';
     end
     
@@ -368,7 +368,7 @@ if opts.VARtype==5
     % AR coefficient on residual variance gamma
     estimationinfo{83,1}=num2str(opts.gamma);
     
-    if stvol<4
+    if opts.stvol<4
         % IG shape on residual variance alpha0
         estimationinfo{84,1}=num2str(opts.alpha0);
         
@@ -403,15 +403,15 @@ if opts.VARtype==6
     % burn-in iterations
     estimationinfo{93,1}=num2str(opts.Bu);
     
-    if pick==1
+    if opts.pick==1
         estimationinfo{94,1}='yes';
-    elseif pick==0
+    elseif opts.pick==0
         estimationinfo{94,1}='no';
     end
     
     % opts.frequency of draw selection
-    if pick==1
-        estimationinfo{95,1}=num2str(opts.pickf);
+    if opts.pick==1
+        estimationinfo{95,1}=num2str(opts.opts.pickf);
     end
     
     % AR coefficient on residual variance gamma
@@ -542,7 +542,7 @@ end
 
 % write on excel file
 if opts.pref.results==1
-    [status,message]=bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),estimationinfo ,'estimation info','C2');
+    [status,message]=bear.xlswritegeneral(fullfile(opts.pref.results_path, [opts.pref.results_sub '.xlsx']),estimationinfo ,'estimation info','C2');
 else
     status = 0;
     message = '';

@@ -7,7 +7,10 @@ classdef replicationTests < matlab.unittest.TestCase
         ToAvoid = [...
             "checkRun", "destinationfile", "estimationinfo", ...
             "BEARpath","datapath","filespath","pref", ...
-            "replicationpath","settingspath","sourcefile","settingsm"]
+            "replicationpath","settingspath","sourcefile","settingsm", ...
+            "strctident", "favar", "const", "VARtype", "OLS_Bhat", ...
+            "IRFt", "IRF", "HD", "Feval", "Fendsmpl", "FEVD", ...
+            "F", "CFt", "CF", "ii"]
     end
     
     methods (TestClassSetup)
@@ -44,18 +47,17 @@ classdef replicationTests < matlab.unittest.TestCase
         function Run_Var(tc)
             % The default data set
             
-            % this will replace the data.xlsx file in BEAR folder and the
-            % bear_settings.m file in the BEAR\files folder
-            
             % specify data file name:
-            dataxlsx='data_.xlsx';
-            % and the settings file name:
-            settingsm='bear_settings_test.m';
-            %(and copy both to the replications\data folder)
-            % then run other preliminaries
-            runprelim;
+            dataxlsx='data_.xlsx';            
+            excelPath    = fullfile(fullfile(bearroot(),'replications'), dataxlsx);
             
-            compareResults(tc, 'results_test_data', pref)
+            % and the settings:
+            s = bear_settings_test(excelPath);
+            
+            % run BEAR
+            BEARmain(s);
+            
+            compareResults(tc, 'results_test_data', s.pref)
         end
         
     end
@@ -66,36 +68,35 @@ classdef replicationTests < matlab.unittest.TestCase
             
             % testing prior 61
             
-            % this will replace the data.xlsx file in BEAR folder and the
-            % bear_settings.m file in the BEAR\files folder
-            
             % specify data file name:
             dataxlsx='data_61.xlsx';
-            %% and the settings file name:
-            settingsm='bear_settings_61_test.m';
-            %(and copy both to the replications\data folder)
-            % then run other preliminaries
-            runprelim;
+            excelPath    = fullfile(fullfile(bearroot(),'replications'), dataxlsx);
             
-            compareResults(tc, 'results_test_data_61', pref)
+            % and the settings
+            s = bear_settings_61_test(excelPath);
+            
+            % run BEAR
+            BEARmain(s);
+            
+            compareResults(tc, 'results_test_data_61', s.pref)
         end
         
         function Run_VAR_CH2019(tc)
             ws = warning('off');
             tc.addTeardown(@() warning(ws));
             % replication of Caldara & Herbst (2019): Monetary Policy, Real Activity, and Credit Spreads: Evidence from Bayesian Proxy SVARs
-            
-            % this will replace the data.xlsx file in BEAR folder and the
-            % bear_settings.m file in the BEAR\files folder
+
             % specify data file name:
             dataxlsx='data_CH2019.xlsx';
-            % and the settings file name:
-            settingsm='bear_settings_CH2019_test.m';
-            %(and copy both to the replications\data folder)
-            % then run other preliminaries
-            runprelim;
+            excelPath    = fullfile(fullfile(bearroot(),'replications'), dataxlsx);
             
-            compareResults(tc, 'results_test_data_CH2019', pref)
+            % and the settings file 
+            s = bear_settings_CH2019_test(excelPath);
+            
+            % run BEAR
+            BEARmain(s);
+            
+            compareResults(tc, 'results_test_data_CH2019', s.pref)
         end
         
     end
@@ -108,36 +109,37 @@ classdef replicationTests < matlab.unittest.TestCase
             % who lend the approach from Weale & Wieladek (2016): What are the macroeconomic effects of asset purchases?
             % extended sample from 2014m5 to 2018m12, identification schemes I, II, III
             % data set additionally includes several series to assess potential transmission channels and country specific effects (DE, FR, IT)
-            % extended by Marius Schulte (mail@mbschulte.com)
+            % extended by Marius Schulte (mail@mbschulte.com)            
             
-            % this will replace the data.xlsx file in BEAR folder and the
-            % bear_settings.m file in the BEAR\files folder
             % specify data file name:
-            dataxlsx='data_WGP2016.xlsx';
-            % and the settings file name:
-            settingsm='bear_settings_WGP2016_test.m';
-            %(and copy both to the replications\data folder)
-            % then run other preliminaries
-            runprelim;
+            dataxlsx='data_WGP2016.xlsx';            
+            excelPath    = fullfile(fullfile(bearroot(),'replications'), dataxlsx);
             
-            compareResults(tc, 'results_test_data_WGP2016', pref)
+            % and the settings
+            s = bear_settings_WGP2016_test(excelPath);
+                        
+            % run BEAR
+            BEARmain(s);
+            
+            compareResults(tc, 'results_test_data_WGP2016', s.pref)
         end
         
         function Run_VAR_BvV2018(tc)
             
             % replication of Banbura & van Vlodrop (2018): Forecasting with Bayesian Vector Autoregressions with Time Variation in the Mean
-            
-            % this will replace the data.xlsx file in BEAR folder and the
-            % bear_settings.m file in the BEAR\files folder
+
             % specify data file name:
-            dataxlsx='data_BvV2018.xlsx';
-            % and the settings file name:
-            settingsm='bear_settings_BvV2018_test.m';
-            %(and copy both to the replications\data folder)
-            % then run other preliminaries
-            runprelim;
+            dataxlsx ='data_BvV2018.xlsx';
+            excelPath = fullfile(fullfile(bearroot(),'replications'), dataxlsx);
             
-            compareResults(tc, 'results_test_data_BvV2018', pref)
+            % and the settings
+            s = bear_settings_BvV2018_test(excelPath);
+            
+            % run BEAR
+            BEARmain(s);
+            
+            compareResults(tc, 'results_test_data_BvV2018', s.pref)
+            
         end
         
     end
@@ -152,7 +154,9 @@ classdef replicationTests < matlab.unittest.TestCase
             for f = fields(previousResults)'
                 fld = f{1};
                 if ~ismember(fld, tc.ToAvoid)
-                    tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.RelTol,'AbsTol',tc.AbsTol);
+                    if isfield(currentResults, fld)
+                        tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.RelTol,'AbsTol',tc.AbsTol);
+                    end
                 end
             end
             delete(resultsFile);

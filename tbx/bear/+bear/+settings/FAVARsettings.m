@@ -38,6 +38,7 @@ classdef FAVARsettings < matlab.mixin.CustomDisplay
     end
     
     properties % These properties need to be reviewed
+        irf_record
         pltX (:,:) cell = {};
         trnsfrm_endo (:,1) cell = {};
         transformationindex
