@@ -79,7 +79,7 @@ FEVDband        = opts.FEVDband;
 HDband          = opts.HDband;
 
 if isprop(opts, 'strctident')
-    strctident = struct(opts.strctident);
+    strctident = bear.utils.initializeStrctident(opts);
 end
 
 %% init.m

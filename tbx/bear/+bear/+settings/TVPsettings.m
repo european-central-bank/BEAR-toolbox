@@ -3,7 +3,7 @@ classdef TVPsettings < bear.settings.BASEsettings
     properties
         % choice of time-varying BVAR model
         % 1=time-varying coefficients, 2=general time-varying
-        tvbvar=2;
+        tvbvar (1,1) bear.TVPtype = 2;
         % total number of iterations for the Gibbs sampler
         It=200;
         % number of burn-in iterations for the Gibbs sampler

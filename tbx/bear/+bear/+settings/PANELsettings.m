@@ -6,7 +6,7 @@ classdef PANELsettings < bear.settings.BASEsettings
         % 1=OLS mean group estimator, 2=pooled estimator
         % 3=random effect (Zellner and Hong), 4=random effect (hierarchical)
         % 5=static factor approach, 6=dynamic factor approach
-        panel=2;
+        panel (1,1) bear.PANELtype = 2;
         % units; must be single sstring, with names separated by a space
         unitnames='US EA UK';
         % total number of iterations for the Gibbs sampler

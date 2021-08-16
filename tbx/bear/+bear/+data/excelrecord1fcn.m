@@ -148,9 +148,9 @@ if opts.VARtype==2
     end
     
     % block exogeneity
-    if opts.opts.bex==1
+    if opts.bex==1
         estimationinfo{30,1}='yes';
-    elseif opts.opts.bex==0
+    elseif opts.bex==0
         estimationinfo{30,1}='no';
     end
     
@@ -254,7 +254,7 @@ if opts.VARtype==4
     
     % opts.frequency of draw selection
     if opts.pick==1
-        estimationinfo{53,1}=num2str(opts.opts.pickf);
+        estimationinfo{53,1}=num2str(opts.pickf);
     end
     
     % ar coefficient
@@ -337,7 +337,7 @@ if opts.VARtype==5
     
     % opts.frequency of draw selection
     if opts.pick==1
-        estimationinfo{75,1}=num2str(opts.opts.pickf);
+        estimationinfo{75,1}=num2str(opts.pickf);
     end
     
     % block exogeneity
@@ -411,7 +411,7 @@ if opts.VARtype==6
     
     % opts.frequency of draw selection
     if opts.pick==1
-        estimationinfo{95,1}=num2str(opts.opts.pickf);
+        estimationinfo{95,1}=num2str(opts.pickf);
     end
     
     % AR coefficient on residual variance gamma
@@ -458,10 +458,14 @@ elseif opts.HD==0
 end
 
 % conditional forecasts
-if opts.CF==1 && opts.VARtype~=1 && opts.panel~=1
-    estimationinfo{106,1}='yes';
-elseif opts.CF==0 && opts.VARtype~=1 && opts.panel~=1
-    estimationinfo{106,1}='no';
+if opts.CF==1 && opts.VARtype~=1
+    if opts.VARtype ~= 4 || opts.panel~=1
+        estimationinfo{106,1}='yes';
+    end
+elseif opts.CF==0 && opts.VARtype~=1
+    if opts.VARtype ~= 4 || opts.panel~=1
+        estimationinfo{106,1}='no';
+    end
 end
 
 % structural identification
@@ -531,13 +535,17 @@ if opts.F==1 || opts.CF==1
 end
 
 % credibility level (variance decomposition)
-if opts.FEVD==1  && opts.VARtype~=1 && opts.panel~=1
-    estimationinfo{117,1}=num2str(opts.FEVDband);
+if opts.FEVD==1  && opts.VARtype~=1
+    if opts.VARtype ~= 4 || opts.panel~=1
+        estimationinfo{117,1}=num2str(opts.FEVDband);
+    end
 end
 
 % credibility level (historical decomposition)
-if opts.HD==1  && opts.VARtype~=1 && opts.panel~=1
-    estimationinfo{118,1}=num2str(opts.HDband);
+if opts.HD==1 && opts.VARtype~=1
+    if opts.VARtype ~= 4 || opts.panel~=1
+        estimationinfo{118,1}=num2str(opts.HDband);
+    end 
 end
 
 % write on excel file
