@@ -151,7 +151,7 @@ if favar.FAVAR==1
     
     % finally, save on excel
     if pref.results==1
-        favar_excelrecord6
+        bear.data.favar_excelrecord6fcn(identified, IRFperiods, favar, labels, favar_fevd_estimates, pref)
     end
     
 end

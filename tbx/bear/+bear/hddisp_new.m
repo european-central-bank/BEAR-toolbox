@@ -517,6 +517,6 @@ if favar.HD.plot==1
     
     %% record in excel
     if pref.results==1
-        favar_excelrecordHD
+        bear.data.favar_excelrecordHDfcn(T, favar, contributions2_all, labelsfavar_all, stringdates1, pref)
     end
 end

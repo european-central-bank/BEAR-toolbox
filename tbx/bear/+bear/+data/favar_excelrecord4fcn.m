@@ -1,3 +1,5 @@
+function favar_excelrecord4fcn(favar, IRFperiods, endo, IRFt, strctident, favar_irf_estimates, pref)
+
 % script excelrecord4
 % records the information contained in the worksheet 'IRF' of the excel spreadsheet 'results.xls'
 
