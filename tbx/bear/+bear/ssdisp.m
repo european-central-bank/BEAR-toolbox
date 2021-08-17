@@ -56,6 +56,6 @@ end
 end %pref.plot
 
 % finally, record the results on excel
-excelrecord3
+bear.data.excelrecord3fcn(stringdates1, endo, Y, ss_estimates, n, pref)
 
 

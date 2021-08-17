@@ -1,4 +1,4 @@
-function excelrecord9fcn(stringdates1, labels, strshocks_estimates, pref)
+function excelrecord9fcn(stringdates1, labels, strshocks_estimates, identified, pref)
 % script excelrecord9
 % records the information contained in the worksheet 'shocks' of the excel spreadsheet 'results.xls'
 
@@ -12,18 +12,18 @@ vertspace=repmat({''},size(stringdates1,1)+3,1);
 
 % loop over variables (horizontal dimension)
 for ii=1:identified
-% create cell of shock record for variable ii
-   % if a sign restriction identification scheme has been used, use the structural shock labels
-   temp=['structural shock: ' labels{ii,1}];
-sshock_i=[temp {''} {''} {''};{''} {''} {''} {''};{''} {'lw. bound'} {'median'} {'up. bound'};stringdates1 num2cell(strshocks_estimates{ii,1}')];
-shockcell=[shockcell sshock_i vertspace];
+    % create cell of shock record for variable ii
+    % if a sign restriction identification scheme has been used, use the structural shock labels
+    temp=['structural shock: ' labels{ii,1}];
+    sshock_i=[temp {''} {''} {''};{''} {''} {''} {''};{''} {'lw. bound'} {'median'} {'up. bound'};stringdates1 num2cell(strshocks_estimates{ii,1}')];
+    shockcell=[shockcell sshock_i vertspace];
 end
 
 % trim
 shockcell=shockcell(:,1:end-1);
 
 % write in excel
-    bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),shockcell,'struct shocks','B2');
+bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),shockcell,'struct shocks','B2');
 
 
 

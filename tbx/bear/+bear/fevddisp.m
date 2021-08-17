@@ -109,7 +109,7 @@ if FEVD==1
     
     % finally, record results in excel
     if pref.results==1
-        excelrecord6
+        bear.data.excelrecord6fcn(identified, IRFperiods, endo, fevd_estimates, n, pref)
     end
 end
 

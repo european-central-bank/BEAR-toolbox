@@ -70,6 +70,6 @@ end
 
 end % pref.plot
 % finally, save on excel
-excelrecord5
+bear.data.excelrecord5fcn(stringdates2, endo, plotdata, n, pref)
 
 

@@ -72,5 +72,5 @@ end
 end % pref.plot
 
 % finally, save on excel
-excelrecord8
+bear.data.excelrecord8fcn(stringdates2, cplotdata, endo, n, pref)
 

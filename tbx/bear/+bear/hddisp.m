@@ -99,4 +99,4 @@ end % pref.plot
 % finally, record results in excel
 % retranspose the cell of records
 hd_estimates=hd_estimates';
-excelrecord7
+bear.data.excelrecord7fcn(n, T ,IRFt, signreslabels, endo, stringdates1, hd_estimates, pref)

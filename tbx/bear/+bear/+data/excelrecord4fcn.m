@@ -1,4 +1,4 @@
-function excelrecord4fcn(identified, IRFperiods, IRFt, endo, strctident, irf_estimates, pref)
+function excelrecord4fcn(identified, IRFperiods, IRFt, endo, strctident, irf_estimates, n, pref)
 % script excelrecord4
 % records the information contained in the worksheet 'IRF' of the excel spreadsheet 'results.xls'
 
