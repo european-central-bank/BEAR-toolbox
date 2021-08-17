@@ -265,7 +265,7 @@ if HD==1
     
     %% record in excel
     if pref.results==1
-        excelrecordHD
+        bear.data.excelrecordHDfcn(hd_estimates, T, n, identified, labels1, endo, stringdates1, const, m, contributors, pref)
     end
 end
 

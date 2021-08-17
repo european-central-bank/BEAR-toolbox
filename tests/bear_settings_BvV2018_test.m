@@ -52,7 +52,7 @@ s.pref.datapath=fileparts(mfilename('fullpath')); % next to settings
 s.pref.results_sub='results_test_data_BvV2018_temp';
 s.pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
 % to output results in excel
-s.pref.results=0;
+s.pref.results=1;
 % output charts
 s.pref.plot=0;
 % pref: useless by itself, just here to avoid code to crash

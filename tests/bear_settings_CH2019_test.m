@@ -13,7 +13,7 @@ s.pref.datapath=bearroot(); % main BEAR folder, specify otherwise
 
 s.pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
 s.pref.results_sub='results_test_data_CH2019_temp';
-s.pref.results=0;
+s.pref.results=1;
 s.pref.plot=0;
 s.pref.pref=0;
 s.pref.workspace=1;
