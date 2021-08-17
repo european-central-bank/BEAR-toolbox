@@ -16,9 +16,9 @@ classdef tSettings < matlab.unittest.TestCase
             tc.verifyClass(s, 'bear.settings.BVARsettings')
             tc.verifyEqual(s.VARtype, bear.VARtype(2))
 
-            s = BEARsettings(3, 'ExcelPath', "data.xlsx");
-            tc.verifyClass(s, 'bear.settings.MADJsettings')
-            tc.verifyEqual(s.VARtype, bear.VARtype(3))
+%             s = BEARsettings(3, 'ExcelPath', "data.xlsx");
+%             tc.verifyClass(s, 'bear.settings.MADJsettings')
+%             tc.verifyEqual(s.VARtype, bear.VARtype(3))
 
             s = BEARsettings(4, 'ExcelPath', "data.xlsx");
             tc.verifyClass(s, 'bear.settings.PANELsettings')
@@ -40,8 +40,8 @@ classdef tSettings < matlab.unittest.TestCase
             s = BEARsettings("BVAR", 'ExcelPath', "data.xlsx");
             tc.verifyClass(s, 'bear.settings.BVARsettings')
 
-            s = BEARsettings("MADJ", 'ExcelPath', "data.xlsx");
-            tc.verifyClass(s, 'bear.settings.MADJsettings')
+%             s = BEARsettings("MADJ", 'ExcelPath', "data.xlsx");
+%             tc.verifyClass(s, 'bear.settings.MADJsettings')
 
             s = BEARsettings("PANEL", 'ExcelPath', "data.xlsx");
             tc.verifyClass(s, 'bear.settings.PANELsettings')

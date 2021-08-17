@@ -76,8 +76,7 @@ for ii=1:numendo
     check=find(strcmp(variablestrings,var));
     if isempty(check)==1
         message=['Error: endogenous variable ' var ' cannot be found on the excel data spreadsheet.'];
-        msgbox(message);
-        error('programme termination: data error');
+        error('BEARmain:EndoVarNotFound', message);
     end
     % if the variable is known, go on
     endolocation(ii,1)=find(strcmp(variablestrings,endo(ii,1)));

@@ -35,7 +35,7 @@ classdef BVARsettings < bear.settings.BASEsettings
     %    alpha0          - hyperparameter
     
     properties    
-        % Selected prior:
+        %prior Selected prior
         % 11=Minnesota (univariate AR), 12=Minnesota (diagonal VAR estimates), 13=Minnesota (full VAR estimates)
         % 21=Normal-Wishart(S0 as univariate AR), 22=Normal-Wishart(S0 as identity)
         % 31=Independent Normal-Wishart(S0 as univariate AR), 32=Independent Normal-Wishart(S0 as identity)
