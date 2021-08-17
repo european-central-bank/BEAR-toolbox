@@ -169,4 +169,4 @@ end
 % finally, record results in excel
 % retranspose the cell of records
 irf_estimates=irf_estimates';
-excelrecord4
+bear.data.excelrecord4fcn(identified, IRFperiods, IRFt, endo, strctident, irf_estimates, n, pref)

@@ -265,7 +265,7 @@ if HD==1
     
     %% record in excel
     if pref.results==1
-        excelrecordHD
+        bear.data.excelrecordHDfcn(hd_estimates, T, n, identified, labels1, endo, stringdates1, const, m, contributors, pref)
     end
 end
 
@@ -517,6 +517,6 @@ if favar.HD.plot==1
     
     %% record in excel
     if pref.results==1
-        favar_excelrecordHD
+        bear.data.favar_excelrecordHDfcn(T, favar, contributions2_all, labelsfavar_all, stringdates1, pref)
     end
 end

@@ -1,9 +1,41 @@
 classdef BVARsettings < bear.settings.BASEsettings
+    %BVARSETTINGS Panel VAR settings class
+    %   The bear.settings.BVARsettings class is a class that creates a
+    %   settings object to run a Bayesian VAR. It can be created directly by
+    %   running:
+    %
+    %   bear.settings.BVARsettings(ExcelPath, varargin)
+    %
+    %   or in its more convenient form:
+    %
+    %   BEARsettings('bvar', ExcelPath = 'path/To/file.xlsx')
+    %
+    % BVARsettings Properties:
+    %    prior           - Selected prior
+    %    ar              - auto-regressive coefficients
+    %    PriorExcel      - Select individual priors
+    %    priorsexogenous - Gibbs sampler burn-in iterations
+    %    lambda1         - hyperparameter
+    %    lambda2         - hyperparameter
+    %    lambda3         - hyperparameter
+    %    lambda4         - hyperparameter
+    %    lambda5         - hyperparameter
+    %    lambda6         - hyperparameter
+    %    lambda7         - hyperparameter
+    %    lambda8         - hyperparameter
+    %    It              - Gibbs sampler iterations
+    %    Bu              - Gibbs sampler burn-in iterations
+    %    hogs            - grid search
+    %    bex             - block exogeneity
+    %    scoeff          - apply sum of coefficients
+    %    iobs            - initial observation
+    %    lrp             - Long run prior option
+    %    priorf          - scale of prior of factor f
+    %    strctident      - strctident
+    %    alpha0          - hyperparameter
     
-    properties
-        strctident
-        
-        % selected prior
+    properties    
+        % Selected prior:
         % 11=Minnesota (univariate AR), 12=Minnesota (diagonal VAR estimates), 13=Minnesota (full VAR estimates)
         % 21=Normal-Wishart(S0 as univariate AR), 22=Normal-Wishart(S0 as identity)
         % 31=Independent Normal-Wishart(S0 as univariate AR), 32=Independent Normal-Wishart(S0 as identity)
@@ -38,7 +70,7 @@ classdef BVARsettings < bear.settings.BASEsettings
         % number of burn-in iterations for the Gibbs sampler
         Bu=500;
         % hyperparameter optimisation by grid search (1=yes, 0=no)
-        hogs (1,1) logical =0;
+        hogs (1,1) logical = 0;
         % block exogeneity (1=yes, 0=no)
         bex (1,1) logical = 0;
         % sum-of-coefficients application (1=yes, 0=no)
@@ -51,15 +83,11 @@ classdef BVARsettings < bear.settings.BASEsettings
         % now taken from excel loadH.m
         % H=[1 1 0 0;-1 1 0 0;0 0 1 1;0 0 -1 1];
         % (61=Mean-adjusted BVAR) Scale up the variance of the prior of factor f
-        priorf=100;
-        
-        %% Setting or result?
-        % hyperparameter: alpha0
+        priorf=100;        
+        % strctident
+        strctident
+        % hyperparameter: alpha0 Setting or result?
         alpha0=1000;
-    end
-    
-    properties (SetAccess = private)
-        panel (1,1) double = 10; % panel scalar (non-model value): required to have the argument for interface 6, even if a non-panel model is selected
     end
     
     methods

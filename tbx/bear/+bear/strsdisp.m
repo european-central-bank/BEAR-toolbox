@@ -47,7 +47,7 @@ end % pref.plot
 
 % finally, record the results on excel
 if pref.results==1
-excelrecord9
+bear.data.excelrecord9fcn(stringdates1, labels, strshocks_estimates, identified, pref)
 end
 
 

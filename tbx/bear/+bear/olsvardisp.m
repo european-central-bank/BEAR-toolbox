@@ -409,4 +409,4 @@ end
 
 
 % finally, save the results on excel
-excelrecord2
+bear.data.excelrecord2fcn(T, n, endo, stringdates1, Y, Ytilde, pref, EPStilde)

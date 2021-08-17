@@ -1,9 +1,35 @@
 classdef TVPsettings < bear.settings.BASEsettings
+    %TVPSETTINGS Panel VAR settings class
+    %   The bear.settings.TVPsettings class is a class that creates a settings
+    %   object to run a time-varying VAR. It can be created directly by
+    %   running:
+    %
+    %   bear.settings.TVPsettings(ExcelPath, varargin)
+    %
+    %   or in its more convenient form:
+    %
+    %   BEARsettings('TVP', ExcelPath = 'path/To/file.xlsx')
+    %
+    % TVPsettings Properties:
+    %    tvbvar          - choice of time-varying BVAR model 
+    %    It              - Gibbs sampler iterations
+    %    Bu              - Gibbs sampler burn-in iterations
+    %    pick            - retain only one post burn iteration
+    %    pickf           - frequency of iteration picking
+    %    alltirf         - calculate IRFs for every sample period
+    %    gamma           - hyperparameter
+    %    alpha0          - hyperparameter
+    %    delta0          - hyperparameter
+    %    ar              - auto-regressive coefficients
+    %    PriorExcel      - Select individual priors
+    %    priorsexogenous - Gibbs sampler burn-in iterations
+    %    lambda4         - hyperparameter    
     
     properties
-        % choice of time-varying BVAR model
-        % 1=time-varying coefficients, 2=general time-varying
-        tvbvar=2;
+        % choice of time-varying BVAR model 
+        % 1 = time-varying coefficients (TVP)
+        % 2 = general time-varying (TVP_SV)
+        tvbvar (1,1) bear.TVPtype = 2;
         % total number of iterations for the Gibbs sampler
         It=200;
         % number of burn-in iterations for the Gibbs sampler
@@ -22,13 +48,12 @@ classdef TVPsettings < bear.settings.BASEsettings
         delta0=0.001;
         % just for the code to run (do not touch)
         ar=0;
-        PriorExcel=0;
-        priorsexogenous=1;
+        % switch to Excel interface
+        PriorExcel=0; % set to 1 if you want individual priors, 0 for default
+        % switch to Excel interface for exogenous variables 
+        priorsexogenous=1; % set to 1 if you want individual priors, 0 for default
+        % hyperparameter: lambda4
         lambda4=100;
-    end
-    
-    properties (SetAccess = private)
-        panel (1,1) double = 10; % panel scalar (non-model value): required to have the argument for interface 6, even if a non-panel model is selected
     end
     
     methods

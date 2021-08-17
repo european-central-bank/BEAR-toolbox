@@ -8,16 +8,16 @@ classdef favarIRFsettings < matlab.mixin.CustomDisplay
         plotXblocks = 0;
     end
     
-    properties % Results
-        favar_irf_record cell = {};        
-        pltXshck (:,:) cell = {};
-        npltXshck
-        plotXshock_index
-        favar_irf_estimates
-        favar_irf_record_nottransformed
-        irf_record_nottransformed
-        favar_irf_record_allt
-    end
+%     properties % Results
+%         favar_irf_record cell = {};        
+%         pltXshck (:,:) cell = {};
+%         npltXshck
+%         plotXshock_index
+%         favar_irf_estimates
+%         favar_irf_record_nottransformed
+%         irf_record_nottransformed
+%         favar_irf_record_allt
+%     end
 
     methods (Access = protected)
 
@@ -33,6 +33,16 @@ classdef favarIRFsettings < matlab.mixin.CustomDisplay
 
         end
         
+    end
+    
+    methods (Hidden)
+        function propgrp = getActiveProperties(obj)
+            propgrp = getPropertyGroups(obj);
+            propgrp = propgrp.PropertyList;
+            if isstruct(propgrp)
+                propgrp = fields(propgrp);
+            end
+        end
     end
 
 end

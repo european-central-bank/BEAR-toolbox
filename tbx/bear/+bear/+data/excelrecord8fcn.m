@@ -1,4 +1,4 @@
-function excelrecord8fcn(stringdates2, cplotdata, endo, pref)
+function excelrecord8fcn(stringdates2, cplotdata, endo, n, pref)
 % script excelrecord8
 % records the information contained in the worksheet 'cond forecasts' of the excel spreadsheet 'results.xls'
 

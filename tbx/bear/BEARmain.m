@@ -48,7 +48,7 @@ lags      = opts.lags;
 
 const = opts.const;
 pref  = opts.pref;
-favar = opts.favar;
+favar = bear.utils.initializeFavarResults(opts.favar);
 
 IRF         = opts.IRF;           % activate impulse response functions (1=yes, 0=no)
 IRFperiods  = opts.IRFperiods;    % number of periods for impulse response functions
@@ -79,7 +79,7 @@ FEVDband        = opts.FEVDband;
 HDband          = opts.HDband;
 
 if isprop(opts, 'strctident')
-    strctident = struct(opts.strctident);
+    strctident = bear.utils.initializeStrctident(opts);
 end
 
 %% init.m
@@ -821,15 +821,15 @@ for iteration=1:numt % beginning of forecasting loop
             % mean-adjusted BVAR model
         elseif opts.prior==61
             % set prior distribution parameters for the model
-            [beta0, omega0, opts.psi0, lambda0,r] = bear.maprior(opts.ar, arvar, opts.lambda1,opts.lambda2,opts.lambda3,opts.lambda4,opts.lambda5,n,m,p,k1,q1,q2,opts.bex,blockexo,Fpconfint,Fpconfint2,chvar,regimeperiods,Dmatrix,equilibrium,data_endo,opts.priorf);
+            [beta0, omega0, psi0, lambda0,r] = bear.maprior(opts.ar, arvar, opts.lambda1,opts.lambda2,opts.lambda3,opts.lambda4,opts.lambda5,n,m,p,k1,q1,q2,opts.bex,blockexo,Fpconfint,Fpconfint2,chvar,regimeperiods,Dmatrix,equilibrium,data_endo,opts.priorf);
             % Create H matrix
             [TVEH, TVEHfuture]=bear.TVEcreateH(equilibrium,r,T,p,Fperiods);
             % check the priors
-            bear.checkpriors(opts.psi0,lambda0,TVEH,decimaldates1,data_endo,Dmatrix);
-            q2=length(opts.psi0);
+            bear.checkpriors(psi0,lambda0,TVEH,decimaldates1,data_endo,Dmatrix);
+            q2=length(psi0);
             % run Gibbs sampler for estimation
-            [beta_gibbs, sigma_gibbs, theta_gibbs, ss_record,indH,beta_theta_gibbs]=bear.TVEmagibbs(data_endo,opts.It,opts.Bu,beta0,omega0,opts.psi0,lambda0,Y,X,n,T,k1,q1,p,regimeperiods,names,TVEH);
-            %[beta_gibbs opts.psi_gibbs sigma_gibbs delta_gibbs ss_record]=bear.magibbs(data_endo,data_exo,It,Bu,beta0,omega0,opts.psi0,lambda0,Y,X,Z,n,m,T,k1,k3,q1,q2,q3,p);
+            [beta_gibbs, sigma_gibbs, theta_gibbs, ss_record,indH,beta_theta_gibbs]=bear.TVEmagibbs(data_endo,opts.It,opts.Bu,beta0,omega0,psi0,lambda0,Y,X,n,T,k1,q1,p,regimeperiods,names,TVEH);
+            %[beta_gibbs opts.psi_gibbs sigma_gibbs delta_gibbs ss_record]=bear.magibbs(data_endo,data_exo,It,Bu,beta0,omega0,psi0,lambda0,Y,X,Z,n,m,T,k1,k3,q1,q2,q3,p);
             % compute posterior estimates
             [beta_median, beta_std, beta_lbound, beta_ubound, theta_median, theta_std, theta_lbound, theta_ubound, sigma_median]=bear.TVEmaestimates(beta_gibbs,theta_gibbs,sigma_gibbs,cband,q1,q2,n);
             %[beta_median beta_std beta_lbound beta_ubound opts.psi_median opts.psi_std opts.psi_lbound opts.psi_ubound sigma_median]=bear.maestimates(beta_gibbs,opts.psi_gibbs,sigma_gibbs,cband,q1,q2,n);

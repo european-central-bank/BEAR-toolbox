@@ -1,5 +1,38 @@
 classdef (Abstract) BASEsettings
-    
+    %BASESETTINGS Abstract class with the common settings to all VARtypes    
+    %
+    % BASEsettings Properties:
+    %    frequency       - data frequency
+    %    startdate       - sample start date
+    %    enddate         - sample end date
+    %    varendo         - endogenous variables;
+    %    varexo          - exogenous variables
+    %    lags            - number of lags
+    %    const           - inclusion of a constant
+    %    pref            - preferences
+    %    favar           - favar options
+    %    IRF             - impulse response functions
+    %    IRFperiods      - number of periods for IRF
+    %    F               - unconditional forecasts
+    %    FEVD            - forecast error variance decomposition
+    %    HD              - historical decomposition
+    %    HDall           -  plot the entire decomposition
+    %    CF              - activate conditional forecasts
+    %    IRFt            - structural identification
+    %    Feval           - forecast evaluation
+    %    CFt             - type of conditional forecasts
+    %    Fstartdate      - start date for forecasts
+    %    Fenddate        - start date for forecasts  
+    %    Fendsmpl        - start forecasts after the final sample period
+    %    hstep           - step ahead evaluation
+    %    window_size     - window_size for iterative forecasting 
+    %    evaluation_size - evaluation_size as percent of window_size
+    %    cband           - confidence level for VAR coefficients
+    %    IRFband         - confidence level for impusle response functions
+    %    Fband           - confidence level for forecasts
+    %    FEVDband        - confidence level for forecast error variance decomposition
+    %    HDband          - confidence level for historical decomposition
+
     properties (SetAccess = private)
         
         VARtype   bear.VARtype = bear.VARtype.empty      % VAR model selected (1=OLS VAR, 2=BVAR, 3=mean-adjusted BVAR, 4=panel Bayesian VAR, 5=Stochastic volatility BVAR, 6=Time varying)
@@ -31,15 +64,21 @@ classdef (Abstract) BASEsettings
         HDall      (1,1) double  = 0;     % if we want to plot the entire decomposition, all contributions (includes deterministic part)HDall
         CF         (1,1) logical = false; % activate conditional forecasts (1=yes, 0=no)
         
-        % structural identification (1=none, 2=Cholesky, 3=triangular factorisation, 4=sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions,
-        %                            5=IV identification, 6=IV identification & sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions)
+        % structural identification:
+        % 1=none,
+        % 2=Cholesky,
+        % 3=triangular factorisation
+        % 4=sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions, 
+        % 5=IV identification, 
+        % 6=IV identification & sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions)
         IRFt  bear.IRFtype = bear.IRFtype(4);
         
         Feval (1,1) logical = false; % activate forecast evaluation (1=yes, 0=no)
         
         % type of conditional forecasts
-        % 1=standard (all shocks), 2=standard (shock-specific)
-        % 3=tilting (median), 4=tilting (interval)
+        % 1 = standard (all shocks), 
+        % 2 = standard (shock-specific)
+        % 3 = tilting (median), 4=tilting (interval)
         CFt bear.CFtype = bear.CFtype(1);
         
         Fstartdate = '2014q1'; % start date for forecasts (has to be an in-sample date; otherwise, ignore and set Fendsmpl=1)
@@ -93,9 +132,7 @@ classdef (Abstract) BASEsettings
             
         end
 
-        function obj = checkIRFt(obj, value)
-            % Check values
-            validateattributes(value, {'numeric', 'char', 'string', 'bear.IRFtype'}, {'scalar'});
+        function obj = checkIRFt(obj, ~)
         end
         
     end

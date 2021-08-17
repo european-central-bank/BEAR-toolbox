@@ -1,4 +1,4 @@
-function excelrecord3fcn(stringdates1, endo, Y, ss_estimates, pref)
+function excelrecord3fcn(stringdates1, endo, Y, ss_estimates, n, pref)
 % script excelrecord3
 % records the information contained in the worksheet 'steady state' of the excel spreadsheet 'results.xls'
 

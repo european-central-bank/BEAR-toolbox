@@ -109,7 +109,7 @@ if FEVD==1
     
     % finally, record results in excel
     if pref.results==1
-        excelrecord6
+        bear.data.excelrecord6fcn(identified, IRFperiods, endo, fevd_estimates, n, pref)
     end
 end
 
@@ -151,7 +151,7 @@ if favar.FAVAR==1
     
     % finally, save on excel
     if pref.results==1
-        favar_excelrecord6
+        bear.data.favar_excelrecord6fcn(identified, IRFperiods, favar, labels, favar_fevd_estimates, pref)
     end
     
 end

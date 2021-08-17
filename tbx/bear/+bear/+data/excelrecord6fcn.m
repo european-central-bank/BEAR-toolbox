@@ -1,4 +1,4 @@
-function excelrecord6fcn(identified, IRFperiods, endo, fevd_estimates, pref)
+function excelrecord6fcn(identified, IRFperiods, endo, fevd_estimates, n, pref)
 % script excelrecord6
 % records the information contained in the worksheet 'FEVD' of the excel spreadsheet 'results.xls'
 

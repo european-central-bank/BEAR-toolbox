@@ -1,4 +1,4 @@
-function excelrecord5fcn(stringdates2, endo, plotdata, pref)
+function excelrecord5fcn(stringdates2, endo, plotdata, n, pref)
 % script excelrecord5
 % records the information contained in the worksheet 'forecasts' of the excel spreadsheet 'results.xls'
 

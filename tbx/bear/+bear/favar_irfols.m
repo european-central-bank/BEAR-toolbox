@@ -211,5 +211,5 @@ end
 
 %% save in excel
 if pref.results==1
-    favar_excelrecord4
+    bear.data.favar_excelrecord4fcn(favar, IRFperiods, endo, IRFt, strctident, favar_irf_estimates, pref)
 end
