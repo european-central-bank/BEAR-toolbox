@@ -1,4 +1,4 @@
-function excelrecord4favarfcn(favar, IRFperiods, endo, IRFt, strctident)
+function excelrecord4favarfcn(favar, IRFperiods, endo, IRFt, strctident, pref)
 % script excelrecord4
 % records the information contained in the worksheet 'IRF' of the excel spreadsheet 'results.xls'
 
