@@ -1,14 +1,14 @@
 classdef favarFEVDsettings < matlab.mixin.CustomDisplay
 
     properties
-        plot        (1,1) logical = 1;
+        plot        (1,1) logical = 0;
         plotXshock                = '';
         plotXblocks               = ''; % sum contributions of factors blockwise
     end
     
-    properties % Results properties accumulated
-       favar_fevd_estimates 
-    end
+%     properties % Results properties accumulated
+%        favar_fevd_estimates 
+%     end
 
     methods (Access = protected)
 
@@ -24,6 +24,16 @@ classdef favarFEVDsettings < matlab.mixin.CustomDisplay
 
         end
         
+    end
+    
+    methods (Hidden)
+        function propgrp = getActiveProperties(obj)
+            propgrp = getPropertyGroups(obj);
+            propgrp = propgrp.PropertyList;
+            if isstruct(propgrp)
+                propgrp = fields(propgrp);
+            end
+        end
     end
 
 end

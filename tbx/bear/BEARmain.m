@@ -48,7 +48,7 @@ lags      = opts.lags;
 
 const = opts.const;
 pref  = opts.pref;
-favar = opts.favar;
+favar = bear.utils.initializeFavarResults(opts.favar);
 
 IRF         = opts.IRF;           % activate impulse response functions (1=yes, 0=no)
 IRFperiods  = opts.IRFperiods;    % number of periods for impulse response functions

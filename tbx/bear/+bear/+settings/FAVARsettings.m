@@ -1,5 +1,5 @@
 classdef FAVARsettings < matlab.mixin.CustomDisplay
-    % FAVAR options
+    % FAVARSETTINGS Favar options
     
     properties
         FAVAR (1,1) logical = 0
@@ -11,10 +11,7 @@ classdef FAVARsettings < matlab.mixin.CustomDisplay
         standardise (1,1) logical = 1; % (1=yes (default), 0=no)
         % demeans (information) data in excel sheets 'data' and 'factor data'
         demean (1,1) logical = 1; % (1=yes, 0=no)
-        
-        %     % specify the ordering of endogenpous factors and variables
-        %     varendo = 'factor1 factor2 factor3 factor4 PUNEW FYFF';
-        
+                
         blocks (1,1) logical = 0;  % blocks/categories (1=yes, 0=no), specify in excel sheet
         numpc = 4;                 % choose number of factors (principal components) to include
         
@@ -37,70 +34,70 @@ classdef FAVARsettings < matlab.mixin.CustomDisplay
         FEVD (1,1) bear.settings.favarFEVDsettings = bear.settings.favarFEVDsettings
     end
     
-    properties % These properties need to be reviewed
-        irf_record
-        pltX (:,:) cell = {};
-        trnsfrm_endo (:,1) cell = {};
-        transformationindex
-        informationdatestrings
-        informationvariablestrings
-        informationstartlocation
-        informationendlocation
-        plot_transform
-        transformation1
-        transformation2
-        transformation3
-        transformation4
-        transformation5
-        transformation6
-        transformation7
-        nfactorvar
-        X
-        informationendlocation_sub
-        X_stddev
-        X_temp
-        l
-        variaexpl
-        sumvariaexpl
-        factorlabels
-        XZ
-        XZ_full
-        X_full
-        npltX
-        pX
-        plotX_index
-        data_exfactors
-        variablestrings_exfactors_index
-        variablestrings_exfactors
-        variablestrings_factorsonly_index
-        variablestrings_factorsonly
-        indexnM
-        transformationindex_endo_temp
-        data_exfactors_transformed
-        data_exfactors_stddev_temp
-        transformationindex_endo
-        data_exfactors_stddev
-        data_exfactors_temp
-        data_exfactors_full
-        data_full
-        numdata_exfactors
-        XZ_rotated
-        L
-        evf
-        Sigma
-        XY
-        bvar
-        XZ0mean
-        XZ0var
-        
-        X_gibbs
-        Y_gibbs
-        FY_gibbs
-        L_gibbs
-        R2_gibbs
-        
-        bvarXY
-    end
+%     properties % These properties need to be reviewed
+%         irf_record
+%         pltX (:,:) cell = {};
+%         trnsfrm_endo (:,1) cell = {};
+%         transformationindex
+%         informationdatestrings
+%         informationvariablestrings
+%         informationstartlocation
+%         informationendlocation
+%         plot_transform
+%         transformation1
+%         transformation2
+%         transformation3
+%         transformation4
+%         transformation5
+%         transformation6
+%         transformation7
+%         nfactorvar
+%         X
+%         informationendlocation_sub
+%         X_stddev
+%         X_temp
+%         l
+%         variaexpl
+%         sumvariaexpl
+%         factorlabels
+%         XZ
+%         XZ_full
+%         X_full
+%         npltX
+%         pX
+%         plotX_index
+%         data_exfactors
+%         variablestrings_exfactors_index
+%         variablestrings_exfactors
+%         variablestrings_factorsonly_index
+%         variablestrings_factorsonly
+%         indexnM
+%         transformationindex_endo_temp
+%         data_exfactors_transformed
+%         data_exfactors_stddev_temp
+%         transformationindex_endo
+%         data_exfactors_stddev
+%         data_exfactors_temp
+%         data_exfactors_full
+%         data_full
+%         numdata_exfactors
+%         XZ_rotated
+%         L
+%         evf
+%         Sigma
+%         XY
+%         bvar
+%         XZ0mean
+%         XZ0var
+%         
+%         X_gibbs
+%         Y_gibbs
+%         FY_gibbs
+%         L_gibbs
+%         R2_gibbs
+%         
+%         bvarXY
+%     end
     
     methods
         function obj = FAVARsettings(varargin)
@@ -134,4 +131,13 @@ classdef FAVARsettings < matlab.mixin.CustomDisplay
         
     end
     
+    methods (Hidden)
+        function propgrp = getActiveProperties(obj)
+            propgrp = getPropertyGroups(obj);
+            propgrp = propgrp.PropertyList;
+            if isstruct(propgrp)
+                propgrp = fields(propgrp);
+            end
+        end
+    end
 end
