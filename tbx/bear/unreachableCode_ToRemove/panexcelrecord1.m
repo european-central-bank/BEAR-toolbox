@@ -270,7 +270,7 @@ end
 
 % write on excel file
 if pref.results==1
-        xlswritegeneral(fullfile(pref.results_path,[pref.results_sub '.xlsx']),generalinfo,'estimation info','C2');
+        bear.xlswritegeneral(fullfile(pref.results_path,[pref.results_sub '.xlsx']),generalinfo,'estimation info','C2');
 end
 
 
@@ -307,7 +307,7 @@ if CF==1
       end
    % write on excel file
    if pref.results==1
-       xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),cfcell,'cond forecasts prior','B2');
+       bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),cfcell,'cond forecasts prior','B2');
    end
 end
 
@@ -333,7 +333,7 @@ if (F==1 || CF==1)
    pexocell=[label horzspace;{' '} horzspace;{' '} exo';Fstrings num2cell(data_exo_p)];
    % write on excel file
    if pref.results==1
-       xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),pexocell,'predicted exo','B2');
+       bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),pexocell,'predicted exo','B2');
    end
    end
 end
