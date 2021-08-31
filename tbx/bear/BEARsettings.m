@@ -1,4 +1,4 @@
-function [settings] = BEARsettings(VARType, varargin)
+function [settings] = BEARsettings(VARtype, varargin)
 %BEARSETTINGS gets the corresponding settings object based on the given
 %VARtype. The user can optionally pass a name-value property with the
 %ExcelPath. Alternatively, the xlsx file in pwd is taken. If more than one
@@ -7,11 +7,11 @@ function [settings] = BEARsettings(VARType, varargin)
 
 p = inputParser;
 p.KeepUnmatched = true;
-addRequired(p, 'VARType', @(x) isnumeric(x) || isstring(x) || ischar(x));
+addRequired(p, 'VARtype', @(x) isnumeric(x) || isstring(x) || ischar(x));
 addParameter(p,'ExcelPath', '', @(x) isstring(x) || ischar(x));
-parse(p, VARType, varargin{:});
+parse(p, VARtype, varargin{:});
 
-VARType = bear.VARtype(p.Results.VARType);
+VARtype = bear.VARtype(p.Results.VARtype);
 
 ExcelPath = p.Results.ExcelPath;
 if isempty(ExcelPath)
@@ -24,7 +24,7 @@ else
     params = namedargs2cell(p.Unmatched);
 end
 
-switch VARType
+switch VARtype
     
     case 1
         settings = bear.settings.OLSsettings(ExcelPath, params{:});
