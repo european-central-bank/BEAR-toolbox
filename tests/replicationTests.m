@@ -44,6 +44,23 @@ classdef replicationTests < matlab.unittest.TestCase
     
     methods (Test, TestTags = {'QuickReplications'})
         
+        function Run_OLSVAR(tc)
+            
+            % specify data file name:
+            dataxlsx='data_.xlsx';
+            excelPath    = fullfile(fullfile(bearroot(),'replications'), dataxlsx);
+            
+            % and the settings
+            s = bear_settings_61_test(excelPath);
+            s.pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
+            s.pref.results_sub = 'results_ols_temp';
+%             
+%             % run BEAR
+%             BEARmain(s);
+            
+            compareResults(tc, 'results_ols', s.pref)
+        end
+        
         function Run_Var(tc)
             % The default data set
             
@@ -159,7 +176,7 @@ classdef replicationTests < matlab.unittest.TestCase
                     end
                 end
             end
-            delete(resultsFile);
+%             delete(resultsFile);
             
         end
         
