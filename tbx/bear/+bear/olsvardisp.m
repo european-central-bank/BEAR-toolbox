@@ -25,7 +25,7 @@ function []=olsvardisp(beta_median,beta_std,beta_lbound,beta_ubound,sigma_median
 %          - cell 'stringdates1': date strings for the sample period
 %          - vector 'decimaldates1': dates converted into decimal values, for the sample period
 %          - string 'datapath': user-supplied path to excel data spreadsheet
-% outputs: none 
+% outputs: none
 
 
 
@@ -126,8 +126,8 @@ if favar.FAVAR==1
             fprintf(fid,'%s%s%s%s%s%d%s%s%s%s%s%d%s%s%.2f%%\n','Block',' ',favar.bnames{ii,1},' ','(',size(favar.X_block{ii,1},2),' ','information variables)',' ','-- number of factors (PCs):',' ',favar.bnumpc{ii,1},' ','-- variance explained by all factors: ',favar.bsumvariaexpl{ii,1});
         end
     else
-    fprintf('%s%s%d%s%s%.2f%%\n','number of factors (PCs):',' ',favar.numpc,' ','-- variance explained by all factors: ',favar.sumvariaexpl);
-    fprintf(fid,'%s%s%d%s%s%.2f%%\n','number of factors (PCs):',' ',favar.numpc,' ','-- variance explained by all factors: ',favar.sumvariaexpl);
+        fprintf('%s%s%d%s%s%.2f%%\n','number of factors (PCs):',' ',favar.numpc,' ','-- variance explained by all factors: ',favar.sumvariaexpl);
+        fprintf(fid,'%s%s%d%s%s%.2f%%\n','number of factors (PCs):',' ',favar.numpc,' ','-- variance explained by all factors: ',favar.sumvariaexpl);
     end
 else
     VARtypeinfo='Standard OLS VAR';
@@ -136,27 +136,27 @@ else
 end
 
 if IRFt==1
-SVARinfo='structural decomposition: none (IRFt=1)'; 
+    SVARinfo='structural decomposition: none (IRFt=1)';
 elseif IRFt==2
-SVARinfo='structural decomposition: Cholesky factorisation (IRFt=2)'; 
+    SVARinfo='structural decomposition: Cholesky factorisation (IRFt=2)';
 elseif IRFt==3
-SVARinfo='structural decomposition: triangular factorisation (IRFt=3)'; 
+    SVARinfo='structural decomposition: triangular factorisation (IRFt=3)';
 elseif IRFt==4
-SVARinfo=['structural decomposition: ',strctident.hbartext_signres,strctident.hbartext_favar_signres,strctident.hbartext_zerores,strctident.hbartext_favar_zerores,strctident.hbartext_magnres,strctident.hbartext_favar_magnres,strctident.hbartext_relmagnres,strctident.hbartext_favar_relmagnres,strctident.hbartext_FEVDres,strctident.hbartext_favar_FEVDres,strctident.hbartext_CorrelInstrumentShock,':::',' restrictions (IRFt=4)'];
-SVARinfo=erase(SVARinfo,', :::'); % delete the last ,
+    SVARinfo=['structural decomposition: ',strctident.hbartext_signres,strctident.hbartext_favar_signres,strctident.hbartext_zerores,strctident.hbartext_favar_zerores,strctident.hbartext_magnres,strctident.hbartext_favar_magnres,strctident.hbartext_relmagnres,strctident.hbartext_favar_relmagnres,strctident.hbartext_FEVDres,strctident.hbartext_favar_FEVDres,strctident.hbartext_CorrelInstrumentShock,':::',' restrictions (IRFt=4)'];
+    SVARinfo=erase(SVARinfo,', :::'); % delete the last ,
 elseif IRFt==5
-SVARinfo=['structural decomposition: IV (',strctident.Instrument,') (IRFt=5)']; 
+    SVARinfo=['structural decomposition: IV (',strctident.Instrument,') (IRFt=5)'];
 elseif IRFt==6
-SVARinfo_temp=[strctident.hbartext_signres,strctident.hbartext_favar_signres,strctident.hbartext_zerores,strctident.hbartext_favar_zerores,strctident.hbartext_magnres,strctident.hbartext_favar_magnres,strctident.hbartext_relmagnres,strctident.hbartext_favar_relmagnres,strctident.hbartext_FEVDres,strctident.hbartext_favar_FEVDres,strctident.hbartext_CorrelInstrumentShock,':::',' restrictions'];
-SVARinfo_temp=erase(SVARinfo_temp,', :::'); % delete the last ,
-SVARinfo=['structural decomposition: IV (' ,strctident.Instrument,') & ',SVARinfo_temp, ' (IRFt=6)'];
+    SVARinfo_temp=[strctident.hbartext_signres,strctident.hbartext_favar_signres,strctident.hbartext_zerores,strctident.hbartext_favar_zerores,strctident.hbartext_magnres,strctident.hbartext_favar_magnres,strctident.hbartext_relmagnres,strctident.hbartext_favar_relmagnres,strctident.hbartext_FEVDres,strctident.hbartext_favar_FEVDres,strctident.hbartext_CorrelInstrumentShock,':::',' restrictions'];
+    SVARinfo_temp=erase(SVARinfo_temp,', :::'); % delete the last ,
+    SVARinfo=['structural decomposition: IV (' ,strctident.Instrument,') & ',SVARinfo_temp, ' (IRFt=6)'];
 end
 fprintf('%s\n',SVARinfo);
 fprintf(fid,'%s\n',SVARinfo);
 
 temp='endogenous variables: ';
 for ii=1:n
-temp=[temp ' ' endo{ii,1} ' '];
+    temp=[temp ' ' endo{ii,1} ' '];
 end
 endoinfo=temp;
 fprintf('%s\n',endoinfo);
@@ -164,18 +164,18 @@ fprintf(fid,'%s\n',endoinfo);
 
 temp='exogenous variables: ';
 if const==0 && m==0
-temp=[temp ' none'];
+    temp=[temp ' none'];
 elseif const==1 && m==1
-temp=[temp ' constant '];
+    temp=[temp ' constant '];
 elseif const==0 && m>0
-   for ii=1:m-1
-   temp=[temp ' ' exo{ii,1} ' '];
-   end
+    for ii=1:m-1
+        temp=[temp ' ' exo{ii,1} ' '];
+    end
 elseif const==1 && m>1
-temp=[temp ' constant '];
-   for ii=1:m-1
-   temp=[temp ' ' exo{ii,1} ' '];
-   end
+    temp=[temp ' constant '];
+    for ii=1:m-1
+        temp=[temp ' ' exo{ii,1} ' '];
+    end
 end
 exoinfo=temp;
 fprintf('%s\n',exoinfo);
@@ -211,78 +211,78 @@ fprintf(fid,'%s\n',coeffinfo);
 
 
 for ii=1:n
-
-
-fprintf('%s\n','');
-fprintf(fid,'%s\n','');
-if ii~=1
-fprintf('%s\n','');
-fprintf(fid,'%s\n','');
-end
-
-endoinfo=['Endogenous: ' endo{ii,1}];
-fprintf('%s\n',endoinfo);
-fprintf(fid,'%s\n',endoinfo);
-
-fprintf('%25s %15s %15s %15s %15s\n','','Median','St.dev','Low.bound','Upp.bound');
-fprintf(fid,'%25s %15s %15s %15s %15s\n','','Median','St.dev','Low.bound','Upp.bound');
-
-% handle the endogenous
-   for jj=1:n
-      for kk=1:p
-      values=[beta_median((ii-1)*k+n*(kk-1)+jj,1) beta_std((ii-1)*k+n*(kk-1)+jj,1) beta_lbound((ii-1)*k+n*(kk-1)+jj,1) beta_ubound((ii-1)*k+n*(kk-1)+jj,1)];
-      fprintf('%25s %15.3f %15.3f %15.3f %15.3f\n',strcat(endo{jj,1},'(-',int2str(kk),')'),values);
-      fprintf(fid,'%25s %15.3f %15.3f %15.3f %15.3f\n',strcat(endo{jj,1},'(-',int2str(kk),')'),values);
-      end
-   end
-
-% handle the exogenous
-   % if there is no constant:
-   if const==0
-      % if there is no exogenous at all, obvioulsy, don't display anything
-      if m==0
-      % if there is no constant but some other exogenous, display them
-      else
-         for jj=1:m
-         values=[beta_median(ii*k-m+jj,1) beta_std(ii*k-m+jj,1) beta_lbound(ii*k-m+jj,1) beta_ubound(ii*k-m+jj,1)];
-         fprintf('%25s %15.3f %15.3f %15.3f %15.3f\n',exo{jj,1},values);
-         fprintf(fid,'%25s %15.3f %15.3f %15.3f %15.3f\n',exo{jj,1},values);
-         end
-      end
-   % if there is a constant
-   else
-   % display the results related to the constant
-         values=[beta_median(ii*k-m+1,1) beta_std(ii*k-m+1,1) beta_lbound(ii*k-m+1,1) beta_ubound(ii*k-m+1,1)];
-         fprintf('%25s %15.3f %15.3f %15.3f %15.3f\n','Constant',values);
-         fprintf(fid,'%25s %15.3f %15.3f %15.3f %15.3f\n','Constant',values);
-      % if there is no other exogenous, stop here
-      if m==1
-      % if there are other exogenous, display their results
-      else
-         for jj=1:m-1
-         values=[beta_median(ii*k-m+jj+1,1) beta_std(ii*k-m+jj+1,1) beta_lbound(ii*k-m+jj+1,1) beta_ubound(ii*k-m+jj+1,1)];
-         fprintf('%25s %15.3f %15.3f %15.3f %15.3f\n',exo{jj,1},values);
-         fprintf(fid,'%25s %15.3f %15.3f %15.3f %15.3f\n',exo{jj,1},values);
-         end
-      end
-   end
-
-fprintf('%s\n','');
-fprintf(fid,'%s\n','');
-
-% display evaluation measures
-rssinfo=['Sum of squared residuals: ' num2str(rss(ii,1),'%.2f')];
-fprintf('%s\n',rssinfo);
-fprintf(fid,'%s\n',rssinfo);
-
-r2info=['R-squared: ' num2str(r2(ii,1),'%.3f')];
-fprintf('%s\n',r2info);
-fprintf(fid,'%s\n',r2info);
-
-adjr2info=['adj. R-squared: ' num2str(r2bar(ii,1),'%.3f')];
-fprintf('%s\n',adjr2info);
-fprintf(fid,'%s\n',adjr2info);
-
+    
+    
+    fprintf('%s\n','');
+    fprintf(fid,'%s\n','');
+    if ii~=1
+        fprintf('%s\n','');
+        fprintf(fid,'%s\n','');
+    end
+    
+    endoinfo=['Endogenous: ' endo{ii,1}];
+    fprintf('%s\n',endoinfo);
+    fprintf(fid,'%s\n',endoinfo);
+    
+    fprintf('%25s %15s %15s %15s %15s\n','','Median','St.dev','Low.bound','Upp.bound');
+    fprintf(fid,'%25s %15s %15s %15s %15s\n','','Median','St.dev','Low.bound','Upp.bound');
+    
+    % handle the endogenous
+    for jj=1:n
+        for kk=1:p
+            values=[beta_median((ii-1)*k+n*(kk-1)+jj,1) beta_std((ii-1)*k+n*(kk-1)+jj,1) beta_lbound((ii-1)*k+n*(kk-1)+jj,1) beta_ubound((ii-1)*k+n*(kk-1)+jj,1)];
+            fprintf('%25s %15.3f %15.3f %15.3f %15.3f\n',strcat(endo{jj,1},'(-',int2str(kk),')'),values);
+            fprintf(fid,'%25s %15.3f %15.3f %15.3f %15.3f\n',strcat(endo{jj,1},'(-',int2str(kk),')'),values);
+        end
+    end
+    
+    % handle the exogenous
+    % if there is no constant:
+    if const==0
+        % if there is no exogenous at all, obvioulsy, don't display anything
+        if m==0
+            % if there is no constant but some other exogenous, display them
+        else
+            for jj=1:m
+                values=[beta_median(ii*k-m+jj,1) beta_std(ii*k-m+jj,1) beta_lbound(ii*k-m+jj,1) beta_ubound(ii*k-m+jj,1)];
+                fprintf('%25s %15.3f %15.3f %15.3f %15.3f\n',exo{jj,1},values);
+                fprintf(fid,'%25s %15.3f %15.3f %15.3f %15.3f\n',exo{jj,1},values);
+            end
+        end
+        % if there is a constant
+    else
+        % display the results related to the constant
+        values=[beta_median(ii*k-m+1,1) beta_std(ii*k-m+1,1) beta_lbound(ii*k-m+1,1) beta_ubound(ii*k-m+1,1)];
+        fprintf('%25s %15.3f %15.3f %15.3f %15.3f\n','Constant',values);
+        fprintf(fid,'%25s %15.3f %15.3f %15.3f %15.3f\n','Constant',values);
+        % if there is no other exogenous, stop here
+        if m==1
+            % if there are other exogenous, display their results
+        else
+            for jj=1:m-1
+                values=[beta_median(ii*k-m+jj+1,1) beta_std(ii*k-m+jj+1,1) beta_lbound(ii*k-m+jj+1,1) beta_ubound(ii*k-m+jj+1,1)];
+                fprintf('%25s %15.3f %15.3f %15.3f %15.3f\n',exo{jj,1},values);
+                fprintf(fid,'%25s %15.3f %15.3f %15.3f %15.3f\n',exo{jj,1},values);
+            end
+        end
+    end
+    
+    fprintf('%s\n','');
+    fprintf(fid,'%s\n','');
+    
+    % display evaluation measures
+    rssinfo=['Sum of squared residuals: ' num2str(rss(ii,1),'%.2f')];
+    fprintf('%s\n',rssinfo);
+    fprintf(fid,'%s\n',rssinfo);
+    
+    r2info=['R-squared: ' num2str(r2(ii,1),'%.3f')];
+    fprintf('%s\n',r2info);
+    fprintf(fid,'%s\n',r2info);
+    
+    adjr2info=['adj. R-squared: ' num2str(r2bar(ii,1),'%.3f')];
+    fprintf('%s\n',adjr2info);
+    fprintf(fid,'%s\n',adjr2info);
+    
 end
 
 
@@ -320,23 +320,23 @@ stabilityinfo1=['Roots of the characteristic polynomial (modulus):'];
 fprintf('%s\n',stabilityinfo1);
 fprintf(fid,'%s\n',stabilityinfo1);
 for ii=1:p
-temp=num2str(eigmodulus(ii,1),'%.3f');
-   for jj=2:n
-   temp=[temp,'  ',num2str(eigmodulus(ii,jj),'%.3f')];
-   end
-fprintf('%s\n',temp);
-fprintf(fid,'%s\n',temp);
+    temp=num2str(eigmodulus(ii,1),'%.3f');
+    for jj=2:n
+        temp=[temp,'  ',num2str(eigmodulus(ii,jj),'%.3f')];
+    end
+    fprintf('%s\n',temp);
+    fprintf(fid,'%s\n',temp);
 end
 if stationary==1
-stabilityinfo2=['No root lies outside the unit circle.'];
-stabilityinfo3=['The estimated VAR model satisfies the stability condition'];
-fprintf('%s\n',stabilityinfo2);
-fprintf(fid,'%s\n',stabilityinfo2);
-fprintf('%s\n',stabilityinfo3);
-fprintf(fid,'%s\n',stabilityinfo3);
+    stabilityinfo2=['No root lies outside the unit circle.'];
+    stabilityinfo3=['The estimated VAR model satisfies the stability condition'];
+    fprintf('%s\n',stabilityinfo2);
+    fprintf(fid,'%s\n',stabilityinfo2);
+    fprintf('%s\n',stabilityinfo3);
+    fprintf(fid,'%s\n',stabilityinfo3);
 else
-stabilityinfo2=['No root lies outside the unit circle.'];
-stabilityinfo3=['The estimated VAR model satisfies the stability condition'];
+    stabilityinfo2=['No root lies outside the unit circle.'];
+    stabilityinfo3=['The estimated VAR model satisfies the stability condition'];
 end
 
 
@@ -355,55 +355,56 @@ width=length(sprintf('%d',floor(max(abs(bear.vec(sigma_median))))));
 % add a separator, a potential minus sign, and three digits (total=5) to obtain the total space for each entry in the matrix
 width=width+5;
 for ii=1:n
-temp=[];
-   for jj=1:n
-   % convert matrix entry into string
-   number=num2str(sigma_median(ii,jj),'% .3f');
-      % pad potential missing blanks
-      while numel(number)<width
-      number=[' ' number];
-      end
-   number=[number '  '];
-   temp=[temp number];
-   end
-fprintf('%s\n',temp);
-fprintf(fid,'%s\n',temp);
+    temp=[];
+    for jj=1:n
+        % convert matrix entry into string
+        number=num2str(sigma_median(ii,jj),'% .3f');
+        % pad potential missing blanks
+        while numel(number)<width
+            number=[' ' number];
+        end
+        number=[number '  '];
+        temp=[temp number];
+    end
+    fprintf('%s\n',temp);
+    fprintf(fid,'%s\n',temp);
 end
 
 
 fclose(fid);
 
-
 % then plot actual vs. fitted
-actualfitted=figure;
-set(actualfitted,'Color',[0.9 0.9 0.9]);
-set(actualfitted,'name','model estimation: actual vs fitted')
-ncolumns=ceil(n^0.5);
-nrows=ceil(n/ncolumns);
-for ii=1:n
-subplot(nrows,ncolumns,ii)
-hold on
-plot(decimaldates1,Y(:,ii),'Color',[0 0 0],'LineWidth',2);
-plot(decimaldates1,Ytilde(:,ii),'Color',[1 0 0],'LineWidth',2);
-hold off
-set(gca,'XLim',[decimaldates1(1,1) decimaldates1(end,1)],'FontName','Times New Roman');
-title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','latex');
-   if ii==1
-   plotlegend=legend('actual','fitted');
-   set(plotlegend,'FontName','Times New Roman');
-   end
-end
-
-
-% plot the residuals
-residuals=figure;
-set(residuals,'Color',[0.9 0.9 0.9]);
-set(residuals,'name','model estimation: residuals')
-for ii=1:n
-subplot(nrows,ncolumns,ii)
-plot(decimaldates1,EPStilde(:,ii),'Color',[0 0 0],'LineWidth',2)
-set(gca,'XLim',[decimaldates1(1,1) decimaldates1(end,1)],'FontName','Times New Roman');
-title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','latex');
+if pref.plot
+    actualfitted=figure;
+    set(actualfitted,'Color',[0.9 0.9 0.9]);
+    set(actualfitted,'name','model estimation: actual vs fitted')
+    ncolumns=ceil(n^0.5);
+    nrows=ceil(n/ncolumns);
+    for ii=1:n
+        subplot(nrows,ncolumns,ii)
+        hold on
+        plot(decimaldates1,Y(:,ii),'Color',[0 0 0],'LineWidth',2);
+        plot(decimaldates1,Ytilde(:,ii),'Color',[1 0 0],'LineWidth',2);
+        hold off
+        set(gca,'XLim',[decimaldates1(1,1) decimaldates1(end,1)],'FontName','Times New Roman');
+        title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','latex');
+        if ii==1
+            plotlegend=legend('actual','fitted');
+            set(plotlegend,'FontName','Times New Roman');
+        end
+    end
+    
+    
+    % plot the residuals
+    residuals=figure;
+    set(residuals,'Color',[0.9 0.9 0.9]);
+    set(residuals,'name','model estimation: residuals')
+    for ii=1:n
+        subplot(nrows,ncolumns,ii)
+        plot(decimaldates1,EPStilde(:,ii),'Color',[0 0 0],'LineWidth',2)
+        set(gca,'XLim',[decimaldates1(1,1) decimaldates1(end,1)],'FontName','Times New Roman');
+        title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','latex');
+    end
 end
 
 

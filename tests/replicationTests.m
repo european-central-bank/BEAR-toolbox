@@ -25,6 +25,7 @@ classdef replicationTests < matlab.unittest.TestCase
                 ps.Pool.AutoCreate=false;
                 tc.addTeardown(@() set(ps.Pool,'AutoCreate',true))
             end
+            tc.addTeardown(@() rmdir(fullfile(tc.testLoc,'results'),'s') )
             
         end
         
@@ -47,16 +48,17 @@ classdef replicationTests < matlab.unittest.TestCase
         function Run_OLSVAR(tc)
             
             % specify data file name:
-            dataxlsx='data_.xlsx';
-            excelPath    = fullfile(fullfile(bearroot(),'replications'), dataxlsx);
+            dataxlsx = 'data_.xlsx';
+            excelPath = fullfile(fullfile(bearroot(),'replications'), dataxlsx);
             
             % and the settings
-            s = bear_settings_61_test(excelPath);
+            s = BEARsettings('OLS', 'ExcelPath', excelPath);
             s.pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
             s.pref.results_sub = 'results_ols_temp';
-%             
-%             % run BEAR
-%             BEARmain(s);
+            s.pref.results = 0;
+            
+            % run BEAR
+            BEARmain(s);
             
             compareResults(tc, 'results_ols', s.pref)
         end
@@ -176,7 +178,6 @@ classdef replicationTests < matlab.unittest.TestCase
                     end
                 end
             end
-%             delete(resultsFile);
             
         end
         
