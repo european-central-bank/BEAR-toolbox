@@ -28,28 +28,28 @@ switch VARType
     
     case 1
         settings = bear.settings.OLSsettings(ExcelPath, params{:});
-    case 2        
+    case 2
         settings = bear.settings.BVARsettings(ExcelPath, params{:});
-    case 3        
-        settings = bear.settings.MADJsettings(ExcelPath, params{:});
     case 4
         settings = bear.settings.PANELsettings(ExcelPath, params{:});
     case 5
         settings = bear.settings.SVsettings(ExcelPath, params{:});
     case 6
         settings = bear.settings.TVPsettings(ExcelPath, params{:});
+    case 7
+        settings = bear.settings.MFVARsettings(ExcelPath, params{:});
         
 end
 
 end
 
 function var = getExcelpath()
-    f = dir('*.xlsx');
-    
-    if length(f) ~= 1        
-        error('bear:settings:UndefinedExcelFile', ...
-            'Unable to automatically determine the Excel file, please specifiy the property ExcelPath with the address of the input file');
-    end
-    
-    var = fullfile(f.folder, f.name);
+f = dir('*.xlsx');
+
+if length(f) ~= 1
+    error('bear:settings:UndefinedExcelFile', ...
+        'Unable to automatically determine the Excel file, please specifiy the property ExcelPath with the address of the input file');
+end
+
+var = fullfile(f.folder, f.name);
 end
