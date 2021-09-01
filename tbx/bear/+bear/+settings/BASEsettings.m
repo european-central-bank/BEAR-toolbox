@@ -145,7 +145,7 @@ pref.datapath  = bearroot(); % main BEAR folder, specify otherwise
 pref.excelFile = excelPath;
 pref.results_path = '';
 % excel results file name
-pref.results_sub='results_test_data_61_temp';
+pref.results_sub='results';
 % to output results in excel
 pref.results=0;
 % output charts
