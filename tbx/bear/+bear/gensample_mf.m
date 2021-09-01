@@ -55,16 +55,13 @@ endlocation=find(strcmp(datestrings,enddate));
 
 % if either the start date or the date date is not recognised, return an error message
 if isempty(startlocation)
-    msgbox('Error: unknown start date for the sample. Please check your sample start date (remember that names are case-sensitive).');
-    error('programme termination: date error');
+    error('bear:gensample_mf', 'Unknown start date for the sample. Please check your sample start date (remember that names are case-sensitive).')
 elseif isempty(endlocation)
-    msgbox('Error: unknown end date for the sample. Please check your sample end date (remember that names are case-sensitive).');
-    error('programme termination: date error');
+    error('bear:gensample_mf', 'Unknown end date for the sample. Please check your sample end date (remember that names are case-sensitive).');
 end
 % also, if the start date is posterior to the end date, obviously return an error
 if startlocation>=endlocation==1
-    msgbox('Error: inconsistency between the start and end dates. The start date must be anterior to the end date.');
-    error('programme termination: date error');
+    error('bear:gensample_mf','Inconsistency between the start and end dates. The start date must be anterior to the end date.');
 end
 
 % identify the variable strings, endogenous and exogenous
@@ -80,9 +77,7 @@ for ii=1:numendo
     var=endo{ii,1};
     check=find(strcmp(variablestrings,var));
     if isempty(check)==1
-        message=['Error: endogenous variable ' var ' cannot be found on the excel data spreadsheet.'];
-        msgbox(message);
-        error('programme termination: data error');
+        error('bear:gensample_mf', ['Endogenous variable ' var ' cannot be found on the excel data spreadsheet.']);
     end
     % if the variable is known, go on
     endolocation(ii,1)=find(strcmp(variablestrings,endo(ii,1)));
@@ -103,9 +98,7 @@ else
         var=exo{ii,1};
         check=find(strcmp(variablestrings,var));
         if isempty(check)==1
-            message=['Error: exogenous variable ' var ' cannot be found on the excel data spreadsheet.'];;
-            msgbox(message);
-            error('programme termination: data error');
+            error('bear:gensample_mf', ['Error: exogenous variable ' var ' cannot be found on the excel data spreadsheet.']);
         end
         % if the variable is known, go on
         exolocation(ii,1)=find(strcmp(variablestrings,exo(ii,1)));
@@ -177,8 +170,7 @@ else
         Fstartlocation=find(strcmp(datestrings,Fstartdate));
         % if the start date is not recognised, return an error message
         if isempty(Fstartlocation)==1
-            msgbox('Error: unknown start date for the forecasts. Select a date within a sample, or select "Start forecasts after last sample period"');
-            error('unknown start date for the forecasts');
+            error('bear:gensample_mf', 'Unknown start date for the forecasts. Select a date within a sample, or select "Start forecasts after last sample period"');
         end
     end
     
@@ -325,8 +317,7 @@ else
     Fperiods=Fendlocation-Fstartlocation+1;
     
     if Fperiods<0
-        msgbox('Error: The forecast start date needs to be prior to the forecast end date');
-        error('invalid forecast start or end date');
+        error('bear:gensample_mf','The forecast start date needs to be prior to the forecast end date');
     end
     
     
