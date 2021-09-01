@@ -6,6 +6,7 @@ classdef optionsProxyForApp < matlab.mixin.SetGet
         PANEL    = BEARsettings('Panel', 'ExcelPath', 'data.xlsx')
         SV       = BEARsettings('SV',    'ExcelPath', 'data.xlsx')
         TVP      = BEARsettings('TVP',   'ExcelPath', 'data.xlsx')
+        MFVAR    = BEARsettings('MFVAR', 'ExcelPath', 'data.xlsx')
     end
     
     properties
@@ -25,7 +26,7 @@ classdef optionsProxyForApp < matlab.mixin.SetGet
            obj.(string(obj.VARtype)) = value;
         end
         
-        function setProp(obj, prop, value)
+        function setCommonProp(obj, prop, value)            
             % Sets common property to all of the classes
             e = enumeration('bear.VARtype');
             for i = 1 : numel(e)
@@ -34,6 +35,11 @@ classdef optionsProxyForApp < matlab.mixin.SetGet
                     obj.(vt).(prop) = value;
                 end                
             end
+        end
+        
+        function setProp(obj, prop, value)
+            % Sets property just for a class
+            obj.opts.(prop) = value;
         end
     end
 end
