@@ -56,9 +56,9 @@ classdef BVARsettings < bear.settings.BASEsettings
         % block exogeneity (1=yes, 0=no)
         bex  (1,1) logical = 0;
         % sum-of-coefficients application (1=yes, 0=no)
-        scoeff (1,1) logical =0;
+        scoeff (1,1) logical = 0;
         % dummy initial observation application (1=yes, 0=no)
-        iobs (1,1) logical =0;
+        iobs (1,1) logical = 0;
         % Long run prior option
         lrp=0;        
         % create H matrix for the long run priors
