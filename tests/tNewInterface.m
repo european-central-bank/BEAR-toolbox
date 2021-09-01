@@ -25,7 +25,6 @@ classdef tNewInterface < matlab.unittest.TestCase
                 ps.Pool.AutoCreate=false;
                 tc.addTeardown(@() set(ps.Pool,'AutoCreate',true))
             end
-            tc.addTeardown(@() rmdir(fullfile(tc.testLoc,'results'),'s') )
             
         end
         
@@ -34,33 +33,62 @@ classdef tNewInterface < matlab.unittest.TestCase
     methods (TestMethodSetup)
         
         function prepareTest(tc)
-            close all
-            cd(tc.testLoc)
+            cd(tc.testLoc)            
+            tc.addTeardown(@() rmdir(fullfile(tc.testLoc,'results'),'s') )
             rng('default');
-            s = rng;
+            s = rng;            
             addTeardown(tc, @() rng(s))
         end
         
-    end 
+    end
     
-   methods (Test)
-       
-       function tBVARIRFt2(tc)
-           
-           resultsFile = "newTest";
-           
-           opts = BEARsettings('BVAR', 'ExcelPath', fullfile(fullfile(bearroot(),'replications', 'data_.xlsx')), ...
-               'prior', 'minnesota_univariate', 'IRFt', 4);
-           opts.prior=11;
-           opts.IRFt=2;
-           opts.pref.results_path = 'results';
-           opts.pref.results_sub = 'newTest';
-           BEARmain(opts);
-           
-           file = exist(fullfile(tc.testLoc, 'results', resultsFile + ".xlsx"), 'file');
-           tc.verifyEqual(file, 2)
-       end
-       
-   end
-   
+    methods (Test)
+        
+        function tOLSVAR(tc)
+            
+            resultsFile = "newTest";
+            
+            opts= BEARsettings('OLS', 'ExcelPath', fullfile(fullfile(bearroot(),'replications', 'data_.xlsx')));
+            opts.pref.results_path = 'results';
+            opts.pref.results_sub = 'newTest';
+            
+            BEARmain(opts);
+            
+            file = exist(fullfile(tc.testLoc, 'results', resultsFile + ".mat"), 'file');
+            tc.verifyEqual(file, 2)
+        end
+        
+        function tOLSVAR_IRFt2(tc)
+            
+            resultsFile = "newTest";
+            
+            opts= BEARsettings('OLS', 'ExcelPath', fullfile(fullfile(bearroot(),'replications', 'data_.xlsx')));
+            opts.pref.results_path = 'results';
+            opts.pref.results_sub = 'newTest';
+            opts.IRFt = 2;
+            
+            BEARmain(opts);
+            
+            file = exist(fullfile(tc.testLoc, 'results', resultsFile + ".mat"), 'file');
+            tc.verifyEqual(file, 2)
+        end
+        
+        function tBVAR_IRFt2(tc)
+            
+            resultsFile = "newTest";
+            
+            opts = BEARsettings('BVAR', 'ExcelPath', fullfile(fullfile(bearroot(),'replications', 'data_.xlsx')), ...
+                'prior', 'minnesota_univariate', 'IRFt', 4);
+            opts.prior=11;
+            opts.IRFt=2;
+            opts.pref.results_path = 'results';
+            opts.pref.results_sub = 'newTest';
+            BEARmain(opts);
+            
+            file = exist(fullfile(tc.testLoc, 'results', resultsFile + ".mat"), 'file');
+            tc.verifyEqual(file, 2)
+        end
+        
+    end
+    
 end
