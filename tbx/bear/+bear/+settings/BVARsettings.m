@@ -12,17 +12,8 @@ classdef BVARsettings < bear.settings.BASEsettings
     %
     % BVARsettings Properties:
     %    prior           - Selected prior
-    %    ar              - auto-regressive coefficients
     %    PriorExcel      - Select individual priors
-    %    priorsexogenous - Gibbs sampler burn-in iterations
-    %    lambda1         - hyperparameter
-    %    lambda2         - hyperparameter
-    %    lambda3         - hyperparameter
-    %    lambda4         - hyperparameter
-    %    lambda5         - hyperparameter
-    %    lambda6         - hyperparameter
-    %    lambda7         - hyperparameter
-    %    lambda8         - hyperparameter
+    %    priorsexogenous - Gibbs sampler burn-in iterations    
     %    It              - Gibbs sampler iterations
     %    Bu              - Gibbs sampler burn-in iterations
     %    hogs            - grid search
@@ -31,8 +22,17 @@ classdef BVARsettings < bear.settings.BASEsettings
     %    iobs            - initial observation
     %    lrp             - Long run prior option
     %    priorf          - scale of prior of factor f
-    %    strctident      - strctident
+    %    strctident      - strctident    
+    %    ar              - auto-regressive coefficients
     %    alpha0          - hyperparameter
+    %    lambda1         - hyperparameter
+    %    lambda2         - hyperparameter
+    %    lambda3         - hyperparameter
+    %    lambda4         - hyperparameter
+    %    lambda5         - hyperparameter
+    %    lambda6         - hyperparameter
+    %    lambda7         - hyperparameter
+    %    lambda8         - hyperparameter
     
     properties    
         %prior Selected prior
@@ -43,28 +43,10 @@ classdef BVARsettings < bear.settings.BASEsettings
         % 51=Dummy observations
         % 61=Mean-adjusted
         prior (1,1) bear.PRIORtype = 61;
-        % hyperparameter: autoregressive coefficient
-        ar=0.8; % this sets all AR coefficients to the same prior value (if PriorExcel is equal to 0)
         % switch to Excel interface
-        PriorExcel=0; % set to 1 if you want individual priors, 0 for default
+        PriorExcel (1,1) logical = false; % set to 1 if you want individual priors, 0 for default
         %switch to Excel interface for exogenous variables
-        priorsexogenous=0; % set to 1 if you want individual priors, 0 for default
-        % hyperparameter: lambda1
-        lambda1=10000;
-        % hyperparameter: lambda2
-        lambda2=0.5;
-        % hyperparameter: lambda3
-        lambda3=1;
-        % hyperparameter: lambda4
-        lambda4=1;
-        % hyperparameter: lambda5
-        lambda5=0.001;
-        % hyperparameter: lambda6
-        lambda6=1;
-        % hyperparameter: lambda7
-        lambda7=0.1;
-        % Overall tightness on the long run prior
-        lambda8=1;
+        priorsexogenous (1,1) logical = false; % set to 1 if you want individual priors, 0 for default
         % total number of iterations for the Gibbs sampler
         It=1000;
         % number of burn-in iterations for the Gibbs sampler
@@ -72,11 +54,11 @@ classdef BVARsettings < bear.settings.BASEsettings
         % hyperparameter optimisation by grid search (1=yes, 0=no)
         hogs (1,1) logical = 0;
         % block exogeneity (1=yes, 0=no)
-        bex (1,1) logical = 0;
+        bex  (1,1) logical = 0;
         % sum-of-coefficients application (1=yes, 0=no)
-        scoeff=0;
+        scoeff (1,1) logical = 0;
         % dummy initial observation application (1=yes, 0=no)
-        iobs=0;
+        iobs (1,1) logical = 0;
         % Long run prior option
         lrp=0;        
         % create H matrix for the long run priors
@@ -88,6 +70,27 @@ classdef BVARsettings < bear.settings.BASEsettings
         strctident
         % hyperparameter: alpha0 Setting or result?
         alpha0=1000;
+    end
+    
+    properties % Hyperparameters
+        % Autoregressive coefficient: ar
+        ar (:,1) double = 1; % this sets all AR coefficients to the same prior value (if PriorExcel is equal to 0)
+        % Overall tightness: lambda1
+        lambda1 (1,1) double {mustBeGreaterThanOrEqual(lambda1,0)} = 0.1;
+        % Cross-variable weighting: lambda2
+        lambda2 (1,1) double {mustBeGreaterThanOrEqual(lambda2,0.1)} = 0.5;
+        % Lag decay: lambda3
+        lambda3 (1,1) double {mustBeGreaterThanOrEqual(lambda3,1), mustBeLessThanOrEqual(lambda3,2)} = 1;
+        % Exogenous variable and constant: lambda4
+        lambda4 (:,1) double {mustBeGreaterThanOrEqual(lambda4,0)} = 100;
+        % Block exogeneity shrinkage: lambda5
+        lambda5 (1,1) double {mustBeGreaterThanOrEqual(lambda5,0), mustBeLessThanOrEqual(lambda5,1)} = 0.001;
+        % Sum-of-coefficients tightness: lambda6
+        lambda6 (1,1) double {mustBeGreaterThanOrEqual(lambda6,0)} = 0.1;
+        % Dummy initial observation tightness: lambda7
+        lambda7 (1,1) double {mustBeGreaterThanOrEqual(lambda7,0)} = 0.001;
+        % Long-run prior tightness : lambda8
+        lambda8 (1,1) double = 1;        
     end
     
     methods

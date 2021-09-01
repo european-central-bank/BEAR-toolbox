@@ -592,16 +592,16 @@ for iteration=1:numt % beginning of forecasting loop
         
         % IRFt routines
         if IRFt==1||IRFt==2||IRFt==3
-            [irf_estimates,D,opts.gamma,D_estimates,gamma_estimates,strshocks_estimates,favar]...
+            [irf_estimates,D,gamma,D_estimates,gamma_estimates,strshocks_estimates,favar]...
                 =bear.olsirft123(betahat,sigmahat,IRFperiods,IRFt,Y,X,n,m,p,k,q,IRFband,IRF,favar);
         elseif IRFt==4 % set identified, %%%% adjust beta sigma hat estimates
-            [irf_estimates,D_record,opts.gamma,D_estimates,gamma_estimates,strshocks_estimates,medianmodel,beta_record,favar]...
+            [irf_estimates,D_record,gamma,D_estimates,gamma_estimates,strshocks_estimates,medianmodel,beta_record,favar]...
                 =bear.olsirft4(betahat,sigmahat,IRFperiods,Y,X,n,m,p,k,pref,IRFband,T,FEVDresperiods,strctident,favar,IRFt);
         elseif IRFt==5 %point identified %%%% adjust beta sigma hat estimates
-            [irf_estimates,D,opts.gamma,D_estimates,gamma_estimates,strshocks_estimates,favar]...
+            [irf_estimates,D,gamma,D_estimates,gamma_estimates,strshocks_estimates,favar]...
                 =bear.olsirft5(betahat,IRFperiods,Y,X,n,m,p,k,endo,pref,IRFband,names,enddate,startdate,T,data_endo,data_exo,const,strctident,IRFt,IRF,favar);
         elseif IRFt==6 %combination of 4 and 5, nothing more %%%% adjust beta sigma hat estimates
-            [irf_estimates,D_record,opts.gamma,D_estimates,gamma_estimates,strshocks_estimates,medianmodel,beta_record,favar]...
+            [irf_estimates,D_record,gamma,D_estimates,gamma_estimates,strshocks_estimates,medianmodel,beta_record,favar]...
                 =bear.olsirft6(betahat,IRFperiods,Y,X,n,m,p,k,endo,pref,IRFband,names,enddate,startdate,T,data_endo,data_exo,const,FEVDresperiods,favar,strctident,IRFt);
         end
         
@@ -642,10 +642,10 @@ for iteration=1:numt % beginning of forecasting loop
                 msgbox(message,'FEVD warning','warn','warning');
             end
             % compute fevd estimates
-            [fevd_estimates]=bear.olsfevd(irf_estimates,IRFperiods,opts.gamma,n);
+            [fevd_estimates]=bear.olsfevd(irf_estimates,IRFperiods,gamma,n);
             %compute approximate favar fevd estimates
             if favar.FEVD.plot==1
-                [favar]=bear.favar_olsfevd(IRFperiods,opts.gamma,favar,n,IRFt,strctident);
+                [favar]=bear.favar_olsfevd(IRFperiods,gamma,favar,n,IRFt,strctident);
             end
             % display the results
             bear.fevddisp(n,endo,IRFperiods,fevd_estimates,pref,IRFt,strctident,FEVD,favar);

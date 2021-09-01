@@ -5,10 +5,10 @@ classdef VARtype < uint8
     enumeration
         OLS   (1) % OLS VAR
         BVAR  (2) % Bayesian VAR         
-%         MADJ  (3) % Mean Adjusted BVAR
         PANEL (4) % Panel BVAR
         SV    (5) % Stochastic Volatility BVAR
         TVP   (6) % Time-Varying Parameter BVAR
+        MFVAR (7) % Time-Varying Parameter BVAR
     end
 
 end
