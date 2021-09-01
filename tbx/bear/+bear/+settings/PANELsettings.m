@@ -44,9 +44,9 @@ classdef PANELsettings < bear.settings.BASEsettings
         % units; must be single sstring, with names separated by a space
         unitnames='US EA UK';
         % total number of iterations for the Gibbs sampler
-        It=2000;
+        It (1,1) double {mustBeGreaterThanOrEqual(It,1)} = 2000;
         % number of burn-in iterations for the Gibbs sampler
-        Bu=1000;
+        Bu (1,1) double = 1000;
         % choice of retaining only one post burn iteration over 'pickf' iterations (1=yes, 0=no)
         pick=0;
         % frequency of iteration picking (e.g. pickf=20 implies that only 1 out of 20 iterations will be retained)
@@ -92,6 +92,14 @@ classdef PANELsettings < bear.settings.BASEsettings
             
             obj = parseBEARSettings(obj, varargin{:});
             
+        end
+        
+        function obj = set.Bu(obj,value)
+            if (value <= obj.It-1) %#ok<MCSUP>
+                obj.Bu = value;
+            else
+                error('bear:settings:BVARsettings',"The maximum value of Bu is It-1: " + (obj.It-1)) %#ok<MCSUP>
+            end
         end
         
     end

@@ -13,7 +13,7 @@ classdef BVARsettings < bear.settings.BASEsettings
     % BVARsettings Properties:
     %    prior           - Selected prior
     %    PriorExcel      - Select individual priors
-    %    priorsexogenous - Gibbs sampler burn-in iterations    
+    %    priorsexogenous - Gibbs sampler burn-in iterations
     %    It              - Gibbs sampler iterations
     %    Bu              - Gibbs sampler burn-in iterations
     %    hogs            - grid search
@@ -22,7 +22,7 @@ classdef BVARsettings < bear.settings.BASEsettings
     %    iobs            - initial observation
     %    lrp             - Long run prior option
     %    priorf          - scale of prior of factor f
-    %    strctident      - strctident    
+    %    strctident      - strctident
     %    ar              - auto-regressive coefficients
     %    alpha0          - hyperparameter
     %    lambda1         - hyperparameter
@@ -34,7 +34,7 @@ classdef BVARsettings < bear.settings.BASEsettings
     %    lambda7         - hyperparameter
     %    lambda8         - hyperparameter
     
-    properties    
+    properties
         %prior Selected prior
         % 11=Minnesota (univariate AR), 12=Minnesota (diagonal VAR estimates), 13=Minnesota (full VAR estimates)
         % 21=Normal-Wishart(S0 as univariate AR), 22=Normal-Wishart(S0 as identity)
@@ -48,9 +48,9 @@ classdef BVARsettings < bear.settings.BASEsettings
         %switch to Excel interface for exogenous variables
         priorsexogenous (1,1) logical = false; % set to 1 if you want individual priors, 0 for default
         % total number of iterations for the Gibbs sampler
-        It=1000;
+        It (1,1) double {mustBeGreaterThanOrEqual(It,1)} = 2000;
         % number of burn-in iterations for the Gibbs sampler
-        Bu=500;
+        Bu (1,1) double = 1000;
         % hyperparameter optimisation by grid search (1=yes, 0=no)
         hogs (1,1) logical = 0;
         % block exogeneity (1=yes, 0=no)
@@ -60,12 +60,12 @@ classdef BVARsettings < bear.settings.BASEsettings
         % dummy initial observation application (1=yes, 0=no)
         iobs (1,1) logical = 0;
         % Long run prior option
-        lrp=0;        
+        lrp=0;
         % create H matrix for the long run priors
         % now taken from excel loadH.m
         % H=[1 1 0 0;-1 1 0 0;0 0 1 1;0 0 -1 1];
         % (61=Mean-adjusted BVAR) Scale up the variance of the prior of factor f
-        priorf=100;        
+        priorf=100;
         % strctident
         strctident
         % hyperparameter: alpha0 Setting or result?
@@ -90,25 +90,33 @@ classdef BVARsettings < bear.settings.BASEsettings
         % Dummy initial observation tightness: lambda7
         lambda7 (1,1) double {mustBeGreaterThanOrEqual(lambda7,0)} = 0.001;
         % Long-run prior tightness : lambda8
-        lambda8 (1,1) double = 1;        
+        lambda8 (1,1) double = 1;
     end
     
     methods
         
         function obj = BVARsettings(excelPath, varargin)
-
+            
             obj@bear.settings.BASEsettings(2, excelPath)
-
+            
             obj = obj.setStrctident(obj.IRFt);
             
             obj = parseBEARSettings(obj, varargin{:});
             
         end
         
+        function obj = set.Bu(obj,value)
+            if (value <= obj.It-1) %#ok<MCSUP>
+                obj.Bu = value;
+            else
+                error('bear:settings:BVARsettings',"The maximum value of Bu is It-1: " + (obj.It-1)) %#ok<MCSUP>
+            end
+        end
+        
     end
-
+    
     methods (Access = protected)
-
+        
         function obj = checkIRFt(obj, value)
             % we could call superclass method to combine effect
             obj = checkIRFt@bear.settings.BASEsettings(obj, value);
@@ -116,23 +124,23 @@ classdef BVARsettings < bear.settings.BASEsettings
         end
         
     end
-
+    
     methods (Access = private)
-
+        
         function obj = setStrctident(obj, value)
             
             switch value
                 case 4
                     obj.strctident = bear.settings.StrctidentIRFt4;
-                case 5                    
+                case 5
                     obj.strctident = bear.settings.StrctidentIRFt5;
                 case 6
-                    obj.strctident = bear.settings.StrctidentIRFt6;                
+                    obj.strctident = bear.settings.StrctidentIRFt6;
                 otherwise
                     obj.strctident = bear.settings.Strctident.empty();
             end
             
         end
-
+        
     end
 end

@@ -49,9 +49,9 @@ classdef SVsettings < bear.settings.BASEsettings
         %switch to Excel interface for exogenous variables
         priorsexogenous (1,1) logical = false; % set to 1 if you want individual priors, 0 for default
         % total number of iterations for the Gibbs sampler
-        It=2000;
+        It (1,1) double {mustBeGreaterThanOrEqual(It,1)} = 2000;
         % number of burn-in iterations for the Gibbs sampler
-        Bu=1000;
+        Bu (1,1) double = 1000;
         % strctident
         strctident
         %switch to Excel interface for exogenous variables
@@ -92,6 +92,14 @@ classdef SVsettings < bear.settings.BASEsettings
             
             obj = parseBEARSettings(obj, varargin{:});
             
+        end
+        
+        function obj = set.Bu(obj,value)
+            if (value <= obj.It-1) %#ok<MCSUP>
+                obj.Bu = value;
+            else
+                error('bear:settings:BVARsettings',"The maximum value of Bu is It-1: " + (obj.It-1)) %#ok<MCSUP>
+            end
         end
         
     end
