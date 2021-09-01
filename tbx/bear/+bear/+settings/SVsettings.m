@@ -31,6 +31,7 @@ classdef SVsettings < bear.settings.BASEsettings
     %    delta0          - hyperparameter
     %    gamma0          - hyperparameter
     %    zeta0           - hyperparameter
+    %    alltirf         - hyperparameter
     
     properties
         % Choice of stochastic volatility model
@@ -69,17 +70,19 @@ classdef SVsettings < bear.settings.BASEsettings
         % Exogenous variable and constant: lambda4
         lambda4 (:,1) double {mustBeGreaterThanOrEqual(lambda4,0)} = 100;
         % Block exogeneity shrinkage: lambda5
-        lambda5 (1,1) double {mustBeGreaterThanOrEqual(lambda5,0), mustBeLessThanOrEqual(lambda5,1)} = 0.001;
-        % AR coefficient on residual variance: gamma
-        gamma (1,1) double = 1;
+        lambda5 (1,1) double {mustBeGreaterThanOrEqual(lambda5,0), mustBeLessThanOrEqual(lambda5,1)} = 0.001;        
         % IG shape on residual variance: alpha0
         alpha0 (1,1) double = 0.001;
         % IG scale on residual variance: delta0
         delta0 (1,1) double = 0.001;
+        % AR coefficient on residual variance: gamma
+        gamma (1,1) double = 1;
         % Prior mean of inertia parameter: gamma0
         gamma0 (1,1) double = 0;
         % Prior variance of inertia parameter: zeta0
         zeta0 (1,1) double = 10000;
+        % calculate IRFs for every sample period (1=yes, 0=no)
+        alltirf (1,1) logical = true;  
     end
     
     methods
@@ -98,7 +101,15 @@ classdef SVsettings < bear.settings.BASEsettings
             if (value <= obj.It-1) %#ok<MCSUP>
                 obj.Bu = value;
             else
-                error('bear:settings:BVARsettings',"The maximum value of Bu is It-1: " + (obj.It-1)) %#ok<MCSUP>
+                error('bear:settings:SVsettings',"The maximum value of Bu is It-1: " + (obj.It-1)) %#ok<MCSUP>
+            end
+        end
+        
+        function obj = set.It(obj,value)
+            if (value > obj.Bu-1) %#ok<MCSUP>
+                obj.It = value;
+            else
+                error('bear:settings:SVsettings',"The minimum value of It is Bu+1: " + (obj.Bu+1)) %#ok<MCSUP>
             end
         end
         

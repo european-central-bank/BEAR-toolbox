@@ -37,9 +37,7 @@ classdef TVPsettings < bear.settings.BASEsettings
         % choice of retaining only one post burn iteration over 'pickf' iterations (1=yes, 0=no)
         pick (1,1) logical = false;
         % frequency of iteration picking (e.g. pickf=20 implies that only 1 out of 20 iterations will be retained)
-        pickf=20;
-        % calculate IRFs for every sample period (1=yes, 0=no)
-        alltirf (1,1) logical = true;        
+        pickf=20;             
         % just for the code to run (do not touch)
         ar=0;
         % switch to Excel interface
@@ -57,6 +55,8 @@ classdef TVPsettings < bear.settings.BASEsettings
         alpha0 (1,1) double = 0.001;
         % hyperparameter: delta0
         delta0 (1,1) double = 0.001;
+        % calculate IRFs for every sample period (1=yes, 0=no)
+        alltirf (1,1) logical = true;   
     end
     
     methods
@@ -73,7 +73,15 @@ classdef TVPsettings < bear.settings.BASEsettings
             if (value <= obj.It-1) %#ok<MCSUP>
                 obj.Bu = value;
             else
-                error('bear:settings:BVARsettings',"The maximum value of Bu is It-1: " + (obj.It-1)) %#ok<MCSUP>
+                error('bear:settings:TVPsettings',"The maximum value of Bu is It-1: " + (obj.It-1)) %#ok<MCSUP>
+            end
+        end
+        
+        function obj = set.It(obj,value)
+            if (value > obj.Bu-1) %#ok<MCSUP>
+                obj.It = value;
+            else
+                error('bear:settings:TVPsettings',"The minimum value of It is Bu+1: " + (obj.Bu+1)) %#ok<MCSUP>
             end
         end
         

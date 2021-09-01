@@ -10,7 +10,7 @@ classdef optionsProxyForApp < matlab.mixin.SetGet
     end
     
     properties
-        VARtype (1,1) bear.VARtype = 1;
+        VARtype (1,1) bear.VARtype = 2;
     end
     
     properties (Dependent)

@@ -52,15 +52,15 @@ classdef BVARsettings < bear.settings.BASEsettings
         % number of burn-in iterations for the Gibbs sampler
         Bu (1,1) double = 1000;
         % hyperparameter optimisation by grid search (1=yes, 0=no)
-        hogs (1,1) logical = 0;
+        hogs   (1,1) logical = false;
         % block exogeneity (1=yes, 0=no)
-        bex  (1,1) logical = 0;
+        bex    (1,1) logical = false;
         % sum-of-coefficients application (1=yes, 0=no)
-        scoeff (1,1) logical = 0;
+        scoeff (1,1) logical = false;
         % dummy initial observation application (1=yes, 0=no)
-        iobs (1,1) logical = 0;
+        iobs   (1,1) logical = false;
         % Long run prior option
-        lrp=0;
+        lrp    (1,1) logical = false;
         % create H matrix for the long run priors
         % now taken from excel loadH.m
         % H=[1 1 0 0;-1 1 0 0;0 0 1 1;0 0 -1 1];
@@ -110,6 +110,14 @@ classdef BVARsettings < bear.settings.BASEsettings
                 obj.Bu = value;
             else
                 error('bear:settings:BVARsettings',"The maximum value of Bu is It-1: " + (obj.It-1)) %#ok<MCSUP>
+            end
+        end
+        
+        function obj = set.It(obj,value)
+            if (value > obj.Bu-1) %#ok<MCSUP>
+                obj.It = value;
+            else
+                error('bear:settings:BVARsettings',"The minimum value of It is Bu+1: " + (obj.Bu+1)) %#ok<MCSUP>
             end
         end
         
