@@ -19,7 +19,9 @@
     <param.examples />
     <param.demosxml />
     <param.apps />
-    <param.registered.apps />
+    <param.registered.apps>
+      <file>${PROJECT_ROOT}\tbx\bear\BEARapp.mlapp</file>
+    </param.registered.apps>
     <param.docs />
     <param.getting.started.guide>${PROJECT_ROOT}\tbx\doc\GettingStarted.mlx</param.getting.started.guide>
     <param.matlabpath.excludes />
@@ -52,7 +54,6 @@
       <param.examples />
       <param.demosxml />
       <param.apps />
-      <param.registered.apps />
       <param.docs />
       <param.matlabpath.excludes />
       <param.javaclasspath.excludes />
@@ -78,6 +79,7 @@
     <fileset.rootfiles>
       <file>${PROJECT_ROOT}\tbx\bear</file>
       <file>${PROJECT_ROOT}\tbx\beardoc</file>
+      <file>${PROJECT_ROOT}\tbx\DesktopToolset.xml</file>
       <file>${PROJECT_ROOT}\tbx\doc</file>
     </fileset.rootfiles>
     <fileset.depfun.included />
