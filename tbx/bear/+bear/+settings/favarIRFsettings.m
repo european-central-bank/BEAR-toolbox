@@ -7,17 +7,6 @@ classdef favarIRFsettings < matlab.mixin.CustomDisplay
         plotXshock = ''; %'FEVDshock';%'FYFF'; % FYFF 'USMP' % we need this atm only for IRFt2,3 provide =varendo for all shocks; in IRFt456 the identified shocks are plotted
         plotXblocks = 0;
     end
-    
-%     properties % Results
-%         favar_irf_record cell = {};        
-%         pltXshck (:,:) cell = {};
-%         npltXshck
-%         plotXshock_index
-%         favar_irf_estimates
-%         favar_irf_record_nottransformed
-%         irf_record_nottransformed
-%         favar_irf_record_allt
-%     end
 
     methods (Access = protected)
 
