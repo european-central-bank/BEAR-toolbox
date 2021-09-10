@@ -21,6 +21,7 @@
     <param.apps />
     <param.registered.apps>
       <file>${PROJECT_ROOT}\tbx\bear\BEARapp.mlapp</file>
+      <file>${PROJECT_ROOT}\tbx\bear\BEARapp20a.mlapp</file>
     </param.registered.apps>
     <param.docs />
     <param.getting.started.guide>${PROJECT_ROOT}\tbx\doc\GettingStarted.mlx</param.getting.started.guide>
