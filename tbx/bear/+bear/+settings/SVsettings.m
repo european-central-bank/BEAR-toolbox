@@ -37,6 +37,7 @@ classdef SVsettings < bear.settings.BASEsettings
         % 1 = standard,
         % 2 = random scaling
         % 3 = large BVAR %TVESLM Model
+        % 4 = Local mean model (LMM)
         stvol (1,1) bear.SVtype = 4;
         % choice of retaining only one post burn iteration over 'pickf' iterations (1=yes, 0=no)
         pick (1,1) logical = false;

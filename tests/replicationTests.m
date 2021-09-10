@@ -36,8 +36,7 @@ classdef replicationTests < matlab.unittest.TestCase
         function prepareTest(tc)
             close all
             cd(tc.testLoc)
-            rng('default');
-            s = rng;
+            s = rng('default');
             addTeardown(tc, @() rng(s))
         end
         
