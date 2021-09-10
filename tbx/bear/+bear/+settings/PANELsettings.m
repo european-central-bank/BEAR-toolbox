@@ -51,34 +51,37 @@ classdef PANELsettings < bear.settings.BASEsettings
         pick=0;
         % frequency of iteration picking (e.g. pickf=20 implies that only 1 out of 20 iterations will be retained)
         pickf=20;
+    end
+    
+    properties %Hyperparameters
         % hyperparameter: autoregressive coefficient
-        ar=0.8;
-        % hyperparameter: lambda1
-        lambda1=0.1;
-        % hyperparameter: lambda2
-        lambda2=0.5;
-        % hyperparameter: lambda3
-        lambda3=1;
-        % hyperparameter: lambda4
-        lambda4=100;
+        ar (:,1) double = 0.8;
+        % Overall tightness: lambda1
+        lambda1 (1,1) double {mustBeGreaterThanOrEqual(lambda1,0)} = 0.1;
+        % Cross-variable weighting: lambda2
+        lambda2 (1,1) double {mustBeGreaterThanOrEqual(lambda2,0.1)} = 0.5;
+        % Lag decay: lambda3
+        lambda3 (1,1) double {mustBeInRange(lambda3, 1, 2)} = 1;
+        % Exogenous variable and constant: lambda4
+        lambda4 (:,1) double {mustBeGreaterThanOrEqual(lambda4,0)} = 100;
         % hyperparameter: s0
-        s0=0.001;
+        s0 (1,1) double = 0.001;
         % hyperparameter: v0
-        v0=0.001;
+        v0 (1,1) double = 0.001;
         % hyperparameter: alpha0
-        alpha0=1000;
+        alpha0 (1,1) double = 1000;
         % hyperparameter: delta0
-        delta0=1;
+        delta0 (1,1) double = 1;
         % hyperparameter: gama
-        gama=0.85;
+        gama (1,1) double = 0.85;
         % hyperparameter: a0
-        a0=1000;
+        a0 (1,1) double = 1000;
         % hyperparameter: b0
-        b0=1;
+        b0 (1,1) double = 1;
         % hyperparameter: rho
-        rho=0.75;
+        rho (1,1) double = 0.75;
         % hyperparameter: psi
-        psi=0.1;
+        psi (1,1) double = 0.1;
     end
     
     methods

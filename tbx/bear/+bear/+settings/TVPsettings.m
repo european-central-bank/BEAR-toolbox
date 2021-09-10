@@ -35,25 +35,28 @@ classdef TVPsettings < bear.settings.BASEsettings
         % number of burn-in iterations for the Gibbs sampler
         Bu=100;
         % choice of retaining only one post burn iteration over 'pickf' iterations (1=yes, 0=no)
-        pick=0;
+        pick (1,1) logical = false;
         % frequency of iteration picking (e.g. pickf=20 implies that only 1 out of 20 iterations will be retained)
         pickf=20;
         % calculate IRFs for every sample period (1=yes, 0=no)
-        alltirf=1;
-        % hyperparameter: gama
-        gamma=0.85;
-        % hyperparameter: alpha0
-        alpha0=0.001;
-        % hyperparameter: delta0
-        delta0=0.001;
+        alltirf (1,1) logical = true;        
         % just for the code to run (do not touch)
         ar=0;
         % switch to Excel interface
-        PriorExcel=0; % set to 1 if you want individual priors, 0 for default
+        PriorExcel (1,1) logical = false; % set to 1 if you want individual priors, 0 for default
         % switch to Excel interface for exogenous variables 
-        priorsexogenous=1; % set to 1 if you want individual priors, 0 for default
+        priorsexogenous (1,1) logical = true; % set to 1 if you want individual priors, 0 for default
         % hyperparameter: lambda4
         lambda4=100;
+    end
+    
+    properties %Hyperparameters
+        % hyperparameter: gamma
+        gamma (1,1) double = 0.85;
+        % hyperparameter: alpha0
+        alpha0 (1,1) double = 0.001;
+        % hyperparameter: delta0
+        delta0 (1,1) double = 0.001;
     end
     
     methods
