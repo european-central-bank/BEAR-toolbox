@@ -80,11 +80,11 @@ classdef BVARsettings < bear.settings.BASEsettings
         % Cross-variable weighting: lambda2
         lambda2 (1,1) double {mustBeGreaterThanOrEqual(lambda2,0.1)} = 0.5;
         % Lag decay: lambda3
-        lambda3 (1,1) double {mustbeinrange(lambda3, 1, 2)} = 1;
+        lambda3 (1,1) double {mustBeInRange(lambda3, 1, 2)} = 1;
         % Exogenous variable and constant: lambda4
         lambda4 (:,1) double {mustBeGreaterThanOrEqual(lambda4,0)} = 100;
         % Block exogeneity shrinkage: lambda5
-        lambda5 (1,1) double {mustbeinrange(lambda5,0, 1)} = 0.001;
+        lambda5 (1,1) double {mustBeInRange(lambda5,0, 1)} = 0.001;
         % Sum-of-coefficients tightness: lambda6
         lambda6 (1,1) double {mustBeGreaterThanOrEqual(lambda6,0)} = 0.1;
         % Dummy initial observation tightness: lambda7
