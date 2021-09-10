@@ -29,7 +29,7 @@ classdef MFVARsettings < bear.settings.BASEsettings
         % Cross-variable weighting: lambda2
         lambda2 (1,1) double {mustBeGreaterThanOrEqual(lambda2,0.1)} = 3.4;
         % Lag decay: lambda3
-        lambda3 (1,1) double {mustBeGreaterThanOrEqual(lambda3,1), mustBeLessThanOrEqual(lambda3,2)} = 1;
+        lambda3 (1,1) double {mustBeInRange(lambda3, 1, 2)} = 1;
         % Exogenous variable and constant: lambda4
         lambda4 (:,1) double {mustBeGreaterThanOrEqual(lambda4,0)} = 3.4;
         % Block exogeneity shrinkage: lambda5

@@ -38,6 +38,7 @@ classdef SVsettings < bear.settings.BASEsettings
         % 1 = standard,
         % 2 = random scaling
         % 3 = large BVAR %TVESLM Model
+        % 4 = Local mean model (LMM)
         stvol (1,1) bear.SVtype = 4;
         % choice of retaining only one post burn iteration over 'pickf' iterations (1=yes, 0=no)
         pick (1,1) logical = false;
@@ -66,7 +67,7 @@ classdef SVsettings < bear.settings.BASEsettings
         % Cross-variable weighting: lambda2
         lambda2 (1,1) double {mustBeGreaterThanOrEqual(lambda2,0.1)} = sqrt(2)/2;
         % Lag decay: lambda3
-        lambda3 (1,1) double {mustBeGreaterThanOrEqual(lambda3,1), mustBeLessThanOrEqual(lambda3,2)} = 1;
+        lambda3 (1,1) double {mustBeInRange(lambda3, 1, 2)} = 1;
         % Exogenous variable and constant: lambda4
         lambda4 (:,1) double {mustBeGreaterThanOrEqual(lambda4,0)} = 100;
         % Block exogeneity shrinkage: lambda5

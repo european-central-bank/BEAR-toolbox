@@ -150,6 +150,18 @@ classdef tSettings < matlab.unittest.TestCase
             
             tc.icheckHyperparamLimits(s, t)
         end
+        
+        function tMustBeInRange(tc)
+            
+           opts = BEARsettings(2,'ExcelPath','data.xlsx');
+            
+            fcn = @() setProp(opts, 'lambda3',10);            
+            tc.verifyError(fcn, 'MATLAB:validators:mustBeLessThanOrEqual')
+            
+            fcn = @() setProp(opts, 'lambda3',-10);            
+            tc.verifyError(fcn, 'MATLAB:validators:mustBeGreaterThanOrEqual') 
+            
+        end
     end
     
     methods (Access = private)
@@ -174,11 +186,12 @@ classdef tSettings < matlab.unittest.TestCase
                 end
             end
             
-            function s = setProp(s, prop, value)
-                s.(prop) = value;
-            end
         end
         
     end
 
+end
+
+function s = setProp(s, prop, value)
+s.(prop) = value;
 end
