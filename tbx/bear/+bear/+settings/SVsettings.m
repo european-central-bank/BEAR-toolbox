@@ -66,11 +66,11 @@ classdef SVsettings < bear.settings.BASEsettings
         % Cross-variable weighting: lambda2
         lambda2 (1,1) double {mustBeGreaterThanOrEqual(lambda2,0.1)} = sqrt(2)/2;
         % Lag decay: lambda3
-        lambda3 (1,1) double {mustBeGreaterThanOrEqual(lambda3,1), mustBeLessThanOrEqual(lambda3,2)} = 1;
+        lambda3 (1,1) double {mustBeInRange(lambda3, 1, 2)} = 1;
         % Exogenous variable and constant: lambda4
         lambda4 (:,1) double {mustBeGreaterThanOrEqual(lambda4,0)} = 100;
         % Block exogeneity shrinkage: lambda5
-        lambda5 (1,1) double {mustBeGreaterThanOrEqual(lambda5,0), mustBeLessThanOrEqual(lambda5,1)} = 0.001;
+        lambda5 (1,1) double {mustBeInRange(lambda5, 0, 1)} = 0.001;
         % AR coefficient on residual variance: gamma
         gamma (1,1) double = 1;
         % IG shape on residual variance: alpha0
