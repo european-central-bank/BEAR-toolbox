@@ -53,16 +53,16 @@ end
 
 % if either the start date or the date date is not recognised, return an error message
 if isempty(startlocation)
-    msgbox('Error: unknown start date for the sample. Please check your sample start date (remember that names are case-sensitive).');
-    error('programme termination: date error');
+    error('bear:BEARmain:UnknownStartDate', ...
+        'Error: unknown start date for the sample. Please check your sample start date (remember that names are case-sensitive).');
 elseif isempty(endlocation)
-    msgbox('Error: unknown end date for the sample. Please check your sample end date (remember that names are case-sensitive).');
-    error('programme termination: date error');
+    error('bear:BEARmain:UnknownEndDate', ...
+        'Error: unknown end date for the sample. Please check your sample end date (remember that names are case-sensitive).');
 end
 % also, if the start date is posterior to the end date, obviously return an error
 if startlocation>=endlocation==1
-    msgbox('Error: inconsistency between the start and end dates. The start date must be anterior to the end date.');
-    error('programme termination: date error');
+    error('bear:BEARmain:InconsistentStartEndDates', ...
+        'Error: inconsistency between the start and end dates. The start date must be anterior to the end date.');
 end
 
 % identify the position of the strings corresponding to the endogenous variables
@@ -76,7 +76,7 @@ for ii=1:numendo
     check=find(strcmp(variablestrings,var));
     if isempty(check)==1
         message=['Error: endogenous variable ' var ' cannot be found on the excel data spreadsheet.'];
-        error('BEARmain:EndoVarNotFound', message);
+        error('BEARmain:gensample:EndoVarNotFound', message);
     end
     % if the variable is known, go on
     endolocation(ii,1)=find(strcmp(variablestrings,endo(ii,1)));
@@ -98,8 +98,7 @@ else
         check=find(strcmp(variablestrings,var));
         if isempty(check)==1
             message=['Error: exogenous variable ' var ' cannot be found on the excel data spreadsheet.'];
-            msgbox(message);
-            error('programme termination: data error');
+            error('BEARmain:gensample:ExoVarNotFound', message);
         end
         % if the variable is known, go on
         exolocation(ii,1)=find(strcmp(variablestrings,exo(ii,1)));
@@ -153,8 +152,7 @@ if favar.FAVAR==1
             if favar.IRF.npltXshck==0
                 % error if no shock to plot is found, otherwise code crashes at a later stage
                 message=['Error: Shock(' favar.IRF.npltXshck ') cannot be found.'];
-                msgbox(message,'favar.IRF.npltXshck error');
-                error('programme termination: favar.IRF.npltXshck error');
+                error('BEARmain:gensample:favar_IRF_npltXshck_error',message);
             end
         end
         % for IRFt 4 & 6 this step is done in loadsignres
