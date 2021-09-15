@@ -42,7 +42,7 @@ classdef BVARsettings < bear.settings.BASEsettings
         % 41=Normal-diffuse
         % 51=Dummy observations
         % 61=Mean-adjusted
-        prior (1,1) bear.PRIORtype = 61;
+        prior (1,1) bear.PRIORtype = 11;
         % switch to Excel interface
         PriorExcel (1,1) logical = false; % set to 1 if you want individual priors, 0 for default
         %switch to Excel interface for exogenous variables
@@ -89,7 +89,7 @@ classdef BVARsettings < bear.settings.BASEsettings
         lambda6 (1,1) double {mustBeGreaterThanOrEqual(lambda6,0)} = 0.1;
         % Dummy initial observation tightness: lambda7
         lambda7 (1,1) double {mustBeGreaterThanOrEqual(lambda7,0)} = 0.001;
-        % Long-run prior tightness : lambda8
+        % Long-run prior tightness: lambda8
         lambda8 (1,1) double = 1;
     end
     

@@ -7,8 +7,8 @@
     <param.authnamewatermark>Alistair Dieppe and Björn van Roye</param.authnamewatermark>
     <param.email />
     <param.company />
-    <param.summary>Graphical Interface to create BEAR settings objects</param.summary>
-    <param.description>Graphical Interface to create BEAR settings objects</param.description>
+    <param.summary>Graphical Interface to create BEAR settings objectgs</param.summary>
+    <param.description>Graphical Interface to create BEAR settings objectgs</param.description>
     <param.screenshot />
     <param.guid />
     <param.installpath.string>\BEARinterface\</param.installpath.string>
