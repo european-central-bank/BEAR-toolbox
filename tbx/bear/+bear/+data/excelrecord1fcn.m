@@ -70,11 +70,14 @@ end
 % lag number
 estimationinfo{12,1}=num2str(opts.lags);
 
-% path to the data
-estimationinfo{13,1}=opts.pref.datapath;
+% path to the data. This is equivalent to what we had before, but there is
+% now one less preference to set.
+estimationinfo{13,1}= fileparts(opts.pref.excelFile);
 
-% save preferences
-estimationinfo{14,1}=num2str(opts.pref.pref);
+% save preferences. This used to save opts.pref.pref, which was always set
+% to zero. This property has been removed and we can consider removing this
+% line too.
+estimationinfo{14,1}=num2str(0);
 
 
 

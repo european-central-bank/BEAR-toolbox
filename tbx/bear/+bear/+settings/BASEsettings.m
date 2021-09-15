@@ -141,7 +141,6 @@ end
 
 function pref = iGetDefaultPref(excelPath)
 % path to data; must be a single string
-pref.datapath  = bearroot(); % main BEAR folder, specify otherwise
 pref.excelFile = excelPath;
 pref.results_path = '';
 % excel results file name
@@ -150,8 +149,6 @@ pref.results_sub='results';
 pref.results=0;
 % output charts
 pref.plot=0;
-% pref: useless by itself, just here to avoid code to crash
-pref.pref=0;
 % save matlab workspace (1=yes, 0=no (standard))
 pref.workspace=1;
 end

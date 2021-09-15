@@ -24,8 +24,6 @@ s.varexo='';
 s.lags=13;
 % inclusion of a constant (1=yes, 0=no)
 s.const=0; %(demeaned, no constant)
-% path to data
-s.pref.datapath=fileparts(mfilename('fullpath')); % next to settings
 % excel results file name
 s.pref.results_sub='results_BBE2005';
 s.pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
@@ -33,8 +31,6 @@ s.pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
 s.pref.results=1;
 % output charts
 s.pref.plot=1;
-% pref: useless by itself, just here to avoid code to crash
-s.pref.pref=0;
 % save matlab workspace (1=yes, 0=no (default))
 s.pref.workspace=0;
 
