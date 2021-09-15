@@ -1,5 +1,5 @@
-classdef (Abstract) BASEsettings
-    %BASESETTINGS Abstract class with the common settings to all VARtypes    
+classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
+    %BASESETTINGS Abstract class with the common settings to all VARtypes
     %
     % BASEsettings Properties:
     %    frequency       - data frequency
@@ -22,17 +22,17 @@ classdef (Abstract) BASEsettings
     %    Feval           - forecast evaluation
     %    CFt             - type of conditional forecasts
     %    Fstartdate      - start date for forecasts
-    %    Fenddate        - start date for forecasts  
+    %    Fenddate        - start date for forecasts
     %    Fendsmpl        - start forecasts after the final sample period
     %    hstep           - step ahead evaluation
-    %    window_size     - window_size for iterative forecasting 
+    %    window_size     - window_size for iterative forecasting
     %    evaluation_size - evaluation_size as percent of window_size
     %    cband           - confidence level for VAR coefficients
     %    IRFband         - confidence level for impusle response functions
     %    Fband           - confidence level for forecasts
     %    FEVDband        - confidence level for forecast error variance decomposition
     %    HDband          - confidence level for historical decomposition
-
+    
     properties (SetAccess = private)
         
         VARtype   bear.VARtype = bear.VARtype.empty      % VAR model selected (1=OLS VAR, 2=BVAR, 3=mean-adjusted BVAR, 4=panel Bayesian VAR, 5=Stochastic volatility BVAR, 6=Time varying)
@@ -68,15 +68,15 @@ classdef (Abstract) BASEsettings
         % 1=none,
         % 2=Cholesky,
         % 3=triangular factorisation
-        % 4=sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions, 
-        % 5=IV identification, 
+        % 4=sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions,
+        % 5=IV identification,
         % 6=IV identification & sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions)
         IRFt  bear.IRFtype = bear.IRFtype(4);
         
         Feval (1,1) logical = false; % activate forecast evaluation (1=yes, 0=no)
         
         % type of conditional forecasts
-        % 1 = standard (all shocks), 
+        % 1 = standard (all shocks),
         % 2 = standard (shock-specific)
         % 3 = tilting (median), 4=tilting (interval)
         CFt bear.CFtype = bear.CFtype(1);
@@ -98,7 +98,7 @@ classdef (Abstract) BASEsettings
         HDband          (1,1) double = 0.68; % confidence/credibility level for historical decomposition
         
     end
-
+    
     methods
         
         function obj = BASEsettings(VARtype, excelPath)
@@ -107,16 +107,16 @@ classdef (Abstract) BASEsettings
             obj.pref = iGetDefaultPref(excelPath);
             
             if VARtype==2 || VARtype==5 || VARtype==6 % supported priors: 1x, 2x, 3x, 41
-                obj.favar = bear.settings.VARtypeSpecificFAVARsettings;                
+                obj.favar = bear.settings.VARtypeSpecificFAVARsettings;
             end
             
         end
-
+        
         function obj = set.IRFt(obj, value)
             % call another function to check the value as desired,
             % and possibly even update it using some computation
             obj = checkIRFt(obj, value);
-
+            
             % set set the property using the validated value
             % (only place we do assignment to avoid infinite recursion)
             obj.IRFt = value;
@@ -131,10 +131,50 @@ classdef (Abstract) BASEsettings
             obj = bear.utils.pvset(obj, varargin{:});
             
         end
-
+        
         function obj = checkIRFt(obj, ~)
         end
         
+        function displayScalarObject(obj)
+            
+            % Grab property lists
+            props = properties(obj)';
+            meta = ?bear.settings.BASEsettings;
+            
+            % Get base properties
+            baseProps = {meta.PropertyList.Name};
+            
+            specificProps = setdiff(props, baseProps);            
+            specificProps = props(ismember(props, specificProps)); % To keep original order
+            
+            mainProps = {'VARtype', 'frequency', 'startdate', ...
+                'enddate', 'varendo', 'varexo', 'lags', 'const', ...
+                'pref', 'favar'};
+            
+            applicationProps = setdiff(baseProps, mainProps);
+            applicationProps = props(ismember(props, applicationProps)); % To keep original order
+            
+            % header
+            header = matlab.mixin.CustomDisplay.getSimpleHeader(obj);
+            disp(header);
+            
+            % Preferences
+            fprintf('\n <strong>--------- PREFERENCES ----------</strong>\n\n');
+            mainProps = matlab.mixin.util.PropertyGroup(mainProps);
+            matlab.mixin.CustomDisplay.displayPropertyGroups(obj, mainProps);
+            
+            % Specifications
+            fprintf('\n <strong>--------- SPECIFICATIONS ----------</strong>\n\n');
+            specificProps = matlab.mixin.util.PropertyGroup(specificProps);
+            matlab.mixin.CustomDisplay.displayPropertyGroups(obj, specificProps);
+            
+            % Applications
+            fprintf('\n <strong>--------- APPLICATIONS ----------</strong>\n\n');
+            applicationProps = matlab.mixin.util.PropertyGroup(applicationProps);
+            matlab.mixin.CustomDisplay.displayPropertyGroups(obj, applicationProps);
+            
+        end
+                
     end
     
 end

@@ -121,7 +121,7 @@ classdef BVARsettings < bear.settings.BASEsettings
             end
         end
         
-    end
+    end    
     
     methods (Access = protected)
         
