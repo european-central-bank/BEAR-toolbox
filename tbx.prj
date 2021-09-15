@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.toolbox" plugin-version="1.0">
-  <configuration file="C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx.prj" location="C:\Users\ebenetce\MATLAB\BEAR-toolbox-private" name="tbx" target="target.toolbox" target-name="Package Toolbox">
+  <configuration build-checksum="3374642050" file="C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx.prj" location="C:\Users\ebenetce\MATLAB\BEAR-toolbox-private" name="tbx" target="target.toolbox" target-name="Package Toolbox">
     <param.appname>bear</param.appname>
     <param.authnamewatermark>Alistair Dieppe and Björn van Roye</param.authnamewatermark>
     <param.email>alistair.dieppe@ecb.europa.eu</param.email>
