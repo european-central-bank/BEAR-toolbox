@@ -25,14 +25,14 @@ s.lags=13;
 % inclusion of a constant (1=yes, 0=no)
 s.const=0; %(demeaned, no constant)
 % excel results file name
-s.pref.results_sub='results_BBE2005';
-s.pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
+s.results_sub='results_BBE2005';
+s.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
 % to output results in excel
-s.pref.results=1;
+s.results=1;
 % output charts
-s.pref.plot=1;
+s.plot=1;
 % save matlab workspace (1=yes, 0=no (default))
-s.pref.workspace=0;
+s.workspace=0;
 
 
 % FAVAR options

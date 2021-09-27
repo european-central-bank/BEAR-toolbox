@@ -26,14 +26,14 @@ s.lags=2;
 s.const=1;
 
 % excel results file name
-s.pref.results_sub='results_WGP2016';
-s.pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
+s.results_sub='results_WGP2016';
+s.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
 % to output results in excel
-s.pref.results=1;
+s.results=1;
 % output charts
-s.pref.plot=1;
+s.plot=1;
 % save matlab workspace (1=yes, 0=no (standard))
-s.pref.workspace=0;
+s.workspace=0;
 
 % FAVAR options
 s.favar.FAVAR=0; % augment VAR model with factors (1=yes, 0=no)

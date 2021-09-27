@@ -49,7 +49,12 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         lags      (1,1) double  = 4;                     % number of lags
         const     (1,1) logical = true;                  % inclusion of a constant (1=yes, 0=no)
         
-        pref = struct();
+        excelFile    (1,:) char = '';                    % Excel file used for the inputs
+        results_path (1,:) char = '';                    % path where there results file is stored
+        results_sub  (1,:) char = 'results';             % name of the results file 
+        results      (1,1) logical = false;              % save the results in the excel file (true/false)
+        plot         (1,1) logical = false;              % plot the results (true/false)
+        workspace    (1,1) logical = true;               % save the workspace as a .mat file (true/false)
         
         %% Settings that do not seem to be as generic.
         % FAVAR options
@@ -104,7 +109,7 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         function obj = BASEsettings(VARtype, excelPath)
             
             obj.VARtype = VARtype;
-            obj.pref = iGetDefaultPref(excelPath);
+            obj.excelFile = excelPath;
             
             if VARtype==2 || VARtype==5 || VARtype==6 % supported priors: 1x, 2x, 3x, 41
                 obj.favar = bear.settings.VARtypeSpecificFAVARsettings;
@@ -149,7 +154,7 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
             
             mainProps = {'VARtype', 'frequency', 'startdate', ...
                 'enddate', 'varendo', 'varexo', 'lags', 'const', ...
-                'pref', 'favar'};
+                'pref', 'favar', 'excelFile', 'results_path', 'results_sub', 'results', 'plot', 'workspace'};
             
             applicationProps = setdiff(baseProps, mainProps);
             applicationProps = props(ismember(props, applicationProps)); % To keep original order
@@ -177,18 +182,4 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
                 
     end
     
-end
-
-function pref = iGetDefaultPref(excelPath)
-% path to data; must be a single string
-pref.excelFile = excelPath;
-pref.results_path = '';
-% excel results file name
-pref.results_sub='results';
-% to output results in excel
-pref.results=0;
-% output charts
-pref.plot=0;
-% save matlab workspace (1=yes, 0=no (standard))
-pref.workspace=1;
 end

@@ -52,14 +52,14 @@ classdef replicationTests < matlab.unittest.TestCase
             
             % and the settings
             s = BEARsettings('OLS', 'ExcelPath', excelPath);
-            s.pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
-            s.pref.results_sub = 'results_ols_temp';
-            s.pref.results = 0;
+            s.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
+            s.results_sub = 'results_ols_temp';
+            s.results = 0;
             
             % run BEAR
             BEARmain(s);
             
-            compareResults(tc, 'results_ols', s.pref)
+            compareResults(tc, 'results_ols', s)
         end
         
         function Run_Var(tc)
@@ -75,7 +75,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % run BEAR
             BEARmain(s);
             
-            compareResults(tc, 'results_test_data', s.pref)
+            compareResults(tc, 'results_test_data', s)
         end
         
     end
@@ -96,7 +96,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % run BEAR
             BEARmain(s);
             
-            compareResults(tc, 'results_test_data_61', s.pref)
+            compareResults(tc, 'results_test_data_61', s)
         end
         
         function Run_VAR_CH2019(tc)
@@ -114,7 +114,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % run BEAR
             BEARmain(s);
             
-            compareResults(tc, 'results_test_data_CH2019', s.pref)
+            compareResults(tc, 'results_test_data_CH2019', s)
         end
         
     end
@@ -139,7 +139,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % run BEAR
             BEARmain(s);
             
-            compareResults(tc, 'results_test_data_WGP2016', s.pref)
+            compareResults(tc, 'results_test_data_WGP2016', s)
         end
         
         function Run_VAR_BvV2018(tc)
@@ -156,7 +156,7 @@ classdef replicationTests < matlab.unittest.TestCase
             % run BEAR
             BEARmain(s);
             
-            compareResults(tc, 'results_test_data_BvV2018', s.pref)
+            compareResults(tc, 'results_test_data_BvV2018', s)
             
         end
         

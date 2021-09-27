@@ -72,7 +72,7 @@ estimationinfo{12,1}=num2str(opts.lags);
 
 % path to the data. This is equivalent to what we had before, but there is
 % now one less preference to set.
-estimationinfo{13,1}= fileparts(opts.pref.excelFile);
+estimationinfo{13,1}= fileparts(opts.excelFile);
 
 % save preferences. This used to save opts.pref.pref, which was always set
 % to zero. This property has been removed and we can consider removing this
@@ -552,8 +552,8 @@ if opts.HD==1 && opts.VARtype~=1
 end
 
 % write on excel file
-if opts.pref.results==1
-    [status,message]=bear.xlswritegeneral(fullfile(opts.pref.results_path, [opts.pref.results_sub '.xlsx']),estimationinfo ,'estimation info','C2');
+if opts.results==1
+    [status,message]=bear.xlswritegeneral(fullfile(opts.results_path, [opts.results_sub '.xlsx']),estimationinfo ,'estimation info','C2');
 else
     status = 0;
     message = '';

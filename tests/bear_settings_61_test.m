@@ -9,14 +9,12 @@ s.varendo='DOM_GDP DOM_CPI STN';
 s.varexo='';
 s.lags=4; %12
 s.const=1;
-s.pref.datapath=bearroot(); % main BEAR folder, specify otherwise
 
-s.pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
-s.pref.results_sub='results_test_data_61_temp';
-s.pref.results=1;
-s.pref.plot=0;
-s.pref.pref=0;
-s.pref.workspace=1;
+s.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
+s.results_sub='results_test_data_61_temp';
+s.results=1;
+s.plot=0;
+s.workspace=1;
 s.favar.FAVAR=0; % augment VAR model with factors (1=yes, 0=no)
 
 s.prior=61;

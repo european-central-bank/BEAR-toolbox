@@ -46,19 +46,15 @@ s.varexo='';
 s.lags=4;
 % inclusion of a constant (1=yes, 0=no)
 s.const=0;
-% path to data
-s.pref.datapath=fileparts(mfilename('fullpath')); % next to settings
 % excel results file name
-s.pref.results_sub='results_test_data_BvV2018_temp';
-s.pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
+s.results_sub='results_test_data_BvV2018_temp';
+s.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
 % to output results in excel
-s.pref.results=1;
+s.results=1;
 % output charts
-s.pref.plot=0;
-% pref: useless by itself, just here to avoid code to crash
-s.pref.pref=0;
+s.plot=0;
 % save matlab workspace (1=yes, 0=no)
-s.pref.workspace=1;
+s.workspace=1;
 
 % choice of stochastic volatility model
 % 1=standard, 2=random scaling, 3=large BVAR 4=TVESLM Model

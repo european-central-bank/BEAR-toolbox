@@ -58,8 +58,6 @@ pref.results_sub='test';
 pref.results=1;
 % output charts
 pref.plot=1;
-% pref: useless by itself, just here to avoid code to crash
-pref.pref=0;
 % save matlab workspace (1=yes, 0=no)
 pref.workspace=0;
 
