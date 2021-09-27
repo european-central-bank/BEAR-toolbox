@@ -6,7 +6,7 @@
     <param.company>European Central Bank</param.company>
     <param.summary>The Bayesian Estimation, Analysis and Regression toolbox (BEAR)</param.summary>
     <param.description>The Bayesian Estimation, Analysis and Regression toolbox (BEAR) is a comprehensive (Bayesian Panel) VAR toolbox for forecasting and policy analysis. Use of BEAR implies acceptance of the End User Licence Agreement (EULA) for the Use of the Software “the Bayesian Estimation, Analysis and Regression (BEAR) toolbox”.</param.description>
-    <param.screenshot>${PROJECT_ROOT}\tbx\bear\files\bear-coloured1.png</param.screenshot>
+    <param.screenshot>${PROJECT_ROOT}\tbx\bear\BEAR.PNG</param.screenshot>
     <param.version>5.1</param.version>
     <param.output>${PROJECT_ROOT}\bear.mltbx</param.output>
     <param.products.name />
@@ -31,7 +31,7 @@
     <param.required.addons />
     <param.matlab.project.id />
     <param.matlab.project.name />
-    <param.release.start>R2019a</param.release.start>
+    <param.release.start>R2020a</param.release.start>
     <param.release.end>latest</param.release.end>
     <param.release.current.only>false</param.release.current.only>
     <param.compatiblity.windows>true</param.compatiblity.windows>
