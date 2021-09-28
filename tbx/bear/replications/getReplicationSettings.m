@@ -8,25 +8,32 @@ switch repName
     
     case "bear_settings_"
         s = bear_settings_;
-        h = help('bear_settings_');
+        fn = 'bear_settings_';
     case "61"
         s = bear_settings_61;
-        h = help('bear_settings_61');
+        fn = 'bear_settings_61';
     case "AAU2009"
         s = bear_settings_AAU2009;
-        h = help('bear_settings_AAU2009');
+        fn = 'bear_settings_AAU2009';
     case "BBE2005"
         s = bear_settings_BBE2005;
-        h = help('bear_settings_BBE2005');
+        fn = 'bear_settings_BBE2005';
     case "BvV2018"
         s = bear_settings_BvV2018;
-        h = help('bear_settings_BvV2018');
+        fn = 'bear_settings_BvV2018';
     case "CH2019"
         s = bear_settings_CH2019;
-        h = help('bear_settings_CH2019');
+        fn = 'bear_settings_CH2019';
     case "WGP2016"
         s = bear_settings_WGP2016;
-        h = help('bear_settings_WGP2016');
+        fn = 'bear_settings_WGP2016';
+        
+end
+
+if ~isdeployed
+    h = help(fn);
+else
+    h = '';
 end
 
 end
