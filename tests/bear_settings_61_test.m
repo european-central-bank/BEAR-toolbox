@@ -1,7 +1,7 @@
 function s = bear_settings_61_test(excelPath)
 
 s = BEARsettings(2, 'ExcelPath', excelPath);
-
+% add comment
 s.frequency=2;
 s.startdate='1974q1';
 s.enddate='2014q4';
