@@ -66,7 +66,7 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         F          (1,1) logical = true;  % activate unconditional forecasts (1=yes, 0=no)
         FEVD       (1,1) logical = true;  % activate forecast error variance decomposition (1=yes, 0=no)
         HD         (1,1) logical = true;  % activate historical decomposition (1=yes, 0=no)
-        HDall      (1,1) logical = 0;     % if we want to plot the entire decomposition, all contributions (includes deterministic part)HDall
+        HDall      (1,1) logical = 0;     % if we want to plot the entire decomposition, all contributions (includes deterministic part) (1=yes, 0=no)
         CF         (1,1) logical = false; % activate conditional forecasts (1=yes, 0=no)
         
         % structural identification:
