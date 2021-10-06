@@ -221,17 +221,17 @@ end
 if opts.VARtype==4
     
     % panel model
-    if panel==1
+    if opts.panel==1
         estimationinfo{48,1}='mean group estimator (OLS)';
-    elseif panel==2
+    elseif opts.panel==2
         estimationinfo{48,1}='pooled estimator';
-    elseif panel==3
+    elseif opts.panel==3
         estimationinfo{48,1}='random effect (Zellner-Hong)';
-    elseif panel==4
+    elseif opts.panel==4
         estimationinfo{48,1}='random effect (hierarchical)';
-    elseif panel==5
+    elseif opts.panel==5
         estimationinfo{48,1}='static structural factor';
-    elseif panel==6
+    elseif opts.panel==6
         estimationinfo{48,1}='dynamic structural factor';
     end
     
@@ -490,7 +490,7 @@ elseif opts.F==1 && opts.Feval==0
 end
 
 % type of conditional forecasts
-if (opts.VARtype==2 || opts.VARtype==3 || (opts.VARtype==4 && panel~=1) || opts.VARtype==5 || opts.VARtype==6) && opts.CF==1
+if (opts.VARtype==2 || opts.VARtype==3 || (opts.VARtype==4 && opts.panel~=1) || opts.VARtype==5 || opts.VARtype==6) && opts.CF==1
     if opts.CFt==1
         estimationinfo{109,1}='Standard (all shocks)';
     elseif opts.CFt==2
