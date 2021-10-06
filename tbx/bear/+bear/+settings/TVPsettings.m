@@ -4,11 +4,11 @@ classdef TVPsettings < bear.settings.BASEsettings
     %   object to run a time-varying VAR. It can be created directly by
     %   running:
     %
-    %   bear.settings.TVPsettings(ExcelPath, varargin)
+    %   bear.settings.TVPsettings(ExcelFile, varargin)
     %
     %   or in its more convenient form:
     %
-    %   BEARsettings('TVP', ExcelPath = 'path/To/file.xlsx')
+    %   BEARsettings('TVP', ExcelFile = 'path/To/file.xlsx')
     %
     % TVPsettings Properties:
     %    tvbvar          - choice of time-varying BVAR model 

@@ -4,11 +4,11 @@ classdef PANELsettings < bear.settings.BASEsettings
     %   settings object to run a Panel VAR. It can be created directly by
     %   running:
     %
-    %   bear.settings.PANELsettings(ExcelPath, varargin)
+    %   bear.settings.PANELsettings(ExcelFile, varargin)
     %
     %   or in its more convenient form:
     %
-    %   BEARsettings('panel', ExcelPath = 'path/To/file.xlsx')
+    %   BEARsettings('panel', ExcelFile = 'path/To/file.xlsx')
     %
     % PANELsettings Properties:
     %    panel     - Choice of panel model

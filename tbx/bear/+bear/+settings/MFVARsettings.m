@@ -4,11 +4,11 @@ classdef MFVARsettings < bear.settings.BASEsettings
     %   settings object to run a Mixed frequency VAR. It can be created
     %   directly by running:
     %
-    %   bear.settings.MFVARsettings(ExcelPath, varargin)
+    %   bear.settings.MFVARsettings(ExcelFile, varargin)
     %
     %   or in its more convenient form:
     %
-    %   BEARsettings('mfvar', ExcelPath = 'path/To/file.xlsx')
+    %   BEARsettings('mfvar', ExcelFile = 'path/To/file.xlsx')
     %
     % MFVARsettings Properties:  
     %    ar              - auto-regressive coefficients

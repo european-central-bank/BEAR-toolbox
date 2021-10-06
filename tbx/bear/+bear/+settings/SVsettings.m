@@ -4,11 +4,11 @@ classdef SVsettings < bear.settings.BASEsettings
     %   settings object to run a stochastic volatility model. It can be created directly by
     %   running:
     %
-    %   bear.settings.SVsettings(ExcelPath, varargin)
+    %   bear.settings.SVsettings(ExcelFile, varargin)
     %
     %   or in its more convenient form:
     %
-    %   BEARsettings('SV', ExcelPath = 'path/To/file.xlsx')
+    %   BEARsettings('SV', ExcelFile = 'path/To/file.xlsx')
     %
     % SVsettings Properties:
     %    stvol           - Choice of stochastic volatility model

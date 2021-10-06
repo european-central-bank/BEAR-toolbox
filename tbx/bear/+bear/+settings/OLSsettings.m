@@ -3,11 +3,11 @@ classdef OLSsettings < bear.settings.BASEsettings
     %   The bear.settings.OLSsettings class is a class that creates a settings
     %   object to run a OLS VAR. It can be created directly by running:
     %
-    %   bear.settings.OLSsettings(ExcelPath, varargin)
+    %   bear.settings.OLSsettings(ExcelFile, varargin)
     %
     %   or in its more convenient form:
     %
-    %   BEARsettings('OLS', ExcelPath = 'path/To/file.xlsx')
+    %   BEARsettings('OLS', ExcelFile = 'path/To/file.xlsx')
     %
     % OLSsettings Properties:
     %    strctident - Choice of panel model

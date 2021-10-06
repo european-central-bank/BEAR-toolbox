@@ -4,11 +4,11 @@ classdef BVARsettings < bear.settings.BASEsettings
     %   settings object to run a Bayesian VAR. It can be created directly by
     %   running:
     %
-    %   bear.settings.BVARsettings(ExcelPath, varargin)
+    %   bear.settings.BVARsettings(ExcelFile, varargin)
     %
     %   or in its more convenient form:
     %
-    %   BEARsettings('bvar', ExcelPath = 'path/To/file.xlsx')
+    %   BEARsettings('bvar', ExcelFile = 'path/To/file.xlsx')
     %
     % BVARsettings Properties:
     %    prior           - Selected prior
