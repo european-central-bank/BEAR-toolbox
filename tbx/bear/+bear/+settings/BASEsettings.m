@@ -50,7 +50,7 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         const     (1,1) logical = true;                  % inclusion of a constant (1=yes, 0=no)
         
         excelFile    (1,:) char = '';                    % Excel file used for the inputs
-        results_path (1,:) char = '';                    % path where there results file is stored
+        results_path (1,:) char = pwd;                    % path where there results file is stored
         results_sub  (1,:) char = 'results';             % name of the results file 
         results      (1,1) logical = false;              % save the results in the excel file (true/false)
         plot         (1,1) logical = false;              % plot the results (true/false)

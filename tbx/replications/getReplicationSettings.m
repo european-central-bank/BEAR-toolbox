@@ -29,7 +29,10 @@ switch repName
         fn = 'bear_settings_WGP2016';
         
 end
+% Change results folder to current folder
+s.results_path = pwd();
 
+% Get model definition on non-deployed setups
 if ~isdeployed
     h = help(fn);
 else
