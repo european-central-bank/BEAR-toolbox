@@ -5,7 +5,7 @@ function s = bear_settings_CH2019
 % general data and model information
 
 % VAR model selected (1=OLS VAR, 2=BVAR, 3=mean-adjusted BVAR, 4=panel Bayesian VAR, 5=Stochastic volatility BVAR, 6=Time varying)
-s = BEARsettings(2, 'ExcelPath', fullfile(bearroot(), 'replications','data_CH2019.xlsx') ); %as the Caldara Herbst approach works with IRFt==5 one has to choose a normal wishart prior as the posterior distribution of it is known
+s = BEARsettings(2, 'ExcelFile', fullfile(bearroot(), 'replications','data_CH2019.xlsx') ); %as the Caldara Herbst approach works with IRFt==5 one has to choose a normal wishart prior as the posterior distribution of it is known
 % data frequency (1=yearly, 2= quarterly, 3=monthly, 4=weekly, 5=daily, 6=undated)
 s.frequency=3;
 % sample start date; must be a string consistent with the date formats of the toolbox

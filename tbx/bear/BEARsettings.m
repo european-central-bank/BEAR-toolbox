@@ -8,7 +8,7 @@ function [settings] = BEARsettings(VARtype, varargin)
 p = inputParser;
 p.KeepUnmatched = true;
 addRequired(p, 'VARtype', @(x) isnumeric(x) || isstring(x) || ischar(x));
-addParameter(p,'ExcelPath', '', @(x) isstring(x) || ischar(x));
+addParameter(p,'ExcelFile', '', @(x) isstring(x) || ischar(x));
 parse(p, VARtype, varargin{:});
 
 VARtype = bear.VARtype(p.Results.VARtype);

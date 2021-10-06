@@ -51,7 +51,7 @@ classdef replicationTests < matlab.unittest.TestCase
             excelPath = fullfile(fullfile(bearroot(),'replications'), dataxlsx);
             
             % and the settings
-            s = BEARsettings('OLS', 'ExcelPath', excelPath);
+            s = BEARsettings('OLS', 'ExcelFile', excelPath);
             s.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
             s.results_sub = 'results_ols_temp';
             s.results = 0;

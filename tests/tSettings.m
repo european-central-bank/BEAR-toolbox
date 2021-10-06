@@ -8,53 +8,53 @@ classdef tSettings < matlab.unittest.TestCase
         end
         
         function tSetterFcnByNumber(tc)
-            s = BEARsettings(1, 'ExcelPath', 'data.xlsx');
+            s = BEARsettings(1, 'ExcelFile', 'data.xlsx');
             tc.verifyClass(s, 'bear.settings.OLSsettings')
             tc.verifyEqual(s.VARtype, bear.VARtype(1))
 
-            s = BEARsettings(2, 'ExcelPath', "data.xlsx");
+            s = BEARsettings(2, 'ExcelFile', "data.xlsx");
             tc.verifyClass(s, 'bear.settings.BVARsettings')
             tc.verifyEqual(s.VARtype, bear.VARtype(2))
 
-            s = BEARsettings(4, 'ExcelPath', "data.xlsx");
+            s = BEARsettings(4, 'ExcelFile', "data.xlsx");
             tc.verifyClass(s, 'bear.settings.PANELsettings')
             tc.verifyEqual(s.VARtype, bear.VARtype(4))
 
-            s = BEARsettings(5, 'ExcelPath', "data.xlsx");
+            s = BEARsettings(5, 'ExcelFile', "data.xlsx");
             tc.verifyClass(s, 'bear.settings.SVsettings')
             tc.verifyEqual(s.VARtype, bear.VARtype(5))
 
-            s = BEARsettings(6, 'ExcelPath', "data.xlsx");
+            s = BEARsettings(6, 'ExcelFile', "data.xlsx");
             tc.verifyClass(s, 'bear.settings.TVPsettings')
             tc.verifyEqual(s.VARtype, bear.VARtype(6))            
             
-            s = BEARsettings(7, 'ExcelPath', "data.xlsx");
+            s = BEARsettings(7, 'ExcelFile', "data.xlsx");
             tc.verifyClass(s, 'bear.settings.MFVARsettings')
             tc.verifyEqual(s.VARtype, bear.VARtype(7))
         end
 
         function tSetterFcnByName(tc)
-            s = BEARsettings("OLS", 'ExcelPath', 'data.xlsx');
+            s = BEARsettings("OLS", 'ExcelFile', 'data.xlsx');
             tc.verifyClass(s, 'bear.settings.OLSsettings')
 
-            s = BEARsettings("BVAR", 'ExcelPath', "data.xlsx");
+            s = BEARsettings("BVAR", 'ExcelFile', "data.xlsx");
             tc.verifyClass(s, 'bear.settings.BVARsettings')
 
-            s = BEARsettings("PANEL", 'ExcelPath', "data.xlsx");
+            s = BEARsettings("PANEL", 'ExcelFile', "data.xlsx");
             tc.verifyClass(s, 'bear.settings.PANELsettings')
 
-            s = BEARsettings("SV", 'ExcelPath', "data.xlsx");
+            s = BEARsettings("SV", 'ExcelFile', "data.xlsx");
             tc.verifyClass(s, 'bear.settings.SVsettings')
 
-            s = BEARsettings("TVP", 'ExcelPath', "data.xlsx");
+            s = BEARsettings("TVP", 'ExcelFile', "data.xlsx");
             tc.verifyClass(s, 'bear.settings.TVPsettings')          
             
-            s = BEARsettings("MFVAR", 'ExcelPath', "data.xlsx");
+            s = BEARsettings("MFVAR", 'ExcelFile', "data.xlsx");
             tc.verifyClass(s, 'bear.settings.MFVARsettings')
         end
 
         function tFavar(tc)
-            s = BEARsettings(1, 'ExcelPath', 'data.xlsx');
+            s = BEARsettings(1, 'ExcelFile', 'data.xlsx');
             tc.verifyEqual(s.favar.FAVAR, false)
             s.favar.FAVAR = 1;
             tc.verifyClass(s.favar, 'bear.settings.FAVARsettings')
@@ -62,7 +62,7 @@ classdef tSettings < matlab.unittest.TestCase
         end
 
         function tStrctident(tc)
-            s = BEARsettings(1, 'ExcelPath', 'data.xlsx');
+            s = BEARsettings(1, 'ExcelFile', 'data.xlsx');
 
             tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt4');
             tc.verifyEqual(s.IRFt, bear.IRFtype(4))
@@ -73,7 +73,7 @@ classdef tSettings < matlab.unittest.TestCase
             s.IRFt = 6;
             tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt6');
 
-            s = BEARsettings(2, 'ExcelPath', 'data.xlsx');
+            s = BEARsettings(2, 'ExcelFile', 'data.xlsx');
 
             tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt4');
             tc.verifyEqual(s.IRFt, bear.IRFtype(4))
@@ -84,10 +84,10 @@ classdef tSettings < matlab.unittest.TestCase
             s.IRFt = 6;
             tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt6');
 
-            s = BEARsettings(1, 'ExcelPath', 'data.xlsx', 'IRFt', 5);
+            s = BEARsettings(1, 'ExcelFile', 'data.xlsx', 'IRFt', 5);
             tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt5');
 
-            s = BEARsettings(2, 'ExcelPath', 'data.xlsx', 'IRFt', 6);
+            s = BEARsettings(2, 'ExcelFile', 'data.xlsx', 'IRFt', 6);
             tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt6');
         end
         
@@ -98,7 +98,7 @@ classdef tSettings < matlab.unittest.TestCase
             upperBound   = [inf; inf; inf; 2; inf; 1; inf; inf; inf];
             
             t = table(param, lowerBound, defaultValue, upperBound);
-            s = BEARsettings('bvar', 'ExcelPath', 'data.xlsx');
+            s = BEARsettings('bvar', 'ExcelFile', 'data.xlsx');
             
             tc.icheckHyperparamLimits(s, t)
         end
@@ -110,7 +110,7 @@ classdef tSettings < matlab.unittest.TestCase
             upperBound   = [inf; inf; inf; 2; inf; inf; inf; inf; inf; inf; inf; inf; inf; inf];
             
             t = table(param, lowerBound, defaultValue, upperBound);
-            s = BEARsettings('panel', 'ExcelPath', 'data.xlsx');
+            s = BEARsettings('panel', 'ExcelFile', 'data.xlsx');
             
             tc.icheckHyperparamLimits(s, t)
         end
@@ -122,7 +122,7 @@ classdef tSettings < matlab.unittest.TestCase
             upperBound   = [inf; inf; inf; 2; inf; 1; inf; inf; inf; inf; inf];
             
             t = table(param, lowerBound, defaultValue, upperBound);
-            s = BEARsettings('sv', 'ExcelPath', 'data.xlsx');
+            s = BEARsettings('sv', 'ExcelFile', 'data.xlsx');
             
             tc.icheckHyperparamLimits(s, t)
         end
@@ -134,7 +134,7 @@ classdef tSettings < matlab.unittest.TestCase
             upperBound   = [inf; inf; inf];
             
             t = table(param, lowerBound, defaultValue, upperBound);
-            s = BEARsettings('tvp', 'ExcelPath', 'data.xlsx');
+            s = BEARsettings('tvp', 'ExcelFile', 'data.xlsx');
             
             tc.icheckHyperparamLimits(s, t)
         end
@@ -146,14 +146,14 @@ classdef tSettings < matlab.unittest.TestCase
             upperBound   = [inf; inf; inf; 2; inf; inf; inf; inf; inf];
             
             t = table(param, lowerBound, defaultValue, upperBound);
-            s = BEARsettings('mfvar', 'ExcelPath', 'data.xlsx');
+            s = BEARsettings('mfvar', 'ExcelFile', 'data.xlsx');
             
             tc.icheckHyperparamLimits(s, t)
         end
         
         function tMustBeInRange(tc)
             
-           opts = BEARsettings(2,'ExcelPath','data.xlsx');
+           opts = BEARsettings(2,'ExcelFile','data.xlsx');
             
             fcn = @() setProp(opts, 'lambda3',10);            
             tc.verifyError(fcn, 'MATLAB:validators:mustBeLessThanOrEqual')

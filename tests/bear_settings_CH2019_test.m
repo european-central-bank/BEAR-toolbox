@@ -1,6 +1,6 @@
 function s = bear_settings_CH2019_test(excelPath)
 
-s = BEARsettings(2, 'ExcelPath', excelPath);
+s = BEARsettings(2, 'ExcelFile', excelPath);
 
 s.frequency=3;
 s.startdate='1993m1';

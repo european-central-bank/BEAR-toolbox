@@ -48,7 +48,7 @@ classdef tNewInterface < matlab.unittest.TestCase
             
             resultsFile = "newTest";
             
-            opts= BEARsettings('OLS', 'ExcelPath', fullfile(fullfile(bearroot(),'replications', 'data_.xlsx')));
+            opts= BEARsettings('OLS', 'ExcelFile', fullfile(fullfile(bearroot(),'replications', 'data_.xlsx')));
             opts.pref.results_path = 'results';
             opts.pref.results_sub = 'newTest';
             
@@ -62,7 +62,7 @@ classdef tNewInterface < matlab.unittest.TestCase
             
             resultsFile = "newTest";
             
-            opts= BEARsettings('OLS', 'ExcelPath', fullfile(fullfile(bearroot(),'replications', 'data_.xlsx')));
+            opts= BEARsettings('OLS', 'ExcelFile', fullfile(fullfile(bearroot(),'replications', 'data_.xlsx')));
             opts.pref.results_path = 'results';
             opts.pref.results_sub = 'newTest';
             opts.IRFt = 2;
@@ -77,7 +77,7 @@ classdef tNewInterface < matlab.unittest.TestCase
             
             resultsFile = "newTest";
             
-            opts = BEARsettings('BVAR', 'ExcelPath', fullfile(fullfile(bearroot(),'replications', 'data_.xlsx')), ...
+            opts = BEARsettings('BVAR', 'ExcelFile', fullfile(fullfile(bearroot(),'replications', 'data_.xlsx')), ...
                 'prior', 'minnesota_univariate', 'IRFt', 4);
             opts.prior=11;
             opts.IRFt=2;

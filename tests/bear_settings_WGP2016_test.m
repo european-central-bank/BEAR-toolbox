@@ -1,6 +1,6 @@
 function s = bear_settings_WGP2016_test(excelPath)
 
-s = BEARsettings(2, 'ExcelPath', excelPath);
+s = BEARsettings(2, 'ExcelFile', excelPath);
 
 s.frequency=3;
 s.startdate='2014m5';

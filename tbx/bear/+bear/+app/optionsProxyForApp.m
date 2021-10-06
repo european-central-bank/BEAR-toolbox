@@ -1,12 +1,12 @@
 classdef optionsProxyForApp < matlab.mixin.SetGet
     
     properties (Access = private)
-        OLS      = BEARsettings('OLS',   'ExcelPath', 'data.xlsx')
-        BVAR     = BEARsettings('BVAR',  'ExcelPath', 'data.xlsx')
-        PANEL    = BEARsettings('Panel', 'ExcelPath', 'data.xlsx')
-        SV       = BEARsettings('SV',    'ExcelPath', 'data.xlsx')
-        TVP      = BEARsettings('TVP',   'ExcelPath', 'data.xlsx')
-        MFVAR    = BEARsettings('MFVAR', 'ExcelPath', 'data.xlsx')
+        OLS      = BEARsettings('OLS',   'ExcelFile', 'data.xlsx')
+        BVAR     = BEARsettings('BVAR',  'ExcelFile', 'data.xlsx')
+        PANEL    = BEARsettings('Panel', 'ExcelFile', 'data.xlsx')
+        SV       = BEARsettings('SV',    'ExcelFile', 'data.xlsx')
+        TVP      = BEARsettings('TVP',   'ExcelFile', 'data.xlsx')
+        MFVAR    = BEARsettings('MFVAR', 'ExcelFile', 'data.xlsx')
     end
     
     properties
