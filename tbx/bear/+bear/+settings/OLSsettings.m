@@ -11,10 +11,14 @@ classdef OLSsettings < bear.settings.BASEsettings
     %
     % OLSsettings Properties:
     %    strctident - Choice of panel model
-
+    %    favar - FAVAR Options
+    
     properties
         % strctident
         strctident
+        
+        % FAVAR options
+        favar (1,1) bear.settings.FAVARsettings = bear.settings.FAVARsettings(); % augment VAR model with factors (1=yes, 0=no)
     end
     
     methods
@@ -22,7 +26,7 @@ classdef OLSsettings < bear.settings.BASEsettings
         function obj = OLSsettings(excelPath, varargin)
             
             obj@bear.settings.BASEsettings(1, excelPath)
-
+            
             obj = obj.setStrctident(obj.IRFt);
             
             obj = parseBEARSettings(obj, varargin{:});
@@ -30,9 +34,9 @@ classdef OLSsettings < bear.settings.BASEsettings
         end
         
     end
-
+    
     methods (Access = protected)
-
+        
         function obj = checkIRFt(obj, value)
             % we could call superclass method to combine effect
             obj = checkIRFt@bear.settings.BASEsettings(obj, value);
@@ -40,15 +44,15 @@ classdef OLSsettings < bear.settings.BASEsettings
         end
         
     end
-
+    
     methods (Access = private)
-
+        
         function obj = setStrctident(obj, value)
             
             switch value
                 case 4
                     obj.strctident = bear.settings.StrctidentIRFt4;
-                case 5                    
+                case 5
                     obj.strctident = bear.settings.StrctidentIRFt5;
                 case 6
                     obj.strctident = bear.settings.StrctidentIRFt6;
@@ -57,6 +61,6 @@ classdef OLSsettings < bear.settings.BASEsettings
             end
             
         end
-
+        
     end
 end

@@ -32,6 +32,7 @@ classdef SVsettings < bear.settings.BASEsettings
     %    gamma0          - hyperparameter
     %    zeta0           - hyperparameter
     %    alltirf         - hyperparameter
+    %    favar           - FAVAR Options
     
     properties
         % Choice of stochastic volatility model
@@ -71,7 +72,7 @@ classdef SVsettings < bear.settings.BASEsettings
         % Exogenous variable and constant: lambda4
         lambda4 (:,1) double {mustBeGreaterThanOrEqual(lambda4,0)} = 100;
         % Block exogeneity shrinkage: lambda5
-        lambda5 (1,1) double {mustBeGreaterThanOrEqual(lambda5,0), mustBeLessThanOrEqual(lambda5,1)} = 0.001;        
+        lambda5 (1,1) double {mustBeGreaterThanOrEqual(lambda5,0), mustBeLessThanOrEqual(lambda5,1)} = 0.001;
         % IG shape on residual variance: alpha0
         alpha0 (1,1) double = 0.001;
         % IG scale on residual variance: delta0
@@ -83,7 +84,16 @@ classdef SVsettings < bear.settings.BASEsettings
         % Prior variance of inertia parameter: zeta0
         zeta0 (1,1) double = 10000;
         % calculate IRFs for every sample period (1=yes, 0=no)
-        alltirf (1,1) logical = true;  
+        alltirf (1,1) logical = true;
+    end
+    
+    properties (Dependent)
+        % FAVAR options
+        favar % augment VAR model with factors (1=yes, 0=no)
+    end
+    
+    properties (Access = private)
+        favarInternal (1,1) bear.settings.FAVARsettings = bear.settings.VARtypeSpecificFAVARsettings; % augment VAR model with factors (1=yes, 0=no)
     end
     
     methods
@@ -112,6 +122,27 @@ classdef SVsettings < bear.settings.BASEsettings
             else
                 error('bear:settings:SVsettings',"The minimum value of It is Bu+1: " + (obj.Bu+1)) %#ok<MCSUP>
             end
+        end
+        
+        function value = get.favar(obj)
+            
+            if obj.stvol == 4
+                value = bear.settings.NullFAVAR;
+            else
+                value = obj.favarInternal;
+            end
+            
+        end
+        
+        function obj = set.favar(obj, value)
+            
+            if obj.stvol == 4
+                error('bear:settings:BVARsettings:undefinedFAVAR', ...
+                    'It is not possible to set FAVAR if stvol is LMM (4)')
+            else
+                obj.favarInternal = value;
+            end
+            
         end
         
     end

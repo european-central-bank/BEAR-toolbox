@@ -56,10 +56,6 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         plot         (1,1) logical = false;              % plot the results (true/false)
         workspace    (1,1) logical = true;               % save the workspace as a .mat file (true/false)
         
-        %% Settings that do not seem to be as generic.
-        % FAVAR options
-        favar (1,1) bear.settings.FAVARsettings = bear.settings.FAVARsettings(); % augment VAR model with factors (1=yes, 0=no)
-        
         % Model options
         IRF        (1,1) logical = true;  % activate impulse response functions (1=yes, 0=no)
         IRFperiods (1,1) double  = 20;    % number of periods for impulse response functions
@@ -111,10 +107,6 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
             obj.VARtype = VARtype;
             obj.excelFile = excelPath;
             
-            if VARtype==2 || VARtype==5 || VARtype==6 % supported priors: 1x, 2x, 3x, 41
-                obj.favar = bear.settings.VARtypeSpecificFAVARsettings;
-            end
-            
         end
         
         function obj = set.IRFt(obj, value)
@@ -154,7 +146,7 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
             
             mainProps = {'VARtype', 'frequency', 'startdate', ...
                 'enddate', 'varendo', 'varexo', 'lags', 'const', ...
-                'pref', 'favar', 'excelFile', 'results_path', 'results_sub', 'results', 'plot', 'workspace'};
+                'excelFile', 'results_path', 'results_sub', 'results', 'plot', 'workspace'};
             
             applicationProps = setdiff(baseProps, mainProps);
             applicationProps = props(ismember(props, applicationProps)); % To keep original order

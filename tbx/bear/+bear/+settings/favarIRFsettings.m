@@ -2,7 +2,7 @@ classdef favarIRFsettings < matlab.mixin.CustomDisplay
     % FAVARIRFSETTINGS (approximate) IRFs for information variables
  
     properties
-        plot                  (1,1) logical = 0;
+        plot (1,1) logical = 0; % (1=yes, 0=no)
         % choose shock(s) to plot
         plotXshock = ''; %'FEVDshock';%'FYFF'; % FYFF 'USMP' % we need this atm only for IRFt2,3 provide =varendo for all shocks; in IRFt456 the identified shocks are plotted
         plotXblocks = 0;

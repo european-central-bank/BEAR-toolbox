@@ -4,28 +4,26 @@ classdef FAVARsettings < matlab.mixin.CustomDisplay
     properties
         FAVAR (1,1) logical = 0
         
-        transformation (1,1) logical = 1; % 'factor data' must contain values for startdate -1 in the case we have First Difference (2,5) transformation types and startdate -2 in the case we have Second Difference (3,6) transformation types
-        transform_endo='6 2'; %'2 6' transformation codes of varendo variables other than factors
+        transformation (1,1) logical = 0; % 'factor data' must contain values for startdate -1 in the case we have First Difference (2,5) transformation types and startdate -2 in the case we have Second Difference (3,6) transformation types
+        transform_endo char = ''; %transformation codes of varendo variables other than factors (ordering follows 'data' sheet!)
         
-        % standardises (information) data in excel sheets 'data' and 'factor data'
-        standardise (1,1) logical = 1; % (1=yes (default), 0=no)
-        % demeans (information) data in excel sheets 'data' and 'factor data'
-        demean (1,1) logical = 1; % (1=yes, 0=no)
-                
-        blocks (1,1) logical = 0;  % blocks/categories (1=yes, 0=no), specify in excel sheet
-        numpc = 4;                 % choose number of factors (principal components) to include
+        % choose number of factors (principal components) to include
+        numpc = 4;
         
         % slow fast scheme for recursive identification (IRFt 2, 3) as in BBE (2005)
         slowfast = 1;  % assign variables in the excel sheet 'factor data' in the 'block' row to "slow" or "fast"
         
+        blocks (1,1) logical = 0;  % blocks/categories (1=yes, 0=no), specify in excel sheet
         
-        blocknames = 'slow fast';  % specify in excel sheet 'factor data'
-        blocknumpc = '2 2';        % block-specific number of factors (principal components)
+        blocknames char = 'slow fast';  % specify in excel sheet 'factor data'
+        blocknumpc char = '2 2';        % block-specific number of factors (principal components)
         
         % specify information variables of interest (plot and excel output) (HD & IRFs)
-        plotX = 'IPS10 PMCP LHEM LHUR'
-        plotXshock = '';
+        plotX char = 'INDPRO UNRATE USCONCONF'
+        % choose shock(s) to plot
+        plotXshock char = '';
         
+        % re-tranform transformed variables
         levels (1,1) bear.FAVARlevels = 1; % =0 no re-transformation (default), =1 cumsum, =2 exp cumsum
         retransres = 1;                    % re-transform the candidate IRFs in IRFt4, before checking the restrictions
         
@@ -44,21 +42,31 @@ classdef FAVARsettings < matlab.mixin.CustomDisplay
     
     methods (Access = protected)
         
+        function displayScalarObject(obj)
+            fprintf('\n <strong> Augment VAR model with factors (true/false)</strong> \n\n')
+            favar = matlab.mixin.util.PropertyGroup('FAVAR');
+            matlab.mixin.CustomDisplay.displayPropertyGroups(obj, favar);
+            
+            fprintf('\n <strong> FAVAR Properties</strong> \n\n')
+            
+            % Grab property lists
+            props = getPropertyGroups(obj);
+            matlab.mixin.CustomDisplay.displayPropertyGroups(obj, props);
+            
+        end
+        
         function propgrp = getPropertyGroups(obj)
             
             if obj.FAVAR == 0
-                proplist = {'FAVAR', 'HD', 'IRF', 'FEVD'};
+                proplist = {'HD', 'IRF', 'FEVD'};
                 propgrp = matlab.mixin.util.PropertyGroup(proplist);
             else
+                proplist = properties(obj);
+                proplist = proplist(~ismember(proplist, {'FAVAR'}));
                 if obj.blocks == 0
-                    proplist = properties(obj);
                     proplist = proplist(~ismember(proplist, {'blocknames','blocknumpc'}));
-                    propgrp = matlab.mixin.util.PropertyGroup(proplist);
-                else
-                    proplist = properties(obj);
-                    proplist = proplist(~ismember(proplist, {'numpc'}));
-                    propgrp = matlab.mixin.util.PropertyGroup(proplist);
                 end
+                propgrp = matlab.mixin.util.PropertyGroup(proplist);
                 
             end
             

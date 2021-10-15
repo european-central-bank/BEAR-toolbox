@@ -33,6 +33,7 @@ classdef BVARsettings < bear.settings.BASEsettings
     %    lambda6         - hyperparameter
     %    lambda7         - hyperparameter
     %    lambda8         - hyperparameter
+    %    favar           - FAVAR options
     
     properties
         %prior Selected prior
@@ -93,6 +94,15 @@ classdef BVARsettings < bear.settings.BASEsettings
         lambda8 (1,1) double = 1;
     end
     
+    properties (Dependent)
+        % FAVAR options
+        favar % augment VAR model with factors (1=yes, 0=no)
+    end
+    
+    properties (Access = private)
+        favarInternal (1,1) bear.settings.FAVARsettings = bear.settings.VARtypeSpecificFAVARsettings; % augment VAR model with factors (1=yes, 0=no)
+    end
+    
     methods
         
         function obj = BVARsettings(excelPath, varargin)
@@ -119,6 +129,27 @@ classdef BVARsettings < bear.settings.BASEsettings
             else
                 error('bear:settings:BVARsettings',"The minimum value of It is Bu+1: " + (obj.Bu+1)) %#ok<MCSUP>
             end
+        end
+        
+        function value = get.favar(obj)
+            
+            if obj.prior == 61
+                value = bear.settings.NullFAVAR;
+            else
+                value = obj.favarInternal;
+            end
+            
+        end
+        
+        function obj = set.favar(obj, value)
+            
+            if obj.prior == 61
+                error('bear:settings:BVARsettings:undefinedFAVAR', ...
+                    'It is not possible to set FAVAR if prior is Mean adjusted (61)')
+            else
+                obj.favarInternal = value;
+            end
+            
         end
         
     end
