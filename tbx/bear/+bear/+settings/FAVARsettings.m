@@ -43,11 +43,11 @@ classdef FAVARsettings < matlab.mixin.CustomDisplay
     methods (Access = protected)
         
         function displayScalarObject(obj)
-            fprintf('\n <strong> Augment VAR model with factors (true/false)</strong> \n\n')
-            favar = matlab.mixin.util.PropertyGroup('FAVAR');
-            matlab.mixin.CustomDisplay.displayPropertyGroups(obj, favar);
-            
-            fprintf('\n <strong> FAVAR Properties</strong> \n\n')
+%             fprintf('\n <strong> Augment VAR model with factors (true/false)</strong> \n\n')
+%             favar = matlab.mixin.util.PropertyGroup('FAVAR');
+%             matlab.mixin.CustomDisplay.displayPropertyGroups(obj, favar);
+%             
+%             fprintf('\n <strong> FAVAR Properties</strong> \n\n')
             
             % Grab property lists
             props = getPropertyGroups(obj);
@@ -58,11 +58,10 @@ classdef FAVARsettings < matlab.mixin.CustomDisplay
         function propgrp = getPropertyGroups(obj)
             
             if obj.FAVAR == 0
-                proplist = {'HD', 'IRF', 'FEVD'};
+                proplist = {'FAVAR', 'HD', 'IRF', 'FEVD'};
                 propgrp = matlab.mixin.util.PropertyGroup(proplist);
             else
                 proplist = properties(obj);
-                proplist = proplist(~ismember(proplist, {'FAVAR'}));
                 if obj.blocks == 0
                     proplist = proplist(~ismember(proplist, {'blocknames','blocknumpc'}));
                 end
