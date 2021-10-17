@@ -140,10 +140,10 @@ classdef tSettings < matlab.unittest.TestCase
         end
         
         function tMFVARHyperparamLimits(tc)
-            param = ["ar";"lambda1";"lambda2";"lambda3";"lambda4";"lambda5";"lambda6";"lambda7";"lambda8"];
-            lowerBound   = [-inf; 0; 0.1; 1; 0; -inf; 0; 0; -inf];
-            defaultValue = [0.9; 0.1; 3.4; 1; 3.4; 14.763158; 1; 0.01; 1];
-            upperBound   = [inf; inf; inf; 2; inf; inf; inf; inf; inf];
+            param = ["ar";"lambda1";"lambda2";"lambda3";"lambda4";"lambda5"];
+            lowerBound   = [-inf; 0; 0.1; 1; 0; -inf;];
+            defaultValue = [0.9; 0.1; 3.4; 1; 3.4; 14.763158];
+            upperBound   = [inf; inf; inf; 2; inf; inf];
             
             t = table(param, lowerBound, defaultValue, upperBound);
             s = BEARsettings('mfvar', 'ExcelFile', 'data.xlsx');

@@ -55,7 +55,7 @@ pref = struct('excelFile', opts.excelFile, ...
     'plot', opts.plot, ...
     'workspace', opts.workspace);
 
-favar = bear.utils.initializeFavarResults(opts.favar);
+favar = bear.utils.initializeFavarResults(opts);
 
 IRF         = opts.IRF;           % activate impulse response functions (1=yes, 0=no)
 IRFperiods  = opts.IRFperiods;    % number of periods for impulse response functions
@@ -111,12 +111,12 @@ gamma_median=[];
 % turn off incompatible combinations of options and other preliminaries
 % these steps have to be done before convertsrings
 % first check for favar, turn off routines if favar doesn't exist (for VARtypes other than =1)
-if exist('favar','var')~=1 | favar.FAVAR==0
-    favar.FAVAR=0;
-    favar.HD.plot=0;
-    favar.IRF.plot=0;
-    favar.FEVD.plot=0;
-end
+% if exist('favar','var')~=1
+%     favar.FAVAR     = false;
+%     favar.HD.plot   = false;
+%     favar.IRF.plot  = false;
+%     favar.FEVD.plot = false;
+% end
 
 if favar.FAVAR==1
     if VARtype~=2
@@ -366,22 +366,25 @@ end
 % initiation of Excel result file
 bear.initexcel(pref);
 
+% count the number of endogenous variables
+n=size(endo,1);
+
 % generate the different sets of data
 % if the model is the OLS VAR,
 if VARtype==1
-    [names, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate,endo,n,favar]...
-        =bear.gensampleols(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,favar,IRFt);
+    [names, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate,endo,favar]...
+        =bear.gensampleols(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,favar,IRFt, n);
     % if the model is the Bayesian VAR, the mean-adjusted BVAR, the stochastic volatility BVAR, ot the time-varying BVAR:
 elseif VARtype==2 || VARtype==5 || VARtype==6
-    [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4,n,favar]...
-        =bear.gensample(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,opts.ar,opts.lambda4,opts.PriorExcel,opts.priorsexogenous,pref,favar,IRFt);
+    [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4,favar]...
+        =bear.gensample(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,opts.ar,opts.lambda4,opts.PriorExcel,opts.priorsexogenous,pref,favar,IRFt, n);
     % else, if the model is the panel BVAR
 elseif VARtype==4
     [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4]...
-        =bear.gensamplepan(startdate,enddate,Units,opts.panel,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,opts.ar,0,0);
+        =bear.gensamplepan(startdate,enddate,Units,opts.panel,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,opts.ar,0,0, n);
 elseif VARtype==7
     [names, mf_setup, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate]...
-        =bear.gensample_mf(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref);
+        =bear.gensample_mf(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref, n);
 end
 
 
@@ -450,7 +453,7 @@ if VARtype==7 && CF==1
     YMC_orig(:,mf_setup.select==0) = log(YMC_orig(:,mf_setup.select==0));
     YMC_orig(:,mf_setup.select==1) = YMC_orig(:,mf_setup.select==1)./100;
 elseif VARtype == 7 && CF~=1
-    YMC_orig=ones(Input.H,mf_setup.Nm+mf_setup.Nq)*exp(99);
+    YMC_orig=ones(opts.H,mf_setup.Nm+mf_setup.Nq)*exp(99);
 end
 
 
@@ -523,16 +526,16 @@ for iteration=1:numt % beginning of forecasting loop
         % generate the different sets of data
         % if the model is the OLS VAR,
         if VARtype==1
-            [names, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate,endo,n,favar]...
-                =bear.gensampleols(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,favar,IRFt);
+            [names, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate,endo,favar]...
+                =bear.gensampleols(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,favar,IRFt, n);
             % if the model is the Bayesian VAR, the mean-adjusted BVAR, the stochastic volatility BVAR, ot the time-varying BVAR:
         elseif VARtype==2 || VARtype==5 || VARtype==6
-            [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4,n,favar]...
-                =bear.gensample(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,opts.ar,opts.lambda4,opts.PriorExcel,opts.priorsexogenous,pref,favar,IRFt);
+            [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4,favar]...
+                =bear.gensample(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,opts.ar,opts.lambda4,opts.PriorExcel,opts.priorsexogenous,pref,favar,IRFt, n);
             % else, if the model is the panel BVAR
         elseif VARtype==4
             [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4]...
-                =bear.gensamplepan(startdate,enddate,Units,opts.panel,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,opts.ar,0,0);
+                =bear.gensamplepan(startdate,enddate,Units,opts.panel,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,opts.ar,0,0, n);
         end
         
         
@@ -1210,7 +1213,7 @@ for iteration=1:numt % beginning of forecasting loop
             % if the model is the OLS mean group estimator
             if opts.panel==1
                 % estimate the IRFs
-                [irf_estimates,D,opts.gamma,D_estimates,gamma_estimates,strshocks_estimates]=bear.panel1irf(Y,X,N,n,m,p,k,q,IRFt,bhat,sigmahatb,sigmahat,IRFperiods,IRFband);
+                [irf_estimates,D,gamma,D_estimates,gamma_estimates,strshocks_estimates]=bear.panel1irf(Y,X,N,n,m,p,k,q,IRFt,bhat,sigmahatb,sigmahat,IRFperiods,IRFband);
                 % display the results
                 bear.panel1irfdisp(N,n,Units,endo,irf_estimates,strshocks_estimates,IRFperiods,IRFt,stringdates1,T,decimaldates1,pref);
                 
@@ -2086,7 +2089,7 @@ for iteration=1:numt % beginning of forecasting loop
     % All errors are our own
     
     if VARtype == 7
-        mf_setup.H = Input.H;
+        mf_setup.H = opts.H;
         mf_setup.data = data_endo;
         mf_setup.It     = opts.It;
         mf_setup.Bu     = opts.Bu;
@@ -2105,23 +2108,21 @@ for iteration=1:numt % beginning of forecasting loop
         m = 1;
         k = n*p+m;
         T = size(Y,1);
-        q=n*k;
+        
         YY_past_forfcast = Output.YY_past_forfcast;
         [Bcap,betacap,Scap,alphacap,phicap,alphatop]=bear.dopost(X,Y,T,k,n);
         % compute posterior estimates
         [beta_median,B_median,beta_std,beta_lbound,beta_ubound,sigma_median]=bear.doestimates(betacap,phicap,Scap,alphacap,alphatop,n,k,cband);
-        log10ml=NaN;
-        dic=NaN;
-        q=NaN;
-        opts.lambda6=NaN;
-        opts.lambda7=NaN;
-        opts.lambda8=NaN;
-        opts.PriorExcel=0;
+                        
         % merged the disp files, but we need some to provide some extra variables in the case we do not have prior 61
-        theta_median=NaN; TVEH=NaN; indH=NaN;
         
         % display the VAR results
-        bear.bvardisp(beta_median,beta_std,beta_lbound,beta_ubound,sigma_median,log10ml,dic,X,Y,n,m,p,k,q,T,opts.prior,opts.bex,opts.hogs,opts.lrp,H,opts.ar,opts.lambda1,opts.lambda2,opts.lambda3,opts.lambda4,opts.lambda5,opts.lambda6,opts.lambda7,opts.lambda8,IRFt,const,beta_gibbs,endo,data_endo,exo,startdate,enddate,decimaldates1,stringdates1,pref,opts.scoeff,opts.iobs,opts.PriorExcel,strctident,favar,theta_median,TVEH,indH);
+        bear.bvardisp(beta_median,beta_std,beta_lbound,beta_ubound,sigma_median, ...
+            NaN, NaN,X,Y,n,m,p,k,NaN,T,opts.prior,opts.bex,opts.hogs,opts.lrp, ...
+            H,opts.ar,opts.lambda1,opts.lambda2,opts.lambda3,opts.lambda4,opts.lambda5, ...
+            NaN, NaN, NaN, IRFt,const,beta_gibbs,endo,data_endo,exo, ...
+            startdate,enddate,decimaldates1,stringdates1,pref, ...
+            opts.scoeff,opts.iobs, 0,strctident,favar, NaN, NaN,NaN);
         
         
         %% BLOCK 5: IRFs
@@ -2135,7 +2136,7 @@ for iteration=1:numt % beginning of forecasting loop
             % If IRFs have been set to an unrestricted VAR (IRFt=1):
             if IRFt==1
                 % run a pseudo Gibbs sampler to obtain records for D and gamma (for the trivial SVAR)
-                [D_record gamma_record]=bear.irfunres(n,opts.It,opts.Bu,sigma_gibbs);
+                [D_record, gamma_record]=bear.irfunres(n,opts.It,opts.Bu,sigma_gibbs);
                 % compute posterior estimates
                 [irf_estimates,D_estimates,gamma_estimates]=bear.irfestimates(irf_record,n,IRFperiods,IRFband,IRFt,[],[]);
                 % display the results
@@ -2144,7 +2145,7 @@ for iteration=1:numt % beginning of forecasting loop
                 % If IRFs have been set to an SVAR with Choleski identification (IRFt=2):
             elseif IRFt==2
                 % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
-                [struct_irf_record D_record gamma_record]=bear.irfchol(sigma_gibbs,irf_record,opts.It,opts.Bu,IRFperiods,n,favar);
+                [struct_irf_record, D_record, gamma_record]=bear.irfchol(sigma_gibbs,irf_record,opts.It,opts.Bu,IRFperiods,n,favar);
                 % compute posterior estimates
                 [irfchol_estimates,D_estimates,gamma_estimates]=bear.irfestimates(struct_irf_record,n,IRFperiods,IRFband,IRFt,D_record,gamma_record,favar);
                 % display the results
@@ -2153,7 +2154,7 @@ for iteration=1:numt % beginning of forecasting loop
                 % If IRFs have been set to an SVAR with triangular factorisation (IRFt=3):
             elseif IRFt==3
                 % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
-                [struct_irf_record D_record gamma_record]=bear.irftrig(sigma_gibbs,irf_record,opts.It,opts.Bu,IRFperiods,n);
+                [struct_irf_record, D_record, gamma_record]=bear.irftrig(sigma_gibbs,irf_record,opts.It,opts.Bu,IRFperiods,n);
                 % compute posterior estimates
                 [irftrig_estimates,D_estimates,gamma_estimates]=bear.irfestimates(struct_irf_record,n,IRFperiods,IRFband,IRFt,D_record,gamma_record);
                 % display the results
@@ -2162,7 +2163,7 @@ for iteration=1:numt % beginning of forecasting loop
                 % If IRFs have been set to an SVAR with sign restrictions (IRFt=4):
             elseif IRFt==4
                 % run the Gibbs sampler to transform unrestricted draws into orthogonalised draws
-                [struct_irf_record D_record gamma_record]=bear.irfres(beta_gibbs,sigma_gibbs,opts.It,opts.Bu,IRFperiods,n,m,p,k,signrestable,signresperiods);
+                [struct_irf_record, D_record, gamma_record]=bear.irfres(beta_gibbs,sigma_gibbs,opts.It,opts.Bu,IRFperiods,n,m,p,k,signrestable,signresperiods);
                 % compute posterior estimates
                 [irfres_estimates,D_estimates,gamma_estimates]=bear.irfestimates(struct_irf_record,n,IRFperiods,IRFband,IRFt,D_record,gamma_record);
                 % display the results
@@ -2183,7 +2184,7 @@ for iteration=1:numt % beginning of forecasting loop
         
         
         % estimate IRFs for exogenous variables
-        [exo_irf_record exo_irf_estimates]=bear.irfexo(beta_gibbs,opts.It,opts.Bu,IRFperiods,IRFband,n,m,p,k);
+        [exo_irf_record, exo_irf_estimates]=bear.irfexo(beta_gibbs,opts.It,opts.Bu,IRFperiods,IRFband,n,m,p,k);
         % estimate IRFs for exogenous variables
         bear.irfexodisp(n,m,endo,exo,IRFperiods,exo_irf_estimates,pref);
         
