@@ -157,8 +157,6 @@ classdef BVARsettings < bear.settings.BASEsettings
     methods (Access = protected)
         
         function obj = checkIRFt(obj, value)
-            % we could call superclass method to combine effect
-            obj = checkIRFt@bear.settings.BASEsettings(obj, value);
             obj = obj.setStrctident(value);
         end
         

@@ -9,14 +9,18 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
     %    varexo          - exogenous variables
     %    lags            - number of lags
     %    const           - inclusion of a constant
-    %    pref            - preferences
-    %    favar           - favar options
+    %    excelFile       - Excel file used for the inputs
+    %    results_path    - path where there results file is stored
+    %    results_sub     - name of the results file 
+    %    results         - save the results in the excel file (true/false)
+    %    plot            - plot the results (true/false)
+    %    workspace       - save the workspace as a .mat file (true/false)
     %    IRF             - impulse response functions
     %    IRFperiods      - number of periods for IRF
     %    F               - unconditional forecasts
     %    FEVD            - forecast error variance decomposition
     %    HD              - historical decomposition
-    %    HDall           -  plot the entire decomposition
+    %    HDall           - plot the entire decomposition
     %    CF              - activate conditional forecasts
     %    IRFt            - structural identification
     %    Feval           - forecast evaluation
@@ -60,8 +64,6 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         IRF        (1,1) logical = true;  % activate impulse response functions (1=yes, 0=no)
         IRFperiods (1,1) double  = 20;    % number of periods for impulse response functions
         F          (1,1) logical = true;  % activate unconditional forecasts (1=yes, 0=no)
-        FEVD       (1,1) logical = true;  % activate forecast error variance decomposition (1=yes, 0=no)
-        HD         (1,1) logical = true;  % activate historical decomposition (1=yes, 0=no)
         HDall      (1,1) logical = 0;     % if we want to plot the entire decomposition, all contributions (includes deterministic part) (1=yes, 0=no)
         CF         (1,1) logical = false; % activate conditional forecasts (1=yes, 0=no)
         
@@ -100,6 +102,17 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         
     end
     
+    properties (Dependent)
+        FEVD       % activate forecast error variance decomposition (1=yes, 0=no)
+        HD         % activate historical decomposition (1=yes, 0=no)
+    end
+    
+    properties (Access = protected)
+        FEVDinternal (1,1) logical = true; 
+        HDinternal   (1,1) logical = true;  
+    end
+    
+    
     methods
         
         function obj = BASEsettings(VARtype, excelPath)
@@ -118,6 +131,22 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
             % (only place we do assignment to avoid infinite recursion)
             obj.IRFt = value;
         end
+        
+        function value = get.FEVD(obj)
+           value = getFEVD(obj);
+        end
+        
+        function value = get.HD(obj)
+           value = getHD(obj);
+        end
+        
+        function obj = set.FEVD(obj, value)
+           obj.FEVDinternal = value;
+        end
+        
+        function obj = set.HD(obj, value)
+           obj.HDinternal = value;
+        end        
         
     end
     
@@ -172,6 +201,18 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
             
         end
                 
+    end
+    
+    methods (Access = protected)               
+        
+        function value = getFEVD(obj)
+            value = obj.FEVDinternal;
+        end
+        
+        function value = getHD(obj)
+            value = obj.HDinternal;
+        end
+        
     end
     
 end

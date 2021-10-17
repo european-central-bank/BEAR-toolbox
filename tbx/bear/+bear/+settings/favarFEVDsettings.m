@@ -3,7 +3,9 @@ classdef favarFEVDsettings < matlab.mixin.CustomDisplay
     properties
         plot        (1,1) logical = 0; % (1=yes, 0=no)
         % choose shock(s) to plot
+        plotXshock char = '';
         plotXblocks char = ''; %'EA.factor1 EA.factor2 EA.factor3 EA.factor4 EA.factor5 EA.factor6';
+        
     end
     
     methods (Access = protected)
