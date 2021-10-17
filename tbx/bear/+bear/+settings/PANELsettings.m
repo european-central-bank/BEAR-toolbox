@@ -31,13 +31,13 @@ classdef PANELsettings < bear.settings.BASEsettings
     %    b0        - hyperparameter
     %    rho       - hyperparameter
     %    psi       - hyperparameter
-
+    
     properties
-        % Choice of panel model: 
+        % Choice of panel model:
         % 1 = OLS mean group estimator (Mge),
-        % 2 = pooled estimator (Pooled) 
+        % 2 = pooled estimator (Pooled)
         % 3 = random effect Zellner and Hong (Random_zh),
-        % 4 = random effect hierarchical (Random_hierarchical) 
+        % 4 = random effect hierarchical (Random_hierarchical)
         % 5 = static factor approach (Factor_static)
         % 6 = dynamic factor approach (Factor_dynamic)
         panel (1,1) bear.PANELtype = 2;
@@ -63,7 +63,7 @@ classdef PANELsettings < bear.settings.BASEsettings
         % Lag decay: lambda3
         lambda3 (1,1) double {mustBeInRange(lambda3, 1, 2)} = 1;
         % Exogenous variable and constant: lambda4
-        lambda4 (:,1) double {mustBeGreaterThanOrEqual(lambda4,0)} = 100;
+        lambda4 (:,:) double {mustBeGreaterThanOrEqual(lambda4,0)} = 100;
         % hyperparameter: s0
         s0 (1,1) double = 0.001;
         % hyperparameter: v0
@@ -88,9 +88,24 @@ classdef PANELsettings < bear.settings.BASEsettings
         
         function obj = PANELsettings(excelPath, varargin)
             
-            obj@bear.settings.BASEsettings(4, excelPath)           
+            obj@bear.settings.BASEsettings(4, excelPath)
             
             obj = parseBEARSettings(obj, varargin{:});
+            
+        end
+        
+        function obj = set.panel(obj, value)
+            
+            obj.panel = value;
+            try
+                obj.checkIRFt(obj.IRFt);
+            catch
+                if ismember(value, [2, 3, 4])
+                    obj.IRFt = bear.IRFtype(4);
+                else
+                    obj.IRFt = bear.IRFtype(1);
+                end
+            end
             
         end
         
@@ -107,6 +122,42 @@ classdef PANELsettings < bear.settings.BASEsettings
                 obj.It = value;
             else
                 error('bear:settings:PANELsettings',"The minimum value of It is Bu+1: " + (obj.Bu+1)) %#ok<MCSUP>
+            end
+        end
+        
+    end
+    
+    methods (Access = protected)
+        
+        function obj = checkIRFt(obj, value)
+            
+            switch value
+                case {2, 3, 4}
+                    if ~ismember(obj.panel, [2, 3, 4])
+                        error('bear:settings:PANELsettings:WrongIRFt', ...
+                            'For panel = 2, 3, 4 IRFt must be 2, 3, or 4');
+                    end
+                    
+                case {5, 6}
+                    error('bear:settings:PANELsettings:UnusedIRFt', ...
+                        'PANEL VAR only works with IRFt = 1, 2, 3, 4');
+            end
+            
+        end
+        
+        function value = getFEVD(obj)
+            if obj.IRFt == 1
+                value = 0;
+            else
+                value = obj.FEVDinternal;
+            end
+        end
+        
+        function value = getHD(obj)
+            if obj.IRFt == 1
+                value = 0;
+            else
+                value = obj.HDinternal;
             end
         end
         
