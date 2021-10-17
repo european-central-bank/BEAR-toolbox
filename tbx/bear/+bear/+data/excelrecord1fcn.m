@@ -57,7 +57,7 @@ if opts.const==1
     estimationinfo{10,1}='constant';
 end
 for ii=1:size(exo,1)
-    estimationinfo{10,ii+const}=exo{ii,1};
+    estimationinfo{10,ii+opts.const}=exo{ii,1};
 end
 
 % constant included
