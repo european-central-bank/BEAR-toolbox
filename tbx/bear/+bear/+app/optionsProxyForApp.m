@@ -32,7 +32,12 @@ classdef optionsProxyForApp < matlab.mixin.SetGet
             for i = 1 : numel(e)
                 vt = string(e(i));
                 if isprop(obj.(vt), prop)
-                    obj.(vt).(prop) = value;
+                    try
+                        obj.(vt).(prop) = value;
+                    catch ME
+                        warning('bear:app:optionsProxyForApp',"Unable to set property in " + string(i) + ". Reason: " + ME.message)
+                    end
+                         
                 end                
             end
         end
