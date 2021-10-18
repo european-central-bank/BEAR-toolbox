@@ -135,7 +135,7 @@ classdef PANELsettings < bear.settings.BASEsettings
                 case {2, 3, 4}
                     if ~ismember(obj.panel, [2, 3, 4])
                         error('bear:settings:PANELsettings:WrongIRFt', ...
-                            'For panel = 2, 3, 4 IRFt must be 2, 3, or 4');
+                            'For IRFt = 2, 3, 4 panel must be 2, 3, or 4');
                     end
                     
                 case {5, 6}
