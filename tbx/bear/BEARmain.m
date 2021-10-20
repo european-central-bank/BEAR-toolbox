@@ -1874,14 +1874,14 @@ for iteration=1:numt % beginning of forecasting loop
         % if the model is the time-varying coefficients only
         if opts.tvbvar==1
             % obtain prior elements
-            [chi, opts.psi, kappa, S, H, I_tau]=bear.tvbvar1prior(arvar,n,q,T);
+            [chi, psi, kappa, S, H, I_tau]=bear.tvbvar1prior(arvar,n,q,T);
             % run the Gibbs sampling algorithm to recover the posterior distributions
             if favar.FAVAR==0
                 [beta_gibbs, omega_gibbs, sigma_gibbs]=...
-                    bear.tvbvar1gibbs(S,sigmahat,T,chi,opts.psi,kappa,betahat,q,n,opts.It,opts.Bu,I_tau,H,Xbar,y);
+                    bear.tvbvar1gibbs(S,sigmahat,T,chi,psi,kappa,betahat,q,n,opts.It,opts.Bu,I_tau,H,Xbar,y);
             elseif favar.FAVAR==1 % FAVAR two-step estimation (static factors)
                 [beta_gibbs, omega_gibbs, sigma_gibbs, favar]=...
-                    bear.favar_tvbvar1gibbs(S,sigmahat,T,chi,opts.psi,kappa,betahat,q,n,opts.It,opts.Bu,I_tau,H,Xbar,y,data_endo,lags,favar);
+                    bear.favar_tvbvar1gibbs(S,sigmahat,T,chi,psi,kappa,betahat,q,n,opts.It,opts.Bu,I_tau,H,Xbar,y,data_endo,lags,favar);
             end
             % compute posterior estimates
             [beta_t_median, beta_t_std, beta_t_lbound, beta_t_ubound, omega_median, sigma_median, sigma_t_median, sigma_t_lbound, sigma_t_ubound]=...
@@ -1891,14 +1891,14 @@ for iteration=1:numt % beginning of forecasting loop
             % if the model is the general time-varying
         elseif opts.tvbvar==2
             % obtain prior elements
-            [chi, opts.psi, kappa, S, H, I_tau, G, I_om, f0, uopts.psilon0]=bear.tvbvar2prior(arvar,n,q,T,opts.gamma);
+            [chi, psi, kappa, S, H, I_tau, G, I_om, f0, uopts.psilon0]=bear.tvbvar2prior(arvar,n,q,T,opts.gamma);
             % run the Gibbs sampling algorithm to recover the posterior distributions
             if favar.FAVAR==0
                 [beta_gibbs, omega_gibbs, F_gibbs, L_gibbs, phi_gibbs, sigma_gibbs, lambda_t_gibbs ,sigma_t_gibbs, sbar]...
-                    =bear.tvbvar2gibbs(G,sigmahat,T,chi,opts.psi,kappa,betahat,q,n,opts.It,opts.Bu,I_tau,I_om,H,Xbar,y,opts.alpha0,yt,Xbart,uopts.psilon0,f0,opts.delta0,opts.gamma,opts.pick,opts.pickf);
+                    =bear.tvbvar2gibbs(G,sigmahat,T,chi,psi,kappa,betahat,q,n,opts.It,opts.Bu,I_tau,I_om,H,Xbar,y,opts.alpha0,yt,Xbart,uopts.psilon0,f0,opts.delta0,opts.gamma,opts.pick,opts.pickf);
             elseif favar.FAVAR==1 % FAVAR two-step estimation (static factors)
                 [beta_gibbs, omega_gibbs, F_gibbs, L_gibbs, phi_gibbs, sigma_gibbs, lambda_t_gibbs ,sigma_t_gibbs, sbar, favar]...
-                    =bear.favar_tvbvar2gibbs(G,sigmahat,T,chi,opts.psi,kappa,betahat,q,n,opts.It,opts.Bu,I_tau,I_om,H,Xbar,y,opts.alpha0,yt,Xbart,uopts.psilon0,f0,opts.delta0,opts.gamma,opts.pick,opts.pickf,data_endo,lags,favar);
+                    =bear.favar_tvbvar2gibbs(G,sigmahat,T,chi,psi,kappa,betahat,q,n,opts.It,opts.Bu,I_tau,I_om,H,Xbar,y,opts.alpha0,yt,Xbart,uopts.psilon0,f0,opts.delta0,opts.gamma,opts.pick,opts.pickf,data_endo,lags,favar);
             end
             % compute posterior estimates
             [beta_t_median, beta_t_std, beta_t_lbound, beta_t_ubound, omega_median, sigma_median, sigma_t_median, sigma_t_lbound, sigma_t_ubound]=bear.tvbvar2estimates(beta_gibbs,omega_gibbs,F_gibbs,L_gibbs,phi_gibbs,sigma_gibbs,lambda_t_gibbs,sigma_t_gibbs,n,q,T,cband);

@@ -320,9 +320,9 @@ if opts.VARtype==5
         estimationinfo{71,1}='large BVAR';
     elseif opts.stvol==4
         estimationinfo{71,1}='Survey Local Mean Model';
-    elseif tvbvar==1
+    elseif opts.tvbvar==1
         estimationinfo{71,1}='Var Coefficients';
-    elseif tvbvar==2
+    elseif opts.tvbvar==2
         estimationinfo{71,1}='General Time varying';
     end
     
@@ -394,9 +394,9 @@ end
 if opts.VARtype==6
     
     % Stochastic volatility model
-    if tvbvar==1
+    if opts.tvbvar==1
         estimationinfo{91,1}='VAR coefficients';
-    elseif tvbvar==2
+    elseif opts.tvbvar==2
         estimationinfo{91,1}='General';
     end
     
