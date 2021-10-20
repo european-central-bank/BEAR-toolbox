@@ -1,12 +1,12 @@
 classdef optionsProxyForApp < matlab.mixin.SetGet
     
     properties (Access = private)
-        OLS      = BEARsettings('OLS',   'ExcelFile', 'data.xlsx')
-        BVAR     = BEARsettings('BVAR',  'ExcelFile', 'data.xlsx')
-        PANEL    = BEARsettings('Panel', 'ExcelFile', 'data.xlsx')
-        SV       = BEARsettings('SV',    'ExcelFile', 'data.xlsx')
-        TVP      = BEARsettings('TVP',   'ExcelFile', 'data.xlsx')
-        MFVAR    = BEARsettings('MFVAR', 'ExcelFile', 'data.xlsx')
+        OLS     (1,1) bear.settings.OLSsettings   = BEARsettings('OLS',   'ExcelFile', 'data.xlsx')
+        BVAR    (1,1) bear.settings.BVARsettings  = BEARsettings('BVAR',  'ExcelFile', 'data.xlsx')
+        PANEL   (1,1) bear.settings.PANELsettings = BEARsettings('Panel', 'ExcelFile', 'data.xlsx')
+        SV      (1,1) bear.settings.SVsettings    = BEARsettings('SV',    'ExcelFile', 'data.xlsx')
+        TVP     (1,1) bear.settings.TVPsettings   = BEARsettings('TVP',   'ExcelFile', 'data.xlsx')
+        MFVAR   (1,1) bear.settings.MFVARsettings = BEARsettings('MFVAR', 'ExcelFile', 'data.xlsx')
     end
     
     properties
@@ -23,10 +23,11 @@ classdef optionsProxyForApp < matlab.mixin.SetGet
         end
         
         function set.opts(obj, value)
-           obj.(string(obj.VARtype)) = value;
+            obj.VARtype = value.VARtype;
+            obj.(string(obj.VARtype)) = value;
         end
         
-        function setCommonProp(obj, prop, value)            
+        function setCommonProp(obj, prop, value)
             % Sets common property to all of the classes
             e = enumeration('bear.VARtype');
             for i = 1 : numel(e)
@@ -35,10 +36,15 @@ classdef optionsProxyForApp < matlab.mixin.SetGet
                     try
                         obj.(vt).(prop) = value;
                     catch ME
-                        warning('bear:app:optionsProxyForApp',"Unable to set property in " + string(i) + ". Reason: " + ME.message)
+                        if isequal(e(i), obj.opts.VARtype)
+                            error('bear:app:optionsProxyForApp:WrongSetting', "Unable to set property in " + vt + ". Reason: " + ME.message)
+                        else
+                            warning('bear:app:optionsProxyForApp:WrongSettingInUnselectedVARtype', ...
+                                "Unable to set property in " + vt + ". Reason: " + ME.message)
+                        end
                     end
-                         
-                end                
+                    
+                end
             end
         end
         
