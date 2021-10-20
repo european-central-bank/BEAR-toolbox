@@ -1195,9 +1195,9 @@ for iteration=1:numt % beginning of forecasting loop
             % compute preliminary elements
             [Ymat,Xmat,N,n,m,p,T,k,q,h]=bear.panel6prelim(data_endo,data_exo,const,lags);
             % obtain prior elements
-            [d1,d2,d3,d4,d5,d,Xi1,Xi2,Xi3,Xi4,Xi5,Xi,y,Xtilde,thetabar,theta0,H,Thetatilde,Theta0,G]=bear.panel6prior(N,n,p,m,k,q,h,T,Ymat,Xmat,opts.rho,opts.gama);
+            [d1,d2,d3,d4,d5,d,Xi1,Xi2,Xi3,Xi4,Xi5,Xi,y,Xtilde,thetabar,theta0,H,Thetatilde,Theta0,G]=bear.panel6prior(N,n,p,m,k,q,h,T,Ymat,Xmat,opts.rho,opts.gamma);
             % run the Gibbs sampler
-            [theta_gibbs,sigmatilde_gibbs,Zeta_gibbs,sigma_gibbs,phi_gibbs,B_gibbs,acceptrate]=bear.panel6gibbs(y,Xtilde,N,n,T,theta0,Theta0,thetabar,opts.alpha0,opts.delta0,opts.a0,opts.b0,opts.psi,d1,d2,d3,d4,d5,d,opts.It,opts.Bu,H,G,opts.pick,opts.pickf,opts.gama);
+            [theta_gibbs,sigmatilde_gibbs,Zeta_gibbs,sigma_gibbs,phi_gibbs,B_gibbs,acceptrate]=bear.panel6gibbs(y,Xtilde,N,n,T,theta0,Theta0,thetabar,opts.alpha0,opts.delta0,opts.a0,opts.b0,opts.psi,d1,d2,d3,d4,d5,d,opts.It,opts.Bu,H,G,opts.pick,opts.pickf,opts.gamma);
             % compute posterior estimates
             [theta_median,theta_std,theta_lbound,theta_ubound,sigma_median]=bear.panel6estimates(d,N,n,T,theta_gibbs,sigma_gibbs,cband);
             % plot a first set of results
@@ -1322,7 +1322,7 @@ for iteration=1:numt % beginning of forecasting loop
             elseif opts.panel==6
                 % estimate the forecasts
                 [forecast_record, forecast_estimates]=...
-                    bear.panel6forecast(const,data_exo_p,Fstartlocation,opts.It,opts.Bu,data_endo_a,p,B_gibbs,sigmatilde_gibbs,N,n,phi_gibbs,theta_gibbs,Zeta_gibbs,Fperiods,d,opts.rho,thetabar,opts.gama,Xi,Fband);
+                    bear.panel6forecast(const,data_exo_p,Fstartlocation,opts.It,opts.Bu,data_endo_a,p,B_gibbs,sigmatilde_gibbs,N,n,phi_gibbs,theta_gibbs,Zeta_gibbs,Fperiods,d,opts.rho,thetabar,opts.gamma,Xi,Fband);
                 % display the results
                 bear.panel6fdisp(N,n,T,Units,endo,Ymat,stringdates2,decimaldates2,Fstartlocation,Fendlocation,forecast_estimates,pref)
             end
@@ -1473,7 +1473,7 @@ for iteration=1:numt % beginning of forecasting loop
             elseif opts.panel==6
                 % estimate conditional forecasts
                 [cforecast_record, cforecast_estimates]=...
-                    bear.panel6cf(N,n,m,p,k,d,cfconds,cfshocks,cfblocks,opts.It,opts.Bu,Fperiods,const,Xi,data_exo_p,theta_gibbs,B_gibbs,phi_gibbs,Zeta_gibbs,sigmatilde_gibbs,Fstartlocation,Ymat,opts.rho,thetabar,opts.gama,CFt,Fband);
+                    bear.panel6cf(N,n,m,p,k,d,cfconds,cfshocks,cfblocks,opts.It,opts.Bu,Fperiods,const,Xi,data_exo_p,theta_gibbs,B_gibbs,phi_gibbs,Zeta_gibbs,sigmatilde_gibbs,Fstartlocation,Ymat,opts.rho,thetabar,opts.gamma,CFt,Fband);
                 % display the results
                 bear.panel6cfdisp(N,n,T,Units,endo,Ymat,stringdates2,decimaldates2,Fstartlocation,Fendlocation,cforecast_estimates,pref);
             end
@@ -1520,7 +1520,7 @@ for iteration=1:numt % beginning of forecasting loop
             % else, if the model is the factor model (dynamic)
         elseif opts.panel==6
             bear.panel6disp(n,N,m,p,k,T,d1,d2,d3,d4,d5,d,Ymat,Xtilde,Units,endo,exo,const,Xi,theta_median,theta_std,theta_lbound,theta_ubound,sigma_median,...
-                D_estimates,gamma_estimates,opts.alpha0,opts.delta0,opts.gama,opts.a0,opts.b0,opts.rho,opts.psi,acceptrate,startdate,enddate,forecast_record,forecast_estimates,Fcperiods,...
+                D_estimates,gamma_estimates,opts.alpha0,opts.delta0,opts.gamma,opts.a0,opts.b0,opts.rho,opts.psi,acceptrate,startdate,enddate,forecast_record,forecast_estimates,Fcperiods,...
                 stringdates3,Fstartdate,Fcenddate,Feval,Fcomp,data_endo_c,IRF,IRFt,pref,names);
             
         end

@@ -63,7 +63,7 @@ s.lambda3=1;
 s.lambda4=100;
 % hyperparameter: lambda5
 s.lambda5=0.001;
-% hyperparameter: gama
+% hyperparameter: gamma
 s.gamma=1;
 
 % Model options

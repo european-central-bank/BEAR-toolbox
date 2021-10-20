@@ -26,7 +26,7 @@ classdef PANELsettings < bear.settings.BASEsettings
     %    v0        - hyperparameter
     %    alpha0    - hyperparameter
     %    delta0    - hyperparameter
-    %    gama      - hyperparameter
+    %    gamma     - hyperparameter
     %    a0        - hyperparameter
     %    b0        - hyperparameter
     %    rho       - hyperparameter
@@ -72,8 +72,8 @@ classdef PANELsettings < bear.settings.BASEsettings
         alpha0 (1,1) double = 1000;
         % hyperparameter: delta0
         delta0 (1,1) double = 1;
-        % hyperparameter: gama
-        gama (1,1) double = 0.85;
+        % hyperparameter: gamma
+        gamma (1,1) double = 0.85;
         % hyperparameter: a0
         a0 (1,1) double = 1000;
         % hyperparameter: b0

@@ -288,7 +288,7 @@ if opts.VARtype==4
     estimationinfo{62,1}=num2str(opts.delta0);
     
     % AR coefficient on residual variance gamma
-    estimationinfo{63,1}=num2str(opts.gama);
+    estimationinfo{63,1}=num2str(opts.gamma);
     
     % IG shape on factor variance a0
     estimationinfo{64,1}=num2str(opts.a0);
