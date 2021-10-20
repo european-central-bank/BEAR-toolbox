@@ -104,7 +104,7 @@ classdef tSettings < matlab.unittest.TestCase
         end
         
         function tPANELHyperparamLimits(tc)
-            param = ["ar";"lambda1";"lambda2";"lambda3";"lambda4";"s0";"v0";"alpha0";"delta0";"gama";"a0";"b0";"rho";"psi"];
+            param = ["ar";"lambda1";"lambda2";"lambda3";"lambda4";"s0";"v0";"alpha0";"delta0";"gamma";"a0";"b0";"rho";"psi"];
             lowerBound   = [-inf; 0; 0.1; 1; 0; -inf; -inf; -inf; -inf; -inf; -inf; -inf; -inf; -inf];
             defaultValue = [0.8; 0.1; 0.5; 1; 100; 0.001; 0.001; 1000; 1; 0.85; 1000; 1; 0.75; 0.1];
             upperBound   = [inf; inf; inf; 2; inf; inf; inf; inf; inf; inf; inf; inf; inf; inf];
