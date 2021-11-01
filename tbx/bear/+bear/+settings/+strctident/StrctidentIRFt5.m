@@ -1,4 +1,4 @@
-classdef StrctidentIRFt5 < bear.settings.Strctident
+classdef StrctidentIRFt5 < bear.settings.strctident.Strctident
 
     properties
 
