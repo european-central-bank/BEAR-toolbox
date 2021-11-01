@@ -30,11 +30,13 @@ classdef optionsProxyForApp < matlab.mixin.SetGet
             meta = ?bear.settings.BASEsettings;                        
             baseProps = {meta.PropertyList.Name};
             
+            warning off
             for p = baseProps
                 if ~ismember(p, {'VARtype','FEVDinternal','HDinternal'})
                     obj.setCommonProp(p{1}, value.(p{1}));
                 end
             end
+            warning on
         end
         
         function setCommonProp(obj, prop, value)
