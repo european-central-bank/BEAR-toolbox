@@ -33,7 +33,7 @@ classdef FAVARsettings < matlab.mixin.CustomDisplay
         HDplotXblocks                         = 1; % sum contributions of factors blockwise
         HDallsumblock           (1,1) logical = 0; % include all components of HDall(=1) other than shock contributions, but display them sumed under blocks\shocks
         
-        IRFplot                 (1,1) logical = 0; % (1=yes, 0=no)        
+        IRFplot                 (1,1) logical = 0; % (1=yes, 0=no)
         IRFplotXshock                         = ''; %'FEVDshock';%'FYFF'; % FYFF 'USMP' % we need this atm only for IRFt2,3 provide =varendo for all shocks; in IRFt456 the identified shocks are plotted
         IRFplotXblocks                        = 0;
         
@@ -58,36 +58,33 @@ classdef FAVARsettings < matlab.mixin.CustomDisplay
             disp(header);
             
             favar = matlab.mixin.util.PropertyGroup('FAVAR');
-            matlab.mixin.CustomDisplay.displayPropertyGroups(obj, favar);
             
             % Grab property lists
             props = getPropertyGroups(obj);
-            matlab.mixin.CustomDisplay.displayPropertyGroups(obj, props);
+            matlab.mixin.CustomDisplay.displayPropertyGroups(obj, [favar, props]);
             
             fprintf('\n <strong> FAVAR HD Properties</strong> \n\n')
             HD = matlab.mixin.util.PropertyGroup('HDplot');
-            matlab.mixin.CustomDisplay.displayPropertyGroups(obj, HD);
             if obj.HDplot == 1
-                HD = matlab.mixin.util.PropertyGroup({'HDsumShockcontributions','HDplotXblocks', 'HDallsumblock'});                 
-                matlab.mixin.CustomDisplay.displayPropertyGroups(obj, HD);
+                HD = [HD, matlab.mixin.util.PropertyGroup({'HDsumShockcontributions','HDplotXblocks', 'HDallsumblock'})];
             end
+            matlab.mixin.CustomDisplay.displayPropertyGroups(obj, HD);
             
             fprintf('\n <strong> FAVAR IRF Properties</strong> \n\n')
-            IRF = matlab.mixin.util.PropertyGroup('IRFplot');            
-            matlab.mixin.CustomDisplay.displayPropertyGroups(obj, IRF);
+            IRF = matlab.mixin.util.PropertyGroup('IRFplot');
             if obj.IRFplot == 1
-                IRF = matlab.mixin.util.PropertyGroup({'IRFplotXshock','IRFplotXblocks'});                
+                IRF = [IRF, matlab.mixin.util.PropertyGroup({'IRFplotXshock','IRFplotXblocks'})];
                 matlab.mixin.CustomDisplay.displayPropertyGroups(obj, IRF);
-            end
+            end            
+            matlab.mixin.CustomDisplay.displayPropertyGroups(obj, IRF);
             
             fprintf('\n <strong> FAVAR FEVD Properties</strong> \n\n')
             FEVD = matlab.mixin.util.PropertyGroup('FEVDplot');
-            matlab.mixin.CustomDisplay.displayPropertyGroups(obj, FEVD);
             if obj.FEVDplot == 1
-                FEVD = matlab.mixin.util.PropertyGroup({'FEVDplotXshock', 'FEVDplotXblocks'});                
-                matlab.mixin.CustomDisplay.displayPropertyGroups(obj, FEVD);          
-            end
-     
+                FEVD = [FEVD, matlab.mixin.util.PropertyGroup({'FEVDplotXshock', 'FEVDplotXblocks'}) ];
+            end            
+            matlab.mixin.CustomDisplay.displayPropertyGroups(obj, FEVD);
+            
         end
         
         function propgrp = getPropertyGroups(obj)
@@ -109,7 +106,7 @@ classdef FAVARsettings < matlab.mixin.CustomDisplay
                 end
                 
             end
-          
+            
             proplist = proplist(idx);
             
             propgrp = matlab.mixin.util.PropertyGroup(proplist);
