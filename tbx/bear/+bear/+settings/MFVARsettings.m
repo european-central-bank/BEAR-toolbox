@@ -11,6 +11,15 @@ classdef MFVARsettings < bear.settings.BASEsettings
     %   BEARsettings('mfvar', ExcelFile = 'path/To/file.xlsx')
     %
     % MFVARsettings Properties:  
+    %    prior           - Selected prior
+    %    It              - Gibbs sampler iterations
+    %    Bu              - Gibbs sampler burn-in iterations
+    %    hogs            - grid search
+    %    bex             - block exogeneity
+    %    scoeff          - apply sum of coefficients
+    %    iobs            - initial observation
+    %    lrp             - Long run prior option
+    %    H               - H matrix
     %    ar              - auto-regressive coefficients
     %    lambda1         - hyperparameter
     %    lambda2         - hyperparameter

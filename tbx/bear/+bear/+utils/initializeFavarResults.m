@@ -10,26 +10,18 @@ favar.HDplot    = false;
 favar.IRFplot   = false;
 favar.FEVDplot  = false;
 
-if isprop(opts, 'favar') && isa(opts.favar, 'bear.settings.FAVARsettings')
+if isprop(opts, 'favar') && isa(opts.favar, 'bear.settings.favar.FAVARsettings')
     favar = initalizeFavar(opts.favar);
 end
 end
 
 function favar = initalizeFavar(favarOpt)
 
-p = favarOpt.getActiveProperties;
+p = properties(favarOpt);
 for i = 1 : length(p)
     
     favar.(p{i}) = favarOpt.(p{i});
-    %         switch p{i}
-    %             case "HD"
-    %                 favar.HD   = initalizeFavar(favarOpt.HD);
-    %             case "IRF"
-    %                 favar.IRF  = initalizeFavar(favarOpt.IRF);
-    %             case "FEVD"
-    %                 favar.FEVD = initalizeFavar(favarOpt.FEVD);
-    %             otherwise
-    %         end
+    
 end
 
 end
