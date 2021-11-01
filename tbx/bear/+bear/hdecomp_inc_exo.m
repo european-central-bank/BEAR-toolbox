@@ -64,7 +64,7 @@ for ii=1:It-Bu
     [hd_estimates]=bear.hd_new_for_signres(const,exo,beta,k,n,p,D,m,T,X,Y,data_exo,IRFt,labels);
     HDstorage{ii,1}=hd_estimates;
     
-    if favar.FAVAR==1 && favar.HD.plot==1
+    if favar.FAVAR==1 && favar.HDplot==1
         L_g=squeeze(Lgibbs(:,:,ii));
         [favar,favar_hd_estimates]=bear.favar_hdestimates(favar,hd_estimates,n,IRFt,endo,strctident,L_g);
         favar_HDstorage{ii,1}=favar_hd_estimates;
@@ -80,7 +80,7 @@ for ii=1:It-Bu %loop over draws
     end
 end
 
-if favar.FAVAR==1 && favar.HD.plot==1
+if favar.FAVAR==1 && favar.HDplot==1
     for ii=1:It-Bu %loop over draws
         for kk=1:contributors+2 %loop over contributors
             for ll=1:n %loop over variables

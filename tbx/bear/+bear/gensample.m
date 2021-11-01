@@ -142,7 +142,7 @@ if favar.FAVAR==1
     %favar.L=(olssvd(favar.X,data_endo))';
     
     % IRF shock to plot
-    if favar.IRF.plot==1
+    if favar.IRFplot==1
         favar.IRF.npltXshck=size(favar.IRF.pltXshck,1);
         if IRFt==1||IRFt==2||IRFt==3
             plotXshock_indexlogical=ismember(endo,favar.IRF.pltXshck);

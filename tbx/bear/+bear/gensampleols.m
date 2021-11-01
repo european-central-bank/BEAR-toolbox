@@ -169,7 +169,7 @@ if favar.FAVAR==1
     favar.bvar=0;
     
     % IRF shock to plot
-    if favar.IRF.plot==1
+    if favar.IRFplot==1
         if IRFt==1||IRFt==2||IRFt==3
             plotXshock_indexlogical=ismember(endo,favar.IRF.pltXshck);
             favar.IRF.plotXshock_index=find(plotXshock_indexlogical==1)';

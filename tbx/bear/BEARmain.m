@@ -113,9 +113,9 @@ gamma_median=[];
 % first check for favar, turn off routines if favar doesn't exist (for VARtypes other than =1)
 % if exist('favar','var')~=1
 %     favar.FAVAR     = false;
-%     favar.HD.plot   = false;
-%     favar.IRF.plot  = false;
-%     favar.FEVD.plot = false;
+%     favar.HDplot    = false;
+%     favar.IRFplot   = false;
+%     favar.FEVDplot  = false;
 % end
 
 if favar.FAVAR==1
@@ -137,11 +137,11 @@ if favar.FAVAR==1
     end
     
     % changed the variable name in the settings for clarity to favar.plotXshock
-    favar.IRF.plotXshock=favar.plotXshock;
+    favar.IRFplotXshock=favar.plotXshock;
     
-    if favar.FEVD.plot==1
+    if favar.FEVDplot==1
         % choose shock(s) to plot
-        favar.FEVD.plotXshock=favar.IRF.plotXshock; % this option should be removed
+        favar.FEVDplotXshock = favar.IRFplotXshock; % this option should be removed
     end
     if IRFt>4
         message='It is currently not recommended to use IRFt 5 and IRFt 6 in a FAVAR.';
@@ -149,8 +149,8 @@ if favar.FAVAR==1
     end
     
     if favar.blocks==0
-        favar.HD.plotXblocks=0;
-        favar.HD.HDallsumblock=0;
+        favar.HDplotXblocks=0;
+        favar.HDHDallsumblock=0;
     end
     
     if VARtype==2 && (opts.prior==51 || opts.prior==61)
@@ -203,8 +203,8 @@ if favar.FAVAR==1
     if favar.blocks==1
         favar.blocknumpc=bear.utils.fixstring(favar.blocknumpc);
     end
-    if favar.IRF.plot==1
-        favar.IRF.plotXshock=bear.utils.fixstring(favar.IRF.plotXshock);
+    if favar.IRFplot==1
+        favar.IRFplotXshock=bear.utils.fixstring(favar.IRFplotXshock);
     end
     favar.transform_endo=bear.utils.fixstring(favar.transform_endo);
 end
@@ -286,11 +286,11 @@ if favar.FAVAR==1
         end
     end
     
-    if favar.IRF.plot==1
-        findspace=isspace(favar.IRF.plotXshock);
+    if favar.IRFplot==1
+        findspace=isspace(favar.IRFplotXshock);
         locspace=find(findspace);
         % use this to set the delimiters: each variable string is located between two delimiters
-        delimiters=[0 locspace numel(favar.IRF.plotXshock)+1];
+        delimiters=[0 locspace numel(favar.IRFplotXshock)+1];
         % count the number of endogenous variables
         % first count the number of spaces
         nspaceplotXshock=sum(findspace(:)==1);
@@ -299,7 +299,7 @@ if favar.FAVAR==1
         % now finally identify the endogenous
         favar.IRF.pltXshck=cell(numplotXshock,1);
         for ii=1:numplotXshock
-            favar.IRF.pltXshck{ii,1}=favar.IRF.plotXshock(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
+            favar.IRF.pltXshck{ii,1}=favar.IRFplotXshock(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
         end
     end
     
@@ -629,7 +629,7 @@ for iteration=1:numt % beginning of forecasting loop
         end
         
         %compute IRFs for information variables, output in excel
-        if favar.IRF.plot==1
+        if favar.IRFplot==1
             [favar]=bear.favar_irfols(irf_estimates,favar,const,Bhat,data_exo,n,m,k,lags,EPS,T,data_endo,IRFperiods,endo,IRFt,IRFband,strctident,pref);
         end
         
@@ -646,7 +646,7 @@ for iteration=1:numt % beginning of forecasting loop
         
         
         % FEVD (if activated)
-        if FEVD==1 || favar.FEVD.plot==1
+        if FEVD==1 || favar.FEVDplot==1
             if IRFt==4&&size(strctident.signreslabels_shocks,1)~=n || IRFt==6&&size(strctident.signreslabels_shocks,1)~=n
                 message='Model is not fully identified. FEVD results can be misleading.';
                 msgbox(message,'FEVD warning','warn','warning');
@@ -654,7 +654,7 @@ for iteration=1:numt % beginning of forecasting loop
             % compute fevd estimates
             [fevd_estimates]=bear.olsfevd(irf_estimates,IRFperiods,gamma,n);
             %compute approximate favar fevd estimates
-            if favar.FEVD.plot==1
+            if favar.FEVDplot==1
                 [favar]=bear.favar_olsfevd(IRFperiods,gamma,favar,n,IRFt,strctident);
             end
             % display the results
@@ -662,7 +662,7 @@ for iteration=1:numt % beginning of forecasting loop
         end
         
         % historical decomposition (if activated)
-        if HD==1 || favar.HD.plot==1
+        if HD==1 || favar.HDplot==1
             % compute hd_record
             if IRFt==1||IRFt==2||IRFt==3||IRFt==5
                 % compute hd_record, here we have the "true" values already
@@ -676,7 +676,7 @@ for iteration=1:numt % beginning of forecasting loop
             
             % FAVAR: scale hd_estimates with loadings
             if favar.FAVAR==1
-                if favar.HD.plot==1 && favar.pX==1
+                if favar.HDplot==1 && favar.pX==1
                     [favar,favar.HD.hd_estimates]=bear.favar_hdestimates(favar,hd_estimates,n,IRFt,endo,strctident,favar.L(favar.plotX_index,:));
                 end
             end
@@ -962,7 +962,7 @@ for iteration=1:numt % beginning of forecasting loop
             bear.strsdisp(decimaldates1,stringdates1,strshocks_estimates,endo,pref,IRFt,strctident);
         end
         
-        if IRF==1 || favar.IRF.plot==1
+        if IRF==1 || favar.IRFplot==1
             % compute posterior estimates
             if IRFt==1 || IRFt==2 || IRFt==3
                 [irf_estimates,D_estimates,gamma_estimates,favar]=bear.irfestimates(struct_irf_record,n,IRFperiods,IRFband,IRFt,D_record,gamma_record,favar);
@@ -975,7 +975,7 @@ for iteration=1:numt % beginning of forecasting loop
                 bear.irfdisp(n,endo,IRFperiods,IRFt,irf_estimates,D_estimates,gamma_estimates,pref,strctident);
             end
             %display IRFs for information variables, output in excel
-            if favar.IRF.plot==1
+            if favar.IRFplot==1
                 [favar]=bear.favar_irfdisp(favar,IRFperiods,endo,IRFt,strctident,pref);
             end
         end
@@ -1021,7 +1021,7 @@ for iteration=1:numt % beginning of forecasting loop
         %% BLOCK 7: FEVD
         
         % compute FEVD if the option has been retained
-        if FEVD==1 || favar.FEVD.plot==1
+        if FEVD==1 || favar.FEVDplot==1
             % warning if the model is not fully identified as the results can be misleading
             if (IRFt==4 && size(strctident.signreslabels_shocks,1)~=n) || (IRFt==6 && size(strctident.signreslabels_shocks,1)~=n) || IRFt==5
                 message='Model is not fully identified. FEVD results can be misleading.';
@@ -1031,7 +1031,7 @@ for iteration=1:numt % beginning of forecasting loop
             % run the Gibbs sampler to compute posterior draws
             [fevd_estimates]=bear.fevd(struct_irf_record,gamma_record,opts.It,opts.Bu,n,IRFperiods,FEVDband);
             % compute approximate favar fevd estimates
-            if favar.FEVD.plot==1
+            if favar.FEVDplot==1
                 [favar]=bear.favar_fevd(gamma_record,opts.It,opts.Bu,n,IRFperiods,FEVDband,favar,IRFt,strctident);
             end
             % display the results
@@ -1042,7 +1042,7 @@ for iteration=1:numt % beginning of forecasting loop
         
         %% BLOCK 8: historical decomposition
         % compute historical decomposition if the option has been retained
-        if HD==1 || favar.HD.plot==1
+        if HD==1 || favar.HDplot==1
             if opts.prior==61 % again, special case
                 [strshocks_record]=bear.TVEmastrshocks(beta_gibbs,theta_gibbs,D_record,n,k1,opts.It,opts.Bu,TVEH,indH,data_endo,p);
                 % run the Gibbs sampler to compute posterior draws
@@ -1677,7 +1677,7 @@ for iteration=1:numt % beginning of forecasting loop
             end
         end
         
-        if IRF==1 || favar.IRF.plot==1
+        if IRF==1 || favar.IRFplot==1
             % compute posterior estimates
             if IRFt==1 || IRFt==2 || IRFt==3
                 [irf_estimates,D_estimates,gamma_estimates,favar]=bear.irfestimates(struct_irf_record,n,IRFperiods,IRFband,IRFt,D_record,gamma_record,favar);
@@ -1690,7 +1690,7 @@ for iteration=1:numt % beginning of forecasting loop
                 bear.irfdisp(n,endo,IRFperiods,IRFt,irf_estimates,D_estimates,gamma_estimates,pref,strctident);
             end
             %display IRFs for information variables, output in excel
-            if favar.IRF.plot==1
+            if favar.IRFplot==1
                 [favar]=bear.favar_irfdisp(favar,IRFperiods,endo,IRFt,strctident,pref);
             end
         end
@@ -1766,7 +1766,7 @@ for iteration=1:numt % beginning of forecasting loop
         %% BLOCK 6: FEVD
         
         % compute FEVD if the option has been retained
-        if FEVD==1 || favar.FEVD.plot==1
+        if FEVD==1 || favar.FEVDplot==1
             % warning if the model is not fully identified as the results can be misleading
             if IRFt==4 && size(strctident.signreslabels_shocks,1)~=n
                 message='Model is not fully identified. FEVD results can be misleading.';
@@ -1776,7 +1776,7 @@ for iteration=1:numt % beginning of forecasting loop
             % run the Gibbs sampler to compute posterior draws
             [fevd_estimates]=bear.fevd(struct_irf_record,gamma_record,opts.It,opts.Bu,n,IRFperiods,FEVDband);
             % compute approximate favar fevd estimates
-            if favar.FEVD.plot==1
+            if favar.FEVDplot==1
                 [favar]=bear.favar_fevd(gamma_record,opts.It,opts.Bu,n,IRFperiods,FEVDband,favar,IRFt);
             end
             % display the results
@@ -1950,7 +1950,7 @@ for iteration=1:numt % beginning of forecasting loop
         end
         
         
-        if IRF==1 || favar.IRF.plot==1
+        if IRF==1 || favar.IRFplot==1
             % compute posterior estimates
             if IRFt==1 || IRFt==2 || IRFt==3 || IRFt==4
                 [irf_estimates,D_estimates,gamma_estimates,favar]=bear.irfestimates(struct_irf_record,n,IRFperiods,IRFband,IRFt,D_record,gamma_record,favar);
@@ -1963,7 +1963,7 @@ for iteration=1:numt % beginning of forecasting loop
                 bear.irfdisp(n,endo,IRFperiods,IRFt,irf_estimates,D_estimates,gamma_estimates,pref,strctident);
             end
             %display IRFs for information variables, output in excel
-            if favar.IRF.plot==1
+            if favar.IRFplot==1
                 [favar]=bear.favar_irfdisp(favar,IRFperiods,endo,IRFt,strctident,pref);
             end
             
@@ -1989,7 +1989,7 @@ for iteration=1:numt % beginning of forecasting loop
                 bear.irfdisp2(n,T,decimaldates1,endo,IRFperiods,IRFt,irf_estimates_allt,pref,signreslabels);
                 
                 %display IRFs for information variables, output in excel
-                if favar.IRF.plot==1
+                if favar.IRFplot==1
                     bear.favar_irfdisp2(n,T,decimaldates1,stringdates1,endo,IRFperiods,IRFt,pref,strctident,favar);
                 end
             end
@@ -2023,7 +2023,7 @@ for iteration=1:numt % beginning of forecasting loop
         %% BLOCK 6: FEVD
         
         % compute FEVD if the option has been retained
-        if FEVD==1 || favar.FEVD.plot==1
+        if FEVD==1 || favar.FEVDplot==1
             % warning if the model is not fully identified as the results can be misleading
             if (IRFt==4 && size(strctident.signreslabels_shocks,1)~=n) || (IRFt==6 && size(strctident.signreslabels_shocks,1)~=n) || IRFt==5
                 message='Model is not fully identified. FEVD results can be misleading.';
@@ -2032,7 +2032,7 @@ for iteration=1:numt % beginning of forecasting loop
             % run the Gibbs sampler to compute posterior draws
             [fevd_estimates]=bear.fevd(struct_irf_record,gamma_record,opts.It,opts.Bu,n,IRFperiods,FEVDband);
             % compute approximate favar fevd estimates
-            if favar.FEVD.plot==1
+            if favar.FEVDplot==1
                 [favar]=bear.favar_fevd(gamma_record,opts.It,opts.Bu,n,IRFperiods,FEVDband,favar,IRFt);
             end
             % display the results

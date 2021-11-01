@@ -79,13 +79,13 @@ s.favar.levels=1; % =0 no re-transformation (default), =1 cumsum, =2 exp cumsum
 s.favar.retransres=1; % re-transform the candidate IRFs in IRFt4, before checking the restrictions
 
 % (approximate) IRFs for information variables
-s.favar.IRF.plot=1; % (1=yes, 0=no)
+s.favar.IRFplot=1; % (1=yes, 0=no)
 
 % (approximate) FEVDs for information variables
-s.favar.FEVD.plot=1; % (1=yes, 0=no)
+s.favar.FEVDplot=1; % (1=yes, 0=no)
 
 % (approximate) HDs for information variables
-s.favar.HD.plot=0; % (1=yes, 0=no)
+s.favar.HDplot=0; % (1=yes, 0=no)
 
 % BVAR specific information: will be read only if VARtype=2
 % selected prior

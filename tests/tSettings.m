@@ -57,38 +57,38 @@ classdef tSettings < matlab.unittest.TestCase
             s = BEARsettings(1, 'ExcelFile', 'data.xlsx');
             tc.verifyEqual(s.favar.FAVAR, false)
             s.favar.FAVAR = 1;
-            tc.verifyClass(s.favar, 'bear.settings.FAVARsettings')
+            tc.verifyClass(s.favar, 'bear.settings.favar.FAVARsettings')
             tc.verifyEqual(s.favar.FAVAR, true)
         end
 
         function tStrctident(tc)
             s = BEARsettings(1, 'ExcelFile', 'data.xlsx');
 
-            tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt4');
+            tc.verifyClass(s.strctident, 'bear.settings.strctident.StrctidentIRFt4');
             tc.verifyEqual(s.IRFt, bear.IRFtype(4))
 
             s.IRFt = 5;
-            tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt5');
+            tc.verifyClass(s.strctident, 'bear.settings.strctident.StrctidentIRFt5');
 
             s.IRFt = 6;
-            tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt6');
+            tc.verifyClass(s.strctident, 'bear.settings.strctident.StrctidentIRFt6');
 
             s = BEARsettings(2, 'ExcelFile', 'data.xlsx');
 
-            tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt4');
+            tc.verifyClass(s.strctident, 'bear.settings.strctident.StrctidentIRFt4');
             tc.verifyEqual(s.IRFt, bear.IRFtype(4))
 
             s.IRFt = 5;
-            tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt5');
+            tc.verifyClass(s.strctident, 'bear.settings.strctident.StrctidentIRFt5');
 
             s.IRFt = 6;
-            tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt6');
+            tc.verifyClass(s.strctident, 'bear.settings.strctident.StrctidentIRFt6');
 
             s = BEARsettings(1, 'ExcelFile', 'data.xlsx', 'IRFt', 5);
-            tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt5');
+            tc.verifyClass(s.strctident, 'bear.settings.strctident.StrctidentIRFt5');
 
             s = BEARsettings(2, 'ExcelFile', 'data.xlsx', 'IRFt', 6);
-            tc.verifyClass(s.strctident, 'bear.settings.StrctidentIRFt6');
+            tc.verifyClass(s.strctident, 'bear.settings.strctident.StrctidentIRFt6');
         end
         
         function tBVARHyperparamLimits(tc)

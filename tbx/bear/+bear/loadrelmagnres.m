@@ -455,18 +455,17 @@ strctident.signreslabels_shocks=strctident.signreslabels(strctident.signreslabel
 signreslabels=strctident.signreslabels;
 
 % create indices for plotXshock
-if favar.IRF.plot==1 && favar.npltX>0
+if favar.IRFplot==1 && favar.npltX>0
         IRFplotXshock_indexlogical=ismember(signreslabels,favar.IRF.pltXshck);
         favar.IRF.plotXshock_index=find(IRFplotXshock_indexlogical==1)';
         favar.IRF.npltXshck=size(favar.IRF.pltXshck,1);
         if favar.IRF.npltXshck==0
         % error if no shock to plot is found, otherwise code crashes at a later stage
-        message=['Error: at least one Shock (' favar.IRF.plotXshock ') cannot be found.'];
-        msgbox(message,'favar.IRF.npltXshck error');
-        error('programme termination: favar.IRF.plotXshock error');
+        message=['Error: at least one Shock (' favar.IRFplotXshock ') cannot be found.'];
+        error('bear:loadrelmagnres:ShockNotFound',message)
         end
 end
-if favar.FEVD.plot==1
+if favar.FEVDplot==1
         FEVDplotXshock_indexlogical=ismember(signreslabels,favar.FEVD.pltXshck);
         favar.FEVD.plotXshock_index=find(FEVDplotXshock_indexlogical==1)';
         favar.FEVD.npltXshck=size(favar.FEVD.pltXshck,1);

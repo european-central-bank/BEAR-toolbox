@@ -93,7 +93,7 @@ classdef SVsettings < bear.settings.BASEsettings
     end
     
     properties (Access = private)
-        favarInternal (1,1) bear.settings.FAVARsettings = bear.settings.VARtypeSpecificFAVARsettings; % augment VAR model with factors (1=yes, 0=no)
+        favarInternal (1,1) bear.settings.favar.FAVARsettings = bear.settings.favar.VARtypeSpecificFAVARsettings; % augment VAR model with factors (1=yes, 0=no)
     end
     
     methods
@@ -127,7 +127,7 @@ classdef SVsettings < bear.settings.BASEsettings
         function value = get.favar(obj)
             
             if obj.stvol == 4
-                value = bear.settings.NullFAVAR;
+                value = bear.settings.favar.NullFAVAR;
             else
                 value = obj.favarInternal;
             end
@@ -163,13 +163,13 @@ classdef SVsettings < bear.settings.BASEsettings
             
             switch value
                 case 4
-                    obj.strctident = bear.settings.StrctidentIRFt4;
+                    obj.strctident = bear.settings.strctident.StrctidentIRFt4;
                 case 5
-                    obj.strctident = bear.settings.StrctidentIRFt5;
+                    obj.strctident = bear.settings.strctident.StrctidentIRFt5;
                 case 6
-                    obj.strctident = bear.settings.StrctidentIRFt6;
+                    obj.strctident = bear.settings.strctident.StrctidentIRFt6;
                 otherwise
-                    obj.strctident = bear.settings.Strctident.empty();
+                    obj.strctident = bear.settings.strctident.Strctident.empty();
             end
             
         end

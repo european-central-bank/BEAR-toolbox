@@ -159,7 +159,7 @@ if HD==1
             
             % sum all contributions if we want to assign them to blocks
             if favar.FAVAR==1
-                if favar.blocks==1 && favar.HD.plotXblocks==1
+                if favar.blocks==1 && favar.HDplotXblocks==1
                     contributions2=contributions(:,1:identified);
                     % rearrange contributions for blocks
                     % entrys to drop
@@ -271,7 +271,7 @@ end
 
 
 %% FAVAR block decomposition for information variables in X
-if favar.HD.plot==1
+if favar.HDplot==1
     % plot X subsample of tranformationindex
     transformationindex_plotX=favar.transformationindex(favar.plotX_index,1);
     
@@ -409,7 +409,7 @@ if favar.HD.plot==1
             labelsfavar=labelsfavar1;
             
             % rearrange contributions for blocks
-            if favar.HD.plotXblocks==1
+            if favar.HDplotXblocks==1
                 
                 % entrys to drop, when we have blocks with more than
                 % one factor

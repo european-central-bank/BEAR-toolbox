@@ -18,7 +18,7 @@ classdef OLSsettings < bear.settings.BASEsettings
         strctident
         
         % FAVAR options
-        favar (1,1) bear.settings.FAVARsettings = bear.settings.FAVARsettings(); % augment VAR model with factors (1=yes, 0=no)
+        favar (1,1) bear.settings.favar.FAVARsettings = bear.settings.favar.FAVARsettings(); % augment VAR model with factors (1=yes, 0=no)
     end
     
     methods
@@ -51,13 +51,13 @@ classdef OLSsettings < bear.settings.BASEsettings
             
             switch value
                 case 4
-                    obj.strctident = bear.settings.StrctidentIRFt4;
+                    obj.strctident = bear.settings.strctident.StrctidentIRFt4;
                 case 5
-                    obj.strctident = bear.settings.StrctidentIRFt5;
+                    obj.strctident = bear.settings.strctident.StrctidentIRFt5;
                 case 6
-                    obj.strctident = bear.settings.StrctidentIRFt6;
+                    obj.strctident = bear.settings.strctident.StrctidentIRFt6;
                 otherwise
-                    obj.strctident = bear.settings.Strctident.empty();
+                    obj.strctident = bear.settings.strctident.Strctident.empty();
             end
             
         end
