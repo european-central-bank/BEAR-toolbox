@@ -25,6 +25,16 @@ classdef optionsProxyForApp < matlab.mixin.SetGet
         function set.opts(obj, value)
             obj.VARtype = value.VARtype;
             obj.(string(obj.VARtype)) = value;
+            
+            % Get base properties
+            meta = ?bear.settings.BASEsettings;                        
+            baseProps = {meta.PropertyList.Name};
+            
+            for p = baseProps
+                if ~ismember(p, {'VARtype','FEVDinternal','HDinternal'})
+                    obj.setCommonProp(p{1}, value.(p{1}));
+                end
+            end
         end
         
         function setCommonProp(obj, prop, value)
