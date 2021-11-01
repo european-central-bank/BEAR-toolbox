@@ -32,15 +32,15 @@ classdef MFVARsettings < bear.settings.BASEsettings
         % number of burn-in iterations for the Gibbs sampler
         Bu (1,1) double = 1000;
         % hyperparameter optimisation by grid search (1=yes, 0=no)
-        hogs=0;
+        hogs   (1,1) logical = false;
         % block exogeneity (1=yes, 0=no)
-        bex=0;
+        bex    (1,1) logical = false;
         % sum-of-coefficients application (1=yes, 0=no)
-        scoeff=0;
+        scoeff (1,1) logical = false;
         % dummy initial observation application (1=yes, 0=no)
-        iobs=0;
+        iobs   (1,1) logical = false;
         % Long run prior option
-        lrp=0;
+        lrp    (1,1) logical = false;
         % create H matrix for the long run priors
         % now taken from excel loadH.m
         % H=[1 1 0 0;-1 1 0 0;0 0 1 1;0 0 -1 1];

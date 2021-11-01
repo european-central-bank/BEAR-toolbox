@@ -74,15 +74,14 @@ classdef FAVARsettings < matlab.mixin.CustomDisplay
             IRF = matlab.mixin.util.PropertyGroup('IRFplot');
             if obj.IRFplot == 1
                 IRF = [IRF, matlab.mixin.util.PropertyGroup({'IRFplotXshock','IRFplotXblocks'})];
-                matlab.mixin.CustomDisplay.displayPropertyGroups(obj, IRF);
-            end            
+            end
             matlab.mixin.CustomDisplay.displayPropertyGroups(obj, IRF);
             
             fprintf('\n <strong> FAVAR FEVD Properties</strong> \n\n')
             FEVD = matlab.mixin.util.PropertyGroup('FEVDplot');
             if obj.FEVDplot == 1
                 FEVD = [FEVD, matlab.mixin.util.PropertyGroup({'FEVDplotXshock', 'FEVDplotXblocks'}) ];
-            end            
+            end
             matlab.mixin.CustomDisplay.displayPropertyGroups(obj, FEVD);
             
         end
