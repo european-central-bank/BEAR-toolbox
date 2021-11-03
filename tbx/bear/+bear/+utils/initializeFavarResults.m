@@ -10,7 +10,7 @@ favar.HDplot    = false;
 favar.IRFplot   = false;
 favar.FEVDplot  = false;
 
-if isprop(opts, 'favar') && isa(opts.favar, 'bear.settings.favar.FAVARsettings')
+if isprop(opts, 'favar') && isa(opts, 'bear.settings.favar.FAVARsettings') && opts.favar.FAVAR
     favar = initalizeFavar(opts.favar);
 end
 end

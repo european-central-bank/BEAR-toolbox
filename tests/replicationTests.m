@@ -76,11 +76,7 @@ classdef replicationTests < matlab.unittest.TestCase
             BEARmain(s);
             
             compareResults(tc, 'results_test_data', s)
-        end
-        
-    end
-    
-    methods (Test, TestTags = {'MediumReplications'})
+        end               
         
         function Run_VAR_61(tc)
             
@@ -98,6 +94,10 @@ classdef replicationTests < matlab.unittest.TestCase
             
             compareResults(tc, 'results_test_data_61', s)
         end
+        
+    end
+    
+    methods (Test, TestTags = {'MediumReplications'})
         
         function Run_VAR_CH2019(tc)
             ws = warning('off');
