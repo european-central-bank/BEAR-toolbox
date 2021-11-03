@@ -53,3 +53,6 @@ The recommended version to run BEAR is 21a or above. For older MATLAB versions, 
 In the ECB website below, you will find a compiled version of BEAR that does not require a MATLAB license to install.
 
 [BEAR at ECB](https://www.ecb.europa.eu/pub/research/working-papers/html/bear-toolbox.en.html)
+
+## License
+[License](https://github.com/european-central-bank/BEAR-toolbox-private/blob/App/tbx/bear/BEAR%20End%20User%20Licence%20Agreement.pdf)
