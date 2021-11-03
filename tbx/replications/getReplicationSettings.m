@@ -27,6 +27,8 @@ switch repName
     case "WGP2016"
         s = bear_settings_WGP2016;
         fn = 'bear_settings_WGP2016';
+    otherwise
+        error('getReplicationSettings:ReplicationNotFound','Unable to find the specified replication')
         
 end
 % Change results folder to current folder

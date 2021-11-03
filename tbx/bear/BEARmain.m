@@ -2411,9 +2411,9 @@ if numt>1
         enddate   = char(Fstartdate_rolling(end,:));
         [pdate,stringdate] = bear.genpdate(names,0,frequency,startdate,enddate);
         
-        RS_PF; % Rossi-Sekhposyan (JAE,2016) Fluctuation Rationality Test
-        RS_DF; % Rossi-Sekhposyan (2016) Tests for Correct Specification of Forecast Densities
-        GR_PF; % Giacomini-Rossi JAE(2010) Fluctuation Test
+        bear.RS_PF(names, endo, ind_deval, actualdata, forecasts, ind_feval, rs_pf_windowSize, pdate); % Rossi-Sekhposyan (JAE,2016) Fluctuation Rationality Test
+        bear.RS_DF(actualdata, gridDF, opts.Bu, forecasts_dist, ind_feval, ind_deval, hstep, el, bootMC); % Rossi-Sekhposyan (2016) Tests for Correct Specification of Forecast Densities
+        bear.GR_PF(forecasts, ind_feval, ols_forecasts, actualdata, pdate,gr_pf_windowSize, biclag, endo); % Giacomini-Rossi JAE(2010) Fluctuation Test
         
         
     end %loop ind_feval

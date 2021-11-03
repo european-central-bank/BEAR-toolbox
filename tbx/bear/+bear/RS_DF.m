@@ -1,3 +1,4 @@
+function RS_DF(actualdata, gridDF, Bu, forecasts_dist, ind_feval, ind_deval, hstep, el, bootMC)
 %% Density Forecast Evaluation
 
 % Number of Observations in Forecasted Sample

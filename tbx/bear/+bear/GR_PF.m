@@ -1,3 +1,4 @@
+function GR_PF(forecasts, ind_feval, ols_forecasts, actualdata, pdate,gr_pf_windowSize, biclag, endo)
 %% Giacomini-Rossi JAE(2010) Fluctuation Test
 
 max_nlag=4;    % maximum lags for DM test

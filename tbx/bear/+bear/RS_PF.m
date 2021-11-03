@@ -1,3 +1,4 @@
+function RS_PF(names, endo, ind_deval, actualdata, forecasts, ind_feval, rs_pf_windowSize, pdate)
 %% Rossi-Sekhposyan (JAE,2016) Fluctuation Rationality Test
 
 % Window size for Rossi-Sekhposyan (JAE,2016) fluctuation rationality test, 
