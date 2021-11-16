@@ -49,7 +49,7 @@ strshocks_estimates=ETA;
 %% compute IRFs
 % create then the cell storing the point estimates and confidence bands
 irf_estimates=cell(n,n);
-if IRF==1 | favar.IRF.plot==1
+if IRF==1 | favar.IRFplot==1
     % create the cell aray that will store the values from the simulations
     irf_record=cell(n,n);
     
@@ -118,7 +118,7 @@ end
 
 % check if the variables have been transformed
 if favar.FAVAR==1
-    if (IRF==1 | favar.IRF.plot==1) && (favar.transformation==1 || favar.plot_transform==1)
+    if (IRF==1 | favar.IRFplot==1) && (favar.transformation==1 || favar.plot_transform==1)
         % re-transform irf_estimates
         favar.IRF.irf_estimates_nottransformed=irf_estimates; % before, save untransformed IRFs
         % re-transform

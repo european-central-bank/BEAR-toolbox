@@ -4,11 +4,11 @@ classdef SVsettings < bear.settings.BASEsettings
     %   settings object to run a stochastic volatility model. It can be created directly by
     %   running:
     %
-    %   bear.settings.SVsettings(ExcelPath, varargin)
+    %   bear.settings.SVsettings(ExcelFile, varargin)
     %
     %   or in its more convenient form:
     %
-    %   BEARsettings('SV', ExcelPath = 'path/To/file.xlsx')
+    %   BEARsettings('SV', ExcelFile = 'path/To/file.xlsx')
     %
     % SVsettings Properties:
     %    stvol           - Choice of stochastic volatility model
@@ -31,6 +31,8 @@ classdef SVsettings < bear.settings.BASEsettings
     %    delta0          - hyperparameter
     %    gamma0          - hyperparameter
     %    zeta0           - hyperparameter
+    %    alltirf         - hyperparameter
+    %    favar           - FAVAR Options
     
     properties
         % Choice of stochastic volatility model
@@ -50,9 +52,9 @@ classdef SVsettings < bear.settings.BASEsettings
         %switch to Excel interface for exogenous variables
         priorsexogenous (1,1) logical = false; % set to 1 if you want individual priors, 0 for default
         % total number of iterations for the Gibbs sampler
-        It=2000;
+        It (1,1) double {mustBeGreaterThanOrEqual(It,1)} = 2000;
         % number of burn-in iterations for the Gibbs sampler
-        Bu=1000;
+        Bu (1,1) double = 1000;
         % strctident
         strctident
         %switch to Excel interface for exogenous variables
@@ -70,17 +72,28 @@ classdef SVsettings < bear.settings.BASEsettings
         % Exogenous variable and constant: lambda4
         lambda4 (:,1) double {mustBeGreaterThanOrEqual(lambda4,0)} = 100;
         % Block exogeneity shrinkage: lambda5
-        lambda5 (1,1) double {mustBeInRange(lambda5, 0, 1)} = 0.001;
-        % AR coefficient on residual variance: gamma
-        gamma (1,1) double = 1;
+        lambda5 (1,1) double {mustBeGreaterThanOrEqual(lambda5,0), mustBeLessThanOrEqual(lambda5,1)} = 0.001;
         % IG shape on residual variance: alpha0
         alpha0 (1,1) double = 0.001;
         % IG scale on residual variance: delta0
         delta0 (1,1) double = 0.001;
+        % AR coefficient on residual variance: gamma
+        gamma (1,1) double = 1;
         % Prior mean of inertia parameter: gamma0
         gamma0 (1,1) double = 0;
         % Prior variance of inertia parameter: zeta0
         zeta0 (1,1) double = 10000;
+        % calculate IRFs for every sample period (1=yes, 0=no)
+        alltirf (1,1) logical = true;
+    end
+    
+    properties (Dependent)
+        % FAVAR options
+        favar % augment VAR model with factors (1=yes, 0=no)
+    end
+    
+    properties (Access = private)
+        favarInternal (1,1) bear.settings.favar.FAVARsettings = bear.settings.favar.VARtypeSpecificFAVARsettings; % augment VAR model with factors (1=yes, 0=no)
     end
     
     methods
@@ -92,6 +105,43 @@ classdef SVsettings < bear.settings.BASEsettings
             obj = obj.setStrctident(obj.IRFt);
             
             obj = parseBEARSettings(obj, varargin{:});
+            
+        end
+        
+        function obj = set.Bu(obj,value)
+            if (value <= obj.It-1) %#ok<MCSUP>
+                obj.Bu = value;
+            else
+                error('bear:settings:SVsettings',"The maximum value of Bu is It-1: " + (obj.It-1)) %#ok<MCSUP>
+            end
+        end
+        
+        function obj = set.It(obj,value)
+            if (value > obj.Bu-1) %#ok<MCSUP>
+                obj.It = value;
+            else
+                error('bear:settings:SVsettings',"The minimum value of It is Bu+1: " + (obj.Bu+1)) %#ok<MCSUP>
+            end
+        end
+        
+        function value = get.favar(obj)
+            
+            if obj.stvol == 4
+                value = bear.settings.favar.NullFAVAR;
+            else
+                value = obj.favarInternal;
+            end
+            
+        end
+        
+        function obj = set.favar(obj, value)
+            
+            if obj.stvol == 4
+                error('bear:settings:BVARsettings:undefinedFAVAR', ...
+                    'It is not possible to set FAVAR if stvol is LMM (4)')
+            else
+                obj.favarInternal = value;
+            end
             
         end
         
@@ -113,13 +163,13 @@ classdef SVsettings < bear.settings.BASEsettings
             
             switch value
                 case 4
-                    obj.strctident = bear.settings.StrctidentIRFt4;
+                    obj.strctident = bear.settings.strctident.StrctidentIRFt4;
                 case 5
-                    obj.strctident = bear.settings.StrctidentIRFt5;
+                    obj.strctident = bear.settings.strctident.StrctidentIRFt5;
                 case 6
-                    obj.strctident = bear.settings.StrctidentIRFt6;
+                    obj.strctident = bear.settings.strctident.StrctidentIRFt6;
                 otherwise
-                    obj.strctident = bear.settings.Strctident.empty();
+                    obj.strctident = bear.settings.strctident.Strctident.empty();
             end
             
         end

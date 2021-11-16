@@ -1,15 +1,6 @@
 function [irf_record,D_record,gamma_record,struct_irf_record,irf_estimates,D_estimates,gamma_estimates,strshocks_record,strshocks_estimates]=...
     panel3irf(Yi,Xi,beta_gibbs,sigma_gibbs,It,Bu,IRFperiods,IRFband,N,n,m,p,k,T,IRFt,signrestable,signresperiods,favar)
 
-
-
-
-
-
-
-
-
-
 % because there is one VAR model estimated for each unit, the IRFs will differ across units
 % hence, loop over units
 for ii=1:N

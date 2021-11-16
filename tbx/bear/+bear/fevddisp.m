@@ -58,7 +58,7 @@ end
 
 % prelim for FAVAR
 if favar.FAVAR==1
-    if favar.FEVD.plot==1
+    if favar.FEVDplot==1
         
         favar_fevd_estimates=favar.FEVD.favar_fevd_estimates;
         %favar_fevd_estimates=favar_fevd_estimates(:,favar.IRF.plotXshock_index);
@@ -115,7 +115,7 @@ end
 
 %% FAVAR FEVDs
 if favar.FAVAR==1
-    if favar.FEVD.plot==1
+    if favar.FEVDplot==1
         FEVDfig=figure;
         numcol=ceil(sqrt(favar.npltX)); % rounded square root of npltX, make the plot quadratic
         numrow=ceil(favar.npltX/numcol); % and the number of rows we need

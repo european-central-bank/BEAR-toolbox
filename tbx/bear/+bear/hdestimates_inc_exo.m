@@ -33,7 +33,7 @@ for ii=1:n
 end
 
 %
-if favar.FAVAR==1 && favar.HD.plot==1
+if favar.FAVAR==1 && favar.HDplot==1
     for nn=1:favar.npltX
         % loop over variables
         for ii=1:n

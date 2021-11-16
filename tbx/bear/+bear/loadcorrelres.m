@@ -189,8 +189,7 @@ if favar.FAVAR==1
     % check here if the shocks of interest actually exist
     if favar.IRF.npltXshck > size(strctident.signreslabels_shocks,1)
         % error if no shock to plot is found, otherwise code crashes at a later stage
-        message=['Error: Shock(s) (' favar.IRF.plotXshock ') cannot be found.'];
-        msgbox(message,'favar.IRF.plotXshock');
-        error('programme termination: favar.IRF.plotXshock error');
+        message=['Error: Shock(s) (' favar.IRFplotXshock ') cannot be found.'];
+        error('bear:loadcorrelres:ShockNotFound',message)
     end
 end

@@ -1,18 +1,27 @@
 function favar = initializeFavarResults(opts)
 % INITIALIZESTRCIDENT this function initalizes a strcident struct to store
 % the results based on the already existing fields on the settings objet
-favar = struct();
-p = opts.getActiveProperties;
-for i = 1 : length(p)
-    switch p{i}
-        case "HD"
-            favar.HD   = bear.utils.initializeFavarResults(opts.HD);
-        case "IRF"
-            favar.IRF  = bear.utils.initializeFavarResults(opts.IRF);
-        case "FEVD"
-            favar.FEVD = bear.utils.initializeFavarResults(opts.FEVD);
-        otherwise
-            favar.(p{i}) = opts.(p{i});
-    end
+arguments
+    opts (1,1) bear.settings.BASEsettings
 end
+
+favar.FAVAR     = false;
+favar.HDplot    = false;
+favar.IRFplot   = false;
+favar.FEVDplot  = false;
+
+if isprop(opts, 'favar') && isa(opts, 'bear.settings.favar.FAVARsettings') && opts.favar.FAVAR
+    favar = initalizeFavar(opts.favar);
+end
+end
+
+function favar = initalizeFavar(favarOpt)
+
+p = properties(favarOpt);
+for i = 1 : length(p)
+    
+    favar.(p{i}) = favarOpt.(p{i});
+    
+end
+
 end

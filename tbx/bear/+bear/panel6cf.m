@@ -1,4 +1,4 @@
-function [cforecast_record cforecast_estimates]=panel6cf(N,n,m,p,k,d,cfconds,cfshocks,cfblocks,It,Bu,Fperiods,const,Xi,data_exo_p,theta_gibbs,B_gibbs,phi_gibbs,Zeta_gibbs,sigmatilde_gibbs,Fstartlocation,Ymat,rho,thetabar,gama,CFt,Fband)
+function [cforecast_record, cforecast_estimates]=panel6cf(N,n,m,p,k,d,cfconds,cfshocks,cfblocks,It,Bu,Fperiods,const,Xi,data_exo_p,theta_gibbs,B_gibbs,phi_gibbs,Zeta_gibbs,sigmatilde_gibbs,Fstartlocation,Ymat,rho,thetabar,gamma,CFt,Fband)
 
 
 
@@ -64,7 +64,7 @@ gamma_iter=[];
    % obtain a shock upsilon
    ups=normrnd(0,phi); 
    % update zeta from its law of motion
-   zeta=gama*zeta+ups;
+   zeta=gamma*zeta+ups;
    % update sigma
    sigma_iter(:,:,jj)=exp(zeta)*sigmatilde;
    % obtain the structural decomposition matrix

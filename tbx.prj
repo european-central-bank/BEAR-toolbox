@@ -1,12 +1,12 @@
 <deployment-project plugin="plugin.toolbox" plugin-version="1.0">
-  <configuration file="C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx.prj" location="C:\Users\ebenetce\MATLAB\BEAR-toolbox-private" name="tbx" target="target.toolbox" target-name="Package Toolbox">
+  <configuration build-checksum="3374642050" file="C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx.prj" location="C:\Users\ebenetce\MATLAB\BEAR-toolbox-private" name="tbx" target="target.toolbox" target-name="Package Toolbox">
     <param.appname>bear</param.appname>
     <param.authnamewatermark>Alistair Dieppe and Björn van Roye</param.authnamewatermark>
     <param.email>alistair.dieppe@ecb.europa.eu</param.email>
     <param.company>European Central Bank</param.company>
     <param.summary>The Bayesian Estimation, Analysis and Regression toolbox (BEAR)</param.summary>
     <param.description>The Bayesian Estimation, Analysis and Regression toolbox (BEAR) is a comprehensive (Bayesian Panel) VAR toolbox for forecasting and policy analysis. Use of BEAR implies acceptance of the End User Licence Agreement (EULA) for the Use of the Software “the Bayesian Estimation, Analysis and Regression (BEAR) toolbox”.</param.description>
-    <param.screenshot>${PROJECT_ROOT}\tbx\bear\files\bear-coloured1.png</param.screenshot>
+    <param.screenshot>${PROJECT_ROOT}\tbx\bear\BEAR.PNG</param.screenshot>
     <param.version>5.1</param.version>
     <param.output>${PROJECT_ROOT}\bear.mltbx</param.output>
     <param.products.name />
@@ -19,7 +19,10 @@
     <param.examples />
     <param.demosxml />
     <param.apps />
-    <param.registered.apps />
+    <param.registered.apps>
+      <file>${PROJECT_ROOT}\tbx\bear\BEARapp.mlapp</file>
+      <file>${PROJECT_ROOT}\tbx\bear\BEARapp20a.mlapp</file>
+    </param.registered.apps>
     <param.docs />
     <param.getting.started.guide>${PROJECT_ROOT}\tbx\doc\GettingStarted.mlx</param.getting.started.guide>
     <param.matlabpath.excludes />
@@ -28,7 +31,7 @@
     <param.required.addons />
     <param.matlab.project.id />
     <param.matlab.project.name />
-    <param.release.start>R2019a</param.release.start>
+    <param.release.start>R2020a</param.release.start>
     <param.release.end>latest</param.release.end>
     <param.release.current.only>false</param.release.current.only>
     <param.compatiblity.windows>true</param.compatiblity.windows>
@@ -52,7 +55,6 @@
       <param.examples />
       <param.demosxml />
       <param.apps />
-      <param.registered.apps />
       <param.docs />
       <param.matlabpath.excludes />
       <param.javaclasspath.excludes />
@@ -78,6 +80,7 @@
     <fileset.rootfiles>
       <file>${PROJECT_ROOT}\tbx\bear</file>
       <file>${PROJECT_ROOT}\tbx\beardoc</file>
+      <file>${PROJECT_ROOT}\tbx\DesktopToolset.xml</file>
       <file>${PROJECT_ROOT}\tbx\doc</file>
     </fileset.rootfiles>
     <fileset.depfun.included />

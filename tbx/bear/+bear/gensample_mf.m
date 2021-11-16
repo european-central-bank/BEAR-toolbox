@@ -1,4 +1,5 @@
-function [names mf_settings data data_endo data_endo_a data_endo_c data_endo_c_lags data_exo data_exo_a data_exo_p data_exo_c data_exo_c_lags Fperiods Fcomp Fcperiods Fcenddate]=gensample_mf(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref)
+function [names, mf_settings, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate]= ...
+    gensample_mf(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref, numendo)
 
 
 
@@ -68,8 +69,6 @@ end
 variablestrings=[names_m(1,2:end) names_q(1,2:end)];
 
 % identify the position of the strings corresponding to the endogenous variables
-% count the number of endogenous variables
-numendo=size(endo,1);
 % for each variable, find the corresponding string
 for ii=1:numendo
     % check first that the variable ii in endo appears in the list of variable strings

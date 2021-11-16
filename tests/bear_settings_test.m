@@ -1,6 +1,6 @@
 function s = bear_settings_test(excelPath)
 
-s = BEARsettings(2, 'ExcelPath', excelPath);
+s = BEARsettings(2, 'ExcelFile', excelPath);
 s.frequency=2;
 s.startdate='1974q1';
 s.enddate='2014q4';
@@ -8,13 +8,11 @@ s.varendo='DOM_GDP DOM_CPI STN';
 s.varexo='';
 s.lags=4;
 s.const=1;
-s.pref.datapath = bearroot(); % fileparts(mfilename('fullpath')); % next to settings
-s.pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
-s.pref.results_sub='results_test_data_temp';
-s.pref.results=1;
-s.pref.plot=0;
-s.pref.pref=0;
-s.pref.workspace=1;
+s.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
+s.results_sub='results_test_data_temp';
+s.results=1;
+s.plot=0;
+s.workspace=1;
 
 s.favar.FAVAR=0; % augment VAR model with factors (1=yes, 0=no)
 

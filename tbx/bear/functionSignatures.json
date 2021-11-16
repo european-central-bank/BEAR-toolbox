@@ -5,7 +5,7 @@
      "inputs":
      [
         {"name":"VARtype", "kind":"required", "type":["numeric","bear.VARtype"], "purpose":"BEAR VARtype"},
-        {"name":"ExcelPath", "kind":"namevalue", "type":["file=*.xlsx,*.xls"], "purpose":"Path to Excel with BEAR definition"}
+        {"name":"ExcelFile", "kind":"namevalue", "type":["file=*.xlsx,*.xls"], "purpose":"Path to Excel with BEAR definition"}
      ]
   },
   "BEARmain":

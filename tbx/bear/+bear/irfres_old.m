@@ -1,4 +1,4 @@
-function [struct_irf_record D_record gamma_record]=irfres_old(beta_gibbs,sigma_gibbs,It,Bu,IRFperiods,n,m,p,k,signrestable,signresperiods)
+function [struct_irf_record, D_record, gamma_record]=irfres_old(beta_gibbs,sigma_gibbs,It,Bu,IRFperiods,n,m,p,k,signrestable,signresperiods)
 
 
 
@@ -162,7 +162,7 @@ success=0;
    sigma=reshape(sigma_gibbs(:,ii),n,n);
    hsigma=chol(bear.nspd(sigma),'lower');
    % obtain orthogonalised IRFs
-   [irfmatrix ortirfmatrix]=bear.irfsim(beta,hsigma,n,m,p,k,max(IRFperiods,max(periods)));
+   [irfmatrix, ortirfmatrix]=bear.irfsim(beta,hsigma,n,m,p,k,max(IRFperiods,max(periods)));
    % generate the stacked IRF matrix
    stackedirfmat=[];
       for jj=1:numel(periods)
@@ -190,7 +190,7 @@ success=0;
       sigma=reshape(sigma_gibbs(:,index),n,n);
       hsigma=chol(bear.nspd(sigma),'lower');
       % obtain orthogonalised IRFs
-      [irfmatrix ortirfmatrix]=bear.irfsim(beta,hsigma,n,m,p,k,max(IRFperiods,max(periods)));
+      [irfmatrix, ortirfmatrix]=bear.irfsim(beta,hsigma,n,m,p,k,max(IRFperiods,max(periods)));
       % generate the stacked IRF matrix
       stackedirfmat=[];
          for jj=1:numel(periods)

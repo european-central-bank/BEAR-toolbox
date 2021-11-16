@@ -7,8 +7,7 @@ Index=strcmp(txt(1,:),strctident.Instrument);
 IVnum=find(Index==1,1,'first')-1;
 if isempty(IVnum)||IVnum==0 % check if the IV can be found in the data sheet
    message=['Instrumental variable ' strctident.Instrument ' cannot be found. Please verify that the "IV" sheet of the Excel data file is properly filled.'];
-   msgbox(message,'IV error');
-   error('programme termination: IV error');  
+   error('bear:loadIV:InstrumentalVaraibleNotFound',message)
 end
 IV=IV(:,IVnum);
 NANIV=~isnan(IV); 

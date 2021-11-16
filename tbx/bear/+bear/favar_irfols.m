@@ -160,7 +160,7 @@ favar.IRF.favar_irf_estimates=favar_irf_estimates;
 favar_irf_estimates=favar_irf_estimates(:,favar.IRF.plotXshock_index);
 
 % plot the IRFs of the factors
-if favar.IRF.plot==1
+if favar.IRFplot==1
     % one window for each shock, as we possbily plot a lot of variables in X
     for px=1:favar.IRF.npltXshck
         irf_favar=figure;

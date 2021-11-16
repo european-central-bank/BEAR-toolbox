@@ -1,6 +1,6 @@
 function s = bear_settings_WGP2016_test(excelPath)
 
-s = BEARsettings(2, 'ExcelPath', excelPath);
+s = BEARsettings(2, 'ExcelFile', excelPath);
 
 s.frequency=3;
 s.startdate='2014m5';
@@ -9,13 +9,11 @@ s.varendo='hicp gdp app 10y stockindex';
 s.varexo='';
 s.lags=2;
 s.const=1;
-s.pref.datapath=bearroot(); % main BEAR folder, specify otherwise with a string 'C:\BEAR'
-s.pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
-s.pref.results_sub='results_test_data_WGP2016_temp';
-s.pref.results=1;
-s.pref.plot=0;
-s.pref.pref=0;
-s.pref.workspace=1;
+s.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
+s.results_sub='results_test_data_WGP2016_temp';
+s.results=1;
+s.plot=0;
+s.workspace=1;
 
 s.favar.FAVAR=0; % augment VAR model with factors (1=yes, 0=no)
 

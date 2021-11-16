@@ -24,7 +24,7 @@ for ii=1:p
 end
 
 %optimising VAR for AR - for each one.
-[bicmin, biclag]=min(bic');
+[bicmin, biclag]=min(bic', [], 1);
 
 % Estimating and forecasting for BIC optimised model
 % loop over columns of data_endo

@@ -57,7 +57,7 @@ if opts.const==1
     estimationinfo{10,1}='constant';
 end
 for ii=1:size(exo,1)
-    estimationinfo{10,ii+const}=exo{ii,1};
+    estimationinfo{10,ii+opts.const}=exo{ii,1};
 end
 
 % constant included
@@ -70,11 +70,14 @@ end
 % lag number
 estimationinfo{12,1}=num2str(opts.lags);
 
-% path to the data
-estimationinfo{13,1}=opts.pref.datapath;
+% path to the data. This is equivalent to what we had before, but there is
+% now one less preference to set.
+estimationinfo{13,1}= fileparts(opts.excelFile);
 
-% save preferences
-estimationinfo{14,1}=num2str(opts.pref.pref);
+% save preferences. This used to save opts.pref.pref, which was always set
+% to zero. This property has been removed and we can consider removing this
+% line too.
+estimationinfo{14,1}=num2str(0);
 
 
 
@@ -218,17 +221,17 @@ end
 if opts.VARtype==4
     
     % panel model
-    if panel==1
+    if opts.panel==1
         estimationinfo{48,1}='mean group estimator (OLS)';
-    elseif panel==2
+    elseif opts.panel==2
         estimationinfo{48,1}='pooled estimator';
-    elseif panel==3
+    elseif opts.panel==3
         estimationinfo{48,1}='random effect (Zellner-Hong)';
-    elseif panel==4
+    elseif opts.panel==4
         estimationinfo{48,1}='random effect (hierarchical)';
-    elseif panel==5
+    elseif opts.panel==5
         estimationinfo{48,1}='static structural factor';
-    elseif panel==6
+    elseif opts.panel==6
         estimationinfo{48,1}='dynamic structural factor';
     end
     
@@ -285,7 +288,7 @@ if opts.VARtype==4
     estimationinfo{62,1}=num2str(opts.delta0);
     
     % AR coefficient on residual variance gamma
-    estimationinfo{63,1}=num2str(opts.gama);
+    estimationinfo{63,1}=num2str(opts.gamma);
     
     % IG shape on factor variance a0
     estimationinfo{64,1}=num2str(opts.a0);
@@ -317,9 +320,9 @@ if opts.VARtype==5
         estimationinfo{71,1}='large BVAR';
     elseif opts.stvol==4
         estimationinfo{71,1}='Survey Local Mean Model';
-    elseif tvbvar==1
+    elseif opts.tvbvar==1
         estimationinfo{71,1}='Var Coefficients';
-    elseif tvbvar==2
+    elseif opts.tvbvar==2
         estimationinfo{71,1}='General Time varying';
     end
     
@@ -391,9 +394,9 @@ end
 if opts.VARtype==6
     
     % Stochastic volatility model
-    if tvbvar==1
+    if opts.tvbvar==1
         estimationinfo{91,1}='VAR coefficients';
-    elseif tvbvar==2
+    elseif opts.tvbvar==2
         estimationinfo{91,1}='General';
     end
     
@@ -487,7 +490,7 @@ elseif opts.F==1 && opts.Feval==0
 end
 
 % type of conditional forecasts
-if (opts.VARtype==2 || opts.VARtype==3 || (opts.VARtype==4 && panel~=1) || opts.VARtype==5 || opts.VARtype==6) && opts.CF==1
+if (opts.VARtype==2 || opts.VARtype==3 || (opts.VARtype==4 && opts.panel~=1) || opts.VARtype==5 || opts.VARtype==6) && opts.CF==1
     if opts.CFt==1
         estimationinfo{109,1}='Standard (all shocks)';
     elseif opts.CFt==2
@@ -549,8 +552,8 @@ if opts.HD==1 && opts.VARtype~=1
 end
 
 % write on excel file
-if opts.pref.results==1
-    [status,message]=bear.xlswritegeneral(fullfile(opts.pref.results_path, [opts.pref.results_sub '.xlsx']),estimationinfo ,'estimation info','C2');
+if opts.results==1
+    [status,message]=bear.xlswritegeneral(fullfile(opts.results_path, [opts.results_sub '.xlsx']),estimationinfo ,'estimation info','C2');
 else
     status = 0;
     message = '';

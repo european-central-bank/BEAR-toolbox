@@ -8,7 +8,7 @@ function s = bear_settings_BvV2018_test(excelPath)
 %                                                                          %
 %    Authors:                                                              %
 %    Alistair Dieppe (alistair.dieppe@ecb.europa.eu)                               %
-%    Björn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                        %
+%    BjÃ¶rn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                        %
 %                                                                          %
 %    Version 5.0                                                           %
 %                                                                          %
@@ -32,7 +32,7 @@ function s = bear_settings_BvV2018_test(excelPath)
 % general data and model information
 
 % VAR model selected (1=OLS VAR, 2=BVAR, 3=mean-adjusted BVAR, 4=panel Bayesian VAR, 5=Stochastic volatility BVAR, 6=Time varying)
-s = BEARsettings(5, 'ExcelPath', excelPath);
+s = BEARsettings(5, 'ExcelFile', excelPath);
 % data frequency (1=yearly, 2= quarterly, 3=monthly, 4=weekly, 5=daily, 6=undated)
 s.frequency=2;
 % sample start date; must be a string consistent with the date formats of the toolbox
@@ -46,19 +46,15 @@ s.varexo='';
 s.lags=4;
 % inclusion of a constant (1=yes, 0=no)
 s.const=0;
-% path to data
-s.pref.datapath=fileparts(mfilename('fullpath')); % next to settings
 % excel results file name
-s.pref.results_sub='results_test_data_BvV2018_temp';
-s.pref.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
+s.results_sub='results_test_data_BvV2018_temp';
+s.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
 % to output results in excel
-s.pref.results=1;
+s.results=1;
 % output charts
-s.pref.plot=0;
-% pref: useless by itself, just here to avoid code to crash
-s.pref.pref=0;
+s.plot=0;
 % save matlab workspace (1=yes, 0=no)
-s.pref.workspace=1;
+s.workspace=1;
 
 % choice of stochastic volatility model
 % 1=standard, 2=random scaling, 3=large BVAR 4=TVESLM Model

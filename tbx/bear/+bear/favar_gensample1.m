@@ -283,9 +283,9 @@ else
     favar.npltX=0;
     favar.IRF.npltXshck=0;
     favar.plotX_index=[];
-    favar.IRF.plot=0;
-    favar.FEVD.plot=0;
-    favar.HD.plot=0;
+    favar.IRFplot=0;
+    favar.FEVDplot=0;
+    favar.HDplot=0;
     favar.pX=0;
-    favar.HD.plotXblocks=0;
+    favar.HDplotXblocks=0;
 end

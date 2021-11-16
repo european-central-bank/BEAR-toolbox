@@ -1,4 +1,5 @@
-function [names, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate,endo,numendo,favar]=gensampleols(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,favar,IRFt)
+function [names, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate,endo,favar] = ...
+    gensampleols(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,favar,IRFt, numendo)
 
 % if we have a FaVAR: read information data, data transformation, create indices, compute factors (PC)
 if favar.FAVAR==1
@@ -54,8 +55,6 @@ if startlocation>=endlocation==1
 end
 
 % identify the position of the strings corresponding to the endogenous variables
-% count the number of endogenous variables
-numendo=size(endo,1);
 % for each variable, find the corresponding string
 for ii=1:numendo
     % check first that the variable ii in endo appears in the list of variable strings
@@ -170,7 +169,7 @@ if favar.FAVAR==1
     favar.bvar=0;
     
     % IRF shock to plot
-    if favar.IRF.plot==1
+    if favar.IRFplot==1
         if IRFt==1||IRFt==2||IRFt==3
             plotXshock_indexlogical=ismember(endo,favar.IRF.pltXshck);
             favar.IRF.plotXshock_index=find(plotXshock_indexlogical==1)';

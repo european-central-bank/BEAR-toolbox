@@ -56,7 +56,7 @@ gamma_estimates=gamma(:);
 % create then the cell storing the point estimates and confidence bands
 irf_estimates=cell(n,n);
 
-if IRF==1 | favar.IRF.plot==1
+if IRF==1 | favar.IRFplot==1
     % rearrange
     for ii=1:n
         % loop over variables

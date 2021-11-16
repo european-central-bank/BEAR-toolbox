@@ -177,7 +177,7 @@ if favar.FAVAR==1
     end
 	
 	    %for HD
-    if favar.HD.plot==1 
+    if favar.HDplot==1 
         HD=1;
     end
     
