@@ -65,7 +65,7 @@ hold off
 set(gca,'XLim',[decimaldates2(1,1) decimaldates2(end,1)],'FontName','Times New Roman');
 set(gca,'XGrid','on');
 set(gca,'YGrid','on');
-title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','Interpreter','latex');
+title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','Interpreter','none');
 end
 
 end % pref.plot

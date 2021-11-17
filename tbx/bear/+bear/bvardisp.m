@@ -563,7 +563,7 @@ if pref.plot
             % top labels for endogenous
             if ii<=n*p
                 temp=[endo{plotvar,1} '(-' num2str(plotlag) ')'];
-                title(temp,'FontWeight','normal','interpreter','latex');
+                title(temp,'FontWeight','normal','interpreter','none');
                 if plotlag<p
                     plotlag=plotlag+1;
                 elseif plotlag==p
@@ -574,16 +574,16 @@ if pref.plot
             % top labels for exogenous
             if ii>n*p && ii<=k
                 if plotconst==1
-                    title('Constant','FontWeight','normal','interpreter','latex');
+                    title('Constant','FontWeight','normal','interpreter','none');
                     plotconst=0;
                 else
-                    title(exo{plotexo,1},'FontWeight','normal','interpreter','latex');
+                    title(exo{plotexo,1},'FontWeight','normal','interpreter','none');
                     plotexo=plotexo+1;
                 end
             end
             % side labels
             if rem((ii-1)/k,1)==0
-                ylabel(endo{(ii-1)/k+1,1},'FontWeight','normal','interpreter','latex');
+                ylabel(endo{(ii-1)/k+1,1},'FontWeight','normal','interpreter','none');
             end
         end
     end
@@ -602,7 +602,7 @@ if pref.plot
         plot(decimaldates1,Ytilde(:,ii),'Color',[1 0 0],'LineWidth',2);
         hold off
         set(gca,'XLim',[decimaldates1(1,1) decimaldates1(end,1)],'FontName','Times New Roman');
-        title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','latex');
+        title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','none');
         if ii==1
             plotlegend=legend('actual','fitted');
             set(plotlegend,'FontName','Times New Roman');
@@ -618,7 +618,7 @@ if pref.plot
         subplot(nrows,ncolumns,ii)
         plot(decimaldates1,EPStilde(:,ii),'Color',[0 0 0],'LineWidth',2)
         set(gca,'XLim',[decimaldates1(1,1) decimaldates1(end,1)],'FontName','Times New Roman');
-        title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','latex');
+        title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','none');
     end
     
 end

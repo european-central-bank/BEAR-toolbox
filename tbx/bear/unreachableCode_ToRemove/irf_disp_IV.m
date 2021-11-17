@@ -71,7 +71,7 @@ set(gca,'XLim',[1 IRFperiods],'YLim',[Ymin Ymax],'FontName','Times New Roman','F
 % top labels
 subplotcolumn=jj+identified*(ii-1);
 if subplotcolumn <= identified
-title(signreslabels{subplotcolumn,1},'FontWeight','normal','Interpreter','Latex','Fontsize',fontsize);
+title(signreslabels{subplotcolumn,1},'FontWeight','normal','Interpreter','none','Fontsize',fontsize);
 end
 if count<=n
    ylabel(endo{namecount,1},'FontWeight','normal','Interpreter','none','Fontsize',fontsize);

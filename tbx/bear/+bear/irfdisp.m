@@ -73,11 +73,11 @@ Ymax=maxband+0.2*space;
 set(gca,'XLim',[1 IRFperiods],'YLim',[Ymin Ymax],'FontName','Times New Roman');
 % top labels
    if ii<=n
-   title(endo{ii,1},'FontWeight','normal','interpreter','latex');
+   title(endo{ii,1},'FontWeight','normal','interpreter','none');
    end
 % side labels
    if rem((ii-1)/n,1)==0
-   ylabel(endo{(ii-1)/n+1,1},'FontWeight','normal','interpreter','latex');
+   ylabel(endo{(ii-1)/n+1,1},'FontWeight','normal','interpreter','none');
    end
 end
 %% IRFt==4||IRFt==5||IRFt==6
@@ -107,10 +107,10 @@ set(gca,'XLim',[1 IRFperiods],'YLim',[Ymin Ymax],'FontName','Times New Roman');
 % top labels
 subplotcolumn=jj+identified*(ii-1);
 if subplotcolumn <= identified
-title(signreslabels_shocks{subplotcolumn,1},'FontWeight','normal','interpreter','latex');
+title(signreslabels_shocks{subplotcolumn,1},'FontWeight','normal','interpreter','none');
 end
 if count <= n
-   ylabel(endo{namecount,1},'FontWeight','normal','interpreter','latex');
+   ylabel(endo{namecount,1},'FontWeight','normal','interpreter','none');
    namecount=namecount+1;
 end
 count = count+1;
@@ -120,9 +120,9 @@ end
 % top supertitle
 ax=axes('Units','Normal','Position',[.11 .075 .85 .88],'Visible','off');
 set(get(ax,'Title'),'Visible','on')
-title('Shock:','FontSize',11,'FontName','Times New Roman','FontWeight','normal','interpreter','latex');
+title('Shock:','FontSize',11,'FontName','Times New Roman','FontWeight','normal','interpreter','none');
 % side supertitle
-ylabel('Response of:','FontSize',12,'FontName','Times New Roman','FontWeight','normal','interpreter','latex');
+ylabel('Response of:','FontSize',12,'FontName','Times New Roman','FontWeight','normal','interpreter','none');
 set(get(ax,'Ylabel'),'Visible','on')
     set(irf,'PaperPositionMode','Auto')
 % % %      PrintName = strcat('IRFs');

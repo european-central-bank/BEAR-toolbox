@@ -40,7 +40,7 @@ Ymin=minband-0.2*space;
 Ymax=maxband+0.2*space;
 set(gca,'XLim',[decimaldates1(1,1) decimaldates1(end,1)],'YLim',[Ymin,Ymax],'FontName','Times New Roman');
 % create title
-title(labels{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','latex');
+title(labels{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','none');
 end
 
 end % pref.plot

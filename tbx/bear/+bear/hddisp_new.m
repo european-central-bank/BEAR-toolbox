@@ -251,12 +251,12 @@ if HD==1
             hold off
             
             % label the endogenous variables
-            title(endo{ii,1},'Interpreter','latex')
+            title(endo{ii,1},'Interpreter','none')
             set(gca,'XLim',[decimaldates1(1,1) decimaldates1(end,1)],'FontName','Times New Roman');
             box off
             hL=legend(labels2);
             LPosition = [0.47 0.00 0.1 0.1];
-            set(hL,'Position', LPosition, 'orientation', 'horizontal','Interpreter','latex');
+            set(hL,'Position', LPosition, 'orientation', 'horizontal','Interpreter','none');
             %annotation('textbox',[0.39 0.92 0.0 0.08],'String',' ','FitBoxToText','on','FontSize',8,'Linestyle','none');
             %set(gcf,'PaperPositionMode','Auto')
             legend boxoff
@@ -502,7 +502,7 @@ if favar.HDplot==1
             hold off
             %end
             
-            title(labelsX{jj,1},'Interpreter','latex')
+            title(labelsX{jj,1},'Interpreter','none')
             set(gca,'XLim',[decimaldates1(1,1) decimaldates1(end,1)],'FontName','Times New Roman');
             box off
             hL=legend(labelsfavar);

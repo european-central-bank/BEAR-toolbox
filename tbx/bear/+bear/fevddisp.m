@@ -100,10 +100,10 @@ if FEVD==1
 %                 fevd(kk).FaceColor=colorm(kk*num,:);
 %             end
             axis tight
-            title(endo{rrr,1},'FontWeight','normal','Interpreter','latex');
+            title(endo{rrr,1},'FontWeight','normal','Interpreter','none');
         end
         hL=legend(labels);
-        set(hL,'Position',[0.45 0.00 0.1 0.1],'Orientation','horizontal','Interpreter','latex');
+        set(hL,'Position',[0.45 0.00 0.1 0.1],'Orientation','horizontal','Interpreter','none');
         legend boxoff
     end % pref.plot
     
@@ -141,11 +141,11 @@ if favar.FAVAR==1
 %                         plothd=gca;
 %             plothd.ColorOrderIndex=1;
             axis tight
-            title(favar.informationvariablestrings{1,favar.plotX_index(rr)},'FontWeight','normal','Interpreter','latex');
+            title(favar.informationvariablestrings{1,favar.plotX_index(rr)},'FontWeight','normal','Interpreter','none');
         end
         
         hL=legend(labels);
-        set(hL,'Position',[0.45 0.00 0.1 0.1],'Orientation','horizontal','Interpreter','latex');
+        set(hL,'Position',[0.45 0.00 0.1 0.1],'Orientation','horizontal','Interpreter','none');
         legend boxoff
     end
     

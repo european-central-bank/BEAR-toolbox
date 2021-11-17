@@ -62,12 +62,12 @@ if pref.plot
             set(gca,'XLim',[decimaldates1(1,1) decimaldates1(T,1)],'YLim',[1 IRFperiods],'FontName','Times New Roman');
             set(temp,'edgecolor',[0.15 0.15 0.15],'EdgeAlpha',0.5);
             % title of subplot is variable name
-            title(favar.informationvariablestrings{1,favar.plotX_index(count)},'FontWeight','normal','interpreter','latex');
+            title(favar.informationvariablestrings{1,favar.plotX_index(count)},'FontWeight','normal','interpreter','none');
         end
         % top supertitle
         ax=axes('Units','Normal','Position',[.11 .075 .85 .88],'Visible','off');
         set(get(ax,'Title'),'Visible','on')
-        title(['Shock: ',printlabels],'FontSize',11,'FontName','Times New Roman','FontWeight','normal','interpreter','latex');
+        title(['Shock: ',printlabels],'FontSize',11,'FontName','Times New Roman','FontWeight','normal','interpreter','none');
     end
 end % pref.plot
 

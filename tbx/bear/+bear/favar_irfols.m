@@ -196,7 +196,7 @@ if favar.IRFplot==1
             %         Ymax=maxband+0.2*space;
             set(gca,'XLim',[1 IRFperiods],'FontName','Times New Roman'); %,'YLim',[Ymin Ymax]
             %title of subplot is variable name
-            title(favar.informationvariablestrings{1,favar.plotX_index(count)},'FontWeight','normal','interpreter','latex');
+            title(favar.informationvariablestrings{1,favar.plotX_index(count)},'FontWeight','normal','interpreter','none');
         end
         
         % top supertitle
