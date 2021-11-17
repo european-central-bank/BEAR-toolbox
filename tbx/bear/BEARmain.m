@@ -35,7 +35,7 @@ function BEARmain(opts)
 %---------------------|
 % Initilisation phase |
 %-------------------- |
-close all; clc;
+
 %% Unpack general inputs
 VARtype = opts.VARtype;
 
