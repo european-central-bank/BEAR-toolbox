@@ -11,7 +11,7 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
     %    const           - inclusion of a constant
     %    excelFile       - Excel file used for the inputs
     %    results_path    - path where there results file is stored
-    %    results_sub     - name of the results file 
+    %    results_sub     - name of the results file
     %    results         - save the results in the excel file (true/false)
     %    plot            - plot the results (true/false)
     %    workspace       - save the workspace as a .mat file (true/false)
@@ -55,7 +55,7 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         
         excelFile    (1,:) char = '';                    % Excel file used for the inputs
         results_path (1,:) char = pwd;                    % path where there results file is stored
-        results_sub  (1,:) char = 'results';             % name of the results file 
+        results_sub  (1,:) char = 'results';             % name of the results file
         results      (1,1) logical = false;              % save the results in the excel file (true/false)
         plot         (1,1) logical = false;              % plot the results (true/false)
         workspace    (1,1) logical = true;               % save the workspace as a .mat file (true/false)
@@ -63,10 +63,6 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         % Model options
         IRF        (1,1) logical = true;  % activate impulse response functions (1=yes, 0=no)
         IRFperiods (1,1) double  = 20;    % number of periods for impulse response functions
-        F          (1,1) logical = true;  % activate unconditional forecasts (1=yes, 0=no)
-        HDall      (1,1) logical = 0;     % if we want to plot the entire decomposition, all contributions (includes deterministic part) (1=yes, 0=no)
-        CF         (1,1) logical = false; % activate conditional forecasts (1=yes, 0=no)
-        
         % structural identification:
         % 1=none,
         % 2=Cholesky,
@@ -75,21 +71,31 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         % 5=IV identification,
         % 6=IV identification & sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions)
         IRFt  bear.IRFtype = bear.IRFtype(4);
+    end
+    
+    properties (Dependent)
+        FEVD       % activate forecast error variance decomposition (1=yes, 0=no)
+        HD         % activate historical decomposition (1=yes, 0=no)
+    end
+    
+    properties
         
-        Feval (1,1) logical = false; % activate forecast evaluation (1=yes, 0=no)
+        HDall      (1,1) logical = 0;     % if we want to plot the entire decomposition, all contributions (includes deterministic part) (1=yes, 0=no)
+        F          (1,1) logical = true;  % activate unconditional forecasts (1=yes, 0=no)
         
+        CF         (1,1) logical = false; % activate conditional forecasts (1=yes, 0=no)
         % type of conditional forecasts
         % 1 = standard (all shocks),
         % 2 = standard (shock-specific)
         % 3 = tilting (median), 4=tilting (interval)
         CFt bear.CFtype = bear.CFtype(1);
         
-        Fstartdate = '2014q1'; % start date for forecasts (has to be an in-sample date; otherwise, ignore and set Fendsmpl=1)
-        Fenddate   = '2016q4'; % end date for forecasts
-        
         % start forecasts immediately after the final sample period (1=yes, 0=no)
         % has to be set to 1 if start date for forecasts is not in-sample
         Fendsmpl (1,1) logical = false;
+        Fstartdate = '2014q1'; % start date for forecasts (has to be an in-sample date; otherwise, ignore and set Fendsmpl=1)
+        Fenddate   = '2016q4'; % end date for forecasts
+        Feval (1,1) logical = false; % activate forecast evaluation (1=yes, 0=no)
         
         hstep           (1,1) double = 1;    % step ahead evaluation
         window_size     (1,1) double = 0;    % window_size for iterative forecasting 0 if no iterative forecasting                                            <                                                                                    -
@@ -102,14 +108,9 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         
     end
     
-    properties (Dependent)
-        FEVD       % activate forecast error variance decomposition (1=yes, 0=no)
-        HD         % activate historical decomposition (1=yes, 0=no)
-    end
-    
     properties (Access = protected)
-        FEVDinternal (1,1) logical = true; 
-        HDinternal   (1,1) logical = true;  
+        FEVDinternal (1,1) logical = true;
+        HDinternal   (1,1) logical = true;
     end
     
     
@@ -133,20 +134,20 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         end
         
         function value = get.FEVD(obj)
-           value = getFEVD(obj);
+            value = getFEVD(obj);
         end
         
         function value = get.HD(obj)
-           value = getHD(obj);
+            value = getHD(obj);
         end
         
         function obj = set.FEVD(obj, value)
-           obj.FEVDinternal = value;
+            obj.FEVDinternal = value;
         end
         
         function obj = set.HD(obj, value)
-           obj.HDinternal = value;
-        end        
+            obj.HDinternal = value;
+        end
         
     end
     
@@ -170,7 +171,7 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
             % Get base properties
             baseProps = {meta.PropertyList.Name};
             
-            specificProps = setdiff(props, baseProps);            
+            specificProps = setdiff(props, baseProps);
             specificProps = props(ismember(props, specificProps)); % To keep original order
             
             mainProps = {'VARtype', 'frequency', 'startdate', ...
@@ -200,10 +201,10 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
             matlab.mixin.CustomDisplay.displayPropertyGroups(obj, applicationProps);
             
         end
-                
+        
     end
     
-    methods (Access = protected)               
+    methods (Access = protected)
         
         function value = getFEVD(obj)
             value = obj.FEVDinternal;
