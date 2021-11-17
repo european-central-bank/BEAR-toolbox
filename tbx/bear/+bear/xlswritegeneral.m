@@ -27,7 +27,7 @@ elseif nargin == 4
     sheet = varargin{1};
     range = varargin{2};
 end
-
+warning off MATLAB:xlswrite:AddSheet
 [status,message]=xlswrite(file,data,sheet,range);
-
+warning on MATLAB:xlswrite:AddSheet
 end
