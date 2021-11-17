@@ -839,10 +839,10 @@ for iteration=1:numt % beginning of forecasting loop
             q2=length(psi0);
             % run Gibbs sampler for estimation
             [beta_gibbs, sigma_gibbs, theta_gibbs, ss_record,indH,beta_theta_gibbs]=bear.TVEmagibbs(data_endo,opts.It,opts.Bu,beta0,omega0,psi0,lambda0,Y,X,n,T,k1,q1,p,regimeperiods,names,TVEH);
-            %[beta_gibbs opts.psi_gibbs sigma_gibbs delta_gibbs ss_record]=bear.magibbs(data_endo,data_exo,It,Bu,beta0,omega0,psi0,lambda0,Y,X,Z,n,m,T,k1,k3,q1,q2,q3,p);
+            %[beta_gibbs psi_gibbs sigma_gibbs delta_gibbs ss_record]=bear.magibbs(data_endo,data_exo,It,Bu,beta0,omega0,psi0,lambda0,Y,X,Z,n,m,T,k1,k3,q1,q2,q3,p);
             % compute posterior estimates
             [beta_median, beta_std, beta_lbound, beta_ubound, theta_median, theta_std, theta_lbound, theta_ubound, sigma_median]=bear.TVEmaestimates(beta_gibbs,theta_gibbs,sigma_gibbs,cband,q1,q2,n);
-            %[beta_median beta_std beta_lbound beta_ubound opts.psi_median opts.psi_std opts.psi_lbound opts.psi_ubound sigma_median]=bear.maestimates(beta_gibbs,opts.psi_gibbs,sigma_gibbs,cband,q1,q2,n);
+            %[beta_median beta_std beta_lbound beta_ubound psi_median psi_std psi_lbound psi_ubound sigma_median]=bear.maestimates(beta_gibbs,psi_gibbs,sigma_gibbs,cband,q1,q2,n);
         end
         
         % routines are different for IRFt 4, 5 & 6
@@ -1561,14 +1561,14 @@ for iteration=1:numt % beginning of forecasting loop
         % if the model is the standard model
         if opts.stvol==1
             % obtain prior elements
-            [beta0, omega0, G, I_o, omega, f0, uopts.psilon0]=bear.stvol1prior(opts.ar,arvar,opts.lambda1,opts.lambda2,opts.lambda3,opts.lambda4,opts.lambda5,n,m,p,T,k,q,opts.bex,blockexo,opts.gamma,priorexo);
+            [beta0, omega0, G, I_o, omega, f0, upsilon0]=bear.stvol1prior(opts.ar,arvar,opts.lambda1,opts.lambda2,opts.lambda3,opts.lambda4,opts.lambda5,n,m,p,T,k,q,opts.bex,blockexo,opts.gamma,priorexo);
             % run the Gibbs sampling algorithm to recover the posterior distributions
             if favar.FAVAR==0
                 [beta_gibbs, F_gibbs, L_gibbs, phi_gibbs, sigma_gibbs, lambda_t_gibbs, sigma_t_gibbs, sbar]=...
-                    bear.stvol1gibbs(Xbart,yt,beta0,omega0,opts.alpha0,opts.delta0,f0,uopts.psilon0,betahat,sigmahat,opts.gamma,G,I_o,omega,T,n,q,opts.It,opts.Bu,opts.pick,opts.pickf);
+                    bear.stvol1gibbs(Xbart,yt,beta0,omega0,opts.alpha0,opts.delta0,f0,upsilon0,betahat,sigmahat,opts.gamma,G,I_o,omega,T,n,q,opts.It,opts.Bu,opts.pick,opts.pickf);
             elseif favar.FAVAR==1
                 [beta_gibbs, F_gibbs, L_gibbs, phi_gibbs, sigma_gibbs, lambda_t_gibbs, sigma_t_gibbs,sbar,favar,opts.It,opts.Bu]=...
-                    bear.favar_stvol1gibbs(Xbart,yt,beta0,omega0,opts.alpha0,opts.delta0,f0,uopts.psilon0,betahat,sigmahat,opts.gamma,G,I_o,omega,T,n,q,opts.It,opts.Bu,opts.pick,opts.pickf,favar,data_endo,lags);
+                    bear.favar_stvol1gibbs(Xbart,yt,beta0,omega0,opts.alpha0,opts.delta0,f0,upsilon0,betahat,sigmahat,opts.gamma,G,I_o,omega,T,n,q,opts.It,opts.Bu,opts.pick,opts.pickf,favar,data_endo,lags);
             end
             % compute posterior estimates
             [beta_median, beta_std, beta_lbound, beta_ubound, sigma_median, sigma_t_median, sigma_t_lbound, sigma_t_ubound]=bear.stvol1estimates(beta_gibbs,sigma_gibbs,sigma_t_gibbs,n,T,cband);
@@ -1577,14 +1577,14 @@ for iteration=1:numt % beginning of forecasting loop
             % if the model is the random inertia model
         elseif opts.stvol==2
             % obtain prior elements
-            [beta0, omega0, I_o, omega, f0, uopts.psilon0]=bear.stvol2prior(opts.ar,arvar,opts.lambda1,opts.lambda2,opts.lambda3,opts.lambda4,opts.lambda5,n,m,p,T,k,q,opts.bex,blockexo,priorexo);
+            [beta0, omega0, I_o, omega, f0, upsilon0]=bear.stvol2prior(opts.ar,arvar,opts.lambda1,opts.lambda2,opts.lambda3,opts.lambda4,opts.lambda5,n,m,p,T,k,q,opts.bex,blockexo,priorexo);
             % run the Gibbs sampling algorithm to recover the posterior distributions
             if favar.FAVAR==0
                 [beta_gibbs, F_gibbs, gamma_gibbs, L_gibbs, phi_gibbs, sigma_gibbs, lambda_t_gibbs, sigma_t_gibbs, sbar]=...
-                    bear.stvol2gibbs(Xbart,yt,beta0,omega0,opts.alpha0,opts.delta0,gamma0,zeta0,f0,uopts.psilon0,betahat,sigmahat,I_o,omega,T,n,q,opts.It,opts.Bu,opts.pick,opts.pickf);
+                    bear.stvol2gibbs(Xbart,yt,beta0,omega0,opts.alpha0,opts.delta0,opts.gamma0,opts.zeta0,f0,upsilon0,betahat,sigmahat,I_o,omega,T,n,q,opts.It,opts.Bu,opts.pick,opts.pickf);
             elseif favar.FAVAR==1
                 [beta_gibbs, F_gibbs, gamma_gibbs, L_gibbs, phi_gibbs, sigma_gibbs, lambda_t_gibbs, sigma_t_gibbs,sbar,favar,opts.It,opts.Bu]=...
-                    bear.favar_stvol2gibbs(Xbart,yt,beta0,omega0,opts.alpha0,opts.delta0,gamma0,zeta0,f0,uopts.psilon0,betahat,sigmahat,I_o,omega,T,n,q,opts.It,opts.Bu,opts.pick,opts.pickf,favar,data_endo,lags);
+                    bear.favar_stvol2gibbs(Xbart,yt,beta0,omega0,opts.alpha0,opts.delta0,opts.gamma0,opts.zeta0,f0,upsilon0,betahat,sigmahat,I_o,omega,T,n,q,opts.It,opts.Bu,opts.pick,opts.pickf,favar,data_endo,lags);
             end
             % compute posterior estimates
             [beta_median, beta_std, beta_lbound, beta_ubound, sigma_median, sigma_t_median, sigma_t_lbound, sigma_t_ubound, gamma_median]=...
@@ -1594,14 +1594,14 @@ for iteration=1:numt % beginning of forecasting loop
             % if the model is the stochastic volatility model for large BVARs
         elseif opts.stvol==3
             % obtain prior elements
-            [B0, phi0, G, I_o, omega, f0, uopts.psilon0]=bear.stvol3prior(opts.ar,arvar,opts.lambda1,opts.lambda3,opts.lambda4,n,m,p,T,k,q,opts.gamma,priorexo);
+            [B0, phi0, G, I_o, omega, f0, upsilon0]=bear.stvol3prior(opts.ar,arvar,opts.lambda1,opts.lambda3,opts.lambda4,n,m,p,T,k,q,opts.gamma,priorexo);
             % run the Gibbs sampling algorithm to recover the posterior distributions
             if favar.FAVAR==0
                 [beta_gibbs, F_gibbs, L_gibbs, phi_gibbs, sigma_gibbs, lambda_t_gibbs, sigma_t_gibbs, sbar]=...
-                    bear.stvol3gibbs(Xbart,Xt,yt,B0,phi0,opts.alpha0,opts.delta0,f0,uopts.psilon0,betahat,sigmahat,opts.gamma,G,I_o,omega,T,n,k,opts.It,opts.Bu,opts.pick,opts.pickf);
+                    bear.stvol3gibbs(Xbart,Xt,yt,B0,phi0,opts.alpha0,opts.delta0,f0,upsilon0,betahat,sigmahat,opts.gamma,G,I_o,omega,T,n,k,opts.It,opts.Bu,opts.pick,opts.pickf);
             elseif favar.FAVAR==1
                 [beta_gibbs, F_gibbs, L_gibbs, phi_gibbs, sigma_gibbs, lambda_t_gibbs, sigma_t_gibbs,sbar,favar,opts.It,opts.Bu]=...
-                    bear.favar_stvol3gibbs(Xbart,Xt,yt,B0,phi0,opts.alpha0,opts.delta0,f0,uopts.psilon0,betahat,sigmahat,opts.gamma,G,I_o,omega,T,n,k,opts.It,opts.Bu,opts.pick,opts.pickf,favar,data_endo,lags);
+                    bear.favar_stvol3gibbs(Xbart,Xt,yt,B0,phi0,opts.alpha0,opts.delta0,f0,upsilon0,betahat,sigmahat,opts.gamma,G,I_o,omega,T,n,k,opts.It,opts.Bu,opts.pick,opts.pickf,favar,data_endo,lags);
             end
             % compute posterior estimates
             [beta_median, beta_std, beta_lbound, beta_ubound, sigma_median, sigma_t_median, sigma_t_lbound, sigma_t_ubound]=...
@@ -1634,7 +1634,7 @@ for iteration=1:numt % beginning of forecasting loop
         %% BLOCK 3: MODEL EVALUATION
         if opts.stvol~=4
             % display the VAR results
-            bear.stvoldisp(beta_median,beta_std,beta_lbound,beta_ubound,sigma_median,sigma_t_median,sigma_t_lbound,sigma_t_ubound,gamma_median,X,Y,n,m,p,k,T,opts.stvol,opts.bex,opts.ar,opts.lambda1,opts.lambda2,opts.lambda3,opts.lambda4,opts.lambda5,opts.gamma,opts.alpha0,opts.delta0,gamma0,zeta0,IRFt,const,endo,exo,startdate,enddate,stringdates1,decimaldates1,pref,opts.PriorExcel);
+            bear.stvoldisp(beta_median,beta_std,beta_lbound,beta_ubound,sigma_median,sigma_t_median,sigma_t_lbound,sigma_t_ubound,gamma_median,X,Y,n,m,p,k,T,opts.stvol,opts.bex,opts.ar,opts.lambda1,opts.lambda2,opts.lambda3,opts.lambda4,opts.lambda5,opts.gamma,opts.alpha0,opts.delta0,opts.gamma0,opts.zeta0,IRFt,const,endo,exo,startdate,enddate,stringdates1,decimaldates1,pref,opts.PriorExcel);
             
             % compute and display the steady state results
             [ss_record]=bear.ssgibbs(n,m,p,k,X,beta_gibbs,opts.It,opts.Bu,favar);
@@ -1891,14 +1891,14 @@ for iteration=1:numt % beginning of forecasting loop
             % if the model is the general time-varying
         elseif opts.tvbvar==2
             % obtain prior elements
-            [chi, psi, kappa, S, H, I_tau, G, I_om, f0, uopts.psilon0]=bear.tvbvar2prior(arvar,n,q,T,opts.gamma);
+            [chi, psi, kappa, S, H, I_tau, G, I_om, f0, upsilon0]=bear.tvbvar2prior(arvar,n,q,T,opts.gamma);
             % run the Gibbs sampling algorithm to recover the posterior distributions
             if favar.FAVAR==0
                 [beta_gibbs, omega_gibbs, F_gibbs, L_gibbs, phi_gibbs, sigma_gibbs, lambda_t_gibbs ,sigma_t_gibbs, sbar]...
-                    =bear.tvbvar2gibbs(G,sigmahat,T,chi,psi,kappa,betahat,q,n,opts.It,opts.Bu,I_tau,I_om,H,Xbar,y,opts.alpha0,yt,Xbart,uopts.psilon0,f0,opts.delta0,opts.gamma,opts.pick,opts.pickf);
+                    =bear.tvbvar2gibbs(G,sigmahat,T,chi,psi,kappa,betahat,q,n,opts.It,opts.Bu,I_tau,I_om,H,Xbar,y,opts.alpha0,yt,Xbart,upsilon0,f0,opts.delta0,opts.gamma,opts.pick,opts.pickf);
             elseif favar.FAVAR==1 % FAVAR two-step estimation (static factors)
                 [beta_gibbs, omega_gibbs, F_gibbs, L_gibbs, phi_gibbs, sigma_gibbs, lambda_t_gibbs ,sigma_t_gibbs, sbar, favar]...
-                    =bear.favar_tvbvar2gibbs(G,sigmahat,T,chi,psi,kappa,betahat,q,n,opts.It,opts.Bu,I_tau,I_om,H,Xbar,y,opts.alpha0,yt,Xbart,uopts.psilon0,f0,opts.delta0,opts.gamma,opts.pick,opts.pickf,data_endo,lags,favar);
+                    =bear.favar_tvbvar2gibbs(G,sigmahat,T,chi,psi,kappa,betahat,q,n,opts.It,opts.Bu,I_tau,I_om,H,Xbar,y,opts.alpha0,yt,Xbart,upsilon0,f0,opts.delta0,opts.gamma,opts.pick,opts.pickf,data_endo,lags,favar);
             end
             % compute posterior estimates
             [beta_t_median, beta_t_std, beta_t_lbound, beta_t_ubound, omega_median, sigma_median, sigma_t_median, sigma_t_lbound, sigma_t_ubound]=bear.tvbvar2estimates(beta_gibbs,omega_gibbs,F_gibbs,L_gibbs,phi_gibbs,sigma_gibbs,lambda_t_gibbs,sigma_t_gibbs,n,q,T,cband);

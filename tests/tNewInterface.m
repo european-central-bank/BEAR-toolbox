@@ -33,8 +33,6 @@ classdef tNewInterface < matlab.unittest.TestCase
     methods (TestMethodSetup)
         
         function prepareTest(tc)
-            cd(tc.testLoc)            
-            tc.addTeardown(@() rmdir(fullfile(tc.testLoc,'results'),'s') )
             rng('default');
             s = rng;            
             addTeardown(tc, @() rng(s))
@@ -42,38 +40,47 @@ classdef tNewInterface < matlab.unittest.TestCase
         
     end
     
-    methods (Test)
+    methods (Test, TestTags = {'Git'})
         
         function tOLSVAR(tc)
             
+            import matlab.unittest.fixtures.TemporaryFolderFixture            
+            tempFixture = tc.applyFixture(TemporaryFolderFixture);
+                        
             resultsFile = "newTest";
             
             opts= BEARsettings('OLS', 'ExcelFile', fullfile(fullfile(bearroot(),'replications', 'data_.xlsx')));
-            opts.pref.results_path = 'results';
-            opts.pref.results_sub = 'newTest';
+            opts.results_path = tempFixture.Folder;
+            opts.results_sub = 'newTest';
             
             BEARmain(opts);
             
-            file = exist(fullfile(tc.testLoc, 'results', resultsFile + ".mat"), 'file');
+            file = exist(fullfile(tempFixture.Folder, resultsFile + ".mat"), 'file');
             tc.verifyEqual(file, 2)
         end
         
         function tOLSVAR_IRFt2(tc)
             
+            import matlab.unittest.fixtures.TemporaryFolderFixture            
+            tempFixture = tc.applyFixture(TemporaryFolderFixture);
+            
             resultsFile = "newTest";
             
             opts= BEARsettings('OLS', 'ExcelFile', fullfile(fullfile(bearroot(),'replications', 'data_.xlsx')));
-            opts.pref.results_path = 'results';
-            opts.pref.results_sub = 'newTest';
+            opts.results_path = tempFixture.Folder;
+            opts.results_sub = 'newTest';
             opts.IRFt = 2;
             
             BEARmain(opts);
             
-            file = exist(fullfile(tc.testLoc, 'results', resultsFile + ".mat"), 'file');
+            file = exist(fullfile(tempFixture.Folder, resultsFile + ".mat"), 'file');
             tc.verifyEqual(file, 2)
         end
         
         function tBVAR_IRFt2(tc)
+            
+            import matlab.unittest.fixtures.TemporaryFolderFixture            
+            tempFixture = tc.applyFixture(TemporaryFolderFixture);
             
             resultsFile = "newTest";
             
@@ -81,11 +88,11 @@ classdef tNewInterface < matlab.unittest.TestCase
                 'prior', 'minnesota_univariate', 'IRFt', 4);
             opts.prior=11;
             opts.IRFt=2;
-            opts.pref.results_path = 'results';
-            opts.pref.results_sub = 'newTest';
+            opts.results_path = tempFixture.Folder;
+            opts.results_sub = 'newTest';
             BEARmain(opts);
             
-            file = exist(fullfile(tc.testLoc, 'results', resultsFile + ".mat"), 'file');
+            file = exist(fullfile(tempFixture.Folder, resultsFile + ".mat"), 'file');
             tc.verifyEqual(file, 2)
         end
         

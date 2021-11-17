@@ -28,14 +28,6 @@ elseif nargin == 4
     range = varargin{2};
 end
 
-if ispc
-    [status,message]=xlswrite(file,data,sheet,range);
-elseif ismac
-    status=xlwrite(replace(file,'\',filesep),data,sheet,range);
-    if status==1
-        message='Output successfully written using xlwrite';
-    else
-        message='An error occured using xlwrite';
-    end
-end
+[status,message]=xlswrite(file,data,sheet,range);
+
 end
