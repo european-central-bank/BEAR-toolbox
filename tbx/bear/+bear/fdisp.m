@@ -46,7 +46,7 @@ if pref.plot
 
 % create forecast figure
 % then plot actual vs. fitted
-forecast=figure;
+forecast=figure('Tag','BEARresults');
 set(forecast,'Color',[0.9 0.9 0.9]);
 set(forecast,'name','unconditional forecasts');
 ncolumns=ceil(n^0.5);
@@ -65,7 +65,7 @@ hold off
 set(gca,'XLim',[decimaldates2(1,1) decimaldates2(end,1)],'FontName','Times New Roman');
 set(gca,'XGrid','on');
 set(gca,'YGrid','on');
-title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','Interpreter','latex');
+title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','Interpreter','none');
 end
 
 end % pref.plot

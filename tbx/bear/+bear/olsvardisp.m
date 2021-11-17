@@ -375,7 +375,7 @@ fclose(fid);
 
 % then plot actual vs. fitted
 if pref.plot
-    actualfitted=figure;
+    actualfitted=figure('Tag','BEARresults');
     set(actualfitted,'Color',[0.9 0.9 0.9]);
     set(actualfitted,'name','model estimation: actual vs fitted')
     ncolumns=ceil(n^0.5);
@@ -387,7 +387,7 @@ if pref.plot
         plot(decimaldates1,Ytilde(:,ii),'Color',[1 0 0],'LineWidth',2);
         hold off
         set(gca,'XLim',[decimaldates1(1,1) decimaldates1(end,1)],'FontName','Times New Roman');
-        title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','latex');
+        title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','none');
         if ii==1
             plotlegend=legend('actual','fitted');
             set(plotlegend,'FontName','Times New Roman');
@@ -396,14 +396,14 @@ if pref.plot
     
     
     % plot the residuals
-    residuals=figure;
+    residuals=figure('Tag','BEARresults');
     set(residuals,'Color',[0.9 0.9 0.9]);
     set(residuals,'name','model estimation: residuals')
     for ii=1:n
         subplot(nrows,ncolumns,ii)
         plot(decimaldates1,EPStilde(:,ii),'Color',[0 0 0],'LineWidth',2)
         set(gca,'XLim',[decimaldates1(1,1) decimaldates1(end,1)],'FontName','Times New Roman');
-        title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','latex');
+        title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','none');
     end
 end
 

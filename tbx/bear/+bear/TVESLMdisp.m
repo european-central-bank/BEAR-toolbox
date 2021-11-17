@@ -432,7 +432,7 @@ fclose(fid);
 % Finally, display the results in terms of graph
 if pref.plot
 % plot actual vs. fitted
-actualfitted=figure;
+actualfitted=figure('Tag','BEARresults');
 set(actualfitted,'Color',[0.9 0.9 0.9]);
 set(actualfitted,'name','model estimation: actual vs fitted')
 ncolumns=ceil(n^0.5);
@@ -453,7 +453,7 @@ end
 
 
 % plot the residuals
-residuals=figure;
+residuals=figure('Tag','BEARresults');
 set(residuals,'Color',[0.9 0.9 0.9]);
 set(residuals,'name','model estimation: residuals')
 for ii=1:n
@@ -465,7 +465,7 @@ end
 
 
 % plot first the time-varying variance and covariance estimates
-varcov=figure;
+varcov=figure('Tag','BEARresults');
 set(varcov,'Color',[0.9 0.9 0.9]);
 set(varcov,'name','model estimation: residual variance and covariance')
 for ii=1:n
@@ -563,7 +563,7 @@ end
 % Finally, display the results in terms of graph
 if pref.plot
 % plot actual vs. fitted
-trendcycle=figure;
+trendcycle=figure('Tag','BEARresults');
 set(trendcycle,'Color',[0.9 0.9 0.9]);
 set(trendcycle,'name','Local mean (trend) and actual data')
 ncolumns=ceil(n^0.5);

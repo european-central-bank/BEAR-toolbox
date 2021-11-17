@@ -792,7 +792,6 @@ phi_irf = bear.impulsdtrf(By,eye(nv),irfperiods);
 % Drawing graphs
 % Response of equation n to shocks to each variable in turn
 
-i = 0;
 x = (1:irfperiods)';
 plotct = 0;
 
@@ -800,12 +799,11 @@ plotct = 0;
 
 for i = 1:nv
     plotct = plotct + 1;
-      eval(['figure(''Name'',''Response of all variables to shock in equation: ',num2str(i),''',''NumberTitle'',''off'')']);
-    for j = 1:nv;
+    figure('Name',"Response of all variables to shock in equation: " + num2str(i),'NumberTitle','off', 'Tag','BEARresults')
+    for j = 1:nv
         subplot(Nrows,Ncols,j);
         plot(x,reshape(phi_irf(plotct,j,:),irfperiods,1));
     end
 
 
 end
-%}

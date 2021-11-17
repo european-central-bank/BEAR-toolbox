@@ -36,7 +36,7 @@ end
 
 if pref.plot
 % then plot the figure
-forecast=figure;
+forecast=figure('Tag','BEARresults');
 set(forecast,'Color',[0.9 0.9 0.9]);
 set(forecast,'name','conditional forecasts');
 % initiate the count

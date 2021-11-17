@@ -17,7 +17,7 @@ function []=ssdisp(Y,n,endo,stringdates1,decimaldates1,ss_estimates,pref)
 
 if pref.plot==1
 % create steady-state figure
-sstate=figure;
+sstate=figure('Tag','BEARresults');
 set(sstate,'Color',[0.9 0.9 0.9]);
 set(sstate,'name','steady-state');
 ncolumns=ceil(n^0.5);
@@ -46,7 +46,7 @@ space=maxband-minband;
 Ymin=minband-0.2*space;
 Ymax=maxband+0.2*space;
 set(gca,'XLim',[decimaldates1(1,1) decimaldates1(end,1)],'YLim',[Ymin,Ymax],'FontName','Times New Roman');
-title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','latex');
+title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','none');
    if ii==1
    plotlegend=legend([ss,actual],'steady-state','actual');
    set(plotlegend,'FontName','Times New Roman');

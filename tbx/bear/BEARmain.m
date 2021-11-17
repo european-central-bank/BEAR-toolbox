@@ -31,6 +31,9 @@
 %                                                                          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function BEARmain(opts)
+% Close figures from previous runs
+oldFigs = findobj('Tag','BEARresults');
+close(oldFigs)
 %%
 %---------------------|
 % Initilisation phase |

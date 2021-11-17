@@ -8,7 +8,7 @@ favar_irf_estimates=favar.IRF.favar_irf_estimates(:,favar.IRF.plotXshock_index);
 if favar.IRFplot==1
     % one window for each shock, as we possibly plot a lot of variables in X
     for px=1:favar.IRF.npltXshck
-        irf_favar=figure;
+        irf_favar=figure('Tag','BEARresults');
         % shock label
         if IRFt==1||IRFt==2||IRFt==3
             printlabels=endo{favar.IRF.plotXshock_index(1,px),1};
@@ -41,13 +41,13 @@ if favar.IRFplot==1
             %         Ymax=maxband+0.2*space;
             set(gca,'XLim',[1 IRFperiods],'FontName','Times New Roman'); %,'YLim',[Ymin Ymax]
             % title of subplot is variable name
-            title(favar.informationvariablestrings{1,favar.plotX_index(count)},'FontWeight','normal','interpreter','latex');
+            title(favar.informationvariablestrings{1,favar.plotX_index(count)},'FontWeight','normal','interpreter','none');
         end
         
         % top supertitle
         ax=axes('Units','Normal','Position',[.11 .075 .85 .88],'Visible','off');
         set(get(ax,'Title'),'Visible','on')
-        title(['Shock: ',printlabels],'FontSize',11,'FontName','Times New Roman','FontWeight','normal','interpreter','latex');
+        title(['Shock: ',printlabels],'FontSize',11,'FontName','Times New Roman','FontWeight','normal','interpreter','none');
     end
 end
 

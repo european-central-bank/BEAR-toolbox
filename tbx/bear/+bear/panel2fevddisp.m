@@ -11,7 +11,7 @@ function []=panel2fevddisp(n,endo,fevd_estimates,IRFperiods,pref)
 
 if pref.plot
 % plot the figure
-fevd=figure;
+fevd=figure('Tag','BEARresults');
 set(fevd,'Color',[0.9 0.9 0.9]);
 set(fevd,'name','forecast error variance decomposition');
 % initiate the count

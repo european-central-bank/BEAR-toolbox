@@ -23,7 +23,7 @@ Ytilde(:,:,ii)=Xi(:,:,ii)*Btilde;
 end
 if pref.plot
 % then plot the figure
-actualfitted=figure;
+actualfitted=figure('Tag','BEARresults');
 set(actualfitted,'Color',[0.9 0.9 0.9]);
 set(actualfitted,'name','actual vs fitted')
 % initiate the count
@@ -99,7 +99,7 @@ EPStilde(:,:,ii)=Yi(:,:,ii)-Ytilde(:,:,ii);
 end
 if pref.plot
 % using these values, plot
-residuals=figure;
+residuals=figure('Tag','BEARresults');
 set(residuals,'Color',[0.9 0.9 0.9]);
 set(residuals,'name','residuals')
 % initiate the count
@@ -177,7 +177,7 @@ ss_estimates=bear.ssestimates(ss_record,n,T,cband);
 
 if pref.plot
 % then plot the figure
-sstate=figure;
+sstate=figure('Tag','BEARresults');
 set(sstate,'Color',[0.9 0.9 0.9]);
 set(sstate,'name','steady-state')
 % initiate the count

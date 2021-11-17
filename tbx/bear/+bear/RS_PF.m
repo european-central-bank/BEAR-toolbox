@@ -21,7 +21,7 @@ cvones     = result.cvones;     % critical values
 %% Plots
 
 % Actual Data vs Median Forecasts
-figure;
+figure('Tag','BEARresults');
 subplot(2,2,1);
 plot(pdate,actualdata(ind_var,:), 'LineWidth',2)
 hold on

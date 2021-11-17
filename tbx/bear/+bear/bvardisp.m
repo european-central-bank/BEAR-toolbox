@@ -551,7 +551,7 @@ if pref.plot
         plotexo=1;
         plotconst=const;
         % then plot the figure
-        postdis=figure;
+        postdis=figure('Tag','BEARresults');
         set(postdis,'Color',[0.9 0.9 0.9]);
         set(postdis,'name','posterior distribution of VAR coefficients');
         for ii=1:q
@@ -563,7 +563,7 @@ if pref.plot
             % top labels for endogenous
             if ii<=n*p
                 temp=[endo{plotvar,1} '(-' num2str(plotlag) ')'];
-                title(temp,'FontWeight','normal','interpreter','latex');
+                title(temp,'FontWeight','normal','interpreter','none');
                 if plotlag<p
                     plotlag=plotlag+1;
                 elseif plotlag==p
@@ -574,23 +574,23 @@ if pref.plot
             % top labels for exogenous
             if ii>n*p && ii<=k
                 if plotconst==1
-                    title('Constant','FontWeight','normal','interpreter','latex');
+                    title('Constant','FontWeight','normal','interpreter','none');
                     plotconst=0;
                 else
-                    title(exo{plotexo,1},'FontWeight','normal','interpreter','latex');
+                    title(exo{plotexo,1},'FontWeight','normal','interpreter','none');
                     plotexo=plotexo+1;
                 end
             end
             % side labels
             if rem((ii-1)/k,1)==0
-                ylabel(endo{(ii-1)/k+1,1},'FontWeight','normal','interpreter','latex');
+                ylabel(endo{(ii-1)/k+1,1},'FontWeight','normal','interpreter','none');
             end
         end
     end
     
     
     % then plot actual vs. fitted
-    actualfitted=figure;
+    actualfitted=figure('Tag','BEARresults');
     set(actualfitted,'Color',[0.9 0.9 0.9]);
     set(actualfitted,'name','model estimation: actual vs fitted')
     ncolumns=ceil(n^0.5);
@@ -602,7 +602,7 @@ if pref.plot
         plot(decimaldates1,Ytilde(:,ii),'Color',[1 0 0],'LineWidth',2);
         hold off
         set(gca,'XLim',[decimaldates1(1,1) decimaldates1(end,1)],'FontName','Times New Roman');
-        title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','latex');
+        title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','none');
         if ii==1
             plotlegend=legend('actual','fitted');
             set(plotlegend,'FontName','Times New Roman');
@@ -611,14 +611,14 @@ if pref.plot
     
     
     % plot the residuals
-    residuals=figure;
+    residuals=figure('Tag','BEARresults');
     set(residuals,'Color',[0.9 0.9 0.9]);
     set(residuals,'name','model estimation: residuals')
     for ii=1:n
         subplot(nrows,ncolumns,ii)
         plot(decimaldates1,EPStilde(:,ii),'Color',[0 0 0],'LineWidth',2)
         set(gca,'XLim',[decimaldates1(1,1) decimaldates1(end,1)],'FontName','Times New Roman');
-        title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','latex');
+        title(endo{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','none');
     end
     
 end

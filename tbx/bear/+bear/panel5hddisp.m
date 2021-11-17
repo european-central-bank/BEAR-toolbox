@@ -1,15 +1,8 @@
 function []=panel5hddisp(N,n,T,Units,endo,hd_estimates,stringdates1,decimaldates1,pref)
 
-
-
-
-
-
-
-
 % plot the figure
 if pref.plot
-hd=figure;
+hd=figure('Tag','BEARresults');
 set(hd,'Color',[0.9 0.9 0.9]);
 set(hd,'name','historical decomposition');
 % initiate the count

@@ -32,7 +32,7 @@ plot_estimates=plot_estimates';
 
 if pref.plot
 % create figure for IRFs
-irf=figure;
+irf=figure('Tag','BEARresults');
 set(irf,'Color',[0.9 0.9 0.9]);
    if IRFt==1
    set(irf,'name','impulse response functions (all sample periods, no structural identifcation)');
@@ -53,23 +53,23 @@ set(temp,'edgecolor',[0.15 0.15 0.15],'EdgeAlpha',0.5);
    if ii<=n
       % if a sign restriction identification scheme has been used, use the structural shock labels
       if IRFt==4
-      title(signreslabels{ii,1},'FontWeight','normal','interpreter','latex');
+      title(signreslabels{ii,1},'FontWeight','normal','interpreter','none');
       % otherwise, the shocks are just orthogonalised shocks from the variables: use variable names
       else
-      title(endo{ii,1},'FontWeight','normal','interpreter','latex');
+      title(endo{ii,1},'FontWeight','normal','interpreter','none');
       end
    end
 % side labels
    if rem((ii-1)/n,1)==0
-   ylabel(endo{(ii-1)/n+1,1},'FontWeight','normal','interpreter','latex');
+   ylabel(endo{(ii-1)/n+1,1},'FontWeight','normal','interpreter','none');
    end
 end
 % top supertitle
 ax=axes('Units','Normal','Position',[.11 .075 .85 .88],'Visible','off');
 set(get(ax,'Title'),'Visible','on')
-title('Shock:','FontSize',11,'FontName','Times New Roman','FontWeight','normal','interpreter','latex');
+title('Shock:','FontSize',11,'FontName','Times New Roman','FontWeight','normal','interpreter','none');
 % side supertitle
-ylabel('Response of:','FontSize',12,'FontName','Times New Roman','FontWeight','normal','interpreter','latex');
+ylabel('Response of:','FontSize',12,'FontName','Times New Roman','FontWeight','normal','interpreter','none');
 set(get(ax,'Ylabel'),'Visible','on')
 
 end % pref.plot

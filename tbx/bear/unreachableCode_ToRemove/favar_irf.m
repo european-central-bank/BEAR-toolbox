@@ -39,11 +39,11 @@ function [favar]=favar_irf(favar,IRFperiods,endo,IRFt,strctident,pref)
        elseif IRFt==4||IRFt==5||IRFt==6
        printlabels=strctident.signreslabels{strctident.signreslabels_shocksindex(ii,1)};
         end
-   title(printlabels,'FontWeight','normal','interpreter','latex');
+   title(printlabels,'FontWeight','normal','interpreter','none');
    end
 % side labels
    if rem((ii-1)/favar.IRF.npltXshck,1)==0
-   ylabel(favar.informationvariablestrings{1,favar.plotX_index((ii-1)/favar.IRF.npltXshck+1)},'FontWeight','normal','interpreter','latex');
+   ylabel(favar.informationvariablestrings{1,favar.plotX_index((ii-1)/favar.IRF.npltXshck+1)},'FontWeight','normal','interpreter','none');
    end
     end
     % top supertitle

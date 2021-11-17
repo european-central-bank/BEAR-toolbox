@@ -8,7 +8,7 @@ function []=irfexodisp(n,m,endo,exo,IRFperiods,exo_irf_estimates,pref)
 if pref.plot
     
 % plot the figure
-irf=figure;
+irf=figure('Tag','BEARresults');
 set(irf,'Color',[0.9 0.9 0.9]);
 set(irf,'name',['impulse response functions (exogenous)']);
 
@@ -39,17 +39,17 @@ for ii=1:n
    Ymax=maxband+0.2*space;
    set(gca,'XLim',[1 IRFperiods],'YLim',[Ymin Ymax],'FontName','Times New Roman');
       % top labels
-      title(exo{kk-1,1},'FontWeight','normal','interpreter','latex');
+      title(exo{kk-1,1},'FontWeight','normal','interpreter','none');
       % side labels
-      ylabel([endo{ii,1}],'FontWeight','normal','interpreter','latex');
+      ylabel([endo{ii,1}],'FontWeight','normal','interpreter','none');
    end
 end
 % top supertitle
 ax=axes('Units','Normal','Position',[.11 .075 .85 .88],'Visible','off');
 set(get(ax,'Title'),'Visible','on')
-title('Shock:','FontSize',11,'FontName','Times New Roman','FontWeight','normal','interpreter','latex');
+title('Shock:','FontSize',11,'FontName','Times New Roman','FontWeight','normal','interpreter','none');
 % side supertitle
-ylabel('Response of:','FontSize',12,'FontName','Times New Roman','FontWeight','normal','interpreter','latex');
+ylabel('Response of:','FontSize',12,'FontName','Times New Roman','FontWeight','normal','interpreter','none');
 set(get(ax,'Ylabel'),'Visible','on');
 
 end % pref.plot

@@ -40,7 +40,7 @@ end
 
 if pref.plot
 % then plot the figure
-cforecast=figure;
+cforecast=figure('Tag','BEARresults');
 set(cforecast,'Color',[0.9 0.9 0.9]);
 set(cforecast,'name','conditional forecasts');
 % calculate the number of units on which conditional forecasts have been applied

@@ -82,7 +82,7 @@ if FEVD==1
     if pref.plot==1
         ncolumns=ceil(n^0.5);
         nrows=ceil(n/ncolumns);
-        FEVDfig=figure;
+        FEVDfig=figure('Tag','BEARresults');
         set(FEVDfig,'Color',[0.9 0.9 0.9]);
         set(FEVDfig,'name','forecast error variance decomposition')
         
@@ -100,10 +100,10 @@ if FEVD==1
 %                 fevd(kk).FaceColor=colorm(kk*num,:);
 %             end
             axis tight
-            title(endo{rrr,1},'FontWeight','normal','Interpreter','latex');
+            title(endo{rrr,1},'FontWeight','normal','Interpreter','none');
         end
         hL=legend(labels);
-        set(hL,'Position',[0.45 0.00 0.1 0.1],'Orientation','horizontal','Interpreter','latex');
+        set(hL,'Position',[0.45 0.00 0.1 0.1],'Orientation','horizontal','Interpreter','none');
         legend boxoff
     end % pref.plot
     
@@ -116,7 +116,7 @@ end
 %% FAVAR FEVDs
 if favar.FAVAR==1
     if favar.FEVDplot==1
-        FEVDfig=figure;
+        FEVDfig=figure('Tag','BEARresults');
         numcol=ceil(sqrt(favar.npltX)); % rounded square root of npltX, make the plot quadratic
         numrow=ceil(favar.npltX/numcol); % and the number of rows we need
         
@@ -141,11 +141,11 @@ if favar.FAVAR==1
 %                         plothd=gca;
 %             plothd.ColorOrderIndex=1;
             axis tight
-            title(favar.informationvariablestrings{1,favar.plotX_index(rr)},'FontWeight','normal','Interpreter','latex');
+            title(favar.informationvariablestrings{1,favar.plotX_index(rr)},'FontWeight','normal','Interpreter','none');
         end
         
         hL=legend(labels);
-        set(hL,'Position',[0.45 0.00 0.1 0.1],'Orientation','horizontal','Interpreter','latex');
+        set(hL,'Position',[0.45 0.00 0.1 0.1],'Orientation','horizontal','Interpreter','none');
         legend boxoff
     end
     

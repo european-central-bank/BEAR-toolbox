@@ -58,7 +58,7 @@ myC= [0 0 1
 if pref.plot
 ncolumns=ceil(n^0.5);
 nrows=ceil(n/ncolumns);
-hd1=figure;
+hd1=figure('Tag','BEARresults');
 for i=1:n
 set(hd1,'name','Historical decomposition');
 subplot(nrows,ncolumns,i)

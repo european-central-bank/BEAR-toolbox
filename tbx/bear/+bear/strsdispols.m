@@ -13,7 +13,7 @@ end
 
 if pref.plot==1
 % create shock figure
-strshocks=figure;
+strshocks=figure('Tag','BEARresults');
 set(strshocks,'Color',[0.9 0.9 0.9]);
 set(strshocks,'name','structural shocks');
 ncolumns=ceil(identified^0.5);
@@ -30,7 +30,7 @@ space=maxband-minband;
 Ymin=minband-0.2*space;
 Ymax=maxband+0.2*space;
 set(gca,'XLim',[decimaldates1(1,1) decimaldates1(end,1)],'YLim',[Ymin,Ymax],'FontName','Times New Roman');
-title(labels{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','latex');
+title(labels{ii,1},'FontName','Times New Roman','FontSize',10,'FontWeight','normal','interpreter','none');
 end
 end
 
