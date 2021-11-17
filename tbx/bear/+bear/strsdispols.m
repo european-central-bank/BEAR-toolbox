@@ -13,7 +13,7 @@ end
 
 if pref.plot==1
 % create shock figure
-strshocks=figure;
+strshocks=figure('Tag','BEARresults');
 set(strshocks,'Color',[0.9 0.9 0.9]);
 set(strshocks,'name','structural shocks');
 ncolumns=ceil(identified^0.5);

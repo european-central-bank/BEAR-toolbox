@@ -12,7 +12,7 @@ function []=panel5irfdisp(N,n,Units,endo,irf_estimates,strshocks_estimates,IRFpe
 
 % plot the figure
 if pref.plot
-irf=figure;
+irf=figure('Tag','BEARresults');
 set(irf,'Color',[0.9 0.9 0.9]);
    if IRFt==1
    set(irf,'name',['impulse response functions (no structural identifcation)']);
@@ -118,7 +118,7 @@ if IRFt~=1
     if pref.plot
 % plot
 if pref.plot
-strshocks=figure;
+strshocks=figure('Tag','BEARresults');
 set(strshocks,'Color',[0.9 0.9 0.9]);
 set(strshocks,'name','structural shocks')
 % initiate the count

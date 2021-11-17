@@ -20,7 +20,7 @@ Ymat=reshape(Ymat,T,n,N);
 % then plot the figure
 %MAX no plot
 if pref.plot
-actualfitted=figure;
+actualfitted=figure('Tag','BEARresults');
 set(actualfitted,'Color',[0.9 0.9 0.9]);
 set(actualfitted,'name','actual vs fitted')
 % initiate the count
@@ -96,7 +96,7 @@ EPStilde(:,:,ii)=Ymat(:,:,ii)-Ytilde(:,:,ii);
 end
 % using these values, plot
 if pref.plot
-residuals=figure;
+residuals=figure('Tag','BEARresults');
 set(residuals,'Color',[0.9 0.9 0.9]);
 set(residuals,'name','residuals')
 % initiate the count
@@ -159,7 +159,7 @@ end
 [ss_record,ss_estimates]=bear.ssgibbspan5(n,N,m,p,k,T,Xmat,theta_gibbs,Xi,It,Bu,cband);
 % then plot the figure
 if pref.plot
-sstate=figure;
+sstate=figure('Tag','BEARresults');
 set(sstate,'Color',[0.9 0.9 0.9]);
 set(sstate,'name','steady-state')
 % initiate the count

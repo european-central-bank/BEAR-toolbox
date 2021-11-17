@@ -40,7 +40,7 @@ if pref.plot
     %% create figure for IRFs
     % one window for each shock, as we possbily plot a lot of variables in X
     for px=1:npltXshck
-        irf_favar=figure;
+        irf_favar=figure('Tag','BEARresults');
         % shock label
         if IRFt==1||IRFt==2||IRFt==3
             printlabels=endo{favar.IRF.plotXshock_index(1,px),1};

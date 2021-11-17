@@ -44,7 +44,7 @@ ssvalues=product*X_exo;
 
 % create steady-state figure
 if pref.plot
-    sstate=figure;
+    sstate=figure('Tag','BEARresults');
     set(sstate,'Color',[0.9 0.9 0.9]);
     set(sstate,'name','steady-state');
     ncolumns=ceil(n^0.5);

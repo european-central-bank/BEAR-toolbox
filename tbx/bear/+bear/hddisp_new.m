@@ -127,7 +127,7 @@ if HD==1
     
     if pref.plot==1
         for ii=1:n
-            hd=figure;
+            hd=figure('Tag','BEARresults');
             set(hd,'name',strcat('historical decomposition (',endo{ii,1},')'));
             % clear previous variables
             clear contributions;
@@ -355,7 +355,7 @@ if favar.HDplot==1
     
     if pref.plot==1
         for jj=1:favar.npltX %loop over variables specified in plotX
-            hdX=figure;
+            hdX=figure('Tag','BEARresults');
             set(hdX,'name',['approximate historical decomposition of',' ',labelsX{jj}]);
             % clear previous variables
             clear contributions;

@@ -32,7 +32,7 @@ plot_estimates=plot_estimates';
 
 if pref.plot
 % create figure for IRFs
-irf=figure;
+irf=figure('Tag','BEARresults');
 set(irf,'Color',[0.9 0.9 0.9]);
    if IRFt==1
    set(irf,'name','impulse response functions (all sample periods, no structural identifcation)');

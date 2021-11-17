@@ -163,7 +163,7 @@ favar_irf_estimates=favar_irf_estimates(:,favar.IRF.plotXshock_index);
 if favar.IRFplot==1
     % one window for each shock, as we possbily plot a lot of variables in X
     for px=1:favar.IRF.npltXshck
-        irf_favar=figure;
+        irf_favar=figure('Tag','BEARresults');
         % shock label
         if IRFt==1||IRFt==2||IRFt==3
             printlabels=endo{favar.IRF.plotXshock_index(1,px),1};

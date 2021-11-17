@@ -150,7 +150,7 @@ for ii=1:n
 ncolumns=ceil(n^0.5);
 nrows=ceil(n/ncolumns);
 % create figure
-hd=figure;
+hd=figure('Tag','BEARresults');
 set(hd,'position',[250,0,1800,1200])
 %set(hd, 'Color', [1,1,1])
 set(hd,'name','Historical decomposition');

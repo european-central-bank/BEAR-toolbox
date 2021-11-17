@@ -551,7 +551,7 @@ if pref.plot
         plotexo=1;
         plotconst=const;
         % then plot the figure
-        postdis=figure;
+        postdis=figure('Tag','BEARresults');
         set(postdis,'Color',[0.9 0.9 0.9]);
         set(postdis,'name','posterior distribution of VAR coefficients');
         for ii=1:q
@@ -590,7 +590,7 @@ if pref.plot
     
     
     % then plot actual vs. fitted
-    actualfitted=figure;
+    actualfitted=figure('Tag','BEARresults');
     set(actualfitted,'Color',[0.9 0.9 0.9]);
     set(actualfitted,'name','model estimation: actual vs fitted')
     ncolumns=ceil(n^0.5);
@@ -611,7 +611,7 @@ if pref.plot
     
     
     % plot the residuals
-    residuals=figure;
+    residuals=figure('Tag','BEARresults');
     set(residuals,'Color',[0.9 0.9 0.9]);
     set(residuals,'name','model estimation: residuals')
     for ii=1:n

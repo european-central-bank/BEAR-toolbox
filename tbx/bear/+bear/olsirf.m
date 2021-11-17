@@ -128,7 +128,7 @@ end
 % finally, estimate structural shocks (if some SVAR was selected)
 if IRFt==2||IRFt==3
 % create shock figure
-strshocks=figure;
+strshocks=figure('Tag','BEARresults');
 set(strshocks,'Color',[0.9 0.9 0.9]);
 set(strshocks,'name','structural shocks');
 ncolumns=ceil(n^0.5);

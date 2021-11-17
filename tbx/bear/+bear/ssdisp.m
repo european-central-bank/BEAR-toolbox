@@ -17,7 +17,7 @@ function []=ssdisp(Y,n,endo,stringdates1,decimaldates1,ss_estimates,pref)
 
 if pref.plot==1
 % create steady-state figure
-sstate=figure;
+sstate=figure('Tag','BEARresults');
 set(sstate,'Color',[0.9 0.9 0.9]);
 set(sstate,'name','steady-state');
 ncolumns=ceil(n^0.5);

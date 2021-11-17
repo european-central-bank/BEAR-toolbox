@@ -32,7 +32,7 @@ namecount=1;
 
 if pref.plot==1
 % create figure for IRFs
-irf=figure;
+irf=figure('Tag','BEARresults');
 set(irf,'Color',[0.9 0.9 0.9]);
 %set(irf,'position',[0,0,1920,1080])
    if IRFt==1

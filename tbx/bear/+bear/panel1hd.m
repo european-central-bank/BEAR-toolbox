@@ -66,7 +66,7 @@ end
 
 % plot the figure
 if pref.plot
-hd=figure;
+hd=figure('Tag','BEARresults');
 set(hd,'Color',[0.9 0.9 0.9]);
 set(hd,'name','historical decomposition');
 % initiate the count

@@ -11,7 +11,7 @@ function []=panel4irfdisp_mean(N,n,Units,endo,irf_estimates_m,strshocks_estimate
 % IRFs
 if pref.plot
 % plot the figure
-irf=figure;
+irf=figure('Tag','BEARresults');
 set(irf,'Color',[0.9 0.9 0.9]);
    if IRFt==1
    set(irf,'name',['impulse response functions (no structural identification)']);
@@ -100,7 +100,7 @@ xlswrite([datapath '\results.xlsx'],irfcell,'IRF','B2');
 % generate plot, if there is any structural decomposition
 if IRFt~=1
 % plot
-strshocks=figure;
+strshocks=figure('Tag','BEARresults');
 set(strshocks,'Color',[0.9 0.9 0.9]);
 set(strshocks,'name','structural shocks')
 % initiate the count

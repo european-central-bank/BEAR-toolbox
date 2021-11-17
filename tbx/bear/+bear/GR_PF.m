@@ -28,7 +28,7 @@ y2_1=cvupplot_2;
 %% Plots
 
 % AR(p) - with p BIC selected - Forecasts vs selected BEAR model Forecasts
-figure;
+figure('Tag','BEARresults');
 subplot(2,2,1);
 plot(pdate,actualdata(ind_var,:), 'LineWidth',2)
 hold on

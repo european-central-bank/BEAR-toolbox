@@ -70,7 +70,7 @@ end
 
 % plot the figure
 if pref.plot
-fevd=figure;
+fevd=figure('Tag','BEARresults');
 set(fevd,'Color',[0.9 0.9 0.9]);
 set(fevd,'name','forecast error variance decomposition');
 % initiate the count

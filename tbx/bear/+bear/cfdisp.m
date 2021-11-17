@@ -47,7 +47,7 @@ if pref.plot
 
 % create forecast figure
 % then plot actual vs. fitted
-forecast=figure;
+forecast=figure('Tag','BEARresults');
 set(forecast,'Color',[0.9 0.9 0.9]);
 set(forecast,'name','conditional forecasts');
 ncolumns=ceil(n^0.5);

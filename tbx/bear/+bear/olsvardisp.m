@@ -375,7 +375,7 @@ fclose(fid);
 
 % then plot actual vs. fitted
 if pref.plot
-    actualfitted=figure;
+    actualfitted=figure('Tag','BEARresults');
     set(actualfitted,'Color',[0.9 0.9 0.9]);
     set(actualfitted,'name','model estimation: actual vs fitted')
     ncolumns=ceil(n^0.5);
@@ -396,7 +396,7 @@ if pref.plot
     
     
     % plot the residuals
-    residuals=figure;
+    residuals=figure('Tag','BEARresults');
     set(residuals,'Color',[0.9 0.9 0.9]);
     set(residuals,'name','model estimation: residuals')
     for ii=1:n

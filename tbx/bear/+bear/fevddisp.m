@@ -82,7 +82,7 @@ if FEVD==1
     if pref.plot==1
         ncolumns=ceil(n^0.5);
         nrows=ceil(n/ncolumns);
-        FEVDfig=figure;
+        FEVDfig=figure('Tag','BEARresults');
         set(FEVDfig,'Color',[0.9 0.9 0.9]);
         set(FEVDfig,'name','forecast error variance decomposition')
         
@@ -116,7 +116,7 @@ end
 %% FAVAR FEVDs
 if favar.FAVAR==1
     if favar.FEVDplot==1
-        FEVDfig=figure;
+        FEVDfig=figure('Tag','BEARresults');
         numcol=ceil(sqrt(favar.npltX)); % rounded square root of npltX, make the plot quadratic
         numrow=ceil(favar.npltX/numcol); % and the number of rows we need
         

@@ -8,7 +8,7 @@ function []=irfexodisp(n,m,endo,exo,IRFperiods,exo_irf_estimates,pref)
 if pref.plot
     
 % plot the figure
-irf=figure;
+irf=figure('Tag','BEARresults');
 set(irf,'Color',[0.9 0.9 0.9]);
 set(irf,'name',['impulse response functions (exogenous)']);
 
