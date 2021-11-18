@@ -88,4 +88,4 @@ In the ECB website below, you will find a compiled version of BEAR that does not
 [BEAR at ECB](https://www.ecb.europa.eu/pub/research/working-papers/html/bear-toolbox.en.html)
 
 ## License
-[License](https://github.com/european-central-bank/BEAR-toolbox-private/blob/App/tbx/bear/BEAR%20End%20User%20Licence%20Agreement.pdf)
+[License](/tbx/doc/BEAR%20End%20User%20Licence%20Agreement.pdf)
