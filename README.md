@@ -15,7 +15,7 @@
   * [Running BEAR from the command line](#Running-BEAR-from-the-command-line)
   * [Running BEAR interactively](#Running-BEAR-interactively)
 - [For non-MATLAB users](#For-non-MATLAB-users)
-- [License](#Licence)
+- [License](#License)
 
 ## Introduction
 The Bayesian Estimation, Analysis and Regression toolbox (BEAR) is a comprehensive (Bayesian Panel) VAR toolbox for forecasting and policy analysis. Use of BEAR implies acceptance of the End User Licence Agreement (EULA) for the Use of the Software “the Bayesian Estimation, Analysis and Regression (BEAR) toolbox”.
