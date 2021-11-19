@@ -25,4 +25,6 @@ end
 % trim
 fevdcell=fevdcell(3:end,1:end-1);
 % write in excel
+warning off MATLAB:xlswrite:AddSheet
 xlswrite(fullfile(pref.results_path, [pref.results_sub '.xlsx']),fevdcell,'favar_FEVD','B2');
+warning on MATLAB:xlswrite:AddSheet

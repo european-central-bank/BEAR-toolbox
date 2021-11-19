@@ -90,7 +90,9 @@ end
 % trim
 irfcell=irfcell(4:end,1:end-1);
 % write in excel
+warning on MATLAB:xlswrite:AddSheet
 xlswrite([datapath '\results.xlsx'],irfcell,'IRF','B2');
+warning off MATLAB:xlswrite:AddSheet
 
 
 

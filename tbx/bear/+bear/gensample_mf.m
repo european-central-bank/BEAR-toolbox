@@ -466,7 +466,9 @@ else
         strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
         % then save on Excel
         if pref.results==1
+            warning off MATLAB:xlswrite:AddSheet
             xlswrite(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'pred exo','A1');
+            warning on MATLAB:xlswrite:AddSheet
         end
     end
     
