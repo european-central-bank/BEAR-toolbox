@@ -48,6 +48,30 @@ classdef BVARsettings < bear.settings.BASEsettings
         PriorExcel (1,1) logical = false; % set to 1 if you want individual priors, 0 for default
         %switch to Excel interface for exogenous variables
         priorsexogenous (1,1) logical = false; % set to 1 if you want individual priors, 0 for default
+    end
+    
+    properties % Hyperparameters
+        % Autoregressive coefficient: ar
+        ar (:,1) double = 0.8; % this sets all AR coefficients to the same prior value (if PriorExcel is equal to 0)
+        % Overall tightness: lambda1
+        lambda1 (1,1) double {mustBeGreaterThanOrEqual(lambda1,0)} = 0.1;
+        % Cross-variable weighting: lambda2
+        lambda2 (1,1) double {mustBeGreaterThanOrEqual(lambda2,0.1)} = 0.5;
+        % Lag decay: lambda3
+        lambda3 (1,1) double {mustBeInRange(lambda3, 1, 2)} = 1;
+        % Exogenous variable and constant: lambda4
+        lambda4 (:,1) double {mustBeGreaterThanOrEqual(lambda4,0)} = 100;
+        % Block exogeneity shrinkage: lambda5
+        lambda5 (1,1) double {mustBeInRange(lambda5,0, 1)} = 0.001;
+        % Sum-of-coefficients tightness: lambda6
+        lambda6 (1,1) double {mustBeGreaterThanOrEqual(lambda6,0)} = 0.1;
+        % Dummy initial observation tightness: lambda7
+        lambda7 (1,1) double {mustBeGreaterThanOrEqual(lambda7,0)} = 0.001;
+        % Long-run prior tightness: lambda8
+        lambda8 (1,1) double = 1;
+    end
+    
+    properties
         % total number of iterations for the Gibbs sampler
         It (1,1) double {mustBeGreaterThanOrEqual(It,1)} = 2000;
         % number of burn-in iterations for the Gibbs sampler
@@ -73,26 +97,7 @@ classdef BVARsettings < bear.settings.BASEsettings
         alpha0=1000;
     end
     
-    properties % Hyperparameters
-        % Autoregressive coefficient: ar
-        ar (:,1) double = 1; % this sets all AR coefficients to the same prior value (if PriorExcel is equal to 0)
-        % Overall tightness: lambda1
-        lambda1 (1,1) double {mustBeGreaterThanOrEqual(lambda1,0)} = 0.1;
-        % Cross-variable weighting: lambda2
-        lambda2 (1,1) double {mustBeGreaterThanOrEqual(lambda2,0.1)} = 0.5;
-        % Lag decay: lambda3
-        lambda3 (1,1) double {mustBeInRange(lambda3, 1, 2)} = 1;
-        % Exogenous variable and constant: lambda4
-        lambda4 (:,1) double {mustBeGreaterThanOrEqual(lambda4,0)} = 100;
-        % Block exogeneity shrinkage: lambda5
-        lambda5 (1,1) double {mustBeInRange(lambda5,0, 1)} = 0.001;
-        % Sum-of-coefficients tightness: lambda6
-        lambda6 (1,1) double {mustBeGreaterThanOrEqual(lambda6,0)} = 0.1;
-        % Dummy initial observation tightness: lambda7
-        lambda7 (1,1) double {mustBeGreaterThanOrEqual(lambda7,0)} = 0.001;
-        % Long-run prior tightness: lambda8
-        lambda8 (1,1) double = 1;
-    end
+    
     
     properties (Dependent)
         % FAVAR options

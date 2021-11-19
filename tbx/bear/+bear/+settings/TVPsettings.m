@@ -31,16 +31,6 @@ classdef TVPsettings < bear.settings.BASEsettings
         % 1 = time-varying coefficients (TVP)
         % 2 = general time-varying (TVP_SV)
         tvbvar (1,1) bear.TVPtype = 2;
-        % total number of iterations for the Gibbs sampler
-        It (1,1) double {mustBeGreaterThanOrEqual(It,1)} = 2000;
-        % number of burn-in iterations for the Gibbs sampler
-        Bu (1,1) double = 1000;
-        % choice of retaining only one post burn iteration over 'pickf' iterations (1=yes, 0=no)
-        pick (1,1) logical = false;
-        % frequency of iteration picking (e.g. pickf=20 implies that only 1 out of 20 iterations will be retained)
-        pickf=20;
-        % just for the code to run (do not touch)
-        ar=0;
         % switch to Excel interface
         PriorExcel (1,1) logical = false; % set to 1 if you want individual priors, 0 for default
         % switch to Excel interface for exogenous variables
@@ -59,6 +49,21 @@ classdef TVPsettings < bear.settings.BASEsettings
         % calculate IRFs for every sample period (1=yes, 0=no)
         alltirf (1,1) logical = true;
     end
+    
+    properties
+        % total number of iterations for the Gibbs sampler
+        It (1,1) double {mustBeGreaterThanOrEqual(It,1)} = 2000;
+        % number of burn-in iterations for the Gibbs sampler
+        Bu (1,1) double = 1000;
+        % choice of retaining only one post burn iteration over 'pickf' iterations (1=yes, 0=no)
+        pick (1,1) logical = false;
+        % frequency of iteration picking (e.g. pickf=20 implies that only 1 out of 20 iterations will be retained)
+        pickf=20;
+        % just for the code to run (do not touch)
+        ar=0;        
+    end
+    
+    
     
     properties % FAVAR
         % FAVAR options
