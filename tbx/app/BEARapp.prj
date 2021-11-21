@@ -1,0 +1,79 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="3358331282" file="C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\app\BEARapp.prj" location="C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\app" name="BEARapp" target="target.mlapps" target-name="Package App">
+    <param.appname>BEARapp</param.appname>
+    <param.authnamewatermark>Alistair Dieppe and Björn van Roye</param.authnamewatermark>
+    <param.email>alistair.dieppe@ecb.europa.eu</param.email>
+    <param.company>European Central Bank</param.company>
+    <param.icon>${PROJECT_ROOT}\BEARapp_resources\icon_24.png</param.icon>
+    <param.icons>
+      <file>${PROJECT_ROOT}\BEARapp_resources\icon_48.png</file>
+      <file>${PROJECT_ROOT}\BEARapp_resources\icon_24.png</file>
+      <file>${PROJECT_ROOT}\BEARapp_resources\icon_16.png</file>
+    </param.icons>
+    <param.summary>Graphical interface to create BEAR settings objects</param.summary>
+    <param.description>The Bayesian Estimation, Analysis and Regression toolbox (BEAR) is a comprehensive (Bayesian Panel) VAR toolbox for forecasting and policy analysis. Use of BEAR implies acceptance of the End User Licence Agreement (EULA) for the Use of the Software “the Bayesian Estimation, Analysis and Regression (BEAR) toolbox”.</param.description>
+    <param.screenshot>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\BEAR.PNG</param.screenshot>
+    <param.version>5.1</param.version>
+    <param.products.name />
+    <param.products.id />
+    <param.products.version />
+    <param.platforms />
+    <param.output>${PROJECT_ROOT}</param.output>
+    <param.guid>f21a1cea-7f1c-48dd-91ba-e1bb6df534a3</param.guid>
+    <unset>
+      <param.products.name />
+      <param.products.id />
+      <param.products.version />
+      <param.platforms />
+      <param.output />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\BEARapp.m</file>
+    </fileset.main>
+    <fileset.depfun />
+    <fileset.resources />
+    <fileset.package />
+    <build-deliverables>
+      <file location="C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx" name="app" optional="false">C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\app</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2021a</root>
+      <toolboxes>
+        <toolbox name="matlabcoder" />
+        <toolbox name="gpucoder" />
+        <toolbox name="neuralnetwork" />
+      </toolboxes>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+      <toolbox>
+        <gpucoder>
+          <enabled>true</enabled>
+        </gpucoder>
+      </toolbox>
+      <toolbox>
+        <neuralnetwork>
+          <enabled>true</enabled>
+        </neuralnetwork>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>10.0</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>

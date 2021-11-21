@@ -18,11 +18,10 @@
     <param.exclude.pcodedmfiles>true</param.exclude.pcodedmfiles>
     <param.examples />
     <param.demosxml />
-    <param.apps />
-    <param.registered.apps>
-      <file>${PROJECT_ROOT}\tbx\bear\BEARapp.mlapp</file>
-      <file>${PROJECT_ROOT}\tbx\bear\BEARapp20a.mlapp</file>
-    </param.registered.apps>
+    <param.apps>
+      <file>${PROJECT_ROOT}\tbx\app\BEARapp.mlappinstall</file>
+    </param.apps>
+    <param.registered.apps />
     <param.docs />
     <param.getting.started.guide>${PROJECT_ROOT}\tbx\doc\GettingStarted.mlx</param.getting.started.guide>
     <param.matlabpath.excludes />
@@ -54,7 +53,7 @@
       <param.exclude.pcodedmfiles />
       <param.examples />
       <param.demosxml />
-      <param.apps />
+      <param.registered.apps />
       <param.docs />
       <param.matlabpath.excludes />
       <param.javaclasspath.excludes />
@@ -78,10 +77,12 @@
       <file>${PROJECT_ROOT}\tbx</file>
     </fileset.rootdir>
     <fileset.rootfiles>
+      <file>${PROJECT_ROOT}\tbx\app</file>
       <file>${PROJECT_ROOT}\tbx\bear</file>
-      <file>${PROJECT_ROOT}\tbx\beardoc</file>
-      <file>${PROJECT_ROOT}\tbx\DesktopToolset.xml</file>
+      <file>${PROJECT_ROOT}\tbx\bearroot.m</file>
+      <file>${PROJECT_ROOT}\tbx\default_bear_data.xlsx</file>
       <file>${PROJECT_ROOT}\tbx\doc</file>
+      <file>${PROJECT_ROOT}\tbx\replications</file>
     </fileset.rootfiles>
     <fileset.depfun.included />
     <fileset.depfun.excluded />
