@@ -93,8 +93,6 @@ From MATLAB run the command below to open the main BEAR interface.
 >> BEARapp
 ```
 
-The recommended version to run BEAR is 21a or above. For older MATLAB versions, use `>> BEARapp20a` or run BEAR from the command line.
-
 ## For non-MATLAB users
 
 In the ECB website below, you will find a compiled version of BEAR that does not require a MATLAB license to install.
