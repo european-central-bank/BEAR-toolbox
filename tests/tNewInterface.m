@@ -52,6 +52,7 @@ classdef tNewInterface < matlab.unittest.TestCase
             opts= BEARsettings('OLS', 'ExcelFile', fullfile(fullfile(bearroot(),'replications', 'data_.xlsx')));
             opts.results_path = tempFixture.Folder;
             opts.results_sub = 'newTest';
+            opts.plot = false;
             
             BEARmain(opts);
             
@@ -69,6 +70,7 @@ classdef tNewInterface < matlab.unittest.TestCase
             opts= BEARsettings('OLS', 'ExcelFile', fullfile(fullfile(bearroot(),'replications', 'data_.xlsx')));
             opts.results_path = tempFixture.Folder;
             opts.results_sub = 'newTest';
+            opts.plot = false;
             opts.IRFt = 2;
             
             BEARmain(opts);
@@ -90,6 +92,7 @@ classdef tNewInterface < matlab.unittest.TestCase
             opts.IRFt=2;
             opts.results_path = tempFixture.Folder;
             opts.results_sub = 'newTest';
+            opts.plot = false;
             BEARmain(opts);
             
             file = exist(fullfile(tempFixture.Folder, resultsFile + ".mat"), 'file');
