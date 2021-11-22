@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="1997433259" file="C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\release\BEARapp.prj" location="C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\release" name="BEARapp" preferred-package-location="C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\release\BEARapp\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="1997433259" file="C:\Users\ebenetce\MATLAB\BEAR-toolbox\release\BEARapp.prj" location="C:\Users\ebenetce\MATLAB\BEAR-toolbox\release" name="BEARapp" preferred-package-location="C:\Users\ebenetce\MATLAB\BEAR-toolbox\release\BEARapp\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>BEARapp</param.appname>
     <param.icon />
     <param.icons />
@@ -71,21 +71,23 @@
       <param.example />
     </unset>
     <fileset.main>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\BEARapp.mlapp</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\app\+bear\+app\BEARapp21a.mlapp</file>
     </fileset.main>
     <fileset.resources>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\results.xlsx</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\replications\data_61.xlsx</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\replications\data_AAU2009.xlsx</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\replications\data_BBE2005.xlsx</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\replications\data_BvV2018.xlsx</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\replications\data_CH2019.xlsx</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\replications\data_WGP2016.xlsx</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\results.xlsx</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\default_bear_data.xlsx</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\data_AAU2009.xlsx</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\data_BBE2005.xlsx</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\data_BvV2018.xlsx</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\data_CH2019.xlsx</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\data_WGP2016.xlsx</file>
     </fileset.resources>
     <fileset.package />
     <fileset.depfun>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\data.xlsx</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+app\About.mlapp</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+app\About2020a.mlapp</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+app\favarSettings.mlapp</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+app\optionsProxyForApp.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+data\excelrecord1fcn.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+data\excelrecord2fcn.m</file>
@@ -100,22 +102,20 @@
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+data\favar_excelrecord4fcn.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+data\favar_excelrecord6fcn.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+data\favar_excelrecordHDfcn.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\+favar\FAVARsettings.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\+favar\NullFAVAR.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\+favar\VARtypeSpecificFAVARsettings.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\+strctident\Strctident.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\+strctident\StrctidentIRFt4.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\+strctident\StrctidentIRFt5.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\+strctident\StrctidentIRFt6.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\BASEsettings.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\BVARsettings.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\favarFEVDsettings.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\favarHDsettings.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\favarIRFsettings.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\FAVARsettings.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\MFVARsettings.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\OLSsettings.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\PANELsettings.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\Strctident.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\StrctidentIRFt4.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\StrctidentIRFt5.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\StrctidentIRFt6.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\SVsettings.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\TVPsettings.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+settings\VARtypeSpecificFAVARsettings.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+utils\fixstring.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+utils\initializeFavarResults.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\+utils\initializeStrctident.m</file>
@@ -211,6 +211,7 @@
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\gensample_mf.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\gensampleols.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\gensamplepan.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\GR_PF.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\GR_PF_DMtest.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\GR_PF_Fluctuation.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\grandn.m</file>
@@ -437,9 +438,11 @@
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\qrandj.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\qzerores.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\rows.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\RS_DF.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\RS_DF_CVfinalbootstrapInoue.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\RS_DF_rstest.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\RS_DF_Test.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\RS_PF.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\RS_PF_nwest.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\RS_PF_OLS_Wald.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\RS_PF_Rationality.m</file>
@@ -536,25 +539,23 @@
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\+bear\xlswritegeneral.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\BEAR.PNG</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\BEARmain.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\bearroot.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\BEARsettings.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\files\GR_PF.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\files\RS_DF.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\files\RS_PF.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\mustBeInRange.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\replications\bear_settings_.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\replications\bear_settings_61.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\replications\bear_settings_AAU2009.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\replications\bear_settings_BBE2005.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\replications\bear_settings_BvV2018.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\replications\bear_settings_CH2019.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\replications\bear_settings_WGP2016.m</file>
-      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\tbx\bear\replications\getReplicationSettings.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bearroot.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\bear_settings_.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\bear_settings_61.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\bear_settings_AAU2009.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\bear_settings_BBE2005.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\bear_settings_BvV2018.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\bear_settings_CH2019.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\bear_settings_WGP2016.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\data.xlsx</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\getReplicationSettings.m</file>
     </fileset.depfun>
     <build-deliverables>
-      <file location="${PROJECT_ROOT}\BEARapp\for_testing" name="BEARapp.exe" optional="false">C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\release\BEARapp\for_testing\BEARapp.exe</file>
-      <file location="${PROJECT_ROOT}\BEARapp\for_testing" name="readme.txt" optional="true">C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\release\BEARapp\for_testing\readme.txt</file>
-      <file location="${PROJECT_ROOT}\BEARapp\for_testing" name="splash.png" optional="false">C:\Users\ebenetce\MATLAB\BEAR-toolbox-private\release\BEARapp\for_testing\splash.png</file>
+      <file location="${PROJECT_ROOT}\BEARapp\for_testing" name="readme.txt" optional="true">C:\Users\ebenetce\MATLAB\BEAR-toolbox\release\BEARapp\for_testing\readme.txt</file>
+      <file location="${PROJECT_ROOT}\BEARapp\for_testing" name="splash.png" optional="false">C:\Users\ebenetce\MATLAB\BEAR-toolbox\release\BEARapp\for_testing\splash.png</file>
+      <file location="${PROJECT_ROOT}\BEARapp\for_testing" name="BEARapp.exe" optional="false">C:\Users\ebenetce\MATLAB\BEAR-toolbox\release\BEARapp\for_testing\BEARapp.exe</file>
     </build-deliverables>
     <workflow />
     <matlab>

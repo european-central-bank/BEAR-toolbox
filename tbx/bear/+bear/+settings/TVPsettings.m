@@ -63,8 +63,6 @@ classdef TVPsettings < bear.settings.BASEsettings
         ar=0;        
     end
     
-    
-    
     properties % FAVAR
         % FAVAR options
         favar (1,1) bear.settings.favar.FAVARsettings = bear.settings.favar.VARtypeSpecificFAVARsettings; % augment VAR model with factors (1=yes, 0=no)

@@ -48,7 +48,7 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         frequency (1,1) double  = 2;                     % data frequency (1=yearly, 2= quarterly, 3=monthly, 4=weekly, 5=daily, 6=undated)
         startdate               = '1974q1';              % sample start date; must be a string consistent with the date formats of the toolbox
         enddate                 = '2014q4';              % sample end date; must be a string consistent with the date formats of the toolbox
-        varendo                 = 'DOM_GDP DOM_CPI STN'; % endogenous variables; must be a single string, with variable names separated by a space
+        varendo                 = 'YER HICSA STN'; % endogenous variables; must be a single string, with variable names separated by a space
         varexo                  = '';                    % exogenous variables, if any; must be a single string, with variable names separated by a space
         lags      (1,1) double  = 4;                     % number of lags
         const     (1,1) logical = true;                  % inclusion of a constant (1=yes, 0=no)
@@ -70,7 +70,7 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         % 4=sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions,
         % 5=IV identification,
         % 6=IV identification & sign, zero, magnitude, relative magnitude, FEVD, correlation restrictions)
-        IRFt  bear.IRFtype = bear.IRFtype(4);
+        IRFt  bear.IRFtype = bear.IRFtype(2);
     end
     
     properties (Dependent)
@@ -100,10 +100,10 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         hstep           (1,1) double = 1;    % step ahead evaluation
         window_size     (1,1) double = 0;    % window_size for iterative forecasting 0 if no iterative forecasting                                            <                                                                                    -
         evaluation_size (1,1) double = 0.5;  % evaluation_size as percent of window_size
-        cband           (1,1) double = 0.95; % confidence/credibility level for VAR coefficients
+        cband           (1,1) double = 0.68; % confidence/credibility level for VAR coefficients
         IRFband         (1,1) double = 0.68; % confidence/credibility level for impusle response functions
-        Fband           (1,1) double = 0.95; % confidence/credibility level for forecasts
-        FEVDband        (1,1) double = 0.95; % confidence/credibility level for forecast error variance decomposition
+        Fband           (1,1) double = 0.68; % confidence/credibility level for forecasts
+        FEVDband        (1,1) double = 0.68; % confidence/credibility level for forecast error variance decomposition
         HDband          (1,1) double = 0.68; % confidence/credibility level for historical decomposition
         
     end

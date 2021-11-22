@@ -94,7 +94,7 @@ classdef tSettings < matlab.unittest.TestCase
         function tBVARHyperparamLimits(tc)
             param = ["ar";"lambda1";"lambda2";"lambda3";"lambda4";"lambda5";"lambda6";"lambda7";"lambda8"];
             lowerBound   = [-inf; 0; 0.1; 0; 0; 0; 0; 0; -inf];
-            defaultValue = [0.8; 0.1; 0.5; 1; 100; 0.001; 0.1; 0.001; 1];
+            defaultValue = [0.8; 0.1; 0.5; 1; 1; 0.001; 1; 0.1; 1];
             upperBound   = [inf; inf; inf; 2; inf; 1; inf; inf; inf];
             
             t = table(param, lowerBound, defaultValue, upperBound);
