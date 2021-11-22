@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="3358331282" file="C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\app\BEARapp.prj" location="C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\app" name="BEARapp" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="2697651668" file="C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\app\BEARapp.prj" location="C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\app" name="BEARapp" target="target.mlapps" target-name="Package App">
     <param.appname>BEARapp</param.appname>
     <param.authnamewatermark>Alistair Dieppe and Björn van Roye</param.authnamewatermark>
     <param.email>alistair.dieppe@ecb.europa.eu</param.email>
