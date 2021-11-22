@@ -96,6 +96,10 @@ From MATLAB run the command below to open the main BEAR interface.
 >> BEARapp
 ```
 
+## Documentation
+
+For a full BEAR documentation please visit our [doc page](https://github.com/european-central-bank/BEAR-toolbox/tree/master/tbx/doc).
+
 ## For non-MATLAB users
 
 In the ECB website below, you will find a compiled version of BEAR that does not require a MATLAB license to install.
