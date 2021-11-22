@@ -2,6 +2,9 @@
 |:----------------------------:|
 |[![MATLAB](https://github.com/european-central-bank/BEAR-toolbox/actions/workflows/ci.yml/badge.svg)](https://github.com/european-central-bank/BEAR-toolbox/actions/workflows/ci.yml)|
 
+| :exclamation: We just added some major changes into the main functionality of BEAR to improve its usability. To access the previous version of the code use the legacyCode branch |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
 # The BEAR toolbox
 
 ## Table of Contents
