@@ -7,6 +7,7 @@
 ## Table of Contents
 
 - [Introduction](#Introduction)
+  * [Structure of the repository](#Structure-of-the-repository)
 - [Installing BEAR](#Installing-BEAR)
   * [For users](#For-users)
   * [For developers](#For-developers)
@@ -19,6 +20,19 @@
 
 ## Introduction
 The Bayesian Estimation, Analysis and Regression toolbox (BEAR) is a comprehensive (Bayesian Panel) VAR toolbox for forecasting and policy analysis. Use of BEAR implies acceptance of the End User Licence Agreement (EULA) for the Use of the Software “the Bayesian Estimation, Analysis and Regression (BEAR) toolbox”.
+### Structure of the repository
+This repository is organized as follows. All BEAR files that need to be installed by the end-users are located inside the `tbx` in four separate directories:
+- `app` contains all the files related to the user interface
+- `bear` has all the core MATLAB functions and classes
+- `replications` contains a set of Excel and settings files to replicate previous results from the literature 
+- `doc` contains a set of PDFs with some of the BEAR documentation
+
+The rest of the folders contain development files related to the development of BEAR which will not be copied in non-development environments. This folders are structured as follows:
+- `tests` contains a set of [MATLAB unit tests](https://uk.mathworks.com/help/matlab/class-based-unit-tests.html) which are automatically run within GitHub actions every time any change is pushed to the master branch.
+- `resources` contains the metadata of the MATLAB project `bear.prj`
+- `release` contains the definition files that allow the user compiling BEAR into a standalone application
+- `images` contains all the images used within the README files of the repository
+
 ## Installing BEAR
 ### For users
 
