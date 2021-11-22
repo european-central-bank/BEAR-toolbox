@@ -47,14 +47,19 @@ classdef replicationTests < matlab.unittest.TestCase
         function Run_OLSVAR(tc)
             
             % specify data file name:
-            dataxlsx = 'data_.xlsx';
-            excelPath = fullfile(fullfile(bearroot(),'replications'), dataxlsx);
+            excelPath = fullfile(bearroot(),'replications','data_.xlsx');
             
             % and the settings
             s = BEARsettings('OLS', 'ExcelFile', excelPath);
             s.results_path = fullfile(fileparts(mfilename('fullpath')),'results');
             s.results_sub = 'results_ols_temp';
             s.results = 0;
+            s.varendo = 'DOM_GDP DOM_CPI STN';
+            s.plot = 0;
+            s.IRFt = 4;
+            s.cband = 0.95;
+            s.Fband = 0.95;
+            s.FEVDband = 0.95;
             
             % run BEAR
             BEARmain(s);

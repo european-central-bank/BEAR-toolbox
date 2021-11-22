@@ -64,8 +64,9 @@ classdef tSettings < matlab.unittest.TestCase
         function tStrctident(tc)
             s = BEARsettings(1, 'ExcelFile', 'data.xlsx');
 
-            tc.verifyClass(s.strctident, 'bear.settings.strctident.StrctidentIRFt4');
-            tc.verifyEqual(s.IRFt, bear.IRFtype(4))
+            tc.verifyClass(s.strctident, 'bear.settings.strctident.Strctident');
+            tc.verifyEmpty(s.strctident)
+            tc.verifyEqual(s.IRFt, bear.IRFtype(2))
 
             s.IRFt = 5;
             tc.verifyClass(s.strctident, 'bear.settings.strctident.StrctidentIRFt5');
@@ -75,8 +76,9 @@ classdef tSettings < matlab.unittest.TestCase
 
             s = BEARsettings(2, 'ExcelFile', 'data.xlsx');
 
-            tc.verifyClass(s.strctident, 'bear.settings.strctident.StrctidentIRFt4');
-            tc.verifyEqual(s.IRFt, bear.IRFtype(4))
+            tc.verifyClass(s.strctident, 'bear.settings.strctident.Strctident');
+            tc.verifyEmpty(s.strctident)
+            tc.verifyEqual(s.IRFt, bear.IRFtype(2))
 
             s.IRFt = 5;
             tc.verifyClass(s.strctident, 'bear.settings.strctident.StrctidentIRFt5');
