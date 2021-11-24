@@ -116,7 +116,8 @@ end
 % Similarly, create the matrix of exogenous variables for the estimation sample
 data_exo=[];
 for ii=1:numexo
-    data_exo=[data_exo data(startlocation:endlocation,exolocation(ii,1))];
+%    data_exo=[data_exo data(startlocation:endlocation,exolocation(ii,1))];
+    data_exo=[data_exo data(:,exolocation(ii,1))];
 end
 
 
@@ -605,5 +606,6 @@ else
     
     
 end
+
 
 

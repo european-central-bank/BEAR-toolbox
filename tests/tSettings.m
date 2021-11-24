@@ -3,8 +3,8 @@ classdef tSettings < matlab.unittest.TestCase
     methods(Test)
         
         function tDefaults(tc)
-            s = @() BEARsettings(1);
-            tc.verifyError(s, 'bear:settings:UndefinedExcelFile')
+            s = BEARsettings(1);
+            tc.verifyEqual(s.excelFile, fullfile(bearroot(),'default_bear_data.xlsx'))
         end
         
         function tSetterFcnByNumber(tc)
