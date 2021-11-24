@@ -127,13 +127,21 @@ matlab.addons.toolbox.packageToolbox(projectFile,'C:\Work\myOtherToolbox')
 If you wanted to share BEAR with someone who is not a MATLAB user, there are several routes you can take:
 1. You can use MATLAB Compiler to share the APP as a standalone program. For this, please open the **Application Compiler** from the toolstrip:
 <br/>
+
 ![app toolstrip](/images/AppToolstrip.PNG "Open application compiler")
+
 <br/>
+
 2. Select as **MAIN FILE** the appropriate BEAR app from your set of files. For example, `+bear\+app\BEARapp20a`.
+
 <br/>
+
 ![Compile app](/images/CompilerScreenshot.PNG "Compiler Screenshot")
+
 <br/>
+
 3. Under **Files required for your application to run** add the following in addition to the automatically detected ones:
+
 + tbx\bear\+bear\results.xlsx
 + tbx\replications\data_AAU2009.xlsx
 + tbx\replications\data_BBE2005.xlsx
@@ -141,10 +149,14 @@ If you wanted to share BEAR with someone who is not a MATLAB user, there are sev
 + tbx\replications\data_CH2019.xlsx 
 + tbx\replications\data_WGP2016.xlsx
 + tbx\default_bear_data.xlsx
-4. Click on Package
 
-Alternatively, if you only wanted to share specific functionality with users on other languages, you can take a look at [Compiler SDK](https://uk.mathworks.com/help/compiler_sdk/index.html)
+4. Click on Package.
+5. You will get a subfolder with the files that you can use to redistribute the application
 
+### For external language integration
+
+If you wanted to share specific functionality with users of other languages, you can take a look at [Compiler SDK](https://uk.mathworks.com/help/compiler_sdk/index.html). The process is analgous to the previous one but selecting a different target.
 
 ## License
+Use of BEAR implies acceptance of the End User Licence Agreement (EULA) for the Use of the Software “the Bayesian Estimation, Analysis and Regression (BEAR) toolbox”.
 [License](/tbx/doc/BEAR%20End%20User%20Licence%20Agreement.pdf)
