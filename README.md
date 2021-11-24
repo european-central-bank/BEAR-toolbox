@@ -112,6 +112,7 @@ For a full BEAR documentation please visit our [doc page](https://github.com/eur
 
 ## Distribute BEAR
 
+### With other MATLAB users
 Any MATLAB user can download the latest version of BEAR from the GitHub repository. However, if you wanted to create your own custom distribution you can package it as a MATLAB toolbox as follows:
 
 1. Open the `tbx.prj` and edit the main fields such as author, version, and description.
@@ -121,7 +122,8 @@ projectFile = 'tbx.prj';
 matlab.addons.toolbox.packageToolbox(projectFile,'C:\Work\myOtherToolbox')
 ```
 
-### With other MATLAB users
+### With non-MATLAB users
+
 If you wanted to share BEAR with someone who is not a MATLAB user, there are several routes you can take:
 1. You can use MATLAB Compiler to share the APP as a standalone program. For this, please open the **Application Compiler** from the toolstrip:
 <br/>
@@ -129,21 +131,20 @@ If you wanted to share BEAR with someone who is not a MATLAB user, there are sev
 <br/>
 2. Select as **MAIN FILE** the appropriate BEAR app from your set of files. For example, `+bear\+app\BEARapp20a`.
 <br/>
-![Compile app](/images/CompilerScreenshot.PNG)
+![Compile app](/images/CompilerScreenshot.PNG "Compiler Screenshot")
 <br/>
 3. Under **Files required for your application to run** add the following in addition to the automatically detected ones:
-- tbx\bear\+bear\results.xlsx
-- tbx\replications\data_AAU2009.xlsx
-- tbx\replications\data_BBE2005.xlsx
-- tbx\replications\data_BvV2018.xlsx
-- tbx\replications\data_CH2019.xlsx 
-- tbx\replications\data_WGP2016.xlsx
-- tbx\default_bear_data.xlsx
++ tbx\bear\+bear\results.xlsx
++ tbx\replications\data_AAU2009.xlsx
++ tbx\replications\data_BBE2005.xlsx
++ tbx\replications\data_BvV2018.xlsx
++ tbx\replications\data_CH2019.xlsx 
++ tbx\replications\data_WGP2016.xlsx
++ tbx\default_bear_data.xlsx
 4. Click on Package
 
 Alternatively, if you only wanted to share specific functionality with users on other languages, you can take a look at [Compiler SDK](https://uk.mathworks.com/help/compiler_sdk/index.html)
 
-### With non-MATLAB users
 
 ## License
 [License](/tbx/doc/BEAR%20End%20User%20Licence%20Agreement.pdf)
