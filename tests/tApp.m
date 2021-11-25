@@ -13,7 +13,7 @@ classdef tApp < matlab.uitest.TestCase
         
     end
     
-    methods (Test, TestTags = {'Git'})
+    methods (Test)
         function tFrequency(tc)
            tc.choose(tc.App.frequency_cp, 'monthly');
            tc.press(tc.App.QuickExporttoWorkspaceButton)
