@@ -1,6 +1,6 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
   <configuration build-checksum="3468229109" file="C:\Users\ebenetce\MATLAB\BEAR-toolbox\release\BEARapp20a.prj" location="C:\Users\ebenetce\MATLAB\BEAR-toolbox\release" name="BEARapp20a" preferred-package-location="C:\Users\ebenetce\MATLAB\BEAR-toolbox\release\BEARapp20a\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
-    <param.appname>BEARapp20a</param.appname>
+    <param.appname>BEARapp</param.appname>
     <param.icon />
     <param.icons />
     <param.version>1.0</param.version>
@@ -11,7 +11,7 @@
     <param.description>The Bayesian Estimation, Analysis and Regression toolbox (BEAR) is a comprehensive (Bayesian Panel) VAR toolbox for forecasting and policy analysis. Use of BEAR implies acceptance of the End User Licence Agreement (EULA) for the Use of the Software “the Bayesian Estimation, Analysis and Regression (BEAR) toolbox”.</param.description>
     <param.screenshot />
     <param.guid />
-    <param.installpath.string>\European Central Bank\BEARapp20a\</param.installpath.string>
+    <param.installpath.string>\European Central Bank\BEARapp\</param.installpath.string>
     <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
     <param.logo />
     <param.install.notes />
@@ -41,9 +41,7 @@
 	 
  Input Arguments 
 	 -?  print help on how to use the application 
-	 input arguments 
- Description 
- 	 The Bayesian Estimation, Analysis and Regression toolbox (BEAR) is a comprehensive (Bayesian Panel) VAR toolbox for forecasting and policy analysis. Use of BEAR implies acceptance of the End User Licence Agreement (EULA) for the Use of the Software “the Bayesian Estimation, Analysis and Regression (BEAR) toolbox”.</param.help.text>
+	 input arguments</param.help.text>
     <unset>
       <param.icon />
       <param.icons />
@@ -558,7 +556,7 @@
     <build-deliverables>
       <file location="${PROJECT_ROOT}\BEARapp20a\for_testing" name="readme.txt" optional="true">C:\Users\ebenetce\MATLAB\BEAR-toolbox\release\BEARapp20a\for_testing\readme.txt</file>
       <file location="${PROJECT_ROOT}\BEARapp20a\for_testing" name="splash.png" optional="false">C:\Users\ebenetce\MATLAB\BEAR-toolbox\release\BEARapp20a\for_testing\splash.png</file>
-      <file location="${PROJECT_ROOT}\BEARapp20a\for_testing" name="BEARapp20a.exe" optional="false">C:\Users\ebenetce\MATLAB\BEAR-toolbox\release\BEARapp20a\for_testing\BEARapp20a.exe</file>
+      <file location="${PROJECT_ROOT}\BEARapp20a\for_testing" name="BEARapp.exe" optional="false">C:\Users\ebenetce\MATLAB\BEAR-toolbox\release\BEARapp20a\for_testing\BEARapp.exe</file>
     </build-deliverables>
     <workflow />
     <matlab>

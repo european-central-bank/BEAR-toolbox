@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="1997433259" file="C:\Users\ebenetce\MATLAB\BEAR-toolbox\release\BEARapp.prj" location="C:\Users\ebenetce\MATLAB\BEAR-toolbox\release" name="BEARapp" preferred-package-location="C:\Users\ebenetce\MATLAB\BEAR-toolbox\release\BEARapp\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="3435171707" file="C:\Users\ebenetce\MATLAB\BEAR-toolbox\release\BEARapp.prj" location="C:\Users\ebenetce\MATLAB\BEAR-toolbox\release" name="BEARapp" preferred-package-location="C:\Users\ebenetce\MATLAB\BEAR-toolbox\release\BEARapp\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>BEARapp</param.appname>
     <param.icon />
     <param.icons />
@@ -84,471 +84,472 @@
     </fileset.resources>
     <fileset.package />
     <fileset.depfun>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+data\excelrecord1fcn.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+data\excelrecord2fcn.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+data\excelrecord3fcn.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+data\excelrecord4fcn.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+data\excelrecord5fcn.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+data\excelrecord6fcn.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+data\excelrecord7fcn.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+data\excelrecord8fcn.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+data\excelrecord9fcn.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+data\excelrecordHDfcn.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+data\favar_excelrecord4fcn.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+data\favar_excelrecord6fcn.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+data\favar_excelrecordHDfcn.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+settings\+favar\FAVARsettings.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+settings\+favar\NullFAVAR.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+settings\+favar\VARtypeSpecificFAVARsettings.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+settings\+strctident\Strctident.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+settings\+strctident\StrctidentIRFt4.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+settings\+strctident\StrctidentIRFt5.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+settings\+strctident\StrctidentIRFt6.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+settings\BASEsettings.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+settings\BVARsettings.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+settings\MFVARsettings.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+settings\OLSsettings.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+settings\PANELsettings.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+settings\SVsettings.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+settings\TVPsettings.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+utils\fixstring.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+utils\initializeFavarResults.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+utils\initializeStrctident.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\+utils\pvset.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\arbicloop.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\arloop.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\betaswap.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\bvardisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\bvarfeval.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\bvarfeval_stvol4.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\cfdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\cforecast.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\cforecast12_stvol4.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\CFtype.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\CheckCorrelWithIV.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\CheckFEVDrestriction.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\CheckFEVDrestriction_favar.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\checkmagres.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\checkpriors.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\checkrelmag.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\checksignres.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\checksignres_favar.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\checksignres_inc_other_shocks.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\checkstable.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\cols.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\constructMissingSurvey.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\ConstructOptimalSubplot.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\crps.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\cut_EPS_IV_GK_new.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\delif.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\dic_test.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\doestimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\dogibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\dopost.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\doprior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_demean.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_doestimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_dogibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_facrot.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_fevd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_gensample1.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_gensample2.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_gensample3.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_hdestimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_inwgibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_irfdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_irfdisp2.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_irfols.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_kfgibbsnv.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_mgibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_mvnrnd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_ndgibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_ndgibbstotal.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_nwgibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_olsfevd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_olssvd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_R2.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_retransX_contributions2.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_retransX_irf_estimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_retransX_irf_record.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_retransX_ortirfmatrix.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_SigmaL.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_standardise.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_stvol1gibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_stvol2gibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_stvol3gibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_transx.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_tvbvar1gibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_tvbvar2gibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\favar_XYestimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\FAVARlevels.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\fdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\festimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\fevd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\fevddisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\fevdestimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\find_medianmodel.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\FIS.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\forecast.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\forecast_mf.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\forecastsim.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\forecaststvol1.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\forecaststvol2.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\forecaststvol3.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\forecaststvol4.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\forecasttv1.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\forecasttv2.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\gen_fake_data.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\gendates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\gendummy.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\genpdate.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\gensample.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\gensample_mf.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\gensampleols.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\gensamplepan.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\GR_PF.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\GR_PF_DMtest.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\GR_PF_Fluctuation.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\grandn.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\gy.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\hd_for_signres_stvol4.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\hd_new_for_signres.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\hddisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\hddisp_new.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\hddisp_stvol4.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\hdecomp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\hdecomp_inc_exo.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\hdecomp_stvol4.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\hdecompols.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\hdestimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\hdestimates_inc_exo.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\hdestimates_inc_exo_stvol4.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\hdestimates_set_identified.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\HDestimatesols.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\igrandn.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\impulsdtrf.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\initexcel.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\invltod.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\invpd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\inwestimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\inwgibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\inwmlik.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\inwprior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irf.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfchol.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfcholstvol.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfdisp2.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfestimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfestimates2.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfestimates_set_identified.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfexo.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfexodisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfIV_MH.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfiv_ols_for_bootstrap_GK.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfIVols.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfres.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfres_old.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfres_prior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfres_relmagnitude_panel.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfres_stvol4.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfsignrespanel.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfsim.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfsim_prior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\IRFt456_estimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\IRFt5_Bayesian.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\IRFt6_Bayesian.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irftrig.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irftrigstvol.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\IRFtype.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\irfunres.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\iwdensity.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\iwdraw.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\KF_CKsimSV.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\lagrange.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\lagx.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\loadbex.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\loadcf.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\loadcfpan.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\loadcorrelres.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\loadFEVDres.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\loadH.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\loadhogs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\loadIV.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\loadmaprior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\loadrelmagnres.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\loadsignres.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\loadSLM.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\logdet.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\loglik.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\loglik_proxy_given_data.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\mairfsim.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\makeMatricesSLMfullSV.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\maprior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\matrixndraw.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\matrixtdraw.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\mestimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\MF_BVAR_BEAR.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\mgamma.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\mgibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\mgridsearch.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\mhprob.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\mhprob2.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\mhprob3.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\MissData.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\mmlik.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\mmlikdata.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\mmlikgrid.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\mndensity.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\mpost.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\mprior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\ndestimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\ndgibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\ndgibbstotal.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\ndprior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\nspd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\nspds.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\nwestimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\nwgibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\nwgridsearch.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\nwmlik.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\nwmlikdata.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\nwmlikgrid.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\nwpost.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\nwprior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\nwprior_for_IV.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\olsestimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\olsfeval.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\olsfevd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\olsforecast.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\olsirft123.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\olsirft4.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\olsirft5.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\olsirft6.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\OLSPriorTheta.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\olsss.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\olsvar.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\olsvardisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel1disp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel1estimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel1fdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel1fevd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel1forecast.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel1hd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel1irf.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel1irfdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel1plot.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel1prelim.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel2cf.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel2cfdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel2disp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel2fdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel2fevd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel2fevddisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel2forecast.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel2hd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel2hddisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel2irf.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel2irfdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel2plot.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel2prelim.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel2prior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel3cf.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel3cfdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel3disp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel3estimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel3fdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel3fevd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel3fevddisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel3forecast.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel3gibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel3hd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel3hddisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel3irf.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel3irfdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel3plot.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel3post.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel3prelim.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel3prior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel4cf.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel4cfdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel4disp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel4estimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel4fdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel4fevd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel4fevddisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel4forecast.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel4gibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel4hd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel4hddisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel4irf.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel4irfdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel4plot.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel4prelim.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel4prior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel5cf.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel5cfdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel5disp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel5estimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel5fdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel5fevd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel5fevddisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel5forecast.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel5fprint.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel5gibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel5hd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel5hddisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel5irf.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel5irfdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel5plot.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel5prelim.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel5prior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6cf.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6cfdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6cfsim.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6disp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6estimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6fdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6feval.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6fevd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6fevddisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6forecast.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6fprint.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6gibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6hd.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6hddisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6hdsim.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6irf.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6irfdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6plot.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6prelim.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panel6prior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panelarloop.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panelfeval.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\panelfprint.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\PANELtype.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\parfor_progressbar.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\printcontributors.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\PRIORtype.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\qrandj.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\qzerores.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\rows.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\RS_DF.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\RS_DF_CVfinalbootstrapInoue.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\RS_DF_rstest.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\RS_DF_Test.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\RS_PF.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\RS_PF_nwest.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\RS_PF_OLS_Wald.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\RS_PF_Rationality.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\runKF_DK.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\sampleA_H.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\sampleBinw.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\sampleG.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\sampleH_update.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\samplePhi.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\samplePsi_DK.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\sampleV.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\shocksim1.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\shocksim2.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\shocksim3.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\shocksim4.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\shocksim5.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\shocksim6.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\sims_bfgsi.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\sims_csminit.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\sims_csminwel.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\sims_numgrad.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\SKF.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\ssdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\ssestimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\ssgibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\ssgibbspan5.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\ssgibbspan6.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\statesMix.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\strsdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\strsdispols.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\strsestimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\strsestimates_set_identified.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\strshocks.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\strshocks_stvolt4.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\strshockspan5.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\strshockspan6.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\stvol1estimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\stvol1gibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\stvol1prior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\stvol2estimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\stvol2gibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\stvol2prior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\stvol3estimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\stvol3gibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\stvol3prior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\stvoldisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\stvoltmat.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\SVtype.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tcforecast.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\triangf.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\trns.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvbvar1estimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvbvar1gibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvbvar1prior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvbvar2estimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvbvar2gibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvbvar2prior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvbvardisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvbvarfeval.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvbvarirf.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvbvarirf2.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvbvarirf3.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvbvarirf4.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvbvarmat.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvcforecast.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvcfsim1.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\TVEcreateH.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\TVEcreatePriorDeterministic.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\TVEmacforecast.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\TVEmaestimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\TVEmafeval.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\TVEmaforecast.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\TVEmaforecastsim.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\TVEmagibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\TVEmahdecomp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\TVEmaprelim.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\TVEmastrshocks.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\TVEregimesDummy.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\TVESLM_gibbs.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\TVESLM_prior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\TVESLMdisp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\TVESLMestimates.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvhdecomp.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvhdsim.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvirfres.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvirfsim.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\TVPtype.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\tvstrshocks.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\varprior.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\VARtype.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\vec.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\vm_mdd_mine.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\wish.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\+bear\xlswritegeneral.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\BEAR.PNG</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\BEARmain.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bear\BEARsettings.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\bearroot.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\replications\bear_settings_.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\replications\bear_settings_61.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\replications\bear_settings_AAU2009.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\replications\bear_settings_BBE2005.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\replications\bear_settings_BvV2018.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\replications\bear_settings_CH2019.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\replications\bear_settings_WGP2016.m</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\replications\data.xlsx</file>
-      <file>C:\Users\ebenetce\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\bear(3)\replications\getReplicationSettings.m</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\app\+bear\+app\About.mlapp</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\app\+bear\+app\About2020a.mlapp</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\app\+bear\+app\favarSettings.mlapp</file>
       <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\app\+bear\+app\optionsProxyForApp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+data\excelrecord1fcn.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+data\excelrecord2fcn.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+data\excelrecord3fcn.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+data\excelrecord4fcn.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+data\excelrecord5fcn.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+data\excelrecord6fcn.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+data\excelrecord7fcn.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+data\excelrecord8fcn.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+data\excelrecord9fcn.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+data\excelrecordHDfcn.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+data\favar_excelrecord4fcn.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+data\favar_excelrecord6fcn.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+data\favar_excelrecordHDfcn.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+settings\+favar\FAVARsettings.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+settings\+favar\NullFAVAR.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+settings\+favar\VARtypeSpecificFAVARsettings.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+settings\+strctident\Strctident.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+settings\+strctident\StrctidentIRFt4.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+settings\+strctident\StrctidentIRFt5.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+settings\+strctident\StrctidentIRFt6.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+settings\BASEsettings.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+settings\BVARsettings.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+settings\MFVARsettings.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+settings\OLSsettings.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+settings\PANELsettings.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+settings\SVsettings.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+settings\TVPsettings.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+utils\fixstring.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+utils\initializeFavarResults.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+utils\initializeStrctident.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\+utils\pvset.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\arbicloop.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\arloop.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\betaswap.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\bvardisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\bvarfeval.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\bvarfeval_stvol4.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\cfdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\cforecast.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\cforecast12_stvol4.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\CFtype.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\CheckCorrelWithIV.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\CheckFEVDrestriction.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\CheckFEVDrestriction_favar.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\checkmagres.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\checkpriors.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\checkrelmag.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\checksignres.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\checksignres_favar.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\checksignres_inc_other_shocks.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\checkstable.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\cols.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\constructMissingSurvey.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\ConstructOptimalSubplot.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\crps.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\cut_EPS_IV_GK_new.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\delif.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\dic_test.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\doestimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\dogibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\dopost.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\doprior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_demean.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_doestimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_dogibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_facrot.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_fevd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_gensample1.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_gensample2.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_gensample3.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_hdestimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_inwgibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_irfdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_irfdisp2.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_irfols.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_kfgibbsnv.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_mgibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_mvnrnd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_ndgibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_ndgibbstotal.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_nwgibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_olsfevd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_olssvd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_R2.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_retransX_contributions2.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_retransX_irf_estimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_retransX_irf_record.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_retransX_ortirfmatrix.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_SigmaL.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_standardise.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_stvol1gibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_stvol2gibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_stvol3gibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_transx.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_tvbvar1gibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_tvbvar2gibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\favar_XYestimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\FAVARlevels.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\fdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\festimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\fevd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\fevddisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\fevdestimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\find_medianmodel.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\FIS.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\forecast.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\forecast_mf.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\forecastsim.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\forecaststvol1.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\forecaststvol2.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\forecaststvol3.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\forecaststvol4.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\forecasttv1.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\forecasttv2.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\gen_fake_data.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\gendates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\gendummy.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\genpdate.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\gensample.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\gensample_mf.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\gensampleols.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\gensamplepan.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\GR_PF.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\GR_PF_DMtest.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\GR_PF_Fluctuation.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\grandn.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\gy.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\hd_for_signres_stvol4.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\hd_new_for_signres.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\hddisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\hddisp_new.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\hddisp_stvol4.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\hdecomp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\hdecomp_inc_exo.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\hdecomp_stvol4.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\hdecompols.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\hdestimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\hdestimates_inc_exo.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\hdestimates_inc_exo_stvol4.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\hdestimates_set_identified.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\HDestimatesols.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\igrandn.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\impulsdtrf.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\initexcel.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\invltod.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\invpd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\inwestimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\inwgibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\inwmlik.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\inwprior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irf.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfchol.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfcholstvol.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfdisp2.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfestimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfestimates2.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfestimates_set_identified.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfexo.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfexodisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfIV_MH.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfiv_ols_for_bootstrap_GK.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfIVols.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfres.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfres_old.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfres_prior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfres_relmagnitude_panel.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfres_stvol4.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfsignrespanel.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfsim.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfsim_prior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\IRFt456_estimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\IRFt5_Bayesian.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\IRFt6_Bayesian.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irftrig.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irftrigstvol.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\IRFtype.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\irfunres.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\iwdensity.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\iwdraw.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\KF_CKsimSV.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\lagrange.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\lagx.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\loadbex.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\loadcf.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\loadcfpan.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\loadcorrelres.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\loadFEVDres.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\loadH.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\loadhogs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\loadIV.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\loadmaprior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\loadrelmagnres.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\loadsignres.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\loadSLM.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\logdet.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\loglik.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\loglik_proxy_given_data.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\mairfsim.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\makeMatricesSLMfullSV.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\maprior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\matrixndraw.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\matrixtdraw.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\mestimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\MF_BVAR_BEAR.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\mgamma.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\mgibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\mgridsearch.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\mhprob.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\mhprob2.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\mhprob3.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\MissData.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\mmlik.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\mmlikdata.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\mmlikgrid.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\mndensity.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\mpost.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\mprior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\ndestimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\ndgibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\ndgibbstotal.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\ndprior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\nspd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\nspds.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\nwestimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\nwgibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\nwgridsearch.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\nwmlik.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\nwmlikdata.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\nwmlikgrid.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\nwpost.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\nwprior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\nwprior_for_IV.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\olsestimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\olsfeval.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\olsfevd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\olsforecast.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\olsirft123.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\olsirft4.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\olsirft5.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\olsirft6.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\OLSPriorTheta.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\olsss.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\olsvar.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\olsvardisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel1disp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel1estimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel1fdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel1fevd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel1forecast.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel1hd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel1irf.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel1irfdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel1plot.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel1prelim.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel2cf.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel2cfdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel2disp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel2fdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel2fevd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel2fevddisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel2forecast.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel2hd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel2hddisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel2irf.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel2irfdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel2plot.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel2prelim.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel2prior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel3cf.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel3cfdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel3disp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel3estimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel3fdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel3fevd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel3fevddisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel3forecast.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel3gibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel3hd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel3hddisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel3irf.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel3irfdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel3plot.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel3post.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel3prelim.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel3prior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel4cf.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel4cfdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel4disp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel4estimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel4fdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel4fevd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel4fevddisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel4forecast.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel4gibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel4hd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel4hddisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel4irf.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel4irfdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel4plot.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel4prelim.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel4prior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel5cf.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel5cfdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel5disp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel5estimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel5fdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel5fevd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel5fevddisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel5forecast.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel5fprint.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel5gibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel5hd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel5hddisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel5irf.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel5irfdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel5plot.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel5prelim.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel5prior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6cf.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6cfdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6cfsim.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6disp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6estimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6fdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6feval.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6fevd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6fevddisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6forecast.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6fprint.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6gibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6hd.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6hddisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6hdsim.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6irf.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6irfdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6plot.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6prelim.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panel6prior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panelarloop.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panelfeval.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\panelfprint.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\PANELtype.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\parfor_progressbar.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\printcontributors.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\PRIORtype.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\qrandj.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\qzerores.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\rows.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\RS_DF.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\RS_DF_CVfinalbootstrapInoue.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\RS_DF_rstest.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\RS_DF_Test.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\RS_PF.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\RS_PF_nwest.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\RS_PF_OLS_Wald.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\RS_PF_Rationality.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\runKF_DK.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\sampleA_H.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\sampleBinw.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\sampleG.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\sampleH_update.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\samplePhi.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\samplePsi_DK.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\sampleV.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\shocksim1.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\shocksim2.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\shocksim3.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\shocksim4.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\shocksim5.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\shocksim6.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\sims_bfgsi.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\sims_csminit.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\sims_csminwel.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\sims_numgrad.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\SKF.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\ssdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\ssestimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\ssgibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\ssgibbspan5.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\ssgibbspan6.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\statesMix.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\strsdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\strsdispols.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\strsestimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\strsestimates_set_identified.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\strshocks.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\strshocks_stvolt4.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\strshockspan5.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\strshockspan6.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\stvol1estimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\stvol1gibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\stvol1prior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\stvol2estimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\stvol2gibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\stvol2prior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\stvol3estimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\stvol3gibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\stvol3prior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\stvoldisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\stvoltmat.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\SVtype.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tcforecast.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\triangf.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\trns.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvbvar1estimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvbvar1gibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvbvar1prior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvbvar2estimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvbvar2gibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvbvar2prior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvbvardisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvbvarfeval.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvbvarirf.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvbvarirf2.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvbvarirf3.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvbvarirf4.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvbvarmat.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvcforecast.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvcfsim1.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\TVEcreateH.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\TVEcreatePriorDeterministic.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\TVEmacforecast.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\TVEmaestimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\TVEmafeval.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\TVEmaforecast.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\TVEmaforecastsim.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\TVEmagibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\TVEmahdecomp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\TVEmaprelim.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\TVEmastrshocks.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\TVEregimesDummy.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\TVESLM_gibbs.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\TVESLM_prior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\TVESLMdisp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\TVESLMestimates.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvhdecomp.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvhdsim.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvirfres.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvirfsim.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\TVPtype.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\tvstrshocks.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\varprior.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\VARtype.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\vec.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\vm_mdd_mine.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\wish.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\+bear\xlswritegeneral.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\BEAR.PNG</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\BEARmain.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\BEARsettings.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bear\mustBeInRange.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\bearroot.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\bear_settings_.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\bear_settings_61.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\bear_settings_AAU2009.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\bear_settings_BBE2005.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\bear_settings_BvV2018.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\bear_settings_CH2019.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\bear_settings_WGP2016.m</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\data.xlsx</file>
+      <file>C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx\replications\getReplicationSettings.m</file>
     </fileset.depfun>
     <build-deliverables>
       <file location="${PROJECT_ROOT}\BEARapp\for_testing" name="readme.txt" optional="true">C:\Users\ebenetce\MATLAB\BEAR-toolbox\release\BEARapp\for_testing\readme.txt</file>
