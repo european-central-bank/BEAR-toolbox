@@ -8,15 +8,12 @@ function [settings] = BEARsettings(VARtype, varargin)
 p = inputParser;
 p.KeepUnmatched = true;
 addRequired(p, 'VARtype', @(x) isnumeric(x) || isstring(x) || ischar(x));
-addParameter(p,'ExcelFile', '', @(x) isstring(x) || ischar(x));
+addParameter(p,'ExcelFile', fullfile(bearroot(), 'default_bear_data.xlsx'), @(x) isstring(x) || ischar(x));
 parse(p, VARtype, varargin{:});
 
 VARtype = bear.VARtype(p.Results.VARtype);
 
 ExcelFile = p.Results.ExcelFile;
-if isempty(ExcelFile)
-    ExcelFile = getExcelpath();
-end
 
 if isempty(fieldnames(p.Unmatched))
     params = {};
@@ -41,15 +38,4 @@ switch VARtype
         
 end
 
-end
-
-function var = getExcelpath()
-f = dir('*.xlsx');
-
-if length(f) ~= 1
-    error('bear:settings:UndefinedExcelFile', ...
-        'Unable to automatically determine the Excel file, please specifiy the property ExcelFile with the address of the input file');
-end
-
-var = fullfile(f.folder, f.name);
 end
