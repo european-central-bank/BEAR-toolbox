@@ -152,7 +152,7 @@ If you wanted to share BEAR with someone who is not a MATLAB user, there are sev
 
 <br/>
 
-2. Select as **MAIN FILE** the appropriate BEAR app from your set of files. For example, `+bear\+app\BEARapp20a`.
+2. Select as **MAIN FILE** the appropriate BEAR app from your set of files. For example, `tbx\app\BEARapp20a`.
 
 <br/>
 
