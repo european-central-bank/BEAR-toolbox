@@ -9,7 +9,8 @@ suite3 = TestSuite.fromFile('tPanelSettings.m');
 suite4 = TestSuite.fromFile('tUtils.m');
 suite5 = TestSuite.fromFile('tFAVAR.m');
 suite6 = TestSuite.fromFile('tNewInterface.m');
-suite = [suite1, suite2, suite3, suite4, suite5, suite6];
+suite7 = TestSuite.fromFile('tApp.m');
+suite = [suite1, suite2, suite3, suite4, suite5, suite7];
 
 runner = TestRunner.withTextOutput;
 runner.addPlugin(CodeCoveragePlugin.forFolder(bearroot(), 'IncludingSubfolders', true))

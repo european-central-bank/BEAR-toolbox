@@ -1,7 +1,7 @@
 classdef tPanelSettings < matlab.unittest.TestCase
     
     
-    methods (Test)
+    methods (Test, TestTags = {'Git'})
         function tPanelIRFt56(tc)
             opts = BEARsettings(4, 'ExcelFile', 'data.xlsx');
             

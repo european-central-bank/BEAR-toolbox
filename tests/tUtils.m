@@ -1,6 +1,6 @@
 classdef tUtils < matlab.unittest.TestCase
     
-    methods(Test)
+    methods(Test, TestTags = {'Git'})
         
         function tfixstring(tc)
             str = '  a s dsds   sd asrt          as 2893 ~@           ';
