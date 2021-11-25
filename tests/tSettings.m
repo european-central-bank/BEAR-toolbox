@@ -1,6 +1,6 @@
 classdef tSettings < matlab.unittest.TestCase
     
-    methods(Test)
+    methods(Test, TestTags = {'Git'})
         
         function tDefaults(tc)
             s = BEARsettings(1);
