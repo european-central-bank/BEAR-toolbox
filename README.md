@@ -139,7 +139,7 @@ Any MATLAB user can download the latest version of BEAR from the GitHub reposito
 2. Either click on package or run:
 ``` 
 projectFile = 'tbx.prj';
-matlab.addons.toolbox.packageToolbox(projectFile,'C:\Work\myOtherToolbox')
+matlab.addons.toolbox.packageToolbox(projectFile)
 ```
 
 ### With non-MATLAB users
@@ -162,7 +162,7 @@ If you wanted to share BEAR with someone who is not a MATLAB user, there are sev
 
 3. Under **Files required for your application to run** add the following in addition to the automatically detected ones:
 
-+ tbx\bear\+bear\results.xlsx
++ tbx\bear\\+bear\results.xlsx
 + tbx\replications\data_AAU2009.xlsx
 + tbx\replications\data_BBE2005.xlsx
 + tbx\replications\data_BvV2018.xlsx
