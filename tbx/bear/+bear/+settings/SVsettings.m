@@ -70,7 +70,7 @@ classdef SVsettings < bear.settings.BASEsettings
         % Lag decay: lambda3
         lambda3 (1,1) double {mustBeInRange(lambda3, 1, 2)} = 1;
         % Exogenous variable and constant: lambda4
-        lambda4 (:,1) double {mustBeGreaterThanOrEqual(lambda4,0)} = 100;
+        lambda4 (:,:) double {mustBeGreaterThanOrEqual(lambda4,0)} = 100;
         % Block exogeneity shrinkage: lambda5
         lambda5 (1,1) double {mustBeGreaterThanOrEqual(lambda5,0), mustBeLessThanOrEqual(lambda5,1)} = 0.001;
         % IG shape on residual variance: alpha0
