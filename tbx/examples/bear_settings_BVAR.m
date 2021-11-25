@@ -36,7 +36,7 @@ s.lags=4;
 s.const=1;
 % excel results file name
 s.results_sub='results_BVAR';
-s.results_path = fullfile(fileparts(mfilename('fullpath')), 'results');
+s.results_path = fullfile(pwd, 'results');
 % to output results in excel
 s.results=1;
 % output charts
