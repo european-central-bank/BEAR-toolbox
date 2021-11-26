@@ -31,7 +31,8 @@ The Bayesian Estimation, Analysis and Regression toolbox (BEAR) is a comprehensi
 This repository is organized as follows. All BEAR files that need to be installed by the end-users are located inside the `tbx` in four separate directories:
 - `app` contains all the files related to the user interface
 - `bear` has all the core MATLAB functions and classes
-- `replications` contains a set of Excel and settings files to replicate previous results from the literature 
+- `replications` contains a set of Excel and settings files to replicate previous results from the literature
+- `examples` contains a set of functions to create settings objects for each VAR type
 - `doc` contains a set of PDFs with some of the BEAR documentation
 
 The rest of the folders contain development files related to the development of BEAR which will not be copied in non-development environments. This folders are structured as follows:
