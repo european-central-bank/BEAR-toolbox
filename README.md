@@ -48,7 +48,7 @@ This section is aimed to those users indending to run BEAR, but not interested i
 
 __**From MATLAB**__
 
-To install the toolbox directly from MATLAB, please go to HOME > Add Ons, search for BEAR and install the toolbox.
+To install the toolbox directly from MATLAB, please go to HOME > Add Ons, search for BEAR and install the toolbox (comming soon).
 
 __**From GitHub**__
 
@@ -73,9 +73,7 @@ Opening the MATLAB project will shadow the installed version of BEAR as long as 
 
 ### For non-MATLAB users
 
-In the ECB website below, you will find a compiled version of BEAR that does not require a MATLAB license to install.
-
-[BEAR at ECB](https://www.ecb.europa.eu/pub/research/working-papers/html/bear-toolbox.en.html)
+Under releases, you will find an executable with the compiled application that you can install in any Windows based computer. To run the installer, just download the .EXE file and run it.
 
 ## Getting started
 
