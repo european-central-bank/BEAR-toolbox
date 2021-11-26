@@ -35,7 +35,7 @@ Furthermore, BEAR is well documented, both within the code as well as including 
 
 BEAR is specifically developed for transparently supplying a tool for state-of-the-art research and is planned to be further developed to always be at the frontier of economic research.
 
-Use of BEAR implies acceptance of the End User Licence Agreement (EULA) for the Use of the Software “the Bayesian Estimation, Analysis and Regression (BEAR) toolbox”.
+Use of BEAR implies acceptance of the End User [Licence Agreement (EULA)](#License) for the Use of the Software “the Bayesian Estimation, Analysis and Regression (BEAR) toolbox”.
 
 [BEAR at ECB](https://www.ecb.europa.eu/pub/research/working-papers/html/bear-toolbox.en.html)
 
