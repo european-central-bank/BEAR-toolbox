@@ -42,16 +42,17 @@ end
 
 % if either the start date or the date date is not recognised, return an error message
 if isempty(startlocation)
-    msgbox('Error: unknown start date for the sample. Please check your sample start date (remember that names are case-sensitive).');
-    error('programme termination: date error');
+    error('bear:gensampleols:dateError', ...
+        'Error: unknown start date for the sample. Please check your sample start date (remember that names are case-sensitive).');
+    
 elseif isempty(endlocation)
-    msgbox('Error: unknown end date for the sample. Please check your sample end date (remember that names are case-sensitive).');
-    error('programme termination: date error');
+    error('bear:gensampleols:dateError', ...
+        'Error: unknown end date for the sample. Please check your sample end date (remember that names are case-sensitive).');
 end
 % also, if the start date is posterior to the end date, obviously return an error
 if startlocation>=endlocation==1
-    msgbox('Error: inconsistency between the start and end dates. The start date must be anterior to the end date.');
-    error('programme termination: date error');
+    error('bear:gensampleols:dateError', ...
+        'Error: inconsistency between the start and end dates. The start date must be anterior to the end date.');
 end
 
 % identify the position of the strings corresponding to the endogenous variables
@@ -63,8 +64,7 @@ for ii=1:numendo
     check=find(strcmp(variablestrings,var),1);
     if isempty(check)==1
         message=['Error: endogenous variable ' var ' cannot be found on the excel data spreadsheet.'];
-        msgbox(message);
-        error('programme termination: data error');
+        error('bear:gensampleols:dataError', message)
     end
     % if the variable is known, go on
     endolocation(ii,1)=find(strcmp(variablestrings,endo(ii,1)));
@@ -86,8 +86,7 @@ else
         check=find(strcmp(variablestrings,var), 1);
         if isempty(check)==1
             message=['Error: exogenous variable ' var ' cannot be found on the excel data spreadsheet.'];
-            msgbox(message);
-            error('programme termination: data error');
+            error('bear:gensampleols:dataError', message)
         end
         % if the variable is known, go on
         exolocation(ii,1)=find(strcmp(variablestrings,exo(ii,1)));
@@ -113,20 +112,20 @@ end
 % this NaN test has to be adjustted to the actual endo sample
 % now, as a preliminary step: check if there is any Nan in the data; if yes, return an error since the model won't be able to run with missing data
 % a simple way to test for NaN is to check for "smaller or equal to infinity": Nan is the only number for which matlab will return 'false' when asked so
-[r,c]=size(data);
-for ii=1:r
-    for jj=1:c
-        temp=data(ii,jj);
-        if (temp<=inf)==0
-            % identify the variable and the date
-            NaNvariable=names{1,jj+1};
-            NaNdate=names{ii+1,1};
-            message=['Error: variable ' NaNvariable ' at date ' NaNdate ' (and possibly other sample entries) is identified as NaN. Please check your Excel spreadsheet: entry may be blank or non-numerical.'];
-            msgbox(message);
-            error('programme termination: data error');
-        end
-    end
-end
+% [r,c]=size(data);
+% for ii=1:r
+%     for jj=1:c
+%         temp=data(ii,jj);
+%         if (temp<=inf)==0
+%             % identify the variable and the date
+%             NaNvariable=names{1,jj+1};
+%             NaNdate=names{ii+1,1};
+%             message=['Error: variable ' NaNvariable ' at date ' NaNdate ' (and possibly other sample entries) is identified as NaN. Please check your Excel spreadsheet: entry may be blank or non-numerical.'];
+%             msgbox(message);
+%             error('programme termination: data error');
+%         end
+%     end
+% end
 
 if favar.FAVAR==1
     if favar.transformation==1
@@ -177,8 +176,7 @@ if favar.FAVAR==1
             if favar.IRF.npltXshck==0
                 % error if no shock to plot is found, otherwise code crashes at a later stage
                 message=['Error: Shock(' favar.IRF.pltXshck ') cannot be found.'];
-                msgbox(message,'favar.IRF.npltXshck error');
-                error('programme termination: favar.IRF.npltXshck error');
+                error('bear:gensampleols:favarIRFnpltXshckError', message);
             end
         end
         % for IRFt 4 & 6 this step is done in loadsignres
@@ -241,8 +239,8 @@ else
         Fstartlocation=find(strcmp(datestrings,Fstartdate));
         % if the start date is not recognised, return an error message
         if isempty(Fstartlocation)==1
-            msgbox('Error: unknown start date for the forecasts. Select a date within a sample, or select "Start forecasts after last sample period"');
-            error('unknown start date for the forecasts');
+            error('bear:gensampleols:unknownStartDateForTheForecasts', ...
+                'Error: unknown start date for the forecasts. Select a date within a sample, or select "Start forecasts after last sample period"');
         end
     end
     
@@ -261,8 +259,8 @@ else
         % convert this date into quarters only
         datastart=datastartyear*4+datastartquarter;
         % then identify the year and quarter of the final forecast date
-        forecastendyear=str2num(Fenddate(1,1:4));
-        forecastendquarter=str2num(Fenddate(1,6));
+        forecastendyear=str2double(Fenddate(1,1:4));
+        forecastendquarter=str2double(Fenddate(1,6));
         % convert this date into quarters only
         forecastend=forecastendyear*4+forecastendquarter;
         % finally, compute the number of periods that separate the two dates
@@ -272,7 +270,7 @@ else
     elseif frequency==3
         % first identify the year and month of the initial date in the whole data set (not just the sample)
         temp=datestrings{1,1};
-        datastartyear=str2num(temp(1,1:4));
+        datastartyear=str2double(temp(1,1:4));
         temp(1,5)=' ';
         [~,datastartmonth]=strtok(temp);
         % convert this date into months only
@@ -337,7 +335,7 @@ else
     elseif frequency==5
         % then identify the year and day corresponding to this final period
         temp=datestrings{end,1};
-        dataendyear=str2num(temp(1,1:4));
+        dataendyear=str2double(temp(1,1:4));
         temp(1,5)=' ';
         [~,dataendday]=strtok(temp);
         dataendday=str2num(dataendday);
@@ -389,8 +387,8 @@ else
     Fperiods=Fendlocation-Fstartlocation+1;
     
     if Fperiods<0
-        msgbox('Error: The forecast start date needs to be prior to the forecast end date');
-        error('invalid forecast start or end date');
+        message = 'Error: The forecast start date needs to be prior to the forecast end date';
+        error('bear:gensampleols:InvalidForecastStartOrEndDate', message)
     end
     
     
@@ -487,16 +485,14 @@ else
         % check that the start date for the forecast appears in the sheet; if not, return an error
         if isempty(Fstartlocation)
             message=['Error: a forecast application is selected for a model that uses exogenous variables. Hence, predicted exogenous values should be supplied over the forecast periods. Yet the start date for forecasts (' Fstartdate ') cannot be found on the ''pred exo'' sheet of the Excel data file. Please verify that this sheet is properly filled, and remember that dates are case-sensitive.'];
-            msgbox(message);
-            error('programme termination: data error');
+            error('bear:gensampleols:IncorrectApplicationSelected',message)
         end
         % obtain the row location of the forecast end date
         [Fendlocation,~]=find(strcmp(strngs,Fenddate));
         % check that the end date for the forecast appears in the sheet; if not, return an error
         if isempty(Fendlocation)
             message=['Error: a forecast application is selected for a model that uses exogenous variables. Hence, predicted exogenous values should be supplied over the forecast periods. Yet the end date for forecasts (' Fenddate ') cannot be found on the ''pred exo'' sheet of the Excel data file. Please verify that this sheet is properly filled, and remember that dates are case-sensitive.'];
-            msgbox(message);
-            error('programme termination: data error');
+            error('bear:gensampleols:IncorrectApplicationSelected',message)
         end
         
         % identify the strings for the exogenous variables
@@ -507,8 +503,7 @@ else
             % if no match is found, return an error
             if isempty(location)
                 message=['Error: a forecast application is selected for a model that uses exogenous variables. Hence, predicted exogenous values should be supplied over the forecast periods. Yet the exogenous variable ''' exo{ii,1} ''' cannot be found on the ''pred exo'' sheet of the Excel data file. Please verify that this sheet is properly filled, and remember that variable names are case-sensitive.'];
-                msgbox(message);
-                error('programme termination: data error');
+                error('bear:gensampleols:IncorrectApplicationSelected',message)
                 % else, record the value
             else
                 pexolocation(ii,1)=location;
@@ -528,8 +523,7 @@ else
                 % if this entry is empty or NaN, return an error
                 if (isempty(temp) || (temp<=inf)==0)
                     message=['Error: the predicted value for exogenous variable ' exo{ii,1} ' at forecast period ' strngs{Fstartlocation+jj,1} ' (and possibly other entries) is either empty or NaN. Please verify that the ''pred exo'' sheet of the Excel data file is properly filled.'];
-                    msgbox(message);
-                    error('programme termination: data error');
+                    error('bear:gensampleols:EmptyPredictedVariable', message)
                     % if this entry is a number, record it
                 else
                     predexo=[predexo;temp];
