@@ -26,12 +26,25 @@
 - [License](#License)
 
 ## Introduction
-The Bayesian Estimation, Analysis and Regression toolbox (BEAR) is a comprehensive (Bayesian Panel) VAR toolbox for forecasting and policy analysis. Use of BEAR implies acceptance of the End User Licence Agreement (EULA) for the Use of the Software “the Bayesian Estimation, Analysis and Regression (BEAR) toolbox”.
+
+The Bayesian Estimation, Analysis and Regression toolbox (BEAR) is a comprehensive (Bayesian Panel) VAR toolbox for forecasting and policy analysis.
+
+BEAR is a MATLAB based toolbox which is easy for non-technical users to understand, augment and adapt. In particular, BEAR includes a user-friendly graphical interface which allows the tool to be used by country desk economists.
+
+Furthermore, BEAR is well documented, both within the code as well as including a detailed theoretical and user’s guide. BEAR includes state-of-the art applications such as FAVARs, stochastic volatility, time-varying parameters, mixed-frequency, sign and magnitude restrictions, conditional forecasts, Bayesian forecast evaluation measures, Bayesian Panel VAR using different prior distributions (for example hierarchical priors).
+
+BEAR is specifically developed for transparently supplying a tool for state-of-the-art research and is planned to be further developed to always be at the frontier of economic research.
+
+Use of BEAR implies acceptance of the End User [Licence Agreement (EULA)](#License) for the Use of the Software “the Bayesian Estimation, Analysis and Regression (BEAR) toolbox”.
+
+[BEAR at ECB](https://www.ecb.europa.eu/pub/research/working-papers/html/bear-toolbox.en.html)
+
 ### Structure of the repository
 This repository is organized as follows. All BEAR files that need to be installed by the end-users are located inside the `tbx` in four separate directories:
 - `app` contains all the files related to the user interface
 - `bear` has all the core MATLAB functions and classes
-- `replications` contains a set of Excel and settings files to replicate previous results from the literature 
+- `replications` contains a set of Excel and settings files to replicate previous results from the literature
+- `examples` contains a set of functions to create settings objects for each VAR type
 - `doc` contains a set of PDFs with some of the BEAR documentation
 
 The rest of the folders contain development files related to the development of BEAR which will not be copied in non-development environments. This folders are structured as follows:
@@ -47,7 +60,7 @@ This section is aimed to those users indending to run BEAR, but not interested i
 
 __**From MATLAB**__
 
-To install the toolbox directly from MATLAB, please go to HOME > Add Ons, search for BEAR and install the toolbox.
+To install the toolbox directly from MATLAB, please go to HOME > Add Ons, search for BEAR and install the toolbox (comming soon).
 
 __**From GitHub**__
 
@@ -72,9 +85,7 @@ Opening the MATLAB project will shadow the installed version of BEAR as long as 
 
 ### For non-MATLAB users
 
-In the ECB website below, you will find a compiled version of BEAR that does not require a MATLAB license to install.
-
-[BEAR at ECB](https://www.ecb.europa.eu/pub/research/working-papers/html/bear-toolbox.en.html)
+Under releases, you will find an executable with the compiled application that you can install in any Windows based computer. To run the installer, just download the .EXE file and run it.
 
 ## Getting started
 
