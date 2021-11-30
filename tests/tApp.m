@@ -44,6 +44,20 @@ classdef tApp < matlab.uitest.TestCase
             
         end
         
+        function tFeval(tc)
+            
+            tc.choose(tc.App.APPLICATIONSTab)
+            tc.press(tc.App.QuickExporttoWorkspaceButton)
+            opts = evalin('base', 'opts');
+            tc.verifyEqual(opts.Feval, false);
+            
+            tc.press(tc.App.Feval_cp);
+            tc.press(tc.App.QuickExporttoWorkspaceButton)
+            opts = evalin('base', 'opts');
+            tc.verifyEqual(opts.Feval, true);
+            
+        end
+        
     end
     
 end
