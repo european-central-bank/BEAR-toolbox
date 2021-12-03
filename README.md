@@ -58,9 +58,9 @@ The rest of the folders contain development files related to the development of 
 
 This section is aimed to those users indending to run BEAR, but not interested in working or ammending the code.
 
-__**From MATLAB**__
+__**From MATLAB**__ or __**MATLAB Online**__
 
-To install the toolbox directly from MATLAB, please go to HOME > Add Ons, search for BEAR and install the toolbox (comming soon).
+To install the toolbox directly from MATLAB, please go to HOME > Add Ons, search for BEAR and install the toolbox (comming soon). Alternatively, follow the steps to install it from GitHub.
 
 __**From GitHub**__
 
@@ -86,6 +86,8 @@ Opening the MATLAB project will shadow the installed version of BEAR as long as 
 ### For non-MATLAB users
 
 Under releases, you will find an executable with the compiled application that you can install in any Windows based computer. To run the installer, just download the .EXE file and run it.
+
+Alternatively, if you wanted to run the full version of BEAR, you can get a trial version of MATLAB [here](https://mathworks.com/campaigns/products/trials.html).
 
 ## Getting started
 
