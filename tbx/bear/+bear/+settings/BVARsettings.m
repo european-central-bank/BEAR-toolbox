@@ -60,15 +60,15 @@ classdef BVARsettings < bear.settings.BASEsettings
         % Lag decay: lambda3
         lambda3 (1,1) double {mustBeInRange(lambda3, 1, 2)} = 1;
         % Exogenous variable and constant: lambda4
-        lambda4 (:,:) double {mustBeGreaterThanOrEqual(lambda4,0)} = 1;
+        lambda4 (:,:) double {mustBeGreaterThanOrEqual(lambda4,0)} = 100;
         % Block exogeneity shrinkage: lambda5
         lambda5 (1,1) double {mustBeInRange(lambda5,0, 1)} = 0.001;
         % Sum-of-coefficients tightness: lambda6
-        lambda6 (1,1) double {mustBeGreaterThanOrEqual(lambda6,0)} = 1;
+        lambda6 (1,1) double {mustBeGreaterThanOrEqual(lambda6,0)} = 0.1;
         % Dummy initial observation tightness: lambda7
-        lambda7 (1,1) double {mustBeGreaterThanOrEqual(lambda7,0)} = 0.1;
+        lambda7 (1,1) double {mustBeGreaterThanOrEqual(lambda7,0)} = 0.001;
         % Long-run prior tightness: lambda8
-        lambda8 (1,1) double = 1;
+        lambda8 (1,1) double {mustBeInRange(lambda8,0, 100)} = 1;
     end
     
     properties
