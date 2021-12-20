@@ -1,6 +1,8 @@
 | :exclamation: We just added some major changes into the main functionality of BEAR to improve its usability. To access the previous version of the code use the legacyCode branch |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
+[![View BEAR 5.1 on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://uk.mathworks.com/matlabcentral/fileexchange/103370-bear-5-1)
+
 | **GitHub<sup>&reg;</sup>&nbsp;Actions** |
 |:----------------------------:|
 |[![MATLAB](https://github.com/european-central-bank/BEAR-toolbox/actions/workflows/ci.yml/badge.svg)](https://github.com/european-central-bank/BEAR-toolbox/actions/workflows/ci.yml)|
@@ -60,7 +62,7 @@ This section is aimed to those users indending to run BEAR, but not interested i
 
 __**From MATLAB**__ or __**MATLAB Online**__
 
-To install the toolbox directly from MATLAB, please go to HOME > Add Ons, search for BEAR and install the toolbox (comming soon). Alternatively, follow the steps to install it from GitHub.
+To install the toolbox directly from MATLAB, please go to HOME > Add Ons, search for BEAR and install the toolbox. Alternatively, follow the steps below to install it from GitHub.
 
 __**From GitHub**__
 
