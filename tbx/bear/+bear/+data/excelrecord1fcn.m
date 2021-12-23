@@ -125,7 +125,11 @@ if opts.VARtype==2
     % lambda 4
     %estimationinfo{23,1}=num2str(lambda4);
     for ii=1:size(endo,1)
-        estimationinfo{23,ii}=num2str(opts.lambda4(ii));
+        if isscalar(opts.lambda4)
+            estimationinfo{23,ii}=num2str(opts.lambda4);
+        else
+            estimationinfo{23,ii}=num2str(opts.lambda4(ii));
+        end
     end
     
     % lambda 5

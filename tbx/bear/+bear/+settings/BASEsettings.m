@@ -48,13 +48,13 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         frequency (1,1) double  = 2;                     % data frequency (1=yearly, 2= quarterly, 3=monthly, 4=weekly, 5=daily, 6=undated)
         startdate               = '1974q1';              % sample start date; must be a string consistent with the date formats of the toolbox
         enddate                 = '2014q4';              % sample end date; must be a string consistent with the date formats of the toolbox
-        varendo                 = 'YER HICSA STN'; % endogenous variables; must be a single string, with variable names separated by a space
+        varendo                 = 'YER HICSA STN';       % endogenous variables; must be a single string, with variable names separated by a space
         varexo                  = '';                    % exogenous variables, if any; must be a single string, with variable names separated by a space
         lags      (1,1) double  = 4;                     % number of lags
         const     (1,1) logical = true;                  % inclusion of a constant (1=yes, 0=no)
         
         excelFile    (1,:) char = '';                    % Excel file used for the inputs
-        results_path (1,:) char = pwd;                   % path where there results file is stored
+        results_path (1,:) char = '';                    % path where there results file is stored
         results_sub  (1,:) char = 'results';             % name of the results file
         results      (1,1) logical = true;               % save the results in the excel file (true/false)
         plot         (1,1) logical = true;               % plot the results (true/false)
@@ -120,6 +120,7 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
             
             obj.VARtype = VARtype;
             obj.excelFile = excelPath;
+            obj.results_path = pwd();
             
         end
         

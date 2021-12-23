@@ -82,7 +82,7 @@ classdef BVARsettings < bear.settings.BASEsettings
         % hyperparameter optimisation by grid search (1=yes, 0=no)
         hogs
     end
-        
+    
     properties
         % block exogeneity (1=yes, 0=no)
         bex    (1,1) logical = false;
@@ -163,14 +163,23 @@ classdef BVARsettings < bear.settings.BASEsettings
         end
         
         function value = get.hogs(obj)
-            % GET.HOGS Get the gridsearch value 
-            % The grid search only apples in Minnesota and NW priors 
+            % GET.HOGS Get the gridsearch value
+            % The grid search only apples in Minnesota and NW priors
             if ismember(obj.prior, [11,12,13,21,22])
                 value = obj.hogsInternal;
             else
                 value = 'Unused for the selected prior';
             end
             
+        end
+        
+        function obj = set.hogs(obj, value)
+            if ismember(obj.prior, [11,12,13,21,22])
+                obj.hogsInternal = value;
+            else
+                warning('bear:settings:BVARsettings:unusedHogs', ...
+                    'Grid search is unused for the selected VARtype')
+            end
         end
         
     end
