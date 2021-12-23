@@ -76,8 +76,14 @@ classdef BVARsettings < bear.settings.BASEsettings
         It (1,1) double {mustBeGreaterThanOrEqual(It,1)} = 1000;
         % number of burn-in iterations for the Gibbs sampler
         Bu (1,1) double = 500;
+    end
+    
+    properties (Dependent)
         % hyperparameter optimisation by grid search (1=yes, 0=no)
-        hogs   (1,1) logical = false;
+        hogs
+    end
+        
+    properties
         % block exogeneity (1=yes, 0=no)
         bex    (1,1) logical = false;
         % sum-of-coefficients application (1=yes, 0=no)
@@ -97,8 +103,6 @@ classdef BVARsettings < bear.settings.BASEsettings
         alpha0=1000;
     end
     
-    
-    
     properties (Dependent)
         % FAVAR options
         favar % augment VAR model with factors (1=yes, 0=no)
@@ -106,6 +110,7 @@ classdef BVARsettings < bear.settings.BASEsettings
     
     properties (Access = private)
         favarInternal (1,1) bear.settings.favar.FAVARsettings = bear.settings.favar.VARtypeSpecificFAVARsettings; % augment VAR model with factors (1=yes, 0=no)
+        hogsInternal (1,1) logical = false;
     end
     
     methods
@@ -153,6 +158,17 @@ classdef BVARsettings < bear.settings.BASEsettings
                     'It is not possible to set FAVAR if prior is Mean adjusted (61)')
             else
                 obj.favarInternal = value;
+            end
+            
+        end
+        
+        function value = get.hogs(obj)
+            % GET.HOGS Get the gridsearch value 
+            % The grid search only apples in Minnesota and NW priors 
+            if ismember(obj.prior, [11,12,13,21,22])
+                value = obj.hogsInternal;
+            else
+                value = 'Unused for the selected prior';
             end
             
         end
