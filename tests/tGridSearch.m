@@ -1,19 +1,15 @@
 classdef tGridSearch < matlab.unittest.TestCase
     
-    properties
-        
-    end
-    
     methods (Test, TestTags = {'Git'})
         function tGSunUsed(tc)
             s = BEARsettings(2, 'prior', 31);
-            tc.verifyEqual(s.hogs, 'Unused for the selected prior');
+            tc.verifyEqual(s.hogs,false);
             s.prior = 41;
-            tc.verifyEqual(s.hogs, 'Unused for the selected prior');
+            tc.verifyEqual(s.hogs,false);
             s.prior = 51;
-            tc.verifyEqual(s.hogs, 'Unused for the selected prior');
+            tc.verifyEqual(s.hogs,false);
             s.prior = 61;
-            tc.verifyEqual(s.hogs, 'Unused for the selected prior');
+            tc.verifyEqual(s.hogs,false);
             
             s.prior = 11;
             tc.verifyEqual(s.hogs, false);
