@@ -1,4 +1,4 @@
-function [A]=nspds2(A)
+function [A]=nspds(A)
 
 
 
