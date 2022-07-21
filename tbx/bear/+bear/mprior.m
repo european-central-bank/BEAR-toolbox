@@ -1,7 +1,4 @@
 function [beta0, omega0, sigma]=mprior(ar,arvar,sigmahat,lambda1,lambda2,lambda3,lambda4,lambda5,n,m,p,k,q,prior,bex,blockexo,priorexo)
-
-
-
 % function [beta0 omega0 sigma]=mprior(ar,arvar,sigmahat,lambda1,lambda2,lambda3,lambda4,lambda5,n,m,p,k,q,prior,bex,blockexo)
 % returns prior values from hyperparameters, for the Minnesota prior
 % inputs:  - scalar 'ar': prior value of the autoregressive coefficient on own first lag (defined p 15 of technical guide)
@@ -38,13 +35,14 @@ else
     beta0((idx-1)*k+idx,1) = ar(idx,1);
 end
 
-% if a prior for the exogenous variables is selected put it in here:
-for ii=1:n
-    for jj=1:m
-        beta0(k*ii-m+jj)=priorexo(ii,jj);
+if exist('priorexo', 'var')
+    % if a prior for the exogenous variables is selected put it in here:
+    for ii=1:n
+        for jj=1:m
+            beta0(k*ii-m+jj)=priorexo(ii,jj);
+        end
     end
 end
-
 % next compute omega0, the variance-covariance matrix of beta, defined in (1.3.8)
 % set it first as a q*q matrix of zeros
 omega0=zeros(q,q);
@@ -107,7 +105,3 @@ elseif prior==13
     sigma=sigmahat;
 else
 end
-
-
-
-
