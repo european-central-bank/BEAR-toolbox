@@ -18,6 +18,7 @@ classdef optionsProxyForApp < matlab.mixin.SetGet
     end
     
     methods
+        
         function value = get.opts(obj)
             value = obj.(string(obj.VARtype));
         end

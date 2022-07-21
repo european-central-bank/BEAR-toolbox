@@ -95,9 +95,9 @@ classdef tSettings < matlab.unittest.TestCase
         
         function tBVARHyperparamLimits(tc)
             param = ["ar";"lambda1";"lambda2";"lambda3";"lambda4";"lambda5";"lambda6";"lambda7";"lambda8"];
-            lowerBound   = [-inf; 0; 0.1; 0; 0; 0; 0; 0; -inf];
-            defaultValue = [0.8; 0.1; 0.5; 1; 1; 0.001; 1; 0.1; 1];
-            upperBound   = [inf; inf; inf; 2; inf; 1; inf; inf; inf];
+            lowerBound   = [-inf; 0; 0.1; 0; 0; 0; 0; 0; 0];
+            defaultValue = [0.8; 0.1; 0.5; 1; 100; 0.001; 0.1; 0.001; 1];
+            upperBound   = [inf; inf; inf; 2; inf; 1; inf; inf; 100];
             
             t = table(param, lowerBound, defaultValue, upperBound);
             s = BEARsettings('bvar', 'ExcelFile', 'data.xlsx');
@@ -120,7 +120,7 @@ classdef tSettings < matlab.unittest.TestCase
         function tSVHyperparamLimits(tc)
             param = ["ar";"lambda1";"lambda2";"lambda3";"lambda4";"lambda5";"gamma";"alpha0";"delta0";"gamma0";"zeta0"];
             lowerBound   = [-inf; 0; 0.1; 1; 0; 0; -inf; -inf; -inf; -inf; -inf];
-            defaultValue = [0; 0.2; sqrt(2)/2; 1; 100; 0.001; 1; 0.001; 0.001; 0; 10000];
+            defaultValue = [0.8; 0.2; sqrt(2)/2; 1; 100; 0.001; 1; 0.001; 0.001; 0; 10000];
             upperBound   = [inf; inf; inf; 2; inf; 1; inf; inf; inf; inf; inf];
             
             t = table(param, lowerBound, defaultValue, upperBound);
@@ -142,10 +142,10 @@ classdef tSettings < matlab.unittest.TestCase
         end
         
         function tMFVARHyperparamLimits(tc)
-            param = ["ar";"lambda1";"lambda2";"lambda3";"lambda4";"lambda5"];
-            lowerBound   = [-inf; 0; 0.1; 1; 0; -inf;];
-            defaultValue = [0.9; 0.1; 3.4; 1; 3.4; 14.763158];
-            upperBound   = [inf; inf; inf; 2; inf; inf];
+            param = ["ar";"lambda1";"lambda2";"lambda3";"lambda4";"lambda5";"lambda6";"lambda7";"lambda8"];
+            lowerBound   = [-inf; 0; 0.1; 1; 0; -inf; 0; 0; -inf];
+            defaultValue = [0.9; 0.1; 3.4; 1; 3.4; 14.763158; 1; 0.01; 1];
+            upperBound   = [inf; inf; inf; 2; inf; inf; inf; inf; inf];
             
             t = table(param, lowerBound, defaultValue, upperBound);
             s = BEARsettings('mfvar', 'ExcelFile', 'data.xlsx');

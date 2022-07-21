@@ -1,4 +1,4 @@
-function [B0 beta0 phi0 S0 alpha0]=nwprior(ar,arvar,lambda1,lambda3,lambda4,n,m,p,k,q,prior,priorexo)
+function [B0, beta0, phi0, S0, alpha0]=nwprior(ar,arvar,lambda1,lambda3,lambda4,n,m,p,k,q,prior,priorexo)
 
 
 
@@ -25,14 +25,18 @@ function [B0 beta0 phi0 S0 alpha0]=nwprior(ar,arvar,lambda1,lambda3,lambda4,n,m,
 
 % start with beta0, defined in (1.3.4)
 beta0=zeros(q,1);
-for ii=1:n
-beta0((ii-1)*k+ii,1)=ar(ii,1);
+
+idx = 1:n;
+if isscalar(ar)
+    beta0((idx-1)*k+idx,1) = ar;
+else
+    beta0((idx-1)*k+idx,1) = ar(idx,1);
 end
 
 % if a prior for the exogenous variables is selected put it in here:
 for ii=1:n
     for jj=1:m
-    beta0(k*ii-m+jj)=priorexo(ii,jj);
+        beta0(k*ii-m+jj)=priorexo(ii,jj);
     end
 end
 % unvectorize (reshape) the vector to obtain the matrix B0
@@ -45,14 +49,14 @@ phi0=zeros(k,k);
 
 % set the variance for coefficients on lagged values, using (1.4.5)
 for ii=1:n
-   for jj=1:p
-   phi0((jj-1)*n+ii,(jj-1)*n+ii)=(1/arvar(ii,1))*(lambda1/jj^lambda3)^2;
-   end
+    for jj=1:p
+        phi0((jj-1)*n+ii,(jj-1)*n+ii)=(1/arvar(ii,1))*(lambda1/jj^lambda3)^2;
+    end
 end
 
 % set the variance for exogenous variables, using (1.4.6)
 for ii=1:m
-phi0(k-m+ii,k-m+ii)=(lambda1*lambda4(1,ii))^2;
+    phi0(k-m+ii,k-m+ii)=(lambda1*lambda4(1,ii))^2;
 end
 
 
@@ -62,11 +66,8 @@ alpha0=n+2;
 
 % and finally compute S0, depending on which choice has been made for the prior ((1.4.13) or identity)
 if prior==21
-S0=(alpha0-n-1)*diag(arvar);
+    S0=(alpha0-n-1)*diag(arvar);
 elseif prior==22
-S0=eye(n);
+    S0=eye(n);
 else
 end
-
-
-

@@ -147,7 +147,7 @@ else
     nsignresX=0;
     npltX=0;
     favar_FAVAR=0;
-    Lgibbs=NaN;    
+    Lgibbs=NaN;
 end
 
 % ad to implement sign
@@ -254,23 +254,23 @@ parfor ii=1:It-Bu
             Qj=[];
             % now start looping over the shocks and checking sequentially whether conditions on these shocks hold
             % stop as soon as one restriction fails
-            jj=1;
-            while success==1 && jj<=n
+            mm=1;
+            while success==1 && mm<=n
                 % build column j of the random matrix Q
-                [qj]=bear.qrandj(n,Zcell{1,jj},stackedirfmat,Qj);
+                [qj]=bear.qrandj(n,Zcell{1,mm},stackedirfmat,Qj);
                 % obtain the candidate column fj
                 fj=stackedirfmat*qj;
                 % check restrictions: first sign restrictions
-                [success,qj]=bear.checksignres(Scell{1,jj},qj,fj);
+                [success,qj]=bear.checksignres(Scell{1,mm},qj,fj);
                 % if 'success' is still equal to 1, also check for magnitude restrictions
                 if success==1
-                    [success]=bear.checkmagres(Mcell{1,jj},Mlcell{1,jj},Mucell{1,jj},fj);
+                    [success]=bear.checkmagres(Mcell{1,mm},Mlcell{1,mm},Mucell{1,mm},fj);
                 end
                 % also, if 'success' is still equal to 1, update Qj by concatenating qj
                 if success==1
                     Qj=[Qj qj];
                 end
-                jj=jj+1;
+                mm=mm+1;
             end
             % repeat this loop until a succesful draw is obtained
         end
@@ -323,8 +323,3 @@ if favar.FAVAR==1
         end
     end
 end
-
-
-
-
-
