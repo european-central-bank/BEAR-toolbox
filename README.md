@@ -1,6 +1,8 @@
 | :exclamation: We just added some major changes into the main functionality of BEAR to improve its usability. To access the previous version of the code use the legacyCode branch |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
+[![View BEAR 5.1 on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://uk.mathworks.com/matlabcentral/fileexchange/103370-bear-5-1)
+
 | **GitHub<sup>&reg;</sup>&nbsp;Actions** |
 |:----------------------------:|
 |[![MATLAB](https://github.com/european-central-bank/BEAR-toolbox/actions/workflows/ci.yml/badge.svg)](https://github.com/european-central-bank/BEAR-toolbox/actions/workflows/ci.yml)|
@@ -58,9 +60,9 @@ The rest of the folders contain development files related to the development of 
 
 This section is aimed to those users indending to run BEAR, but not interested in working or ammending the code.
 
-__**From MATLAB**__
+__**From MATLAB**__ or __**MATLAB Online**__
 
-To install the toolbox directly from MATLAB, please go to HOME > Add Ons, search for BEAR and install the toolbox (comming soon).
+To install the toolbox directly from MATLAB, please go to HOME > Add Ons, search for BEAR and install the toolbox. Alternatively, follow the steps below to install it from GitHub.
 
 __**From GitHub**__
 
@@ -86,6 +88,8 @@ Opening the MATLAB project will shadow the installed version of BEAR as long as 
 ### For non-MATLAB users
 
 Under releases, you will find an executable with the compiled application that you can install in any Windows based computer. To run the installer, just download the .EXE file and run it.
+
+Alternatively, if you wanted to run the full version of BEAR, you can get a trial version of MATLAB [here](https://mathworks.com/campaigns/products/trials.html).
 
 ## Getting started
 

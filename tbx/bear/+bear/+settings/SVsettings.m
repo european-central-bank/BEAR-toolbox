@@ -62,7 +62,7 @@ classdef SVsettings < bear.settings.BASEsettings
     
     properties %Hyperparameters
         % Autoregressive coefficient: ar
-        ar (:,1) double = 0; % this sets all AR coefficients to the same prior value (if PriorExcel is equal to 0)
+        ar (:,1) double = 0.8; % this sets all AR coefficients to the same prior value (if PriorExcel is equal to 0)
         % Overall tightness: lambda1
         lambda1 (1,1) double {mustBeGreaterThanOrEqual(lambda1,0)} = 0.2;
         % Cross-variable weighting: lambda2
@@ -72,13 +72,13 @@ classdef SVsettings < bear.settings.BASEsettings
         % Exogenous variable and constant: lambda4
         lambda4 (:,:) double {mustBeGreaterThanOrEqual(lambda4,0)} = 100;
         % Block exogeneity shrinkage: lambda5
-        lambda5 (1,1) double {mustBeGreaterThanOrEqual(lambda5,0), mustBeLessThanOrEqual(lambda5,1)} = 0.001;
+        lambda5 (1,1) double {mustBeInRange(lambda5, 0, 1)} = 0.001;
+        % AR coefficient on residual variance: gamma
+        gamma (1,1) double = 1;
         % IG shape on residual variance: alpha0
         alpha0 (1,1) double = 0.001;
         % IG scale on residual variance: delta0
-        delta0 (1,1) double = 0.001;
-        % AR coefficient on residual variance: gamma
-        gamma (1,1) double = 1;
+        delta0 (1,1) double = 0.001;       
         % Prior mean of inertia parameter: gamma0
         gamma0 (1,1) double = 0;
         % Prior variance of inertia parameter: zeta0

@@ -69,6 +69,12 @@ classdef MFVARsettings < bear.settings.BASEsettings
         lambda4 (:,1) double {mustBeGreaterThanOrEqual(lambda4,0)} = 3.4;
         % Block exogeneity shrinkage: lambda5
         lambda5 (1,1) double = 14.763158;     
+        % Sum-of-coefficients tightness: lambda6
+        lambda6 (1,1) double {mustBeGreaterThanOrEqual(lambda6,0)} = 1;
+        % Dummy initial observation tightness: lambda7
+        lambda7 (1,1) double {mustBeGreaterThanOrEqual(lambda7,0)} = 0.01;
+        % Long-run prior tightness: lambda8
+        lambda8 (1,1) double = 1;
     end
     
     methods
