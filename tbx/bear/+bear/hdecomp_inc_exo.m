@@ -61,7 +61,7 @@ for ii=1:It-Bu
         Y=squeeze(Ygibbs(:,:,ii));
     end
     
-    [hd_estimates]=bear.hd_new_for_signres(const,exo,beta,k,n,p,D,m,T,X,Y,data_exo,IRFt,labels);
+    [hd_estimates]=bear.hd_new_for_signres(const,exo,beta,k,n,p,D,m,T,X,Y,IRFt,labels);
     HDstorage{ii,1}=hd_estimates;
     
     if favar.FAVAR==1 && favar.HDplot==1

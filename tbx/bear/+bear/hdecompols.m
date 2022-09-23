@@ -44,7 +44,7 @@ for ii=1:It-Bu
 beta=beta_gibbs(:,ii);
 D=squeeze(D_gibbs(:,:,ii));
 
-[hd_estimates]=bear.hd_new_for_signres(const,exo,beta,k,n,p,D,m,T,X,Y,data_exo,IRFt,labels);         
+[hd_estimates]=bear.hd_new_for_signres(const,exo,beta,k,n,p,D,m,T,X,Y,IRFt,labels);         
 HDstorage{ii,1}=hd_estimates;
 end
 

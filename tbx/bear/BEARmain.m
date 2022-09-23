@@ -669,7 +669,7 @@ for iteration=1:numt % beginning of forecasting loop
             % compute hd_record
             if IRFt==1||IRFt==2||IRFt==3||IRFt==5
                 % compute hd_record, here we have the "true" values already
-                [hd_estimates]=bear.hd_new_for_signres(const,exo,betahat,k,n,p,D,m,T,X,Y,data_exo,IRFt,[]);
+                [hd_estimates]=bear.hd_new_for_signres(const,exo,betahat,k,n,p,D,m,T,X,Y,IRFt,[]);
             elseif IRFt==4||IRFt==6
                 % compute hd_record
                 [hd_record]=bear.hdecompols(const,exo,k,n,p,m,T,X,Y,data_exo,IRFt,beta_record,D_record,1001,0,endo,strctident);
