@@ -19,6 +19,4 @@ Bu=0; %set burn in to 0, as burn in is no longer requiered
 
 %% check Restrictions
 [irf_record,D_record,gamma_record,ETA_record,beta_gibbs,sigma_gibbs]...
-        =bear.irfres(beta_draws,sigma_draws,C_draws,IV_draws,IRFperiods,n,m,p,k,T,Y,X,FEVDresperiods,strctident,pref,favar,IRFt,It,Bu);
-    
-    
+        =bear.irfres(beta_draws,sigma_draws,C_draws,IV_draws,IRFperiods,n,m,p,k,Y,X,FEVDresperiods,strctident,pref,favar,IRFt,It,Bu);        

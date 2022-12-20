@@ -57,7 +57,7 @@ for ii=1:It-Bu
         Y=squeeze(Ygibbs(:,:,ii));
     end
     
-    [hd_estimates]=hd_new_for_signres(const,exo,beta,k,n,p,D,m,T,X,Y,IRFt,labels);
+    [hd_estimates]=bear.hd_new_for_signres(const,exo,beta,k,n,p,D,m,T,X,Y,IRFt,labels);
     
     if favar.FAVAR==1 && favar.HDplot==1
         L_g=squeeze(Lgibbs(:,:,ii));

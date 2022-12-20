@@ -2,8 +2,10 @@ function varargout = BEARapp()
 % Launch the appropriate version of the BEAR app
 if verLessThan('matlab','9.9')
     eval('app = BEARapp20a');
-else
+elseif verLessThan('matlab','9.12')
     eval('app = BEARapp21a');
+else
+    eval('app = BEARapp22b');
 end
 
 if nargout == 1
