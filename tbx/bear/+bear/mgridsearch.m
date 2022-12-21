@@ -22,14 +22,14 @@ for ii=grid{1,1}:grid{1,3}:grid{1,2}
                 % loop over lambda4 values
                 for mm=grid{5,1}:grid{5,3}:grid{5,2}
                     % now the treatment will differ depending on whether there are dummy observations or not in the model
-                    
-                    
-                    
+
+
+
                     % first,if there are no dummy observation applications, run the grid normally
                     if scoeff==0 && iobs==0
                         % obtain prior elements
                         [beta0, omega0, sigma]=bear.mprior(ii,arvar,sigmahat,jj,kk,ll,mm,lambda5,n,m,p,k,q,prior,bex,blockexo,priorexo);
-                        
+
                         % obtain posterior elements
                         [betabar, omegabar]=bear.mpost(beta0,omega0,sigma,X,y,q,n);
                         % obtain the log marginal value (up to a constant) term
@@ -47,9 +47,9 @@ for ii=grid{1,1}:grid{1,3}:grid{1,2}
                             lambda3=ll;
                             lambda4=mm;
                         end
-                        
-                        
-                        
+
+
+
                         % if only the sum-of-coefficient extension is selected
                     elseif scoeff==1 && iobs==0
                         % loop over lambda6 values
@@ -83,9 +83,9 @@ for ii=grid{1,1}:grid{1,3}:grid{1,2}
                                 lambda6=nn;
                             end
                         end
-                        
-                        
-                        
+
+
+
                         % if only the dummy initial observation extension is selected
                     elseif scoeff==0 && iobs==1
                         % loop over lambda7 values
@@ -119,9 +119,9 @@ for ii=grid{1,1}:grid{1,3}:grid{1,2}
                                 lambda7=nn;
                             end
                         end
-                        
-                        
-                        
+
+
+
                         % finally, if both the sum-of-coefficient and dummy initial observation extensions are selected
                     elseif scoeff==1 && iobs==1
                         % loop over lambda6 values
@@ -161,9 +161,9 @@ for ii=grid{1,1}:grid{1,3}:grid{1,2}
                         end
                     end
                 end
-                
-                
-                
+
+
+
             end
         end
     end
