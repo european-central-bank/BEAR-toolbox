@@ -1,11 +1,5 @@
 function [logml]=mmlikgrid(X,y,n,T,q,sigma,beta0,omega0,betabar,omegabar)
-
-
-
-
-
-
-
+%MMLIKGRID
 
 % compute the log determinant part
 % create the square root matrix of omega0
@@ -20,7 +14,8 @@ product=Fomega'*kron(invsigma,X'*X)*Fomega;
 % compute the eigenvalues of the product
 eigenvalues=eig(product);
 % now compute the full determinant term
-temp1=(-1/2)*log(prod(diag(eye(q)+diag(eigenvalues))));
+% temp1=(-1/2)*log(prod(diag(eye(q)+diag(eigenvalues))));
+temp1=(-1/2)*sum(log(diag(eye(q)+diag(eigenvalues))));
 
 % compute the final term
 % first compute the inverse of omega0, which is a diagonal matrix (hence simply invert element wise the diagonal terms)
@@ -32,12 +27,3 @@ temp2=-0.5*summ;
 
 % compute the marginal likelihood
 logml=real(temp1+temp2);
-
-
-
-
-
-
-
-
-
