@@ -33,7 +33,7 @@ classdef SVsettings < bear.settings.BASEsettings
     %    zeta0           - hyperparameter
     %    alltirf         - hyperparameter
     %    favar           - FAVAR Options
-    
+
     properties
         % Choice of stochastic volatility model
         % 1 = standard,
@@ -59,7 +59,7 @@ classdef SVsettings < bear.settings.BASEsettings
         strctident
         %switch to Excel interface for exogenous variables
     end
-    
+
     properties %Hyperparameters
         % Autoregressive coefficient: ar
         ar (:,1) double = 0.8; % this sets all AR coefficients to the same prior value (if PriorExcel is equal to 0)
@@ -78,7 +78,7 @@ classdef SVsettings < bear.settings.BASEsettings
         % IG shape on residual variance: alpha0
         alpha0 (1,1) double = 0.001;
         % IG scale on residual variance: delta0
-        delta0 (1,1) double = 0.001;       
+        delta0 (1,1) double = 0.001;
         % Prior mean of inertia parameter: gamma0
         gamma0 (1,1) double = 0;
         % Prior variance of inertia parameter: zeta0
@@ -86,28 +86,28 @@ classdef SVsettings < bear.settings.BASEsettings
         % calculate IRFs for every sample period (1=yes, 0=no)
         alltirf (1,1) logical = true;
     end
-    
+
     properties (Dependent)
         % FAVAR options
         favar % augment VAR model with factors (1=yes, 0=no)
     end
-    
+
     properties (Access = private)
         favarInternal (1,1) bear.settings.favar.FAVARsettings = bear.settings.favar.VARtypeSpecificFAVARsettings; % augment VAR model with factors (1=yes, 0=no)
     end
-    
+
     methods
-        
+
         function obj = SVsettings(excelPath, varargin)
-            
+
             obj@bear.settings.BASEsettings(5, excelPath)
-            
+
             obj = obj.setStrctident(obj.IRFt);
-            
+
             obj = parseBEARSettings(obj, varargin{:});
-            
+
         end
-        
+
         function obj = set.Bu(obj,value)
             if (value <= obj.It-1) %#ok<MCSUP>
                 obj.Bu = value;
@@ -115,7 +115,7 @@ classdef SVsettings < bear.settings.BASEsettings
                 error('bear:settings:SVsettings',"The maximum value of Bu is It-1: " + (obj.It-1)) %#ok<MCSUP>
             end
         end
-        
+
         function obj = set.It(obj,value)
             if (value > obj.Bu-1) %#ok<MCSUP>
                 obj.It = value;
@@ -123,57 +123,63 @@ classdef SVsettings < bear.settings.BASEsettings
                 error('bear:settings:SVsettings',"The minimum value of It is Bu+1: " + (obj.Bu+1)) %#ok<MCSUP>
             end
         end
-        
+
         function value = get.favar(obj)
-            
+
             if obj.stvol == 4
                 value = bear.settings.favar.NullFAVAR;
             else
                 value = obj.favarInternal;
             end
-            
+
         end
-        
+
         function obj = set.favar(obj, value)
-            
+
             if obj.stvol == 4
                 error('bear:settings:BVARsettings:undefinedFAVAR', ...
                     'It is not possible to set FAVAR if stvol is LMM (4)')
             else
                 obj.favarInternal = value;
             end
-            
+
         end
-        
+
     end
-    
+
     methods (Access = protected)
-        
+
         function obj = checkIRFt(obj, value)
             % we could call superclass method to combine effect
             obj = checkIRFt@bear.settings.BASEsettings(obj, value);
             obj = obj.setStrctident(value);
         end
-        
+
     end
-    
+
     methods (Access = private)
-        
+
         function obj = setStrctident(obj, value)
-            
+
             switch value
                 case 4
-                    obj.strctident = bear.settings.strctident.StrctidentIRFt4;
+                    if ~isa(obj.strctident, "bear.settings.strctident.StrctidentIRFt4")
+                        obj.strctident = bear.settings.strctident.StrctidentIRFt4;
+                    end
                 case 5
-                    obj.strctident = bear.settings.strctident.StrctidentIRFt5;
+                    if ~isa(obj.strctident, "bear.settings.strctident.StrctidentIRFt5")
+                        obj.strctident = bear.settings.strctident.StrctidentIRFt5;
+                    end
                 case 6
-                    obj.strctident = bear.settings.strctident.StrctidentIRFt6;
+                    if ~isa(obj.strctident, "bear.settings.strctident.StrctidentIRFt6")
+                        obj.strctident = bear.settings.strctident.StrctidentIRFt6;
+                    end
                 otherwise
                     obj.strctident = bear.settings.strctident.Strctident.empty();
             end
-            
+
         end
-        
+
     end
-    
+
 end
