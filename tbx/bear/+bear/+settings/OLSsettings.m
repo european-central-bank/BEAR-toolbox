@@ -51,15 +51,15 @@ classdef OLSsettings < bear.settings.BASEsettings
 
             switch value
                 case 4
-                    if ~isa(obj.strctident, "bear.settings.strctident.StrctidentIRFt4")
+                    if class(obj.strctident) ~= "bear.settings.strctident.StrctidentIRFt4"
                         obj.strctident = bear.settings.strctident.StrctidentIRFt4;
                     end
                 case 5
-                    if ~isa(obj.strctident, "bear.settings.strctident.StrctidentIRFt5")
+                    if class(obj.strctident) ~= "bear.settings.strctident.StrctidentIRFt5"
                         obj.strctident = bear.settings.strctident.StrctidentIRFt5;
                     end
                 case 6
-                    if ~isa(obj.strctident, "bear.settings.strctident.StrctidentIRFt6")
+                    if class(obj.strctident) ~= "bear.settings.strctident.StrctidentIRFt6"
                         obj.strctident = bear.settings.strctident.StrctidentIRFt6;
                     end
                 otherwise
