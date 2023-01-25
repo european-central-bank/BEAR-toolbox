@@ -8,7 +8,12 @@ lambda3=[];
 lambda4=[];
 
 optimizeGridSearch = 1;
+if optimizeGridSearch == 1 && ~license('test','GADS_Toolbox')
+    optimizeGridSearch = 0;
+end
+
 if optimizeGridSearch == 1
+
     if scoeff==0 && iobs==0
 
         x = surrogateopt(@(x) -objectiveFunctionS0I0(x, X, y, n,m,p,k,q,T,lambda5,arvar,sigmahat,prior,priorexo,bex,blockexo), ...
@@ -65,6 +70,7 @@ if optimizeGridSearch == 1
         lambda4=x(5);
         lambda6=x(6);
         lambda7=x(7);
+
     end
 else
 
@@ -81,17 +87,11 @@ else
                     for mm=grid{5,1}:grid{5,3}:grid{5,2}
                         % now the treatment will differ depending on whether there are dummy observations or not in the model
 
-
-
                         % first,if there are no dummy observation applications, run the grid normally
                         if scoeff==0 && iobs==0
-                            % obtain prior elements
-                            [beta0, omega0, sigma]=bear.mprior(ii,arvar,sigmahat,jj,kk,ll,mm,lambda5,n,m,p,k,q,prior,bex,blockexo,priorexo);
 
-                            % obtain posterior elements
-                            [betabar, omegabar]=bear.mpost(beta0,omega0,sigma,X,y,q,n);
-                            % obtain the log marginal value (up to a constant) term
-                            [logml]=bear.mmlikgrid(X,y,n,T,q,sigma,beta0,omega0,betabar,omegabar);
+                            logml = objectiveFunctionS0I0([ii, jj, kk, ll, mm], X, y, n,m,p,k,q,T,lambda5,arvar,sigmahat,prior,priorexo,bex,blockexo);
+
                             % if this value is greater than the current optimising value, set the hyperparameter values as the new optimum values
                             if logml>=logmlopt
                                 logmlopt=logml;
@@ -106,26 +106,14 @@ else
                                 lambda4=mm;
                             end
 
-
-
-                            % if only the sum-of-coefficient extension is selected
+                        % if only the sum-of-coefficient extension is selected
                         elseif scoeff==1 && iobs==0
+
                             % loop over lambda6 values
                             for nn=grid{6,1}:grid{6,3}:grid{6,2}
-                                % generate the dummy observations
-                                [~, ystar, Xstar, Tstar, ~, ydum, Xdum, Tdum]=bear.gendummy(data_endo,data_exo,Y,X,n,m,p,T,const,lambda6,lambda7,lambda8,scoeff,iobs,lrp,H);
-                                % obtain prior elements
-                                [beta0, omega0, sigma]=bear.mprior(ii,arvar,sigmahat,jj,kk,ll,mm,lambda5,n,m,p,k,q,prior,bex,blockexo);
-                                % obtain posterior elements for the dummy-augmented data
-                                [betabar, omegabar]=bear.mpost(beta0,omega0,sigma,Xstar,ystar,q,n);
-                                % obtain the log marginal value (up to a constant) term for the dummy-augmented data
-                                [logml]=bear.mmlikgrid(Xstar,ystar,n,Tstar,q,sigma,beta0,omega0,betabar,omegabar);
-                                % now obtain posterior elements for the dummy data alone
-                                [betabardum, omegabardum]=bear.mpost(beta0,omega0,sigma,Xdum,ydum,q,n);
-                                % obtain the log marginal value (up to a constant) term for the dummy data alone
-                                [logmldum]=bear.mmlikgrid(Xdum,ydum,n,Tdum,q,sigma,beta0,omega0,betabardum,omegabardum);
-                                % finally obtain the log marginal likelihood for actual data by subtracting the dummy value from the total value
-                                logml=logml-logmldum;
+
+                                logml = objectiveFunctionS1I0([ii, jj, kk, ll, mm, nn], X,Y,n,m,p,k,q,T,lambda5,lambda7,lambda8,arvar,sigmahat,data_endo,data_exo,prior,bex,blockexo,const,scoeff,iobs,lrp,H);
+
                                 % if this value is greater than the current optimising value, set the hyperparameter values as the new optimum values
                                 if logml>=logmlopt
                                     logmlopt=logml;
@@ -140,28 +128,17 @@ else
                                     lambda4=mm;
                                     lambda6=nn;
                                 end
+
                             end
 
-
-
-                            % if only the dummy initial observation extension is selected
+                        % if only the dummy initial observation extension is selected
                         elseif scoeff==0 && iobs==1
+
                             % loop over lambda7 values
                             for nn=grid{7,1}:grid{7,3}:grid{7,2}
-                                % generate the dummy observations
-                                [~, ystar, Xstar, Tstar, ~, ydum, Xdum, Tdum]=bear.gendummy(data_endo,data_exo,Y,X,n,m,p,T,const,lambda6,lambda7,lambda8,scoeff,iobs,lrp,H);
-                                % obtain prior elements
-                                [beta0, omega0, sigma]=bear.mprior(ii,arvar,sigmahat,jj,kk,ll,mm,lambda5,n,m,p,k,q,prior,bex,blockexo);
-                                % obtain posterior elements for the dummy-augmented data
-                                [betabar, omegabar]=bear.mpost(beta0,omega0,sigma,Xstar,ystar,q,n);
-                                % obtain the log marginal value (up to a constant) term for the dummy-augmented data
-                                [logml]=bear.mmlikgrid(Xstar,ystar,n,Tstar,q,sigma,beta0,omega0,betabar,omegabar);
-                                % now obtain posterior elements for the dummy data alone
-                                [betabardum, omegabardum]=bear.mpost(beta0,omega0,sigma,Xdum,ydum,q,n);
-                                % obtain the log marginal value (up to a constant) term for the dummy data alone
-                                [logmldum]=bear.mmlikgrid(Xdum,ydum,n,Tdum,q,sigma,beta0,omega0,betabardum,omegabardum);
-                                % finally obtain the log marginal likelihood for actual data by subtracting the dummy value from the total value
-                                logml=logml-logmldum;
+
+                                logml = objectiveFunctionS0I1([ii, jj, kk, ll, mm, nn], X,Y,n,m,p,k,q,T,lambda5,lambda6,lambda8,arvar,sigmahat,data_endo,data_exo,prior,bex,blockexo,const,scoeff,iobs,lrp,H);
+
                                 % if this value is greater than the current optimising value, set the hyperparameter values as the new optimum values
                                 if logml>=logmlopt
                                     logmlopt=logml;
@@ -178,28 +155,15 @@ else
                                 end
                             end
 
-
-
-                            % finally, if both the sum-of-coefficient and dummy initial observation extensions are selected
+                        % finally, if both the sum-of-coefficient and dummy initial observation extensions are selected
                         elseif scoeff==1 && iobs==1
                             % loop over lambda6 values
                             for nn=grid{6,1}:grid{6,3}:grid{6,2}
                                 % loop over lambda7 values
                                 for oo=grid{7,1}:grid{7,3}:grid{7,2}
-                                    % generate the dummy observations
-                                    [~, ystar, Xstar, Tstar, ~, ydum, Xdum, Tdum]=bear.gendummy(data_endo,data_exo,Y,X,n,m,p,T,const,lambda6,lambda7,lambda8,scoeff,iobs,lrp,H);
-                                    % obtain prior elements
-                                    [beta0, omega0, sigma]=bear.mprior(ii,arvar,sigmahat,jj,kk,ll,mm,lambda5,n,m,p,k,q,prior,bex,blockexo);
-                                    % obtain posterior elements for the dummy-augmented data
-                                    [betabar, omegabar]=bear.mpost(beta0,omega0,sigma,Xstar,ystar,q,n);
-                                    % obtain the log marginal value (up to a constant) term for the dummy-augmented data
-                                    [logml]=bear.mmlikgrid(Xstar,ystar,n,Tstar,q,sigma,beta0,omega0,betabar,omegabar);
-                                    % now obtain posterior elements for the dummy data alone
-                                    [betabardum, omegabardum]=bear.mpost(beta0,omega0,sigma,Xdum,ydum,q,n);
-                                    % obtain the log marginal value (up to a constant) term for the dummy data alone
-                                    [logmldum]=bear.mmlikgrid(Xdum,ydum,n,Tdum,q,sigma,beta0,omega0,betabardum,omegabardum);
-                                    % finally obtain the log marginal likelihood for actual data by subtracting the dummy value from the total value
-                                    logml=logml-logmldum;
+
+                                    logml = objectiveFunctionS1I1([ii, jj, kk, ll, mm, nn, oo], X,Y,n,m,p,k,q,T,lambda5,lambda8,arvar,sigmahat,data_endo,data_exo,prior,bex,blockexo,const,scoeff,iobs,lrp,H);
+
                                     % if this value is greater than the current optimising value, set the hyperparameter values as the new optimum values
                                     if logml>=logmlopt
                                         logmlopt=logml;
@@ -216,12 +180,9 @@ else
                                         lambda7=oo;
                                     end
                                 end
-                            end
-                        end
+                            end                            
+                        end %endif
                     end
-
-
-
                 end
             end
         end
@@ -292,7 +253,7 @@ mm = x(5);
 
 end
 
-function logml = objectiveFunctionS1I0(x, X,Y,n,m,p,k,q,T,lambda5,lambda7,lambda8,arvar,sigmahat,data_endo,data_exo,prior,bex,blockexo,const,scoeff,iobs,lrp,H)
+function logml = objectiveFunctionS1I0(x,X,Y,n,m,p,k,q,T,lambda5,lambda7,lambda8,arvar,sigmahat,data_endo,data_exo,prior,bex,blockexo,const,scoeff,iobs,lrp,H)
 
 ii = x(1);
 jj = x(2);
@@ -318,7 +279,7 @@ logml=logml-logmldum;
 
 end
 
-function logml = objectiveFunctionS0I1(X,Y,n,m,p,k,q,T,lambda5,lambda6,lambda8,arvar,sigmahat,data_endo,data_exo,prior,bex,blockexo,const,scoeff,iobs,lrp,H)
+function logml = objectiveFunctionS0I1(x,X,Y,n,m,p,k,q,T,lambda5,lambda6,lambda8,arvar,sigmahat,data_endo,data_exo,prior,bex,blockexo,const,scoeff,iobs,lrp,H)
 ii = x(1);
 jj = x(2);
 kk = x(3);
@@ -343,7 +304,7 @@ logml=logml-logmldum;
 
 end
 
-function logml = objectiveFunctionS1I1(X,Y,n,m,p,k,q,T,lambda5,lambda8,arvar,sigmahat,data_endo,data_exo,prior,bex,blockexo,const,scoeff,iobs,lrp,H)
+function logml = objectiveFunctionS1I1(x,X,Y,n,m,p,k,q,T,lambda5,lambda8,arvar,sigmahat,data_endo,data_exo,prior,bex,blockexo,const,scoeff,iobs,lrp,H)
 ii = x(1);
 jj = x(2);
 kk = x(3);
