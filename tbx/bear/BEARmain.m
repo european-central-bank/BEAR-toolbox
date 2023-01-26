@@ -172,9 +172,7 @@ try
     if VARtype==2 && (IRFt==5 || IRFt==6)
         if  opts.prior==21 || opts.prior==22
         else
-            message='Please choose Normal-Wishart prior (21, 22) for IRFt 5 and 6.';
-            msgbox(message,'IRFt warning','Error','error');
-            error('programme termination');
+            error('BEARmain:InvalidIRFT', 'Please choose Normal-Wishart prior (21, 22) for IRFt 5 and 6.');
         end
     end
 

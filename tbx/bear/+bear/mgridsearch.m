@@ -1,6 +1,7 @@
 function [ar, lambda1, lambda2, lambda3, lambda4, lambda6, lambda7]=mgridsearch(X,Y,y,n,m,p,k,q,T,lambda5,lambda6,lambda7,lambda8,grid,arvar,sigmahat,data_endo,data_exo,prior,priorexo,hogs,bex,blockexo,const,scoeff,iobs,pref,It,Bu,lrp,H)
 
 % set preliminary values
+logmlopt=-inf;
 ar=[];
 lambda1=[];
 lambda2=[];
@@ -8,6 +9,7 @@ lambda3=[];
 lambda4=[];
 
 optimizeGridSearch = 1;
+options = optimoptions('surrogateopt','PlotFcn','surrogateoptplot','UseParallel', true, 'MaxFunctionEvaluations', 1000); %, [ 0.9    0.8    0.1    1.2  100.0000]); %mean([[grid{1:5,1}]; [grid{1:5,2}]]));%0.8992    0.7776    0.1000    1.2058  100.0000
 if optimizeGridSearch == 1 && ~license('test','GADS_Toolbox')
     optimizeGridSearch = 0;
 end
@@ -17,7 +19,7 @@ if optimizeGridSearch == 1
     if scoeff==0 && iobs==0
 
         x = surrogateopt(@(x) -objectiveFunctionS0I0(x, X, y, n,m,p,k,q,T,lambda5,arvar,sigmahat,prior,priorexo,bex,blockexo), ...
-            [grid{1:5,1}], [grid{1:5,2}]);
+            [grid{1:5,1}], [grid{1:5,2}], options);
 
         ar_default=NaN(n,1);
         ar_default(:,1)=x(1);
@@ -27,12 +29,10 @@ if optimizeGridSearch == 1
         lambda3=x(4);
         lambda4=x(5);
 
-
     elseif scoeff==1 && iobs==0
 
         x = surrogateopt(@(x) -objectiveFunctionS1I0(x, X,Y,n,m,p,k,q,T,lambda5,lambda7,lambda8,arvar,sigmahat,data_endo,data_exo,prior,bex,blockexo,const,scoeff,iobs,lrp,H), ...
-            [grid{[1:5,7],1}], [grid{[1:5,7],2}]);
-
+            [grid{1:6,1}], [grid{1:6,2}], options);
         ar_default=NaN(n,1);
         ar_default(:,1)=x(1);
         ar=ar_default;
@@ -45,7 +45,7 @@ if optimizeGridSearch == 1
     elseif scoeff==0 && iobs==1
 
         x = surrogateopt(@(x) -objectiveFunctionS0I1(x, X,Y,n,m,p,k,q,T,lambda5,lambda6,lambda8,arvar,sigmahat,data_endo,data_exo,prior,bex,blockexo,const,scoeff,iobs,lrp,H), ...
-            [grid{[1:5,8],1}], [grid{[1:5,8],2}]);
+            [grid{[1:5,7],1}], [grid{[1:5,7],2}], options);
 
         ar_default=NaN(n,1);
         ar_default(:,1)=x(1);
@@ -59,7 +59,7 @@ if optimizeGridSearch == 1
     elseif  scoeff==1 && iobs==1
 
         x = surrogateopt(@(x) -objectiveFunctionS1I1(x, X,Y,n,m,p,k,q,T,lambda5,lambda8,arvar,sigmahat,data_endo,data_exo,prior,bex,blockexo,const,scoeff,iobs,lrp,H), ...
-            [grid{[1:5,7:8],1}], [grid{[1:5,7:8],2}]);
+            [grid{1:7,1}], [grid{1:7,2}], options);
 
         ar_default=NaN(n,1);
         ar_default(:,1)=x(1);
@@ -94,16 +94,16 @@ else
 
                             % if this value is greater than the current optimising value, set the hyperparameter values as the new optimum values
                             if logml>=logmlopt
-                                logmlopt=logml;
+                                logmlopt=logml
                                 ar=ii;
                                 % create ar  vector
                                 ar_default=NaN(n,1);
                                 ar_default(:,1)=ar;
-                                ar=ar_default;
-                                lambda1=jj;
-                                lambda2=kk;
-                                lambda3=ll;
-                                lambda4=mm;
+                                ar=ar_default
+                                lambda1=jj
+                                lambda2=kk
+                                lambda3=ll
+                                lambda4=mm
                             end
 
                         % if only the sum-of-coefficient extension is selected
@@ -115,7 +115,7 @@ else
                                 logml = objectiveFunctionS1I0([ii, jj, kk, ll, mm, nn], X,Y,n,m,p,k,q,T,lambda5,lambda7,lambda8,arvar,sigmahat,data_endo,data_exo,prior,bex,blockexo,const,scoeff,iobs,lrp,H);
 
                                 % if this value is greater than the current optimising value, set the hyperparameter values as the new optimum values
-                                if logml>=logmlopt
+                                if logml>=logmlopt                                    
                                     logmlopt=logml;
                                     ar=ii;
                                     % create ar  vector

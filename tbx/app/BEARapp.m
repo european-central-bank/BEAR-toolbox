@@ -5,7 +5,7 @@ if verLessThan('matlab','9.9')
 elseif verLessThan('matlab','9.12')
     eval('app = BEARapp21a');
 else
-    eval('app = BEARapp22b');
+    eval('app = BEARapp22a');
 end
 
 if nargout == 1
