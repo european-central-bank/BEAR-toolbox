@@ -9,6 +9,7 @@ classdef Strctident
         function obj = Strctident(str)
 
             if nargin > 0 && ~isempty(str)
+                
                 for prop = properties(str)'
 
                     if isprop(obj, prop{1})
@@ -18,6 +19,7 @@ classdef Strctident
                     end
 
                 end
+                
             end
 
         end
