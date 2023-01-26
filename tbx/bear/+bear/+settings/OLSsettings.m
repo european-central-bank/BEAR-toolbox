@@ -43,5 +43,5 @@ classdef OLSsettings < bear.settings.BASEsettings
         end
 
     end
-    
+
 end
