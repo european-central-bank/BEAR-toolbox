@@ -165,7 +165,7 @@ classdef tSettings < matlab.unittest.TestCase
 
         end
 
-        function tStrcident(tc)
+        function tStrctidentSwap(tc)
 
             opts = BEARsettings(2,'ExcelFile','data.xlsx');
             tc.verifyEmpty(opts.strctident)

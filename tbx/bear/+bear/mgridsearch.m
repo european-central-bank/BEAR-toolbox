@@ -1,4 +1,17 @@
-function [ar, lambda1, lambda2, lambda3, lambda4, lambda6, lambda7]=mgridsearch(X,Y,y,n,m,p,k,q,T,lambda5,lambda6,lambda7,lambda8,grid,arvar,sigmahat,data_endo,data_exo,prior,priorexo,hogs,bex,blockexo,const,scoeff,iobs,pref,It,Bu,lrp,H)
+function [ar, lambda1, lambda2, lambda3, lambda4, lambda6, lambda7]=mgridsearch(X,Y,y,n,m,p,k,q,T,grid,arvar,sigmahat,data_endo,data_exo,priorexo,blockexo,const,pref,H,opts)
+
+lambda5 = opts.lambda5;
+lambda6 = opts.lambda6;
+lambda7 = opts.lambda7;
+lambda8 = opts.lambda8;
+prior = opts.prior;
+hogs = opts.hogs;
+bex = opts.bex;
+scoeff = opts.scoeff;
+iobs = opts.iobs;
+It = opts.It;
+Bu = opts.Bu;
+lrp = opts.lrp;
 
 % set preliminary values
 logmlopt=-inf;
@@ -8,8 +21,9 @@ lambda2=[];
 lambda3=[];
 lambda4=[];
 
-optimizeGridSearch = 1;
-options = optimoptions('surrogateopt','PlotFcn','surrogateoptplot','UseParallel', true, 'MaxFunctionEvaluations', 1000); %, [ 0.9    0.8    0.1    1.2  100.0000]); %mean([[grid{1:5,1}]; [grid{1:5,2}]]));%0.8992    0.7776    0.1000    1.2058  100.0000
+gridOptions = readmatrix(pref.excelFile, 'Sheet', 'grid', 'Range', 'C10:C11');
+optimizeGridSearch = gridOptions(1);
+options = optimoptions('surrogateopt','PlotFcn', 'surrogateoptplot', 'MaxFunctionEvaluations', gridOptions(2));
 if optimizeGridSearch == 1 && ~license('test','GADS_Toolbox')
     optimizeGridSearch = 0;
 end
@@ -30,7 +44,7 @@ if optimizeGridSearch == 1
         lambda4=x(5);
 
     elseif scoeff==1 && iobs==0
-
+        
         x = surrogateopt(@(x) -objectiveFunctionS1I0(x, X,Y,n,m,p,k,q,T,lambda5,lambda7,lambda8,arvar,sigmahat,data_endo,data_exo,prior,bex,blockexo,const,scoeff,iobs,lrp,H), ...
             [grid{1:6,1}], [grid{1:6,2}], options);
         ar_default=NaN(n,1);
@@ -94,19 +108,19 @@ else
 
                             % if this value is greater than the current optimising value, set the hyperparameter values as the new optimum values
                             if logml>=logmlopt
-                                logmlopt=logml
+                                logmlopt=logml;
                                 ar=ii;
                                 % create ar  vector
                                 ar_default=NaN(n,1);
                                 ar_default(:,1)=ar;
-                                ar=ar_default
-                                lambda1=jj
-                                lambda2=kk
-                                lambda3=ll
-                                lambda4=mm
+                                ar=ar_default;
+                                lambda1=jj;
+                                lambda2=kk;
+                                lambda3=ll;
+                                lambda4=mm;
                             end
 
-                        % if only the sum-of-coefficient extension is selected
+                            % if only the sum-of-coefficient extension is selected
                         elseif scoeff==1 && iobs==0
 
                             % loop over lambda6 values
@@ -115,7 +129,7 @@ else
                                 logml = objectiveFunctionS1I0([ii, jj, kk, ll, mm, nn], X,Y,n,m,p,k,q,T,lambda5,lambda7,lambda8,arvar,sigmahat,data_endo,data_exo,prior,bex,blockexo,const,scoeff,iobs,lrp,H);
 
                                 % if this value is greater than the current optimising value, set the hyperparameter values as the new optimum values
-                                if logml>=logmlopt                                    
+                                if logml>=logmlopt
                                     logmlopt=logml;
                                     ar=ii;
                                     % create ar  vector
@@ -131,7 +145,7 @@ else
 
                             end
 
-                        % if only the dummy initial observation extension is selected
+                            % if only the dummy initial observation extension is selected
                         elseif scoeff==0 && iobs==1
 
                             % loop over lambda7 values
@@ -155,7 +169,7 @@ else
                                 end
                             end
 
-                        % finally, if both the sum-of-coefficient and dummy initial observation extensions are selected
+                            % finally, if both the sum-of-coefficient and dummy initial observation extensions are selected
                         elseif scoeff==1 && iobs==1
                             % loop over lambda6 values
                             for nn=grid{6,1}:grid{6,3}:grid{6,2}
@@ -180,7 +194,7 @@ else
                                         lambda7=oo;
                                     end
                                 end
-                            end                            
+                            end
                         end %endif
                     end
                 end
@@ -329,4 +343,3 @@ oo = x(7);
 logml=logml-logmldum;
 
 end
-
