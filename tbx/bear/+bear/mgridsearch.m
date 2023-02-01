@@ -1,16 +1,13 @@
-function [ar, lambda1, lambda2, lambda3, lambda4, lambda6, lambda7]=mgridsearch(X,Y,y,n,m,p,k,q,T,grid,arvar,sigmahat,data_endo,data_exo,priorexo,blockexo,const,pref,H,opts)
+function [ar, lambda1, lambda2, lambda3, lambda4, lambda6, lambda7]=mgridsearch(X,Y,y,n,m,p,k,q,T,grid,arvar,sigmahat,data_endo,data_exo,priorexo,blockexo,const,H,opts)
 
 lambda5 = opts.lambda5;
 lambda6 = opts.lambda6;
 lambda7 = opts.lambda7;
 lambda8 = opts.lambda8;
 prior = opts.prior;
-hogs = opts.hogs;
 bex = opts.bex;
 scoeff = opts.scoeff;
 iobs = opts.iobs;
-It = opts.It;
-Bu = opts.Bu;
 lrp = opts.lrp;
 
 % set preliminary values
@@ -21,8 +18,12 @@ lambda2=[];
 lambda3=[];
 lambda4=[];
 
-gridOptions = readmatrix(pref.excelFile, 'Sheet', 'grid', 'Range', 'C10:C11');
+gridOptions = readmatrix(opts.excelFile, 'Sheet', 'grid', 'Range', 'C10:C11');
 optimizeGridSearch = gridOptions(1);
+if isnan(optimizeGridSearch) || ~isnumeric(optimizeGridSearch)
+    optimizeGridSearch = 0;
+end
+
 options = optimoptions('surrogateopt','PlotFcn', 'surrogateoptplot', 'MaxFunctionEvaluations', gridOptions(2));
 if optimizeGridSearch == 1 && ~license('test','GADS_Toolbox')
     optimizeGridSearch = 0;
@@ -44,7 +45,7 @@ if optimizeGridSearch == 1
         lambda4=x(5);
 
     elseif scoeff==1 && iobs==0
-        
+
         x = surrogateopt(@(x) -objectiveFunctionS1I0(x, X,Y,n,m,p,k,q,T,lambda5,lambda7,lambda8,arvar,sigmahat,data_endo,data_exo,prior,bex,blockexo,const,scoeff,iobs,lrp,H), ...
             [grid{1:6,1}], [grid{1:6,2}], options);
         ar_default=NaN(n,1);
@@ -207,46 +208,6 @@ if isempty(ar)
     error('bear:mgridsearch:unabletofindvalues', 'the gridsearch was not able to identify any suitable values, please revise your inputs')
 end
 
-
-% save the preferences, updated with the optimised values
-if exist('userpref2.m','file')==2
-    delete('userpref2.m')
-end
-if pref.results==1
-    fid=fopen('userpref2.txt','wt');
-    priorinfo=['prior=' num2str(prior) ';'];
-    fprintf(fid,'%s\n',priorinfo);
-    arinfo=['ar=' num2str(ar(1,1)) ';'];
-    fprintf(fid,'%s\n',arinfo);
-    lambda1info=['lambda1=' num2str(lambda1) ';'];
-    fprintf(fid,'%s\n',lambda1info);
-    lambda2info=['lambda2=' num2str(lambda2) ';'];
-    fprintf(fid,'%s\n',lambda2info);
-    lambda3info=['lambda3=' num2str(lambda3) ';'];
-    fprintf(fid,'%s\n',lambda3info);
-    lambda4info=['lambda4=' num2str(lambda4) ';'];
-    fprintf(fid,'%s\n',lambda4info);
-    lambda5info=['lambda5=' num2str(lambda5) ';'];
-    fprintf(fid,'%s\n',lambda5info);
-    lambda6info=['lambda6=' num2str(lambda6) ';'];
-    fprintf(fid,'%s\n',lambda6info);
-    lambda7info=['lambda7=' num2str(lambda7) ';'];
-    fprintf(fid,'%s\n',lambda7info);
-    Itinfo=['It=' num2str(It) ';'];
-    fprintf(fid,'%s\n',Itinfo);
-    Buinfo=['Bu=' num2str(Bu) ';'];
-    fprintf(fid,'%s\n',Buinfo);
-    hogsinfo=['hogs=' num2str(hogs) ';'];
-    fprintf(fid,'%s\n',hogsinfo);
-    bexinfo=['bex=' num2str(bex) ';'];
-    fprintf(fid,'%s\n',bexinfo);
-    scoeffinfo=['scoeff=' num2str(scoeff) ';'];
-    fprintf(fid,'%s\n',scoeffinfo);
-    iobsinfo=['iobs=' num2str(iobs) ';'];
-    fprintf(fid,'%s\n',iobsinfo);
-    fclose(fid);
-    movefile('userpref2.txt','userpref2.m');
-end
 end
 
 function logml = objectiveFunctionS0I0(x, X, y, n,m,p,k,q,T,lambda5,arvar,sigmahat,prior,priorexo,bex,blockexo)

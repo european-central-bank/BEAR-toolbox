@@ -725,7 +725,7 @@ try
             if opts.hogs==1 && opts.PriorExcel==0
                 % grid for the Minnesota
                 if opts.prior==11||opts.prior==12||opts.prior==13
-                    [opts.ar, opts.lambda1, opts.lambda2, opts.lambda3, opts.lambda4, opts.lambda6, opts.lambda7]=bear.mgridsearch(X,Y,y,n,m,p,k,q,T,grid,arvar,sigmahat,data_endo,data_exo,priorexo,blockexo,const,pref,H,opts);
+                    [opts.ar, opts.lambda1, opts.lambda2, opts.lambda3, opts.lambda4, opts.lambda6, opts.lambda7]=bear.mgridsearch(X,Y,y,n,m,p,k,q,T,grid,arvar,sigmahat,data_endo,data_exo,priorexo,blockexo,const,H,opts);
                    
                     % grid for the normal- Wishart
                 elseif opts.prior==21||opts.prior==22
