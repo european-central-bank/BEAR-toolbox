@@ -986,7 +986,7 @@ try
 
             % estimate IRFs for exogenous variables
             if isempty(data_exo)~=1 %%%%%&& m>0
-                [exo_irf_record,exo_irf_estimates]=bear.irfexo(beta_gibbs,opts.It,opts.Bu,IRFperiods,IRFband,n,m,p,k,opts.prior);
+                [exo_irf_record,exo_irf_estimates]=bear.irfexo(beta_gibbs,opts.It,opts.Bu,IRFperiods,IRFband,n,m,p,k);
                 % estimate IRFs for exogenous variables
                 bear.irfexodisp(n,m,endo,exo,IRFperiods,exo_irf_estimates,pref);
             end
@@ -1275,8 +1275,12 @@ try
                 end
             end
 
-
-
+            % estimate IRFs for exogenous variables
+            if isempty(data_exo)~=1 %%%%%&& m>0
+                [~,exo_irf_estimates]=bear.irfexo(beta_gibbs,opts.It,opts.Bu,IRFperiods,IRFband,n,m,p,k);
+                % estimate IRFs for exogenous variables
+                bear.irfexodisp(n,m,endo,exo,IRFperiods,exo_irf_estimates,pref);
+            end
 
             %% BLOCK 3: FORECASTS
 

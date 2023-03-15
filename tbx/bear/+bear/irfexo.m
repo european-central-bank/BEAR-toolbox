@@ -1,4 +1,4 @@
-function [exo_irf_record,exo_irf_estimates]=irfexo(beta_gibbs,It,Bu,IRFperiods,IRFband,n,m,p,k,prior)
+function [exo_irf_record,exo_irf_estimates]=irfexo(beta_gibbs,It,Bu,IRFperiods,IRFband,n,m,p,k)
 
 
 
