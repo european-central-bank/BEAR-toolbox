@@ -21,6 +21,7 @@ exo_irf_record=cell(n,m,N);
 exo_irf_estimates=cell(n,m,N);
 
 for nn = 1 : N
+    
     % deal with shocks in turn
     for ii=1:m
 
