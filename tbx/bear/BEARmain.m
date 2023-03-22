@@ -870,7 +870,7 @@ try
                 [beta_median,beta_std,beta_lbound,beta_ubound,sigma_median]=bear.IRFt456_estimates(beta_gibbs,sigma_gibbs,cband,q,n,k);
                 % If IRFs have been set to an SVAR with IV identification & sign, rel. magnitude, FEVD, correlation restrictions (IRFt=6):
             elseif IRFt==6
-                [struct_irf_record,D_record,gamma_record,ETA_record,beta_gibbs,sigma_gibbs]=...
+                [struct_irf_record,D_record,gamma_record,ETA_record,beta_gibbs,sigma_gibbs, opts.It, opts.Bu]=...
                     bear.IRFt6_Bayesian(betahat,IRFperiods,n,m,p,k,T,names,startdate,enddate,Xstar,FEVDresperiods,Ystar,pref,IRFt,arvar,q,opts.It,opts.Bu,opts.lambda1,opts.lambda3,opts.lambda4,strctident,favar);
                 [beta_median,beta_std,beta_lbound,beta_ubound,sigma_median]=bear.IRFt456_estimates(beta_gibbs,sigma_gibbs,cband,q,n,k);
             end
