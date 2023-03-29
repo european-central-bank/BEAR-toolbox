@@ -24,7 +24,7 @@ if isnan(optimizeGridSearch) || ~isnumeric(optimizeGridSearch)
     optimizeGridSearch = 0;
 end
 
-if optimizeGridSearch == 1 && ~license('test','GADS_Toolbox')
+if isempty(ver('globaloptim')) || ~license('test','GADS_Toolbox')
     optimizeGridSearch = 0;
 end
 
