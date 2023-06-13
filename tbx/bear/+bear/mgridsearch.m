@@ -24,12 +24,12 @@ if isnan(optimizeGridSearch) || ~isnumeric(optimizeGridSearch)
     optimizeGridSearch = 0;
 end
 
-options = optimoptions('surrogateopt','PlotFcn', 'surrogateoptplot', 'MaxFunctionEvaluations', gridOptions(2));
-if optimizeGridSearch == 1 && ~license('test','GADS_Toolbox')
+if isempty(ver('globaloptim')) || ~license('test','GADS_Toolbox')
     optimizeGridSearch = 0;
 end
 
 if optimizeGridSearch == 1
+    options = optimoptions('surrogateopt','PlotFcn', 'surrogateoptplot', 'MaxFunctionEvaluations', gridOptions(2));
 
     if scoeff==0 && iobs==0
 
