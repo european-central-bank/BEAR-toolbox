@@ -19,7 +19,7 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
         end
     end
 
-    properties (Dependent, SetAccess = private)
+    properties (Dependent)
 
         ARPriors
         BlockExo
@@ -53,37 +53,37 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
 
     end
 
-    properties (Access = private)
+    properties (Access = protected)
 
-        ARPriors_internal
-        BlockExo_internal
-        Blocks_internal
-        Conditions_internal
-        Data_internal
-        ExoMeanPriors_internal
-        ExoTightPriors_internal
-        FactorData_internal
-        FEVDResValues_internal
-        FEVDResPeriods_internal
-        Grid_internal
-        Intervals_internal
-        IV_internal
-        LongRunPrior_internal
-        MeanAdjPrior_internal
-        MFvarMonthly_internal
-        MFvarQuarterly_internal
-        MFvarTrans_internal
-        PanelPredExo_internal
-        PanelConditions_internal
-        PanelShocks_internal
-        PanelBlocks_internal
-        PredExo_internal
-        RelMagnResPeriods_internal
-        RelMagnResValues_internal
-        Shocks_internal
-        SignResValues_internal
-        SignResPeriods_internal
-        SurveyLocalMean_internal
+        ARPriors_internal tabular
+        BlockExo_internal tabular
+        Blocks_internal tabular
+        Conditions_internal tabular
+        Data_internal tabular
+        ExoMeanPriors_internal tabular
+        ExoTightPriors_internal tabular
+        FactorData_internal tabular
+        FEVDResValues_internal tabular
+        FEVDResPeriods_internal tabular
+        Grid_internal tabular
+        Intervals_internal tabular
+        IV_internal tabular
+        LongRunPrior_intern tabularal
+        MeanAdjPrior_internal tabular
+        MFvarMonthly_internal tabular
+        MFvarQuarterly_internal tabular
+        MFvarTrans_internal tabular
+        PanelPredExo_internal tabular
+        PanelConditions_internal tabular
+        PanelShocks_internal tabular
+        PanelBlocks_internal tabular
+        PredExo_internal tabular
+        RelMagnResPeriods_intern tabularal
+        RelMagnResValues_internal tabular
+        Shocks_internal tabular
+        SignResValues_internal tabular
+        SignResPeriods_internal tabular
+        SurveyLocalMean_internal tabular
 
     end
 
@@ -237,6 +237,126 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
         end
 
     end
+
+    methods % Getters
+
+        function set.ARPriors(obj, value)
+            set(obj, "ARPriors_internal", value);
+        end
+
+        function set.BlockExo(obj, value)
+            set(obj,  "BlockExo_internal",value);
+        end
+
+        function set.Blocks(obj, value)
+            set(obj,  "Blocks_internal", value);
+        end
+
+        function set.Conditions(obj, value)
+            set(obj,  "Conditions_internal", value);
+        end
+
+        function set.Data(obj, value)
+            set(obj,  "Data_internal", value);
+        end
+
+        function set.ExoMeanPriors(obj, value)
+            set(obj,  "ExoMeanPriors_internal", value);
+        end
+
+        function set.ExoTightPriors(obj, value)
+            set(obj,  "ExoTightPriors_internal", value);
+        end
+
+        function set.FactorData(obj, value)
+            set(obj,  "FactorData_internal", value);
+        end
+
+        function set.FEVDResValues(obj, value)
+            set(obj,  "FEVDResValues_internal", value);
+        end
+
+        function set.FEVDResPeriods(obj, value)
+            set(obj,  "FEVDResPeriods_internal", value);
+        end
+
+        function set.Grid(obj, value)
+            set(obj,  "Grid_internal",value);
+        end
+
+        function set.Intervals(obj, value)
+            set(obj,  "Intervals_internal", value);
+        end
+
+        function set.IV(obj, value)
+            set(obj,  "IV_internal", value);
+        end
+
+        function set.LongRunPrior(obj, value)
+            set(obj,  "LongRunPrior_internal", value);
+        end
+
+        function set.MeanAdjPrior(obj, value)
+            set(obj,  "MeanAdjPrior_internal", value);
+        end
+
+        function set.MFvarMonthly(obj, value)
+            set(obj,  "MFvarMonthly_internal", value);
+        end
+        function set.MFvarQuarterly(obj, value)
+            set(obj,  "MFvarQuarterly_internal", value);
+        end
+
+        function set.MFvarTrans(obj, value)
+            set(obj,  "MFvarTrans_internal", value);
+        end
+
+        function set.PanelPredExo(obj, value)
+            set(obj,  "PanelPredExo_internal", value);
+        end
+
+        function set.PanelConditions(obj, value)
+            set(obj,  "PanelConditions_internal", value);
+        end
+
+        function set.PanelShocks(obj, value)
+            set(obj,  "PanelShocks_internal", value);
+        end
+
+        function set.PanelBlocks(obj, value)
+            set(obj,  "PanelBlocks_internal", value);
+        end
+
+        function set.PredExo(obj, value)
+            set(obj,  "PredExo_internal", value);
+        end
+
+        function set.RelMagnResPeriods(obj, value)
+            set(obj,  "RelMagnResPeriods_internal", value);
+        end
+
+        function set.RelMagnResValues(obj, value)
+            set(obj,  "RelMagnResValues_internal", value);
+        end
+
+        function set.Shocks(obj, value)
+            set(obj,  "Shocks_internal", value);
+        end
+
+        function set.SignResValues(obj, value)
+            set(obj,  "SignResValues_internal", value);
+        end
+
+        function set.SignResPeriods(obj, value)
+            set(obj,  "SignResPeriods_internal", value);
+        end
+
+        function set.SurveyLocalMean(obj, value)
+            set(obj,  "SurveyLocalMean_internal", value);
+        end
+
+    end
+
 
     methods (Access = private)
 
