@@ -1,7 +1,11 @@
-classdef BEARExcelWriter < bear.data.BEARExporter
+classdef BEARExcelWriter < bear.data.BEARFileExporter
 
     properties
         FileName
+    end
+
+    properties (Access = protected)
+        IsDirty (1,1) logical = true
     end
 
     methods 
@@ -9,19 +13,32 @@ classdef BEARExcelWriter < bear.data.BEARExporter
         function obj = BEARExcelWriter(fname)
             
             arguments
-                fname (1,1) string = fullfile(pwd, "results.xlsx")
+                fname string = fullfile(pwd, "results.xlsx")
             end
 
             obj.FileName = fname;                     
         end
 
         function set.FileName(obj,fname)
-            [path, name, ext] = fileparts(fname);
-            if isempty(ext)
-                obj.FileName = fullfile(path, name + ".xlsx");             
-            else
-                obj.FileName = fname;
+
+            arguments
+                obj
+                fname (1,1) string
             end
+
+            [fpath, name, ext] = fileparts(fname);
+
+            if fpath == ""
+                fpath = pwd();
+            end
+
+            if ext == ""
+                ext = ".xlsx";             
+            end
+
+            obj.FileName = fullfile(fpath, name + ext);
+            obj.IsDirty = true; %#ok<MCSUP>
+
         end
 
         function  writeEstimationInfo(obj, data)
@@ -181,6 +198,11 @@ classdef BEARExcelWriter < bear.data.BEARExporter
                 nvp.Range (1,1) string = []
             end
 
+            if obj.IsDirty
+                obj.initexcel();
+                obj.IsDirty = false;
+            end
+
             args = {};
             if ~isempty(nvp.Sheet)
                 args = [args, 'Sheet', nvp.Sheet];
@@ -188,10 +210,6 @@ classdef BEARExcelWriter < bear.data.BEARExporter
 
             if ~isempty(nvp.Range)
                 args = [args, 'Range', nvp.Range];
-            end
-
-            if ~isfile(obj.FileName)
-                obj.initexcel();
             end
             
             if istable(data)
@@ -214,12 +232,14 @@ classdef BEARExcelWriter < bear.data.BEARExporter
             end
 
             % then copy the blank excel file from the files to the data folder
-            sourcefile = fullfile(bearroot, 'bear','+bear','results.xlsx');
+            sourcefile = fullfile(bearroot, 'bear','+bear','+data','results.xlsx');
             destinationfile = resultsFile;
             if exist(results_path, 'dir') == 0
                 mkdir(results_path)
             end
             copyfile(sourcefile,destinationfile);
+
+            obj.IsDirty = false;
 
         end
 

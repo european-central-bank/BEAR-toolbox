@@ -61,7 +61,7 @@ try
         'workspace', opts.workspace, ...
         'exporter', opts.Exporter);
 
-    pref.exporter.FileName = fullfile(pref.results_path, pref.results_sub);
+    % pref.exporter.FileName = fullfile(pref.results_path, pref.results_sub);
     
     favar = bear.utils.initializeFavarResults(opts);
 
@@ -2413,7 +2413,7 @@ try
 
     % option to save matlab workspace
     if pref.workspace==1
-        save( fullfile(pref.results_path, [pref.results_sub '.mat']) );
+        save( fullfile(pref.results_path, pref.results_sub + ".mat") );
     end
 catch MException
     tdir = tempname;

@@ -55,9 +55,7 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         const     (1,1) logical = true;                  % inclusion of a constant (1=yes, 0=no)
         
         data         (:,1) bear.data.BEARDAL = bear.data.ExcelDAL.empty(); % Data Access Layer used for the inputs
-
-        results_path (1,:) char = '';                    % path where there results file is stored
-        results_sub  (1,:) char = 'results';             % name of the results file
+        
         results      (1,1) logical = true;               % save the results in the excel file (true/false)
         plot         (1,1) logical = true;               % plot the results (true/false)
         workspace    (1,1) logical = true;               % save the workspace as a .mat file (true/false)
@@ -76,6 +74,9 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
     end
     
     properties (Dependent)
+        results_path %(1,:) char = pwd();                 % path where there results file is stored
+        results_sub  %(1,:) char = 'results';             % name of the results file
+
         FEVD       % activate forecast error variance decomposition (1=yes, 0=no)
         HD         % activate historical decomposition (1=yes, 0=no)
     end
@@ -125,6 +126,22 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
             obj.results_path = pwd();
             obj.Exporter = exporter;
             
+        end
+
+        function obj = set.results_sub(obj, value)
+            obj.Exporter.FileName = fullfile(obj.results_path, value);
+        end
+
+        function obj = set.results_path(obj, value)
+            obj.Exporter.FileName = fullfile(value, obj.results_sub);
+        end
+
+        function name = get.results_sub(obj)
+            [~, name, ~] = fileparts(obj.Exporter.FileName);
+        end
+
+        function results_path = get.results_path(obj)
+            results_path = fileparts(obj.Exporter.FileName);
         end
         
         function obj = set.IRFt(obj, value)

@@ -135,7 +135,7 @@ end
 if IRFt==2 || IRFt==3 || IRFt==4 || IRFt==5 || IRFt==6
 % then display the results for D and gamma, if a structural decomposition was selected
 
-filelocation=fullfile(pref.results_path, [pref.results_sub '.txt']);
+filelocation=fullfile(pref.results_path, pref.results_sub + ".txt");
 fid=fopen(filelocation,'at');
 
 %print three empty lines

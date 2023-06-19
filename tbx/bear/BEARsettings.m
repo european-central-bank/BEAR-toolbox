@@ -10,7 +10,7 @@ p.KeepUnmatched = true;
 addRequired(p, 'VARtype', @(x) isnumeric(x) || isstring(x) || ischar(x));
 addParameter(p,'ExcelFile', fullfile(bearroot(), 'default_bear_data.xlsx'), @(x) isstring(x) || ischar(x));
 addParameter(p,'BEARData', bear.data.ExcelDAL.empty(), @(x) isa(x, 'bear.data.BEARDAL'));
-addParameter(p,'BEARExporter', bear.data.BEARExcelWriter, @(x) isa(x, 'bear.data.Exporter'));
+addParameter(p,'BEARExporter', bear.data.BEARExcelWriter, @(x) isa(x, 'bear.data.BEARExporter'));
 parse(p, VARtype, varargin{:});
 
 if isempty(p.Results.BEARData)
