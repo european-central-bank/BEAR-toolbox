@@ -53,7 +53,7 @@ try
 
     const = opts.const;
 
-    pref = struct('excelFile', opts.excelFile, ...
+    pref = struct('data', opts.data, ...
         'results_path', opts.results_path, ...
         'results_sub', opts.results_sub, ...
         'results', opts.results, ...
@@ -221,21 +221,22 @@ try
 
     % first recover the names of the different endogenous variables;
     % to do so, separate the string 'varendo' into individual names
-    % look for the spaces and identify their locations
-    findspace=isspace(varendo);
-    locspace=find(findspace);
-    % use this to set the delimiters: each variable string is located between two delimiters
-    delimiters=[0 locspace numel(varendo)+1];
-    % count the number of endogenous variables
-    % first count the number of spaces
-    nspace=sum(findspace(:)==1);
-    % each space is a separation between two variable names, so there is one variable more than the number of spaces
-    numendo=nspace+1;
-    % now finally identify the endogenous
-    endo=cell(numendo,1);
-    for ii=1:numendo
-        endo{ii,1}=varendo(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
-    end
+    endo = strsplit(varendo, " ");
+    % % look for the spaces and identify their locations
+    % findspace=isspace(varendo);
+    % locspace=find(findspace);
+    % % use this to set the delimiters: each variable string is located between two delimiters
+    % delimiters=[0 locspace numel(varendo)+1];
+    % % count the number of endogenous variables
+    % % first count the number of spaces
+    % nspace=sum(findspace(:)==1);
+    % % each space is a separation between two variable names, so there is one variable more than the number of spaces
+    % numendo=nspace+1;
+    % % now finally identify the endogenous
+    % endo=cell(numendo,1);
+    % for ii=1:numendo
+    %     endo{ii,1}=varendo(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
+    % end
 
     % FAVAR: additional strings
     if favar.FAVAR==1

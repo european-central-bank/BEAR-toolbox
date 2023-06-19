@@ -9,7 +9,7 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
     %    varexo          - exogenous variables
     %    lags            - number of lags
     %    const           - inclusion of a constant
-    %    excelFile       - Excel file used for the inputs
+    %    data            - Excel file used for the inputs
     %    results_path    - path where there results file is stored
     %    results_sub     - name of the results file
     %    results         - save the results in the excel file (true/false)
@@ -53,7 +53,8 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         lags      (1,1) double  = 4;                     % number of lags
         const     (1,1) logical = true;                  % inclusion of a constant (1=yes, 0=no)
         
-        excelFile    (1,:) char = '';                    % Excel file used for the inputs
+        data         (:,1) bear.data.BEARDAL = bear.data.ExcelDAL.empty(); % Data Access Layer used for the inputs
+
         results_path (1,:) char = '';                    % path where there results file is stored
         results_sub  (1,:) char = 'results';             % name of the results file
         results      (1,1) logical = true;               % save the results in the excel file (true/false)
@@ -116,10 +117,10 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
     
     methods
         
-        function obj = BASEsettings(VARtype, excelPath)
+        function obj = BASEsettings(VARtype, dal)
             
             obj.VARtype = VARtype;
-            obj.excelFile = excelPath;
+            obj.data = dal;
             obj.results_path = pwd();
             
         end
@@ -177,7 +178,7 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
             
             mainProps = {'VARtype', 'frequency', 'startdate', ...
                 'enddate', 'varendo', 'varexo', 'lags', 'const', ...
-                'excelFile', 'results_path', 'results_sub', 'results', 'plot', 'workspace'};
+                'data', 'results_path', 'results_sub', 'results', 'plot', 'workspace'};
             
             applicationProps = setdiff(baseProps, mainProps);
             applicationProps = props(ismember(props, applicationProps)); % To keep original order

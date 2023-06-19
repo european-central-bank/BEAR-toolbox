@@ -2,7 +2,7 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
     %UNTITLED Summary of this class goes here
     %   Detailed explanation goes here
 
-    properties (SetAccess = private)
+    properties
         NumEndo (1,1) double
         NumExo (1,1) double
     end
@@ -10,8 +10,8 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
     methods
         function obj = BEARDAL(nvp)
             arguments
-                nvp.NumEndo 
-                nvp.NumExo
+                nvp.NumEndo = 0
+                nvp.NumExo  = 0
             end
 
             obj.NumEndo = nvp.NumEndo;
@@ -55,35 +55,35 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
 
     properties (Access = protected)
 
-        ARPriors_internal tabular
-        BlockExo_internal tabular
-        Blocks_internal tabular
-        Conditions_internal tabular
-        Data_internal tabular
-        ExoMeanPriors_internal tabular
-        ExoTightPriors_internal tabular
-        FactorData_internal tabular
-        FEVDResValues_internal tabular
-        FEVDResPeriods_internal tabular
-        Grid_internal tabular
-        Intervals_internal tabular
-        IV_internal tabular
-        LongRunPrior_intern tabularal
-        MeanAdjPrior_internal tabular
-        MFvarMonthly_internal tabular
-        MFvarQuarterly_internal tabular
-        MFvarTrans_internal tabular
-        PanelPredExo_internal tabular
-        PanelConditions_internal tabular
-        PanelShocks_internal tabular
-        PanelBlocks_internal tabular
-        PredExo_internal tabular
-        RelMagnResPeriods_intern tabularal
-        RelMagnResValues_internal tabular
-        Shocks_internal tabular
-        SignResValues_internal tabular
-        SignResPeriods_internal tabular
-        SurveyLocalMean_internal tabular
+        ARPriors_internal          tabular = table.empty()
+        BlockExo_internal          tabular = table.empty()
+        Blocks_internal            tabular = table.empty()
+        Conditions_internal        tabular = table.empty()
+        Data_internal              tabular = table.empty()
+        ExoMeanPriors_internal     tabular = table.empty()
+        ExoTightPriors_internal    tabular = table.empty()
+        FactorData_internal        tabular = table.empty()
+        FEVDResValues_internal     tabular = table.empty()
+        FEVDResPeriods_internal    tabular = table.empty()
+        Grid_internal              tabular = table.empty()
+        Intervals_internal         tabular = table.empty()
+        IV_internal                tabular = table.empty()
+        LongRunPrior_internal      tabular = table.empty()
+        MeanAdjPrior_internal      tabular = table.empty()
+        MFvarMonthly_internal      tabular = table.empty()
+        MFvarQuarterly_internal    tabular = table.empty()
+        MFvarTrans_internal        tabular = table.empty()
+        PanelPredExo_internal      tabular = table.empty()
+        PanelConditions_internal   tabular = table.empty()
+        PanelShocks_internal       tabular = table.empty()
+        PanelBlocks_internal       tabular = table.empty()
+        PredExo_internal           tabular = table.empty()
+        RelMagnResPeriods_internal tabular = table.empty()
+        RelMagnResValues_internal  tabular = table.empty()
+        Shocks_internal            tabular = table.empty()
+        SignResValues_internal     tabular = table.empty()
+        SignResPeriods_internal    tabular = table.empty()
+        SurveyLocalMean_internal   tabular = table.empty()
 
     end
 

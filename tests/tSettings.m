@@ -4,7 +4,7 @@ classdef tSettings < matlab.unittest.TestCase
 
         function tDefaults(tc)
             s = BEARsettings(1);
-            tc.verifyEqual(s.excelFile, fullfile(bearroot(),'default_bear_data.xlsx'))
+            tc.verifyEqual(s.data.InputFile, fullfile(bearroot(),'default_bear_data.xlsx'))
         end
 
         function tSetterFcnByNumber(tc)
