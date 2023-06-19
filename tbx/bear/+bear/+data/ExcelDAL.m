@@ -143,11 +143,11 @@ classdef ExcelDAL < bear.data.BEARDAL
         end
 
         function data = readSignResValues(obj)
-            data = obj.doRead("sign res values", "B3");
+            data = obj.doRead("sign res values", "B3", VariableDescriptionsRange = 2);
         end
 
         function data = readSignResPeriods(obj)
-            data = obj.doRead("sign res periods", "B3");
+            data = obj.doRead("sign res periods", "B3",  VariableDescriptionsRange = 2);
         end
 
         function data = readSurveyLocalMean(obj)

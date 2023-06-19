@@ -60,6 +60,7 @@ classdef replicationTests < matlab.unittest.TestCase
             s.cband = 0.95;
             s.Fband = 0.95;
             s.FEVDband = 0.95;
+            s.Debug = false;
             
             % run BEAR
             BEARmain(s);

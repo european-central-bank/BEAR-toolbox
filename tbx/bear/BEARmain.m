@@ -356,7 +356,7 @@ try
     % generate the different sets of data
     % if the model is the OLS VAR,
     if VARtype==1
-        [names, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate,endo,favar]...
+        [data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate,endo,favar]...
             =bear.gensampleols(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,favar,IRFt, n);
         % if the model is the Bayesian VAR, the mean-adjusted BVAR, the stochastic volatility BVAR, ot the time-varying BVAR:
     elseif VARtype==2 || VARtype==5 || VARtype==6
@@ -2416,10 +2416,12 @@ try
         save( fullfile(pref.results_path, pref.results_sub + ".mat") );
     end
 catch MException
-    tdir = tempname;
-    logfile = fullfile(tdir, "bearErrorLog_" + string(datetime('today'))+".mat");
-    mkdir(tdir)
-    save(logfile)
-    fprintf('Logs saved in %s\n', logfile)
+    if opts.Debug == true
+        tdir = tempname;
+        logfile = fullfile(tdir, "bearErrorLog_" + string(datetime('today'))+".mat");
+        mkdir(tdir)
+        save(logfile)
+        fprintf('Logs saved in %s\n', logfile)
+    end
     rethrow(MException)
 end

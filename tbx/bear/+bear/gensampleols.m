@@ -1,4 +1,4 @@
-function [names, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate,endo,favar] = ...
+function [data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate,endo,favar] = ...
     gensampleols(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,favar,IRFt, numendo)
 
 % if we have a FaVAR: read information data, data transformation, create indices, compute factors (PC)
@@ -9,10 +9,12 @@ end
 %% endo data
 % Phase 1: data loading and error checking
 % first read the data from Excel
-[data, names]=xlsread(pref.excelFile,'data');
+data = pref.data.Data;
+% [data, names]=xlsread(pref.excelFile,'data');
 
 % identify the date strings
-datestrings=names(2:end,1);
+datestrings=string(data.Time);
+
 % identify the position of the string corresponding to the start period
 startlocation=find(strcmp(datestrings,startdate));
 % identify the position of the string corresponding to the end period
@@ -22,7 +24,6 @@ if favar.FAVAR==1 % in case we transform the data to first or second differences
     if favar.transformation==1
         startlocation=informationstartlocation;
         endlocation=informationendlocation;
-        datestrings=names(1+favar.informationstartlocation:end,:); %first row are labels
     end
 end
 
@@ -33,7 +34,7 @@ data1=data;
 data=data(startlocation:endlocation,:);
 
 % identify the variable strings, endogenous and exogenous
-variablestrings=names(1,2:end);
+variablestrings=data.Properties.VariableNames;
 
 % FAVAR: augment data and variablestrings with factors
 if favar.FAVAR==1
@@ -219,13 +220,11 @@ else
     
     % preliminary tasks
     % first, identify the date strings, and the variable strings
-    datestrings=names(2:end,1);
     if favar.FAVAR==1 % in case we transform the data to first or second differences, we have a different datestrings
         if favar.transformation==1
             datestrings=names(1+favar.informationstartlocation:end,:); %first row are labels
         end
     end
-    variablestrings=names(1,2:end);
     
     % identify the location of the last period in the dataset
     dataendlocation=size(datestrings,1);

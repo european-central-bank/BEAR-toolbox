@@ -59,6 +59,8 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         results      (1,1) logical = true;               % save the results in the excel file (true/false)
         plot         (1,1) logical = true;               % plot the results (true/false)
         workspace    (1,1) logical = true;               % save the workspace as a .mat file (true/false)
+
+        Debug (1,1) logical = true
         
         % Model options
         IRF        (1,1) logical = true;  % activate impulse response functions (1=yes, 0=no)
