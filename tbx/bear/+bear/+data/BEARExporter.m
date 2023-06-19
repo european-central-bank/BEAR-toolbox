@@ -1,4 +1,4 @@
-classdef (Abstract) BEARExporter
+classdef (Abstract) BEARExporter < handle
 
     methods (Abstract)
 

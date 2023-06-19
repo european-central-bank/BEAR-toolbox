@@ -40,6 +40,7 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
     properties (SetAccess = private)
         
         VARtype   bear.VARtype = bear.VARtype.empty      % VAR model selected (1=OLS VAR, 2=BVAR, 3=mean-adjusted BVAR, 4=panel Bayesian VAR, 5=Stochastic volatility BVAR, 6=Time varying)
+        Exporter bear.data.BEARExporter = bear.data.BEARExcelWriter % Exported object to write all BEAR data
         
     end
     
@@ -117,11 +118,12 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
     
     methods
         
-        function obj = BASEsettings(VARtype, dal)
+        function obj = BASEsettings(VARtype, dal, exporter)
             
             obj.VARtype = VARtype;
             obj.data = dal;
             obj.results_path = pwd();
+            obj.Exporter = exporter;
             
         end
         

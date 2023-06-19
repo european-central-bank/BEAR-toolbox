@@ -79,9 +79,9 @@ classdef MFVARsettings < bear.settings.BASEsettings
     
     methods
         
-        function obj = MFVARsettings(excelPath, varargin)
+        function obj = MFVARsettings(excelPath, exporter, varargin)
 
-            obj@bear.settings.BASEsettings(7, excelPath)
+            obj@bear.settings.BASEsettings(7, excelPath, exporter)
             
             obj = parseBEARSettings(obj, varargin{:});
             

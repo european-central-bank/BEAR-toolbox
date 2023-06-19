@@ -108,9 +108,9 @@ classdef BVARsettings < bear.settings.BASEsettings
     
     methods
         
-        function obj = BVARsettings(excelPath, varargin)
+        function obj = BVARsettings(excelPath, exporter, varargin)
             
-            obj@bear.settings.BASEsettings(2, excelPath)
+            obj@bear.settings.BASEsettings(2, excelPath, exporter)
             
             obj = obj.setStrctident(obj.IRFt);
             

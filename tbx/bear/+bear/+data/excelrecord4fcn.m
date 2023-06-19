@@ -33,4 +33,6 @@ end
 irfcell=irfcell(3:end,1:end-1);
 
 % write in excel
-    bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),irfcell,'IRF','B2');
+if pref.results == 1
+    pref.exporter.writeIRF(irfcell);
+end

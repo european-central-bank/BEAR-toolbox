@@ -70,9 +70,9 @@ classdef TVPsettings < bear.settings.BASEsettings
     
     methods
         
-        function obj = TVPsettings(excelPath, varargin)
+        function obj = TVPsettings(excelPath, exporter, varargin)
             
-            obj@bear.settings.BASEsettings(6, excelPath)
+            obj@bear.settings.BASEsettings(6, excelPath, exporter)
             
             obj = parseBEARSettings(obj, varargin{:});
             

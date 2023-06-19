@@ -55,4 +55,6 @@ end
 % trim
 hdcell=hdcell(1:end,1:end-1);
 % write in excel
-    bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),hdcell,'hist decomp','B2');
+if pref.results == 1
+    pref.exporter.writeHistDecomp(hdcell);
+end

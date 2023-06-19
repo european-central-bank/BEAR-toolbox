@@ -42,7 +42,7 @@ classdef ExcelDAL < bear.data.BEARDAL
         end
 
         function data = readData(obj)
-            data = obj.doRead("undated", "A1");
+            data = obj.doRead("data", "A1");
             data = makeTimeTable(data);
         end
 
@@ -125,7 +125,7 @@ classdef ExcelDAL < bear.data.BEARDAL
         end
 
         function data = readPredExo(obj)
-            data = obj.doRead("pred exo", "B2", ExpectedNumVariables = obj.NumExo + obj.NumEndo);
+            data = obj.doRead("pred exo", "B2", ExpectedNumVariables = 1 + obj.NumExo + obj.NumEndo);
             data = makeTimeTable(data);
         end
 
@@ -180,15 +180,15 @@ function tt = makeTimeTable(tb)
         tt = table2timetable(tb(:,2:end), "RowTimes",  dates);
 
     elseif contains(firstDate, "q") % Quarterly data
-        dates = datetime(dates, 'InputFormat','yyyyQQQ','Format','yyyy-QQQ');
+        dates = datetime(dates, 'InputFormat','yyyyQQQ','Format','yyyy''q''Q');
         tt = table2timetable(tb(:,2:end), "RowTimes",  dates);
 
     elseif contains(firstDate, "m") % Monthly data
-        dates = datetime(dates,'InputFormat',"yyyy'm'MM", 'Format','yyyy-MMM');
+        dates = datetime(dates,'InputFormat',"yyyy'm'MM", 'Format','yyyy''m''MM');
         tt = table2timetable(tb(:,2:end), "RowTimes",  dates);
 
     elseif contains(firstDate, 'd') % Daily data
-        dates = datetime(dates,'InputFormat',"uuuu'd'DD", 'Format','yyyy-MMM-dd');
+        dates = datetime(dates,'InputFormat',"uuuu'd'DD", 'Format','yyyy''d''dd');
         tt = table2timetable(tb(:,2:end), "RowTimes",  dates);
 
     else % Weekly and unspecified are not supported yet

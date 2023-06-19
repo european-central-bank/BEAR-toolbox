@@ -7,7 +7,7 @@ function [estimationinfo, status, message] = excelrecord1fcn(endo, exo, Units, o
 estimationinfo=cell(107,max([size(endo,1) size(exo,1)+1 size(Units,1)]));
 
 % preliminary element: estimation date
-estimationinfo{1,1}=datestr(clock);
+estimationinfo{1,1}=string(datetime('now'));
 
 % VAR specification
 
@@ -72,7 +72,7 @@ estimationinfo{12,1}=num2str(opts.lags);
 
 % path to the data. This is equivalent to what we had before, but there is
 % now one less preference to set.
-estimationinfo{13,1}= fileparts(opts.excelFile);
+estimationinfo{13,1}= fileparts(opts.data.InputFile);
 
 % save preferences. This used to save opts.pref.pref, which was always set
 % to zero. This property has been removed and we can consider removing this
@@ -557,7 +557,9 @@ end
 
 % write on excel file
 if opts.results==1
-    [status,message]=bear.xlswritegeneral(fullfile(opts.results_path, [opts.results_sub '.xlsx']),estimationinfo ,'estimation info','C2');
+    opts.Exporter.writeEstimationInfo(estimationinfo)
+    status = 0;
+    message = '';
 else
     status = 0;
     message = '';

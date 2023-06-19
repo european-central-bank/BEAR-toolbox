@@ -23,7 +23,9 @@ end
 shockcell=shockcell(:,1:end-1);
 
 % write in excel
-bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),shockcell,'struct shocks','B2');
+if pref.results == 1
+    pref.exporter.writeStruct_Shocks(shockcell);
+end
 
 
 

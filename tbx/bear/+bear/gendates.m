@@ -1,17 +1,10 @@
-function [decimaldates1,decimaldates2,stringdates1,stringdates2,stringdates3,Fstartlocation,Fendlocation]=gendates(names,lags,frequency,startdate,enddate,Fstartdate,Fenddate,Fcenddate,Fendsmpl,F,CF,favar)
+function [decimaldates1,decimaldates2,stringdates1,stringdates2,stringdates3,Fstartlocation,Fendlocation]=gendates(data,lags,frequency,startdate,enddate,Fstartdate,Fenddate,Fcenddate,Fendsmpl,F,CF,favar)
 
 
 
-% function [decimaldates1,decimaldates2,stringdates1,stringdates2,stringdates3,Fstartlocation,Fendlocation]=gendates(names,lags,frequency,startdate,enddate,Fstartdate,Fenddate,Fcenddate,Fendsmpl,F)
+% function [decimaldates1,decimaldates2,stringdates1,stringdates2,stringdates3,Fstartlocation,Fendlocation]=gendates(data,lags,frequency,startdate,enddate,Fstartdate,Fenddate,Fcenddate,Fendsmpl,F)
 % generate cells of date strings and vector of dates converted into decimal numbers; used for plots
-% inputs:  - vector 'decimaldates1': dates converted into decimal values, for the sample period
-%          - vector 'decimaldates2': dates converted into decimal values, for the sample+forecasts period
-%          - cell 'stringdates1': date strings for the sample period
-%          - cell 'stringdates2': date strings for the sample+forecasts period
-%          - cell 'stringdates3': date strings for the forecast evaluation period (i.e. period for which forecast is estimated and actual data exists)
-%          - integer 'Fstartlocation': position of the forecast start date in stringdates2
-%          - integer 'Fendlocation': position of the forecast end date in stringdates2
-% outputs: - cell 'names': cell containing the excel spreadsheet labels (names and dates)
+% inputs:  - table 'data': table with the spreadsheet data
 %          - integer 'lags': number of lags included in the model
 %          - integer 'frequency': frequency of the data set
 %          - string 'startdate': start date of the sample
@@ -21,17 +14,24 @@ function [decimaldates1,decimaldates2,stringdates1,stringdates2,stringdates3,Fst
 %          - string 'Fcenddate': end date of the forecat evaluation (i.e. period for which forecast is estimated and actual data exists)
 %          - integer 'Fendsmpl': 0-1 value to determine if forecasts must start after the final sample period
 %          - integer 'F': 0-1 value to determine if forecasts must be estimated
+% outputs: - vector 'decimaldates1': dates converted into decimal values, for the sample period
+%          - vector 'decimaldates2': dates converted into decimal values, for the sample+forecasts period
+%          - cell 'stringdates1': date strings for the sample period
+%          - cell 'stringdates2': date strings for the sample+forecasts periodf
+%          - cell 'stringdates3': date strings for the forecast evaluation period (i.e. period for which forecast is estimated and actual data exists)
+%          - integer 'Fstartlocation': position of the forecast start date in stringdates2
+%          - integer 'Fendlocation': position of the forecast end date in stringdates2
 
 
 
 
 % preliminary tasks
 % define date strings
-datestrings=names(2:end,1);
+datestrings=string(data.Time);
 
 if favar.FAVAR==1 % in case we transform the data to first or second differences, we have a different startlocation
     if favar.transformation==1
-        datestrings=names(1+favar.informationstartlocation:favar.informationendlocation_sub,:); %first row are labels
+        datestrings=data.Time(favar.informationstartlocation:favar.informationendlocation_sub);
     end
 end
 

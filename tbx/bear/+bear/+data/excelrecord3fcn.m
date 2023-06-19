@@ -23,5 +23,5 @@ sscell=sscell(:,1:end-1);
 
 % write in excel
 if pref.results==1
-    bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),sscell,'steady state','B2');
+    pref.exporter.writeSteadyState(sscell);
 end

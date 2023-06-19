@@ -119,6 +119,40 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
         data = readSurveyLocalMean(obj)
     end
 
+    methods 
+        function reload(obj)
+            obj.ARPriors = table.empty();
+            obj.BlockExo = table.empty();
+            obj.Blocks = table.empty();
+            obj.Conditions = table.empty();
+            obj.Data = table.empty();
+            obj.ExoMeanPriors = table.empty();
+            obj.ExoTightPriors = table.empty();
+            obj.FactorData = table.empty();
+            obj.FEVDResValues = table.empty();
+            obj.FEVDResPeriods = table.empty();
+            obj.Grid = table.empty();
+            obj.Intervals = table.empty();
+            obj.IV = table.empty();
+            obj.LongRunPrior = table.empty();
+            obj.MeanAdjPrior = table.empty();
+            obj.MFvarMonthly = table.empty();
+            obj.MFvarQuarterly = table.empty();
+            obj.MFvarTrans = table.empty();
+            obj.PanelPredExo = table.empty();
+            obj.PanelConditions = table.empty();
+            obj.PanelShocks = table.empty();
+            obj.PanelBlocks = table.empty();
+            obj.PredExo = table.empty();
+            obj.RelMagnResPeriods = table.empty();
+            obj.RelMagnResValues = table.empty();
+            obj.Shocks = table.empty();
+            obj.SignResValues = table.empty();
+            obj.SignResPeriods = table.empty();
+            obj.SurveyLocalMean = table.empty();
+        end
+    end
+
     methods % Getters
 
         function value = get.ARPriors(obj)
