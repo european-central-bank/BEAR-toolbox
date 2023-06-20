@@ -188,26 +188,6 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         function obj = set.HD(obj, value)
             obj.HDinternal = value;
         end
-
-        function obj = set.startdate(obj, value)
-            dt = bear.data.dateParser(value);
-            obj.startdate = char(dt);
-        end
-
-        function obj = set.enddate(obj, value)
-            dt = bear.data.dateParser(value);
-            obj.enddate = char(dt);
-        end
-
-        function obj = set.Fstartdate(obj, value)
-            dt = bear.data.dateParser(value);
-            obj.Fstartdate = char(dt);
-        end
-
-        function obj = set.Fenddate(obj, value)
-            dt = bear.data.dateParser(value);
-            obj.Fenddate = char(dt);
-        end
         
     end
     

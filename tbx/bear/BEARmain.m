@@ -850,7 +850,7 @@ try
                 end
             elseif IRFt==5 % If IRFs have been set to an SVAR with IV identification (IRFt=5):
                 [struct_irf_record,D_record,gamma_record,ETA_record,opts.It,opts.Bu,beta_gibbs,sigma_gibbs]=...
-                    bear.IRFt5_Bayesian(names,betahat,m,n,Xstar,Ystar,k,p,enddate,startdate,IRFperiods,IRFt,T,arvar,q, opts.It, opts.Bu,opts.lambda1, opts.lambda3,opts.lambda4,pref,strctident);
+                    bear.IRFt5_Bayesian(string(data.Time),betahat,m,n,Xstar,Ystar,k,p,enddate,startdate,IRFperiods,IRFt,T,arvar,q, opts.It, opts.Bu,opts.lambda1, opts.lambda3,opts.lambda4,pref,strctident);
                 [beta_median,beta_std,beta_lbound,beta_ubound,sigma_median]=bear.IRFt456_estimates(beta_gibbs,sigma_gibbs,cband,q,n,k);
                 % If IRFs have been set to an SVAR with IV identification & sign, rel. magnitude, FEVD, correlation restrictions (IRFt=6):
             elseif IRFt==6

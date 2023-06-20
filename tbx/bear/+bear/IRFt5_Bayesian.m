@@ -1,15 +1,15 @@
 function [struct_irf_record,D_draws,gamma_draws,ETA_record,It,Bu,beta_draws,sigma_draws]=...
-    IRFt5_Bayesian(names,betahat,m,n,X,Y,k,p,enddate,startdate,IRFperiods,IRFt,T,arvar,q,It,Bu,lambda1,lambda3,lambda4,pref,strctident)
+    IRFt5_Bayesian(dates,betahat,m,n,X,Y,k,p,enddate,startdate,IRFperiods,IRFt,T,arvar,q,It,Bu,lambda1,lambda3,lambda4,pref,strctident)
 %%Implementation of a Bayesian Proxy VAR based on the Codes published by Caldara and Herbst (2018)
 %%Implementation by Ben Schumann
 %% IV identification
 %Load IV and make it comparable with the reduced form errors
 [EPSIV,IVcut,~,sigmahatIV,sigma_hat,inv_sigma_hat,IV,txt,~,cut1,cut2,cut3,cut4]...
-    =bear.loadIV(betahat,k,n,Y,X,T,p,names,startdate,enddate,strctident,pref);
+    = bear.loadIV(betahat,k,n,Y,X,T,p,dates,startdate,enddate,strctident,pref);
 
 % IV routine
 [beta_draws,sigma_draws,~,~,D_draws,gamma_draws,irf_storage,ETA_storage,It,Bu]=...
-    bear.irfIV_MH(EPSIV,IVcut,betahat,sigmahatIV,sigma_hat,inv_sigma_hat,IV,txt,cut1,cut2,cut3,cut4,names,It,Bu,n,arvar,lambda1,lambda3,lambda4,m,p,k,q,X,Y,T,startdate,enddate,pref,strctident,IRFperiods,IRFt);
+    bear.irfIV_MH(EPSIV,IVcut,betahat,sigmahatIV,sigma_hat,inv_sigma_hat,IV,txt,cut1,cut2,cut3,cut4,dates,It,Bu,n,arvar,lambda1,lambda3,lambda4,m,p,k,q,X,Y,T,startdate,enddate,pref,strctident,IRFperiods,IRFt);
 
 % reorganise
 Acc=It-Bu;
