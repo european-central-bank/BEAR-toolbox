@@ -116,7 +116,7 @@ end
 
 if CFt==2
     % load the data from Excel
-    [~, ~, strngs]=xlsread(pref.excelFile,'shocks');
+    [~, ~, strngs]=xlsread(pref.data.InputFile,'shocks');
     % replace NaN entries by blanks
     strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
     % convert potential numeric entries into strings
@@ -189,7 +189,7 @@ if CFt==2
     % initiate the cfblocks matrix
     cfblocks=zeros(Fperiods,numendo);
     % load the data from Excel
-    [~, ~, strngs]=xlsread(pref.excelFile,'blocks');
+    [~, ~, strngs]=xlsread(pref.data.InputFile,'blocks');
     % replace NaN entries by blanks
     strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
     % convert potential numeric entries into strings
@@ -266,7 +266,7 @@ end
 
 if CFt==4
     % load the data from Excel
-    [~, ~, strngs]=xlsread(pref.excelFile,'intervals');
+    [~, ~, strngs]=xlsread(pref.data.InputFile,'intervals');
     % replace NaN entries by blanks
     strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
     % convert potential numeric entries into strings

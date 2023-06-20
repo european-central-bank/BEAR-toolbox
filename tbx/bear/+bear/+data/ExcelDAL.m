@@ -172,29 +172,14 @@ classdef ExcelDAL < bear.data.BEARDAL
 end
 
 function tt = makeTimeTable(tb)
+
     dates = tb{:,1};
-    firstDate = tb{1,1};
-    
-    if contains(firstDate, "y") % Yearly data
-        dates = datetime(dates,'InputFormat',"yyyy'y'", 'Format','yyyy');
+    dates = bear.data.dateParser(dates);
+    if isdatetime(dates)
         tt = table2timetable(tb(:,2:end), "RowTimes",  dates);
-
-    elseif contains(firstDate, "q") % Quarterly data
-        dates = datetime(dates, 'InputFormat','yyyyQQQ','Format','yyyy''q''Q');
-        tt = table2timetable(tb(:,2:end), "RowTimes",  dates);
-
-    elseif contains(firstDate, "m") % Monthly data
-        dates = datetime(dates,'InputFormat',"yyyy'm'MM", 'Format','yyyy''m''MM');
-        tt = table2timetable(tb(:,2:end), "RowTimes",  dates);
-
-    elseif contains(firstDate, 'd') % Daily data
-        dates = datetime(dates,'InputFormat',"uuuu'd'DD", 'Format','yyyy''d''dd');
-        tt = table2timetable(tb(:,2:end), "RowTimes",  dates);
-
-    else % Weekly and unspecified are not supported yet
+    else
         tb.Properties.VariableNames{1} = 'Time';
         tt = tb;
-
     end
 
 end

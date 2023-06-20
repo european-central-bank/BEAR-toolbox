@@ -280,8 +280,10 @@ else
         Fstartlocation=find(strcmp(datestrings,Fstartdate));
         % if the start date is not recognised, return an error message
         if isempty(Fstartlocation)==1
-            msgbox('Error: unknown start date for the forecasts. Select a date within a sample, or select "Start forecasts after last sample period"');
-            error('unknown start date for the forecasts');
+            
+            message = "Error: unknown start date for the forecasts. Select a date within a sample, or select ""Start forecasts after last sample period""";
+            error('BEARmain:gensample:ForecastStartDateUnknown',message);
+            
         end
     end
 
