@@ -5,7 +5,6 @@ function [cfconds, cfshocks, cfblocks, cfintervals]=loadcf(endo,CFt,Fstartdate,F
 numendo=size(endo,1);
 
 % initiate the cells
-cfconds={};
 cfshocks={};
 cfblocks=[];
 cfintervals={};
@@ -140,7 +139,8 @@ if CFt==2
     rows(2,1)=temp;
 
     cfshocks = Shocks(rows(1):rows(2),:);
-    cfshocks = bear.utils.parseTableContent(cfshocks{:,:});
+    cfshocks = num2cell(cfshocks{:,:});
+    cfshocks(cellfun(@isnan, cfshocks)) = {[]};
 
     %% recover the cfblocks matrix (only for shock-specific conditional forecasts)
 
