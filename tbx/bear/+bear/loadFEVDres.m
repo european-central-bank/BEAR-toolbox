@@ -5,7 +5,7 @@ function [FEVDrestable,FEVDresperiods,signreslabels,strctident,favar]=loadFEVDre
 
 % initiate the cells FEVDrestable and FEVDresperiods
 FEVDrestable = bear.utils.parseTableContent(pref.data.FEVDResValues{:,2:end});
-FEVDresperiods = bear.utils.parseTableContent(pref.data.FEVDResPeriods{:,2:end});
+FEVDresperiods = cell(n,n);
 signreslabels = strctident.signreslabels;
 signreslabels_shocksindex=strctident.signreslabels_shocksindex;
 
@@ -73,13 +73,7 @@ else % if we found something in the table then the FEVD res routine is activated
 
     % now recover the values for the cell signresperiods
     % loop over endogenous (rows)
-    for ii=1:n
-        % loop over endogenous (columns)
-        for jj=1:n
-            % record the value
-            FEVDresperiods{ii,jj}=str2num(strngs2{rows2(ii,1),clmns2(jj,1)});
-        end
-    end
+    FEVDresperiods = bear.utils.parseTableContent(pref.data.FEVDResPeriods{:,2:end});   
 
     % erase first column in the restriction table for IV shock
     if IRFt==6
@@ -90,7 +84,7 @@ else % if we found something in the table then the FEVD res routine is activated
                 for ll=1:size(FEVDresperiods,1)
                     FEVDresperiods{ll,ii}='';
                 end
-                message=['The restrictions in the first column of the "FEVD res periods" table are ignored. This is the IV shock.'];
+                message = "The restrictions in the first column of the ""FEVD res periods"" table are ignored. This is the IV shock.";
                 msgbox(message,'FEVD restriction warning');
             end
         end

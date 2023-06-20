@@ -37,11 +37,16 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
     %    FEVDband        - confidence level for forecast error variance decomposition
     %    HDband          - confidence level for historical decomposition
     
-    properties (SetAccess = private)
-        
+    properties (SetAccess = private)        
         VARtype   bear.VARtype = bear.VARtype.empty      % VAR model selected (1=OLS VAR, 2=BVAR, 3=mean-adjusted BVAR, 4=panel Bayesian VAR, 5=Stochastic volatility BVAR, 6=Time varying)
-        Exporter bear.data.BEARExporter = bear.data.BEARExcelWriter % Exported object to write all BEAR data
-        
+    end
+
+    properties (SetAccess = private)
+        Exporter bear.data.BEARExporter = bear.data.BEARExcelWriter % Exported object to write all BEAR data        
+    end
+
+    properties (Access = private)
+        DAL (:,1) bear.data.BEARDAL = bear.data.ExcelDAL.empty(); % Data Access Layer for BEAR
     end
     
     properties
@@ -53,8 +58,6 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
         varexo                  = '';                    % exogenous variables, if any; must be a single string, with variable names separated by a space
         lags      (1,1) double  = 4;                     % number of lags
         const     (1,1) logical = true;                  % inclusion of a constant (1=yes, 0=no)
-        
-        data         (:,1) bear.data.BEARDAL = bear.data.ExcelDAL.empty(); % Data Access Layer used for the inputs
         
         results      (1,1) logical = true;               % save the results in the excel file (true/false)
         plot         (1,1) logical = true;               % plot the results (true/false)
@@ -78,6 +81,8 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
     properties (Dependent)
         results_path %(1,:) char = pwd();                 % path where there results file is stored
         results_sub  %(1,:) char = 'results';             % name of the results file
+
+        data
 
         FEVD       % activate forecast error variance decomposition (1=yes, 0=no)
         HD         % activate historical decomposition (1=yes, 0=no)
@@ -140,6 +145,18 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
 
         function name = get.results_sub(obj)
             [~, name, ~] = fileparts(obj.Exporter.FileName);
+        end
+
+        function value = get.data(obj)
+            value = obj.DAL;
+        end
+
+        function obj = set.data(obj, value)
+            if isstring(value)
+                obj.DAL = bear.data.ExcelDAL(value);
+            elseif isa(value, 'bear.data.BEARDAL')
+                obj.DAL = value;
+            end
         end
 
         function results_path = get.results_path(obj)

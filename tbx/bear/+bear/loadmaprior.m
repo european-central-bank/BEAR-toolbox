@@ -40,7 +40,7 @@ chvar = zeros(1, numendo);
 % needs to be generalized (for now only first regime and first variable)
 for ii=1:numendo
     if ~isempty(regime1{ii})
-        chvar(ii,1)=1;
+        chvar(ii)=1;
     end
 end
 

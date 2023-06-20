@@ -118,7 +118,8 @@ classdef replicationTests < matlab.unittest.TestCase
             
             % and the settings file 
             s = bear_settings_CH2019_test(excelPath);
-            
+            s.Debug = false;
+
             % run BEAR
             BEARmain(s);
             
@@ -143,7 +144,8 @@ classdef replicationTests < matlab.unittest.TestCase
             
             % and the settings
             s = bear_settings_WGP2016_test(excelPath);
-                        
+            s.Debug = false;
+            
             % run BEAR
             BEARmain(s);
             

@@ -1,4 +1,4 @@
-function [beta0 omega0 psi0 lambda0 r]=maprior(ar,arvar,lambda1,lambda2,lambda3,lambda4,lambda5,n,m,p,k1,q1,q2,bex,blockexo,Fpconfint,Fpconfint2,chvar,regimeperiods,Dmatrix,equilibrium,data_endo,priorf)
+function [beta0, omega0, psi0, lambda0, r]=maprior(ar,arvar,lambda1,lambda2,lambda3,lambda4,lambda5,n,m,p,k1,q1,q2,bex,blockexo,Fpconfint,Fpconfint2,chvar,regimeperiods,Dmatrix,equilibrium,data_endo,priorf)
 
 
 
