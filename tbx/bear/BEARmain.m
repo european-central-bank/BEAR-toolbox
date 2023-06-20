@@ -61,7 +61,10 @@ try
         'workspace', opts.workspace, ...
         'exporter', opts.Exporter);
 
-    % pref.exporter.FileName = fullfile(pref.results_path, pref.results_sub);
+    if ~isfolder(pref.results_path) && ~isempty(pref.results_path)
+        mkdir(pref.results_path)
+    end
+
     
     favar = bear.utils.initializeFavarResults(opts);
 
@@ -392,10 +395,10 @@ try
 
     % load sign and magnitude restrictions table, relative magnitude restrictions table, FEVD restrictions table
     if IRFt==4 || IRFt==6
-        [signrestable,signresperiods,signreslabels,strctident,favar]=bear.loadsignres(n,endo,pref,favar,IRFt,strctident);
-        [relmagnrestable,relmagnresperiods,signreslabels,strctident,favar]=bear.loadrelmagnres(n,endo,pref,favar,IRFt,strctident);
+        [signrestable,signresperiods,signreslabels,strctident,favar]=bear.loadsignres(n,pref,favar,IRFt,strctident);
+        [relmagnrestable,relmagnresperiods,signreslabels,strctident,favar]=bear.loadrelmagnres(n,pref,favar,IRFt,strctident);
         [FEVDrestable,FEVDresperiods,signreslabels,strctident,favar]=bear.loadFEVDres(n,endo,pref,favar,IRFt,strctident);
-        [strctident,signreslabels]=bear.loadcorrelres(strctident,endo,names,startdate,enddate,lags,n,IRFt,favar,pref);
+        [strctident,signreslabels]=bear.loadcorrelres(strctident,endo,data.Time,startdate,enddate,lags,n,IRFt,favar,pref);
     end
 
 
@@ -691,7 +694,7 @@ try
             if opts.prior~=61
                 [Bhat, betahat, sigmahat, X, Xbar, Y, y, EPS, eps, n, m, p, T, k, q]=bear.olsvar(data_endo,data_exo,const,lags);
             elseif opts.prior==61 % other preliminary steps for Mean-adjusted model (prior=61)
-                [Y, X, Z, n, m, p, T, k1, k3, q1, q2, q3]=bear.TVEmaprelim(data_endo,data_exo,const,lags,regimeperiods,names);
+                [Y, X, Z, n, m, p, T, k1, k3, q1, q2, q3]=bear.TVEmaprelim(data_endo,lags,regimeperiods,string(data.Time));
                 k=k1; %for some rountines
                 q=q1+q2;
                 %m=0;
@@ -995,7 +998,7 @@ try
                     [OLS_Bhat, OLS_betahat, OLS_sigmahat, OLS_forecast_estimates, biclag]=bear.arbicloop(data_endo,data_endo_a,const,p,n,m,Fperiods,Fband);
                     %%%%% I think we can merge both forecast files
                     if opts.prior~=61
-                        [Forecasteval]=bear.bvarfeval(data_endo_c,data_endo_c_lags,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,opts.It,opts.Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,names,endo,pref);
+                        [Forecasteval]=bear.bvarfeval(data_endo_c,data_endo_c_lags,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,opts.It,opts.Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,string(data.Time(end)),endo,pref);
                     elseif opts.prior==61
                         [Forecasteval]=bear.TVEmafeval(data_endo_a,data_endo_c,data_endo_c_lags,data_exo_c,data_exo_c_lags,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,m,p,k1,k3,opts.It,opts.Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,names,endo,pref,theta_gibbs,TVEHfuture,ss_record,indH);
                     end

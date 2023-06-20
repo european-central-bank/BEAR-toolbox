@@ -1,50 +1,13 @@
-function [signrestable,signresperiods,signreslabels,strctident,favar]=loadsignres(n,endo,pref,favar,IRFt,strctident)
+function [signrestable,signresperiods,signreslabels,strctident,favar]=loadsignres(n,pref,favar,IRFt,strctident)
 
 % preliminary tasks
 
 % initiate the cells signrestable, signresperiods and signreslabels
-signrestable = cellstr(pref.data.SignResValues{:,2:end});
-signresperiods = cellstr(pref.data.SignResPeriods{:,2:end});
+signrestable = bear.utils.parseTableContent(pref.data.SignResValues{:,2:end});
+signresperiods = bear.utils.parseTableContent(pref.data.SignResPeriods{:,2:end});
 signreslabels = pref.data.SignResValues.Properties.VariableDescriptions(2:end)';
 
-% signresperiods=cell(n,n);
-% signreslabels=cell(n,1);
-
 signreslabels_shocksindex=[];
-% load the data from Excel
-% sign restrictions values
-strngs2 = pref.data.SignResPeriods;
-[~,~,strngs2]=xlsread(pref.data.InputFile,'sign res periods');
-% replace NaN entries by blanks
-strngs2(cellfun(@(x) any(isnan(x)),strngs2))={[]};
-% convert all numeric entries into strings
-strngs2(cellfun(@isnumeric,strngs2))=cellfun(@num2str,strngs2(cellfun(@isnumeric,strngs2)),'UniformOutput',0);
-
-% empty strngs2 columns and rows, to make sure empty rows (with empty strings) are dismissed
-for ii=1:size(strngs2,1) %rows
-    strngs2emptyrows(ii,1)=isempty(cat(2,strngs2{ii,:}));
-end
-strngs2emptyrows_index=find(strngs2emptyrows==0);
-
-for ii=1:size(strngs2,2) %columns
-    strngs2emptycolumns(1,ii)=isempty(cat(2,strngs2{:,ii}));
-end
-strngs2emptycolumns_index=find(strngs2emptycolumns==0);
-%
-strngs2=strngs2(strngs2emptyrows_index,strngs2emptycolumns_index);
-
-% [nerows1,neclmns1]=find(~cellfun('isempty',strngs1));
-[nerows2,neclmns2]=find(~cellfun('isempty',strngs2));
-% count the number of such entries
-neentries2=size(nerows2,1);
-% all these entries contrain strings: fix them to correct potential user formatting errors
-% loop over entries (value table)
-
-% loop over entries (period table)
-for ii=1:neentries2
-    strngs2{nerows2(ii,1),neclmns2(ii,1)}=bear.utils.fixstring(strngs2{nerows2(ii,1),neclmns2(ii,1)});
-end
-
 
 %% check if sign, zero, magntiude restrictions are activated at all
 % check for empty columns in signrestable
@@ -123,7 +86,7 @@ else % if we found something in the table then the sign res routine is activated
                 for ll=1:size(signresperiods,1)
                     signresperiods{ll,ii}='';
                 end
-                message=['The restrictions in the first column of the "sign res periods" table are ignored. This is the IV shock.'];
+                message= "The restrictions in the first column of the ""sign res periods"" table are ignored. This is the IV shock.";
                 msgbox(message,'Sign restriction warning');
             end
         end
@@ -326,17 +289,13 @@ else % if we found something in the table then the sign res routine is activated
             strctident.favar_Mucell=cell(1,n);
             strctident.favar_Zcell=cell(1,n);
 
-
-
             % assuming that the variables in the periods table here are identical to the variables in the value table
             % now recover the values for the cell favar.signrestable
             for ii=1:favar.nsignresX % loop over restricted information variables
                 for jj=1:n % loop over endogenous (columns)
-                    favar.signresperiods{ii,jj}=str2num(strngs2{max(rows2)+ii,clmns2(jj,1)});
+                    favar.signresperiods{ii,jj} = signresperiods{ii,jj};
                 end
             end
-
-
 
             % now identify all the periods concerned with favar restrictions
             % first expand the non-empty entries in favar.signresperiods since they are only expressed in intervals: transform into list
@@ -508,10 +467,8 @@ else % if we found something in the table then the sign res routine is activated
 
     % finally, record on Excel
     if pref.results==1
-        pref.exporter.writeSignResValues(strngs1)
-        pref.exporter.writeSignResPeriods(strngs2)
-        % bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs1,'sign res values','B2');
-        % bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs2,'sign res periods','B2');
+        pref.exporter.writeSignResValues(pref.data.SignResValues)
+        pref.exporter.writeSignResPeriods(pref.data.SignResPeriods)
     end
-    
+
 end

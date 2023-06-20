@@ -60,11 +60,11 @@ classdef ExcelDAL < bear.data.BEARDAL
         end
 
         function data = readFEVDResValues(obj)
-            data = obj.doRead("FEVD res values", "B3");
+            data = obj.doRead("FEVD res values", "B3", ExpectedNumVariables = 1 + obj.NumEndo, VariableDescriptionsRange = 2);
         end
 
         function data = readFEVDResPeriods(obj)
-            data = obj.doRead("FEVD res periods", "B3");
+            data = obj.doRead("FEVD res periods", "B3", ExpectedNumVariables = 1 + obj.NumEndo, VariableDescriptionsRange = 2);
         end
 
         function data = readGrid(obj)
@@ -130,11 +130,11 @@ classdef ExcelDAL < bear.data.BEARDAL
         end
 
         function data = readRelMagnResPeriods(obj)
-            data = obj.doRead("relmagn res periods", "B3");
+            data = obj.doRead("relmagn res periods", "B3", ExpectedNumVariables = 1+obj.NumEndo, VariableDescriptionsRange = 2);
         end
 
         function data = readRelMagnResValues(obj)
-            data = obj.doRead("relmagn res values", "B3");
+            data = obj.doRead("relmagn res values", "B3", ExpectedNumVariables = 1+obj.NumEndo, VariableDescriptionsRange = 2);
         end
 
         function data = readShocks(obj)

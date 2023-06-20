@@ -98,17 +98,9 @@ end
 
 % now create the matrix of endogenous variables for the estimation sample
 % it is simply the concatenation of the vectors of each endogenous variables, over the selected sample dates
-data_endo=[];
-% loop over endogenous variables
-for ii=1:numendo
-    data_endo=[data_endo data(:,endolocation(ii,1))];
-end
-
+data_endo = data{:,endo};
 % Similarly, create the matrix of exogenous variables for the estimation sample
-data_exo=[];
-for ii=1:numexo
-    data_exo=[data_exo data(startlocation:endlocation,exolocation(ii,1))];
-end
+data_exo  = data{:,exo};
 
 % this NaN test has to be adjustted to the actual endo sample
 % now, as a preliminary step: check if there is any Nan in the data; if yes, return an error since the model won't be able to run with missing data
@@ -399,18 +391,11 @@ else
         data=favar.data_full;
     end
     
-    % now create the matrix of endogenous variables for the pre-forecast period
+     % now create the matrix of endogenous variables for the pre-forecast period
     % it is simply the concatenation of the vectors of each endogenous variables, over the selected sample dates
-    data_endo_a=[];
-    % loop over endogenous variables
-    for ii=1:numendo
-        data_endo_a=[data_endo_a data(1:Fstartlocation-1,endolocation(ii,1))];
-    end
+    data_endo_a = data{1:Fstartlocation-1, endo};
     % also, create the matrix of exogenous variables for the pre-forecast period
-    data_exo_a=[];
-    for ii=1:numexo
-        data_exo_a=[data_exo_a data(1:Fstartlocation-1,exolocation(ii,1))];
-    end
+    data_exo_a  = data{1:Fstartlocation-1, exo};
     
     % create the matrix of endogenous variables for the period common to actual data and forecasts (for forecast evaluation)
     % first, check that there are such common periods: it is the case if the beginning of the forecast period is anterior to the end of the dataset
@@ -431,30 +416,19 @@ else
         end
         
         % create a matrix of endogenous data for the common periods
-        data_endo_c=[];
-        for ii=1:numendo
-            data_endo_c=[data_endo_c data(Fstartlocation:min(dataendlocation,Fendlocation),endolocation(ii,1))];
-        end
+        data_endo_c = data{Fstartlocation:min(dataendlocation,Fendlocation), endo};
         
         % create a lagged matrix of endogenous data prior to the common periods
         % the number of values is equal to "lags"; this will be used for computation of the log predictive score
-        data_endo_c_lags=[];
-        for ii=1:numendo
-            data_endo_c_lags=[data_endo_c_lags data(Fstartlocation-lags:Fstartlocation-1,endolocation(ii,1))];
-        end
+        data_endo_c_lags = data{Fstartlocation-lags:Fstartlocation-1, endo};
         
         % create a matrix of exogenous data for the common periods
-        data_exo_c=[];
-        for ii=1:numexo
-            data_exo_c=[data_exo_c data(Fstartlocation:min(dataendlocation,Fendlocation),exolocation(ii,1))];
-        end
+        data_exo_c = data{Fstartlocation:min(dataendlocation,Fendlocation), exo};
         
         % create a lagged matrix of exogenous data prior to the common periods
         % the number of values is equal to "lags"; this will be used for computation of the log predictive score
-        data_exo_c_lags=[];
-        for ii=1:numexo
-            data_exo_c_lags=[data_exo_c_lags data(Fstartlocation-lags:Fstartlocation-1,exolocation(ii,1))];
-        end
+        data_exo_c_lags = data{Fstartlocation-lags:Fstartlocation-1, exo};
+
         % if there are no common periods, return a scalar value to indicate that forecast evaluation is not possible
     else
         Fcomp=0;

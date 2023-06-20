@@ -153,11 +153,11 @@ classdef BEARExcelWriter < bear.data.BEARFileExporter
             obj.doWriteData(data, Sheet = 'mean-adj prior', Range = 'B2')
         end
 
-        function writeRelmagnResValues(obj, data)
+        function writeRelMagnResValues(obj, data)
             obj.doWriteData(data, Sheet = 'relmagn res values', Range = 'B2')
         end
 
-        function writeRelmagnResperiods(obj, data)
+        function writeRelMagnResperiods(obj, data)
             obj.doWriteData(data, Sheet = 'relmagn res periods', Range = 'B2')
         end
 

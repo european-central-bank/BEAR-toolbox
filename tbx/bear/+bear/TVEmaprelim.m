@@ -1,7 +1,4 @@
-function [Y, X, Z, n, m, p, T, k1, k3, q1, q2, q3,X1,Y1,data_exo]=TVEmaprelim(data_endo,data_exo,const,lags,regimeperiods,names)
-
-
-
+function [Y, X, Z, n, m, p, T, k1, k3, q1, q2, q3,X1,Y1,data_exo]=TVEmaprelim(data_endo,lags,regimeperiods,datestrings)
 % function [Y X Z n m p T k1 k3 q1 q2 q3]=maprelim(data_endo,data_exo,const,lags)
 % creates the preliminary values necessary for all the subsequent computations
 % inputs:  - matrix 'data_endo': the matrix storing the endogenous time series data used to estimate the model
@@ -37,9 +34,9 @@ n=size(data_endo,2);
 if isempty(regimeperiods)
     data_exo=[ones(size(data_endo,1),1)];
 else
-data_exo=[ones(size(data_endo,1),1) zeros(size(data_endo,1),1)];
-data_exo(find(strcmp(names(2:end,1),regimeperiods(1))):find(strcmp(names(2:end,1),regimeperiods(2))),2)=1;
-data_exo(find(strcmp(names(2:end,1),regimeperiods(1))):find(strcmp(names(2:end,1),regimeperiods(2))),1)=0;
+    data_exo=[ones(size(data_endo,1),1) zeros(size(data_endo,1),1)];
+    data_exo(find(strcmp(datestrings,regimeperiods(1))):find(strcmp(datestrings,regimeperiods(2))),2)=1;
+    data_exo(find(strcmp(datestrings,regimeperiods(1))):find(strcmp(datestrings,regimeperiods(2))),1)=0;
 end
 
 % then compute m, the number of exogenous variables in the model, defined p77
@@ -95,8 +92,3 @@ data_exo=Z;
 % % % y=Y(:);
 % % % Xbar=kron(eye(n),X);
 % % % Zbar=kron(eye(n),Z);
-
-
-
-
-

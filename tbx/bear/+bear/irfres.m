@@ -769,7 +769,7 @@ end
 %%%%% save Xg and Yg and Loadings????
 
 %% print accepted draws in command window and results file
-filelocation=fullfile(pref.results_path, [pref.results_sub '.txt']);
+filelocation=fullfile(pref.results_path, pref.results_sub + ".txt");
 fid=fopen(filelocation,'at');
 
 fprintf('%s\n','');

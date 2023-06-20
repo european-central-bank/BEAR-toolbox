@@ -77,6 +77,7 @@ classdef replicationTests < matlab.unittest.TestCase
             
             % and the settings:
             s = bear_settings_test(excelPath);
+            s.Debug = false;
             
             % run BEAR
             BEARmain(s);
@@ -94,6 +95,7 @@ classdef replicationTests < matlab.unittest.TestCase
             
             % and the settings
             s = bear_settings_61_test(excelPath);
+            s.Debug = false;
             
             % run BEAR
             BEARmain(s);
@@ -179,13 +181,34 @@ classdef replicationTests < matlab.unittest.TestCase
                 fld = f{1};
                 if ~ismember(fld, tc.ToAvoid)
                     if isfield(currentResults, fld)
-                        tc.verifyEqual(currentResults.(fld), previousResults.(fld),'RelTol',tc.RelTol,'AbsTol',tc.AbsTol);
+
+                        res = currentResults.(fld);
+                        prev = previousResults.(fld);
+
+                        if iscell(res) && iscell(prev)
+                            cellfun(@(x, y) tc.doCompare(x,y), res, prev)
+                        else
+                            tc.doCompare(res, prev)
+                        end
+
                     end
                 end
             end
             
         end
-        
+
+        function doCompare(tc, res, prev)
+
+            if isempty(res)
+                tc.verifyEmpty(res, prev)
+            elseif istabular(res) && ~istabular(prev)
+                tc.verifyEqual(res{:,:}, prev)
+            else
+                tc.verifyEqual(res, prev,'RelTol',tc.RelTol,'AbsTol',tc.AbsTol);
+            end
+
+        end
+
     end
 % This replications take extremely long, they will be not part of the tests for now.
 %     methods (Test)

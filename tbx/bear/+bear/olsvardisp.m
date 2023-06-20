@@ -83,7 +83,7 @@ bic=-2*(loglik/T)+q*log(T)/T;
 
 % preliminary task: create and open the txt file used to save the results
 
-filelocation=fullfile(pref.results_path, [pref.results_sub '.txt']);
+filelocation=fullfile(pref.results_path,pref.results_sub + ".txt");
 fid=fopen(filelocation,'wt');
 
 % print toolbox header

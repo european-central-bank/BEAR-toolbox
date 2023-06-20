@@ -1,4 +1,4 @@
-function [strctident,signreslabels]=loadcorrelres(strctident,endo,names,startdate,enddate,lags,n,IRFt,favar,pref)
+function [strctident,signreslabels]=loadcorrelres(strctident,endo,dates,startdate,enddate,lags,n,IRFt,favar,pref)
 
 signreslabels=strctident.signreslabels;
 signreslabels_shocksindex=strctident.signreslabels_shocksindex;
@@ -144,7 +144,7 @@ else
         IVcorrel = IVcorrel(:, IVnum);
         IVcorrel = IVcorrel(~isnan(IVcorrel));
         txtcorrel = txtcorrel(2:length(IVcorrel)+1,1);              % drop IV names from txt
-        date = names(2:end,1);                                   %get the datevector of the VAR
+        date = dates;                                   %get the datevector of the VAR
         startlocationY_in_Y=find(strcmp(date,startdate));        %location of sample startdate in Y datevector
         endlocationY_in_Y=find(strcmp(date,enddate));            %location of sample enddate in Y datevector
         date = date(startlocationY_in_Y+lags:endlocationY_in_Y,:);  %cut datevector of Y such that it corresponds to the time dates used in the VAR
