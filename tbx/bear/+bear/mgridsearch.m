@@ -18,7 +18,7 @@ lambda2=[];
 lambda3=[];
 lambda4=[];
 
-gridOptions = readmatrix(opts.excelFile, 'Sheet', 'grid', 'Range', 'C10:C11');
+gridOptions = readmatrix(opts.data.InputFile, 'Sheet', 'grid', 'Range', 'C10:C11');
 optimizeGridSearch = gridOptions(1);
 if isnan(optimizeGridSearch) || ~isnumeric(optimizeGridSearch)
     optimizeGridSearch = 0;

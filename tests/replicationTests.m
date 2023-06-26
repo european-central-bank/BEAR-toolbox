@@ -162,6 +162,7 @@ classdef replicationTests < matlab.unittest.TestCase
             
             % and the settings
             s = bear_settings_BvV2018_test(excelPath);
+            s.Debug = false;
             
             % run BEAR
             BEARmain(s);
