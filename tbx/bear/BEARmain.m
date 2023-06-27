@@ -354,7 +354,6 @@ try
     n=numel(endo);
     opts.data.NumEndo = n; 
     opts.data.NumExo = numel(exo);
-    opts.data.reload(); % For now, always reload
 
     % generate the different sets of data
     % if the model is the OLS VAR,
