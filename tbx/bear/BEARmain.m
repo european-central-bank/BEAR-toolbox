@@ -53,7 +53,7 @@ try
 
     const = opts.const;
 
-    pref = struct('excelFile', opts.excelFile, ...
+    pref = struct('data', opts.data, ...
         'results_path', opts.results_path, ...
         'results_sub', opts.results_sub, ...
         'results', opts.results, ...
@@ -221,21 +221,7 @@ try
 
     % first recover the names of the different endogenous variables;
     % to do so, separate the string 'varendo' into individual names
-    % look for the spaces and identify their locations
-    findspace=isspace(varendo);
-    locspace=find(findspace);
-    % use this to set the delimiters: each variable string is located between two delimiters
-    delimiters=[0 locspace numel(varendo)+1];
-    % count the number of endogenous variables
-    % first count the number of spaces
-    nspace=sum(findspace(:)==1);
-    % each space is a separation between two variable names, so there is one variable more than the number of spaces
-    numendo=nspace+1;
-    % now finally identify the endogenous
-    endo=cell(numendo,1);
-    for ii=1:numendo
-        endo{ii,1}=varendo(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
-    end
+    endo = strsplit(strtrim(varendo), " ")';    
 
     % FAVAR: additional strings
     if favar.FAVAR==1
@@ -326,19 +312,11 @@ try
 
     % proceed similarly for exogenous series; note however that it may be empty
     % so check first whether there are exogenous variables altogether
-    if isempty(varexo==1)
+    if isempty(varexo)
         exo={};
         % if not empty, repeat what has been done with the exogenous
     else
-        findspace=isspace(varexo);
-        locspace=find(findspace);
-        delimiters=[0 locspace numel(varexo)+1];
-        nspace=sum(findspace(:)==1);
-        numexo=nspace+1;
-        exo=cell(numexo,1);
-        for ii=1:numexo
-            exo{ii,1}=varexo(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
-        end
+        exo = strsplit(strtrim(varexo), " ")';
     end
 
     % finally, if applicable, recover the names of the different units
@@ -370,7 +348,9 @@ try
     bear.initexcel(pref);
 
     % count the number of endogenous variables
-    n=size(endo,1);
+    n=numel(endo);
+    opts.data.NumEndo = n; 
+    opts.data.NumExo = numel(exo);
 
     % generate the different sets of data
     % if the model is the OLS VAR,
@@ -379,7 +359,7 @@ try
             =bear.gensampleols(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,favar,IRFt, n);
         % if the model is the Bayesian VAR, the mean-adjusted BVAR, the stochastic volatility BVAR, ot the time-varying BVAR:
     elseif VARtype==2 || VARtype==5 || VARtype==6
-        [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4,favar]...
+        [data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4,favar]...
             =bear.gensample(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,opts.ar,opts.lambda4,opts.PriorExcel,opts.priorsexogenous,pref,favar,IRFt, n);
         % else, if the model is the panel BVAR
     elseif VARtype==4
@@ -472,7 +452,7 @@ try
     %-----------------------|
 
     % generate the strings and decimal vectors of dates
-    [decimaldates1,decimaldates2,stringdates1,stringdates2,stringdates3,Fstartlocation,Fendlocation]=bear.gendates(names,lags,frequency,startdate,enddate,Fstartdate,Fenddate,Fcenddate,Fendsmpl,F,CF,favar);
+    [decimaldates1,decimaldates2,stringdates1,stringdates2,stringdates3,Fstartlocation,Fendlocation]=bear.gendates(data,lags,frequency,startdate,enddate,Fstartdate,Fenddate,Fcenddate,Fendsmpl,F,CF,favar);
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
