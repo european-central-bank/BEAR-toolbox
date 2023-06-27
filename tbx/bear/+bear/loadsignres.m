@@ -3,9 +3,9 @@ function [signrestable,signresperiods,signreslabels,strctident,favar]=loadsignre
 % preliminary tasks
 
 % initiate the cells signrestable, signresperiods and signreslabels
-signrestable = bear.utils.parseTableContent(pref.data.SignResValues{:,2:end});
-signresperiods = bear.utils.parseTableContent(pref.data.SignResPeriods{:,2:end});
-signreslabels = pref.data.SignResValues.Properties.VariableDescriptions(2:end)';
+signrestable = bear.utils.parseTableContent(pref.data.SignResValues{1:n,2:n+1});
+signresperiods = bear.utils.parseTableContent(pref.data.SignResPeriods{1:n,2:n+1});
+signreslabels = pref.data.SignResValues.Properties.VariableDescriptions(2:n+1)';
 
 signreslabels_shocksindex=[];
 
