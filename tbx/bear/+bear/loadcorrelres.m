@@ -142,7 +142,7 @@ else
         Index = strcmp(IV.Properties.VariableNames,strctident.CorrelInstrument);           %find the instrument in the IV sheet
         IVcorrel = IV{:, Index};
         IVcorrel = IVcorrel(~isnan(IVcorrel));
-        txtcorrel = IV.Time;              % drop IV names from txt
+        txtcorrel = string(IV.Time);              % drop IV names from txt
         date = dates;                                   %get the datevector of the VAR
         startlocationY_in_Y=find(strcmp(date,startdate));        %location of sample startdate in Y datevector
         endlocationY_in_Y=find(strcmp(date,enddate));            %location of sample enddate in Y datevector

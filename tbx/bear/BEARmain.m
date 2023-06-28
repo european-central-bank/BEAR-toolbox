@@ -397,7 +397,7 @@ try
         [signrestable,signresperiods,signreslabels,strctident,favar]=bear.loadsignres(n,pref,favar,IRFt,strctident);
         [relmagnrestable,relmagnresperiods,signreslabels,strctident,favar]=bear.loadrelmagnres(n,pref,favar,IRFt,strctident);
         [FEVDrestable,FEVDresperiods,signreslabels,strctident,favar]=bear.loadFEVDres(n,endo,pref,favar,IRFt,strctident);
-        [strctident,signreslabels]=bear.loadcorrelres(strctident,endo,data.Time,startdate,enddate,lags,n,IRFt,favar,pref);
+        [strctident,signreslabels]=bear.loadcorrelres(strctident,endo,string(data.Time),startdate,enddate,lags,n,IRFt,favar,pref);
     end
 
 
