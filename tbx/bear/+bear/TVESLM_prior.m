@@ -2,9 +2,12 @@
 %by Ben Schumann (2020)
 
 function [Ys, Yt, Y, data_endo, const, priorValues, dataValues, sizetraining]=...
-    TVESLM_prior(data_endo, data_exo, names, endo, lags, lambda1, lambda2, lambda3, lambda5, ar, bex, dataSLM, namesSLM, datesSLM, const, priorexo, gamma)
+    TVESLM_prior(data_endo, data_exo, endo, lags, lambda1, lambda2, lambda3, lambda5, ar, bex, dataSLM, const, priorexo, gamma)
 %input n, data_endo, data_exo lags, q, lambda1, lambda2, lambda3, lambda5,ar bex,dataSLM, namesSLM, datesSLM, endo, names,n
 %output ys, data_endo, Yt, const, priorValues,dataValues. data.values
+
+namesSLM = dataSLM.Properties.VariableNames;
+dataSLM = dataSLM{:,:};
 
 %% Preliminaries
 p=lags;

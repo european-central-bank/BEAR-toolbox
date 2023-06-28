@@ -1603,10 +1603,10 @@ try
                 % if the Survey Local Mean VAR with stochastic volatility
             elseif opts.stvol==4
                 % load Survey local mean data
-                [dataSLM,datesSLM,namesSLM]=bear.loadSLM(names,data_endo,lags,pref);
+                dataSLM = bear.loadSLM(data.Time, pref);
                 % set priors and preliminaries for local mean model
                 [Ys, Yt, YincLags, data_post_training, const, priorValues, dataValues, sizetraining]=...
-                    bear.TVESLM_prior(data_endo, data_exo, names, endo, lags, opts.lambda1, opts.lambda2, opts.lambda3, opts.lambda5, opts.ar, opts.bex, dataSLM, namesSLM, datesSLM, const, priorexo, opts.gamma);
+                    bear.TVESLM_prior(data_endo, data_exo, endo, lags, opts.lambda1, opts.lambda2, opts.lambda3, opts.lambda5, opts.ar, opts.bex, dataSLM, const, priorexo, opts.gamma);
                 % preliminary OLS VAR to get some important quantities
                 [Bhat, ~, ~, ~, ~, ~, ~, ~, ~, n, ~, p, T, k, q]=bear.olsvar(data_post_training,data_exo,const,lags);
                 % run Gibbs sampler for estimation

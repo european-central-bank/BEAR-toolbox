@@ -36,8 +36,7 @@ else % if we found something in the table then the FEVD res routine is activated
             end
             signreslabels{1,1}=strcat('IV Shock (',strctident.Instrument,')');
             signreslabels_shocksindex(1,1)=1;
-            message=['The restrictions in the first column of the "FEVD res values" table are ignored. This is the IV shock.'];
-            msgbox(message,'FEVD restriction warning');
+            warning('bear:loadFEVDres:FEVDrestrictionwarning',"The restrictions in the first column of the ""FEVD res values"" table are ignored. This is the IV shock.");
         end
     end
 
@@ -73,7 +72,8 @@ else % if we found something in the table then the FEVD res routine is activated
 
     % now recover the values for the cell signresperiods
     % loop over endogenous (rows)
-    FEVDresperiods = bear.utils.parseTableContent(pref.data.FEVDResPeriods{:,2:end});   
+    FEVDresperiods = bear.utils.parseTableContent(pref.data.FEVDResPeriods{:,2:end});
+    FEVDresperiods = cellfun(@str2num, FEVDresperiods, 'UniformOutput',false);
 
     % erase first column in the restriction table for IV shock
     if IRFt==6
@@ -85,7 +85,7 @@ else % if we found something in the table then the FEVD res routine is activated
                     FEVDresperiods{ll,ii}='';
                 end
                 message = "The restrictions in the first column of the ""FEVD res periods"" table are ignored. This is the IV shock.";
-                msgbox(message,'FEVD restriction warning');
+                warning('bear:loadFEVDres:FEVDrestrictionWarning',message);
             end
         end
     end
@@ -154,7 +154,7 @@ else % if we found something in the table then the FEVD res routine is activated
     uniquerows = unique(rowsFEVD);
 
     if length(uniquerows) < length(rowsFEVD)
-        error('Two FEVD restrictions for one variable are not permitted')
+        error('bear:loadFEVDres:multipleFEVDrestrictions','Two FEVD restrictions for one variable are not permitted')
     end
 
     % now identify if the FEVD restrictions are absolute ones or relative ones
@@ -196,8 +196,8 @@ else % if we found something in the table then the FEVD res routine is activated
     elseif isempty(strctident.FEVDperiods)==1
         strctident.FEVDres=0;
         strctident.hbartext_FEVDres='';
-        message=['"FEVD res periods" is empty. FEVD restrcitions are ignored.'];
-        msgbox(message,'FEVD restriction warning');
+        message = '"FEVD res periods" is empty. FEVD restrcitions are ignored.';
+        warning('bear:loadFEVDres:FEVDrestrictionWarning', message)
     else
         strctident.FEVDres=1;
         strctident.hbartext_FEVDres='FEVD, ';
@@ -271,8 +271,8 @@ else % if we found something in the table then the FEVD res routine is activated
                     for ll=1:size(favar.FEVDrestable,1)
                         favar.FEVDrestable{ll,1}='';
                     end
-                    message=['The restrictions in the first column of the "FEVD res values" table are ignored. This is the IV shock.'];
-                    msgbox(message,'FEVD restriction warning (FAVAR)');
+                    message = "The restrictions in the first column of the ""FEVD res values"" table are ignored. This is the IV shock.";
+                    warning('bear:loadFEVDres:FEVDrestrictionWarningFAVAR', message)
                 end
             end
 
@@ -294,8 +294,8 @@ else % if we found something in the table then the FEVD res routine is activated
                         for ll=1:size(strctident.favar_FEVDresperiods,1)
                             strctident.favar_FEVDresperiods{ll,ii}='';
                         end
-                        message=['The restrictions in the first column of the "FEVD res periods" table are ignored. This is the IV shock.'];
-                        msgbox(message,'FEVD restriction warning (FAVAR)');
+                        message = "The restrictions in the first column of the ""FEVD res periods"" table are ignored. This is the IV shock.";
+                        warrning('bear:loadFEVDres:FEVDrestrictionWarningFAVAR', message)
                     end
                 end
             end
@@ -325,7 +325,7 @@ else % if we found something in the table then the FEVD res routine is activated
             favar_uniquerows = unique(favar_rowsFEVD);
 
             if length(favar_uniquerows) < length(favar_rowsFEVD)
-                error('Two FEVD restrictions (FAVAR) for one variable are not permitted.')
+                error("bear:loadFEVDres:multipleFEVDrestrictions",'Two FEVD restrictions (FAVAR) for one variable are not permitted.')
             end
 
             %now identify if the FEVD restrictions are absolute ones or relative ones
@@ -436,7 +436,7 @@ else % if we found something in the table then the FEVD res routine is activated
 
     % finally, record on Excel
     if pref.results==1
-        pref.exporter.writeFEVDResValues
-        pref.exporter.writeFEVDResPeriods
+        pref.exporter.writeFEVDResValues(pref.data.FEVDResValues)
+        pref.exporter.writeFEVDResPeriods(pref.data.FEVDResPeriods)
     end
 end

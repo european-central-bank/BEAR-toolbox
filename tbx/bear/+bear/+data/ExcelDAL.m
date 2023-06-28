@@ -37,7 +37,7 @@ classdef ExcelDAL < bear.data.BEARDAL
         end
 
         function data = readConditions(obj)
-            data = obj.detectAndRead("conditions", VariableNamesRange = "B2", DataRange = "B3", ExpectedNumVariables = obj.NumEndo + 1);
+            data = obj.detectAndReadDoubleOnly("conditions", true, VariableNamesRange = "B2", DataRange = "B3", ExpectedNumVariables = obj.NumEndo + 1);
             data = makeTimeTable(data);
         end
 
@@ -174,6 +174,22 @@ classdef ExcelDAL < bear.data.BEARDAL
             if ismember(sheetname, obj.Sheets)
                 opts = detectImportOptions(obj.InputFile, varargin{:}, FileType = "spreadsheet", Sheet=sheetname, TextType = 'string', VariableNamingRule='preserve');
                 opts.VariableTypes = repmat({'string'}, size(opts.VariableTypes));
+                data = obj.doRead(opts);
+            else
+                error('bear:data:ExcelDataAccessLayer', 'The excel file: \n  "%s" \nis missing the sheet %s', obj.InputFile, sheetname)
+            end
+
+        end
+
+        function data= detectAndReadDoubleOnly(obj, sheetname, isTT, varargin)
+
+            if ismember(sheetname, obj.Sheets)
+                opts = detectImportOptions(obj.InputFile, varargin{:}, FileType = "spreadsheet", Sheet=sheetname, TextType = 'string', VariableNamingRule='preserve');
+                if isTT %if is timetable only set double to the 2 end.
+                    opts.VariableTypes(:,2:end) =  repmat({'double'}, [1, numel(opts.VariableTypes) - 1]);
+                else
+                    opts.VariableTypes = repmat({'double'}, size(opts.VariableTypes));
+                end
                 data = obj.doRead(opts);
             else
                 error('bear:data:ExcelDataAccessLayer', 'The excel file: \n  "%s" \nis missing the sheet %s', obj.InputFile, sheetname)

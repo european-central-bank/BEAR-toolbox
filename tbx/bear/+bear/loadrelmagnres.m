@@ -4,7 +4,7 @@ function [relmagnrestable,relmagnresperiods,signreslabels,strctident,favar]=load
 
 % initiate the cells relmagrestable and relmagresperiods
 relmagnrestable= bear.utils.parseTableContent(pref.data.RelMagnResValues{:,2:end});
-relmagnresperiods = cellfun(@str2num, bear.utils.parseTableContent(pref.data.RelMagnResPeriods{:,2:end}), 'UniformOutput', false);
+relmagnresperiods = cell(n,n);
 signreslabels=strctident.signreslabels;
 signreslabels_shocksindex=strctident.signreslabels_shocksindex;
 
@@ -41,7 +41,9 @@ else % if we found something in the table then the relmagn routine is activated
             msgbox(message,'Relative magnitude restriction warning');
         end
     end
-    
+    %% relative magnitude restriction periods  
+    relmagnresperiods = cellfun(@str2num, bear.utils.parseTableContent(pref.data.RelMagnResPeriods{:,2:end}), 'UniformOutput', false);
+
     % erase first column in the restriction table for IV shock
     if IRFt==6
         % check for empty columns in sign res table

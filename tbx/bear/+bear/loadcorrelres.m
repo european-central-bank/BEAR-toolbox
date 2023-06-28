@@ -31,8 +31,8 @@ else
     
     
     % check if we have IV correlation restrictions
-    [IVcorrel,txtcorrel]=xlsread(pref.excelFile,'IV');
-    checkCorrelInstrument_index=ismember(txtcorrel(1,2:end),strctident.CorrelInstrument);
+    IV = pref.data.IV;
+    checkCorrelInstrument_index=ismember(IV.Properties.VariableNames, strctident.CorrelInstrument);
     checkCorrelShock_index=ismember(strctident.signreslabels,strctident.CorrelShock); %%%%% evt. change to strcmp loop
     
     %% we might have a correl shock only (no other restrictions), identify
@@ -139,11 +139,10 @@ else
         % label is provided in the res sheets in the excel file
         strctident.CorrelShock_index=find(checkCorrelShock_index); %save index
         strctident.checkCorrelInstrumentShock=1;
-        Index = strcmp(txtcorrel(1,:),strctident.CorrelInstrument);           %find the instrument in the IV sheet
-        IVnum = find(Index==1, 1, 'first')-1;
-        IVcorrel = IVcorrel(:, IVnum);
+        Index = strcmp(IV.Properties.VariableNames,strctident.CorrelInstrument);           %find the instrument in the IV sheet
+        IVcorrel = IV{:, Index};
         IVcorrel = IVcorrel(~isnan(IVcorrel));
-        txtcorrel = txtcorrel(2:length(IVcorrel)+1,1);              % drop IV names from txt
+        txtcorrel = IV.Time;              % drop IV names from txt
         date = dates;                                   %get the datevector of the VAR
         startlocationY_in_Y=find(strcmp(date,startdate));        %location of sample startdate in Y datevector
         endlocationY_in_Y=find(strcmp(date,enddate));            %location of sample enddate in Y datevector
