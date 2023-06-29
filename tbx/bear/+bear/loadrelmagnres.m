@@ -1,9 +1,13 @@
-function [relmagnrestable,relmagnresperiods,signreslabels,strctident,favar]=loadrelmagnres(n,pref,favar,IRFt,strctident)
+function [relmagnrestable,relmagnresperiods,signreslabels,strctident,favar]=loadrelmagnres(n,endo,pref,favar,IRFt,strctident)
 
 % preliminary tasks
 
 % initiate the cells relmagrestable and relmagresperiods
-relmagnrestable= bear.utils.parseTableContent(pref.data.RelMagnResValues{:,2:end});
+RelMagnResValues = pref.data.RelMagnResValues;
+relmagnrestable = RelMagnResValues(contains(endo,RelMagnResValues.Properties.RowNames), contains(endo, RelMagnResValues.Properties.RowNames));
+relmagnrestable = bear.utils.parseTableContent(relmagnrestable{:,:});
+
+% relmagnrestable= bear.utils.parseTableContent(pref.data.RelMagnResValues{:,2:end});
 relmagnresperiods = cell(n,n);
 signreslabels=strctident.signreslabels;
 signreslabels_shocksindex=strctident.signreslabels_shocksindex;
@@ -42,7 +46,16 @@ else % if we found something in the table then the relmagn routine is activated
         end
     end
     %% relative magnitude restriction periods  
-    relmagnresperiods = cellfun(@str2num, bear.utils.parseTableContent(pref.data.RelMagnResPeriods{:,2:end}), 'UniformOutput', false);
+    relmagnresperiods = pref.data.RelMagnResPeriods;
+    relmagnresperiods = relmagnresperiods(contains(endo,relmagnresperiods.Properties.RowNames), contains(endo, relmagnresperiods.Properties.RowNames));
+
+    if height(relmagnresperiods) ~= n || width(relmagnresperiods) ~= n
+        message = "Some endogenous variable cannot be found in both rows and columns of the table. Please verify that the ""FEVD res periods"" sheet of the Excel data file is properly filled.";
+        error("bear:loadFEVDres:FEVDrestrictionError", message)
+    end
+
+    relmagnresperiods = bear.utils.parseTableContent(relmagnresperiods{:,:});    
+    relmagnresperiods = cellfun(@str2num, relmagnresperiods, 'UniformOutput', false);
 
     % erase first column in the restriction table for IV shock
     if IRFt==6

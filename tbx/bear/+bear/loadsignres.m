@@ -1,11 +1,13 @@
-function [signrestable,signresperiods,signreslabels,strctident,favar]=loadsignres(n,pref,favar,IRFt,strctident)
+function [signrestable,signresperiods,signreslabels,strctident,favar]=loadsignres(n,endo,pref,favar,IRFt,strctident)
 
 % preliminary tasks
 
 % initiate the cells signrestable, signresperiods and signreslabels
-signrestable = bear.utils.parseTableContent(pref.data.SignResValues{1:n,2:n+1});
-signresperiods = bear.utils.parseTableContent(pref.data.SignResPeriods{1:n,2:n+1});
-signreslabels = pref.data.SignResValues.Properties.VariableDescriptions(2:n+1)';
+SignResValues = pref.data.SignResValues;
+signrestable = SignResValues(contains(endo,SignResValues.Properties.RowNames), contains(endo, SignResValues.Properties.RowNames));
+signrestable = bear.utils.parseTableContent(signrestable{:,:});
+signresperiods = cell(n,n);
+signreslabels = pref.data.SignResValues.Properties.VariableDescriptions';
 
 signreslabels_shocksindex=[];
 
@@ -48,7 +50,7 @@ else % if we found something in the table then the sign res routine is activated
             end
             signreslabels{1,1}=strcat('IV Shock (',strctident.Instrument,')');
             signreslabels_shocksindex(1,1)=1;
-            message=['The restrictions in the first column of the "sign res values" table are ignored. This is the IV shock.'];
+            message= "The restrictions in the first column of the ""sign res values"" table are ignored. This is the IV shock.";
             msgbox(message,'Sign restriction warning');
         end
         %end
@@ -67,7 +69,16 @@ else % if we found something in the table then the sign res routine is activated
         end
     end
 
-    %% sign restriction periods    
+    %% sign restriction periods 
+    signresperiods = pref.data.SignResPeriods;
+    signresperiods = signresperiods(contains(endo,signresperiods.Properties.RowNames), contains(endo, signresperiods.Properties.RowNames));
+    if height(signresperiods) ~= n || width(signresperiods) ~= n
+        message = "Some endogenous variable cannot be found in both rows and columns of the table. Please verify that the ""sign res periods"" sheet of the Excel data file is properly filled.";
+        error("bear:loadsignres:signrestrictionError", message)
+    end
+
+    signresperiods = bear.utils.parseTableContent(signresperiods{:,:});
+
     % now recover the values for the cell signresperiods
     % loop over endogenous (rows)
     for ii=1:n

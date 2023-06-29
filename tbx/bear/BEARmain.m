@@ -352,8 +352,6 @@ try
 
     % count the number of endogenous variables
     n=numel(endo);
-    opts.data.NumEndo = n; 
-    opts.data.NumExo = numel(exo);
 
     % generate the different sets of data
     % if the model is the OLS VAR,
@@ -394,8 +392,8 @@ try
 
     % load sign and magnitude restrictions table, relative magnitude restrictions table, FEVD restrictions table
     if IRFt==4 || IRFt==6
-        [signrestable,signresperiods,signreslabels,strctident,favar]=bear.loadsignres(n,pref,favar,IRFt,strctident);
-        [relmagnrestable,relmagnresperiods,signreslabels,strctident,favar]=bear.loadrelmagnres(n,pref,favar,IRFt,strctident);
+        [signrestable,signresperiods,signreslabels,strctident,favar]=bear.loadsignres(n,endo,pref,favar,IRFt,strctident);
+        [relmagnrestable,relmagnresperiods,signreslabels,strctident,favar]=bear.loadrelmagnres(n,endo,pref,favar,IRFt,strctident);
         [FEVDrestable,FEVDresperiods,signreslabels,strctident,favar]=bear.loadFEVDres(n,endo,pref,favar,IRFt,strctident);
         [strctident,signreslabels]=bear.loadcorrelres(strctident,endo,string(data.Time),startdate,enddate,lags,n,IRFt,favar,pref);
     end
@@ -1744,9 +1742,9 @@ try
                     % finally, compute forecast evaluation if the option was selected
                     if Feval==1
                         if opts.stvol==4
-                            [Forecasteval]=bear.bvarfeval_stvol4(data_endo_c,data_endo_c_lags,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,opts.It,opts.Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,names,endo,pref, dataValues, Psi_gibbs,sizetraining,data_exo_p, Fstartlocation,Fperiods, data_endo_a);
+                            [Forecasteval]=bear.bvarfeval_stvol4(data_endo_c,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,opts.It,opts.Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates, endo,pref, dataValues, Psi_gibbs,sizetraining,data_exo_p, Fstartlocation,Fperiods, data_endo_a);
                         else
-                            [Forecasteval]=bear.bvarfeval(data_endo_c,data_endo_c_lags,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,opts.It,opts.Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,names,endo,pref);
+                            [Forecasteval]=bear.bvarfeval(data_endo_c,data_endo_c_lags,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,opts.It,opts.Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,data.Time(end),endo,pref);
                         end
                     end
                 end

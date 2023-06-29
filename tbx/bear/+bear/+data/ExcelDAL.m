@@ -10,9 +10,8 @@ classdef ExcelDAL < bear.data.BEARDAL
 
     methods
 
-        function obj = ExcelDAL(fileName, varargin)
+        function obj = ExcelDAL(fileName)
 
-            obj@bear.data.BEARDAL(varargin{:});
             obj.InputFile = fileName;
             obj.Sheets = sheetnames(fileName);
 
@@ -23,12 +22,11 @@ classdef ExcelDAL < bear.data.BEARDAL
     methods (Access = protected) % Read functions
 
         function data = readARPriors(obj)
-            data = obj.detectAndRead("AR Priors", VariableNamesRange = "C4", DataRange = "C5");
+            data = obj.detectAndRead("AR Priors", VariableNamesRange = "B3", DataRange = "B4");
         end
 
         function data = readBlockExo(obj)
-            data = obj.detectAndRead("block exo", VariableNamesRange = "B2", DataRange = "B3", ExpectedNumVariables = obj.NumEndo + 1);
-            data = rmmissing(data, 'MinNumMissing', width(data));
+            data = obj.detectAndReadDoubleOnly("block exo", false, RowNamesRange = "B3", VariableNamesRange = "C2", DataRange = "C3");
         end
 
         function data = readBlocks(obj)
@@ -37,7 +35,7 @@ classdef ExcelDAL < bear.data.BEARDAL
         end
 
         function data = readConditions(obj)
-            data = obj.detectAndReadDoubleOnly("conditions", true, VariableNamesRange = "B2", DataRange = "B3", ExpectedNumVariables = obj.NumEndo + 1);
+            data = obj.detectAndReadDoubleOnly("conditions", true, VariableNamesRange = "B2", DataRange = "B3");
             data = makeTimeTable(data);
         end
 
@@ -47,11 +45,11 @@ classdef ExcelDAL < bear.data.BEARDAL
         end
 
         function data = readExoMeanPriors(obj)
-            data = obj.detectAndRead("exo mean priors", VariableNamesRange = "B3", DataRange = "B4", ExpectedNumVariables = obj.NumExo + 2);
+            data = obj.detectAndRead("exo mean priors", VariableNamesRange = "B3", DataRange = "B4");
         end
 
         function data = readExoTightPriors(obj)
-            data = obj.detectAndRead("exo tight priors", VariableNamesRange = "B3", DataRange = "B4", ExpectedNumVariables = obj.NumExo + 2);
+            data = obj.detectAndRead("exo tight priors", VariableNamesRange = "B3", DataRange = "B4");
         end
 
         function data = readFactorData(obj)
@@ -60,11 +58,13 @@ classdef ExcelDAL < bear.data.BEARDAL
         end
 
         function data = readFEVDResValues(obj)
-            data = obj.detectAndRead("FEVD res values", VariableNamesRange = "B3", DataRange = "B4", ExpectedNumVariables = 1 + obj.NumEndo, VariableDescriptionsRange = 2);
+            data = obj.detectAndRead("FEVD res values", RowNamesRange = "B4", VariableNamesRange = "C3", DataRange = "C4", VariableDescriptionsRange = "C2");
+            data.Properties.DimensionNames = {'Row', 'Variables'};
         end
 
         function data = readFEVDResPeriods(obj)
-            data = obj.detectAndRead("FEVD res periods", VariableNamesRange = "B3", DataRange = "B4", ExpectedNumVariables = 1 + obj.NumEndo, VariableDescriptionsRange = 2);
+            data = obj.detectAndRead("FEVD res periods", RowNamesRange = "B4", VariableNamesRange = "C3", DataRange = "C4", VariableDescriptionsRange = "C2");
+            data.Properties.DimensionNames = {'Row', 'Variables'};
         end
 
         function data = readGrid(obj)
@@ -73,7 +73,7 @@ classdef ExcelDAL < bear.data.BEARDAL
         end
 
         function data = readIntervals(obj)
-            data = obj.detectAndRead("intervals", VariableNamesRange = "B2", DataRange = "B3", ExpectedNumVariables = obj.NumEndo + 1);
+            data = obj.detectAndRead("intervals", VariableNamesRange = "B2", DataRange = "B3");
             data = makeTimeTable(data);
         end
 
@@ -83,11 +83,11 @@ classdef ExcelDAL < bear.data.BEARDAL
         end
 
         function data = readLongRunPrior(obj)
-            data = obj.detectAndRead("Long run prior", VariableNamesRange = "B2", DataRange = "B3", ExpectedNumVariables = obj.NumEndo + 1);
+            data = obj.detectAndRead("Long run prior", VariableNamesRange = "C2", DataRange = "C3", RowNamesRange = "B3");
         end
 
         function data = readMeanAdjPrior(obj)
-            data = obj.detectAndRead("mean adj prior", VariableNamesRange = "B2", DataRange = "B3");
+            data = obj.detectAndRead("mean adj prior", VariableNamesRange = "C2", DataRange = "C3", RowNamesRange = "B3");
         end
 
         function data = readMFvarMonthly(obj)
@@ -105,49 +105,53 @@ classdef ExcelDAL < bear.data.BEARDAL
         end
 
         function data = readPanelPredExo(obj)
-            data = obj.detectAndRead("pan pred exo", VariableNamesRange = "B2", DataRange = "B3", ExpectedNumVariables = obj.NumExo + 1);
+            data = obj.detectAndRead("pan pred exo", VariableNamesRange = "B2", DataRange = "B3");
             data = makeTimeTable(data);
         end
 
         function data = readPanelConditions(obj)
-            data = obj.detectAndRead("pan conditions", VariableNamesRange = "B2", DataRange = "B3");
+            data = obj.detectAndReadDoubleOnly("pan conditions", true, VariableNamesRange = "B2", DataRange = "B3");
             data = makeTimeTable(data);
         end
 
         function data = readPanelShocks(obj)
-            data = obj.detectAndRead("pan shocks", VariableNamesRange = "B2", DataRange = "B3");
+            data = obj.detectAndReadDoubleOnly("pan shocks", true, VariableNamesRange = "B2", DataRange = "B3");
             data = makeTimeTable(data);
         end
 
         function data = readPanelBlocks(obj)
-            data = obj.detectAndRead("pan blocks", VariableNamesRange = "B2", DataRange = "B3");
+            data = obj.detectAndReadDoubleOnly("pan blocks", true, VariableNamesRange = "B2", DataRange = "B3");
             data = makeTimeTable(data);
         end
 
         function data = readPredExo(obj)
-            data = obj.detectAndRead("pred exo", VariableNamesRange = "B2", DataRange = "B3", ExpectedNumVariables = 1 + obj.NumExo + obj.NumEndo);
+            data = obj.detectAndRead("pred exo", VariableNamesRange = "B2", DataRange = "B3");
             data = makeTimeTable(data);
         end
 
         function data = readRelMagnResPeriods(obj)
-            data = obj.detectAndRead("relmagn res periods", VariableNamesRange = "B3", DataRange = "B4", ExpectedNumVariables = 1+obj.NumEndo, VariableDescriptionsRange = 2);
+            data = obj.detectAndRead("relmagn res periods", RowNamesRange = "B4", VariableNamesRange = "C3", DataRange = "C4", VariableDescriptionsRange = "C2");
+            data.Properties.DimensionNames = {'Row', 'Variables'};
         end
 
         function data = readRelMagnResValues(obj)
-            data = obj.detectAndRead("relmagn res values", VariableNamesRange = "B3", DataRange = "B4", ExpectedNumVariables = 1+obj.NumEndo, VariableDescriptionsRange = 2);
+            data = obj.detectAndRead("relmagn res values", RowNamesRange = "B4", VariableNamesRange = "C3", DataRange = "C4", VariableDescriptionsRange = "C2");
+            data.Properties.DimensionNames = {'Row', 'Variables'};
         end
 
         function data = readShocks(obj)
-            data = obj.detectAndRead("shocks", VariableNamesRange = "B2", DataRange = "B3",  ExpectedNumVariables = obj.NumEndo + 1);
+            data = obj.detectAndRead("shocks", VariableNamesRange = "B2", DataRange = "B3");
             data = makeTimeTable(data);
         end
 
         function data = readSignResValues(obj)
-            data = obj.detectAndReadStringOnly("sign res values", VariableNamesRange = "B3", DataRange = "B4", VariableDescriptionsRange = 2);
+            data = obj.detectAndReadStringOnly("sign res values", RowNamesRange = "B4", VariableNamesRange = "C3", DataRange = "C4", VariableDescriptionsRange = "C2");
+            data.Properties.DimensionNames = {'Row', 'Variables'};
         end
 
         function data = readSignResPeriods(obj)
-            data = obj.detectAndReadStringOnly("sign res periods", VariableNamesRange = "B3", DataRange = "B4",  VariableDescriptionsRange = 2);
+            data = obj.detectAndReadStringOnly("sign res periods", RowNamesRange = "B4", VariableNamesRange = "C3", DataRange = "C4",  VariableDescriptionsRange = "C2");
+            data.Properties.DimensionNames = {'Row', 'Variables'};
         end
 
         function data = readSurveyLocalMean(obj)

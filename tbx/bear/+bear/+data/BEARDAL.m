@@ -1,23 +1,5 @@
 classdef (Abstract) BEARDAL < matlab.mixin.SetGet
-    %UNTITLED Summary of this class goes here
-    %   Detailed explanation goes here
-
-    properties
-        NumEndo (1,1) double
-        NumExo (1,1) double
-    end
-
-    methods
-        function obj = BEARDAL(nvp)
-            arguments
-                nvp.NumEndo = 0
-                nvp.NumExo  = 0
-            end
-
-            obj.NumEndo = nvp.NumEndo;
-            obj.NumExo = nvp.NumExo;
-        end
-    end
+    %BEARDAL Data Access Layer to retrieve the various tables used by BEAR
 
     properties (Dependent)
 

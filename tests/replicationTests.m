@@ -188,7 +188,7 @@ classdef replicationTests < matlab.unittest.TestCase
                         res = currentResults.(fld);
                         prev = previousResults.(fld);
 
-                        if iscell(res) && iscell(prev)
+                        if iscell(res) && iscell(prev)                            
                             cellfun(@(x, y) tc.doCompare(x,y), res, prev)
                         else
                             tc.doCompare(res, prev)

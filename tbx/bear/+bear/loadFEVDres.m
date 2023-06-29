@@ -4,7 +4,9 @@ function [FEVDrestable,FEVDresperiods,signreslabels,strctident,favar]=loadFEVDre
 % preliminary tasks
 
 % initiate the cells FEVDrestable and FEVDresperiods
-FEVDrestable = bear.utils.parseTableContent(pref.data.FEVDResValues{:,2:end});
+FEVDrestable = pref.data.FEVDResValues;
+FEVDrestable = FEVDrestable(contains(endo,FEVDrestable.Properties.RowNames), contains(endo, FEVDrestable.Properties.RowNames));
+FEVDrestable = bear.utils.parseTableContent(FEVDrestable{:,:});
 FEVDresperiods = cell(n,n);
 signreslabels = strctident.signreslabels;
 signreslabels_shocksindex=strctident.signreslabels_shocksindex;
@@ -41,38 +43,48 @@ else % if we found something in the table then the FEVD res routine is activated
     end
 
 
-    % FEVD restriction periods
-    [~,~,strngs2]=xlsread(pref.data.InputFile,'FEVD res periods');
-    strngs2(cellfun(@(x) any(isnan(x)),strngs2))={[]};
-    strngs2(cellfun(@isnumeric,strngs2))=cellfun(@num2str,strngs2(cellfun(@isnumeric,strngs2)),'UniformOutput',0);
-    [nerows2,neclmns2]=find(~cellfun('isempty',strngs2));
-    neentries2=size(nerows2,1);
-    % loop over entries (period table)
-    for ii=1:neentries2
-        strngs2{nerows2(ii,1),neclmns2(ii,1)}=bear.utils.fixstring(strngs2{nerows2(ii,1),neclmns2(ii,1)});
-    end
-
-    % recover the rows and columns of each endogenous variable
-    % loop over endogenous variables
-    for ii=1:n
-        % for each variable, there should be two entries in the table corresponding to its name
-        % one is the column lable, the other is the row label
-        [r,c]=find(strcmp(strngs2,endo{ii,1}));
-        % if it is not possible to find two entries, return an error
-        if size(r,1)<2
-            message=['FEVD restriction error: endogenous variable ' endo{ii,1} ' cannot be found in both rows and columns of the table. Please verify that the ''FEVD res periods'' sheet of the Excel data file is properly filled.'];
-            msgbox(message);
-            error('programme termination: FEVD restriction error');
-        end
-        % the greatest number in r corresponds to the row of the column labels: record it
-        rows2(ii,1)=max(r);
-        % the greatest number in c corresponds to the column of the row labels: record it
-        clmns2(ii,1)=max(c);
-    end
+    % % FEVD restriction periods
+    % [~,~,strngs2]=xlsread(pref.data.InputFile,'FEVD res periods');
+    % strngs2(cellfun(@(x) any(isnan(x)),strngs2))={[]};
+    % strngs2(cellfun(@isnumeric,strngs2))=cellfun(@num2str,strngs2(cellfun(@isnumeric,strngs2)),'UniformOutput',0);
+    % [nerows2,neclmns2]=find(~cellfun('isempty',strngs2));
+    % neentries2=size(nerows2,1);
+    % % loop over entries (period table)
+    % for ii=1:neentries2
+    %     strngs2{nerows2(ii,1),neclmns2(ii,1)}=bear.utils.fixstring(strngs2{nerows2(ii,1),neclmns2(ii,1)});
+    % end
+    % 
+    % % recover the rows and columns of each endogenous variable
+    % % loop over endogenous variables
+    % for ii=1:n
+    %     % for each variable, there should be two entries in the table corresponding to its name
+    %     % one is the column lable, the other is the row label
+    %     [r,c]=find(strcmp(strngs2,endo{ii,1}));
+    %     % if it is not possible to find two entries, return an error
+    %     if size(r,1)<2
+    %         message=['FEVD restriction error: endogenous variable ' endo{ii,1} ' cannot be found in both rows and columns of the table. Please verify that the ''FEVD res periods'' sheet of the Excel data file is properly filled.'];
+    %         msgbox(message);
+    %         error('programme termination: FEVD restriction error');
+    %     end
+    %     % the greatest number in r corresponds to the row of the column labels: record it
+    %     rows2(ii,1)=max(r);
+    %     % the greatest number in c corresponds to the column of the row labels: record it
+    %     clmns2(ii,1)=max(c);
+    % end
 
     % now recover the values for the cell signresperiods
     % loop over endogenous (rows)
-    FEVDresperiods = bear.utils.parseTableContent(pref.data.FEVDResPeriods{:,2:end});
+    FEVDresperiods = pref.data.FEVDResPeriods;
+    FEVDresperiods = FEVDresperiods(contains(endo,FEVDresperiods.Properties.RowNames), contains(endo, FEVDresperiods.Properties.RowNames));
+    % for each variable, there should be two entries in the table corresponding to its name
+    % one is the column lable, the other is the row label
+    % if it is not possible to find two entries, return an error
+    if height(FEVDresperiods) ~= n || width(FEVDresperiods) ~= n
+        message = "Some endogenous variable cannot be found in both rows and columns of the table. Please verify that the ""FEVD res periods"" sheet of the Excel data file is properly filled.";
+        error("bear:loadFEVDres:FEVDrestrictionError", message)
+    end
+
+    FEVDresperiods = bear.utils.parseTableContent(FEVDresperiods{:,:});   
     FEVDresperiods = cellfun(@str2num, FEVDresperiods, 'UniformOutput',false);
 
     % erase first column in the restriction table for IV shock
