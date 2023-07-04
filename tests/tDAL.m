@@ -1,4 +1,4 @@
-classdef tDAL < matlab.unittest.TestCase
+classdef tDal < matlab.unittest.TestCase
     
     properties (TestParameter)
         frequency = {'yearly', 'quarterly', 'monthly','weekly', 'daily'}

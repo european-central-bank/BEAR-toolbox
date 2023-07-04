@@ -30,7 +30,7 @@ classdef ExcelDAL < bear.data.BEARDAL
         end
 
         function data = readBlocks(obj)
-            data = obj.detectAndRead("blocks", VariableNamesRange = "B2", DataRange = "B3");
+            data = obj.detectAndReadDoubleOnly("blocks", true, VariableNamesRange = "B2", DataRange = "B3");
             data = makeTimeTable(data);
         end
 
@@ -140,7 +140,7 @@ classdef ExcelDAL < bear.data.BEARDAL
         end
 
         function data = readShocks(obj)
-            data = obj.detectAndRead("shocks", VariableNamesRange = "B2", DataRange = "B3");
+            data = obj.detectAndReadDoubleOnly("shocks", true, VariableNamesRange = "B2", DataRange = "B3");
             data = makeTimeTable(data);
         end
 
