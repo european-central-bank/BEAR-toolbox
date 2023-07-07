@@ -227,7 +227,7 @@ try
 
     % first recover the names of the different endogenous variables;
     % to do so, separate the string 'varendo' into individual names
-    endo = strsplit(strtrim(varendo), " ")';    
+    endo = strsplit(strtrim(varendo), [" ", native2unicode(9)])';    
 
     % FAVAR: additional strings
     if favar.FAVAR==1
@@ -361,7 +361,7 @@ try
         % if the model is the Bayesian VAR, the mean-adjusted BVAR, the stochastic volatility BVAR, ot the time-varying BVAR:
     elseif VARtype==2 || VARtype==5 || VARtype==6
         [data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4,favar]...
-            =bear.gensample(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,opts.ar,opts.lambda4,opts.PriorExcel,opts.priorsexogenous,pref,favar,IRFt, n);
+            = bear.gensample(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,opts.ar,opts.lambda4,opts.PriorExcel,opts.priorsexogenous,pref,favar,IRFt, n);
         % else, if the model is the panel BVAR
     elseif VARtype==4
         [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4]...

@@ -7,6 +7,10 @@ function [FEVDrestable,FEVDresperiods,signreslabels,strctident,favar]=loadFEVDre
 FEVDrestable = pref.data.FEVDResValues;
 FEVDrestable = FEVDrestable(contains(endo,FEVDrestable.Properties.RowNames), contains(endo, FEVDrestable.Properties.RowNames));
 FEVDrestable = bear.utils.parseTableContent(FEVDrestable{:,:});
+if isempty(FEVDrestable)
+    FEVDrestable = repmat({[]},n,n);
+end
+
 FEVDresperiods = cell(n,n);
 signreslabels = strctident.signreslabels;
 signreslabels_shocksindex=strctident.signreslabels_shocksindex;

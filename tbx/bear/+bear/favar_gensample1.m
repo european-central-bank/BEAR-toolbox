@@ -1,6 +1,6 @@
 function [informationstartlocation,informationendlocation,favar]=favar_gensample1(startdate,enddate,favar,pref)
 % information data table
-[informationdata,informationnames]=xlsread(pref.excelFile,'factor data');
+[informationdata,informationnames]=xlsread(pref.data.InputFile,'factor data');
 % also here: now, as a preliminary step: check if there is any Nan in the data; if yes, return an error since the model won't be able to run with missing data
 % a simple way to test for NaN is to check for "smaller or equal to infinity": Nan is the only number for which matlab will return 'false' when asked so
 informationdata2=informationdata(4:end,1:end);

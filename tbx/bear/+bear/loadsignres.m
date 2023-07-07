@@ -4,10 +4,12 @@ function [signrestable,signresperiods,signreslabels,strctident,favar]=loadsignre
 
 % initiate the cells signrestable, signresperiods and signreslabels
 SignResValues = pref.data.SignResValues;
-signrestable = SignResValues(contains(endo,SignResValues.Properties.RowNames), contains(endo, SignResValues.Properties.RowNames));
-signrestable = bear.utils.parseTableContent(signrestable{:,:});
+SignResValues = SignResValues(contains(endo,SignResValues.Properties.RowNames), contains(endo, SignResValues.Properties.RowNames));
+
+signreslabels = SignResValues.Properties.VariableDescriptions';
+signrestable = bear.utils.parseTableContent(SignResValues{:,:});
 signresperiods = cell(n,n);
-signreslabels = pref.data.SignResValues.Properties.VariableDescriptions';
+
 
 signreslabels_shocksindex=[];
 

@@ -8,7 +8,7 @@ else
    message=['Instrumental variable ' strctident.Instrument ' cannot be found. Please verify that the "IV" sheet of the Excel data file is properly filled.'];
    error('bear:loadIV:InstrumentalVaraibleNotFound',message)
 end
-IV(:,isnan(IV{:,1})) = [];
+IV(isnan(IV{:,1}), :) = [];
 
 % drop IV names from txt
 txt=string(IV.Time);

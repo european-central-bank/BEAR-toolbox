@@ -1,3 +1,4 @@
+function s = bear_settings_AAU2009_test(excelPath)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                          %
 %    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR) TOOLBOX           %
@@ -7,7 +8,7 @@
 %                                                                          %
 %    Authors:                                                              %
 %    Alistair Dieppe (adieppe@ecb.europa.eu)                               %
-%    Björn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                        %
+%    BjÃ¶rn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                        %
 %                                                                          %
 %    Version 5.0                                                           %
 %                                                                          %

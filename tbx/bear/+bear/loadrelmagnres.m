@@ -6,6 +6,9 @@ function [relmagnrestable,relmagnresperiods,signreslabels,strctident,favar]=load
 RelMagnResValues = pref.data.RelMagnResValues;
 relmagnrestable = RelMagnResValues(contains(endo,RelMagnResValues.Properties.RowNames), contains(endo, RelMagnResValues.Properties.RowNames));
 relmagnrestable = bear.utils.parseTableContent(relmagnrestable{:,:});
+if isempty(relmagnrestable)
+    relmagnrestable = repmat({[]},n,n);
+end
 
 % relmagnrestable= bear.utils.parseTableContent(pref.data.RelMagnResValues{:,2:end});
 relmagnresperiods = cell(n,n);

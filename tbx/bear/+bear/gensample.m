@@ -48,7 +48,7 @@ variablestrings=data.Properties.VariableNames;
 
 % FAVAR: augment data and variablestrings with factors
 if favar.FAVAR==1
-    [data,variablestrings,favar]=bear.favar_gensample2(data1,endo,variablestrings,startlocation,lags,favar);
+    [data,variablestrings,favar]=bear.favar_gensample2(data1,endo,startlocation,lags,favar);
 end
 
 % if either the start date or the date date is not recognised, return an error message
