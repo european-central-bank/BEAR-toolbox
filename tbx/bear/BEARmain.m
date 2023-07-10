@@ -593,10 +593,10 @@ try
                     =bear.olsirft4(betahat,sigmahat,IRFperiods,Y,X,n,m,p,k,pref,IRFband,T,FEVDresperiods,strctident,favar,IRFt);
             elseif IRFt==5 %point identified %%%% adjust beta sigma hat estimates
                 [irf_estimates,D,gamma,D_estimates,gamma_estimates,strshocks_estimates,favar]...
-                    =bear.olsirft5(betahat,IRFperiods,Y,X,n,m,p,k,endo,pref,IRFband,names,enddate,startdate,T,data_endo,data_exo,const,strctident,IRFt,IRF,favar);
+                    =bear.olsirft5(betahat,IRFperiods,Y,X,n,m,p,k,endo,pref,IRFband,string(data.Time),enddate,startdate,T,data_endo,data_exo,const,strctident,IRFt,IRF,favar);
             elseif IRFt==6 %combination of 4 and 5, nothing more %%%% adjust beta sigma hat estimates
                 [irf_estimates,D_record,gamma,D_estimates,gamma_estimates,strshocks_estimates,medianmodel,beta_record,favar]...
-                    =bear.olsirft6(betahat,IRFperiods,Y,X,n,m,p,k,endo,pref,IRFband,names,enddate,startdate,T,data_endo,data_exo,const,FEVDresperiods,favar,strctident,IRFt);
+                    =bear.olsirft6(betahat,IRFperiods,Y,X,n,m,p,k,endo,pref,IRFband,string(data.Time),enddate,startdate,T,data_endo,data_exo,const,FEVDresperiods,favar,strctident,IRFt);
             end
 
             % Structual shocks

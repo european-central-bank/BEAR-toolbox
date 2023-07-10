@@ -10,7 +10,6 @@ end
 % Phase 1: data loading and error checking
 % first read the data from Excel
 data = pref.data.Data;
-% [data, names]=xlsread(pref.excelFile,'data');
 
 % identify the date strings
 datestrings=string(data.Time);
@@ -451,67 +450,30 @@ else
         % if there are exogenous variables, load from excel
     else
         % load the data from Excel
-        [~,~,strngs]=xlsread(pref.excelFile,'pred exo');
-        
+        PredExo = pref.data.PredExo;
         % obtain the row location of the forecast start date
-        [Fstartlocation,~]=find(strcmp(strngs,Fstartdate));
+        Fstartlocation = find(strcmp(string(PredExo.Time),Fstartdate), 1);
         % check that the start date for the forecast appears in the sheet; if not, return an error
         if isempty(Fstartlocation)
             message=['Error: a forecast application is selected for a model that uses exogenous variables. Hence, predicted exogenous values should be supplied over the forecast periods. Yet the start date for forecasts (' Fstartdate ') cannot be found on the ''pred exo'' sheet of the Excel data file. Please verify that this sheet is properly filled, and remember that dates are case-sensitive.'];
             error('bear:gensampleols:IncorrectApplicationSelected',message)
         end
+
         % obtain the row location of the forecast end date
-        [Fendlocation,~]=find(strcmp(strngs,Fenddate));
+        Fendlocation = find(strcmp(string(PredExo.Time),Fenddate), 1);
         % check that the end date for the forecast appears in the sheet; if not, return an error
         if isempty(Fendlocation)
             message=['Error: a forecast application is selected for a model that uses exogenous variables. Hence, predicted exogenous values should be supplied over the forecast periods. Yet the end date for forecasts (' Fenddate ') cannot be found on the ''pred exo'' sheet of the Excel data file. Please verify that this sheet is properly filled, and remember that dates are case-sensitive.'];
             error('bear:gensampleols:IncorrectApplicationSelected',message)
         end
         
-        % identify the strings for the exogenous variables
-        % loop over exogenous
-        for ii=1:numexo
-            % try to find a column match for exogenous variable ii
-            [~,location]=find(strcmp(strngs,exo{ii,1}));
-            % if no match is found, return an error
-            if isempty(location)
-                message=['Error: a forecast application is selected for a model that uses exogenous variables. Hence, predicted exogenous values should be supplied over the forecast periods. Yet the exogenous variable ''' exo{ii,1} ''' cannot be found on the ''pred exo'' sheet of the Excel data file. Please verify that this sheet is properly filled, and remember that variable names are case-sensitive.'];
-                error('bear:gensampleols:IncorrectApplicationSelected',message)
-                % else, record the value
-            else
-                pexolocation(ii,1)=location;
-            end
-        end
-        
         % if everything was fine, reconstitute the matrix data_exo_p
         % initiate
-        data_exo_p=[];
-        % loop over exogenous variables
-        for ii=1:numexo
-            % initiate the predicted values for exogenous variable ii
-            predexo=[];
-            % loop over forecast periods
-            for jj=1:Fperiods
-                temp=strngs{Fstartlocation+jj-1,pexolocation(ii,1)};
-                % if this entry is empty or NaN, return an error
-                if (isempty(temp) || (temp<=inf)==0)
-                    message=['Error: the predicted value for exogenous variable ' exo{ii,1} ' at forecast period ' strngs{Fstartlocation+jj,1} ' (and possibly other entries) is either empty or NaN. Please verify that the ''pred exo'' sheet of the Excel data file is properly filled.'];
-                    error('bear:gensampleols:EmptyPredictedVariable', message)
-                    % if this entry is a number, record it
-                else
-                    predexo=[predexo;temp];
-                end
-            end
-            % concatenate
-            data_exo_p=[data_exo_p predexo];
-        end
+        data_exo_p = PredExo{Fstartlocation:Fendlocation,exo};
         
         % also, record the exogenous values on Excel
-        % replace NaN entries by blanks
-        strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
-        % then save on Excel
         if pref.results==1
-            bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'pred exo','A1');
+            pref.exporter.writePredExo(PredExo);
         end
     end
     
