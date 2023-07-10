@@ -53,8 +53,18 @@ classdef ExcelDAL < bear.data.BEARDAL
         end
 
         function data = readFactorData(obj)
-            data = obj.detectAndRead("factor data", VariableNamesRange = "A3", DataRange = "B3");
+            data = obj.detectAndRead("factor data", VariableNamesRange = "A3", DataRange = "A4");
             data = makeTimeTable(data);
+        end
+
+        function data = readFactorDataTransform(obj)
+            data = obj.detectAndRead("factor data", VariableNamesRange = "A3", DataRange = "1:1");
+            data = data(:,2:end);
+        end
+
+        function data = readFactorDataBlocks(obj)
+            data = obj.detectAndRead("factor data", VariableNamesRange = "A3", DataRange = "2:2");
+            data = data(:,2:end);
         end
 
         function data = readFEVDResValues(obj)

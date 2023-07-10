@@ -7,7 +7,7 @@ function [data,variablestrings,favar]=favar_gensample2(data1,endo,startlocation,
 variablestrings = data1.Properties.VariableNames;
 endo_index=ismember(variablestrings,endo);
 
-favar.data_exfactors=data1(:,endo_index);
+favar.data_exfactors=data1{:,endo_index};
 variablestrings=variablestrings(:,endo_index);
 % identify endogenous variable strings, excluding factors
 favar.variablestrings_exfactors_index=ismember(endo,variablestrings);
@@ -62,7 +62,7 @@ if favar.transformation==1 || favar.plot_transform==1 %second condition is deter
         
         if favar.transformation==1 && factormodel==0
             for ii=1:size(favar.variablestrings_exfactors,1)
-                [favar.data_exfactors_transformed(:,ii)]=bear.favar_transx(favar.data_exfactors{:,ii},favar.transformationindex_exfactors(ii,1));
+                [favar.data_exfactors_transformed(:,ii)]=bear.favar_transx(favar.data_exfactors(:,ii),favar.transformationindex_exfactors(ii,1));
             end
             % remove NaNs: adjust sample to transformation
             if ~isempty(favar.transformation6)||~isempty(favar.transformation3)
@@ -136,5 +136,7 @@ end
 if factormodel==1
     variablestrings=variablestrings(2:end);
 end
-data = array2table(data, VariableNames = variablestrings);
+data = array2timetable(data, ...
+    VariableNames = variablestrings, ...
+    RowTimes = favar.informationdatestrings(1:favar.informationendlocation_sub));
 

@@ -3,8 +3,8 @@ function [relmagnrestable,relmagnresperiods,signreslabels,strctident,favar]=load
 % preliminary tasks
 
 % initiate the cells relmagrestable and relmagresperiods
-RelMagnResValues = pref.data.RelMagnResValues;
-relmagnrestable = RelMagnResValues(contains(endo,RelMagnResValues.Properties.RowNames), contains(endo, RelMagnResValues.Properties.RowNames));
+relmagnrestable = pref.data.RelMagnResValues;
+relmagnrestable = relmagnrestable(contains(endo,relmagnrestable.Properties.RowNames), contains(endo, relmagnrestable.Properties.RowNames));
 relmagnrestable = bear.utils.parseTableContent(relmagnrestable{:,:});
 if isempty(relmagnrestable)
     relmagnrestable = repmat({[]},n,n);
@@ -191,27 +191,28 @@ else % if we found something in the table then the relmagn routine is activated
     %% FAVAR
     if favar.FAVAR==1
         % strings of restricted information variables
-        signresX_init=strngs1(max(rows)+1:end,min(clmns)-1); %strngs1 is already adjusted for empty rows and columns
         % which information variables are restricted?
-        Xsignres=ismember(signresX_init,favar.informationvariablestrings);
+        Xsignres=ismember(pref.data.RelMagnResValues.Properties.RowNames,favar.informationvariablestrings);
         % number of restricted variables in X
         favar.nrelmagnresX=sum(Xsignres);
         % keep only the ones that are actually in X
-        favar.relmagnresX=signresX_init(Xsignres==1,:);
+        favar.relmagnresX=pref.data.RelMagnResValues.Properties.RowNames(Xsignres);
         if favar.nrelmagnresX==0
             favar.relmagnresX_index=[];
         end
 
         % % all rows that are not empty
-        neclmns1index=neclmns1==1;
-        nerows1index=nerows1(neclmns1index,1);
-        % nerows1indexend=find(nerows1index==rows(end,1));
-        % if nerows1indexend==size(nerows1index,1)
-        %     favar.nrelmagnresX=0;
-        %     favar.relmagnresX_index=[];
-        % else
-        % % only information variables in X that are restricted
-        Xnerows1index=nerows1index(size(rows,1)+1:end,1);
+        [Xnerows1index, ~] = find(~ismissing(pref.data.RelMagnResValues));
+        % neclmns1index=neclmns1==1;
+        % neclmns1index=nerows1(neclmns1index,1);
+        % % nerows1indexend=find(nerows1index==rows(end,1));
+        % % if nerows1indexend==size(nerows1index,1)
+        % %     favar.nrelmagnresX=0;
+        % %     favar.relmagnresX_index=[];
+        % % else
+        % % % only information variables in X that are restricted
+        % Xnerows1index=nerows1index(size(rows,1)+1:end,1);
+
         % % strings of restricted information variables
         % favar.relmagnresX=strngs1(max(rows)+1:end,min(clmns)-1); %strngs1 is already adjusted for empty rows and columns
         % %number of restricted information variables
@@ -229,11 +230,12 @@ else % if we found something in the table then the relmagn routine is activated
 
         favar.relmagnrestable=cell(favar.nrelmagnresX,n);
         % now recover the values for the cell favar.signrestable
-        for ii=1:favar.nrelmagnresX % loop over restricted information variables
-            for jj=1:n % loop over endogenous (columns)
-                favar.relmagnrestable{ii,jj}=strngs1{Xnerows1index(ii,1),clmns(jj,1)};
-            end
-        end
+        favar.relmagnrestable = cellstr(pref.data.RelMagnResValues{Xsignres, endo});
+        % for ii=1:favar.nrelmagnresX % loop over restricted information variables
+        %     for jj=1:n % loop over endogenous (columns)
+        %         favar.relmagnrestable{ii,jj}=pref.data.RelMagnResValues{Xnerows1index(ii,1),clmns(jj,1)};
+        %     end
+        % end
 
 
         % identify empty relmagn res table columns
@@ -257,11 +259,7 @@ else % if we found something in the table then the relmagn routine is activated
 
         %assuming that the variables in the table here are identical to the variables in the sign res value table
         % now recover the values for the cell favar.signrestable
-        for ii=1:favar.nrelmagnresX % loop over restricted information variables
-            for jj=1:n % loop over endogenous (columns)
-                favar.relmagnresperiods{ii,jj}=str2num(strngs2{Xnerows1index(ii,1),clmns(jj,1)});
-            end
-        end
+        favar.relmagnresperiods = cellstr(pref.data.RelMagnResPeriods{Xsignres, endo});
 
         % check if we have restrictions
         if sum(strctident.favar_relmagnrestableempty==0)~=0

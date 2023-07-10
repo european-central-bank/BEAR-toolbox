@@ -241,20 +241,22 @@ else % if we found something in the table then the FEVD res routine is activated
     %% FAVAR FEVD
     if favar.FAVAR==1
 
-        % all rows that are not empty
-        neclmns1index=neclmns1==1;
-        nerows1index=nerows1(neclmns1index,1);
-        % only information variables in X that are restricted
-        Xnerows1index=nerows1index(size(rows,1)+1:end,1);
+        % % all rows that are not empty
+        % neclmns1index=neclmns1==1;
+        % nerows1index=nerows1(neclmns1index,1);
+        % % only information variables in X that are restricted
+        % Xnerows1index=nerows1index(size(rows,1)+1:end,1);
 
         % strings of restricted information variables
-        signresX_init=strngs1(max(rows)+1:end,min(clmns)-1); %strngs1 is already adjusted for empty rows and columns
+        % signresX_init=strngs1(max(rows)+1:end,min(clmns)-1); %strngs1 is already adjusted for empty rows and columns
         % which information variables are restricted?
-        Xsignres=ismember(signresX_init,favar.informationvariablestrings);
+        Xsignres=ismember(pref.data.FEVDResValues.Properties.RowNames,favar.informationvariablestrings);
         % number of restricted variables in X
         favar.nFEVDresX=sum(Xsignres);
         % keep only the ones that are actually in X
-        favar.FEVDresX=signresX_init(Xsignres==1,:);
+        favar.FEVDresX=pref.data.FEVDResValues.Properties.RowNames(Xsignres);
+
+        [Xnerows1index, ~] = find(~ismissing(pref.data.FEVDResValues.Properties.RowNames));
 
 
         if favar.nFEVDresX~=0
@@ -268,11 +270,7 @@ else % if we found something in the table then the FEVD res routine is activated
                 favar.FEVDresX_index(jj,1)=find(favar.FEVDresX_indexlogical{jj,1},1);
             end
             % now recover the values for the cell favar.signrestable
-            for ii=1:size(favar.FEVDresX,1) % loop over restricted information variables
-                for jj=1:n % loop over endogenous (columns)
-                    favar.FEVDrestable{ii,jj}=strngs1{Xnerows1index(ii,1),clmns(jj,1)};
-                end
-            end
+            favar.FEVDrestable = cellstr(pref.data.FEVDResValues{Xsignres, endo});
 
             % identify empty relmagn res table columns
             for ii=1:size(favar.FEVDrestable,2)
@@ -294,12 +292,7 @@ else % if we found something in the table then the FEVD res routine is activated
 
             %assuming that the variables in the table here are identical to the variables in the sign res value table
             % now recover the values for the cell favar.signrestable
-            for ii=1:size(favar.FEVDresX,1) % loop over restricted information variables
-                for jj=1:n % loop over endogenous (columns)
-                    strctident.favar_FEVDresperiods{ii,jj}=str2num(strngs2{Xnerows1index(ii,1),clmns(jj,1)});
-                end
-            end
-
+            strctident.favar_FEVDresperiods = cellstr(pref.data.FEVDResPeriods{Xsignres, endo});
 
             % erase first column in the restriction table for IV shock
             if IRFt==6

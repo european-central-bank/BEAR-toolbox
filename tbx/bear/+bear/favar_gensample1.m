@@ -1,15 +1,19 @@
 function [informationstartlocation,informationendlocation,favar]=favar_gensample1(startdate,enddate,favar,pref)
 % information data table
-[informationdata,informationnames]=xlsread(pref.data.InputFile,'factor data');
+
 % also here: now, as a preliminary step: check if there is any Nan in the data; if yes, return an error since the model won't be able to run with missing data
 % a simple way to test for NaN is to check for "smaller or equal to infinity": Nan is the only number for which matlab will return 'false' when asked so
-informationdata2=informationdata(4:end,1:end);
-% data transformation index (following Stock & Watson)
-favar.transformationindex=informationdata(1,1:end)';
 % identify the informationaldata date strings
-favar.informationdatestrings=informationnames(4:end,1); %starts in line 4
 % identify the informationaldata variable strings
-favar.informationvariablestrings=informationnames(3,2:end); %starts in line 3
+FactorData = pref.data.FactorData;
+
+Transform = pref.data.FactorDataTransform; % data transformation index (following Stock & Watson)
+Blocks = pref.data.FactorDataBlocks;
+
+favar.transformationindex=Transform{:,:}';
+favar.informationdatestrings=FactorData.Time; %starts in line 4
+favar.informationvariablestrings=FactorData.Properties.VariableNames;
+informationdata2=FactorData{:,:};
 
 [r,c]=size(informationdata2);
 for ii=1:r
@@ -28,9 +32,9 @@ end
 
 
 % identify the position of the string corresponding to the start period
-favar.informationstartlocation=find(strcmp(favar.informationdatestrings,startdate)); %startdate specified in settings file, identical for the data sheet
+favar.informationstartlocation=find(strcmp(string(favar.informationdatestrings),startdate)); %startdate specified in settings file, identical for the data sheet
 % identify the position of the string corresponding to the end period
-favar.informationendlocation=find(strcmp(favar.informationdatestrings,enddate)); %enddate specified in settings file, identical for the data sheet
+favar.informationendlocation=find(strcmp(string(favar.informationdatestrings),enddate)); %enddate specified in settings file, identical for the data sheet
 informationendlocation=favar.informationendlocation;
 % check transformation codes following Stock & Watson (2016)
 if ~isempty(favar.transformationindex)
@@ -144,7 +148,7 @@ favar.X_temp=favar.X;
 
 %% extract factors
 if favar.blocks==1 % categories: for example slow/fast moving variables BBE (2005)
-    favar.blockindex=informationnames(2,2:end)';
+    favar.blockindex=Blocks{:,:}';
     favar.nbnames=size(favar.bnames,1); % number of blocks
     % create indices for each block
     for ii=1:favar.nbnames % for all blocks
@@ -189,7 +193,7 @@ if favar.blocks==1 % categories: for example slow/fast moving variables BBE (200
     
 elseif favar.blocks==0 && favar.onestep==0 % special case for this case, the first block must be the block ordered first (slow) in the recursive scheme, it will crash with more than 2 blocks
     if favar.slowfast==1 %compute factors of slow-moving variables in this case
-        favar.blockindex=informationnames(2,2:end)';
+        favar.blockindex=Blocks{:,:}';
         favar.nbnames=size(favar.bnames,1); % number of blocks
         % create indices for each block
         for ii=1:favar.nbnames % for all blocks

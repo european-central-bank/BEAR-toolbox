@@ -241,13 +241,12 @@ else % if we found something in the table then the sign res routine is activated
     %% FAVAR restrictions
     if favar.FAVAR==1
         % strings of restricted information variables
-        signresX_init=strngs1(max(rows)+1:end,min(clmns)-1); %strngs1 is already adjusted for empty rows and columns
         % which information variables are restricted?
-        Xsignres=ismember(signresX_init,favar.informationvariablestrings);
+        Xsignres=ismember(pref.data.SignResValues.Properties.RowNames,favar.informationvariablestrings);
         % number of restricted variables in X
         favar.nsignresX=sum(Xsignres);
         % keep only the ones that are actually in X
-        favar.signresX=signresX_init(Xsignres==1,:);
+        favar.signresX=pref.data.SignResValues.Properties.RowNames(Xsignres);
 
         if favar.nsignresX~=0
 
@@ -262,11 +261,7 @@ else % if we found something in the table then the sign res routine is activated
             end
 
             % now recover the values for the cell favar.signrestable
-            for ii=1:favar.nsignresX % loop over restricted information variables
-                for jj=1:n % loop over endogenous (columns)
-                    favar.signrestable{ii,jj}=strngs1{max(rows)+ii,clmns(jj,1)};
-                end
-            end
+            favar.signrestable = cellstr(pref.data.SignResValues{Xsignres, endo});
 
             % empty favar sign res table columns
             for ii=1:size(favar.signrestable,2)
@@ -458,7 +453,7 @@ else % if we found something in the table then the sign res routine is activated
 
         % create indices for plotXshock
         if favar.IRFplot==1 && favar.npltX>0
-            IRFplotXshock_indexlogical=ismember(signreslabels,favar.IRF.pltXshck);
+            IRFplotXshock_indexlogical=ismember(cellstr(signreslabels),favar.IRF.pltXshck);
             favar.IRF.plotXshock_index=find(IRFplotXshock_indexlogical==1)';
             favar.IRF.npltXshck=size(favar.IRF.pltXshck,1);
             if favar.IRF.npltXshck==0

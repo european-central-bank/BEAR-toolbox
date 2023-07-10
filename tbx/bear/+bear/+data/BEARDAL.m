@@ -11,6 +11,8 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
         ExoMeanPriors
         ExoTightPriors
         FactorData
+        FactorDataTransform
+        FactorDataBlocks
         FEVDResValues
         FEVDResPeriods
         Grid
@@ -37,35 +39,37 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
 
     properties (Access = protected)
 
-        ARPriors_internal          tabular = table.empty()
-        BlockExo_internal          tabular = table.empty()
-        Blocks_internal            tabular = table.empty()
-        Conditions_internal        tabular = table.empty()
-        Data_internal              tabular = table.empty()
-        ExoMeanPriors_internal     tabular = table.empty()
-        ExoTightPriors_internal    tabular = table.empty()
-        FactorData_internal        tabular = table.empty()
-        FEVDResValues_internal     tabular = table.empty()
-        FEVDResPeriods_internal    tabular = table.empty()
-        Grid_internal              tabular = table.empty()
-        Intervals_internal         tabular = table.empty()
-        IV_internal                tabular = table.empty()
-        LongRunPrior_internal      tabular = table.empty()
-        MeanAdjPrior_internal      tabular = table.empty()
-        MFvarMonthly_internal      tabular = table.empty()
-        MFvarQuarterly_internal    tabular = table.empty()
-        MFvarTrans_internal        tabular = table.empty()
-        PanelPredExo_internal      tabular = table.empty()
-        PanelConditions_internal   tabular = table.empty()
-        PanelShocks_internal       tabular = table.empty()
-        PanelBlocks_internal       tabular = table.empty()
-        PredExo_internal           tabular = table.empty()
-        RelMagnResPeriods_internal tabular = table.empty()
-        RelMagnResValues_internal  tabular = table.empty()
-        Shocks_internal            tabular = table.empty()
-        SignResValues_internal     tabular = table.empty()
-        SignResPeriods_internal    tabular = table.empty()
-        SurveyLocalMean_internal   tabular = table.empty()
+        ARPriors_internal            tabular = table.empty()
+        BlockExo_internal            tabular = table.empty()
+        Blocks_internal              tabular = table.empty()
+        Conditions_internal          tabular = table.empty()
+        Data_internal                tabular = table.empty()
+        ExoMeanPriors_internal       tabular = table.empty()
+        ExoTightPriors_internal      tabular = table.empty()
+        FactorData_internal          tabular = table.empty()
+        FactorDataTransform_internal tabular = table.empty()
+        FactorDataBlocks_internal    tabular = table.empty()
+        FEVDResValues_internal       tabular = table.empty()
+        FEVDResPeriods_internal      tabular = table.empty()
+        Grid_internal                tabular = table.empty()
+        Intervals_internal           tabular = table.empty()
+        IV_internal                  tabular = table.empty()
+        LongRunPrior_internal        tabular = table.empty()
+        MeanAdjPrior_internal        tabular = table.empty()
+        MFvarMonthly_internal        tabular = table.empty()
+        MFvarQuarterly_internal      tabular = table.empty()
+        MFvarTrans_internal          tabular = table.empty()
+        PanelPredExo_internal        tabular = table.empty()
+        PanelConditions_internal     tabular = table.empty()
+        PanelShocks_internal         tabular = table.empty()
+        PanelBlocks_internal         tabular = table.empty()
+        PredExo_internal             tabular = table.empty()
+        RelMagnResPeriods_internal   tabular = table.empty()
+        RelMagnResValues_internal    tabular = table.empty()
+        Shocks_internal              tabular = table.empty()
+        SignResValues_internal       tabular = table.empty()
+        SignResPeriods_internal      tabular = table.empty()
+        SurveyLocalMean_internal     tabular = table.empty()
 
     end
 
@@ -78,6 +82,8 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
         data = readExoMeanPriors(obj)
         data = readExoTightPriors(obj)
         data = readFactorData(obj)
+        data = readFactorDataTransform(obj)
+        data = readFactorDataBlocks(obj)
         data = readFEVDResValues(obj)
         data = readFEVDResPeriods(obj)
         data = readGrid(obj)
@@ -111,6 +117,8 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
             obj.ExoMeanPriors = table.empty();
             obj.ExoTightPriors = table.empty();
             obj.FactorData = table.empty();
+            obj.FactorDataTransform = table.empty();
+            obj.FactorDataBlocks = table.empty();
             obj.FEVDResValues = table.empty();
             obj.FEVDResPeriods = table.empty();
             obj.Grid = table.empty();
@@ -167,6 +175,14 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
 
         function value = get.FactorData(obj)
             value = getData(obj, "FactorData", @(x) readFactorData(x));
+        end
+
+        function value = get.FactorDataTransform(obj)
+            value = getData(obj, "FactorDataTransform", @(x) readFactorDataTransform(x));
+        end
+
+        function value = get.FactorDataBlocks(obj)
+            value = getData(obj, "FactorDataBlocks", @(x) readFactorDataBlocks(x));
         end
 
         function value = get.FEVDResValues(obj)
@@ -254,7 +270,7 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
 
     end
 
-    methods % Getters
+    methods % Setters
 
         function set.ARPriors(obj, value)
             set(obj, "ARPriors_internal", value);
@@ -285,6 +301,14 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
         end
 
         function set.FactorData(obj, value)
+            set(obj,  "FactorData_internal", value);
+        end
+
+        function set.FactorDataTransform(obj, value)
+            set(obj,  "FactorData_internal", value);
+        end
+
+        function set.FactorDataBlocks(obj, value)
             set(obj,  "FactorData_internal", value);
         end
 
