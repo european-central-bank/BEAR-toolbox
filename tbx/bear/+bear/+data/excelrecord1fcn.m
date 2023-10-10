@@ -439,7 +439,7 @@ end
 % impulse response functions
 if opts.IRF==1
     estimationinfo{102,1}='yes';
-elseif IRF==0
+elseif opts.IRF==0
     estimationinfo{102,1}='no';
 end
 

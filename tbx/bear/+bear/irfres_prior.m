@@ -625,9 +625,9 @@ for ii=1:Acc %parfor
             if size(Qj,2)==n && success==1 && HD==1 && prior~=61
                 D=hsigma*Qj;
                 if onestep==1 % her we use Xg and Yg
-                    [hd_estimates]=bear.hd_new_for_signres(const,exo,beta,k,n,p,D,m,T,Xg,Yg,data_exo,IRFt,signreslabels_shocks);
+                    [hd_estimates]=bear.hd_new_for_signres(const,exo,beta,k,n,p,D,m,T,Xg,Yg,IRFt,signreslabels_shocks);
                 else
-                    [hd_estimates]=bear.hd_new_for_signres(const,exo,beta,k,n,p,D,m,T,X,Y,data_exo,IRFt,signreslabels_shocks);
+                    [hd_estimates]=bear.hd_new_for_signres(const,exo,beta,k,n,p,D,m,T,X,Y,IRFt,signreslabels_shocks);
                 end
             end
             % repeat this loop until a succesful draw is obtained

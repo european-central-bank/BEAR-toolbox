@@ -202,6 +202,27 @@ classdef (Abstract) BASEsettings < matlab.mixin.CustomDisplay
             matlab.mixin.CustomDisplay.displayPropertyGroups(obj, applicationProps);
             
         end
+
+        function obj = setStrctident(obj, value)
+            
+            switch value
+                case 4
+                    if class(obj.strctident) ~= "bear.settings.strctident.StrctidentIRFt4"
+                        obj.strctident = bear.settings.strctident.StrctidentIRFt4(obj.strctident);
+                    end
+                case 5
+                    if class(obj.strctident) ~= "bear.settings.strctident.StrctidentIRFt5"
+                        obj.strctident = bear.settings.strctident.StrctidentIRFt5(obj.strctident);
+                    end
+                case 6
+                    if class(obj.strctident) ~= "bear.settings.strctident.StrctidentIRFt6"
+                        obj.strctident = bear.settings.strctident.StrctidentIRFt6(obj.strctident);
+                    end
+                otherwise
+                    obj.strctident = bear.settings.strctident.Strctident.empty();
+            end
+
+        end
         
     end
     

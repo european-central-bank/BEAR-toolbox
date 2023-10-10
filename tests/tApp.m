@@ -7,7 +7,7 @@ classdef tApp < matlab.uitest.TestCase
     methods (TestMethodSetup)
         
         function loadApp(tc)
-            tc.App = BEARapp20a();
+            tc.App = BEARapp();
             addTeardown(tc, @() delete(tc.App));
         end
         
@@ -56,6 +56,31 @@ classdef tApp < matlab.uitest.TestCase
             opts = evalin('base', 'opts');
             tc.verifyEqual(opts.Feval, true);
             
+        end
+
+        function tCaldaraReplication(tc)
+            
+            tc.press(tc.App.CaldaraandHerbst2019Menu)
+            tc.press(tc.App.QuickExporttoWorkspaceButton)
+            opts = evalin('base', 'opts');
+            tc.verifyEqual(opts.strctident.prior_type_reduced_form, 2);
+            
+        end
+
+        function tStructIdent(tc)
+            
+            tc.choose(tc.App.APPLICATIONSTab)
+            tc.choose(tc.App.Proxysign)
+            tc.press(tc.App.QuickExporttoWorkspaceButton)            
+            opts = evalin('base', 'opts');
+            tc.verifyEqual(opts.strctident.prior_type_reduced_form, 1);
+            tc.verifyEqual(opts.strctident.prior_type_proxy, 1);
+
+            tc.choose(tc.App.prior_type_proxy, 'No');
+            tc.press(tc.App.QuickExporttoWorkspaceButton)
+            opts = evalin('base', 'opts');
+            tc.verifyEqual(opts.strctident.prior_type_proxy, 2);
+
         end
         
     end

@@ -157,29 +157,4 @@ classdef SVsettings < bear.settings.BASEsettings
 
     end
 
-    methods (Access = private)
-
-        function obj = setStrctident(obj, value)
-
-            switch value
-                case 4
-                    if class(obj.strctident) ~= "bear.settings.strctident.StrctidentIRFt4"
-                        obj.strctident = bear.settings.strctident.StrctidentIRFt4;
-                    end
-                case 5
-                    if class(obj.strctident) ~= "bear.settings.strctident.StrctidentIRFt5"
-                        obj.strctident = bear.settings.strctident.StrctidentIRFt5;
-                    end
-                case 6
-                    if class(obj.strctident) ~= "bear.settings.strctident.StrctidentIRFt6"
-                        obj.strctident = bear.settings.strctident.StrctidentIRFt6;
-                    end
-                otherwise
-                    obj.strctident = bear.settings.strctident.Strctident.empty();
-            end
-
-        end
-
-    end
-
 end

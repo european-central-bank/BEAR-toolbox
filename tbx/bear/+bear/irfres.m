@@ -1,6 +1,5 @@
 function [irf_record,D_record,gamma_record,ETA_record,beta_record,sigma_record,favar]...
     =irfres(beta_gibbs,sigma_gibbs,C_draws,IV_draws,IRFperiods,n,m,p,k,Y,X,FEVDresperiods,strctident,pref,favar,IRFt,It,Bu)
-
 % inputs:  - matrix 'betahat': OLS estimate for beta
 %          - matrix 'sigmahats': OLS estimate for sigma
 %          - integer 'IRFperiods': number of periods for IRFs

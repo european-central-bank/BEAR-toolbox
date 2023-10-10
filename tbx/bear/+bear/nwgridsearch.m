@@ -52,7 +52,7 @@ for ii=grid{1,1}:grid{1,3}:grid{1,2}
                         % generate the dummy observations
                         [Ystar, ystar, Xstar, Tstar, Ydum, ydum, Xdum, Tdum]=bear.gendummy(data_endo,data_exo,Y,X,n,m,p,T,const,lambda6,lambda7,lambda8,scoeff,iobs,lrp,H);
                         % obtain prior elements
-                        [B0, beta0, phi0, S0, alpha0]=bear.nwprior(ii,arvar,jj,kk,ll,n,m,p,k,q,prior);
+                        [B0, beta0, phi0, S0, alpha0]=bear.nwprior(ii,arvar,jj,kk,ll,n,m,p,k,q,prior,priorexo);
                         % obtain posterior elements for the dummy-augmented data
                         [Bbar, betabar, phibar, Sbar, alphabar, alphatilde]=bear.nwpost(B0,phi0,S0,alpha0,Xstar,Ystar,n,Tstar,k);
                         % obtain the log marginal value (up to a constant) term for the dummy-augmented data
@@ -87,7 +87,7 @@ for ii=grid{1,1}:grid{1,3}:grid{1,2}
                         % generate the dummy observations
                         [Ystar, ystar, Xstar, Tstar, Ydum, ydum, Xdum, Tdum]=bear.gendummy(data_endo,data_exo,Y,X,n,m,p,T,const,lambda6,lambda7,lambda8,scoeff,iobs,lrp,H);
                         % obtain prior elements
-                        [B0, beta0, phi0, S0, alpha0]=bear.nwprior(ii,arvar,jj,kk,ll,n,m,p,k,q,prior);
+                        [B0, beta0, phi0, S0, alpha0]=bear.nwprior(ii,arvar,jj,kk,ll,n,m,p,k,q,prior,priorexo);
                         % obtain posterior elements for the dummy-augmented data
                         [Bbar, betabar, phibar, Sbar, alphabar, alphatilde]=bear.nwpost(B0,phi0,S0,alpha0,Xstar,Ystar,n,Tstar,k);
                         % obtain the log marginal value (up to a constant) term for the dummy-augmented data
@@ -124,7 +124,7 @@ for ii=grid{1,1}:grid{1,3}:grid{1,2}
                             % generate the dummy observations
                             [Ystar, ystar, Xstar, Tstar, Ydum, ydum, Xdum, Tdum]=bear.gendummy(data_endo,data_exo,Y,X,n,m,p,T,const,lambda6,lambda7,lambda8,scoeff,iobs,lrp,H);
                             % obtain prior elements
-                            [B0, beta0, phi0, S0, alpha0]=bear.nwprior(ii,arvar,jj,kk,ll,n,m,p,k,q,prior);
+                            [B0, beta0, phi0, S0, alpha0]=bear.nwprior(ii,arvar,jj,kk,ll,n,m,p,k,q,prior,priorexo);
                             % obtain posterior elements for the dummy-augmented data
                             [Bbar, betabar, phibar, Sbar, alphabar, alphatilde]=bear.nwpost(B0,phi0,S0,alpha0,Xstar,Ystar,n,Tstar,k);
                             % obtain the log marginal value (up to a constant) term for the dummy-augmented data

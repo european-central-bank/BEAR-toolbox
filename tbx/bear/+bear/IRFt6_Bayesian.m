@@ -1,4 +1,4 @@
-function [irf_record,D_record,gamma_record,ETA_record,beta_gibbs,sigma_gibbs]...
+function [irf_record,D_record,gamma_record,ETA_record,beta_gibbs,sigma_gibbs,It,Bu]...
     =IRFt6_Bayesian(betahat,IRFperiods,n,m,p,k,T,names,startdate,enddate,X,FEVDresperiods,Y,pref,IRFt,arvar,q,It,Bu,lambda1,lambda3,lambda4,strctident,favar)
 
 %%Implementation of a Bayesian Proxy VAR based on the Codes published by Caldara and Herbst (2018)
@@ -19,6 +19,4 @@ Bu=0; %set burn in to 0, as burn in is no longer requiered
 
 %% check Restrictions
 [irf_record,D_record,gamma_record,ETA_record,beta_gibbs,sigma_gibbs]...
-        =bear.irfres(beta_draws,sigma_draws,C_draws,IV_draws,IRFperiods,n,m,p,k,T,Y,X,FEVDresperiods,strctident,pref,favar,IRFt,It,Bu);
-    
-    
+        =bear.irfres(beta_draws,sigma_draws,C_draws,IV_draws,IRFperiods,n,m,p,k,Y,X,FEVDresperiods,strctident,pref,favar,IRFt,It,Bu);        
