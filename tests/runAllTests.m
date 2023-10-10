@@ -5,9 +5,7 @@ import matlab.unittest.plugins.CodeCoveragePlugin
 import matlab.unittest.plugins.codecoverage.CoverageReport
 import matlab.unittest.plugins.codecoverage.CoverageResult
 
-
 clear; clc;
-% suite = TestSuite.fromFile('replicationTests.m');
 suite = TestSuite.fromProject(currentProject);
 
 runner = TestRunner.withTextOutput;
@@ -24,9 +22,4 @@ plugin = CodeCoveragePlugin.forFolder(bearroot(),"Producing",[reportFormat,forma
 runner.addPlugin(plugin)
 
 result = runner.run(suite);
-table(results)
-
-% assert(all([result.Passed]))
-% coverageResults = format.Result;
-% summary = coverageSummary(coverageResults,"statement");
-% assert(summary(1,1)/summary(1,2) > 0.6) % Coverage above 60 requried
+table(result)

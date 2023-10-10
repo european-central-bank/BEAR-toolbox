@@ -1,6 +1,9 @@
 import matlab.unittest.TestSuite
 import matlab.unittest.TestRunner
+import matlab.unittest.plugins.TestReportPlugin;
 import matlab.unittest.plugins.CodeCoveragePlugin
+import matlab.unittest.plugins.codecoverage.CoverageReport
+import matlab.unittest.plugins.codecoverage.CoverageResult
 
 clear; clc;
 suite1 = TestSuite.fromFile('tests/replicationTests.m','Tag','QuickReplications');
@@ -13,7 +16,6 @@ suite7 = TestSuite.fromFile('tests/tApp.m');
 suite = [suite1, suite2, suite3, suite4, suite5, suite7];
 
 runner = TestRunner.withTextOutput;
-runner.addPlugin(CodeCoveragePlugin.forFolder(bearroot(), 'IncludingSubfolders', true))
 result = runner.run(suite);
 tb = table(result);
 disp(tb);
