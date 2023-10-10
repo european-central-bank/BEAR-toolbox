@@ -17,6 +17,12 @@ classdef ExcelDAL < bear.data.BEARDAL
 
         end
 
+        function set.InputFile(obj, value)
+            obj.InputFile = value;
+            obj.Sheets = sheetnames(value); %#ok<MCSUP>
+            obj.reload();
+        end
+
     end
 
     methods (Access = protected) % Read functions
