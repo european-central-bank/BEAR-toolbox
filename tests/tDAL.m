@@ -16,7 +16,7 @@ classdef tDAL < matlab.unittest.TestCase
         end
     end
 
-    methods (Test)
+    methods (Test, TestTags = {'Git', 'Unit'})
 
         function tDateTime(tc, frequency)
             % Test reading various datetime formats

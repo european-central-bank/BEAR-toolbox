@@ -40,7 +40,7 @@ classdef tNewInterface < matlab.unittest.TestCase
         
     end
     
-    methods (Test, TestTags = {'Git'})
+    methods (Test, TestTags = {'Git', 'Unit'})
         
         function tOLSVAR(tc)
             

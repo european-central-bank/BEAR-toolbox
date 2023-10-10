@@ -1,4 +1,4 @@
-function [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,ar,priorexo,lambda4]=...
+function [data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,ar,priorexo,lambda4]=...
     gensamplepan(startdate,enddate,Units,panel,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,ar,PriorExcel,priorsexogenous, numendo)
 
 %% Phase 1: data loading and error checking
@@ -7,36 +7,26 @@ function [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo
 % define first the number of units
 numunits=size(Units,1);
 
-% read the data from Excel
-[sheetdata,names]=xlsread(pref.excelFile,Units{1,1});
-data(:,:,1)=sheetdata;
-for ii=2:numunits
-    [sheetdata,~]=xlsread(pref.excelFile,Units{ii,1});
-    data(:,:,ii)=sheetdata;
-end
+% % read the data from Excel
+% [sheetdata,names]=xlsread(pref.data.InputFile,Units{1,1});
+% data(:,:,1)=sheetdata;
+% for ii=2:numunits
+%     [sheetdata,~]=xlsread(pref.data.InputFile,Units{ii,1});
+%     data(:,:,ii)=sheetdata;
+% end
+data = pref.data.PanelData;
 
 % now, as a preliminary step: check if there is any Nan in the data; if yes, return an error since the model won't be able to run with missing data
 % a simple way to test for NaN is to check for "smaller or equal to infinity": Nan is the only number for which matlab will return 'false' when asked so
-[r,c,p]=size(data);
-for ii=1:r
-    for jj=1:c
-        for kk=1:p
-            temp=data(ii,jj,kk);
-            if (temp<=inf)==0
-                % identify the variable, the date and the unit
-                NaNvariable=names{1,jj+1};
-                NaNdate=names{ii+1,1};
-                NaNunit=Units{kk,1};
-                message=['Error: variable ' NaNvariable ' of unit ' NaNunit ' at date ' NaNdate ' (and possibly other sample entries) is identified as NaN. Please check your Excel spreadsheet: entry may be blank or non-numerical.'];
-                msgbox(message);
-                error('programme termination: data error');
-            end
-        end
-    end
+for i = 1 : numunits
+   if any(ismissing(data{:,i}), 'all')
+       error('bear:gensamplepan', ...
+           'Error: unit %s (and possibly other sample entries) contains NaNs. Please check your Excel spreadsheet: entry may be blank or non-numerical.', Units(i));
+   end
 end
 
 % identify the date strings
-datestrings=names(2:end,1);
+datestrings = string(data.Time);
 % identify the position of the string corresponding to the start period
 startlocation=find(strcmp(datestrings,startdate));
 % identify the position of the string corresponding to the end period
@@ -44,78 +34,86 @@ endlocation=find(strcmp(datestrings,enddate));
 
 % if either the start date or the date date is not recognised, return an error message
 if isempty(startlocation)
-    msgbox('Error: unknown start date for the sample. Please check your sample start date (remember that names are case-sensitive).');
-    error('programme termination: date error');
+    error('bear:gensamplepan', 'Error: unknown start date for the sample. Please check your sample start date (remember that names are case-sensitive).');
 elseif isempty(endlocation)
-    msgbox('Error: unknown end date for the sample. Please check your sample end date (remember that names are case-sensitive).');
-    error('programme termination: date error');
+    error('bear:gensamplepan', 'Error: unknown end date for the sample. Please check your sample end date (remember that names are case-sensitive).');
 end
 % also, if the start date is posterior to the end date, obviously return an error
-if startlocation>=endlocation==1
-    msgbox('Error: inconsistency between the start and end dates. The start date must be anterior to the end date.');
-    error('programme termination: date error');
+if startlocation >= endlocation 
+    error('bear:gensamplepan', 'Error: inconsistency between the start and end dates. The start date must be anterior to the end date.');
 end
 
-% identify the variable strings, endogenous and exogenous
-variablestrings=names(1,2:end);
-
-% identify the position of the strings corresponding to the endogenous variables
-
-% for each variable, find the corresponding string
-for ii=1:numendo
-    % check first that the variable ii in endo appears in the list of variable strings
-    % if not, the variable is unknown: return an error
-    var=endo(ii,1);
-    check=find(strcmp(variablestrings,var));
-    if isempty(check)==1
-        message= "Error: endogenous variable " + char(var) + " cannot be found on the excel spreadsheet.";
-        error('bear:gensamplepan:varendoNotFound', message)
-    end
-    % if the variable is known, go on
-    endolocation(ii,1)=find(strcmp(variablestrings,endo(ii,1)));
-end
-
-% identify the position of the strings corresponding to the exogenous variables
-% proceed similarly to the endogenous variables, but account for the fact that exogenous may be empty
-% so check first whether there are exogenous variables altogether
+% % identify the variable strings, endogenous and exogenous
+% variablestrings=names(1,2:end);
+% 
+% % identify the position of the strings corresponding to the endogenous variables
+% 
+% % for each variable, find the corresponding string
+% for ii=1:numendo
+%     % check first that the variable ii in endo appears in the list of variable strings
+%     % if not, the variable is unknown: return an error
+%     var=endo(ii,1);
+%     check=find(strcmp(variablestrings,var));
+%     if isempty(check)==1
+%         message= "Error: endogenous variable " + char(var) + " cannot be found on the excel spreadsheet.";
+%         error('bear:gensamplepan:varendoNotFound', message)
+%     end
+%     % if the variable is known, go on
+%     endolocation(ii,1)=find(strcmp(variablestrings,endo(ii,1)));
+% end
+% 
+% % identify the position of the strings corresponding to the exogenous variables
+% % proceed similarly to the endogenous variables, but account for the fact that exogenous may be empty
+% % so check first whether there are exogenous variables altogether
 if isempty(exo)
     numexo=0;
 else
     % if not empty, repeat what has been done with the exogenous
     numexo=size(exo,1);
-    % for each variable, find the corresponding string
-    for ii=1:numexo
-        % check first that the variable ii in endo appears in the list of variable strings
-        % if not, the variable is unknown: return an error
-        var=exo(ii,1);
-        check=find(strcmp(variablestrings,var));
-        if isempty(check)==1
-            message=strcat('Error: exogenous variable',{' '},char(var),' cannot be found on the excel spreadsheet.');
-            error('bear:gensamplepan:varexoNotFound', message)
-        end
-        % if the variable is known, go on
-        exolocation(ii,1)=find(strcmp(variablestrings,exo(ii,1)));
-    end
 end
+% if isempty(exo)
+%     numexo=0;
+% else
+%     % if not empty, repeat what has been done with the exogenous
+%     numexo=size(exo,1);
+%     % for each variable, find the corresponding string
+%     for ii=1:numexo
+%         % check first that the variable ii in endo appears in the list of variable strings
+%         % if not, the variable is unknown: return an error
+%         var=exo(ii,1);
+%         check=find(strcmp(variablestrings,var));
+%         if isempty(check)==1
+%             message=strcat('Error: exogenous variable',{' '},char(var),' cannot be found on the excel spreadsheet.');
+%             error('bear:gensamplepan:varexoNotFound', message)
+%         end
+%         % if the variable is known, go on
+%         exolocation(ii,1)=find(strcmp(variablestrings,exo(ii,1)));
+%     end
+% end
 
 %% Phase 2: creation of the data matrices data_endo and data_exo
 
 % now create the matrix of endogenous variables for the estimation sample
 % it is the concatenation of the vectors of each endogenous variables, over the selected sample dates, repeated for each unit
 % loop over units
+data_endo = zeros( numel(startlocation:endlocation) , numendo, numunits);
 for ii=1:numunits
-    temp=[];
-    % loop over endogenous variables
-    for jj=1:numendo
-        temp=[temp data(startlocation:endlocation,endolocation(jj,1),ii)];
-    end
-    data_endo(:,:,ii)=temp;
+    % temp=[];
+    % % loop over endogenous variables
+    % for jj=1:numendo
+    %     temp=[temp data(startlocation:endlocation,endolocation(jj,1),ii)];
+    % end
+    data_endo(:,:,ii) = data.(Units{ii}){startlocation:endlocation, endo};
 end
 
 % Similarly, create the matrix of exogenous variables for the estimation sample
+% data_exo=[];
+% for ii=1:numexo
+%     data_exo=[data_exo data(startlocation:endlocation,exolocation(ii,1))];
+% end
 data_exo=[];
-for ii=1:numexo
-    data_exo=[data_exo data(startlocation:endlocation,exolocation(ii,1))];
+for ii=1:numunits
+    data_exo = [data_exo data.(Units{ii}){startlocation:endlocation, exo}];
 end
 
 
@@ -125,7 +123,8 @@ if PriorExcel==0
     ar_default(:,1)=ar;
     ar=ar_default;
 else
-    [ar]=xlsread(pref.excelFile,'AR priors');
+    ar = pref.data.ARPriors;
+    ar = ar{:,1};
 end
 
 
@@ -139,10 +138,8 @@ if priorsexogenous==0
         end
     end
 else
-    [priorexo]=xlsread(pref.excelFile,'exo mean priors');
-    [lambda4]=xlsread(pref.excelFile,'exo tight priors');
-    priorexo=priorexo(1:numendo,1:numexo+1);
-    lambda4=lambda4(1:numendo,1:numexo+1);
+    priorexo = pref.data.ExoMeanPriors(1:numendo, 2:2+numexo);
+    lambda4 = pref.data.ExoTightPriors(1:numendo,2:2+numexo);
 end
 
 

@@ -364,7 +364,7 @@ try
             = bear.gensample(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,opts.ar,opts.lambda4,opts.PriorExcel,opts.priorsexogenous,pref,favar,IRFt, n);
         % else, if the model is the panel BVAR
     elseif VARtype==4
-        [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4]...
+        [data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4]...
             =bear.gensamplepan(startdate,enddate,Units,opts.panel,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,opts.ar,0,0, n);
     elseif VARtype==7
         [names, mf_setup, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate]...
@@ -470,8 +470,7 @@ try
     numt=1;% initialisation
     Fstartdate_rolling={};%to keep track of iterations
     if window_size>length(stringdates1)
-        msgbox('Forecasting window size greater than sample size');
-        error('Forecasting window size greater than sample size');
+        error('BEARmain:ForecastingWindowTooBig','Forecasting window size greater than sample size');
     elseif window_size>0
         numt = length(stringdates1)-window_size+lags; % number of different dateroll dates
     end
@@ -510,15 +509,15 @@ try
             % generate the different sets of data
             % if the model is the OLS VAR,
             if VARtype==1
-                [names, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate,endo,favar]...
+                [data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate,endo,favar]...
                     =bear.gensampleols(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,favar,IRFt, n);
                 % if the model is the Bayesian VAR, the mean-adjusted BVAR, the stochastic volatility BVAR, ot the time-varying BVAR:
             elseif VARtype==2 || VARtype==5 || VARtype==6
-                [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4,favar]...
+                [data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4,favar]...
                     =bear.gensample(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,opts.ar,opts.lambda4,opts.PriorExcel,opts.priorsexogenous,pref,favar,IRFt, n);
                 % else, if the model is the panel BVAR
             elseif VARtype==4
-                [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4]...
+                [data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4]...
                     =bear.gensamplepan(startdate,enddate,Units,opts.panel,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,opts.ar,0,0, n);
             end
 

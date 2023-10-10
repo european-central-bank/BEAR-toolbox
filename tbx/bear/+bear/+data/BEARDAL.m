@@ -22,11 +22,12 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
         MeanAdjPrior
         MFvarMonthly
         MFvarQuarterly
-        MFvarTrans
-        PanelPredExo
-        PanelConditions
-        PanelShocks
+        MFvarTrans        
         PanelBlocks
+        PanelData
+        PanelConditions
+        PanelPredExo
+        PanelShocks        
         PredExo
         RelMagnResPeriods
         RelMagnResValues
@@ -60,6 +61,7 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
         MFvarQuarterly_internal      tabular = table.empty()
         MFvarTrans_internal          tabular = table.empty()
         PanelPredExo_internal        tabular = table.empty()
+        PanelData_internal           tabular = table.empty()
         PanelConditions_internal     tabular = table.empty()
         PanelShocks_internal         tabular = table.empty()
         PanelBlocks_internal         tabular = table.empty()
@@ -96,6 +98,7 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
         data = readMFvarTrans(obj)
         data = readPanelPredExo(obj)
         data = readPanelConditions(obj)
+        data = readPanelData(obj)
         data = readPanelShocks(obj)
         data = readPanelBlocks(obj)
         data = readPredExo(obj)
@@ -131,6 +134,7 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
             obj.MFvarTrans = table.empty();
             obj.PanelPredExo = table.empty();
             obj.PanelConditions = table.empty();
+            obj.PanelData = table.empty();
             obj.PanelShocks = table.empty();
             obj.PanelBlocks = table.empty();
             obj.PredExo = table.empty();
@@ -230,6 +234,10 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
 
         function value = get.PanelConditions(obj)
             value = getData(obj, "PanelConditions", @(x) readPanelConditions(x));
+        end
+
+        function value = get.PanelData(obj)
+            value = getData(obj, "PanelData", @(x) readPanelData(x));
         end
 
         function value = get.PanelShocks(obj)
@@ -357,6 +365,10 @@ classdef (Abstract) BEARDAL < matlab.mixin.SetGet
 
         function set.PanelConditions(obj, value)
             set(obj,  "PanelConditions_internal", value);
+        end
+
+        function set.PanelData(obj, value)
+            set(obj,  "PanelData_internal", value);
         end
 
         function set.PanelShocks(obj, value)

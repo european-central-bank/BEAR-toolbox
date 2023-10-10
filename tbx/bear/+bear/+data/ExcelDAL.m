@@ -130,6 +130,30 @@ classdef ExcelDAL < bear.data.BEARDAL
             data = makeTimeTable(data);
         end
 
+        function data = readPanelData(obj)
+            data = obj.detectAndReadDoubleOnly("dataPanel", true, VariableNamesRange = "A2", DataRange = "A3");
+            data = makeTimeTable(data);
+
+            panel_names = readmatrix(obj.InputFile, Sheet = 'dataPanel', Range = '1:1', OutputType ='string');
+            panel_names = rmmissing(panel_names);
+
+            num_panels = numel(panel_names);
+            columns_per_panel = width(data)/num_panels;
+            if mod(columns_per_panel, 1) ~= 0
+                error('bear:data:ExcelDal', 'All panels must have the same endogenous and exogenous variables')
+            end
+                        
+            for i = num_panels : -1 : 1
+                idx = 1 + (i-1)*columns_per_panel : i*columns_per_panel;
+                newNames = extractBefore(data.Properties.VariableNames(idx), '_');
+                data = mergevars(data, idx, NewVariableName = panel_names(i), MergeAsTable = true);
+                if ~any(cellfun(@isempty, newNames))
+                    data.(panel_names(i)).Properties.VariableNames = newNames;
+                end
+            end
+
+        end
+
         function data = readPanelShocks(obj)
             data = obj.detectAndReadDoubleOnly("pan shocks", true, VariableNamesRange = "B2", DataRange = "B3");
             data = makeTimeTable(data);
@@ -189,7 +213,7 @@ classdef ExcelDAL < bear.data.BEARDAL
             end
         end
 
-        function data= detectAndReadStringOnly(obj, sheetname, varargin)
+        function data = detectAndReadStringOnly(obj, sheetname, varargin)
 
             if ismember(sheetname, obj.Sheets)
                 opts = detectImportOptions(obj.InputFile, varargin{:}, FileType = "spreadsheet", Sheet=sheetname, TextType = 'string', VariableNamingRule='preserve');
