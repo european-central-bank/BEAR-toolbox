@@ -143,7 +143,10 @@ edit('bear_settings_BVAR')
 
 ## Documentation
 
-For a full BEAR documentation please visit our [doc page](https://github.com/european-central-bank/BEAR-toolbox/tree/master/tbx/doc).
+To get started running the code, please visit:
+[Full doc](/doc/Getting_started_2.md)
+
+For the actual technical documentation, please look at the [technical guides](https://github.com/european-central-bank/BEAR-toolbox/tree/master/tbx/doc)
 
 ## Distribute BEAR
 
