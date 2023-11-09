@@ -1154,7 +1154,7 @@ try
                 % obtain prior elements
                 [omegab]=bear.panel4prior(N,n,m,p,T,k,data_endo,q,opts.lambda3,opts.lambda2,opts.lambda4);
                 % run the Gibbs sampler
-                [beta_gibbs,sigma_gibbs]=bear.panel4gibbs(N,n,h,T,k,q,Yi,Xi,opts.s0,omegab,opts.v0,opts.It,opts.Bu,opts.pick,opts.pickf);
+                [beta_gibbs,sigma_gibbs,beta_mean,sigma_mean,lambda_posterior]=bear.panel4gibbs(N,n,h,T,k,q,Yi,Xi,opts.s0,omegab,opts.v0,opts.It,opts.Bu,opts.pick,opts.pickf);
                 % compute posterior estimates
                 [beta_median, beta_std, beta_lbound, beta_ubound, sigma_median]=bear.panel4estimates(N,n,q,beta_gibbs,sigma_gibbs,cband,[],[]); % beta_mean,sigma_mean
                 % plot a first set of results

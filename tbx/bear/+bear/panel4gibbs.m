@@ -105,6 +105,9 @@ while count<=It
         % if there is no post burn selection
         if pick==0
             % record the draw
+            beta_mean(:,count-Bu)=b;
+            sigma_mean(:,count-Bu)=bear.vec(mean(sigma,3));
+            lambda_posterior(count-Bu)=lambda1;
             % loop over units
             for ii=1:N
                 beta_gibbs(:,count-Bu,ii)=beta(:,ii);
