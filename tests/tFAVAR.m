@@ -1,6 +1,6 @@
 classdef tFAVAR < matlab.unittest.TestCase
     
-    methods(Test, TestTags = {'Git'})
+    methods(Test, TestTags = {'Git', 'Unit'})
         
         function tNonFavar(tc)
             s = BEARsettings(7, 'ExcelFile', 'data.xlsx');

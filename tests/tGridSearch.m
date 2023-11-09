@@ -1,6 +1,6 @@
 classdef tGridSearch < matlab.unittest.TestCase
     
-    methods (Test, TestTags = {'Git'})
+    methods (Test, TestTags = {'Git', 'Unit'})
         function tGSunUsed(tc)
             s = BEARsettings(2, 'prior', 31);
             tc.verifyEqual(s.hogs,false);

@@ -1,6 +1,5 @@
-function [EPSIV,IV,entry_of_IV_in_Y,txt] = cut_EPS_IV_GK_new(txt, names, EPSdraw, IV, cut1, cut2, cut3, cut4, startdate, enddate, p)
+function [EPSIV,IV,entry_of_IV_in_Y,txt] = cut_EPS_IV_GK_new(txt, date, EPSdraw, IV, cut1, cut2, cut3, cut4, startdate, enddate, p)
 % Load IV and make it comparable with the reduced form errors
-date = names(2:end,1);                                   %get the datevector of the VAR
 
 startlocationY_in_Y=find(strcmp(date,startdate));        %location of sample startdate in Y datevector
 endlocationY_in_Y=find(strcmp(date,enddate));            %location of sample startdate in Y datevector

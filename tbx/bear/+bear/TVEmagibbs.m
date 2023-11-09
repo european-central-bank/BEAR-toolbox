@@ -1,4 +1,4 @@
-function [beta_gibbs, sigma_gibbs, theta_gibbs, ss_record,indH,beta_theta_gibbs]=TVEmagibbs(data_endo,It,Bu,beta0,omega0,psi0,lambda0,Y,X,n,T,k1,q1,p,regimeperiods,names,TVEH)
+function [beta_gibbs, sigma_gibbs, theta_gibbs, ss_record,indH, beta_theta_gibbs]=TVEmagibbs(data_endo,It,Bu,beta0,omega0,psi0,lambda0,Y,X,n,T,k1,q1,p,regimeperiods,datestrings,TVEH)
 
 
 % function [beta_gibbs psi_gibbs sigma_gibbs ss_record delta_gibbs]=magibbs(data_endo,data_exo,It,Bu,beta0,omega0,psi0,lambda0,Y,X,Z,n,m,T,k1,k3,q1,q2,q3,p)
@@ -41,8 +41,8 @@ if isempty(regimeperiods)
     data_exo=[ones(size(data_endo,1),1)];
 else
 data_exo=[ones(size(data_endo,1),1) zeros(size(data_endo,1),1)];
-data_exo(find(strcmp(names(2:end,1),regimeperiods(1))):find(strcmp(names(2:end,1),regimeperiods(2))),2)=1;
-data_exo(find(strcmp(names(2:end,1),regimeperiods(1))):find(strcmp(names(2:end,1),regimeperiods(2))),1)=0;
+data_exo(find(strcmp(datestrings,regimeperiods(1))):find(strcmp(datestrings,regimeperiods(2))),2)=1;
+data_exo(find(strcmp(datestrings,regimeperiods(1))):find(strcmp(datestrings,regimeperiods(2))),1)=0;
 end
 
 indH=zeros(T+p,1);

@@ -53,13 +53,19 @@ try
 
     const = opts.const;
 
-    pref = struct('excelFile', opts.excelFile, ...
+    pref = struct('data', opts.data, ...
         'results_path', opts.results_path, ...
         'results_sub', opts.results_sub, ...
         'results', opts.results, ...
         'plot', opts.plot, ...
-        'workspace', opts.workspace);
+        'workspace', opts.workspace, ...
+        'exporter', opts.Exporter);
 
+    if ~isfolder(pref.results_path) && ~isempty(pref.results_path)
+        mkdir(pref.results_path)
+    end
+
+    
     favar = bear.utils.initializeFavarResults(opts);
 
     IRF         = opts.IRF;           % activate impulse response functions (1=yes, 0=no)
@@ -221,21 +227,7 @@ try
 
     % first recover the names of the different endogenous variables;
     % to do so, separate the string 'varendo' into individual names
-    % look for the spaces and identify their locations
-    findspace=isspace(varendo);
-    locspace=find(findspace);
-    % use this to set the delimiters: each variable string is located between two delimiters
-    delimiters=[0 locspace numel(varendo)+1];
-    % count the number of endogenous variables
-    % first count the number of spaces
-    nspace=sum(findspace(:)==1);
-    % each space is a separation between two variable names, so there is one variable more than the number of spaces
-    numendo=nspace+1;
-    % now finally identify the endogenous
-    endo=cell(numendo,1);
-    for ii=1:numendo
-        endo{ii,1}=varendo(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
-    end
+    endo = strsplit(strtrim(varendo), [" ", native2unicode(9)])';    
 
     % FAVAR: additional strings
     if favar.FAVAR==1
@@ -326,19 +318,11 @@ try
 
     % proceed similarly for exogenous series; note however that it may be empty
     % so check first whether there are exogenous variables altogether
-    if isempty(varexo==1)
+    if isempty(varexo)
         exo={};
         % if not empty, repeat what has been done with the exogenous
     else
-        findspace=isspace(varexo);
-        locspace=find(findspace);
-        delimiters=[0 locspace numel(varexo)+1];
-        nspace=sum(findspace(:)==1);
-        numexo=nspace+1;
-        exo=cell(numexo,1);
-        for ii=1:numexo
-            exo{ii,1}=varexo(delimiters(1,ii)+1:delimiters(1,ii+1)-1);
-        end
+        exo = strsplit(strtrim(varexo), " ")';
     end
 
     % finally, if applicable, recover the names of the different units
@@ -366,24 +350,21 @@ try
     % Data loading phase |
     %------------------- |
 
-    % initiation of Excel result file
-    bear.initexcel(pref);
-
     % count the number of endogenous variables
-    n=size(endo,1);
+    n=numel(endo);
 
     % generate the different sets of data
     % if the model is the OLS VAR,
     if VARtype==1
-        [names, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate,endo,favar]...
+        [data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate,endo,favar]...
             =bear.gensampleols(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,favar,IRFt, n);
         % if the model is the Bayesian VAR, the mean-adjusted BVAR, the stochastic volatility BVAR, ot the time-varying BVAR:
     elseif VARtype==2 || VARtype==5 || VARtype==6
-        [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4,favar]...
-            =bear.gensample(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,opts.ar,opts.lambda4,opts.PriorExcel,opts.priorsexogenous,pref,favar,IRFt, n);
+        [data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4,favar]...
+            = bear.gensample(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,opts.ar,opts.lambda4,opts.PriorExcel,opts.priorsexogenous,pref,favar,IRFt, n);
         % else, if the model is the panel BVAR
     elseif VARtype==4
-        [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4]...
+        [data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4]...
             =bear.gensamplepan(startdate,enddate,Units,opts.panel,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,opts.ar,0,0, n);
     elseif VARtype==7
         [names, mf_setup, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate]...
@@ -414,7 +395,7 @@ try
         [signrestable,signresperiods,signreslabels,strctident,favar]=bear.loadsignres(n,endo,pref,favar,IRFt,strctident);
         [relmagnrestable,relmagnresperiods,signreslabels,strctident,favar]=bear.loadrelmagnres(n,endo,pref,favar,IRFt,strctident);
         [FEVDrestable,FEVDresperiods,signreslabels,strctident,favar]=bear.loadFEVDres(n,endo,pref,favar,IRFt,strctident);
-        [strctident,signreslabels]=bear.loadcorrelres(strctident,endo,names,startdate,enddate,lags,n,IRFt,favar,pref);
+        [strctident,signreslabels]=bear.loadcorrelres(strctident,endo,string(data.Time),startdate,enddate,lags,n,IRFt,favar,pref);
     end
 
 
@@ -472,7 +453,7 @@ try
     %-----------------------|
 
     % generate the strings and decimal vectors of dates
-    [decimaldates1,decimaldates2,stringdates1,stringdates2,stringdates3,Fstartlocation,Fendlocation]=bear.gendates(names,lags,frequency,startdate,enddate,Fstartdate,Fenddate,Fcenddate,Fendsmpl,F,CF,favar);
+    [decimaldates1,decimaldates2,stringdates1,stringdates2,stringdates3,Fstartlocation,Fendlocation]=bear.gendates(data,lags,frequency,startdate,enddate,Fstartdate,Fenddate,Fcenddate,Fendsmpl,F,CF,favar);
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -489,8 +470,7 @@ try
     numt=1;% initialisation
     Fstartdate_rolling={};%to keep track of iterations
     if window_size>length(stringdates1)
-        msgbox('Forecasting window size greater than sample size');
-        error('Forecasting window size greater than sample size');
+        error('BEARmain:ForecastingWindowTooBig','Forecasting window size greater than sample size');
     elseif window_size>0
         numt = length(stringdates1)-window_size+lags; % number of different dateroll dates
     end
@@ -529,15 +509,15 @@ try
             % generate the different sets of data
             % if the model is the OLS VAR,
             if VARtype==1
-                [names, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate,endo,favar]...
+                [data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate,endo,favar]...
                     =bear.gensampleols(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,favar,IRFt, n);
                 % if the model is the Bayesian VAR, the mean-adjusted BVAR, the stochastic volatility BVAR, ot the time-varying BVAR:
             elseif VARtype==2 || VARtype==5 || VARtype==6
-                [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4,favar]...
+                [data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4,favar]...
                     =bear.gensample(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,opts.ar,opts.lambda4,opts.PriorExcel,opts.priorsexogenous,pref,favar,IRFt, n);
                 % else, if the model is the panel BVAR
             elseif VARtype==4
-                [names,data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4]...
+                [data,data_endo,data_endo_a,data_endo_c,data_endo_c_lags,data_exo,data_exo_a,data_exo_p,data_exo_c,data_exo_c_lags,Fperiods,Fcomp,Fcperiods,Fcenddate,opts.ar,priorexo,opts.lambda4]...
                     =bear.gensamplepan(startdate,enddate,Units,opts.panel,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,opts.ar,0,0, n);
             end
 
@@ -612,10 +592,10 @@ try
                     =bear.olsirft4(betahat,sigmahat,IRFperiods,Y,X,n,m,p,k,pref,IRFband,T,FEVDresperiods,strctident,favar,IRFt);
             elseif IRFt==5 %point identified %%%% adjust beta sigma hat estimates
                 [irf_estimates,D,gamma,D_estimates,gamma_estimates,strshocks_estimates,favar]...
-                    =bear.olsirft5(betahat,IRFperiods,Y,X,n,m,p,k,endo,pref,IRFband,names,enddate,startdate,T,data_endo,data_exo,const,strctident,IRFt,IRF,favar);
+                    =bear.olsirft5(betahat,IRFperiods,Y,X,n,m,p,k,endo,pref,IRFband,string(data.Time),enddate,startdate,T,data_endo,data_exo,const,strctident,IRFt,IRF,favar);
             elseif IRFt==6 %combination of 4 and 5, nothing more %%%% adjust beta sigma hat estimates
                 [irf_estimates,D_record,gamma,D_estimates,gamma_estimates,strshocks_estimates,medianmodel,beta_record,favar]...
-                    =bear.olsirft6(betahat,IRFperiods,Y,X,n,m,p,k,endo,pref,IRFband,names,enddate,startdate,T,data_endo,data_exo,const,FEVDresperiods,favar,strctident,IRFt);
+                    =bear.olsirft6(betahat,IRFperiods,Y,X,n,m,p,k,endo,pref,IRFband,string(data.Time),enddate,startdate,T,data_endo,data_exo,const,FEVDresperiods,favar,strctident,IRFt);
             end
 
             % Structual shocks
@@ -710,7 +690,7 @@ try
             if opts.prior~=61
                 [Bhat, betahat, sigmahat, X, Xbar, Y, y, EPS, eps, n, m, p, T, k, q]=bear.olsvar(data_endo,data_exo,const,lags);
             elseif opts.prior==61 % other preliminary steps for Mean-adjusted model (prior=61)
-                [Y, X, Z, n, m, p, T, k1, k3, q1, q2, q3]=bear.TVEmaprelim(data_endo,data_exo,const,lags,regimeperiods,names);
+                [Y, X, Z, n, m, p, T, k1, k3, q1, q2, q3]=bear.TVEmaprelim(data_endo,lags,regimeperiods,string(data.Time));
                 k=k1; %for some rountines
                 q=q1+q2;
                 %m=0;
@@ -842,7 +822,7 @@ try
                 bear.checkpriors(psi0,lambda0,TVEH,decimaldates1,data_endo,Dmatrix);
                 q2=length(psi0);
                 % run Gibbs sampler for estimation
-                [beta_gibbs, sigma_gibbs, theta_gibbs, ss_record,indH,beta_theta_gibbs]=bear.TVEmagibbs(data_endo,opts.It,opts.Bu,beta0,omega0,psi0,lambda0,Y,X,n,T,k1,q1,p,regimeperiods,names,TVEH);
+                [beta_gibbs, sigma_gibbs, theta_gibbs, ss_record,indH,beta_theta_gibbs]=bear.TVEmagibbs(data_endo,opts.It,opts.Bu,beta0,omega0,psi0,lambda0,Y,X,n,T,k1,q1,p,regimeperiods,string(data.Time),TVEH);
                 %[beta_gibbs psi_gibbs sigma_gibbs delta_gibbs ss_record]=bear.magibbs(data_endo,data_exo,It,Bu,beta0,omega0,psi0,lambda0,Y,X,Z,n,m,T,k1,k3,q1,q2,q3,p);
                 % compute posterior estimates
                 [beta_median, beta_std, beta_lbound, beta_ubound, theta_median, theta_std, theta_lbound, theta_ubound, sigma_median]=bear.TVEmaestimates(beta_gibbs,theta_gibbs,sigma_gibbs,cband,q1,q2,n);
@@ -866,7 +846,7 @@ try
                 end
             elseif IRFt==5 % If IRFs have been set to an SVAR with IV identification (IRFt=5):
                 [struct_irf_record,D_record,gamma_record,ETA_record,opts.It,opts.Bu,beta_gibbs,sigma_gibbs]=...
-                    bear.IRFt5_Bayesian(names,betahat,m,n,Xstar,Ystar,k,p,enddate,startdate,IRFperiods,IRFt,T,arvar,q, opts.It, opts.Bu,opts.lambda1, opts.lambda3,opts.lambda4,pref,strctident);
+                    bear.IRFt5_Bayesian(string(data.Time),betahat,m,n,Xstar,Ystar,k,p,enddate,startdate,IRFperiods,IRFt,T,arvar,q, opts.It, opts.Bu,opts.lambda1, opts.lambda3,opts.lambda4,pref,strctident);
                 [beta_median,beta_std,beta_lbound,beta_ubound,sigma_median]=bear.IRFt456_estimates(beta_gibbs,sigma_gibbs,cband,q,n,k);
                 % If IRFs have been set to an SVAR with IV identification & sign, rel. magnitude, FEVD, correlation restrictions (IRFt=6):
             elseif IRFt==6
@@ -1014,7 +994,7 @@ try
                     [OLS_Bhat, OLS_betahat, OLS_sigmahat, OLS_forecast_estimates, biclag]=bear.arbicloop(data_endo,data_endo_a,const,p,n,m,Fperiods,Fband);
                     %%%%% I think we can merge both forecast files
                     if opts.prior~=61
-                        [Forecasteval]=bear.bvarfeval(data_endo_c,data_endo_c_lags,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,opts.It,opts.Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,names,endo,pref);
+                        [Forecasteval]=bear.bvarfeval(data_endo_c,data_endo_c_lags,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,opts.It,opts.Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,string(data.Time(end)),endo,pref);
                     elseif opts.prior==61
                         [Forecasteval]=bear.TVEmafeval(data_endo_a,data_endo_c,data_endo_c_lags,data_exo_c,data_exo_c_lags,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,m,p,k1,k3,opts.It,opts.Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,names,endo,pref,theta_gibbs,TVEHfuture,ss_record,indH);
                     end
@@ -1174,7 +1154,7 @@ try
                 % obtain prior elements
                 [omegab]=bear.panel4prior(N,n,m,p,T,k,data_endo,q,opts.lambda3,opts.lambda2,opts.lambda4);
                 % run the Gibbs sampler
-                [beta_gibbs,sigma_gibbs]=bear.panel4gibbs(N,n,h,T,k,q,Yi,Xi,opts.s0,omegab,opts.v0,opts.It,opts.Bu,opts.pick,opts.pickf);
+                [beta_gibbs,sigma_gibbs,beta_mean,sigma_mean,lambda_posterior]=bear.panel4gibbs(N,n,h,T,k,q,Yi,Xi,opts.s0,omegab,opts.v0,opts.It,opts.Bu,opts.pick,opts.pickf);
                 % compute posterior estimates
                 [beta_median, beta_std, beta_lbound, beta_ubound, sigma_median]=bear.panel4estimates(N,n,q,beta_gibbs,sigma_gibbs,cband,[],[]); % beta_mean,sigma_mean
                 % plot a first set of results
@@ -1620,10 +1600,10 @@ try
                 % if the Survey Local Mean VAR with stochastic volatility
             elseif opts.stvol==4
                 % load Survey local mean data
-                [dataSLM,datesSLM,namesSLM]=bear.loadSLM(names,data_endo,lags,pref);
+                dataSLM = bear.loadSLM(data.Time, pref);
                 % set priors and preliminaries for local mean model
                 [Ys, Yt, YincLags, data_post_training, const, priorValues, dataValues, sizetraining]=...
-                    bear.TVESLM_prior(data_endo, data_exo, names, endo, lags, opts.lambda1, opts.lambda2, opts.lambda3, opts.lambda5, opts.ar, opts.bex, dataSLM, namesSLM, datesSLM, const, priorexo, opts.gamma);
+                    bear.TVESLM_prior(data_endo, data_exo, endo, lags, opts.lambda1, opts.lambda2, opts.lambda3, opts.lambda5, opts.ar, opts.bex, dataSLM, const, priorexo, opts.gamma);
                 % preliminary OLS VAR to get some important quantities
                 [Bhat, ~, ~, ~, ~, ~, ~, ~, ~, n, ~, p, T, k, q]=bear.olsvar(data_post_training,data_exo,const,lags);
                 % run Gibbs sampler for estimation
@@ -1761,9 +1741,9 @@ try
                     % finally, compute forecast evaluation if the option was selected
                     if Feval==1
                         if opts.stvol==4
-                            [Forecasteval]=bear.bvarfeval_stvol4(data_endo_c,data_endo_c_lags,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,opts.It,opts.Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,names,endo,pref, dataValues, Psi_gibbs,sizetraining,data_exo_p, Fstartlocation,Fperiods, data_endo_a);
+                            [Forecasteval]=bear.bvarfeval_stvol4(data_endo_c,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,opts.It,opts.Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates, endo,pref, dataValues, Psi_gibbs,sizetraining,data_exo_p, Fstartlocation,Fperiods, data_endo_a);
                         else
-                            [Forecasteval]=bear.bvarfeval(data_endo_c,data_endo_c_lags,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,opts.It,opts.Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,names,endo,pref);
+                            [Forecasteval]=bear.bvarfeval(data_endo_c,data_endo_c_lags,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,opts.It,opts.Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,data.Time(end),endo,pref);
                         end
                     end
                 end
@@ -2432,13 +2412,15 @@ try
 
     % option to save matlab workspace
     if pref.workspace==1
-        save( fullfile(pref.results_path, [pref.results_sub '.mat']) );
+        save( fullfile(pref.results_path, pref.results_sub + ".mat") );
     end
 catch MException
-    tdir = tempname;
-    logfile = fullfile(tdir, "bearErrorLog_" + string(datetime('today'))+".mat");
-    mkdir(tdir)
-    save(logfile)
-    fprintf('Logs saved in %s\n', logfile)
+    if opts.Debug == true
+        tdir = tempname;
+        logfile = fullfile(tdir, "bearErrorLog_" + string(datetime('today'))+".mat");
+        mkdir(tdir)
+        save(logfile)
+        fprintf('Logs saved in %s\n', logfile)
+    end
     rethrow(MException)
 end

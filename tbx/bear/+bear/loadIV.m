@@ -1,19 +1,17 @@
 function [EPSIV,IVcut,EPSt,sigmahatIV,sigma_hat,inv_sigma_hat,IV,txt,OverlapIVinY,cut1,cut2,cut3,cut4]=...
     loadIV(betahat,k,n,Y,X,T,lags,names,startdate,enddate,strctident,pref)
 
-[IV,txt]=xlsread(pref.excelFile,'IV');
-
-Index=strcmp(txt(1,:),strctident.Instrument);
-IVnum=find(Index==1,1,'first')-1;
-if isempty(IVnum)||IVnum==0 % check if the IV can be found in the data sheet
+IV = pref.data.IV;
+if ismember(strctident.Instrument, IV.Properties.VariableNames)
+    IV = IV(:,strctident.Instrument);
+else
    message=['Instrumental variable ' strctident.Instrument ' cannot be found. Please verify that the "IV" sheet of the Excel data file is properly filled.'];
    error('bear:loadIV:InstrumentalVaraibleNotFound',message)
 end
-IV=IV(:,IVnum);
-NANIV=~isnan(IV); 
-IV=IV(NANIV); %IV=IV(~isnan(IV))
+IV(isnan(IV{:,1}), :) = [];
+
 % drop IV names from txt
-txt=txt(2:length(IV)+1,1);
+txt=string(IV.Time);
 beginofIV=find(strcmp(strctident.startdateIV,txt));
 if isempty(beginofIV)
     beginofIV=1;
@@ -24,7 +22,7 @@ if isempty(endofIV)
 end
 txt=txt(beginofIV:endofIV,1);
 IV=IV(beginofIV:endofIV,1);
-
+IV = IV{:,1};
 
 
 %% Preparation for first stage regression

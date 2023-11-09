@@ -13,7 +13,7 @@ classdef tApp < matlab.uitest.TestCase
         
     end
     
-    methods (Test)
+    methods (Test, TestTags = {'Unit'})
         
         function tFrequency(tc)
             

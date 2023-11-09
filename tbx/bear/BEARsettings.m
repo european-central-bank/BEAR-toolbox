@@ -9,11 +9,19 @@ p = inputParser;
 p.KeepUnmatched = true;
 addRequired(p, 'VARtype', @(x) isnumeric(x) || isstring(x) || ischar(x));
 addParameter(p,'ExcelFile', fullfile(bearroot(), 'default_bear_data.xlsx'), @(x) isstring(x) || ischar(x));
+addParameter(p,'BEARData', bear.data.ExcelDAL.empty(), @(x) isa(x, 'bear.data.BEARDAL'));
+addParameter(p,'BEARExporter', bear.data.BEARExcelWriter, @(x) isa(x, 'bear.data.BEARExporter'));
 parse(p, VARtype, varargin{:});
 
-VARtype = bear.VARtype(p.Results.VARtype);
+if isempty(p.Results.BEARData)
+    dal = bear.data.ExcelDAL(p.Results.ExcelFile);
+else
+    dal = p.Results.BEARData;
+end
 
-ExcelFile = p.Results.ExcelFile;
+exporter = p.Results.BEARExporter;
+
+VARtype = bear.VARtype(p.Results.VARtype);
 
 if isempty(fieldnames(p.Unmatched))
     params = {};
@@ -24,17 +32,17 @@ end
 switch VARtype
     
     case 1
-        settings = bear.settings.OLSsettings(ExcelFile, params{:});
+        settings = bear.settings.OLSsettings(dal, exporter, params{:});
     case 2
-        settings = bear.settings.BVARsettings(ExcelFile, params{:});
+        settings = bear.settings.BVARsettings(dal, exporter, params{:});
     case 4
-        settings = bear.settings.PANELsettings(ExcelFile, params{:});
+        settings = bear.settings.PANELsettings(dal, exporter, params{:});
     case 5
-        settings = bear.settings.SVsettings(ExcelFile, params{:});
+        settings = bear.settings.SVsettings(dal, exporter, params{:});
     case 6
-        settings = bear.settings.TVPsettings(ExcelFile, params{:});
+        settings = bear.settings.TVPsettings(dal, exporter, params{:});
     case 7
-        settings = bear.settings.MFVARsettings(ExcelFile, params{:});
+        settings = bear.settings.MFVARsettings(dal, exporter, params{:});
         
 end
 

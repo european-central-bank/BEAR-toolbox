@@ -33,7 +33,7 @@ classdef optionsProxyForApp < matlab.mixin.SetGet
             
             warning off
             for p = baseProps
-                if ~ismember(p, {'VARtype','FEVDinternal','HDinternal'})
+                if ~ismember(p, {'VARtype','Exporter', 'DAL', 'FEVDinternal','HDinternal'})
                     obj.setCommonProp(p{1}, value.(p{1}));
                 end
             end

@@ -2,7 +2,7 @@ classdef tIRFexo < matlab.unittest.TestCase
     %TIRFEXO Summary of this class goes here
     %   Detailed explanation goes here
     
-    methods (Test, TestTags = {'Git'})
+    methods (Test, TestTags = {'Git', 'Unit'})
 
         function tPanelIRFforExo(tc)
             
@@ -12,7 +12,7 @@ classdef tIRFexo < matlab.unittest.TestCase
             resultsFile = "newTest";
             
             opts = BEARsettings('PANEL', 'ExcelFile', fullfile(fullfile(bearroot(),'default_bear_data.xlsx')), ...
-                'panel', 'Random_hierarchical', 'FEVD', 0, 'HD', 0, 'F', 0);
+                'panel', 'Random_hierarchical', 'FEVD', 0, 'HD', 0, 'F', 0, Debug = false);
             opts.results_path = tempFixture.Folder;
             opts.results_sub = 'newTest';
             opts.plot = false;

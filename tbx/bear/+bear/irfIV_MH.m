@@ -1,5 +1,5 @@
 function [beta_draws,sigma_draws,IV_draws,C_draws,D_draws,gamma_draws,irf_storage,ETA_storage,It,Bu]=...
-    irfIV_MH(EPSIV,IVcut,betahat,sigmahatIV,sigma_hat,inv_sigma_hat,IV,txt,cut1,cut2,cut3,cut4,names,It,Bu,n,arvar,lambda1,lambda3,lambda4,m,p,k,q,X,Y,T,startdate,enddate,pref,strctident,IRFperiods,IRFt)
+    irfIV_MH(EPSIV,IVcut,betahat,sigmahatIV,sigma_hat,inv_sigma_hat,IV,txt,cut1,cut2,cut3,cut4,date,It,Bu,n,arvar,lambda1,lambda3,lambda4,m,p,k,q,X,Y,T,startdate,enddate,pref,strctident,IRFperiods,IRFt)
 rand('seed',1);
 randn('seed',1);
 
@@ -87,7 +87,7 @@ sigma_draw=sigma_hat;
 B_draw    = reshape(betahat,k,n); %reshape
 hsigma=chol(bear.nspd(sigma_draw),'lower'); %get the cholesky decomposition of the proposal matrix
 EPS_draw  = Y-X*B_draw; %calculate reduced form residuals
-[EPScut,IVcut]=bear.cut_EPS_IV_GK_new(txt, names, EPS_draw, IV, cut1, cut2, cut3, cut4, startdate, enddate, p); %cut the reduced form residuals
+[EPScut,IVcut]=bear.cut_EPS_IV_GK_new(txt, date, EPS_draw, IV, cut1, cut2, cut3, cut4, startdate, enddate, p); %cut the reduced form residuals
 D1inv = Q'/hsigma; %Compute A0inv(:,1);
 ETA1 = (D1inv*EPScut(1:end, :)')'; %Shock corresponding to the IV (first shock)
 bet = inv(ETA1'*ETA1)*ETA1'*IVcut; %OLS estimator of regression of shock on proxy
@@ -105,7 +105,7 @@ hsigma=chol(bear.nspd(sigma_draw),'lower'); %get the cholesky decomposition of t
 Rotationdraws = randn(n, 1); %draw a random column of the rotation matrix
 Q = Rotationdraws / norm(Rotationdraws);
 %cut the reduced form errors, if the instrument does not correspond to the 
-[EPScut, IVcut]=bear.cut_EPS_IV_GK_new(txt, names, EPS_draw, IV, cut1, cut2, cut3, cut4, startdate, enddate, p); %cut the reduced form residuals
+[EPScut, IVcut]=bear.cut_EPS_IV_GK_new(txt, date, EPS_draw, IV, cut1, cut2, cut3, cut4, startdate, enddate, p); %cut the reduced form residuals
 end
 %compute the conditional likelihood of the proxy given the reduced form residuals
 c_ll_proxy0 = bear.loglik_proxy_given_data(IVcut, EPScut(1:end, :), hsigma, Q, bet, signu); %log likelihood of the proxy given the draw for beta and sigma
@@ -137,7 +137,7 @@ while AA<Acc+Bu
          EPS_draw_star  = Y-X*B_draw_star; %compute reduced form residuals
          hsigma_star=chol(bear.nspd(sigma_draw_star),'lower'); %get the cholesky decomposition of the proposal matrix
          %A0cholstar    = (hsigma_star')\eye(size(hsigma_star,1)); %get A0 of cholesky;
-         [EPScut_star,IVcut]=bear.cut_EPS_IV_GK_new(txt, names, EPS_draw_star, IV, cut1, cut2, cut3, cut4, startdate, enddate, p); %cut the reduced form residuals
+         [EPScut_star,IVcut]=bear.cut_EPS_IV_GK_new(txt, date, EPS_draw_star, IV, cut1, cut2, cut3, cut4, startdate, enddate, p); %cut the reduced form residuals
          c_ll_proxy_star = bear.loglik_proxy_given_data(IVcut, EPScut_star(1:end, :), hsigma_star, Q, bet, signu); %log likelihood of the proxy given the draw for beta and sigma
          
          % metropolis hastings acceptance probability
@@ -154,7 +154,7 @@ while AA<Acc+Bu
         B_draw_star    = reshape(beta_draw_star,k,n); %reshape
         EPS_draw_star  = Y-X*B_draw_star; %compute reduced form residuals
         hsigma_star=chol(bear.nspd(sigma_draw_star),'lower'); %get the cholesky decomposition of the proposal matrix
-        [EPScut_star, IVcut, ~, ~, ~]=bear.cut_EPS_IV_GK_new(txt, names, EPS_draw_star, IV, cut1, cut2, cut3, cut4, startdate, enddate, p); %cut the reduced form residuals
+        [EPScut_star, IVcut, ~, ~, ~]=bear.cut_EPS_IV_GK_new(txt, date, EPS_draw_star, IV, cut1, cut2, cut3, cut4, startdate, enddate, p); %cut the reduced form residuals
                 
         %compute likelihood of the new draw, given the previous rotation
         %matrix, beta and sign (variance of the mesurement error)
@@ -270,7 +270,7 @@ close(hbar);   %close progress bar
 %compute relevance
 median_relevance = median(relevance_draws);
 % print accepted draws in command window and results file
-filelocation=fullfile(pref.results_path, [pref.results_sub '.txt']);
+filelocation=fullfile(pref.results_path, pref.results_sub + ".txt");
 fid=fopen(filelocation,'at');
 
 

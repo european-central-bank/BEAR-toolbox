@@ -1,4 +1,4 @@
-function [Forecasteval]=bvarfeval(data_endo_c,data_endo_c_lags,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,It,Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,names,endo,pref)
+function [Forecasteval]=bvarfeval(data_endo_c,data_endo_c_lags,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,It,Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,enddate,endo,pref)
 
 
 
@@ -21,7 +21,7 @@ function [Forecasteval]=bvarfeval(data_endo_c,data_endo_c_lags,data_exo_c,string
 %          - matrix 'beta_gibbs': record of the gibbs sampler draws for the beta vector
 %          - matrix'sigma_gibbs': record of the gibbs sampler draws for the sigma matrix (vectorised)
 %          - cell 'forecast_estimates': lower bound, point estimates, and upper bound for the unconditional forecasts
-%          - cell 'names': cell containing the excel spreadsheet labels (names and dates)
+%          - string 'enddate': cell containing the excel spreadsheet labels (names and dates)
 %          - cell 'endo': list of endogenous variables of the model
 %          - string 'datapath': user-supplied path to excel data spreadsheet
 % outputs: none
@@ -308,7 +308,7 @@ end
 % now, print the results and display them
 
 
-filelocation=fullfile(pref.results_path, [pref.results_sub '.txt']);
+filelocation=fullfile(pref.results_path, pref.results_sub + ".txt");
 fid=fopen(filelocation,'at');
 
 
@@ -340,7 +340,7 @@ if Fcomp==0
 finfo1=['Forecast evaluation cannot be conducted.'];
 fprintf('%s\n',finfo1);
 fprintf(fid,'%s\n',finfo1);
-finfo2=['Forecasts start in ' Fstartdate ', while observable data is available only until ' names{end,1} '.'];
+finfo2=['Forecasts start in ' Fstartdate ', while observable data is available only until ' enddate '.'];
 fprintf('%s\n',finfo2);
 fprintf(fid,'%s\n',finfo2);
 finfo3=['To obtain forecast evaluation, the forecast start date must be anterior to the end of the data set.'];

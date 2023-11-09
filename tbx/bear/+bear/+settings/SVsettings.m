@@ -98,9 +98,9 @@ classdef SVsettings < bear.settings.BASEsettings
 
     methods
 
-        function obj = SVsettings(excelPath, varargin)
+        function obj = SVsettings(excelPath, exporter, varargin)
 
-            obj@bear.settings.BASEsettings(5, excelPath)
+            obj@bear.settings.BASEsettings(5, excelPath, exporter)
 
             obj = obj.setStrctident(obj.IRFt);
 

@@ -25,7 +25,7 @@ afcell=afcell(:,1:end-1);
 
 % write in excel
 if pref.results==1
-    bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),afcell,'actual fitted','B2');
+    pref.exporter.writeActualFitted(afcell);
 end
 
 
@@ -38,7 +38,7 @@ rescell=[{'residuals'} horzspace;{''} horzspace;{''} endo';stringdates1 num2cell
 
 % write in excel
 if pref.results==1
-    bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),rescell,'resids','B2');
+    pref.exporter.writeResids(rescell);
 end
 
 

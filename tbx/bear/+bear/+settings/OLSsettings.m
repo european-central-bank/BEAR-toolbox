@@ -23,9 +23,9 @@ classdef OLSsettings < bear.settings.BASEsettings
 
     methods
 
-        function obj = OLSsettings(excelPath, varargin)
+        function obj = OLSsettings(excelPath, exporter, varargin)
 
-            obj@bear.settings.BASEsettings(1, excelPath)
+            obj@bear.settings.BASEsettings(1, excelPath, exporter)
 
             obj = obj.setStrctident(obj.IRFt);
 

@@ -86,9 +86,9 @@ classdef PANELsettings < bear.settings.BASEsettings
     
     methods
         
-        function obj = PANELsettings(excelPath, varargin)
+        function obj = PANELsettings(excelPath, exporter, varargin)
             
-            obj@bear.settings.BASEsettings(4, excelPath)
+            obj@bear.settings.BASEsettings(4, excelPath, exporter)
             
             obj = parseBEARSettings(obj, varargin{:});
             

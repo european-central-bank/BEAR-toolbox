@@ -3,7 +3,7 @@ function [grid]=loadhogs(scoeff,iobs,pref)
 grid=cell(7,3);
 
 % load the data from Excel
-[num txt strngs]=xlsread(pref.excelFile,'grid');
+[~, ~, strngs]=xlsread(pref.data.InputFile,'grid');
 
 % replace NaN entries by blanks
 strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
@@ -12,7 +12,7 @@ strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
 strngs(cellfun(@isnumeric,strngs))=cellfun(@num2str,strngs(cellfun(@isnumeric,strngs)),'UniformOutput',0);
 
 % identify the non-empty entries (pairs of rows and columns)
-[nerows neclmns]=find(~cellfun('isempty',strngs));
+[nerows, neclmns]=find(~cellfun('isempty',strngs));
 % count the number of such entries
 neentries=size(nerows,1);
 % all these entries contrain strings: fix them to correct potential user formatting errors

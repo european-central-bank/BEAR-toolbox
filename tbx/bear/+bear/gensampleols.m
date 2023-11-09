@@ -1,4 +1,4 @@
-function [names, data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate,endo,favar] = ...
+function [data, data_endo, data_endo_a, data_endo_c, data_endo_c_lags, data_exo, data_exo_a, data_exo_p, data_exo_c, data_exo_c_lags, Fperiods, Fcomp, Fcperiods, Fcenddate,endo,favar] = ...
     gensampleols(startdate,enddate,VARtype,Fstartdate,Fenddate,Fendsmpl,endo,exo,frequency,lags,F,CF,pref,favar,IRFt, numendo)
 
 % if we have a FaVAR: read information data, data transformation, create indices, compute factors (PC)
@@ -9,10 +9,11 @@ end
 %% endo data
 % Phase 1: data loading and error checking
 % first read the data from Excel
-[data, names]=xlsread(pref.excelFile,'data');
+data = pref.data.Data;
 
 % identify the date strings
-datestrings=names(2:end,1);
+datestrings=string(data.Time);
+
 % identify the position of the string corresponding to the start period
 startlocation=find(strcmp(datestrings,startdate));
 % identify the position of the string corresponding to the end period
@@ -22,7 +23,6 @@ if favar.FAVAR==1 % in case we transform the data to first or second differences
     if favar.transformation==1
         startlocation=informationstartlocation;
         endlocation=informationendlocation;
-        datestrings=names(1+favar.informationstartlocation:end,:); %first row are labels
     end
 end
 
@@ -33,7 +33,7 @@ data1=data;
 data=data(startlocation:endlocation,:);
 
 % identify the variable strings, endogenous and exogenous
-variablestrings=names(1,2:end);
+variablestrings=data.Properties.VariableNames;
 
 % FAVAR: augment data and variablestrings with factors
 if favar.FAVAR==1
@@ -97,17 +97,9 @@ end
 
 % now create the matrix of endogenous variables for the estimation sample
 % it is simply the concatenation of the vectors of each endogenous variables, over the selected sample dates
-data_endo=[];
-% loop over endogenous variables
-for ii=1:numendo
-    data_endo=[data_endo data(:,endolocation(ii,1))];
-end
-
+data_endo = data{:,endo};
 % Similarly, create the matrix of exogenous variables for the estimation sample
-data_exo=[];
-for ii=1:numexo
-    data_exo=[data_exo data(startlocation:endlocation,exolocation(ii,1))];
-end
+data_exo  = data{:,exo};
 
 % this NaN test has to be adjustted to the actual endo sample
 % now, as a preliminary step: check if there is any Nan in the data; if yes, return an error since the model won't be able to run with missing data
@@ -219,13 +211,11 @@ else
     
     % preliminary tasks
     % first, identify the date strings, and the variable strings
-    datestrings=names(2:end,1);
     if favar.FAVAR==1 % in case we transform the data to first or second differences, we have a different datestrings
         if favar.transformation==1
             datestrings=names(1+favar.informationstartlocation:end,:); %first row are labels
         end
     end
-    variablestrings=names(1,2:end);
     
     % identify the location of the last period in the dataset
     dataendlocation=size(datestrings,1);
@@ -400,18 +390,11 @@ else
         data=favar.data_full;
     end
     
-    % now create the matrix of endogenous variables for the pre-forecast period
+     % now create the matrix of endogenous variables for the pre-forecast period
     % it is simply the concatenation of the vectors of each endogenous variables, over the selected sample dates
-    data_endo_a=[];
-    % loop over endogenous variables
-    for ii=1:numendo
-        data_endo_a=[data_endo_a data(1:Fstartlocation-1,endolocation(ii,1))];
-    end
+    data_endo_a = data{1:Fstartlocation-1, endo};
     % also, create the matrix of exogenous variables for the pre-forecast period
-    data_exo_a=[];
-    for ii=1:numexo
-        data_exo_a=[data_exo_a data(1:Fstartlocation-1,exolocation(ii,1))];
-    end
+    data_exo_a  = data{1:Fstartlocation-1, exo};
     
     % create the matrix of endogenous variables for the period common to actual data and forecasts (for forecast evaluation)
     % first, check that there are such common periods: it is the case if the beginning of the forecast period is anterior to the end of the dataset
@@ -432,30 +415,19 @@ else
         end
         
         % create a matrix of endogenous data for the common periods
-        data_endo_c=[];
-        for ii=1:numendo
-            data_endo_c=[data_endo_c data(Fstartlocation:min(dataendlocation,Fendlocation),endolocation(ii,1))];
-        end
+        data_endo_c = data{Fstartlocation:min(dataendlocation,Fendlocation), endo};
         
         % create a lagged matrix of endogenous data prior to the common periods
         % the number of values is equal to "lags"; this will be used for computation of the log predictive score
-        data_endo_c_lags=[];
-        for ii=1:numendo
-            data_endo_c_lags=[data_endo_c_lags data(Fstartlocation-lags:Fstartlocation-1,endolocation(ii,1))];
-        end
+        data_endo_c_lags = data{Fstartlocation-lags:Fstartlocation-1, endo};
         
         % create a matrix of exogenous data for the common periods
-        data_exo_c=[];
-        for ii=1:numexo
-            data_exo_c=[data_exo_c data(Fstartlocation:min(dataendlocation,Fendlocation),exolocation(ii,1))];
-        end
+        data_exo_c = data{Fstartlocation:min(dataendlocation,Fendlocation), exo};
         
         % create a lagged matrix of exogenous data prior to the common periods
         % the number of values is equal to "lags"; this will be used for computation of the log predictive score
-        data_exo_c_lags=[];
-        for ii=1:numexo
-            data_exo_c_lags=[data_exo_c_lags data(Fstartlocation-lags:Fstartlocation-1,exolocation(ii,1))];
-        end
+        data_exo_c_lags = data{Fstartlocation-lags:Fstartlocation-1, exo};
+
         % if there are no common periods, return a scalar value to indicate that forecast evaluation is not possible
     else
         Fcomp=0;
@@ -478,67 +450,30 @@ else
         % if there are exogenous variables, load from excel
     else
         % load the data from Excel
-        [~,~,strngs]=xlsread(pref.excelFile,'pred exo');
-        
+        PredExo = pref.data.PredExo;
         % obtain the row location of the forecast start date
-        [Fstartlocation,~]=find(strcmp(strngs,Fstartdate));
+        Fstartlocation = find(strcmp(string(PredExo.Time),Fstartdate), 1);
         % check that the start date for the forecast appears in the sheet; if not, return an error
         if isempty(Fstartlocation)
             message=['Error: a forecast application is selected for a model that uses exogenous variables. Hence, predicted exogenous values should be supplied over the forecast periods. Yet the start date for forecasts (' Fstartdate ') cannot be found on the ''pred exo'' sheet of the Excel data file. Please verify that this sheet is properly filled, and remember that dates are case-sensitive.'];
             error('bear:gensampleols:IncorrectApplicationSelected',message)
         end
+
         % obtain the row location of the forecast end date
-        [Fendlocation,~]=find(strcmp(strngs,Fenddate));
+        Fendlocation = find(strcmp(string(PredExo.Time),Fenddate), 1);
         % check that the end date for the forecast appears in the sheet; if not, return an error
         if isempty(Fendlocation)
             message=['Error: a forecast application is selected for a model that uses exogenous variables. Hence, predicted exogenous values should be supplied over the forecast periods. Yet the end date for forecasts (' Fenddate ') cannot be found on the ''pred exo'' sheet of the Excel data file. Please verify that this sheet is properly filled, and remember that dates are case-sensitive.'];
             error('bear:gensampleols:IncorrectApplicationSelected',message)
         end
         
-        % identify the strings for the exogenous variables
-        % loop over exogenous
-        for ii=1:numexo
-            % try to find a column match for exogenous variable ii
-            [~,location]=find(strcmp(strngs,exo{ii,1}));
-            % if no match is found, return an error
-            if isempty(location)
-                message=['Error: a forecast application is selected for a model that uses exogenous variables. Hence, predicted exogenous values should be supplied over the forecast periods. Yet the exogenous variable ''' exo{ii,1} ''' cannot be found on the ''pred exo'' sheet of the Excel data file. Please verify that this sheet is properly filled, and remember that variable names are case-sensitive.'];
-                error('bear:gensampleols:IncorrectApplicationSelected',message)
-                % else, record the value
-            else
-                pexolocation(ii,1)=location;
-            end
-        end
-        
         % if everything was fine, reconstitute the matrix data_exo_p
         % initiate
-        data_exo_p=[];
-        % loop over exogenous variables
-        for ii=1:numexo
-            % initiate the predicted values for exogenous variable ii
-            predexo=[];
-            % loop over forecast periods
-            for jj=1:Fperiods
-                temp=strngs{Fstartlocation+jj-1,pexolocation(ii,1)};
-                % if this entry is empty or NaN, return an error
-                if (isempty(temp) || (temp<=inf)==0)
-                    message=['Error: the predicted value for exogenous variable ' exo{ii,1} ' at forecast period ' strngs{Fstartlocation+jj,1} ' (and possibly other entries) is either empty or NaN. Please verify that the ''pred exo'' sheet of the Excel data file is properly filled.'];
-                    error('bear:gensampleols:EmptyPredictedVariable', message)
-                    % if this entry is a number, record it
-                else
-                    predexo=[predexo;temp];
-                end
-            end
-            % concatenate
-            data_exo_p=[data_exo_p predexo];
-        end
+        data_exo_p = PredExo{Fstartlocation:Fendlocation,exo};
         
         % also, record the exogenous values on Excel
-        % replace NaN entries by blanks
-        strngs(cellfun(@(x) any(isnan(x)),strngs))={[]};
-        % then save on Excel
         if pref.results==1
-            bear.xlswritegeneral(fullfile(pref.results_path, [pref.results_sub '.xlsx']),strngs,'pred exo','A1');
+            pref.exporter.writePredExo(PredExo);
         end
     end
     

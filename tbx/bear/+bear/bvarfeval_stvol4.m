@@ -1,4 +1,4 @@
-function [Forecasteval]=bvarfeval_stvol4(data_endo_c,data_endo_c_lags,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,It,Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,names,endo,pref,dataValues, Psi_gibbs,sizetraining,data_exo_p, Fstartlocation,Fperiods, data_endo_a)
+function [Forecasteval]=bvarfeval_stvol4(data_endo_c,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,It,Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,endo,pref,dataValues, Psi_gibbs,sizetraining,data_exo_p, Fstartlocation,Fperiods, data_endo_a)
 
 
 
@@ -379,7 +379,7 @@ end
 % now, print the results and display them
 
 
-filelocation=fullfile(pref.results_path, [pref.results_sub '.txt']);
+filelocation=fullfile(pref.results_path, pref.results_sub + ".txt");
 fid=fopen(filelocation,'at');
 
 
@@ -411,7 +411,7 @@ if Fcomp==0
     finfo1=['Forecast evaluation cannot be conducted.'];
     fprintf('%s\n',finfo1);
     fprintf(fid,'%s\n',finfo1);
-    finfo2=['Forecasts start in ' Fstartdate ', while observable data is available only until ' names{end,1} '.'];
+    finfo2=['Forecasts start in ' Fstartdate ', while observable data is available only until ' enddate '.'];
     fprintf('%s\n',finfo2);
     fprintf(fid,'%s\n',finfo2);
     finfo3=['To obtain forecast evaluation, the forecast start date must be anterior to the end of the data set.'];
