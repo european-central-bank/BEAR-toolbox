@@ -1,9 +1,27 @@
 function [settings] = BEARsettings(VARtype, varargin)
-%BEARSETTINGS gets the corresponding settings object based on the given
-%VARtype. The user can optionally pass a name-value property with the
-%ExcelFile. Alternatively, the xlsx file in pwd is taken. If more than one
-%xlsx file exist an error is thrown. It is also possible to pass any of the
-%VARtype properties as name-value pairs.
+% BEARSETTINGS gets the corresponding settings object based on the given
+% VARtype. 
+% opts = BEARsettings(VARtype, name = value)
+% opts = BEARsettings(VARtype, ExcelFile = 'data.xlsx', name = value)
+%
+% VARtype is the type of BEAR to be estimated, and can take the values
+% OLS, BVAR, PANEL, SV, TVP, MFVAR. 
+%
+% ExcelFile is an optional key-value pair with the location in disk of the
+% Excel file with the inputs. If not specified, BEAR will use a default
+% one. 
+%
+% It is also possible to pass any of the % VARtype properties as name-value
+% paris. These will depend on the choosen VARtype
+%
+% See also:
+% <a href="matlab:doc('bear.settings.BASEsettings')">Base settings for BEAR</a>
+% <a href="matlab:doc('bear.settings.BVARsettings')">BVAR settings</a>
+% <a href="matlab:doc('bear.settings.OLSsettings')">OLS settings</a>
+% <a href="matlab:doc('bear.settings.PANELsettings')">Panel settings</a>
+% <a href="matlab:doc('bear.settings.SVsettings')">Stocahstic Volatility</a>
+% <a href="matlab:doc('bear.settings.TVPsettings')">Time Varing panel settings</a>
+% <a href="matlab:doc('bear.settings.MFVARsettings')">Mixed Frequency</a>
 
 p = inputParser;
 p.KeepUnmatched = true;
