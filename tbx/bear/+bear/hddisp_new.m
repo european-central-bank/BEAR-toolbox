@@ -130,16 +130,8 @@ if HD==1
             hd=figure('Tag','BEARresults');
             set(hd,'name',strcat('historical decomposition (',endo{ii,1},')'));
             % clear previous variables
-            clear contributions;
-            clear contributions2;
-            clear contributions3;
-            clear contribpos;
-            clear contribneg;
-            clear out
-            clear in
-            clear residual
-            clear colorm
-            
+            clear contributions contributions2 contributions3 contribpos contribneg out in residual colorm;
+
             if length(labels)>14
                 colorm=jet;
                 % colormap=hsv;
@@ -254,11 +246,7 @@ if HD==1
             title(endo{ii,1},'Interpreter','none')
             set(gca,'XLim',[decimaldates1(1,1) decimaldates1(end,1)],'FontName','Times New Roman');
             box off
-            hL=legend(labels2);
-            LPosition = [0.47 0.00 0.1 0.1];
-            set(hL,'Position', LPosition, 'orientation', 'horizontal','Interpreter','none');
-            %annotation('textbox',[0.39 0.92 0.0 0.08],'String',' ','FitBoxToText','on','FontSize',8,'Linestyle','none');
-            %set(gcf,'PaperPositionMode','Auto')
+            legend(labels2, 'orientation', 'horizontal', 'Interpreter','none', 'Location','southoutside');
             legend boxoff
         end
     end
