@@ -16,7 +16,7 @@ function hddisp_new(hd_estimates,const,exo,n,m,Y,T,IRFt,pref,decimaldates1,strin
 %% Preliminaries
 %1. Determine how many contributions we are going to calculate
 %check if there are
-contributors = n + 1 + length(exo) + 1; %variables + constant + exogenous + initial conditions
+contributors = n + 1 + double(~isempty(exo)) + 1; %variables + constant + exogenous + initial conditions;
 
 % number of identified shocks and create labels for the contributions
 if IRFt==1||IRFt==2||IRFt==3

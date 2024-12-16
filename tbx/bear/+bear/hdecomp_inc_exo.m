@@ -32,7 +32,8 @@ elseif IRFt==5
 end
 
 % first create the hd_record and temp cells
-contributors = n + 1 + length(exo) + 1 ; %variables + constant + exogenous + initial conditions
+contributors = n + 1 + double(~isempty(exo)) + 1 ; %variables + constant + exogenous + initial conditions;
+
 hd_record=cell(contributors+2,n);
 
 D_gibbs=reshape(D_record,n,n,It-Bu);

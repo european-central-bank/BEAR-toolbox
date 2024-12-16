@@ -17,7 +17,8 @@ function [hd_estimates] = hd_new_for_signres(const,exo,beta,k,n,p,D,m,T,X,Y,IRFt
 
 % preliminaries for historical decomposition
 %1. Determine how many contributions we are going to calculate
-contributors = n + 1 + 1 + length(exo); %variables + constant + initial conditions + exogenous
+contributors = n + 1 + 1 + double(~isempty(exo)) ; %variables + constant + initial conditions + exogenous
+
 hd_estimates2=cell(contributors+2,n); %shocks+constant+initial values+exogenous+unexplained+to be explained by shocks only
 % number of identified shocks
 if IRFt==2 || IRFt==3
