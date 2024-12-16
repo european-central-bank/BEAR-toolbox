@@ -326,7 +326,7 @@ try
 
     % proceed similarly for exogenous series; note however that it may be empty
     % so check first whether there are exogenous variables altogether
-    if isempty(varexo==1)
+    if isempty(varexo)
         exo={};
         % if not empty, repeat what has been done with the exogenous
     else
