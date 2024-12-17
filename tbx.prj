@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.toolbox" plugin-version="1.0">
-  <configuration build-checksum="1116383509" file="C:\Users\ebenetce\MATLAB\BEAR-toolbox\tbx.prj" location="C:\Users\ebenetce\MATLAB\BEAR-toolbox" name="tbx" target="target.toolbox" target-name="Package Toolbox">
+  <configuration build-checksum="111117874" file="C:\Users\ebenetce\MATLAB\CentralBanks\BEAR-toolbox\tbx.prj" location="C:\Users\ebenetce\MATLAB\CentralBanks\BEAR-toolbox" name="tbx" target="target.toolbox" target-name="Package Toolbox">
     <param.appname>BEAR toolbox</param.appname>
     <param.authnamewatermark>Alistair Dieppe and Björn van Roye</param.authnamewatermark>
     <param.email>alistair.dieppe@ecb.europa.eu</param.email>
@@ -7,7 +7,7 @@
     <param.summary>The Bayesian Estimation, Analysis and Regression toolbox (BEAR)</param.summary>
     <param.description>The Bayesian Estimation, Analysis and Regression toolbox (BEAR) is a comprehensive (Bayesian Panel) VAR toolbox for forecasting and policy analysis. Use of BEAR implies acceptance of the End User Licence Agreement (EULA) for the Use of the Software “the Bayesian Estimation, Analysis and Regression (BEAR) toolbox”.</param.description>
     <param.screenshot>${PROJECT_ROOT}\tbx\bear\BEAR.PNG</param.screenshot>
-    <param.version>5.2.1</param.version>
+    <param.version>5.2.2</param.version>
     <param.output>${PROJECT_ROOT}\BEAR toolbox.mltbx</param.output>
     <param.products.name />
     <param.products.id />
@@ -89,25 +89,19 @@
     <fileset.depfun.excluded />
     <fileset.package />
     <build-deliverables>
-      <file location="${PROJECT_ROOT}" name="BEAR toolbox.mltbx" optional="false">C:\Users\ebenetce\MATLAB\BEAR-toolbox\BEAR toolbox.mltbx</file>
+      <file location="${PROJECT_ROOT}" name="BEAR toolbox.mltbx" optional="false">C:\Users\ebenetce\MATLAB\CentralBanks\BEAR-toolbox\BEAR toolbox.mltbx</file>
     </build-deliverables>
     <workflow />
     <matlab>
-      <root>C:\Program Files\MATLAB\R2024a</root>
+      <root>C:\Program Files\MATLAB\R2024b</root>
       <toolboxes>
         <toolbox name="matlabcoder" />
-        <toolbox name="embeddedcoder" />
         <toolbox name="neuralnetwork" />
       </toolboxes>
       <toolbox>
         <matlabcoder>
           <enabled>true</enabled>
         </matlabcoder>
-      </toolbox>
-      <toolbox>
-        <embeddedcoder>
-          <enabled>true</enabled>
-        </embeddedcoder>
       </toolbox>
       <toolbox>
         <neuralnetwork>
