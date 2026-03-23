@@ -1,0 +1,306 @@
+{
+  "BetaTV": {
+    "category": "Time-varying estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "BetaTV"
+    ]
+  },
+  "CCMMSV": {
+    "category": "Time-varying estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "CCMMSV"
+    ]
+  },
+  "CCMMSVO": {
+    "category": "Time-varying estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "CCMMSVO"
+    ]
+  },
+  "CCMMSVOT": {
+    "category": "Time-varying estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "CCMMSVOT"
+    ]
+  },
+  "CarrieroSV": {
+    "category": "Time-varying estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "CarrieroSV"
+    ]
+  },
+  "CogleySargentSV": {
+    "category": "Time-varying estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "CogleySargentSV"
+    ]
+  },
+  "Flat": {
+    "category": "Plain estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "Flat"
+    ]
+  },
+  "GenLargeShockSV": {
+    "category": "Time-varying estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "GenLargeShockSV"
+    ]
+  },
+  "GeneralTV": {
+    "category": "Time-varying estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "GeneralTV"
+    ]
+  },
+  "IndNormalWishart": {
+    "category": "Plain estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "IndNormalWishart"
+    ]
+  },
+  "LargeShockSV": {
+    "category": "Time-varying estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "LargeShockSV"
+    ]
+  },
+  "Minnesota": {
+    "category": "Plain estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "Minnesota"
+    ]
+  },
+  "NormalDiffuse": {
+    "category": "Plain estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "NormalDiffuse"
+    ]
+  },
+  "NormalWishart": {
+    "category": "Plain estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "NormalWishart"
+    ]
+  },
+  "Ordinary": {
+    "category": "Plain estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "Ordinary"
+    ]
+  },
+  "RandomInertiaSV": {
+    "category": "Time-varying estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "RandomInertiaSV"
+    ]
+  },
+  "DynamicCrossPanel": {
+    "category": "Panel estimators with cross-unit dependence",
+    "value": false,
+    "target": [
+      "estimation",
+      "DynamicCrossPanel"
+    ]
+  },
+  "StaticCrossPanel": {
+    "category": "Panel estimators with cross-unit dependence",
+    "value": false,
+    "target": [
+      "estimation",
+      "StaticCrossPanel"
+    ]
+  },
+  "HierarchicalPanel": {
+    "category": "Panel estimators with separable units",
+    "value": false,
+    "target": [
+      "estimation",
+      "HierarchicalPanel"
+    ]
+  },
+  "MeanOLSPanel": {
+    "category": "Panel estimators with separable units",
+    "value": true,
+    "target": [
+      "estimation",
+      "MeanOLSPanel"
+    ]
+  },
+  "NormalWishartPanel": {
+    "category": "Panel estimators with separable units",
+    "value": false,
+    "target": [
+      "estimation",
+      "NormalWishartPanel"
+    ]
+  },
+  "Threshold": {
+    "category": "Specialized estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "Threshold"
+    ]
+  },
+  "MixedFrequency": {
+    "category": "Specialized estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "MixedFrequency"
+    ]
+  },
+  "FlatFAVAROnestep": {
+    "category": "Plain FAVAR estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "FlatFAVAROnestep"
+    ]
+  },
+  "IndNormalWishartFAVAROnestep": {
+    "category": "Plain FAVAR estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "IndNormalWishartFAVAROnestep"
+    ]
+  },
+  "MinnesotaFAVAROnestep": {
+    "category": "Plain FAVAR estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "MinnesotaFAVAROnestep"
+    ]
+  },
+  "NormalDiffuseFAVAROnestep": {
+    "category": "Plain FAVAR estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "NormalDiffuseFAVAROnestep"
+    ]
+  },
+  "NormalWishartFAVAROnestep": {
+    "category": "Plain FAVAR estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "NormalWishartFAVAROnestep"
+    ]
+  },
+  "BetaTVFAVAR": {
+    "category": "Time-varying FAVAR estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "BetaTVFAVAR"
+    ]
+  },
+  "CarrieroSVFAVAR": {
+    "category": "Time-varying FAVAR estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "CarrieroSVFAVAR"
+    ]
+  },
+  "CogleySargentSVFAVAR": {
+    "category": "Time-varying FAVAR estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "CogleySargentSVFAVAR"
+    ]
+  },
+  "FlatFAVARTwostep": {
+    "category": "Plain FAVAR estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "FlatFAVARTwostep"
+    ]
+  },
+  "GeneralTVFAVAR": {
+    "category": "Time-varying FAVAR estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "GeneralTVFAVAR"
+    ]
+  },
+  "IndNormalWishartFAVARTwostep": {
+    "category": "Plain FAVAR estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "IndNormalWishartFAVARTwostep"
+    ]
+  },
+  "MinnesotaFAVARTwostep": {
+    "category": "Plain FAVAR estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "MinnesotaFAVARTwostep"
+    ]
+  },
+  "NormalDiffuseFAVARTwostep": {
+    "category": "Plain FAVAR estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "NormalDiffuseFAVARTwostep"
+    ]
+  },
+  "NormalWishartFAVARTwostep": {
+    "category": "Plain FAVAR estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "NormalWishartFAVARTwostep"
+    ]
+  },
+  "RandomInertiaSVFAVAR": {
+    "category": "Time-varying FAVAR estimators",
+    "value": false,
+    "target": [
+      "estimation",
+      "RandomInertiaSVFAVAR"
+    ]
+  }
+}

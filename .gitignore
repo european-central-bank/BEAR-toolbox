@@ -1,13 +1,6 @@
 .DS_Store
-results/
-*.mat
 *.zip
-.DS_Store
-.obsidian/
-*~
+*.mat
+*.gz
 *.*~
-notes.md
-
-*.asv
-*\ 2*
 

@@ -1,0 +1,18 @@
+{
+  "FileName": {
+    "show": false,
+    "value": "tables/InstantZeros.xlsx",
+    "type": "string",
+    "label": "Path to the instant zeros restrictions table file"
+  },
+  "RandomGenerator": {
+    "value": "randn",
+    "type": "string",
+    "label": "Random number generator to rotate the covariance matrix factor"
+  },
+  "FactorizationFunc": {
+    "value": "chol",
+    "type": "string",
+    "label": "Function to factorize the covariance matrix"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "ScriptName": {
+    "label": "Name of the Matlab script to create",
+    "type": "string",
+    "value": "master3.m",
+    "details": ""
+  },
+  "OverwriteExisting": {
+    "label": "Overwrite existing file",
+    "type": "logical",
+    "value": true,
+    "details": ""
+  }
+}

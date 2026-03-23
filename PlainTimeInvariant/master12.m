@@ -1,0 +1,86 @@
+%% Automatically generated BEAR Toolbox script 
+%
+% This script was generated based on the user input from the BEAR Toolbox
+% Graphical User Interface. Feel free to edit and adapt it furthere to your
+% needs.
+%
+% Generated 30-Sep-2025 20:04:42
+%
+
+
+%% Clear workspace 
+
+% Clear all variables
+clear
+
+% Close all figures
+close all
+
+% Rehash Matlab search path
+rehash path
+
+
+%% Define convenience functions for future use 
+
+% User choice of percentiles
+percentiles = [10, 50, 90];
+
+% Aggregation functions used to summarize distributions
+prctilesFunc = @(x) prctile(x, percentiles, 2);
+medianFunc = @(x) median(x, 2);
+extremesFunc = @(x) [min(x, [], 2), max(x, [], 2)];
+
+
+%% Prepare meta information 
+
+% Create a meta information object
+meta = base.Meta( ...
+    EndogenousNames=["GDP", "CPI", "STN"] ...
+    , ExogenousNames="Oil" ...
+    , ShockNames=["DEM", "SUP", "POL"] ...
+    , Order=2 ...
+    , Intercept=true ...
+    , EstimationSpan=datex.span("1977-Q1", "2014-Q4") ...
+    , IdentificationHorizon=4 ...
+);
+
+
+%% Prepare input data holder 
+
+% Load the input data table
+inputTbl = tablex.fromCsv("/Users/myself/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/gui_poc/exampleData.csv");
+
+% Create a data holder object
+dataHolder = base.DataHolder(meta, inputTbl);
+
+
+%% Prepare reduced-form estimator 
+
+% Create a reduced-form estimator object
+estimator = base.estimator.NormalWishart( ...
+    meta ...
+    , Sigma="ar" ...
+    , Burnin=0 ...
+    , StabilityThreshold=NaN ...
+    , MaxNumUnstableAttempts=1000 ...
+    , Exogenous=false ...
+    , BlockExogenous=false ...
+    , Autoregression=0.8 ...
+    , Lambda1=0.1 ...
+    , Lambda2=0.5 ...
+    , Lambda3=1 ...
+    , Lambda4=100 ...
+    , Lambda5=0.001 ...
+);
+
+
+%% Create reduced-form model 
+
+% Assemble a reduced-form model from the components
+redModel = base.ReducedForm( ...
+    Meta=meta ...
+    , DataHolder=dataHolder ...
+    , Estimator=estimator ...
+);
+
+
