@@ -1,0 +1,10 @@
+{
+  "PriorExogenous": 0,
+  "PriorAutoregressive": 1,
+  "Lambda1": 0.1,
+  "Lambda3": 1,
+  "Lambda4": 100,
+  "PriorType": 21,
+  "EndSettings": null
+}
+

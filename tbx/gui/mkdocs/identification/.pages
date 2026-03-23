@@ -1,0 +1,9 @@
+
+nav:
+    - Selection of identification scheme: selection.md
+    - Cholesky (triangular): Cholesky.md
+    - Instant zero restrictions: InstantZeros.md
+    - Inequality (sign) restrictions: IneqRestrict.md
+    - Generalized restrictions: GeneralRestrict.md
+    - Your notes: notes.md
+

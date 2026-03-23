@@ -1,0 +1,23 @@
+{
+"prior": 11,
+"PriorExcel": false, 
+"priorsexogenous": false, 
+"ar": 0.8, 
+"lambda1": 0.1,
+"lambda2": 0.5,
+"lambda3": 1,
+"lambda4": 100,
+"lambda5": 0.001,
+"lambda6": 0.1,
+"lambda7": 0.001,
+"lambda8": 1,
+"It": 1000,
+"Bu": 500,
+"hogs": false,
+"bex": false,
+"scoeff": false,
+"iobs": false,
+"lrp": false,
+"priorf":100,
+"alpha0":1000
+}

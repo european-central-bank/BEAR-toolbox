@@ -1,0 +1,14 @@
+{
+    "Choices": {
+        "Estimation": "",
+        "Identification": "",
+        "UnconditionalForecast": "",
+        "ShockRespones": "",
+        "ShockContributions": "",
+        "ForecastVarianceDecomposition": "",
+        "ConditionalForecast": "",
+        "ParameterAssessment": ""
+    },
+    "Selection": ["Estimation", "Identification"]
+}
+

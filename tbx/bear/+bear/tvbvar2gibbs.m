@@ -93,6 +93,7 @@ while count<=It
     Bbar=C'\temp1;
     % simulation phase:
     B=Bbar+C'\randn(q*T,1);
+    
     % reshape
     Beta=reshape(B,q,T);
 
