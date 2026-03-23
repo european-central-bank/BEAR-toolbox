@@ -13,17 +13,22 @@ function [B0 phi0 G I_o omega f0 upsilon0]=stvol3prior(ar,arvar,lambda1,lambda3,
 
 
 
-% obtain B0
-% start first by obtaining beta0
+% start with beta0, defined in (1.3.4)
+% it is a q*1 vector of zeros, save for the n coefficients of each variable on their own first lag 
 beta0=zeros(q,1);
-for ii=1:n
-beta0((ii-1)*k+ii,1)=ar(ii,1);
-end
 
+idx = 1:n;
+if isscalar(ar)
+    beta0((idx-1)*k+idx,1) = ar;
+else
+    beta0((idx-1)*k+idx,1) = ar(idx,1);
+end
 
 % if a prior for the exogenous variables is selected put it in here:
 for ii=1:n
-    beta0(k*ii)=priorexo(ii,1);
+    for jj=1:m
+        beta0(k*ii-m+jj)=priorexo(ii,jj);
+    end
 end
 
 % reshape the vector to obtain the matrix B0

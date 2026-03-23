@@ -1,0 +1,86 @@
+
+{
+    "data":
+    {
+        "format": "csv",
+        "source": "exampleData.csv",
+        "startPeriod": null,
+        "endPeriod": null
+    },
+
+
+#===============================================================================
+
+
+[model]
+
+
+[model.meta]
+
+    endogenous = ["DOM_GDP", "DOM_CPI", "STN"]
+    order = 4
+    constant = true
+    shocks = ["e1", "e2", "e3"]
+
+
+[model.estimator]
+
+    method = "NormalWishart"
+    relativeStartPeriod = 0
+    relativeEndPeriod = 0
+
+
+[model.estimator.settings]
+
+    autoregression = 1
+
+
+#===============================================================================
+
+
+[model.identifier]
+
+    method = "custom"
+
+
+[model.identifier.settings]
+
+    exact=[
+        "$InstantZero('DOM_GDP', 'e2')",
+        "$InstantZero('DOM_CPI', 'e3')",
+    ]
+
+    verifiable=[
+        "sum($IRF('DOM_GDP', 'e1', 1:4)) > 0.5",
+        "sum($IRF('STN', 'e2', 1:4)) > 0",
+        "sum($IRF('STN', 'e2', 1:4)) / sum($IRF('DOM_CPI', 'e2', 1:4)) > 1",
+    ]
+
+[model.identifier.settings.signIRF]
+
+    DOM_GDP = { e1 = [nan, nan,  1], e2 = [] }
+    DOM_CPI = { e1 = [nan, nan, -1], e2 = [] }
+
+
+#===============================================================================
+
+
+[tasks.simulateShocks]
+
+    numPeriods = 40
+    save = "shockSimulation.csv"
+
+
+[tasks.forecast]
+
+    relativeStartPeriod = 1
+    relativeEndPeriod = 20
+    save = "forecast.csv"
+
+
+[tasks.fevd]
+
+    numPeriods = 10
+    save = "fevd.csv"
+
+

@@ -1,0 +1,602 @@
+let SessionLoad = 1
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+let s:shortmess_save = &shortmess
+if &shortmess =~ 'A'
+  set shortmess=aoOA
+else
+  set shortmess=aoO
+endif
+badd +5 \+identifier/Custom.m
+badd +220 \+model/Structural.m
+badd +20 \+identifier/Cholesky.m
+badd +20 \+identifier/+custom/verifyIRF.m
+badd +0 term://~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox//72510:/opt/homebrew/Cellar/bash/5.2.26/bin/bash
+badd +13 test_prop.m
+badd +1 \+datex
+badd +4 \+datex/toFieldable.m
+badd +72 \+model/Meta.m
+badd +41 \+identifier/VerifiableTests.m
+badd +77 \+identifier/VerifiableProperties.m
+badd +30 test.m
+badd +70 \+meta/Structural.m
+badd +32 \+bear6/Config.m
+badd +42 \+identifier/Indexes.m
+badd +0 \+model/ReducedForm.m
+badd +0 \+estimator/Plain.m
+badd +1 \+meta/ReducedForm.m
+badd +8 datex.m
+badd +93 \+bear6/ExcelUX.m
+badd +0 ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+bear6/readInputData.m
+argglobal
+%argdel
+set stal=2
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabrewind
+edit test_prop.m
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 91 + 91) / 183)
+exe 'vert 2resize ' . ((&columns * 91 + 91) / 183)
+argglobal
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 13 - ((12 * winheight(0) + 21) / 42)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 13
+normal! 0
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+wincmd w
+argglobal
+if bufexists(fnamemodify("term://~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox//72510:/opt/homebrew/Cellar/bash/5.2.26/bin/bash", ":p")) | buffer term://~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox//72510:/opt/homebrew/Cellar/bash/5.2.26/bin/bash | else | edit term://~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox//72510:/opt/homebrew/Cellar/bash/5.2.26/bin/bash | endif
+if &buftype ==# 'terminal'
+  silent file term://~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox//72510:/opt/homebrew/Cellar/bash/5.2.26/bin/bash
+endif
+balt ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+identifier/Custom.m
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 2788 - ((41 * winheight(0) + 21) / 42)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 2788
+normal! 0
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+wincmd w
+exe 'vert 1resize ' . ((&columns * 91 + 91) / 183)
+exe 'vert 2resize ' . ((&columns * 91 + 91) / 183)
+tabnext
+edit ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+identifier/VerifiableTests.m
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 91 + 91) / 183)
+exe 'vert 2resize ' . ((&columns * 91 + 91) / 183)
+argglobal
+balt ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+identifier/VerifiableProperties.m
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 23 - ((12 * winheight(0) + 21) / 42)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 23
+normal! 015|
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+identifier/VerifiableProperties.m", ":p")) | buffer ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+identifier/VerifiableProperties.m | else | edit ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+identifier/VerifiableProperties.m | endif
+if &buftype ==# 'terminal'
+  silent file ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+identifier/VerifiableProperties.m
+endif
+balt ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+identifier/VerifiableTests.m
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+39
+normal! zo
+let s:l = 47 - ((31 * winheight(0) + 21) / 42)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 47
+normal! 037|
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+wincmd w
+exe 'vert 1resize ' . ((&columns * 91 + 91) / 183)
+exe 'vert 2resize ' . ((&columns * 91 + 91) / 183)
+tabnext
+edit ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+identifier/VerifiableProperties.m
+argglobal
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 77 - ((55 * winheight(0) + 21) / 42)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 77
+normal! 020|
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+tabnext
+edit ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+estimator/Plain.m
+argglobal
+balt ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+identifier/VerifiableProperties.m
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+6
+normal! zo
+let s:l = 28 - ((17 * winheight(0) + 21) / 42)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 28
+normal! 013|
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+tabnext
+edit ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/test.m
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe '1resize ' . ((&lines * 20 + 21) / 42)
+exe 'vert 1resize ' . ((&columns * 91 + 91) / 183)
+exe '2resize ' . ((&lines * 20 + 21) / 42)
+exe 'vert 2resize ' . ((&columns * 91 + 91) / 183)
+exe '3resize ' . ((&lines * 18 + 21) / 42)
+argglobal
+balt ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+bear6/Config.m
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 12 - ((9 * winheight(0) + 10) / 20)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 12
+normal! 0
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+bear6/Config.m", ":p")) | buffer ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+bear6/Config.m | else | edit ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+bear6/Config.m | endif
+if &buftype ==# 'terminal'
+  silent file ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+bear6/Config.m
+endif
+balt ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/test.m
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 35 - ((8 * winheight(0) + 10) / 20)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 35
+normal! 0
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+wincmd w
+argglobal
+if bufexists(fnamemodify("term://~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox//72510:/opt/homebrew/Cellar/bash/5.2.26/bin/bash", ":p")) | buffer term://~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox//72510:/opt/homebrew/Cellar/bash/5.2.26/bin/bash | else | edit term://~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox//72510:/opt/homebrew/Cellar/bash/5.2.26/bin/bash | endif
+if &buftype ==# 'terminal'
+  silent file term://~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox//72510:/opt/homebrew/Cellar/bash/5.2.26/bin/bash
+endif
+balt ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/test.m
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 9) / 18)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 035|
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+wincmd w
+exe '1resize ' . ((&lines * 20 + 21) / 42)
+exe 'vert 1resize ' . ((&columns * 91 + 91) / 183)
+exe '2resize ' . ((&lines * 20 + 21) / 42)
+exe 'vert 2resize ' . ((&columns * 91 + 91) / 183)
+exe '3resize ' . ((&lines * 18 + 21) / 42)
+tabnext
+edit ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+bear6/readInputData.m
+argglobal
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 18 - ((17 * winheight(0) + 19) / 39)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 18
+normal! 0
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+tabnext
+edit ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+model/Meta.m
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe '1resize ' . ((&lines * 29 + 21) / 42)
+exe 'vert 1resize ' . ((&columns * 91 + 91) / 183)
+exe '2resize ' . ((&lines * 29 + 21) / 42)
+exe 'vert 2resize ' . ((&columns * 91 + 91) / 183)
+exe '3resize ' . ((&lines * 9 + 21) / 42)
+argglobal
+balt ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+meta/ReducedForm.m
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 72 - ((28 * winheight(0) + 14) / 29)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 72
+normal! 09|
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+meta/Structural.m", ":p")) | buffer ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+meta/Structural.m | else | edit ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+meta/Structural.m | endif
+if &buftype ==# 'terminal'
+  silent file ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+meta/Structural.m
+endif
+balt ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+model/Meta.m
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 15 - ((14 * winheight(0) + 14) / 29)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 15
+normal! 0
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+wincmd w
+argglobal
+if bufexists(fnamemodify("term://~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox//72510:/opt/homebrew/Cellar/bash/5.2.26/bin/bash", ":p")) | buffer term://~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox//72510:/opt/homebrew/Cellar/bash/5.2.26/bin/bash | else | edit term://~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox//72510:/opt/homebrew/Cellar/bash/5.2.26/bin/bash | endif
+if &buftype ==# 'terminal'
+  silent file term://~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox//72510:/opt/homebrew/Cellar/bash/5.2.26/bin/bash
+endif
+balt ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+meta/Structural.m
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 2788 - ((8 * winheight(0) + 4) / 9)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 2788
+normal! 0
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+wincmd w
+exe '1resize ' . ((&lines * 29 + 21) / 42)
+exe 'vert 1resize ' . ((&columns * 91 + 91) / 183)
+exe '2resize ' . ((&lines * 29 + 21) / 42)
+exe 'vert 2resize ' . ((&columns * 91 + 91) / 183)
+exe '3resize ' . ((&lines * 9 + 21) / 42)
+tabnext
+edit ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/datex.m
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 91 + 91) / 183)
+exe 'vert 2resize ' . ((&columns * 91 + 91) / 183)
+argglobal
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 8 - ((7 * winheight(0) + 19) / 39)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 8
+normal! 0
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/mkdocs/docs/cli", ":p")) | buffer ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/mkdocs/docs/cli | else | edit ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/mkdocs/docs/cli | endif
+if &buftype ==# 'terminal'
+  silent file ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/mkdocs/docs/cli
+endif
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 10 - ((9 * winheight(0) + 19) / 39)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 10
+normal! 0
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+wincmd w
+exe 'vert 1resize ' . ((&columns * 91 + 91) / 183)
+exe 'vert 2resize ' . ((&columns * 91 + 91) / 183)
+tabnext
+edit ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+model/Structural.m
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 91 + 91) / 183)
+exe 'vert 2resize ' . ((&columns * 91 + 91) / 183)
+argglobal
+balt ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+meta/Structural.m
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+74
+normal! zo
+let s:l = 165 - ((12 * winheight(0) + 21) / 42)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 165
+normal! 015|
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+model/ReducedForm.m", ":p")) | buffer ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+model/ReducedForm.m | else | edit ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+model/ReducedForm.m | endif
+if &buftype ==# 'terminal'
+  silent file ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+model/ReducedForm.m
+endif
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 41 - ((25 * winheight(0) + 21) / 42)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 41
+normal! 0
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+wincmd w
+exe 'vert 1resize ' . ((&columns * 91 + 91) / 183)
+exe 'vert 2resize ' . ((&columns * 91 + 91) / 183)
+tabnext
+edit ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+datex/toFieldable.m
+argglobal
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 7 - ((6 * winheight(0) + 21) / 42)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 7
+normal! 0
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+tabnext
+argglobal
+if bufexists(fnamemodify("term://~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox//72510:/opt/homebrew/Cellar/bash/5.2.26/bin/bash", ":p")) | buffer term://~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox//72510:/opt/homebrew/Cellar/bash/5.2.26/bin/bash | else | edit term://~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox//72510:/opt/homebrew/Cellar/bash/5.2.26/bin/bash | endif
+if &buftype ==# 'terminal'
+  silent file term://~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox//72510:/opt/homebrew/Cellar/bash/5.2.26/bin/bash
+endif
+balt ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox/+identifier/+custom/verifyIRF.m
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 2788 - ((41 * winheight(0) + 21) / 42)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 2788
+normal! 0
+lcd ~/Documents/ogr-external-projects/ecb-bear/BEAR-toolbox/tbx/sandbox
+tabnext 6
+set stal=1
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20
+let &shortmess = s:shortmess_save
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if filereadable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &g:so = s:so_save | let &g:siso = s:siso_save
+set hlsearch
+nohlsearch
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

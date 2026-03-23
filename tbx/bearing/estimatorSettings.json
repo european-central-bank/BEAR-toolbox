@@ -1,0 +1,3058 @@
+{
+  "BetaTV": {
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "GeneralTV": {
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    },
+    "HeteroskedasticityAutoRegression": {
+      "description": "AR coefficient on residual variance",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  gamma"
+    },
+    "HeteroskedasticityShape": {
+      "description": "IG shape on residual variance",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  alpha0"
+    },
+    "HeteroskedasticityScale": {
+      "description": "IG scale on residual variance",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  delta0"
+    }
+  },
+  "BetaTVFAVAR": {
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "CarrieroSVFAVAR": {
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    },
+    "HeteroskedasticityAutoRegression": {
+      "description": "AR coefficient on residual variance",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  gamma"
+    },
+    "HeteroskedasticityShape": {
+      "description": "IG shape on residual variance",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  alpha0"
+    },
+    "HeteroskedasticityScale": {
+      "description": "IG scale on residual variance",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  delta0"
+    }
+  },
+  "CogleySargentSVFAVAR": {
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    },
+    "HeteroskedasticityAutoRegression": {
+      "description": "AR coefficient on residual variance",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  gamma"
+    },
+    "HeteroskedasticityShape": {
+      "description": "IG shape on residual variance",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  alpha0"
+    },
+    "HeteroskedasticityScale": {
+      "description": "IG scale on residual variance",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  delta0"
+    }
+  },
+  "FlatFAVAROnestep": {
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    },
+    "LoadingVariance": {
+      "description": "Loading Variance",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  L0"
+    },
+    "SigmaShape": {
+      "description": "Sigma shape",
+      "type": "numeric",
+      "default": 3,
+      "detailedDesc": "  a0"
+    },
+    "SigmaScale": {
+      "description": "Sigma scale",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  b0"
+    }
+  },
+  "FlatFAVARTwostep": {
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "GeneralTVFAVAR": {
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    },
+    "HeteroskedasticityAutoRegression": {
+      "description": "AR coefficient on residual variance",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  gamma"
+    },
+    "HeteroskedasticityShape": {
+      "description": "IG shape on residual variance",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  alpha0"
+    },
+    "HeteroskedasticityScale": {
+      "description": "IG scale on residual variance",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  delta0"
+    }
+  },
+  "IndNormalWishartFAVAROnestep": {
+    "Sigma": {
+      "description": "Method of calculating priors on covariance matrix (ar;eye)",
+      "type": "text",
+      "default": "ar",
+      "detailedDesc": "  prior = 31 and 32 respectively"
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    },
+    "LoadingVariance": {
+      "description": "Loading Variance",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  L0"
+    },
+    "SigmaShape": {
+      "description": "Sigma shape",
+      "type": "numeric",
+      "default": 3,
+      "detailedDesc": "  a0"
+    },
+    "SigmaScale": {
+      "description": "Sigma scale",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  b0"
+    }
+  },
+  "IndNormalWishartFAVARTwostep": {
+    "Sigma": {
+      "description": "Method of calculating priors on covariance matrix (ar;eye)",
+      "type": "text",
+      "default": "ar",
+      "detailedDesc": "  prior = 31 and 32 respectively"
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "MinnesotaFAVAROnestep": {
+    "Sigma": {
+      "description": "Method of calculating priors on covariance matrix (ar;diag;full)",
+      "type": "text",
+      "default": "ar",
+      "detailedDesc": "  prior = 11, 12 and 13 respectively"
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    },
+    "LoadingVariance": {
+      "description": "Loading Variance",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  L0"
+    },
+    "SigmaShape": {
+      "description": "Sigma shape",
+      "type": "numeric",
+      "default": 3,
+      "detailedDesc": "  a0"
+    },
+    "SigmaScale": {
+      "description": "Sigma scale",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  b0"
+    }
+  },
+  "MinnesotaFAVARTwostep": {
+    "Sigma": {
+      "description": "Method of calculating priors on covariance matrix (ar;diag;full)",
+      "type": "text",
+      "default": "ar",
+      "detailedDesc": "  prior = 11, 12 and 13 respectively"
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "NormalDiffuseFAVAROnestep": {
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    },
+    "LoadingVariance": {
+      "description": "Loading Variance",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  L0"
+    },
+    "SigmaShape": {
+      "description": "Sigma shape",
+      "type": "numeric",
+      "default": 3,
+      "detailedDesc": "  a0"
+    },
+    "SigmaScale": {
+      "description": "Sigma scale",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  b0"
+    }
+  },
+  "NormalDiffuseFAVARTwostep": {
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "NormalWishartFAVAROnestep": {
+    "Sigma": {
+      "description": "Method of calculating priors on covariance matrix (ar;eye)",
+      "type": "text",
+      "default": "ar",
+      "detailedDesc": "  prior =21  and 22 respectively"
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    },
+    "LoadingVariance": {
+      "description": "Loading Variance",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  L0"
+    },
+    "SigmaShape": {
+      "description": "Sigma shape",
+      "type": "numeric",
+      "default": 3,
+      "detailedDesc": "  a0"
+    },
+    "SigmaScale": {
+      "description": "Sigma scale",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  b0"
+    }
+  },
+  "NormalWishartFAVARTwostep": {
+    "Sigma": {
+      "description": "Method of calculating priors on covariance matrix (ar;eye)",
+      "type": "text",
+      "default": "ar",
+      "detailedDesc": "  prior =21  and 22 respectively"
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "RandomInertiaSVFAVAR": {
+    "HeteroskedasticityAutoRegressionVariance": {
+      "description": "Prior variance of inertia",
+      "type": "numeric",
+      "default": 0.01,
+      "detailedDesc": "  zeta0"
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    },
+    "HeteroskedasticityAutoRegression": {
+      "description": "AR coefficient on residual variance",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  gamma"
+    },
+    "HeteroskedasticityShape": {
+      "description": "IG shape on residual variance",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  alpha0"
+    },
+    "HeteroskedasticityScale": {
+      "description": "IG scale on residual variance",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  delta0"
+    }
+  },
+  "CarrieroSV": {
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    },
+    "HeteroskedasticityAutoRegression": {
+      "description": "AR coefficient on residual variance",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  gamma"
+    },
+    "HeteroskedasticityShape": {
+      "description": "IG shape on residual variance",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  alpha0"
+    },
+    "HeteroskedasticityScale": {
+      "description": "IG scale on residual variance",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  delta0"
+    }
+  },
+  "CogleySargentSV": {
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    },
+    "HeteroskedasticityAutoRegression": {
+      "description": "AR coefficient on residual variance",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  gamma"
+    },
+    "HeteroskedasticityShape": {
+      "description": "IG shape on residual variance",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  alpha0"
+    },
+    "HeteroskedasticityScale": {
+      "description": "IG scale on residual variance",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  delta0"
+    }
+  },
+  "RandomInertiaSV": {
+    "HeteroskedasticityAutoRegressionVariance": {
+      "description": "Prior variance of inertia",
+      "type": "numeric",
+      "default": 0.01,
+      "detailedDesc": "  zeta0"
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    },
+    "HeteroskedasticityAutoRegression": {
+      "description": "AR coefficient on residual variance",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  gamma"
+    },
+    "HeteroskedasticityShape": {
+      "description": "IG shape on residual variance",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  alpha0"
+    },
+    "HeteroskedasticityScale": {
+      "description": "IG scale on residual variance",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  delta0"
+    }
+  },
+  "DynamicCrossPanel": {
+    "Alpha0": {
+      "description": "IG shape on residual variance",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": "  alpha0"
+    },
+    "Delta0": {
+      "description": "IG scale on residual variance",
+      "type": "numeric scalar",
+      "default": 1,
+      "detailedDesc": "  delta0"
+    },
+    "A0": {
+      "description": "IG shape on factor variance",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": "  a0"
+    },
+    "B0": {
+      "description": "IG scale on factor variance",
+      "type": "numeric scalar",
+      "default": 1,
+      "detailedDesc": "  b0"
+    },
+    "Rho": {
+      "description": "AR coefficient on factors",
+      "type": "numeric scalar",
+      "default": 0.75,
+      "detailedDesc": "  rho"
+    },
+    "Psi": {
+      "description": "Variance of Metropolis draw",
+      "type": "numeric scalar",
+      "default": 0.1,
+      "detailedDesc": "  psi"
+    },
+    "Gamma": {
+      "description": "AR coefficient on residual variance",
+      "type": "numeric scalar",
+      "default": 0.85,
+      "detailedDesc": "  gamma"
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "HierarchicalPanel": {
+    "S0": {
+      "description": "IG shape on overall tightness",
+      "type": "numeric scalar",
+      "default": 0.001,
+      "detailedDesc": "  s0"
+    },
+    "V0": {
+      "description": "IG scale on overall tightness",
+      "type": "numeric scalar",
+      "default": 0.001,
+      "detailedDesc": "  v0"
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "MeanOLSPanel": {
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "NormalWishartPanel": {
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "StaticCrossPanel": {
+    "Alpha0": {
+      "description": "IG shape on residual variance",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": "  alpha0"
+    },
+    "Delta0": {
+      "description": "IG scale on residual variance",
+      "type": "numeric scalar",
+      "default": 1,
+      "detailedDesc": "  delta0"
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "ZellnerHongPanel": {
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "Flat": {
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "IndNormalWishart": {
+    "Sigma": {
+      "description": "Method of calculating priors on covariance matrix (ar;eye)",
+      "type": "text",
+      "default": "ar",
+      "detailedDesc": "  prior = 31 and 32 respectively"
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "Minnesota": {
+    "Sigma": {
+      "description": "Method of calculating priors on covariance matrix (ar;diag;full)",
+      "type": "text",
+      "default": "ar",
+      "detailedDesc": "  prior = 11, 12 and 13 respectively"
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "NormalDiffuse": {
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "NormalWishart": {
+    "Sigma": {
+      "description": "Method of calculating priors on covariance matrix (ar;eye)",
+      "type": "text",
+      "default": "ar",
+      "detailedDesc": "  prior =21  and 22 respectively"
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "Ordinary": {
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "Threshold": {
+    "VarThreshold": {
+      "description": "Controls the prior variance of the threshold",
+      "type": "numeric scalar",
+      "default": 10,
+      "detailedDesc": ""
+    },
+    "MaxDelay": {
+      "description": "Controls the maxium delay allowed for the threshold variable for regime identification",
+      "type": "unknown",
+      "default": 4,
+      "detailedDesc": ""
+    },
+    "ThresholdPropStd": {
+      "description": "Controls the proposal standard deviation of the MH algoruthm of the threshold draws",
+      "type": "numeric scalar",
+      "default": 0.031622776601683791,
+      "detailedDesc": ""
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "GenLargeShockSV": {
+    "Mult0": {
+      "description": "Initial mean of scaling factors",
+      "type": "numeric",
+      "default": "",
+      "detailedDesc": ""
+    },
+    "ScaleMult": {
+      "description": "Scale on covariance scaling factors' Pareto distribution",
+      "type": "numeric",
+      "default": "",
+      "detailedDesc": ""
+    },
+    "ShapeMult": {
+      "description": "Shape on covariance scaling factors ' Pareto distribution",
+      "type": "numeric",
+      "default": "",
+      "detailedDesc": ""
+    },
+    "PropStdMult": {
+      "description": "Scaling factors proposal std",
+      "type": "numeric",
+      "default": "",
+      "detailedDesc": ""
+    },
+    "MultAR0": {
+      "description": "Scaling factor's AR parameter's initial mean",
+      "type": "numeric scalar",
+      "default": 0.5,
+      "detailedDesc": ""
+    },
+    "AlphaMultAR": {
+      "description": "Scaling factor's AR parameter's alpha value in beta",
+      "type": "numeric scalar",
+      "default": "",
+      "detailedDesc": ""
+    },
+    "BetaMultAR": {
+      "description": "Scaling factor's  AR parameter's beta value in beta",
+      "type": "numeric scalar",
+      "default": "",
+      "detailedDesc": ""
+    },
+    "PropStdAR": {
+      "description": "Scaling factors's  AR parameter's proposal std",
+      "type": "numeric scalar",
+      "default": "",
+      "detailedDesc": ""
+    },
+    "Turningpoint": {
+      "description": "",
+      "type": "date",
+      "default": "",
+      "detailedDesc": ""
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "LargeShockSV": {
+    "Solver": {
+      "description": "",
+      "type": "text",
+      "default": "function handle",
+      "detailedDesc": ""
+    },
+    "Mult0": {
+      "description": "Initial mean of scaling factors",
+      "type": "numeric",
+      "default": "",
+      "detailedDesc": ""
+    },
+    "ScaleMult": {
+      "description": "Scale on covariance scaling factors' Pareto distribution",
+      "type": "numeric",
+      "default": "",
+      "detailedDesc": ""
+    },
+    "ShapeMult": {
+      "description": "Shape on covariance scaling factors ' Pareto distribution",
+      "type": "numeric",
+      "default": "",
+      "detailedDesc": ""
+    },
+    "PropStdMult": {
+      "description": "Scaling factors proposal std",
+      "type": "numeric",
+      "default": "",
+      "detailedDesc": ""
+    },
+    "MultAR0": {
+      "description": "Scaling factor's AR parameter's initial mean",
+      "type": "numeric scalar",
+      "default": 0.5,
+      "detailedDesc": ""
+    },
+    "AlphaMultAR": {
+      "description": "Scaling factor's AR parameter's alpha value in beta",
+      "type": "numeric scalar",
+      "default": "",
+      "detailedDesc": ""
+    },
+    "BetaMultAR": {
+      "description": "Scaling factor's  AR parameter's beta value in beta",
+      "type": "numeric scalar",
+      "default": "",
+      "detailedDesc": ""
+    },
+    "PropStdAR": {
+      "description": "Scaling factors's  AR parameter's proposal std",
+      "type": "numeric scalar",
+      "default": "",
+      "detailedDesc": ""
+    },
+    "Turningpoint": {
+      "description": "",
+      "type": "date",
+      "default": "",
+      "detailedDesc": ""
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "MeanAdjusted": {
+    "ScaleUp": {
+      "description": "",
+      "type": "numeric scalar",
+      "default": 100,
+      "detailedDesc": ""
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  },
+  "MixedFrequency": {
+    "KalmanFcastPeriod": {
+      "description": "Numeber of periods to forecast in a Kalman filter",
+      "type": "numeric",
+      "default": 7,
+      "detailedDesc": "  H"
+    },
+    "MfLambda1": {
+      "description": "hyperparameter: lambda1",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": ""
+    },
+    "MfLambda2": {
+      "description": "hyperparameter: lambda2",
+      "type": "numeric",
+      "default": 3.4,
+      "detailedDesc": ""
+    },
+    "MfLambda3": {
+      "description": "hyperparameter: lambda3",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": ""
+    },
+    "MfLambda4": {
+      "description": "hyperparameter: lambda4",
+      "type": "numeric",
+      "default": 3.4,
+      "detailedDesc": ""
+    },
+    "MfLambda5": {
+      "description": "hyperparameter: lambda5",
+      "type": "numeric",
+      "default": 14.763158,
+      "detailedDesc": ""
+    },
+    "Burnin": {
+      "description": "Number of burn-in draws",
+      "type": "numeric scalar",
+      "default": 0,
+      "detailedDesc": "  Bu"
+    },
+    "Exogenous": {
+      "description": "Priors on exogenous variables flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  priorexogenous"
+    },
+    "BlockExogenous": {
+      "description": "Block exogeneity flag",
+      "type": "logical matrix",
+      "default": false,
+      "detailedDesc": "  bex"
+    },
+    "Autoregression": {
+      "description": "Prior on first-order autoregression",
+      "type": "numeric vector",
+      "default": 0.8,
+      "detailedDesc": "  ar"
+    },
+    "Lambda1": {
+      "description": "Overall tightness of priors",
+      "type": "numeric",
+      "default": 0.1,
+      "detailedDesc": "  lambda1"
+    },
+    "Lambda2": {
+      "description": "Variable weighting",
+      "type": "numeric",
+      "default": 0.5,
+      "detailedDesc": "  lambda2"
+    },
+    "Lambda3": {
+      "description": "Leg decay",
+      "type": "numeric",
+      "default": 1,
+      "detailedDesc": "  lambda3"
+    },
+    "Lambda4": {
+      "description": "Exogenous variable tightness",
+      "type": "numeric matrix",
+      "default": 100,
+      "detailedDesc": "  lambda4"
+    },
+    "Lambda5": {
+      "description": "Block exogeneity shrinkage",
+      "type": "numeric",
+      "default": 0.001,
+      "detailedDesc": "  lambda5"
+    },
+    "StabilityThreshold": {
+      "description": "Threshold for maximum eigenvalue magnitude",
+      "type": "numeric scalar",
+      "default": null,
+      "detailedDesc": ""
+    },
+    "MaxNumUnstableAttempts": {
+      "description": "Maximum number of unstable sampling attempts",
+      "type": "numeric scalar",
+      "default": 1000,
+      "detailedDesc": ""
+    }
+  }
+}

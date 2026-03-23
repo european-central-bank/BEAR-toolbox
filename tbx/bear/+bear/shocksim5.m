@@ -24,7 +24,7 @@ for ii=1:Fperiods
    % for period ii, check if there is a condition, variable after variable
    for jj=1:n
       % if there is a condition
-      if ~isempty(cfconds{ii,jj})
+      if ~isempty(cfconds{ii,jj}) && ~isnan(cfconds{ii,jj})
       % fill r with the corresponding condition, minus forecast..
       r=[r;cfconds{ii,jj}-fmat(ii,jj)];
       % .. and R with the corresponding orthogonalised IRFs entries
@@ -38,7 +38,6 @@ for ii=1:Fperiods
       end
    end
 end
-
 
 
 

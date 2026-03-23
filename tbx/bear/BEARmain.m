@@ -326,7 +326,7 @@ try
 
     % proceed similarly for exogenous series; note however that it may be empty
     % so check first whether there are exogenous variables altogether
-    if isempty(varexo)
+    if isempty(varexo==1)
         exo={};
         % if not empty, repeat what has been done with the exogenous
     else
@@ -472,7 +472,8 @@ try
     %-----------------------|
 
     % generate the strings and decimal vectors of dates
-    [decimaldates1,decimaldates2,stringdates1,stringdates2,stringdates3,Fstartlocation,Fendlocation]=bear.gendates(names,lags,frequency,startdate,enddate,Fstartdate,Fenddate,Fcenddate,Fendsmpl,F,CF,favar);
+    [decimaldates1,decimaldates2,stringdates1,stringdates2,stringdates3,Fstartlocation,Fendlocation]=
+    bear.gendates(names,lags,frequency,startdate,enddate,Fstartdate,Fenddate,Fcenddate,Fendsmpl,F,CF,favar);
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -755,8 +756,6 @@ try
                 end
                 % compute posterior estimates
                 [beta_median,beta_std,beta_lbound,beta_ubound,sigma_median]=bear.mestimates(betabar,omegabar,sigma,q,cband);
-
-
                 % estimation of BVAR if a normal-Wishart prior has been chosen (i.e., prior has been set to 21 or 22)
             elseif opts.prior==21||opts.prior==22
                 if IRFt<=4
@@ -830,7 +829,7 @@ try
                     % median of the posterior estimates in this case
                     [beta_median,B_median,beta_std,beta_lbound,beta_ubound,sigma_median]=bear.favar_doestimates(favar);
                 end
-
+keyboard
 
                 % mean-adjusted BVAR model
             elseif opts.prior==61
@@ -1771,7 +1770,7 @@ try
             end
 
 
-
+keyboard
 
             %% BLOCK 6: FEVD
 
@@ -2013,6 +2012,7 @@ try
             if F==1
                 % run the Gibbs sampler to obtain draws from the posterior predictive distribution
                 % if the model is the VAR coefficients only model
+                rng("default")
                 if opts.tvbvar==1
                     [forecast_record]=bear.forecasttv1(data_endo_a,data_exo_p,opts.It,opts.Bu,beta_gibbs,omega_gibbs,sigma_gibbs,Fstartlocation,Fperiods,n,p,k,q,const);
                     % if the model is the general model
@@ -2028,7 +2028,7 @@ try
                     [Forecasteval]=bear.tvbvarfeval(data_endo_c,data_endo_c_lags,data_exo_c,stringdates3,Fstartdate,Fcenddate,Fcperiods,Fcomp,const,n,p,k,opts.It,opts.Bu,beta_gibbs,sigma_gibbs,forecast_record,forecast_estimates,names,endo,pref);
                 end
             end
-
+keyboard
 
             %% BLOCK 6: FEVD
 

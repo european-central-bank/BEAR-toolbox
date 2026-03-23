@@ -1,0 +1,9 @@
+
+{
+    "data": {
+        "format": "csv",
+        "source": "exampleData.csv",
+        "startPeriod": null,
+        "endPeriod": null
+    }
+}
