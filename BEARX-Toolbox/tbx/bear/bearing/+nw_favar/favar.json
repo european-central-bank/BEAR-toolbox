@@ -1,0 +1,21 @@
+{
+"FAVAR":1, 
+"transformation":0,
+"transform_endo":"", 
+"numpc":3,
+"slowfast":0,  
+"onestep":0, 
+"thin":1, 
+"L0":1, 
+"a0":3, 
+"b0":0.001,
+"blocks":0,
+"blocknames":"slow fast", 
+"plotX":"IP PUNEW FYGM3 FYGT5 FMFBA FM2 EXRJAN PMCP IPXMCA GMCQ GMCDQ GMCNQ LHUR PMEMP LEHCC HSFR PMNO FSDXP HHSNTN",
+"plotXshock":"FYFF",
+"levels":1, 
+"retransres":1, 
+"IRFplot":0, 
+"FEVDplot":1, 
+"HDplot":0
+}

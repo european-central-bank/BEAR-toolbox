@@ -1,0 +1,15 @@
+{
+       "Bu": 1000,
+       "It": 2000,
+       "PriorExcel": false,
+       "alltirf": true,
+       "alpha0": 0.001,
+       "ar": 0,
+       "delta0": 0.001,
+       "gamma": 0.85,
+       "lambda4": 100,
+       "pick": false,
+       "pickf": 20,
+       "priorsexogenous": true,
+       "tvbvar": 2
+     }

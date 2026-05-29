@@ -1,0 +1,32 @@
+{
+  "MixedLambda1": {
+    "label": "",
+    "type": "number",
+    "value": 0.1,
+    "details": ""
+  },
+  "MixedLambda2": {
+    "label": "",
+    "type": "number",
+    "value": 3.4,
+    "details": ""
+  },
+  "MixedLambda3": {
+    "label": "",
+    "type": "number",
+    "value": 1,
+    "details": ""
+  },
+  "MixedLambda4": {
+    "label": "",
+    "type": "number",
+    "value": 3.4,
+    "details": ""
+  },
+  "MixedLambda5": {
+    "label": "",
+    "type": "number",
+    "value": 14.763158,
+    "details": ""
+  }
+}

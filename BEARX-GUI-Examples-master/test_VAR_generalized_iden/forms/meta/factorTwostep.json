@@ -1,0 +1,58 @@
+{
+  "EndogenousNames": {
+    "value": "",
+    "type": "names",
+    "label": "Names of endogenous variables"
+  },
+  "ReducibleNames": {
+    "value": "",
+    "type": "names",
+    "label": "Names of reducible variables included in the PCA decomposition"
+  },
+  "ReducibleBlocks": {
+    "value": "",
+    "type": "names",
+    "label": "Names of model blocks to which the reducible variables belong"
+  },
+  "BlockType": {
+    "value": "",
+    "type": "names",
+    "label": "Specification of the block structure: either 'blocks' or 'slowfast'"
+  },
+  "NumFactors": {
+    "value": "",
+    "type": "number",
+    "label": "Number of latent factors extracted for each specified block"
+  },
+  "ExogenousNames": {
+    "value": "",
+    "type": "names",
+    "label": "Names of exogenous variables"
+  },
+  "ShockNames": {
+    "value": [],
+    "type": "names",
+    "label": "Names of structural shocks"
+  },
+  "Order": {
+    "value": 1,
+    "type": "number",
+    "label": "Autoregressive order of the VAR model"
+  },
+  "Intercept": {
+    "value": true,
+    "type": "logical",
+    "label": "True if the model includes an intercept (constant) term"
+  },
+  "EstimationSpan": {
+    "value": "",
+    "type": "span",
+    "label": "Date range for estimation, not including initial conditions"
+  },
+  "IdentificationHorizon": {
+    "value": 4,
+    "type": "number",
+    "label": "Number of periods for shock responses"
+  }
+}
+

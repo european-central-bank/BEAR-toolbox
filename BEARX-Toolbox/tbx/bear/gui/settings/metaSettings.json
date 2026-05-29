@@ -1,0 +1,47 @@
+{
+  "EndogenousConcepts": {
+    "value": "",
+    "type": "names",
+    "Description": "Endogenous concepts; the entire names will be created"
+  },
+  "Units": {
+    "value": "",
+    "type": "names",
+    "Description": "Names of units in panel models"
+  },
+  "ExogenousNames": {
+    "value": "",
+    "type": "names",
+    "Description": "Names of exogenous variables"
+  },
+  "ResidualPrefix": {
+    "value": "resid",
+    "type": "name",
+    "Description": "Prefix prepended to residual names"
+  },
+  "Order": {
+    "value": 1,
+    "type": "number",
+    "Description": "Autoregressive order of the VAR model"
+  },
+  "HasIntercept": {
+    "value": "",
+    "type": "logical",
+    "Description": "True if the model includes an intercept (constant) term"
+  },
+  "ShortSpan": {
+    "value": "",
+    "type": "string",
+    "Description": "Span of fitted data"
+  },
+  "ShockConcepts": {
+    "value": [],
+    "type": "names",
+    "Description": "Names of structural shock concepts; the entire names"
+  },
+  "IdentificationHorizon": {
+    "value": null,
+    "type": "number",
+    "Description": "Number of periods for which the VMA"
+  }
+}

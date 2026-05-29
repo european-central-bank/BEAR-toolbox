@@ -1,0 +1,28 @@
+{
+    "SaveXLS": {
+        "value": true,
+        "type": "logical",
+        "label": "Save output table as an Excel file"
+    },
+    "SaveCSV": {
+        "value": false,
+        "type": "logical",
+        "label": "Save output table as a CSV file"
+    },
+    "SaveMAT": {
+        "value": false,
+        "type": "logical",
+        "label": "Save output table as a MAT file"
+    },
+    "DrawCharts": {
+        "value": false,
+        "type": "logical",
+        "label": "Draw output as charts on the screen"
+    },
+    "SavePDF": {
+        "value": false,
+        "type": "logical",
+        "label": "Save charts as a PDF file"
+    }
+}
+

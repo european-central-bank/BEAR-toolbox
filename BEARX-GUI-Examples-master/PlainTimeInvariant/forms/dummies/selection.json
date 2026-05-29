@@ -1,0 +1,23 @@
+{
+    "Minnesota":  {
+        "value": false,
+        "label": "Minnesota",
+        "target": ["dummies", "minnesota"]
+    },
+    "InitialObs":  {
+        "value": false,
+        "label": "Initial observations",
+        "target": ["dummies", "initialObs"]
+    },
+    "SumCoeff":  {
+        "value": false,
+        "label": "Sum of coefficients",
+        "target": ["dummies", "sumcoeff"]
+    },
+    "LongRun":  {
+        "value": false,
+        "label": "Long-run constraints",
+        "target": ["dummies", "longrun"]
+    }
+}
+

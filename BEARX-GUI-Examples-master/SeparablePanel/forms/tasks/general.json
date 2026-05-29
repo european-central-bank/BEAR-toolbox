@@ -1,0 +1,45 @@
+{
+    "OutputFolder": {
+        "label": "Output folder",
+        "type": "name",
+        "value": "output",
+        "details": ""
+    },
+    "NumHistory": {
+        "label": "Number of historical periods to prepend to forecasts",
+        "type": "number",
+        "value": 8,
+        "details": ""
+    },
+    "Percentiles": {
+        "label": "Percentiles to report",
+        "type": "numbers",
+        "value": [10, 50, 90],
+        "details": ""
+    },
+    "PlotSettingsLineWidth": {
+        "label": "Line width for charts",
+        "type": "number",
+        "value": 1.5,
+        "details": ""
+    },
+    "PrintInfo": {
+        "label": "Print information structures to console",
+        "type": "logical",
+        "value": true,
+        "details": ""
+    },
+    "PrintObjects": {
+        "label": "Print newly created objects to console",
+        "type": "logical",
+        "value": true,
+        "details": ""
+    },
+    "PrintTables": {
+        "label": "Print newly created tables to console",
+        "type": "logical",
+        "value": true,
+        "details": ""
+    }
+}
+

@@ -1,0 +1,40 @@
+{
+  "ForecastSpan": {
+    "value": [
+      "2018-Q1",
+      "2019-Q4"
+    ],
+    "type": "span",
+    "label": "Forecast date span"
+  },
+  "StochasticResiduals": {
+    "value": true,
+    "type": "logical",
+    "label": "Generate stochastic residuals in unconditional forecast"
+  },
+  "SaveXLS": {
+    "value": true,
+    "type": "logical",
+    "label": "Save output table as an Excel file"
+  },
+  "SaveCSV": {
+    "value": true,
+    "type": "logical",
+    "label": "Save output table as a CSV file"
+  },
+  "SaveMAT": {
+    "value": true,
+    "type": "logical",
+    "label": "Save output table as a MAT file"
+  },
+  "DrawCharts": {
+    "value": true,
+    "type": "logical",
+    "label": "Draw output as charts on the screen"
+  },
+  "SavePDF": {
+    "value": true,
+    "type": "logical",
+    "label": "Save charts as a PDF file"
+  }
+}

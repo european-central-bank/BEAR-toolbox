@@ -1,0 +1,42 @@
+{
+  "None": {
+    "value": false,
+    "label": "No structural identification",
+    "target": [
+      "identification",
+      "selection"
+    ]
+  },
+  "Cholesky": {
+    "value": false,
+    "label": "Cholesky (triangular) identification",
+    "target": [
+      "identification",
+      "cholesky"
+    ]
+  },
+  "InstantZeros": {
+    "value": false,
+    "label": "Instant zero restrictions on instantaneous impact",
+    "target": [
+      "identification",
+      "InstantZeros"
+    ]
+  },
+  "IneqRestrict": {
+    "value": false,
+    "label": "Inequality (sign) restrictions on shock responses",
+    "target": [
+      "identification",
+      "IneqRestrict"
+    ]
+  },
+  "GeneralRestrict": {
+    "value": true,
+    "label": "Generalized restrictions on system properties",
+    "target": [
+      "identification",
+      "GeneralRestrict"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+    "NumSamples": {
+        "value": 1000,
+        "type": "number",
+        "label": "Number of structurally identified samples to generate from posterior"
+    },
+    "SaveMAT": {
+        "value": false,
+        "type": "logical",
+        "label": "Save estimated structural model object as a MAT file"
+    }
+}
+

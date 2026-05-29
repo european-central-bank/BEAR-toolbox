@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolset id="user_apps_toolset" template="false">
+    <tool app_file_path="BEAR6.m" handler_class="com.mathworks.deployment.desktop.toolstrip.ToolboxToolSetExtensionHandler" id="7c7f0e76-5dbd-4e43-9653-45149671d2e4:BEAR6.m" label="BEAR6" quick_access_eligible="false" toolset_id="user_apps_toolset">
+        <callback>BEAR6</callback>
+        <summary>Launch the BEAR6 app</summary>
+        <description>The Bayesian Estimation, Analysis and Regression toolbox (BEAR)</description>
+        <icon filename="BEAR6icon.png" path="." />
+        <parent_tool id="my_apps" toolset_id="apps_toolset"/>
+    </tool>
+    <tool app_file_path="BEARapp.m" handler_class="com.mathworks.deployment.desktop.toolstrip.ToolboxToolSetExtensionHandler" id="f21a1cea-7f1c-48dd-91ba-e1bb6df534a3:BEARapp.m" label="BEAR5" quick_access_eligible="false" toolset_id="user_apps_toolset">
+        <callback>BEARapp</callback>
+        <summary>Launch the BEAR5 app</summary>
+        <description>The Bayesian Estimation, Analysis and Regression toolbox (BEAR)</description>
+        <icon filename="BEAR5icon.png" path="." />
+        <parent_tool id="my_apps" toolset_id="apps_toolset"/>
+    </tool>
+</toolset>

@@ -1,0 +1,702 @@
+[
+  {
+    "suite": "suite01_plain",
+    "case": "NormalWishart",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 1.4842179,
+    "timestamp": "2026-05-29 14:13:46"
+  },
+  {
+    "suite": "suite01_plain",
+    "case": "Minnesota",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.4165461,
+    "timestamp": "2026-05-29 14:13:47"
+  },
+  {
+    "suite": "suite01_plain",
+    "case": "IndNormalWishart",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.3450336,
+    "timestamp": "2026-05-29 14:13:48"
+  },
+  {
+    "suite": "suite01_plain",
+    "case": "NormalDiffuse",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.163946,
+    "timestamp": "2026-05-29 14:13:48"
+  },
+  {
+    "suite": "suite01_plain",
+    "case": "Flat",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.2809109,
+    "timestamp": "2026-05-29 14:13:48"
+  },
+  {
+    "suite": "suite01_plain",
+    "case": "Ordinary",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1579776,
+    "timestamp": "2026-05-29 14:13:48"
+  },
+  {
+    "suite": "suite02_tv_sv",
+    "case": "BetaTV",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.8684557,
+    "timestamp": "2026-05-29 14:13:49"
+  },
+  {
+    "suite": "suite02_tv_sv",
+    "case": "GeneralTV",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.7225537,
+    "timestamp": "2026-05-29 14:13:49"
+  },
+  {
+    "suite": "suite02_tv_sv",
+    "case": "CarrieroSV",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.2536318,
+    "timestamp": "2026-05-29 14:13:50"
+  },
+  {
+    "suite": "suite02_tv_sv",
+    "case": "CogleySargentSV",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.2761554,
+    "timestamp": "2026-05-29 14:13:50"
+  },
+  {
+    "suite": "suite02_tv_sv",
+    "case": "RandomInertiaSV",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.2799197,
+    "timestamp": "2026-05-29 14:13:51"
+  },
+  {
+    "suite": "suite02_tv_sv",
+    "case": "CCMMSV",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.4010212,
+    "timestamp": "2026-05-29 14:13:51"
+  },
+  {
+    "suite": "suite02_tv_sv",
+    "case": "CCMMSVO",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.3905042,
+    "timestamp": "2026-05-29 14:13:51"
+  },
+  {
+    "suite": "suite02_tv_sv",
+    "case": "CCMMSVOT",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.5835637,
+    "timestamp": "2026-05-29 14:13:52"
+  },
+  {
+    "suite": "suite02_tv_sv",
+    "case": "LargeShockSV",
+    "status": "PASS",
+    "tag": "UNDOCUMENTED",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.5137476,
+    "timestamp": "2026-05-29 14:13:52"
+  },
+  {
+    "suite": "suite02_tv_sv",
+    "case": "GenLargeShockSV",
+    "status": "PASS",
+    "tag": "UNDOCUMENTED",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.3452829,
+    "timestamp": "2026-05-29 14:13:53"
+  },
+  {
+    "suite": "suite03_panel_sep",
+    "case": "NormalWishartPanel",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.2031547,
+    "timestamp": "2026-05-29 14:13:53"
+  },
+  {
+    "suite": "suite03_panel_sep",
+    "case": "MeanOLSPanel",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1052223,
+    "timestamp": "2026-05-29 14:13:54"
+  },
+  {
+    "suite": "suite03_panel_sep",
+    "case": "ZellnerHongPanel",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1113398,
+    "timestamp": "2026-05-29 14:13:54"
+  },
+  {
+    "suite": "suite03_panel_sep",
+    "case": "HierarchicalPanel",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1451199,
+    "timestamp": "2026-05-29 14:13:54"
+  },
+  {
+    "suite": "suite03_panel_cross",
+    "case": "StaticCrossPanel",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1924797,
+    "timestamp": "2026-05-29 14:13:54"
+  },
+  {
+    "suite": "suite03_panel_cross",
+    "case": "DynamicCrossPanel",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 4.0321908,
+    "timestamp": "2026-05-29 14:13:54"
+  },
+  {
+    "suite": "suite04_favar_1step",
+    "case": "FlatFAVAROnestep",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.378544,
+    "timestamp": "2026-05-29 14:13:58"
+  },
+  {
+    "suite": "suite04_favar_1step",
+    "case": "IndNormalWishartFAVAROnestep",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.2435479,
+    "timestamp": "2026-05-29 14:13:59"
+  },
+  {
+    "suite": "suite04_favar_1step",
+    "case": "MinnesotaFAVAROnestep",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.2330602,
+    "timestamp": "2026-05-29 14:13:59"
+  },
+  {
+    "suite": "suite04_favar_1step",
+    "case": "NormalDiffuseFAVAROnestep",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.240311,
+    "timestamp": "2026-05-29 14:13:59"
+  },
+  {
+    "suite": "suite04_favar_1step",
+    "case": "NormalWishartFAVAROnestep",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.2606188,
+    "timestamp": "2026-05-29 14:13:59"
+  },
+  {
+    "suite": "suite04_favar_2step",
+    "case": "BetaTVFAVAR",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.6899319,
+    "timestamp": "2026-05-29 14:14:00"
+  },
+  {
+    "suite": "suite04_favar_2step",
+    "case": "CarrieroSVFAVAR",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.2369414,
+    "timestamp": "2026-05-29 14:14:00"
+  },
+  {
+    "suite": "suite04_favar_2step",
+    "case": "CogleySargentSVFAVAR",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.4108135,
+    "timestamp": "2026-05-29 14:14:00"
+  },
+  {
+    "suite": "suite04_favar_2step",
+    "case": "FlatFAVARTwostep",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1278308,
+    "timestamp": "2026-05-29 14:14:01"
+  },
+  {
+    "suite": "suite04_favar_2step",
+    "case": "GeneralTVFAVAR",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.5944318,
+    "timestamp": "2026-05-29 14:14:01"
+  },
+  {
+    "suite": "suite04_favar_2step",
+    "case": "IndNormalWishartFAVARTwostep",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1239474,
+    "timestamp": "2026-05-29 14:14:02"
+  },
+  {
+    "suite": "suite04_favar_2step",
+    "case": "MinnesotaFAVARTwostep",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.0973433,
+    "timestamp": "2026-05-29 14:14:02"
+  },
+  {
+    "suite": "suite04_favar_2step",
+    "case": "NormalDiffuseFAVARTwostep",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1380437,
+    "timestamp": "2026-05-29 14:14:02"
+  },
+  {
+    "suite": "suite04_favar_2step",
+    "case": "NormalWishartFAVARTwostep",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.102593,
+    "timestamp": "2026-05-29 14:14:02"
+  },
+  {
+    "suite": "suite04_favar_2step",
+    "case": "RandomInertiaSVFAVAR",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.2708985,
+    "timestamp": "2026-05-29 14:14:02"
+  },
+  {
+    "suite": "suite05_special",
+    "case": "Threshold",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.3157843,
+    "timestamp": "2026-05-29 14:14:02"
+  },
+  {
+    "suite": "suite05_special",
+    "case": "MixedFrequency",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 2.8621898,
+    "timestamp": "2026-05-29 14:14:03"
+  },
+  {
+    "suite": "suite05_special",
+    "case": "MeanAdjusted",
+    "status": "PASS",
+    "tag": "NOT IN GUI",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.475578,
+    "timestamp": "2026-05-29 14:14:06"
+  },
+  {
+    "suite": "suite06_dummies_smoke",
+    "case": "Minnesota",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1825914,
+    "timestamp": "2026-05-29 14:14:06"
+  },
+  {
+    "suite": "suite06_dummies_smoke",
+    "case": "InitialObs",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1801009,
+    "timestamp": "2026-05-29 14:14:06"
+  },
+  {
+    "suite": "suite06_dummies_smoke",
+    "case": "SumCoeff",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1161335,
+    "timestamp": "2026-05-29 14:14:06"
+  },
+  {
+    "suite": "suite06_dummies_smoke",
+    "case": "LongRun",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1161563,
+    "timestamp": "2026-05-29 14:14:07"
+  },
+  {
+    "suite": "suite06_dummies_sem",
+    "case": "Minnesota_shrinksToAR",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1068823,
+    "timestamp": "2026-05-29 14:14:07"
+  },
+  {
+    "suite": "suite06_dummies_sem",
+    "case": "SumCoeff_shrinksRowSums",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.0968715,
+    "timestamp": "2026-05-29 14:14:07"
+  },
+  {
+    "suite": "suite06_dummies_sem",
+    "case": "InitialObs_runsAndDiffers",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1019643,
+    "timestamp": "2026-05-29 14:14:07"
+  },
+  {
+    "suite": "suite06_dummies_sem",
+    "case": "LongRun_runsAndDiffers",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1009151,
+    "timestamp": "2026-05-29 14:14:07"
+  },
+  {
+    "suite": "suite07_ident",
+    "case": "Cholesky_noReorder",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.0678779,
+    "timestamp": "2026-05-29 14:14:07"
+  },
+  {
+    "suite": "suite07_ident",
+    "case": "Cholesky_reorder",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.0274101,
+    "timestamp": "2026-05-29 14:14:07"
+  },
+  {
+    "suite": "suite07_ident",
+    "case": "InstantZeros_zerosRespected",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.3765865,
+    "timestamp": "2026-05-29 14:14:07"
+  },
+  {
+    "suite": "suite07_ident",
+    "case": "IneqRestrict_signsRespected",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.6718589,
+    "timestamp": "2026-05-29 14:14:08"
+  },
+  {
+    "suite": "suite07_ident",
+    "case": "GeneralRestrict_signsAndFEVD",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.4399711,
+    "timestamp": "2026-05-29 14:14:08"
+  },
+  {
+    "suite": "suite08_tasks",
+    "case": "ReducedFormEstimation",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.001328,
+    "timestamp": "2026-05-29 14:14:09"
+  },
+  {
+    "suite": "suite08_tasks",
+    "case": "StructuralEstimation",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.0012183,
+    "timestamp": "2026-05-29 14:14:09"
+  },
+  {
+    "suite": "suite08_tasks",
+    "case": "ReducedFormForecast",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.049276,
+    "timestamp": "2026-05-29 14:14:09"
+  },
+  {
+    "suite": "suite08_tasks",
+    "case": "StructuralForecast",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.0456855,
+    "timestamp": "2026-05-29 14:14:09"
+  },
+  {
+    "suite": "suite08_tasks",
+    "case": "ConditionalForecast_conditionsMet",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.2605346,
+    "timestamp": "2026-05-29 14:14:09"
+  },
+  {
+    "suite": "suite08_tasks",
+    "case": "ShockResponses",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.0290532,
+    "timestamp": "2026-05-29 14:14:09"
+  },
+  {
+    "suite": "suite08_tasks",
+    "case": "ShockContributions",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1213454,
+    "timestamp": "2026-05-29 14:14:09"
+  },
+  {
+    "suite": "suite08_tasks",
+    "case": "FEVD",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.0205148,
+    "timestamp": "2026-05-29 14:14:09"
+  },
+  {
+    "suite": "suite08_tasks_files",
+    "case": "SaveXLS",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1333735,
+    "timestamp": "2026-05-29 14:14:09"
+  },
+  {
+    "suite": "suite08_tasks_files",
+    "case": "SaveCSV",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.0417598,
+    "timestamp": "2026-05-29 14:14:10"
+  },
+  {
+    "suite": "suite08_tasks_files",
+    "case": "SaveMAT",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.0353155,
+    "timestamp": "2026-05-29 14:14:10"
+  },
+  {
+    "suite": "suite09_options",
+    "case": "NumSamples_drawCount",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1258053,
+    "timestamp": "2026-05-29 14:14:10"
+  },
+  {
+    "suite": "suite09_options",
+    "case": "Percentiles_returnsRequested",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1445935,
+    "timestamp": "2026-05-29 14:14:10"
+  },
+  {
+    "suite": "suite09_options",
+    "case": "StochasticResiduals_addsNoise",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1297955,
+    "timestamp": "2026-05-29 14:14:10"
+  },
+  {
+    "suite": "suite09_options",
+    "case": "Intercept_toggle",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.186,
+    "timestamp": "2026-05-29 14:14:10"
+  },
+  {
+    "suite": "suite09_options",
+    "case": "Order_toggle",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.183601,
+    "timestamp": "2026-05-29 14:14:10"
+  },
+  {
+    "suite": "suite09_options",
+    "case": "IdentificationHorizon_irfLength",
+    "status": "PASS",
+    "tag": "",
+    "identifier": "",
+    "message": "",
+    "elapsed_s": 0.1040973,
+    "timestamp": "2026-05-29 14:14:10"
+  }
+]

@@ -1,0 +1,48 @@
+{
+  "EndogenousNames": {
+    "value": "",
+    "type": "names",
+    "label": "Names of endogenous variables"
+  },
+  "ShockNames": {
+    "value": [],
+    "type": "names",
+    "label": "Names of structural shocks"
+  },
+  "Order": {
+    "value": 1,
+    "type": "number",
+    "label": "Autoregressive order of the VAR model"
+  },
+  "EstimationSpan": {
+    "value": "",
+    "type": "span",
+    "label": "Date range for estimation, not including initial conditions"
+  },
+  "IdentificationHorizon": {
+    "value": 4,
+    "type": "number",
+    "label": "Number of periods for shock responses"
+  },
+  "TrendType": {
+    "value": [],
+    "type": "names",
+    "label": "String list matching the number of endogenous variables; specifies the trend type for each variable. Accepted values are 'constant', 'linear', or 'quadratic'"
+  },
+   "NumRegimes": {
+    "value": [],
+    "type": "number",
+    "label": "Indicating how many regimes each endogenous variable has"
+  },   
+   "Bounds": {
+    "value": [],
+    "type": "number",
+    "label": "Specifying lower and upper bounds for the constants. Different bounds can be set for different regimes; these must be listed in the order of the regimes"
+  },     
+   "RegimeSpans": {
+    "value": [],
+    "type": "span",
+    "label": "Spans of each regime. If a regime reappears, it should be included again within the same element"
+  }     
+}
+

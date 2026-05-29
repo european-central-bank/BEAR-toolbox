@@ -1,0 +1,10 @@
+[
+  "Plain estimators",
+  "Time-varying estimators",
+  "Panel estimators with separable units",
+  "Panel estimators with cross-unit dependence",
+  "One-step factor-augmented estimators",
+  "Two-step factor-augmented estimators",
+  "Time-varying factor-augmented estimators",
+  "Specialized estimators"
+]

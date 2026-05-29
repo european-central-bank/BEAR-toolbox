@@ -1,0 +1,7 @@
+{
+    "Lambda": {
+        "value": 0.1,
+        "type": "number",
+        "description": "Overall tightness of prior dummies"
+    }
+}

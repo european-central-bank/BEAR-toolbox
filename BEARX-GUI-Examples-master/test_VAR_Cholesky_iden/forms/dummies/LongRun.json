@@ -1,0 +1,15 @@
+
+{
+    "Lambda": {
+        "value": 1,
+        "type": "number",
+        "description": "Overall tightness of prior dummies"
+    },
+    "FileName": {
+        "show": false,
+        "value": "tables/LongRunDummies.xlsx",
+        "type": "string",
+        "label": "Path to the long-run restrictios table file"
+    }
+}
+

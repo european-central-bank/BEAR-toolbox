@@ -1,0 +1,18 @@
+{
+  "_schemaVersion": "1.0.0",
+  "BEARsettings":
+  {
+     "inputs":
+     [
+        {"name":"VARtype", "kind":"required", "type":["numeric","bear.VARtype"], "purpose":"BEAR VARtype"},
+        {"name":"ExcelFile", "kind":"namevalue", "type":["file=*.xlsx,*.xls"], "purpose":"Path to Excel with BEAR definition"}
+     ]
+  },
+  "BEARmain":
+  {
+     "inputs":
+     [
+        {"name":"BEARoptions", "kind":"required", "type":["bear.settings.BVARsettings", "bear.settings.OLSsettings", "bear.settings.PANELsettings", "bear.settings.SVsettings", "bear.settings.TVPsettings", "bear.settings.MFVARsettings"], "purpose":"BEARsettings object"}
+     ]
+  }
+}
