@@ -14,6 +14,7 @@ Synthetic recap of the BEARX-Toolbox patches shipped in this bundle, plus the tw
 - [2. Known GUI gaps - half-removed: deliberate or to be restored?](#2-known-gui-gaps---half-removed-deliberate-or-to-be-restored)
   - [2.1 - Mean-Adjusted VAR](#21---mean-adjusted-var)
   - [2.2 - Pseudo Out-of-Sample forecast evaluation](#22---pseudo-out-of-sample-forecast-evaluation)
+  - [2.3 - Proxy SVAR / external-instrument identification](#23---proxy-svar--external-instrument-identification)
 - [3. What's new in the bundle (besides the toolbox patches)](#3-whats-new-in-the-bundle-besides-the-toolbox-patches)
   - [3.1 - New identification examples in `BEARX-GUI-Examples-master/`](#31---new-identification-examples-in-bearx-gui-examples-master)
   - [3.2 - Full-feature regression suite on synthetic data: `bearx_feature_tests/`](#32---full-feature-regression-suite-on-synthetic-data-bearx_feature_tests)
@@ -86,6 +87,14 @@ Status: code exists (`bearing/+mean/+estimator/MeanAdjusted.m`, fully usable fro
 Rolling-window backtest: re-estimate on $[1,t]$, forecast $\hat{y}_{t+1|t..t+h|t}$, compare to realised, report RMSFE / MAFE / log-score / CRPS per horizon. Standard step before publishing forecasts. Legacy BEAR had it (`BASEsettings.Feval`, `+bear/bvarfeval.m`); BEAR6 has **no equivalent** ($0$ hits for `feval` / `window_size` under `bearing/`, absent from the 8-task list).
 
 Matters more, not less, under full Bayesian: hyperparameter tuning (Minnesota $\lambda_1, \lambda_2, \dots$) is typically pinned by OOS log-score (Giannone-Lenza-Primiceri 2015). Re-adding would naturally extend to CRPS / log-score / PIT given that BEAR6 already stores full predictive draws.
+
+### 2.3 - Proxy SVAR / external-instrument identification
+
+Identification via external instrument (Stock-Watson 2012, Mertens-Ravn 2013; Bayesian implementation à la Caldara-Herbst 2019 with a prior on instrument relevance). Standard tool whenever a credible high-frequency / narrative instrument is available for a structural shock (monetary policy surprises, tax shocks, oil-supply news, …).
+
+Status: present in legacy BEAR 5 (`tbx/bear/+bear/irfIV_MH.m` Metropolis-Hastings sampler with two relevance priors — inverse-gamma and high-relevance fixed at 0.5 — plus `+bear/loglik_proxy_given_data.m`; `strctident.CorrelInstrument` wired in `BVAR_NW`, `BVAR_NW_chol`, `SV_presettings`, `PANEL/driver_init`; instrument passed via Excel sheet `"IV"`). **Not ported to BEAR6**: no `+identifier/Proxy*.m` in `bearing/+identifier/` (only `Cholesky`, `InstantZeros`, `IneqRestrict`, `SignRestrictions`, `GeneralRestrict`), no entry in `gui/forms/identification/`, no entry in `gui/forms/module/mapping.json`. The legacy `+bear/irfIV_MH.m` is still callable but only via the BEAR 5 driver entry points, not through `base.Estimator` → `base.ReducedForm` → `base.Structural`.
+
+Re-wiring would mean a new `identifier.ProxySVAR` class deriving from `identifier.Base`, a port of `irfIV_MH.m` onto the BEAR6 structural pipeline, and a GUI form + `mapping.json` entry. Comparable in scope to the Mean-Adjusted re-wire above.
 
 ## 3. What's new in the bundle (besides the toolbox patches)
 
