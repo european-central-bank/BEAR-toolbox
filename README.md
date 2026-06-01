@@ -20,9 +20,11 @@ BEARX-Bundle/
 
 Tested on **Windows 10/11** (MATLAB R2025b). All 10 toolbox patches verified there, including Bug 5 which was the original Windows-specific trigger (the `Settings` / `+settings` namespace clash).
 
-**Linux / Cloudera CML** - **not yet validated** (issues since Linux is Case sensitive.)
+**Linux / Linux containers (Cloudera CML)** — supported via two additional patches included in this bundle:
+1. `gui.resume`: on case-sensitive filesystems (ext4), MATLAB's `copyfile` can drop one of two case-different siblings (e.g. `Minnesota.html` vs `minnesota.html`) when copying the GUI HTML folder; switched to `cp -RPp` on Linux to preserve all files. PascalCase HTML variants (`Minnesota.html`, `SumCoeff.html`, `LongRun.html`, `InitialObs.html`, `GeneralRestrict.html`) are also shipped as real files alongside the lowercase ones.
+2. `chartpack.printFiguresPDF`: each `exportgraphics` call is now wrapped in `try/catch` with the figure temporarily set to `Visible='off'`, preventing the htmlviewer-triggered `onCleanup` error in `matlab.graphics.internal.export.Exporter` from aborting `master.m` when run from the GUI in a headless/container context.
 
-Until that validation is done, treat Linux/Cloudera support as **best-effort**.
+With these two patches, the GUI launches and full `master.m` runs (forecasts, FEVD, contributions, PDFs) complete end-to-end on Cloudera CML.
 
 ## Install - step by step
 
@@ -49,5 +51,6 @@ See **[WHATS_FIXED.md](WHATS_FIXED.md)** for:
 - the new identification examples added under `BEARX-GUI-Examples-master/`
 - the `bearx_feature_tests/` regression suite (70/70 PASS on the patched toolbox; auto-detects 8 of the 10 bugs against an unpatched copy)
 - the `_legacy/` archive in `BEARX-tutorials-master/`
+- the **Linux / Linux-container fixes** (case-sensitive HTML copy in `gui.resume`, robust `chartpack.printFiguresPDF`) enabling end-to-end runs on Cloudera CML
 
 For the full technical write-up (root-cause analysis, exact diffs, PowerShell deploy scripts, regression evidence), see `BEARX-Toolbox/BEARX_PATCHES.md`.

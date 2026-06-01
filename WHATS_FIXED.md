@@ -20,6 +20,10 @@ Synthetic recap of the BEARX-Toolbox patches shipped in this bundle, plus the tw
   - [3.2 - Full-feature regression suite on synthetic data: `bearx_feature_tests/`](#32---full-feature-regression-suite-on-synthetic-data-bearx_feature_tests)
   - [3.3 - Tutorial regression runner: `test_run_Xtutorials.m`](#33---tutorial-regression-runner-test_run_xtutorialsm)
   - [3.4 - Tutorial cleanup: `_legacy/` archive](#34---tutorial-cleanup-_legacy-archive)
+- [4. Linux / Linux-container support (Cloudera CML)](#4-linux--linux-container-support-cloudera-cml)
+  - [4.1 - GUI launch: case-sensitive HTML copy in `gui.resume`](#41---gui-launch-case-sensitive-html-copy-in-guiresume)
+  - [4.2 - `chartpack.printFiguresPDF` robustness on headless / GUI runs](#42---chartpackprintfiguresPDF-robustness-on-headless--gui-runs)
+- [5. To be done](#5-to-be-done)
 
 
 ## 1. Toolbox bugs fixed (10)
@@ -92,7 +96,7 @@ Matters more, not less, under full Bayesian: hyperparameter tuning (Minnesota $\
 
 Identification via external instrument (Stock-Watson 2012, Mertens-Ravn 2013; Bayesian implementation à la Caldara-Herbst 2019 with a prior on instrument relevance). Standard tool whenever a credible high-frequency / narrative instrument is available for a structural shock (monetary policy surprises, tax shocks, oil-supply news, …).
 
-Status: present in legacy BEAR 5 (`tbx/bear/+bear/irfIV_MH.m` Metropolis-Hastings sampler with two relevance priors - inverse-gamma and high-relevance fixed at 0.5 - plus `+bear/loglik_proxy_given_data.m`; `strctident.CorrelInstrument` wired in `BVAR_NW`, `BVAR_NW_chol`, `SV_presettings`, `PANEL/driver_init`; instrument passed via Excel sheet `"IV"`). **Not ported to BEAR6**: no `+identifier/Proxy*.m` in `bearing/+identifier/` (only `Cholesky`, `InstantZeros`, `IneqRestrict`, `SignRestrictions`, `GeneralRestrict`), no entry in `gui/forms/identification/`, no entry in `gui/forms/module/mapping.json`. The legacy `+bear/irfIV_MH.m` is still callable but only via the BEAR 5 driver entry points, not through `base.Estimator` → `base.ReducedForm` → `base.Structural`.
+Status: present in legacy BEAR 5 (`tbx/bear/+bear/irfIV_MH.m` Metropolis-Hastings sampler with two relevance priors — inverse-gamma and high-relevance fixed at 0.5 — plus `+bear/loglik_proxy_given_data.m`; `strctident.CorrelInstrument` wired in `BVAR_NW`, `BVAR_NW_chol`, `SV_presettings`, `PANEL/driver_init`; instrument passed via Excel sheet `"IV"`). **Not ported to BEAR6**: no `+identifier/Proxy*.m` in `bearing/+identifier/` (only `Cholesky`, `InstantZeros`, `IneqRestrict`, `SignRestrictions`, `GeneralRestrict`), no entry in `gui/forms/identification/`, no entry in `gui/forms/module/mapping.json`. The legacy `+bear/irfIV_MH.m` is still callable but only via the BEAR 5 driver entry points, not through `base.Estimator` → `base.ReducedForm` → `base.Structural`.
 
 Re-wiring would mean a new `identifier.ProxySVAR` class deriving from `identifier.Base`, a port of `irfIV_MH.m` onto the BEAR6 structural pipeline, and a GUI form + `mapping.json` entry. Comparable in scope to the Mean-Adjusted re-wire above.
 
@@ -137,3 +141,39 @@ Inside `BEARX-tutorials-master/`, the `test_run_Xtutorials.m` script iterates ov
 ### 3.4 - Tutorial cleanup: `_legacy/` archive
 
 22 obsolete files (legacy kwargs `endogenous=`, `model.Meta(...)`, removed `+meanAdjusted/` package, `addpath ../sandbox`, old `.mlx` Live Scripts) moved to `BEARX-tutorials-master/_legacy/`. Root now contains only what runs against BEAR6: 9 modern `test*.m` + matching `t*.mlx`, plus the runners above and the `X*.m` tutorials.
+
+## 4. Linux / Linux-container support (Cloudera CML)
+
+The upstream toolbox was developed and tested on Windows / macOS (both case-insensitive filesystems) and assumes a fully interactive MATLAB desktop. Two issues surface on Linux containers (ext4 + GUI run through the MATLAB HTMLViewer); both are patched in this bundle.
+
+### 4.1 - GUI launch: case-sensitive HTML copy in `gui.resume`
+
+**Symptom.** Launching `BEAR6` on Linux/CML fails immediately with `Could not open file ./html/dummies/Minnesota.html` (or `SumCoeff.html`, `LongRun.html`, `InitialObs.html`, `GeneralRestrict.html`).
+
+**Root cause.** `gui/+gui/resume.m` calls `populateVanillaFormHTML({"dummies","Minnesota"})` which builds the strictly case-sensitive path `./html/dummies/Minnesota.html`. The shipped HTML files are lowercase (`minnesota.html`, `sumcoeff.html`, `longrun.html`) plus camelCase `initialObs.html`. On Windows/macOS this works because the FS is case-insensitive; on ext4 the file is not found. Additionally, MATLAB's `copyfile` drops one of two case-different siblings when copying a directory on a case-sensitive FS.
+
+**Fix** (`tbx/bear/gui/+gui/resume.m` + `tbx/bear/gui/html/{dummies,identification}/`):
+1. On Linux, replace `copyfile(guiHTMLFolder, customHTMLFolder)` by a shell `cp -RPp` call that preserves all case-different siblings. Windows/macOS path is unchanged.
+2. Ship PascalCase HTML variants (`Minnesota.html`, `SumCoeff.html`, `LongRun.html`, `InitialObs.html`, `GeneralRestrict.html`) as **real files** alongside the lowercase ones (not symlinks — `copyfile` does not replicate symlinks). The dispatcher block in `resume.m` that still references lowercase `longrun.html` for table-path injection is preserved.
+
+### 4.2 - `chartpack.printFiguresPDF` robustness on headless / GUI runs
+
+**Symptom.** A `master.m` run via *BEAR6 → Run script* aborts after the first `chartpack.printFiguresPDF` call with `Unable to print, export, or copy the contents of the figure because the figure is invalid or has been closed` (raised from the `onCleanup` destructor of `matlab.graphics.internal.export.Exporter`). Only the first task's tabular outputs are written; all subsequent tasks (conditional forecast, FEVD, contributions) are skipped.
+
+**Root cause.** `gui_runScript` executes the user's `master.m` inside the MATLAB HTMLViewer callback context (`processMatlabColonRequest`). During a multi-figure vector `exportgraphics(..., contentType="vector", append=true)` loop, the HTMLViewer can invalidate the current figure mid-export. R2024b+ promoted the resulting `errorIfFigureNotValid` warning to a hard error, which propagates up through `gui_runScript` and aborts the whole script.
+
+**Fix** (`tbx/bear/bearing/+chartpack/printFiguresPDF.m`):
+- For each figure, save its current `Visible` state, set `Visible='off'` during the export (prevents the HTMLViewer from touching it), and restore the previous state afterwards.
+- Wrap each `exportgraphics` in `try/catch` so a single export failure produces only a warning and the loop continues. Skips invalid figures with `isgraphics(fh)` guard.
+
+Net effect: full `master.m` runs (forecasts, FEVD, contributions, PDFs) now complete end-to-end on Cloudera CML, with figures displayed on screen and PDFs saved to `output/`.
+
+## 5. To be done
+
+Open items not addressed in this bundle. Ordered by priority for the ECB-side roadmap:
+
+1. **GUI re-wiring of Mean-Adjusted VAR** (§2.1) — add the missing entry in `gui/forms/module/mapping.json` + Meta sub-page for the steady-state prior $\psi$. The estimator code already exists and is script-usable.
+2. **Pseudo Out-of-Sample forecast evaluation** (§2.2) — no equivalent in BEAR6. Required for principled hyperparameter selection (Giannone-Lenza-Primiceri 2015) and any forecast publication workflow. Would extend naturally to CRPS / log-score / PIT given full predictive draws.
+3. **Proxy SVAR / external-instrument identification** (§2.3) — port `+bear/irfIV_MH.m` from BEAR 5 onto the BEAR6 structural pipeline (`identifier.ProxySVAR` deriving from `identifier.Base`), add GUI form + `mapping.json` entry.
+4. **Linux validation** — the two patches in §4 unblock the GUI on Cloudera CML but the regression suite (`bearx_feature_tests/`, 70 cases) has been run end-to-end on Windows only. Running it on a Linux container and curating any platform-specific deltas would harden the support claim.
+5. **Upstream merge requests** — propose §4.1 + §4.2 patches (and ideally the 10 bug fixes) as PRs to `OGResearch/BEARX-Toolbox` so the fixes survive the next public release.
