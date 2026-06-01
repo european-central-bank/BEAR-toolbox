@@ -11,7 +11,21 @@ function resume()
     if exist(customHTMLFolder, "dir")
         rmdir(customHTMLFolder, "s");
     end
-    copyfile(guiHTMLFolder, customHTMLFolder);
+    % BEARX6 Linux patch: MATLAB's copyfile can drop case-different siblings
+    % (e.g. Minnesota.html vs minnesota.html) on Linux. Use OS copy when
+    % available to preserve all files.
+    if isunix
+        mkdir(customHTMLFolder);
+        cmd = sprintf('cp -RPp %s/. %s/', ...
+            char("""" + string(guiHTMLFolder) + """"), ...
+            char("""" + string(customHTMLFolder) + """"));
+        [status, msg] = system(cmd);
+        if status ~= 0
+            error("gui:resume:copyFailed", "cp failed: %s", msg);
+        end
+    else
+        copyfile(guiHTMLFolder, customHTMLFolder);
+    end
 
     %
     % Populate HTML files with current forms
