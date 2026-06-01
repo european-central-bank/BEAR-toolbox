@@ -20,13 +20,38 @@ function printFiguresPDF(figureHandles, filePath, options)
         delete(filePath);
     end
 
+    % BEARX6 Linux/headless patch: hide figures during export and isolate
+    % each call so a single failing exportgraphics (e.g. when run from the
+    % GUI via htmlviewer) does not abort the whole script. Visibility is
+    % restored after the export so figures still show on screen.
     for i = 1 : numFigures
-        exportgraphics( ...
-            figureHandles{i} ...
-            , filePath ...
-            , contentType="vector" ...
-            , append=true ...
-        );
+        fh = figureHandles{i};
+        if ~isgraphics(fh)
+            warning("chartpack:printFiguresPDF:invalidFigure", "Figure %d is invalid; skipping.", i);
+            continue;
+        end
+        prevVisible = get(fh, "Visible");
+        try
+            set(fh, "Visible", "off");
+        catch
+        end
+        try
+            exportgraphics( ...
+                fh ...
+                , filePath ...
+                , contentType="vector" ...
+                , append=true ...
+            );
+        catch err
+            warning("chartpack:printFiguresPDF:exportFailed", ...
+                "exportgraphics failed for figure %d: %s", i, err.message);
+        end
+        try
+            if isgraphics(fh)
+                set(fh, "Visible", prevVisible);
+            end
+        catch
+        end
     end
 
 end%
