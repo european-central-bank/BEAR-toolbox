@@ -158,22 +158,16 @@ The upstream toolbox was developed and tested on Windows / macOS (both case-inse
 
 ### 4.2 - `chartpack.printFiguresPDF` robustness on headless / GUI runs
 
-**Symptom.** A `master.m` run via *BEAR6 → Run script* aborts after the first `chartpack.printFiguresPDF` call with `Unable to print, export, or copy the contents of the figure because the figure is invalid or has been closed` (raised from the `onCleanup` destructor of `matlab.graphics.internal.export.Exporter`). Only the first task's tabular outputs are written; all subsequent tasks (conditional forecast, FEVD, contributions) are skipped.
+**Symptom.** A `master.m` run via *BEAR6 → Run script* aborts after the first `chartpack.printFiguresPDF` call (`Unable to print, export, or copy the contents of the figure because the figure is invalid or has been closed`, raised from the `onCleanup` destructor of `matlab.graphics.internal.export.Exporter`). Subsequent tasks are skipped.
 
-**Root cause.** `gui_runScript` executes the user's `master.m` inside the MATLAB HTMLViewer callback context (`processMatlabColonRequest`). During a multi-figure vector `exportgraphics(..., contentType="vector", append=true)` loop, the HTMLViewer can invalidate the current figure mid-export. R2024b+ promoted the resulting `errorIfFigureNotValid` warning to a hard error, which propagates up through `gui_runScript` and aborts the whole script.
+**Root cause.** When run inside the HTMLViewer callback context, the figure can be invalidated mid-export; R2024b+ promoted the resulting warning to a hard error.
 
-**Fix** (`tbx/bear/bearing/+chartpack/printFiguresPDF.m`):
-- For each figure, save its current `Visible` state, set `Visible='off'` during the export (prevents the HTMLViewer from touching it), and restore the previous state afterwards.
-- Wrap each `exportgraphics` in `try/catch` so a single export failure produces only a warning and the loop continues. Skips invalid figures with `isgraphics(fh)` guard.
-
-Net effect: full `master.m` runs (forecasts, FEVD, contributions, PDFs) now complete end-to-end on Cloudera CML, with figures displayed on screen and PDFs saved to `output/`.
+**Fix** (`tbx/bear/bearing/+chartpack/printFiguresPDF.m`): set `Visible='off'` around each export (restored afterwards), wrap each `exportgraphics` in `try/catch`, skip invalid figures.
 
 ## 5. To be done
 
-Open items not addressed in this bundle. Ordered by priority for the ECB-side roadmap:
+Decision needed on the three legacy BEAR features that are only partially present (or absent) in BEAR6 (§2.1, §2.2, §2.3): do we keep and re-wire them, or drop them definitively (and if so, why)?
 
-1. **GUI re-wiring of Mean-Adjusted VAR** (§2.1) — add the missing entry in `gui/forms/module/mapping.json` + Meta sub-page for the steady-state prior $\psi$. The estimator code already exists and is script-usable.
-2. **Pseudo Out-of-Sample forecast evaluation** (§2.2) — no equivalent in BEAR6. Required for principled hyperparameter selection (Giannone-Lenza-Primiceri 2015) and any forecast publication workflow. Would extend naturally to CRPS / log-score / PIT given full predictive draws.
-3. **Proxy SVAR / external-instrument identification** (§2.3) — port `+bear/irfIV_MH.m` from BEAR 5 onto the BEAR6 structural pipeline (`identifier.ProxySVAR` deriving from `identifier.Base`), add GUI form + `mapping.json` entry.
-4. **Linux validation** — the two patches in §4 unblock the GUI on Cloudera CML but the regression suite (`bearx_feature_tests/`, 70 cases) has been run end-to-end on Windows only. Running it on a Linux container and curating any platform-specific deltas would harden the support claim.
-5. **Upstream merge requests** — propose §4.1 + §4.2 patches (and ideally the 10 bug fixes) as PRs to `OGResearch/BEARX-Toolbox` so the fixes survive the next public release.
+- Pseudo Out-of-Sample forecast evaluation (§2.2)
+- Mean-Adjusted VAR (§2.1)
+- Proxy SVAR / external-instrument identification (§2.3)
