@@ -23,6 +23,7 @@ Synthetic recap of the BEARX-Toolbox patches shipped in this bundle, plus the tw
 - [4. Linux / Linux-container support (Cloudera CML)](#4-linux--linux-container-support-cloudera-cml)
   - [4.1 - GUI launch: case-sensitive HTML copy in `gui.resume`](#41---gui-launch-case-sensitive-html-copy-in-guiresume)
   - [4.2 - `chartpack.printFiguresPDF` robustness on headless / GUI runs](#42---chartpackprintfiguresPDF-robustness-on-headless--gui-runs)
+  - [4.3 - `buildfile.m` license embedding without Text Analytics Toolbox](#43---buildfilem-license-embedding-without-text-analytics-toolbox)
 - [5. To be done](#5-to-be-done)
 
 
@@ -163,6 +164,12 @@ The upstream toolbox was developed and tested on Windows / macOS (both case-inse
 **Root cause.** When run inside the HTMLViewer callback context, the figure can be invalidated mid-export; R2024b+ promoted the resulting warning to a hard error.
 
 **Fix** (`tbx/bear/bearing/+chartpack/printFiguresPDF.m`): set `Visible='off'` around each export (restored afterwards), wrap each `exportgraphics` in `try/catch`, skip invalid figures.
+
+### 4.3 - `buildfile.m` license embedding without Text Analytics Toolbox
+
+**Symptom.** `buildtool` aborts the `archive` task on MATLAB Online / Cloudera CML with `Undefined function 'extractFileText' for input arguments of type 'string'` — `extractFileText` ships with the **Text Analytics Toolbox**, which is not available in these containers.
+
+**Fix** (`buildfile.m`): guard the PDF-license-embedding step. Use `fileread` on a `BEAR End User Licence Agreement.txt` next to the PDF if present; otherwise fall back to `extractFileText` when available; otherwise emit a warning and produce `releases/BEARtoolbox.mltbx` without the embedded license text. The `.mltbx` is now built end-to-end on Linux containers.
 
 ## 5. To be done
 

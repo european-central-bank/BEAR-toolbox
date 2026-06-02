@@ -42,7 +42,20 @@ opts.MinimumMatlabRelease = "";
 %% Package Toolbox
 matlab.addons.toolbox.packageToolbox(opts)
 
-%% Add License
-lic = char(extractFileText( fullfile(fld, "BEAR End User Licence Agreement.pdf") ));
-mlAddonSetLicense( char( opts.OutputFile ), struct( "type", 'Custom', "text", lic ) );
+%% Add License (requires Text Analytics Toolbox to read the PDF)
+licPdf = fullfile(fld, "BEAR End User Licence Agreement.pdf");
+licTxt = fullfile(fld, "BEAR End User Licence Agreement.txt");
+lic = '';
+if exist(licTxt, 'file')
+    lic = fileread(char(licTxt));
+elseif exist('extractFileText', 'file') == 2 && exist(licPdf, 'file')
+    lic = char(extractFileText(licPdf));
+else
+    warning('buildfile:noLicenseText', ...
+        ['Skipping license embedding: extractFileText (Text Analytics Toolbox) ' ...
+         'is unavailable and no .txt fallback was found next to the PDF.']);
+end
+if ~isempty(lic)
+    mlAddonSetLicense(char(opts.OutputFile), struct("type", 'Custom', "text", lic));
+end
 end
