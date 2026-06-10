@@ -133,7 +133,7 @@ End-to-end harness exercising every BEARX GUI feature against synthetic data gen
 | `suite08_tasks` | 8 GUI tasks + 3 file outputs (XLS / CSV / MAT) | 11 |
 | `suite09_options` | NumSamples, Percentiles, StochasticResiduals, Intercept/Order, IdentificationHorizon | 6 |
 
-Ships in this bundle as the sibling folder `bearx_feature_tests/` (also mirrored at `Camille.Souffron/bearx-feature-tests`). Bugs 1, 3, 4, 6, 7, 8, 9, 10 are auto-detected when run against an unpatched toolbox.
+Ships in this bundle as the sibling folder `bearx_feature_tests/`
 
 ### 3.3 - Tutorial regression runner: `test_run_Xtutorials.m`
 
