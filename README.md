@@ -1,56 +1,74 @@
-# BEARX 6 Bundle (patched V1)
+# BEARX Toolbox
 
-This archive contains a **patched BEARX toolbox** with 10 upstream bugs fixed, plus the tutorials and GUI examples preconfigured to use it out of the box.
+The BEARX Toolbox is a Matlab toolbox for Bayesian estimation, analysis, and
+reporting of vector autoregressive (VAR) models. BEARX is an extended version
+of the original BEAR Toolbox (version 5), adding a new command-line interface
+(CLI) and a new graphical user interface (GUI) while keeping the original BEAR
+available as before.
 
-## Layout
+## Features
 
-Extract anywhere. The folders below MUST stay siblings (tutorials, GUI examples and the feature test suite use relative `../BEARX-Toolbox/` paths):
+- A comprehensive range of Bayesian VAR estimators: plain (OLS, Minnesota,
+  Normal-Wishart, …), time-varying, panel, factor-augmented (FAVAR),
+  threshold, and mixed-frequency
+- Structural identification via Cholesky decomposition, zero restrictions,
+  sign restrictions, and generalized restrictions
+- Forecasting (unconditional and conditional), impulse response functions,
+  historical shock decomposition, and forecast error variance decomposition
+- A transparent GUI that auto-generates editable Matlab scripts — nothing
+  runs behind the scenes
 
-```
-BEARX-Bundle/
-├── BEARX-Toolbox/              ← patched toolbox (10 bugs fixed)
-├── BEARX-tutorials-master/     ← tutorial scripts (legacy/obsolete material archived under _legacy/)
-├── BEARX-GUI-Examples-master/  ← GUI example projects (incl. new test_VAR_* identification examples)
-├── bearx_feature_tests/        ← full-feature regression suite on synthetic data (70/70 PASS)
-├── README.md                   ← this file
-└── WHATS_FIXED.md              ← short recap of patches + known GUI gaps
-```
+## Quick start
 
-## Platform support
-
-Tested on **Windows 10/11** (MATLAB R2025b). All 10 toolbox patches verified there, including Bug 5 which was the original Windows-specific trigger (the `Settings` / `+settings` namespace clash).
-
-**Linux / Linux containers (Cloudera CML)** — supported via two additional patches included in this bundle:
-1. `gui.resume`: on case-sensitive filesystems (ext4), MATLAB's `copyfile` can drop one of two case-different siblings (e.g. `Minnesota.html` vs `minnesota.html`) when copying the GUI HTML folder; switched to `cp -RPp` on Linux to preserve all files. PascalCase HTML variants (`Minnesota.html`, `SumCoeff.html`, `LongRun.html`, `InitialObs.html`, `GeneralRestrict.html`) are also shipped as real files alongside the lowercase ones.
-2. `chartpack.printFiguresPDF`: each `exportgraphics` call is now wrapped in `try/catch` with the figure temporarily set to `Visible='off'`, preventing the htmlviewer-triggered `onCleanup` error in `matlab.graphics.internal.export.Exporter` from aborting `master.m` when run from the GUI in a headless/container context.
-
-With these two patches, the GUI launches and full `master.m` runs (forecasts, FEVD, contributions, PDFs) complete end-to-end on Cloudera CML.
-
-## Install - step by step
+**Step 1.** Clone this repository and, optionally, the companion
+[BEARX GUI Examples](https://github.com/OGResearch/BEARX-GUI-Examples)
+repository from within Matlab:
 
 ```matlab
-% 1. Extract the archive somewhere, then in MATLAB:
-cd('path\to\BEARX-Toolbox')
-openProject('BEARX-Toolbox.prj')
-
-% 2. Build
-buildtool -skip check
-
-% 3. Install
-matlab.addons.install("releases\BEARtoolbox.mltbx", "overwrite", true)
-
-% 4. Launch the GUI app
-BEAR6
+!git clone https://github.com/OGResearch/BEARX-Toolbox
+!git clone https://github.com/OGResearch/BEARX-GUI-Examples
 ```
 
-## What was fixed / what's still missing
+**Step 2.** Add the toolbox to the Matlab path:
 
-See **[WHATS_FIXED.md](WHATS_FIXED.md)** for:
-- a 1-table recap of the 10 toolbox bugs patched
-- the two known GUI coverage gaps (Mean-Adjusted VAR, Pseudo Out-of-Sample forecast evaluation) that are **not** patched here and remain open
-- the new identification examples added under `BEARX-GUI-Examples-master/`
-- the `bearx_feature_tests/` regression suite (70/70 PASS on the patched toolbox; auto-detects 8 of the 10 bugs against an unpatched copy)
-- the `_legacy/` archive in `BEARX-tutorials-master/`
-- the **Linux / Linux-container fixes** (case-sensitive HTML copy in `gui.resume`, robust `chartpack.printFiguresPDF`) enabling end-to-end runs on Cloudera CML
+```matlab
+addpath BEARX-Toolbox -end; bearPaths
+```
 
-For the full technical write-up (root-cause analysis, exact diffs, PowerShell deploy scripts, regression evidence), see `BEARX-Toolbox/BEARX_PATCHES.md`.
+**Step 3.** Create or open a model folder and launch the GUI:
+
+```matlab
+gui.start    % fresh session (resets configuration)
+gui.resume   % resume a previous session
+```
+
+See the wiki page [Setting things up](https://github.com/OGResearch/BEARX-Toolbox/wiki/setting_things_up)
+for detailed instructions.
+
+## Repository layout
+
+```
+bearPaths.m        – adds the toolbox subfolders to the Matlab path
+tbx/
+  bear/            – original BEAR Toolbox (version 5) code
+  bearing/         – BEARX extended estimation and model engine
+  gui/             – GUI source (HTML interface, form definitions, script generator)
+```
+
+## Documentation
+
+Full documentation is available in the
+[BEARX Toolbox Wiki](https://github.com/OGResearch/BEARX-Toolbox/wiki):
+
+- [Setting things up](https://github.com/OGResearch/BEARX-Toolbox/wiki/setting_things_up)
+  — cloning the repositories, adding paths, opening the GUI
+- [GUI step-by-step guide](https://github.com/OGResearch/BEARX-Toolbox/wiki/gui_step_by_step)
+  — walkthrough of every GUI tab, from estimator selection to script generation
+- [Reduced-form estimators](https://github.com/OGResearch/BEARX-Toolbox/wiki/reduced_form_estimators)
+  — reference material on the available estimation methods
+
+## License
+
+See the BEAR End User Licence Agreement included in the repository
+(`tbx/bear/BEAR End User Licence Agreement.pdf`).
+
