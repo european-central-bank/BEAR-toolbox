@@ -9,14 +9,8 @@
 
 clear
 close all
-rehash path
-
-addpath ../BEARX-Toolbox/tbx/bear -end
-addpath ../BEARX-Toolbox/tbx/bearing -end
-
 
 import base.*
-
 
 %% Convenience functions 
 
@@ -30,7 +24,7 @@ extremesFunc = @(x) [min(x, [], 2), max(x, [], 2)];
 
 % * Same as in `introCommonTasks`
 
-inputTbl = tablex.fromCsv("exampleData.csv");
+inputTbl = tablex.fromCsv("data/exampleData.csv");
 
 estimStart = datex.q(1975,1);
 estimEnd = datex.q(2014,4);
@@ -108,8 +102,8 @@ instantZerosTbl0{"DOM_CPI", "DEM"} = 0;
 instantZerosTbl0{"STN", "SUP"} = 0;
 instantZerosTbl0
 
-tablex.writetable(instantZerosTbl0, "instantZerosTbl.xlsx");
-instantZerosTbl = tablex.readtable("instantZerosTbl.xlsx", convertTo=@double);
+tablex.writetable(instantZerosTbl0, "data/instantZerosTbl.xlsx");
+instantZerosTbl = tablex.readtable("data/instantZerosTbl.xlsx", convertTo=@double);
 
 
 %% Identify a SVAR using instant zero restrictions 
@@ -206,7 +200,7 @@ respTbl2
 rng(0);
 
 signTbl = tablex.forSignRestrictions(modelR);
-signTbl{"DOM_GDP", "DEM"} = ">0 [2, 3]";
+signTbl{"DOM_GDP", "DEM"} = ">0 [2, 3]"f;
 signTbl{"DOM_CPI", "DEM"} = ">0 [2, 3]";
 signTbl{"DOM_GDP", "SUP"} = "<0 [2, 3]";
 signTbl{"DOM_CPI", "SUP"} = ">0 [2, 3]";
@@ -253,7 +247,7 @@ rng(0);
 % signTbl0{"DOM_CPI", "SUP"} = ">0 [2, 3]";
 % tablex.writetable(signTbl0, "signTbl.xlsx");
 
-signTbl = tablex.readtable("signTbl.xlsx", convertTo=@string);
+signTbl = tablex.readtable("data/signTbl.xlsx", convertTo=@string);
 
 
 identVerifiables = identifier.Verifiables( ...

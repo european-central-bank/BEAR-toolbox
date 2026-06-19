@@ -12,11 +12,6 @@
 
 clear
 close all
-rehash path
-
-addpath ../BEARX-Toolbox/tbx/bear -end
-addpath ../BEARX-Toolbox/tbx/bearing -end
-
 
 %% Define convenience functions 
 %
@@ -51,7 +46,7 @@ meta = base.Meta( ...
 
 %% Prepare input data holder 
 
-inputTbl = tablex.fromCsv("exampleData.csv");
+inputTbl = tablex.fromCsv("data/exampleData.csv");
 
 inputTbl = tablex.extend(inputTbl, -Inf, datex.q(2017,4));
 inputTbl.Oil = fillmissing(inputTbl.Oil, "nearest");
@@ -134,12 +129,12 @@ initStart = datex.shift(fcastStart, -modelS0.Meta.Order);
 % condDataTbl0{datex("2016-Q3"), "STN"} = 5.1;
 % 
 % condDataTbl0{:, "Oil"} = inputTbl{end, "Oil"};
-% tablex.toFile(condDataTbl0, "condDataTbl.xlsx")
+% tablex.toFile(condDataTbl0, "data/condDataTbl.xlsx")
 % 
 % planTbl0{datex("2015-Q4"), "DOM_GDP"} = "DEM POL";
 % planTbl0{datex("2016-Q4"), "DOM_CPI"} = "DEM SUP";
 % planTbl0{datex("2016-Q3"), "STN"} = "POL";
-% tablex.toFile(planTbl0, "planTbl.xlsx");
+% tablex.toFile(planTbl0, "data/planTbl.xlsx");
 
 
 %% Run across-the-board vs selective conditions forecasts 

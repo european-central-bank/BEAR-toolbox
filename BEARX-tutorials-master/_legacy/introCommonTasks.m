@@ -14,11 +14,6 @@
 
 clear
 close all
-rehash path
-
-addpath ../sandbox
-addpath ../bear
-
 %% Convenience functions
 % These functions will be used when manipulating some of the output tables
 

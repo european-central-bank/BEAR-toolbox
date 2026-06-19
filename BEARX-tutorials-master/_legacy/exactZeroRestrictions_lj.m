@@ -9,10 +9,6 @@
 
 clear
 close all
-rehash path
-
-addpath ../sandbox
-addpath ../bear
 
 %% Convenience functions
 % The |extremesFunc| function compresses any number of samples (draws from the 

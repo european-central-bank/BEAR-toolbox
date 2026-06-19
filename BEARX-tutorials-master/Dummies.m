@@ -11,13 +11,6 @@
 %% Housekeeping 
 
 clear
-clear classes
-close all
-rehash path
-
-addpath ../BEARX-Toolbox/tbx/bear -end
-addpath ../BEARX-Toolbox/tbx/bearing -end
-
 
 %% Define convenience functions 
 %
@@ -148,14 +141,14 @@ initStart = datex.shift(fcastStart, -modelS0.Meta.Order);
 % planTbl0{datex("2015-Q4"), "DOM_GDP"} = "DEM POL";
 % planTbl0{datex("2016-Q4"), "DOM_CPI"} = "DEM SUP";
 % planTbl0{datex("2016-Q3"), "STN"} = "POL";
-% tablex.toFile(planTbl0, "planTbl.xlsx");
+% tablex.toFile(planTbl0, "data/planTbl.xlsx");
 
 
 %% Run across-the-board vs selective conditions forecasts 
 
 
-condDataTbl = tablex.fromFile("condDataTbl.xlsx");
-planTbl = tablex.readConditioningPlan("planTbl.xlsx");
+condDataTbl = tablex.fromFile("data/condDataTbl.xlsx");
+planTbl = tablex.readConditioningPlan("data/planTbl.xlsx");
 
 
 % Run an unconditional forecast and calculate contributions starting at the

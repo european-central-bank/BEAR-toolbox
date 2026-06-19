@@ -7,10 +7,6 @@
 
 clear
 close all
-rehash path
-
-addpath ../BEARX-Toolbox/tbx/bear -end
-addpath ../BEARX-Toolbox/tbx/bearing -end
 
 import factorTwostep.*
 

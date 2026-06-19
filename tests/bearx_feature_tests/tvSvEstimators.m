@@ -63,33 +63,7 @@ classdef tvSvEstimators < tBEARXBase
                 case "Monthly"
                     tc.runMonthly(EstimName, Cfg)
             end
-        end
-       
-        % 
-        % function tMonthly(tc, EstimNameCCMM, CfgCCMM)
-        % 
-        %     CfgCCMM.TurningPoint = tc.TP;
-        %     tc.runMonthly(EstimNameCCMM, CfgCCMM)
-        % 
-        % end
-        % 
-        % function tLargeShock(tc, EstimNameLarge)
-        % 
-        %     lsCfg = struct( ...
-        %         "Turningpoint", tc.TP, ...
-        %         "Mult0",        5,    ...   % K=1: a single high-vol Mar-2020 spike
-        %         "ScaleMult",    0.1,  ...
-        %         "ShapeMult",    1,    ...
-        %         "PropStdMult",  0.1,  ...
-        %         "MultAR0",      0.5,  ...
-        %         "AlphaMultAR",  2,    ...
-        %         "BetaMultAR",   2,    ...
-        %         "PropStdAR",    0.05);
-        % 
-        %     tc.runMonthly(EstimNameLarge, lsCfg)
-        % 
-        % end
-
+        end   
 
     end
 

@@ -5,11 +5,6 @@
 
 clear
 close all
-rehash path
-
-addpath ../BEARX-Toolbox/tbx/bear -end
-addpath ../BEARX-Toolbox/tbx/bearing -end
-
 
 
 %% Convenience functions
@@ -25,7 +20,7 @@ defaultColors = get(0, "defaultAxesColorOrder");
 
 %% Prepare data and a reduced-form model
 
-inputTbx = tablex.fromCsv("panel_data.csv");
+inputTbx = tablex.fromCsv("data/panel_data.csv");
 
 estimStart = datex.q(1972, 1);
 estimEnd   = datex.q(2014, 4);

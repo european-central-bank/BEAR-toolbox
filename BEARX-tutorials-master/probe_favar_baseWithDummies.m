@@ -7,7 +7,6 @@
 
 clear
 close all
-rehash path
 
 fprintf("\n========== PROBE: favar.Meta forwarding ==========\n");
 try

@@ -6,11 +6,6 @@
 
 clear
 close all
-rehash path
-
-addpath ../BEARX-Toolbox/tbx/bear -end
-addpath ../BEARX-Toolbox/tbx/bearing -end
-
 
 %% Convenience functions
 % 
@@ -28,7 +23,7 @@ numPresampled = 100;
 
 %% Prepare data and a reduced-form model
 
-inputTbx = tablex.fromCsv("SV.csv");
+inputTbx = tablex.fromCsv("data/SV.csv");
 
 estimStart = datex.q(1971,2);
 estimEnd = datex.q(2020,1);

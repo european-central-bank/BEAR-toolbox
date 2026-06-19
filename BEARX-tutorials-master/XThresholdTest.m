@@ -6,26 +6,6 @@
 
 clear
 close all
-rehash path
-
-addpath ../BEARX-Toolbox/tbx/bear -end
-addpath ../BEARX-Toolbox/tbx/bearing -end
-
-
-%% 
-% !!! Setting up pathes, please change the first two lines to fit your file 
-% structure!!!
-
-
-% bearpath = fullfile("C:","Git","OGR","BEARX-Toolbox","tbx");
-% tutpath = fullfile("C:","Git","OGR","BEARX-tutorials");
-% 
-% 
-% cd(fullfile(bearpath,"bearing"))
-% activePackage = "threshold";  
-% import([activePackage + ".*"])  
-% 
-% addpath(fullfile(bearpath,"bear"))
 
 import threshold.*
 
@@ -47,7 +27,7 @@ numPresampled = 10000;
 % *thresholdVarName*  – The variable serving as the threshold indicator for 
 % regime identification
 
-inputTbx = tablex.fromFile("thresholdData.csv");
+inputTbx = tablex.fromFile("data/thresholdData.csv");
 
 estimStart = datex.q(1948,2);
 estimEnd = datex.q(2016,4);

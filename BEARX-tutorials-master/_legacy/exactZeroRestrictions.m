@@ -9,12 +9,6 @@
 
 clear
 close all
-rehash path
-
-addpath ../sandbox
-addpath ../sandbox/gui
-addpath ../bear
-
 
 %% Convenience functions
 

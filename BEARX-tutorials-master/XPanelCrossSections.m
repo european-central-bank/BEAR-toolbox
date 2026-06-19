@@ -3,17 +3,13 @@
 
 clear
 close all
-rehash path
-
-addpath ../BEARX-Toolbox/tbx/bear -end
-addpath ../BEARX-Toolbox/tbx/bearing -end
 
 import cross.*
 
 
 %% Prepare data and a reduced-form model
 
-inputTbx = tablex.fromCsv("panel_data.csv");
+inputTbx = tablex.fromCsv("data/panel_data.csv");
 
 estimStart = datex("1972-Q1");
 estimEnd = datex("2014-Q4");

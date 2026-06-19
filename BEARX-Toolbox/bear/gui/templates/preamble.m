@@ -16,9 +16,6 @@ clear
 % Close all figures
 close all
 
-% Rehash Matlab search path
-rehash path
-
 % Import the correct module
 import ?MODULE?.*
 

@@ -67,7 +67,8 @@ classdef LargeShockSV ...
 
             [initTheta] = solver(targFun, inits);
 
-            H = largeshockUtils.DERIVESTsuite.hessian(@(x)targFun(x), initTheta);
+            % H = largeshockUtils.DERIVESTsuite.hessian(@(x)targFun(x), initTheta);
+            H = simpleHessian(@(x)targFun(x), initTheta);
 
             %getting proposals for the MH algo
             propCholCov = chol(inv(H), "lower");
@@ -193,4 +194,46 @@ classdef LargeShockSV ...
 
 end
 
+function H = simpleHessian(fun, x0, step)
+%SIMPLEHESSIAN Central-difference Hessian for scalar function fun(x).
+
+x0 = x0(:);
+n = numel(x0);
+
+if nargin < 3 || isempty(step)
+    step = eps^(1/4) * max(abs(x0), 1);
+elseif isscalar(step)
+    step = repmat(step, n, 1);
+else
+    step = step(:);
+end
+
+H = zeros(n);
+f0 = fun(x0.');
+
+for i = 1:n
+    ei = zeros(n,1);
+    ei(i) = 1;
+
+    xp = x0 + step(i)*ei;
+    xm = x0 - step(i)*ei;
+
+    H(i,i) = (fun(xp.') - 2*f0 + fun(xm.')) / step(i)^2;
+
+    for j = i+1:n
+        ej = zeros(n,1);
+        ej(j) = 1;
+
+        fpp = fun((x0 + step(i)*ei + step(j)*ej).');
+        fpm = fun((x0 + step(i)*ei - step(j)*ej).');
+        fmp = fun((x0 - step(i)*ei + step(j)*ej).');
+        fmm = fun((x0 - step(i)*ei - step(j)*ej).');
+
+        H(i,j) = (fpp - fpm - fmp + fmm) / (4*step(i)*step(j));
+        H(j,i) = H(i,j);
+    end
+end
+
+H = (H + H.') / 2;
+end
 

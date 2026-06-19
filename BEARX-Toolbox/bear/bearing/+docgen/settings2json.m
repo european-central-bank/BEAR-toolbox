@@ -3,7 +3,6 @@ function out = settings2json()
 
     % clear cache of all classes
     clear classes
-    rehash path
 
     currentDir = fileparts(mfilename("fullpath"));
     sandboxDir = fileparts(currentDir);
