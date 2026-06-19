@@ -4,7 +4,8 @@ import matlab.buildtool.tasks.*
 plan = buildplan(localfunctions);
 
 plan("check") = CodeIssuesTask(["BEARX-Toolbox/bear/bearing", "BEARX-Toolbox/bear/+bear"]);    % Task for identifying code issues
-plan("test") = TestTask('tests', SourceFiles="BEARX-Toolbox");           % Task for running tests
+plan("test") = TestTask('tests', SourceFiles="BEARX-Toolbox", CodeCoverageResults=fullfile("tests","results", "coverage.html"), ...
+    TestResults=[fullfile("tests", "results", "results.html"), fullfile("tests", "results", "results.xml")]);           % Task for running tests
 
 plan("archive").Dependencies = ["check", "test"];
 
