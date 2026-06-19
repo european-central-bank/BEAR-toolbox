@@ -12,8 +12,7 @@ BEARX-Bundle/
 ├── BEARX-tutorials-master/     ← tutorial scripts (legacy/obsolete material archived under _legacy/)
 ├── BEARX-GUI-Examples-master/  ← GUI example projects (incl. new test_VAR_* identification examples)
 ├── bearx_feature_tests/        ← full-feature regression suite on synthetic data (70/70 PASS)
-├── README.md                   ← this file
-└── WHATS_FIXED.md              ← short recap of patches + known GUI gaps
+└── README.md                   ← this file
 ```
 
 ## Platform support
@@ -42,15 +41,3 @@ matlab.addons.install("releases\BEARtoolbox.mltbx", "overwrite", true)
 % 4. Launch the GUI app
 BEAR6
 ```
-
-## What was fixed / what's still missing
-
-See **[WHATS_FIXED.md](WHATS_FIXED.md)** for:
-- a 1-table recap of the 10 toolbox bugs patched
-- the two known GUI coverage gaps (Mean-Adjusted VAR, Pseudo Out-of-Sample forecast evaluation) that are **not** patched here and remain open
-- the new identification examples added under `BEARX-GUI-Examples-master/`
-- the `bearx_feature_tests/` regression suite (70/70 PASS on the patched toolbox; auto-detects 8 of the 10 bugs against an unpatched copy)
-- the `_legacy/` archive in `BEARX-tutorials-master/`
-- the **Linux / Linux-container fixes** (case-sensitive HTML copy in `gui.resume`, robust `chartpack.printFiguresPDF`) enabling end-to-end runs on Cloudera CML
-
-For the full technical write-up (root-cause analysis, exact diffs, PowerShell deploy scripts, regression evidence), see `BEARX-Toolbox/BEARX_PATCHES.md`.
