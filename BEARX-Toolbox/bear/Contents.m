@@ -1,5 +1,5 @@
 % BEAR summary
-% Version 6.0.0 19-May-2026
+% Version 6.0.22 19-June-2026
 %
 % Documentation
 %   <a href="matlab:edit(fullfile(bearroot,'doc','mfiles','GettingStarted.m'))">Getting Started</a>  - Quick guide to get started with BEAR 6.0
