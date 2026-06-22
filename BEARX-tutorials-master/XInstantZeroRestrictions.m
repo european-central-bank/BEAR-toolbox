@@ -200,7 +200,7 @@ respTbl2
 rng(0);
 
 signTbl = tablex.forSignRestrictions(modelR);
-signTbl{"DOM_GDP", "DEM"} = ">0 [2, 3]"f;
+signTbl{"DOM_GDP", "DEM"} = ">0 [2, 3]";
 signTbl{"DOM_CPI", "DEM"} = ">0 [2, 3]";
 signTbl{"DOM_GDP", "SUP"} = "<0 [2, 3]";
 signTbl{"DOM_CPI", "SUP"} = ">0 [2, 3]";
