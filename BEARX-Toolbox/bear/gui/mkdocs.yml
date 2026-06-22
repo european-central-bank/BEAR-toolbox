@@ -1,0 +1,61 @@
+site_name: Bear Toolbox GUI
+
+theme:
+    name: material
+    custom_dir: overrides
+    icon:
+        logo: material/teddy-bear
+    font:
+        text: Roboto
+        code: Sometype Mono
+    palette:
+        scheme: slate
+        primary: teal
+        accent: yellow
+    features:
+        - navigation.tabs
+        - navigation.indexes
+        - navigation.top
+        - content.code.copy
+        - content.code.select
+
+docs_dir: ./mkdocs
+site_dir: ./html
+repo_url: https://github.com/european-central-bank/BEAR-toolbox-6.git
+repo_name: european-central-bank/BEAR-toolbox-6
+
+use_directory_urls: false
+
+plugins:
+    - awesome-pages
+
+markdown_extensions:
+  pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  pymdownx.inlinehilite: {}
+  pymdownx.snippets: {}
+  pymdownx.superfences: {}
+  pymdownx.mark: {}
+  admonition: {}
+  pymdownx.details: {}
+  attr_list: {}
+  pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  md_in_html: {}
+  footnotes: {}
+  pymdownx.arithmatex:
+      generic: true
+  pymdownx.tabbed:
+      alternate_style: true
+  def_list: {}
+
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - extra.css
+

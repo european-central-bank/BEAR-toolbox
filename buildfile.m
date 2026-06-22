@@ -54,7 +54,7 @@ opts.OutputFile = fullfile(fileparts(fld), "releases", "BEARtoolbox.mltbx");
 opts.Summary = 'The Bayesian Estimation, Analysis and Regression toolbox (BEAR)';
 % opts.ToolboxGettingStartedGuide = fullfile(currentProject().RootFolder,'BEARX-Toolbox','doc','mfiles','GettingStarted.m');
 opts.ToolboxVersion = v;
-opts.MinimumMatlabRelease = "";
+opts.MinimumMatlabRelease = "R2021a";
 
 %% Package Toolbox
 matlab.addons.toolbox.packageToolbox(opts)
