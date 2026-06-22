@@ -1,4 +1,4 @@
-% BEAR summary
+% BEAR Toolbox
 % Version 6.0.22 19-June-2026
 %
 % Documentation
