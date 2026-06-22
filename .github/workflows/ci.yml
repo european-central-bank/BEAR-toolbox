@@ -4,13 +4,13 @@ name: MATLAB
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
+  # Triggers the workflow on push or pull request events for release branches
   push:
-    branches: [ master ]
+    branches: [ master, BEAR6-staging ]
     tags:
-      - '*'
+      - 'v*'
   pull_request:
-    branches: [ master ]
+    branches: [ master, BEAR6-staging ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -18,21 +18,42 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
+    name: Test and package BEAR
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7
       
       # Sets up MATLAB on the GitHub Actions runner
       - name: Setup MATLAB
-        uses: matlab-actions/setup-matlab@v0
+        uses: matlab-actions/setup-matlab@v3
 
       # Runs a set of commands using the runners shell
       - name: Run all tests
-        uses: matlab-actions/run-tests@v0
+        uses: matlab-actions/run-build@v3
         with:
-          source-folder: tests
-          select-by-tag: Git
+          tasks: archive
+          build-options: -skip test -skip check
+          generate-summary: true
+
+      - name: Validate release tag
+        id: release_tag
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          if [[ "${GITHUB_REF_NAME}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "is_release=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is_release=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create GitHub release
+        if: steps.release_tag.outputs.is_release == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: releases/BEARtoolbox.mltbx
+          fail_on_unmatched_files: true
