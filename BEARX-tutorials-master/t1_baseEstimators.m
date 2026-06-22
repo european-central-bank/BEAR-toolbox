@@ -1,5 +1,4 @@
 %[text] # Base estimators
-%[text] 
 %[text] Tutorial file for showcasing plain BVARs, and their most important actions
 %[text] - Estimation
 %[text] - Unconditional forecast with reduced form models
@@ -9,6 +8,7 @@
 %[text] - Structural shock decomposition of unconditional forecast
 %[text] - FEVD
 %[text] - Conditional forecast \
+%[text:tableOfContents]{"heading":"**Table of Contents**"}
 %[text] ## Housekeeping
 clear
 close all
@@ -25,10 +25,7 @@ extremesFunc = @(x) [min(x, [], 2), max(x, [], 2)];
 
 medianFunc = @(x) median(x, 2);
 
-flatFunc = @(x) x(:, :);
-
 defaultColors = get(0, "defaultAxesColorOrder");
-
 %%
 %[text] ## Number of Samples
 numPresampled = 100;
@@ -44,8 +41,6 @@ numPresampled = 100;
 %[text] **estimationSpan** – the time range over which the model is estimated.
 %[text] **identificationHorizon** – the maximum length of the identification period, corresponding to the length of the structural impulse responses.
 %[text] **shockNames** – user-defined names of structural shocks. If not specified, the endogenous variables’ names are used with the suffix `_shock`.
-
-
 estimStart = datex.q(1975,1);
 estimEnd = datex.q(2014,4);
 estimSpan = datex.span(estimStart, estimEnd);
@@ -59,7 +54,6 @@ meta = Meta( ...
     identificationHorizon=12, ...
     shockNames=["DEM", "SUP", "POL"] ...
 );
-
 %%
 %[text] ## Specifying and loading input data
 inputTbl = tablex.fromFile("data/exampleData.csv");
@@ -75,23 +69,19 @@ dataH = DataHolder(meta, inputTbl);
 %[text] **Lambda5 (1/100)** –  Controls the shrinkage on block exogenous components.
 %[text] **Exogenous (false)** –  Contoling whether to use prior on exgenous variables
 %[text] 
-%[text] 
 %[text] ### Basic BVARs
-%[text] 
 %[text] However, there are also some estimator-specific settings. All settings—both common and specific—can be overridden by providing new values for these options when configuring the estimator, as demonstrated in the `Minnesota` example below
-%[text] 
 %[text] #### **Ordinary**
 %[text] **Important note** – mainly usage is to combine this with dummy observation e.g Minnesota 
 % estimatorR1 = estimator.Ordinary(meta)
-%[text] 
 %[text] #### **Minnesota priors**
-%[text] Estimator sepcific settings:
+%[text] Estimator specific settings:
 %[text] **Sigma (ar)** – controls the priors used for calculating the covariance matrix. Possible values are:
 %[text] - **ar** – uses the variances matrix from estimated AR models foer each variable (with the same order as the final model),
 %[text] - **diag** – uses only the diagonal elements of the covariance matrix from an estimated VAR (with the same order as the final model),
 %[text] - **full** – uses the full covariance matrix from an estimated VAR (with the same order as the final model) \
 estimatorR1 = estimator.Minnesota(meta, Sigma = "diag", Autoregression = 1) %[output:2b5e6dea]
-%[text] #### 
+%%
 %[text] #### **Normal Wishart priors**
 %[text] Estimator specific settings:
 %[text] **Sigma (ar)** – controls the priors used for calculating the covariance matrix. Possible values are:
@@ -113,9 +103,8 @@ estimatorR1 = estimator.Minnesota(meta, Sigma = "diag", Autoregression = 1) %[ou
 %[text] #### **Flat priors**
 %[text] There are no estimator-specific settings other than the hyperparameters.
 % estimatorR1 = estimator.Flat(meta)
-%[text] ### 
+%%
 %[text] ### Stochastic volatility (SV) BVARs - SV models from BEAR5
-%[text] 
 %[text] Note that SV models for large shocks will be discussed in a separate tutorial
 %[text] All SV models in this group (including the general time varying model) share the same estimator specific settings
 %[text] **HeteroskedasticityAutoRegression** – prior on the autoregression in heteroskedasticity (gamma in BEAR5)
@@ -132,7 +121,7 @@ estimatorR1 = estimator.Minnesota(meta, Sigma = "diag", Autoregression = 1) %[ou
 %[text] #### 
 %[text] #### SV model for large Bayesian VAR ( Carriero et al. (2012) )
 % estimatorR1 = estimator.CarrieroSV(meta)
-%[text] ### 
+%%
 %[text] ### Time-varying (TV) BVARs
 %[text] 
 %[text] #### **Time varying dynamic parameters only**
@@ -171,11 +160,11 @@ initObsD = dummies.InitialObs();
 %[text] **ExogenousLambda (100)**   –   Determines the tightness applied to coefficients of exogenous regressors.
 %[text] **Exogenous (false)** –  Controlling whether to use prior on exogenous variables
 minnesotaD = dummies.Minnesota();
-%[text] 
+%%
 %[text] ## Long-run dummies
 %[text] Dummy specific hyperparameters
 %[text] **Lambda (1)**
-%[text] Note that for this dummz the long run relationships should be added as an input table or matrix.
+%[text] Note that for this dummies the long run relationships should be added as an input table or matrix.
 longRunTbx = tablex.forLongRunDummies(meta);
 longRunTbx{"DOM_GDP", "DOM_GDP"} = 1;
 longRunTbx{"DOM_CPI", "DOM_CPI"} = 1;
@@ -198,9 +187,7 @@ modelR1 = ReducedForm( ...
     , estimator=estimatorR1 ...
 );
 
-%[text] 
 %[text] ### Adding dummy observations
-%[text] 
 %[text] Users can also add the dummy observations created above to the reduced-form estimator as shown below. Combining multiple dummies is also allowed.
 % modelR1 = ReducedForm( ...
 %     meta=meta ...
@@ -208,10 +195,8 @@ modelR1 = ReducedForm( ...
 %     , estimator=estimatorR1 ...
 %     , dummies={initObsD, minnesotaD}
 % );
-%[text] 
 %%
 %[text] ## Estimation/sampling of the reduced form model 
-
 modelR1.initialize();
 info0 = modelR1.presample(numPresampled); %[output:7a54578a]
 modelR1.Presampled{1}.beta %[output:777fa3ed]
