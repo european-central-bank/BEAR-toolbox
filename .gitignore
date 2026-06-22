@@ -5,6 +5,11 @@
 *.slx.r*
 *.mdl.r*
 
+*.zip
+*.mat
+*.gz
+*.*~
+
 # Derived content-obscured files
 *.p
 
