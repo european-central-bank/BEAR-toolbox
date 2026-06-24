@@ -158,10 +158,10 @@ classdef tSettings < matlab.unittest.TestCase
             opts = BEARsettings(2,'ExcelFile','data.xlsx');
 
             fcn = @() setProp(opts, 'lambda3',10);
-            tc.verifyError(fcn, 'MATLAB:validators:mustBeLessThanOrEqual')
+            tc.verifyError(fcn, 'MATLAB:validators:mustBeInRange')
 
             fcn = @() setProp(opts, 'lambda3',-10);
-            tc.verifyError(fcn, 'MATLAB:validators:mustBeGreaterThanOrEqual')
+            tc.verifyError(fcn, 'MATLAB:validators:mustBeInRange')
 
         end
 
@@ -204,7 +204,11 @@ classdef tSettings < matlab.unittest.TestCase
                     tc.verifyEqual( s.(t.param(i)), -inf );
                 else
                     fcn = @() setProp(s, t.param(i), -inf);
-                    tc.verifyError(fcn, 'MATLAB:validators:mustBeGreaterThanOrEqual')
+                    if isinf(t.upperBound(i))
+                        tc.verifyError(fcn, 'MATLAB:validators:mustBeGreaterThanOrEqual')
+                    else
+                        tc.verifyError(fcn, 'MATLAB:validators:mustBeInRange')
+                    end
                 end
 
                 if isinf(t.upperBound(i))
@@ -212,7 +216,11 @@ classdef tSettings < matlab.unittest.TestCase
                     tc.verifyEqual( s.(t.param(i)), inf );
                 else
                     fcn = @() setProp(s, t.param(i), inf);
-                    tc.verifyError(fcn, 'MATLAB:validators:mustBeLessThanOrEqual')
+                    if isinf(t.lowerBound(i))
+                        tc.verifyError(fcn, 'MATLAB:validators:mustBeLessThanOrEqual')
+                    else
+                        tc.verifyError(fcn, 'MATLAB:validators:mustBeInRange')
+                    end
                 end
             end
 
