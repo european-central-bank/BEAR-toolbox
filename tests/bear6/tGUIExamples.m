@@ -35,6 +35,7 @@ classdef tGUIExamples < matlab.unittest.TestCase
     methods (TestMethodTeardown)
         function restoreState(tc)
             close all force
+            rmdir('output', 's')
             cd(tc.RootDir);
         end
     end

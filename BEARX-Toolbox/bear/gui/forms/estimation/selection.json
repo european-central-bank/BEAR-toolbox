@@ -188,6 +188,15 @@
       "NormalWishartPanel"
     ]
   },
+  "ZellnerHongPanel": {
+    "label": "Zellner-Hong panel (<code>ZellnerHongPanel</code>)",
+    "category": "Panel estimators with separable units",
+    "value": false,
+    "target": [
+      "estimation",
+      "ZellnerHongPanel"
+    ]
+  },
   "Threshold": {
     "label": "VAR with threshold-based regime switching (<code>Threshold</code>)",
     "category": "Specialized estimators",
