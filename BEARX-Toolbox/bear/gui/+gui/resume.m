@@ -90,8 +90,6 @@ function resume()
     %
     % Insert the correct paths to tables in the HTML files
     %
-    currentFolder = pwd();
-    wrapTablePath = @(n) fullfile(currentFolder, "tables", n);
     dispatcher = {
         fullfile(".", "html", "identification", "InstantZeros.html"), "?PATH?", "matlab: gui_openTable InstantZeros"
         fullfile(".", "html", "identification", "IneqRestrict.html"), "?PATH?", "matlab: gui_openTable IneqRestrict"
@@ -113,7 +111,7 @@ function resume()
     %
     customHTMLFolder = fullfile(".", "html");
     indexPath = fullfile(customHTMLFolder, 'index.html');
-    x = gui.web(indexPath);
+    gui.web(indexPath);
 
 end%
 

@@ -1,0 +1,68 @@
+{
+  "Burnin": {
+    "description": "Number of burn-in draws",
+    "type": "number",
+    "value": 0,
+    "details": "Bu"
+  },
+  "StabilityThreshold": {
+    "description": "Threshold for maximum eigenvalue magnitude",
+    "type": "number",
+    "value": null,
+    "details": ""
+  },
+  "MaxNumUnstableAttempts": {
+    "description": "Maximum number of unstable sampling attempts",
+    "type": "number",
+    "value": 1000,
+    "details": ""
+  },
+  "Exogenous": {
+    "description": "Priors on exogenous variables flag",
+    "type": "logicals",
+    "value": false,
+    "details": "priorexogenous"
+  },
+  "BlockExogenous": {
+    "description": "Block exogeneity flag",
+    "type": "logical",
+    "value": false,
+    "details": "bex"
+  },
+  "Autoregression": {
+    "description": "Prior on first-order autoregression",
+    "type": "numbers",
+    "value": 0.8,
+    "details": "ar"
+  },
+  "Lambda1": {
+    "description": "Overall tightness of priors",
+    "type": "numbers",
+    "value": 0.1,
+    "details": "lambda1"
+  },
+  "Lambda2": {
+    "description": "Variable weighting",
+    "type": "numbers",
+    "value": 0.5,
+    "details": "lambda2"
+  },
+  "Lambda3": {
+    "description": "Leg decay",
+    "type": "numbers",
+    "value": 1,
+    "details": "lambda3"
+  },
+  "Lambda4": {
+    "description": "Exogenous variable tightness",
+    "type": "numbers",
+    "value": 100,
+    "details": "lambda4"
+  },
+  "Lambda5": {
+    "description": "Block exogeneity shrinkage",
+    "type": "numbers",
+    "value": 0.001,
+    "details": "lambda5"
+  }
+}

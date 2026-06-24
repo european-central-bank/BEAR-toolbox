@@ -20,7 +20,6 @@ function populateVanillaFormHTML(formPath, action)
     form = gui.readFormsFile(formPath);
     htmlForm = gui.generateFreeForm(form, action=action);
 
-    targetPath = fullfile(".", htmlEndPath{:});
     gui.updateFormWithinCustomHTML(fullfile(".", htmlEndPath{:}), htmlForm);
 
 end%

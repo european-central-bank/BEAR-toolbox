@@ -1,0 +1,34 @@
+{
+  "ReducedFormEstimation": {
+    "value": true,
+    "label": "Estimate reduced-form model (sample from reduced-form posterior)"
+  },
+  "StructuralEstimation": {
+    "value": true,
+    "label": "Estimate structurally identified model (sample from structurally identified posterior)"
+  },
+  "ReducedFormForecast": {
+    "value": true,
+    "label": "Run unconditional forecast using reduced-form model"
+  },
+  "StructuralForecast": {
+    "value": true,
+    "label": "Run unconditional forecast using structural model"
+  },
+  "ConditionalForecast": {
+    "value": true,
+    "label": "Run conditional forecast"
+  },
+  "ShockResponses": {
+    "value": true,
+    "label": "Calculate structural shock responses"
+  },
+  "ShockContributions": {
+    "value": true,
+    "label": "Calculate structural shock contributions to historical paths"
+  },
+  "FEVD": {
+    "value": true,
+    "label": "Calculate forecast error variance decomposition"
+  }
+}

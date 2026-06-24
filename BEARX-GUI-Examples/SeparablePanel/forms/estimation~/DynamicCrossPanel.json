@@ -1,0 +1,110 @@
+{
+  "Alpha0": {
+    "label": "IG shape on residual variance",
+    "type": "number",
+    "value": 1000,
+    "details": "alpha0"
+  },
+  "Delta0": {
+    "label": "IG scale on residual variance",
+    "type": "number",
+    "value": 1,
+    "details": "delta0"
+  },
+  "A0": {
+    "label": "IG shape on factor variance",
+    "type": "number",
+    "value": 1000,
+    "details": "a0"
+  },
+  "B0": {
+    "label": "IG scale on factor variance",
+    "type": "number",
+    "value": 1,
+    "details": "b0"
+  },
+  "Rho": {
+    "label": "AR coefficient on factors",
+    "type": "number",
+    "value": 0.75,
+    "details": "rho"
+  },
+  "Psi": {
+    "label": "Variance of Metropolis draw",
+    "type": "number",
+    "value": 0.1,
+    "details": "psi"
+  },
+  "Gamma": {
+    "label": "AR coefficient on residual variance",
+    "type": "number",
+    "value": 0.85,
+    "details": "gamma"
+  },
+  "Burnin": {
+    "label": "Number of burn-in draws",
+    "type": "number",
+    "value": 0,
+    "details": "Bu"
+  },
+  "StabilityThreshold": {
+    "label": "Threshold for maximum eigenvalue magnitude",
+    "type": "number",
+    "value": null,
+    "details": ""
+  },
+  "MaxNumUnstableAttempts": {
+    "label": "Maximum number of unstable sampling attempts",
+    "type": "number",
+    "value": 1000,
+    "details": ""
+  },
+  "Exogenous": {
+    "label": "Priors on exogenous variables flag",
+    "type": "logicals",
+    "value": false,
+    "details": "priorexogenous"
+  },
+  "BlockExogenous": {
+    "label": "Block exogeneity flag",
+    "type": "logical",
+    "value": false,
+    "details": "bex"
+  },
+  "Autoregression": {
+    "label": "Prior on first-order autoregression",
+    "type": "numbers",
+    "value": 0.8,
+    "details": "ar"
+  },
+  "Lambda1": {
+    "label": "Overall tightness of priors",
+    "type": "numbers",
+    "value": 0.1,
+    "details": "lambda1"
+  },
+  "Lambda2": {
+    "label": "Variable weighting",
+    "type": "numbers",
+    "value": 0.5,
+    "details": "lambda2"
+  },
+  "Lambda3": {
+    "label": "Leg decay",
+    "type": "numbers",
+    "value": 1,
+    "details": "lambda3"
+  },
+  "Lambda4": {
+    "label": "Exogenous variable tightness",
+    "type": "numbers",
+    "value": 100,
+    "details": "lambda4"
+  },
+  "Lambda5": {
+    "label": "Block exogeneity shrinkage",
+    "type": "numbers",
+    "value": 0.001,
+    "details": "lambda5"
+  }
+}

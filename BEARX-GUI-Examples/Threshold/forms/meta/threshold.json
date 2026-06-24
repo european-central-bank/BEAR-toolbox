@@ -1,0 +1,50 @@
+{
+  "EndogenousNames": {
+    "value": [
+      "dl_y",
+      "dl_cpi",
+      "ir_tb",
+      "stock_index"
+    ],
+    "type": "names",
+    "label": "Names of endogenous variables"
+  },
+  "ThresholdName": {
+    "value": "stock_index",
+    "type": "name",
+    "label": "Name of the threshold indicator variable"
+  },
+  "ExogenousNames": {
+    "value": [],
+    "type": "names",
+    "label": "Names of exogenous variables"
+  },
+  "ShockNames": {
+    "value": [],
+    "type": "names",
+    "label": "Names of structural shocks"
+  },
+  "Order": {
+    "value": 4,
+    "type": "number",
+    "label": "Autoregressive order of the VAR model"
+  },
+  "Intercept": {
+    "value": true,
+    "type": "logical",
+    "label": "True if the model includes an intercept (constant) term"
+  },
+  "EstimationSpan": {
+    "value": [
+      "1949-Q1",
+      "2016-Q4"
+    ],
+    "type": "span",
+    "label": "Date range for estimation, not including initial conditions"
+  },
+  "IdentificationHorizon": {
+    "value": 20,
+    "type": "number",
+    "label": "Number of periods for shock responses"
+  }
+}

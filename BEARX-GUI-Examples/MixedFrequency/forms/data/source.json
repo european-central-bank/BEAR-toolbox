@@ -1,0 +1,32 @@
+{
+  "FilePath": {
+    "label": "Path to the input data file (XLSX, CSV, or MAT)",
+    "type": "filename",
+    "value": "./mixedMonthly.csv",
+    "show": true
+  },
+  "ExcelSheet": {
+    "label": "(Excel files only) Index or name of the sheet containing the data",
+    "type": "string",
+    "value": "1",
+    "show": true
+  },
+  "TableName": {
+    "label": "(MAT files only) Name of the table containing the data",
+    "type": "string",
+    "value": "inputDataTbl",
+    "show": true
+  },
+  "LowFrequencyFilePath": {
+    "label": "Path to the file with low-frequency input data (XLSX, CSV, or MAT)",
+    "type": "filename",
+    "value": "./mixedQuarterly.csv",
+    "show": true
+  },
+  "Transformations": {
+    "label": "List of new transformed series to calculate in data table",
+    "type": "names",
+    "value": [],
+    "show": false
+  }
+}
