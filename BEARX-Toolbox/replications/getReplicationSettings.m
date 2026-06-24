@@ -1,6 +1,6 @@
 function [s, h] = getReplicationSettings(repName)
 % GETREPLICATIONSETTINGS Get settings object corresponding to previous
-% replication classes. Aditionally, return a second output with the help
+% replication classes. Additionally, return a second output with the help
 % text of the replication containing the information of the authors of that
 % study.
 
