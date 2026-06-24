@@ -1,6 +1,6 @@
 # BEARX Toolbox
 
-Note: for old BEAR notes, please go to [BEAR5 readme](./BEAR5doc.md)
+**Note:** for old BEAR notes, please go to [BEAR5 readme](./BEAR5doc.md)
 
 The BEARX Toolbox is a Matlab toolbox for Bayesian estimation, analysis, and
 reporting of vector autoregressive (VAR) models. BEARX is an extended version
@@ -77,15 +77,19 @@ Extract anywhere. The folders below MUST stay siblings (tutorials, GUI examples 
 ```
 BEARX-Bundle/
 ├── BEARX-Toolbox/              ← patched toolbox (10 bugs fixed)
-├── BEARX-tutorials-master/     ← tutorial scripts (legacy/obsolete material archived under _legacy/)
-├── BEARX-GUI-Examples-master/  ← GUI example projects (incl. new test_VAR_* identification examples)
-├── bearx_feature_tests/        ← full-feature regression suite on synthetic data (70/70 PASS)
+├── BEARX-tutorials/            ← tutorial scripts (legacy/obsolete material archived under _legacy/)
+├── BEARX-GUI-Examples/         ← GUI example projects (incl. new test_VAR_* identification examples)
+├── tests/                      ← full-feature regression suite on synthetic data (70/70 PASS)
 └── README.md                   ← this file
 
 ```matlab
 gui.start    % fresh session (resets configuration)
 gui.resume   % resume a previous session
 ```
+
+## Examples
+For scripting examples [BEARX-GUI-tutorials](./BEARX-Tutorials/BEARXtutorials.md)
+For GUI examples BEARX-GUI-Examples
 
 ## Platform support
 
