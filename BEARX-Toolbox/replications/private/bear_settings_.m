@@ -2,10 +2,7 @@ function s = bear_settings_
 % The default data set
 
 % general data and model information
-dataFile = fullfile(bearroot(), 'replications','data_.xlsx');
-if ~isfile(dataFile)
-    websave(dataFile, 'https://github.com/european-central-bank/BEAR-toolbox/raw/refs/heads/BEAR6-staging/data/bear5/replications/data_.xlsx')
-end
+dataFile = fullfile(bearroot(), 'replications', 'data', 'data_.xlsx');
 
 % VAR model selected (1=OLS VAR, 2=BVAR, 3=mean-adjusted BVAR, 4=panel Bayesian VAR, 5=Stochastic volatility BVAR, 6=Time varying)
 s = BEARsettings(2, 'ExcelFile', dataFile );
