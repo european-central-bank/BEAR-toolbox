@@ -46,3 +46,5 @@ releases/
 tests/results/
 
 results/
+
+BEARX-Toolbox/replications/*.xlsx

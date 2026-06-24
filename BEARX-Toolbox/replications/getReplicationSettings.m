@@ -4,6 +4,10 @@ function [s, h] = getReplicationSettings(repName)
 % text of the replication containing the information of the authors of that
 % study.
 
+arguments
+    repName (1,1) string {mustBeMember(repName, ["AAU2009", "BBE2005", "BvV2018", "CH2019", "WGP2016", "bear_settings_", "61"])}
+end
+
 switch repName
     
     case "bear_settings_"
