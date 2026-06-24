@@ -3,9 +3,13 @@ function s = bear_settings_BvV2018
 % Vector Autoregressions with Time Variation in the Mean
 
 % general data and model information
+dataFile = fullfile(bearroot(), 'replications','data_BvV2018.xlsx');
+if ~isfile(dataFile)
+    websave(dataFile, 'https://github.com/european-central-bank/BEAR-toolbox/raw/refs/heads/BEAR6-staging/data/bear5/replications/data_BvV2018.xlsx')
+end
 
 % VAR model selected (1=OLS VAR, 2=BVAR, 3=mean-adjusted BVAR, 4=panel Bayesian VAR, 5=Stochastic volatility BVAR, 6=Time varying)
-s = BEARsettings(5, 'ExcelFile', fullfile(bearroot(), 'replications','data_BvV2018.xlsx') );
+s = BEARsettings(5, 'ExcelFile', dataFile );
 
 % data frequency (1=yearly, 2= quarterly, 3=monthly, 4=weekly, 5=daily, 6=undated)
 s.frequency=2;
