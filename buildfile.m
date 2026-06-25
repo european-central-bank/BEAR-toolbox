@@ -95,10 +95,41 @@ end
 function docTask(~)
 
 % get wiki markdown files
+wikifld = fullfile('BEARX-Toolbox', 'doc', 'wiki');
+if isfolder(wikifld)
+    rmdir(wikifld, 's')
+end
+
 gitclone('https://github.com/european-central-bank/BEAR-toolbox.wiki.git');
-rmdir(fullfile('BEAR-toolbox.wiki','.git'),'s')
-delete(fullfile('BEAR-toolbox.wiki','.gitignore'))
-movefile('BEAR-toolbox.wiki', 'BEARX-Toolbox\doc\wiki', 'f')
+cObj = onCleanup(@() rmdir('BEAR-toolbox.wiki','s'));
+
+src  = dir('BEAR-toolbox.wiki\**\*.md');
+dest = 'BEARX-Toolbox\doc\wiki\';
+if ~isfolder(dest); mkdir(dest); end
+
+for k = 1:numel(src)
+    txt = fileread(fullfile(src(k).folder, src(k).name));
+
+    % [text](slug)  ->  [text](slug.md)   (preserve #anchors)
+    % only touches bare slugs: no dot (no extension), no slash, no colon (URL), no #
+    txt = regexprep(txt, '\]\(([^)#./:]+)(#[^)]*)?\)', ']($1.md$2)');
+
+    fid = fopen(fullfile(dest, src(k).name), 'w');
+    fwrite(fid, txt); fclose(fid);
+end
+
+% movefile('BEAR-toolbox.wiki', wikifld, 'f')
+
+for k = 1:numel(src)
+    txt = fileread(fullfile(src(k).folder, src(k).name));
+
+    % [text](slug)  ->  [text](slug.md)   (preserve #anchors)
+    % only touches bare slugs: no dot (no extension), no slash, no colon (URL), no #
+    txt = regexprep(txt, '\]\(([^)#./:]+)(#[^)]*)?\)', ']($1.md$2)');
+
+    fid = fopen(fullfile(dest, src(k).name), 'w');
+    fwrite(fid, txt); fclose(fid);
+end
 
 if isempty(ver('docmaker'))
     websave('MATLAB_DocMaker.mltbx','https://github.com/mathworks/docmaker/releases/latest/download/MATLAB_DocMaker.mltbx');
