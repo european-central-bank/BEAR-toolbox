@@ -49,7 +49,7 @@ jobs:
         uses: matlab-actions/run-build@v3
         with:
           tasks: archive
-          build-options: -skip check -skip test
+          build-options: -skip check
           generate-summary: true
 
       - name: Validate release tag
