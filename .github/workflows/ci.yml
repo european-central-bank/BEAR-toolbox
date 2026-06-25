@@ -1,12 +1,15 @@
+env:
+DOCMAKER_GITHUB_TOKEN: ${{ secrets.DOCMAKER_GITHUB_TOKEN }}
+
 # This is a basic workflow to help you get started with MATLAB Actions
 
-name: MATLAB
+name: Test and Package BEAR
 
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events for release branches
   push:
-    branches: [ master ]
+    branches: [ master, BEAR6-bundle ]
     tags:
       - 'v*'
   pull_request:

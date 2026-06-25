@@ -108,20 +108,13 @@ dest = 'BEARX-Toolbox\doc\wiki\';
 if ~isfolder(dest); mkdir(dest); end
 
 for k = 1:numel(src)
-    txt = fileread(fullfile(src(k).folder, src(k).name));
 
-    % [text](slug)  ->  [text](slug.md)   (preserve #anchors)
-    % only touches bare slugs: no dot (no extension), no slash, no colon (URL), no #
-    txt = regexprep(txt, '\]\(([^)#./:]+)(#[^)]*)?\)', ']($1.md$2)');
+    src(k).name
+    if src(k).name == "README.md" || src(k).name == "_Sidebar.md"
+        continue
+    end
 
-    fid = fopen(fullfile(dest, src(k).name), 'w');
-    fwrite(fid, txt); fclose(fid);
-end
-
-% movefile('BEAR-toolbox.wiki', wikifld, 'f')
-
-for k = 1:numel(src)
-    txt = fileread(fullfile(src(k).folder, src(k).name));
+    txt = fileread(fullfile(src(k).folder, src(k).name));    
 
     % [text](slug)  ->  [text](slug.md)   (preserve #anchors)
     % only touches bare slugs: no dot (no extension), no slash, no colon (URL), no #
