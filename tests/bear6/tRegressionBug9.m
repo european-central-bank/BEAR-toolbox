@@ -8,8 +8,7 @@ classdef tRegressionBug9 < matlab.unittest.TestCase
 
     methods (TestClassSetup)
         function loadCSV(tc)
-            rootDir = fullfile(currentProject().RootFolder, "BEARX-GUI-Examples"); 
-            tc.CsvPath = fullfile(rootDir, "regression_data.csv");
+            tc.CsvPath = "regression_data.csv";
         end
     end
 
