@@ -1,5 +1,5 @@
 env:
-DOCMAKER_GITHUB_TOKEN: ${{ secrets.DOCMAKER_GITHUB_TOKEN }}
+  DOCMAKER_GITHUB_TOKEN: ${{ secrets.DOCMAKER_GITHUB_TOKEN }}
 
 # This is a basic workflow to help you get started with MATLAB Actions
 
