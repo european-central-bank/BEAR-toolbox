@@ -77,7 +77,7 @@ meta = Meta( ...
 %% Load input data table 
 
 % Load the input data table
-inputTbl = tablex.fromFile(".\syntheticVAR.csv");
+inputTbl = tablex.fromFile("./syntheticVAR.csv");
 display(inputTbl);
 
 
