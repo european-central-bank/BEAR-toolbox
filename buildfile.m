@@ -4,7 +4,7 @@ import matlab.buildtool.tasks.*
 plan = buildplan(localfunctions);
 
 plan("check") = CodeIssuesTask(["BEARX-Toolbox/bear/bearing", "BEARX-Toolbox/bear/+bear"]);    % Task for identifying code issues
-plan("test") = TestTask(["tests/bear6", "tests/app"], ...
+plan("test") = TestTask("tests/bear6", ...
     SourceFiles=[ ...
     fullfile("BEARX-Toolbox", "bear", "+bear"), ...
     fullfile("BEARX-Toolbox", "bear", "app"), ...
@@ -103,7 +103,7 @@ end
 gitclone('https://github.com/european-central-bank/BEAR-toolbox.wiki.git');
 cObj = onCleanup(@() rmdir('BEAR-toolbox.wiki','s'));
 
-src  = dir('BEAR-toolbox.wiki\**\*.md');
+src  = dir(fullfile('BEAR-toolbox.wiki','**','*.md'));
 dest = 'BEARX-Toolbox\doc\wiki\';
 if ~isfolder(dest); mkdir(dest); end
 

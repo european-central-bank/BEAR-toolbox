@@ -37,13 +37,19 @@ jobs:
         uses: matlab-actions/setup-matlab@v3
         with:
           products: Text_Analytics_Toolbox
+      
+      - name: Start a display server for jobs running on Linux
+        run: |
+          sudo apt-get install -y xvfb
+          Xvfb :99 &
+          echo "DISPLAY=:99" >> $GITHUB_ENV
 
       # Runs a set of commands using the runners shell
       - name: Run all tests
         uses: matlab-actions/run-build@v3
         with:
           tasks: archive
-          build-options: -skip test -skip check
+          build-options: -skip check -skip test
           generate-summary: true
 
       - name: Validate release tag
