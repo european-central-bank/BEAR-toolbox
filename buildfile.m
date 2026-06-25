@@ -102,7 +102,7 @@ docdelete(doc)
 
 md = fullfile(doc,"**","*.md"); % Markdown documents
 
-html = docconvert(md, Scripts = fullfile(doc, 'mathjax-config.js')); % convert to HTML
+html = docconvert(md); % convert to HTML
 
 docrun(html) % run code and insert output
 docindex(doc); % index
