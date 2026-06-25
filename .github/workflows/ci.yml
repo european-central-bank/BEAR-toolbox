@@ -9,7 +9,7 @@ name: Test and Package BEAR
 on:
   # Triggers the workflow on push or pull request events for release branches
   push:
-    branches: [ master, BEAR6-bundle ]
+    branches: [ master, BEAR6-staging ]
     tags:
       - 'v*'
   pull_request:
