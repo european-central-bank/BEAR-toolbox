@@ -38,6 +38,10 @@ opts = matlab.addons.toolbox.ToolboxOptions("BEARX-Toolbox", "88d5c97e-6fab-4fbd
 idx = contains(opts.ToolboxFiles, fullfile(bearroot, "doc", "mfiles")) & endsWith(opts.ToolboxFiles, ".pdf");
 opts.ToolboxFiles(idx) = [];
 
+% Remove markdown files
+idx = contains(opts.ToolboxFiles, fullfile(bearroot, "doc", "wiki")) & endsWith(opts.ToolboxFiles, ".md");
+opts.ToolboxFiles(idx) = [];
+
 % Remove replication Excel files for BEAR5 (they are downloaded on demand)
 idx = contains(opts.ToolboxFiles, fullfile(bearroot, "replications", "data")) & endsWith(opts.ToolboxFiles, ".xlsx");
 opts.ToolboxFiles(idx) = [];
@@ -89,6 +93,12 @@ mlAddonSetLicense(char(opts.OutputFile), struct("type", 'Custom', "text", lic));
 end
 
 function docTask(~)
+
+% get wiki markdown files
+gitclone('https://github.com/european-central-bank/BEAR-toolbox.wiki.git');
+rmdir(fullfile('BEAR-toolbox.wiki','.git'),'s')
+delete(fullfile('BEAR-toolbox.wiki','.gitignore'))
+movefile('BEAR-toolbox.wiki', 'BEARX-Toolbox\doc\wiki', 'f')
 
 if isempty(ver('docmaker'))
     websave('MATLAB_DocMaker.mltbx','https://github.com/mathworks/docmaker/releases/latest/download/MATLAB_DocMaker.mltbx');
