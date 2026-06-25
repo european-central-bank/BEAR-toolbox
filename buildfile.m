@@ -14,7 +14,7 @@ plan("test") = TestTask(["tests/bear6", "tests/app"], ...
     CodeCoverageResults=fullfile("tests","results", "coverage.html"), ...
     TestResults=[fullfile("tests", "results", "results.html"), fullfile("tests", "results", "results.xml")]);           % Task for running tests
 
-plan("archive").Dependencies = ["check", "test"];
+plan("archive").Dependencies = ["check", "test", "doc"];
 
 plan.DefaultTasks = "archive";
 end
@@ -85,5 +85,26 @@ matlab.addons.toolbox.packageToolbox(opts)
 licPdf = fullfile(fileparts(fld), "BEAR End User Licence Agreement.pdf");
 lic = char(extractFileText(licPdf));
 mlAddonSetLicense(char(opts.OutputFile), struct("type", 'Custom', "text", lic));
+
+end
+
+function docTask(~)
+
+if isempty(ver('docmaker'))
+    websave('MATLAB_DocMaker.mltbx','https://github.com/mathworks/docmaker/releases/latest/download/MATLAB_DocMaker.mltbx');
+    cobj = onCleanup(@() delete('MATLAB_DocMaker.mltbx'));
+    matlab.addons.install('MATLAB_DocMaker.mltbx', true);
+end
+
+doc = fullfile( currentProject().RootFolder, "tbx", "doc" );
+
+docdelete(doc)
+
+md = fullfile(doc,"**","*.md"); % Markdown documents
+
+html = docconvert(md, Scripts = fullfile(doc, 'mathjax-config.js')); % convert to HTML
+
+docrun(html) % run code and insert output
+docindex(doc); % index
 
 end

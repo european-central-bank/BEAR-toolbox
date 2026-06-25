@@ -52,8 +52,8 @@ function [tbl, timeColumn] = readPlainTable__(fileName, options)
     options.FileType = tryAutoDetectFileType__(options.FileType, fileName);
 
     args = {
-        "textType", "string" ...
-        "variableNamingRule", options.VariableNamingRule, ...
+        "TextType", "string" ...
+        "VariableNamingRule", options.VariableNamingRule, ...
     };
     if options.FileType ~= ""
         args = [args, {"fileType", options.FileType}];
@@ -78,7 +78,11 @@ function [tbl, timeColumn] = readPlainTable__(fileName, options)
     timeColumn = options.TimeColumn;
 
     if ~isequal(timeColumn, "")
-        tbl = readtable(fileName, args{:});
+        opts = detectImportOptions(fileName, args{:});
+        if isa(opts, 'matlab.io.spreadsheet.SpreadsheetImportOptions')
+            opts.DataRange = "A2";
+        end
+        tbl = readtable(fileName, opts);
         names = tablex.names(tbl);
         if ismember(timeColumn, names)
             return
@@ -89,7 +93,11 @@ function [tbl, timeColumn] = readPlainTable__(fileName, options)
         ], newline()), timeColumn);
     end
     
-    tbl = readtable(fileName, "readRowNames", true, args{:});
+    opts = detectImportOptions(fileName, "ReadRowNames", true, args{:});
+    if isa(opts, 'matlab.io.spreadsheet.SpreadsheetImportOptions')
+        opts.DataRange = "A2";
+    end
+    tbl = readtable(fileName, opts);
     timeData = reshape(string(tbl.Properties.RowNames), [], 1);
     if isequal(timeColumn, "")
         timeColumn = "Time";
