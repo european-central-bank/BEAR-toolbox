@@ -28,7 +28,7 @@ classdef tGUIExamples < matlab.unittest.TestCase
 
     methods (TestClassSetup)
         function storeRoot(tc)
-        tc.RootDir = pwd;
+            tc.RootDir = fileparts(bearroot);
         end
     end
 
