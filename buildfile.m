@@ -96,7 +96,7 @@ if isempty(ver('docmaker'))
     matlab.addons.install('MATLAB_DocMaker.mltbx', true);
 end
 
-doc = fullfile( currentProject().RootFolder, "tbx", "doc" );
+doc = fullfile( currentProject().RootFolder, "BEARX-Toolbox", "doc" );
 
 docdelete(doc)
 
