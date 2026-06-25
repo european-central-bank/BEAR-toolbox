@@ -65,7 +65,7 @@ if panel==2 || panel==3 || panel==4
             % else, loop over forecast periods
             for kk=1:Fperiods
                 % fill the corresponding entry
-                cfconds{kk,jj,ii}=str2double(strngs{rows(1,1)+kk-1,clmns});
+                cfconds{kk,jj,ii}=str2num(strngs{rows(1,1)+kk-1,clmns});
             end
         end
     end
@@ -92,7 +92,7 @@ elseif panel==5 || panel==6
             % else, loop over forecast periods
             for kk=1:Fperiods
                 % fill the corresponding entry
-                cfconds{kk,clmncount}=str2double(strngs{rows(1,1)+kk-1,clmns});
+                cfconds{kk,clmncount}=str2num(strngs{rows(1,1)+kk-1,clmns});
             end
         end
     end
@@ -169,7 +169,7 @@ if CFt==2
                 % else, loop over forecast periods
                 for kk=1:Fperiods
                     % fill the corresponding entry
-                    cfshocks{kk,jj,ii}=str2double(strngs{rows(1,1)+kk-1,clmns});
+                    cfshocks{kk,jj,ii}=str2num(strngs{rows(1,1)+kk-1,clmns});
                 end
             end
         end
@@ -201,7 +201,7 @@ if CFt==2
                 % loop over forecast periods
                 for kk=1:Fperiods
                     % fill the corresponding entry
-                    cfshocks{kk,clmncount}=str2double(strngs{rows(1,1)+kk-1,clmns});
+                    cfshocks{kk,clmncount}=str2num(strngs{rows(1,1)+kk-1,clmns});
                 end
             end
         end
@@ -273,7 +273,7 @@ if CFt==2
                 % else, loop over forecast periods
                 for kk=1:Fperiods
                     % recover the entry
-                    temp=str2double(strngs{rows(1,1)+kk-1,clmns});
+                    temp=str2num(strngs{rows(1,1)+kk-1,clmns});
                     % if the entry is empty, ignore
                     if isempty(temp)
                         % if not empty, record in cfblocks
@@ -307,7 +307,7 @@ if CFt==2
                 % else, loop over forecast periods
                 for kk=1:Fperiods
                     % recover the entry
-                    temp=str2double(strngs{rows(1,1)+kk-1,clmns});
+                    temp=str2num(strngs{rows(1,1)+kk-1,clmns});
                     % if the entry is empty, ignore
                     if isempty(temp)
                         % if not empty, record in cfblocks

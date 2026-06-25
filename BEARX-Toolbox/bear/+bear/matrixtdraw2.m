@@ -1,6 +1,5 @@
-function draw=matrixtdraw(B,S,phi,alpha,k,n)
 
-% function draw=matrixtdraw(B,S,phi,alpha,k,n)
+% function draw = matrixtdraw(B, S, phi, alpha, k, n)
 % creates a k*n random draw from a matrix-variate student distribution with location (mean) B, scale matrices S and phi, and degrees of freedom alpha.
 % inputs:  - matrix 'B': the k*n location matrix
 %          - matrix 'S': the n*n scale matrix; must be symmetric positive definite
@@ -13,18 +12,25 @@ function draw=matrixtdraw(B,S,phi,alpha,k,n)
 
 % this funtion uses the matrix-t algorithm provided in Karlsson (2012): see algorithm 22
 
-% first draw a n*n matrix sigma from IW(S,alpha)
-sigma=bear.iwdraw(S,alpha);
+function draw = matrixtdraw2(B, cholScap, cholPhi, alpha, k, n, fixedBeta, fixedSigma)
 
-% compute the lower Choleski factor of sigma
-C=chol(bear.nspd(sigma),'lower');
+    if fixedBeta
+        draw = B;
+        return
+    end
 
-% compute the lower choleski factor of phi
-P=chol(bear.nspd(phi),'lower');
+    % first draw a n*n matrix sigma from IW(S, alpha)
+    sigma = bear.iwdraw2(cholScap, alpha, fixedSigma);
 
-% take a kn*1 random draw from a multivariate standard normal distribution, and redimension it to obtain a k*n matrix-variate normal
-w=randn(k*n,1);
-W=reshape(w,k,n);
+    % compute the lower Choleski factor of sigma
+    cholSigma = chol(bear.nspd(sigma), "lower");
 
-% obtain the random draw from the matrix-variate student by adding the location matrix and multiplying by both scale matrices
-draw=B+P*W*C';
+    % take a kn*1 random draw from a multivariate standard normal distribution, and redimension it to obtain a k*n matrix-variate normal
+    w = randn(k*n, 1);
+    W = reshape(w, k, n);
+
+    % obtain the random draw from the matrix-variate student by adding the location matrix and multiplying by both scale matrices
+    draw = B + cholPhi*W*cholSigma';
+
+end%
+

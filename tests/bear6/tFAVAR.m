@@ -8,7 +8,7 @@ classdef tFAVAR < matlab.unittest.TestCase
 
     methods (Test)
 
-        function tFactorTwoStep(tc)
+        function tFactorTwoStep(~)
 
             import factorTwostep.*
 

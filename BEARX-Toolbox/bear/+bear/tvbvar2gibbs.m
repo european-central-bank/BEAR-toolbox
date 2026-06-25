@@ -1,9 +1,4 @@
-function [beta_gibbs omega_gibbs F_gibbs L_gibbs phi_gibbs sigma_gibbs lambda_t_gibbs sigma_t_gibbs sbar]=tvbvar2gibbs(G,sigmahat,T,chi,psi,kappa,betahat,q,n,It,Bu,I_tau,I_om,H,Xbar,y,alpha0,yt,Xbart,upsilon0,f0,delta0,gamma,pick,pickf)
-
-
-
-
-
+function [beta_gibbs, omega_gibbs, F_gibbs, L_gibbs, phi_gibbs, sigma_gibbs, lambda_t_gibbs, sigma_t_gibbs, sbar]=tvbvar2gibbs(G,sigmahat,T,chi,psi,~,betahat,q,n,It,Bu,I_tau,I_om,H,Xbar,y,alpha0,yt,Xbart,upsilon0,f0,delta0,gamma,pick,pickf)
 % preliminary elements for the algorithm
 % compute the product G'*I_gamma*G (to speed up computations of deltabar)
 GIG=G'*I_om*G;
@@ -13,8 +8,6 @@ tau=10000;
 om=5;
 % compute psibar
 chibar=(chi+T)/2;
-% compute alphabar
-kappabar=T+kappa;
 % compute alphabar
 alphabar=T+alpha0;
 
@@ -36,15 +29,13 @@ sigma_t_gibbs={};
 
 % step 1: determine initial values for the algorithm
 
-% initial value for B
-B=kron(ones(T,1),betahat);
 % initial value Omega
 omega=diag(diag(betahat*betahat'));
 % invert Omega
 invomega=diag(1./diag(omega));
 % initial value for f_2,...,f_n
 % obtain the triangular factorisation of sigmahat
-[Fhat Lambdahat]=bear.triangf(sigmahat);
+[Fhat, Lambdahat]=bear.triangf(sigmahat);
 % obtain the inverse of Fhat
 [invFhat]=bear.invltod(Fhat,n);
 % create the cell storing the different vectors of invF
@@ -93,6 +84,7 @@ while count<=It
     Bbar=C'\temp1;
     % simulation phase:
     B=Bbar+C'\randn(q*T,1);
+    
     % reshape
     Beta=reshape(B,q,T);
 

@@ -1,4 +1,4 @@
-function [hd_record,favar]=hdecomp_inc_exo(beta_gibbs,D_record,It,Bu,Y,X,n,m,p,k,T,data_exo,exo,endo,const,IRFt,strctident,favar)
+function [hd_record,favar]=hdecomp_inc_exo(beta_gibbs,D_record,It,Bu,Y,X,n,m,p,k,T,~,exo,endo,const,IRFt,strctident,favar)
 % function [hd_record]=bear.hdecomp(beta_gibbs,sigma_gibbs,D_record,It,Bu,Y,X,n,m,p,k,T)
 % runs the gibbs sampler to obtain draws from the posterior distribution of historical decomposition
 % inputs:  - matrix 'beta_gibbs': record of the gibbs sampler draws for the beta vector
@@ -32,8 +32,7 @@ elseif IRFt==5
 end
 
 % first create the hd_record and temp cells
-contributors = n + 1 + double(~isempty(exo)) + 1 ; %variables + constant + exogenous + initial conditions;
-
+contributors = n + 1 + length(exo) + 1 ; %variables + constant + exogenous + initial conditions
 hd_record=cell(contributors+2,n);
 
 D_gibbs=reshape(D_record,n,n,It-Bu);
@@ -52,14 +51,14 @@ for ii=1:It-Bu
     % step 2: recover parameters
     beta=beta_gibbs(:,ii);
     D=squeeze(D_gibbs(:,:,ii));
-    
+
     if favar.FAVAR==1
         X=squeeze(Xgibbs(:,:,ii));
         Y=squeeze(Ygibbs(:,:,ii));
     end
-    
+
     [hd_estimates]=bear.hd_new_for_signres(const,exo,beta,k,n,p,D,m,T,X,Y,IRFt,labels);
-    
+
     if favar.FAVAR==1 && favar.HDplot==1
         L_g=squeeze(Lgibbs(:,:,ii));
         [favar,favar_hd_estimates]=bear.favar_hdestimates(favar,hd_estimates,n,IRFt,endo,strctident,L_g);

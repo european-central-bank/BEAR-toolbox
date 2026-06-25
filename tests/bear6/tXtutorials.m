@@ -22,7 +22,7 @@ classdef tXtutorials < matlab.unittest.TestCase
     methods (TestClassSetup)
         
         function enterTutorialDir(~)
-            fld = fullfile(fileparts(bearroot), 'BEARX-tutorials-master');
+            fld = fullfile(fileparts(bearroot), 'BEARX-tutorials');
             cd(fld)
         end
 

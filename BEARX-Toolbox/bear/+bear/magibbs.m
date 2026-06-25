@@ -1,4 +1,4 @@
-function [beta_gibbs psi_gibbs sigma_gibbs delta_gibbs ss_record]=magibbs(data_endo,data_exo,It,Bu,beta0,omega0,psi0,lambda0,Y,X,Z,n,m,T,k1,k3,q1,q2,q3,p,regimeperiods,names)
+function [beta_gibbs, psi_gibbs, sigma_gibbs, delta_gibbs, ss_record]=magibbs(data_endo,~,It,Bu,beta0,omega0,psi0,lambda0,Y,X,Z,n,m,T,k1,k3,q1,q2,q3,p,regimeperiods,names)
 
 
 

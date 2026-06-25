@@ -1,7 +1,4 @@
-function [beta0 omega0 S0 alpha0]=inwprior(ar,arvar,lambda1,lambda2,lambda3,lambda4,lambda5,n,m,p,k,q,prior,bex,blockexo,priorexo)
-
-
-
+function [beta0, omega0, S0, alpha0]=inwprior(ar,arvar,lambda1,lambda2,lambda3,lambda4,lambda5,n,m,p,k,q,prior,bex,blockexo,priorexo)
 % function [beta0 omega0 S0 alpha0]=mxprior(ar,arvar,lambda1,lambda2,lambda3,lambda4,lambda5,n,m,p,k,q,prior,bex,blockexo)
 % returns prior values from hyperparameters, for the mixed prior
 % inputs:  - scalar 'ar': prior value of the autoregressive coefficient on own first lag (defined p 15 of technical guide)
@@ -28,8 +25,12 @@ function [beta0 omega0 S0 alpha0]=inwprior(ar,arvar,lambda1,lambda2,lambda3,lamb
 
 % start with beta0, defined in (1.3.4)
 beta0=zeros(q,1);
-for ii=1:n
-beta0((ii-1)*k+ii,1)=ar(ii,1);
+
+idx = 1:n;
+if isscalar(ar)
+    beta0((idx-1)*k+idx,1) = ar;
+else
+    beta0((idx-1)*k+idx,1) = ar(idx,1);
 end
 
 

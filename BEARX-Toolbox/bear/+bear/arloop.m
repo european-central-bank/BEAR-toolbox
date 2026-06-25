@@ -1,4 +1,4 @@
-function arvar=arloop(data_endo,const,p,n)
+function [arvar, arEPS]=arloop(data_endo,const,p,n)
 
 
 % function arvar=arloop(data_endo,const,p,n)
@@ -14,32 +14,7 @@ function arvar=arloop(data_endo,const,p,n)
 arvar = zeros(n, 1);
 %loop over the columns of data_endo
 for ii=1:n
-% estimate an AR model with p lags for each series
-% and record residual variance in vector ARvar
-[~,~,arvar(ii,1),~,~,~,~,~,~,~,~,~,~,~,~]=bear.olsvar(data_endo(:,ii),[],const,p);
+    % estimate an AR model with p lags for each series
+    % and record residual variance in vector ARvar
+    [~,~,arvar(ii,1),~,~,~,~,arEPS(:,ii),~,~,~,~,~,~,~]=bear.olsvar(data_endo(:,ii),[],const,p);
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

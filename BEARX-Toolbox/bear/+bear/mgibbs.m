@@ -1,7 +1,4 @@
-function [beta_gibbs sigma_gibbs]=mgibbs(It,Bu,betabar,omegabar,sigma,q)
-
-
-
+function [beta_gibbs, sigma_gibbs]=mgibbs(It,Bu,betabar,omegabar,sigma,q)
 % function [beta_gibbs sigma_gibbs]=mgibbs(It,Bu,betabar,omegabar,sigma,q)
 % performs the Gibbs algorithm 2.1.2 for the Minnesota prior, and returns draws from posterior distribution
 % inputs:  - integer 'It': total number of iterations of the Gibbs sampler (defined p 28 of technical guide)
@@ -13,7 +10,8 @@ function [beta_gibbs sigma_gibbs]=mgibbs(It,Bu,betabar,omegabar,sigma,q)
 % outputs: - matrix 'beta_gibbs': record of the gibbs sampler draws for the beta vector
 %          - matrix'sigma_gibbs': record of the gibbs sampler draws for the sigma matrix (vectorised)
 
-
+% !!!!!
+%rng(0);
 
 % start iterations
 for ii=1:(It-Bu)
