@@ -91,6 +91,10 @@ gui.resume   % resume a previous session
 For scripting examples [BEARX tutorials](./BEARX-tutorials/BEARXtutorials.md)
 For GUI examples BEARX-GUI-Examples
 
+## Migration and Data Format
+
+For users migrating from BEAR 5, and for guidance on data structuring and variable labeling for different estimators, see [From BEAR5 to BEAR6 and data format](https://github.com/european-central-bank/BEAR-toolbox/wiki/From-BEAR5-to-BEAR6-and-data-format) in the wiki.
+
 ## Platform support
 
 Tested on **Windows 10/11** (MATLAB R2021a - R2026a).
