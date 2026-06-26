@@ -46,7 +46,7 @@ function resume()
     gui.populateVanillaFormHTML({"dummies", "Minnesota"});
     gui.populateVanillaFormHTML({"dummies", "InitialObs"});
     gui.populateVanillaFormHTML({"dummies", "SumCoeff"});
-    gui.populateVanillaFormHTML({"dummies", "longrun"});
+    gui.populateVanillaFormHTML({"dummies", "LongRun"});
 
     % Structural identification tab
     gui.populateIdentificationSelectionHTML();
@@ -93,7 +93,7 @@ function resume()
     dispatcher = {
         fullfile(".", "html", "identification", "InstantZeros.html"), "?PATH?", "matlab: gui_openTable InstantZeros"
         fullfile(".", "html", "identification", "IneqRestrict.html"), "?PATH?", "matlab: gui_openTable IneqRestrict"
-        fullfile(".", "html", "dummies", "longrun.html"), "?PATH?", "matlab: gui_openTable LongRunDummies"
+        fullfile(".", "html", "dummies", "LongRun.html"), "?PATH?", "matlab: gui_openTable LongRunDummies"
         fullfile(".", "html", "identification", "GeneralRestrict.html"), "?PATH?", "matlab: gui_editGeneralRestrict"
         fullfile(".", "html", "tasks", "conditional.html"), "?DATA_PATH?", "matlab: gui_openTable ConditioningData"
         fullfile(".", "html", "tasks", "conditional.html"), "?PLAN_PATH?", "matlab: gui_openTable ConditioningPlan"
