@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with MATLAB Actions
 
-name: MATLAB
+name: Test and Package BEAR
 
 # Controls when the action will run. 
 on:
