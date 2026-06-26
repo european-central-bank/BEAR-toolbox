@@ -17,7 +17,7 @@ available as before.
   sign restrictions, and generalized restrictions
 - Forecasting (unconditional and conditional), impulse response functions,
   historical shock decomposition, and forecast error variance decomposition
-- A transparent GUI that auto-generates editable Matlab scripts — nothing
+- A transparent GUI that auto-generates editable MATLAB scripts — nothing
   runs behind the scenes
 
 ## Installation
@@ -38,19 +38,25 @@ Download the latest `BEARToolbox.mltbx` file that you will find under the Releas
 <br/><br/>
 ![release location in GitHub](/images/releaseLoc.png "release location")
 <br/><br/>
-Once this file has been downloaded, you can double click it from MATLAB to install the toolbox.
+Once this file has been downloaded, you can double click it from MATLAB to install the toolbox. Or alternatively run:
+
+```matlab 
+matlab.addons.install('BEARToolbox.mltbx') 
+```
 
 ### For developers
 
 This is aimed at those people wanting to develop BEAR further. Clone this repository from within MATLAB and then open the Project with:
 
 ```matlab 
-openProject('bear.prj')
+openProject('BEARX-Toolbox.prj')
 ```
 
 Opening the MATLAB project will shadow the installed version of BEAR as long as the project is open, once the project is shut down, the installed version will again be default version. To check which version of BEAR is currently running, you can run:
 
-```>> ver('bear')```
+```matlab 
+>> bearroot 
+```
 
 ### Building from source
 
@@ -58,10 +64,10 @@ Clone the repository and open the project
 
 ```matlab
 % 1. Extract the archive somewhere, then in MATLAB:
-openProject('bear.prj')
+openProject('BEARX-Toolbox.prj')
 
 % 2. Build
-buildtool archive -skip check
+buildtool archive
 
 % 3. Install
 matlab.addons.install("releases/BEARtoolbox.mltbx", "overwrite", true)
