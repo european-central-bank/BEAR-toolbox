@@ -15,6 +15,11 @@ function [tt, freq] = fromTable(plainTable, options)
     end
 
     timeColumn = plainTable.(options.TimeColumn);
+    % MATLAB's readtable parses bare 4-digit years from CSV as double (e.g. 2012.0).
+    % Convert to string so datex.fromSdmx can recognise the SDMX annual pattern.
+    if isnumeric(timeColumn)
+        timeColumn = string(int32(timeColumn));
+    end
     if isstring(timeColumn) || iscellstr(timeColumn)
         timeColumn = options.PeriodConstructor(timeColumn);
     end
