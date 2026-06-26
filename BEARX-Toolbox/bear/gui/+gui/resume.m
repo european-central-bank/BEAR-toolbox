@@ -46,7 +46,7 @@ function resume()
     gui.populateVanillaFormHTML({"dummies", "Minnesota"});
     gui.populateVanillaFormHTML({"dummies", "InitialObs"});
     gui.populateVanillaFormHTML({"dummies", "SumCoeff"});
-    gui.populateVanillaFormHTML({"dummies", "LongRun"});
+    gui.populateVanillaFormHTML({"dummies", "longrun"});
 
     % Structural identification tab
     gui.populateIdentificationSelectionHTML();
