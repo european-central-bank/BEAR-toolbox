@@ -45,6 +45,11 @@ classdef tGUIExamples < matlab.unittest.TestCase
             cd(fullfile(tc.RootDir, "BEARX-GUI-Examples", folder));
             runMaster();
         end
+
+        function tGUIresume(tc, folder)
+            cd(fullfile(tc.RootDir, "BEARX-GUI-Examples", folder));
+            gui.resume()
+        end
     end
 
     methods (TestParameterDefinition,Static)

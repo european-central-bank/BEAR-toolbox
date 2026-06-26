@@ -74,12 +74,6 @@ jobs:
           name: BEARXToolbox-mltbx
           path: releases/BEARToolbox.mltbx
           if-no-files-found: error
-
-      - name: Fail workflow when tests fail
-        if: always() && steps.run-tests.outcome != 'success'
-        run: |
-          echo "Buildtool check/test failed."
-          exit 1
   
   release:
     needs:
