@@ -19,6 +19,8 @@ function gui_selectInputDataFile(field)
     % Try to make the path relative to the current folder
     currentFolder = pwd();
     filePath = replace(filePath, currentFolder, ".");
+    % Canonicalize path strings before saving them.
+    filePath = strrep(filePath, '\', '/');
 
     submission = struct();
     submission.(field) = filePath;

@@ -38,7 +38,7 @@ jobs:
       - name: Setup MATLAB
         uses: matlab-actions/setup-matlab@v3
         with:
-          products: Text_Analytics_Toolbox
+          products: Text_Analytics_Toolbox Statistics_and_Machine_Learning_Toolbox Optimization_Toolbox
       
       - name: Start a display server for jobs running on Linux
         run: |

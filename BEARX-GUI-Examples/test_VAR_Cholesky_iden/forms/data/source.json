@@ -2,7 +2,7 @@
   "FilePath": {
     "label": "Path to the input data file (XLSX, CSV, or MAT)",
     "type": "filename",
-    "value": ".\\syntheticVAR.csv",
+    "value": "./syntheticVAR.csv",
     "show": true
   },
   "ExcelSheet": {
