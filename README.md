@@ -1,5 +1,7 @@
 # BEARX Toolbox
 
+[![Test and Package BEAR](https://github.com/european-central-bank/BEAR-toolbox/blob/master/.github/workflows/ci.yml/badge.svg)](https://github.com/european-central-bank/BEAR-toolbox/blob/master/.github/workflows/ci.yml)
+
 **Note:** for old BEAR notes, please go to [BEAR5 readme](./BEAR5doc.md)
 
 ## Table of Contents
