@@ -1,6 +1,3 @@
-| :exclamation: We just added some major changes into the main functionality of BEAR to improve its usability. To access the previous version of the code use the legacyCode branch |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-
 | :information_source: This document is for BEAR 5 users only. BEAR 5 is installed alongside BEAR 6, but this guide does not apply to BEAR 6 workflows. |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
@@ -49,7 +46,6 @@ This repository is organized as follows. All BEAR files that need to be installe
 - `app` contains all the files related to the user interface
 - `bear` has all the core MATLAB functions and classes
 - `replications` contains a set of Excel and settings files to replicate previous results from the literature
-- `examples` contains a set of functions to create settings objects for each VAR type
 - `doc` contains a set of PDFs with some of the BEAR documentation
 
 The rest of the folders contain development files related to the development of BEAR which will not be copied in non-development environments. This folders are structured as follows:
