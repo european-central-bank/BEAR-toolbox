@@ -2,11 +2,49 @@
 
 **Note:** for old BEAR notes, please go to [BEAR5 readme](./BEAR5doc.md)
 
-The BEARX Toolbox is a Matlab toolbox for Bayesian estimation, analysis, and
+## Table of Contents
+
+- [Introduction](#Introduction)
+  * [Structure of the repository](#Structure-of-the-repository)
+- [Features](#Features)
+- [Installing BEAR](#Installing-BEAR)
+  * [For users](#For-BEAR-users)
+  * [For developers](#For-developers)
+  * [Building from source](#Building-from-source)
+- [Getting started](#Getting-started)
+  * [Examples](#Examples)
+  * [Migration and Data Format](#Migration-and-Data-Format)
+- [Documentation](#Documentation)
+- [Platform support](#Platform-Support)
+- [License](#License)
+
+## Introduction
+
+The BEARX Toolbox is a MATLAB toolbox for Bayesian estimation, analysis, and
 reporting of vector autoregressive (VAR) models. BEARX is an extended version
 of the original BEAR Toolbox (version 5), adding a new command-line interface
 (CLI) and a new graphical user interface (GUI) while keeping the original BEAR
 available as before.
+
+### Structure of the repository
+
+This repository is organized as follows.
+
+```
+BEARX/
+├── BEARX-Toolbox/       ← Toolbox Files
+├── BEARX-tutorials/     ← Tutorial files for running BEAR6
+├── BEARX-GUI-Examples/  ← GUI example projects (incl. new test_VAR_* identification examples)
+├── tests/               ← All Toolbox Tests
+└── README.md            ← this file
+```
+
+All BEAR files that need to be installed by the end-users are located inside `BEARX-Toolbox` in four separate directories:
+
+- `app` contains all the files related to the user interface for BEAR6 and BEAR5
+- `bear` has all the core MATLAB functions and classes
+- `doc` contains a set of PDFs with some of the BEAR documentation
+- `replications` contains a set of Excel and settings files to replicate previous results from the literature in BEAR5
 
 ## Features
 
@@ -76,30 +114,42 @@ matlab.addons.install("releases/BEARtoolbox.mltbx", "overwrite", true)
 BEAR6
 ```
 
-## Layout
+## Getting Started
 
-Extract anywhere. The folders below MUST stay siblings (tutorials, GUI examples and the feature test suite use relative `../BEARX-Toolbox/` paths):
+To get started with BEAR, the easiest is to run the BEAR6 app. For this either go to the toolstrip APPS and select `BEAR6`, or simpy run:
 
+```matlab
+BEAR6 
 ```
-BEARX-Bundle/
-├── BEARX-Toolbox/              ← patched toolbox (10 bugs fixed)
-├── BEARX-tutorials/            ← tutorial scripts (legacy/obsolete material archived under _legacy/)
-├── BEARX-GUI-Examples/         ← GUI example projects (incl. new test_VAR_* identification examples)
-├── tests/                      ← full-feature regression suite on synthetic data
-└── README.md                   ← this file
+
+Alternatively, if you want to start a new session, you can simply run the following command. Note that BEAR will copy over some files, so it is recommended that you do it in an empty folder:
 
 ```matlab
 gui.start    % fresh session (resets configuration)
+```
+
+To resume a previous session, move to the working directory and run:
+
+```matlab
 gui.resume   % resume a previous session
 ```
 
-## Examples
+### Examples
+
 For scripting examples [BEARX tutorials](./BEARX-tutorials/BEARXtutorials.md)
 For GUI examples BEARX-GUI-Examples
 
-## Migration and Data Format
+### Migration and Data Format
 
 For users migrating from BEAR 5, and for guidance on data structuring and variable labeling for different estimators, see [From BEAR5 to BEAR6 and data format](https://github.com/european-central-bank/BEAR-toolbox/wiki/From-BEAR5-to-BEAR6-and-data-format) in the wiki.
+
+## Documentation
+
+From GitHub, you can easily access the [Wiki](https://github.com/european-central-bank/BEAR-toolbox/wiki). Alternatively once you have BEAR installed or the project open you can run:
+
+```matlab
+beardoc 
+```
 
 ## Platform support
 
