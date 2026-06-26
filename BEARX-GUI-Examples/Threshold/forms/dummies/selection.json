@@ -17,7 +17,7 @@
     "LongRun":  {
         "value": false,
         "label": "Long-run constraints",
-        "target": ["dummies", "longrun"]
+        "target": ["dummies", "LongRun"]
     }
 }
 

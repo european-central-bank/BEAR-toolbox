@@ -28,7 +28,7 @@
     "label": "Long-run constraints",
     "target": [
       "dummies",
-      "longrun"
+      "LongRun"
     ]
   }
 }
