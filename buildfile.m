@@ -103,12 +103,11 @@ if isfolder(wikifld)
 end
 
 gitclone('https://github.com/european-central-bank/BEAR-toolbox.wiki.git')
-ls
-ls('BEAR-toolbox.wiki')
+ls('BEAR-toolbox.wiki/reduced_form_estimators')
 cObj = onCleanup(@() rmdir('BEAR-toolbox.wiki','s'));
 
 src  = dir(fullfile('BEAR-toolbox.wiki','**','*.md'));
-dest = 'BEARX-Toolbox\doc\wiki\';
+dest = fullfile('BEARX-Toolbox','doc','wiki');
 if ~isfolder(dest); mkdir(dest); end
 
 for k = 1:numel(src)
@@ -126,7 +125,7 @@ for k = 1:numel(src)
     fid = fopen(fullfile(dest, src(k).name), 'w');
     fwrite(fid, txt); fclose(fid);
 end
-
+ls(dest)
 if isempty(ver('docmaker'))
     websave('MATLAB_DocMaker.mltbx','https://github.com/mathworks/docmaker/releases/latest/download/MATLAB_DocMaker.mltbx');
     cobj = onCleanup(@() delete('MATLAB_DocMaker.mltbx'));
