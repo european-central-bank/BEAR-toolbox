@@ -6,11 +6,11 @@ BEAR6
 %%
 %[text] Alternatively run a local estimation with:
 gui.start
+%%
 %[text] or resume a previous one in this folder
-%[text] ```matlabCodeExample
-%[text] gui.reume
-%[text] ```
-%[text] 
+gui.resume
+%%
+%[text] After running the UI once, a `master.m` file will be created such that you can run the model again without the UI.
 
 %[appendix]{"version":"1.0"}
 %---
