@@ -102,7 +102,9 @@ if isfolder(wikifld)
     rmdir(wikifld, 's')
 end
 
-gitclone('https://github.com/european-central-bank/BEAR-toolbox.wiki.git');
+gitclone('https://github.com/european-central-bank/BEAR-toolbox.wiki.git')
+ls
+ls('BEAR-toolbox.wiki')
 cObj = onCleanup(@() rmdir('BEAR-toolbox.wiki','s'));
 
 src  = dir(fullfile('BEAR-toolbox.wiki','**','*.md'));
