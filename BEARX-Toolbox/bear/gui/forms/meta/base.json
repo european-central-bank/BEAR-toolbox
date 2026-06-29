@@ -1,0 +1,38 @@
+{
+  "EndogenousNames": {
+    "value": "",
+    "type": "names",
+    "label": "Names of endogenous variables"
+  },
+  "ExogenousNames": {
+    "value": "",
+    "type": "names",
+    "label": "Names of exogenous variables"
+  },
+  "ShockNames": {
+    "value": [],
+    "type": "names",
+    "label": "Names of structural shocks"
+  },
+  "Order": {
+    "value": 1,
+    "type": "number",
+    "label": "Autoregressive order of the VAR model"
+  },
+  "Intercept": {
+    "value": true,
+    "type": "logical",
+    "label": "True if the model includes an intercept (constant) term"
+  },
+  "EstimationSpan": {
+    "value": "",
+    "type": "span",
+    "label": "Date range for estimation, not including initial conditions"
+  },
+  "IdentificationHorizon": {
+    "value": 4,
+    "type": "number",
+    "label": "Number of periods for shock responses"
+  }
+}
+

@@ -1,197 +1,165 @@
-| :exclamation: We just added some major changes into the main functionality of BEAR to improve its usability. To access the previous version of the code use the legacyCode branch |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+# BEARX Toolbox
 
-[![View BEAR 5.2 on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://uk.mathworks.com/matlabcentral/fileexchange/103370-bear-5-1)
+[![Test and Package BEAR](https://github.com/european-central-bank/BEAR-toolbox/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/european-central-bank/BEAR-toolbox/actions/workflows/ci.yml)
 
-| **GitHub<sup>&reg;</sup>&nbsp;Actions** |
-|:----------------------------:|
-|[![MATLAB](https://github.com/european-central-bank/BEAR-toolbox/actions/workflows/ci.yml/badge.svg)](https://github.com/european-central-bank/BEAR-toolbox/actions/workflows/ci.yml)|
-
-# The BEAR toolbox
+**Note:** for old BEAR notes, please go to [BEAR5 readme](./BEAR5doc.md)
 
 ## Table of Contents
 
 - [Introduction](#Introduction)
   * [Structure of the repository](#Structure-of-the-repository)
+- [Features](#Features)
 - [Installing BEAR](#Installing-BEAR)
-  * [For users](#For-users)
+  * [For users](#For-BEAR-users)
   * [For developers](#For-developers)
-  * [For non-MATLAB users](#For-non-MATLAB-users)
+  * [Building from source](#Building-from-source)
 - [Getting started](#Getting-started)
-  * [Creating a settings object](#Creating-a-settings-object)
-  * [Running BEAR from the command line](#Running-BEAR-from-the-command-line)
-  * [Running BEAR interactively](#Running-BEAR-interactively)
+  * [Examples](#Examples)
+  * [Migration and Data Format](#Migration-and-Data-Format)
 - [Documentation](#Documentation)
-- [Distribute BEAR](#Distribute-BEAR)
-  * [With other MATLAB users](#With-other-MATLAB-users)
-  * [With non MATLAB users](#With-non-MATLAB-users)
+- [Platform support](#Platform-Support)
 - [License](#License)
 
 ## Introduction
 
-The Bayesian Estimation, Analysis and Regression toolbox (BEAR) is a comprehensive (Bayesian Panel) VAR toolbox for forecasting and policy analysis.
-
-BEAR is a MATLAB based toolbox which is easy for non-technical users to understand, augment and adapt. In particular, BEAR includes a user-friendly graphical interface which allows the tool to be used by country desk economists.
-
-Furthermore, BEAR is well documented, both within the code as well as including a detailed theoretical and user’s guide. BEAR includes state-of-the art applications such as FAVARs, stochastic volatility, time-varying parameters, mixed-frequency, sign and magnitude restrictions, conditional forecasts, Bayesian forecast evaluation measures, Bayesian Panel VAR using different prior distributions (for example hierarchical priors).
-
-BEAR is specifically developed for transparently supplying a tool for state-of-the-art research and is planned to be further developed to always be at the frontier of economic research.
-
-Use of BEAR implies acceptance of the End User [Licence Agreement (EULA)](#License) for the Use of the Software “the Bayesian Estimation, Analysis and Regression (BEAR) toolbox”.
-
-[BEAR at ECB](https://www.ecb.europa.eu/pub/research/working-papers/html/bear-toolbox.en.html)
+The BEARX Toolbox is a MATLAB toolbox for Bayesian estimation, analysis, and
+reporting of vector autoregressive (VAR) models. BEARX is an extended version
+of the original BEAR Toolbox (version 5), adding a new command-line interface
+(CLI) and a new graphical user interface (GUI) while keeping the original BEAR
+available as before.
 
 ### Structure of the repository
-This repository is organized as follows. All BEAR files that need to be installed by the end-users are located inside the `tbx` in four separate directories:
-- `app` contains all the files related to the user interface
+
+This repository is organized as follows.
+
+```
+BEARX/
+├── BEARX-Toolbox/       ← Toolbox Files
+├── BEARX-tutorials/     ← Tutorial files for running BEAR6
+├── BEARX-GUI-Examples/  ← GUI example projects (incl. new test_VAR_* identification examples)
+├── tests/               ← All Toolbox Tests
+└── README.md            ← this file
+```
+
+All BEAR files that need to be installed by the end-users are located inside `BEARX-Toolbox` in four separate directories:
+
+- `app` contains all the files related to the user interface for BEAR6 and BEAR5
 - `bear` has all the core MATLAB functions and classes
-- `replications` contains a set of Excel and settings files to replicate previous results from the literature
-- `examples` contains a set of functions to create settings objects for each VAR type
 - `doc` contains a set of PDFs with some of the BEAR documentation
+- `replications` contains a set of Excel and settings files to replicate previous results from the literature in BEAR5
 
-The rest of the folders contain development files related to the development of BEAR which will not be copied in non-development environments. This folders are structured as follows:
-- `tests` contains a set of [MATLAB unit tests](https://uk.mathworks.com/help/matlab/class-based-unit-tests.html) which are automatically run within GitHub actions every time any change is pushed to the master branch.
-- `resources` contains the metadata of the MATLAB project `bear.prj`
-- `release` contains the definition files that allow the user compiling BEAR into a standalone application
-- `images` contains all the images used within the README files of the repository
+## Features
 
-## Installing BEAR
-### For users
+- A comprehensive range of Bayesian VAR estimators: plain (OLS, Minnesota,
+  Normal-Wishart, …), time-varying, panel, factor-augmented (FAVAR),
+  threshold, and mixed-frequency
+- Structural identification via Cholesky decomposition, zero restrictions,
+  sign restrictions, and generalized restrictions
+- Forecasting (unconditional and conditional), impulse response functions,
+  historical shock decomposition, and forecast error variance decomposition
+- A transparent GUI that auto-generates editable MATLAB scripts — nothing
+  runs behind the scenes
 
-This section is aimed to those users indending to run BEAR, but not interested in working or ammending the code.
+## Installation
 
-__**From MATLAB**__ or __**MATLAB Online**__
+### For BEAR users
 
-To install the toolbox directly from MATLAB, please go to HOME > Add Ons, search for BEAR and install the toolbox. Alternatively, follow the steps below to install it from GitHub.
+__**From MATLAB**__
 
-__**From GitHub**__
+You can install BEAR directly from the [Add-Ons panel in MATLAB](https://uk.mathworks.com/help/matlab/matlab_env/get-add-ons.html). Go to `HOME > Add Ons`, search for BEAR and install the toolbox. Alternatively, follow the steps below to install it from GitHub.
 
-Download the latest `bear.mltbx` file that you will find under the Releases section on the right. 
-<br/><br/>
-![release location in GitHub](/images/releaseLoc.png "release location")
-<br/><br/>
-Once this file has been downloaded, you can double click it from MATLAB to install the toolbox.
 <br/><br/>
 ![double click on bear.mltbx to install the toolbox](/images/Install.PNG "Manual install from MATLAB")
 <br/><br/>
 
+__**From GitHub**__
+
+Download the latest `BEARToolbox.mltbx` file that you will find under the Releases section on the right. 
+<br/><br/>
+![release location in GitHub](/images/releaseLoc.png "release location")
+<br/><br/>
+Once this file has been downloaded, you can double click it from MATLAB to install the toolbox. Or alternatively run:
+
+```matlab 
+matlab.addons.install('BEARToolbox.mltbx') 
+```
+
 ### For developers
 
-If there was a need to modify the BEAR code, it is recommended not to modify the installed version. Instead, the best approach is to clone the repository and open the project. To open the project, you can double click on `bear.prj` in the main folder or rnu the command:
+This is aimed at those people wanting to develop BEAR further. Clone this repository from within MATLAB and then open the Project with:
 
-```>> openProject('bear.prj')```
-
-Opening the MATLAB project will shadow the installed version of BEAR as long as the project is open, once the project is shut down, the installed version will again be default version. To check which verison of BEAR is currently running, you can run:
-
-```>> which BEARmain```
-
-### For non-MATLAB users
-
-Under releases, you will find an executable with the compiled application that you can install in any Windows based computer. To run the installer, just download the .EXE file and run it.
-
-Alternatively, if you wanted to run the full version of BEAR, you can get a trial version of MATLAB [here](https://mathworks.com/campaigns/products/trials.html).
-
-## Getting started
-
-### Creating a settings object
-
-To create a settings object you can use the function
-
-```
->> s = BEARsettings(<VARtype>, 'ExcelFile','data.xlsx')
+```matlab 
+openProject('BEARX-Toolbox.prj')
 ```
 
-This will return a settings object with different properties depending on the selected VARtype.
+Opening the MATLAB project will shadow the installed version of BEAR as long as the project is open, once the project is shut down, the installed version will again be default version. To check which version of BEAR is currently running, you can run:
 
-### Running BEAR from the command line
-
-To run BEAR, please use:
-
-```
->> BEARmain(s)
+```matlab 
+>> bearroot 
 ```
 
-where `s` is a BEAR settings object created with the `BEARsettings` function.
+### Building from source
 
-### Running BEAR interactively
+Clone the repository and open the project
 
-From MATLAB run the command below to open the main BEAR interface.
+```matlab
+% 1. Extract the archive somewhere, then in MATLAB:
+openProject('BEARX-Toolbox.prj')
 
+% 2. Build
+buildtool archive
+
+% 3. Install
+matlab.addons.install("releases/BEARtoolbox.mltbx", "overwrite", true)
+
+% 4. Launch the GUI app
+BEAR6
 ```
->> BEARapp
+
+## Getting Started
+
+To get started with BEAR, the easiest is to run the BEAR6 app. For this either go to the toolstrip APPS and select `BEAR6`, or simpy run:
+
+```matlab
+BEAR6 
+```
+
+Alternatively, if you want to start a new session, you can simply run the following command. Note that BEAR will copy over some files, so it is recommended that you do it in an empty folder:
+
+```matlab
+gui.start    % fresh session (resets configuration)
+```
+
+To resume a previous session, move to the working directory and run:
+
+```matlab
+gui.resume   % resume a previous session
 ```
 
 ### Examples
 
-If you want to see an example on how to run BEAR, you can run any of the following files directly:
+For scripting examples [BEARX tutorials](./BEARX-tutorials/BEARXtutorials.md)
+For GUI examples BEARX-GUI-Examples
 
-```
-s = bear_settings_BVAR
-s = bear_settings_PANEL
-s = bear_settings_SV
-s = bear_settings_TVP
-s = bear_settings_MF
-```
+### Migration and Data Format
 
-change your inputs accordingly and then run `BEARmain(s)`. Alternatively, if you wanted to build your own settings files, you use any of these as a template running for example:
-
-```
-copyfile(fullfile(bearroot(), 'examples', 'bear_settings_BVAR.m'), pwd)
-edit('bear_settings_BVAR')
-```
-
+For users migrating from BEAR 5, and for guidance on data structuring and variable labeling for different estimators, see [From BEAR5 to BEAR6 and data format](https://github.com/european-central-bank/BEAR-toolbox/wiki/From-BEAR5-to-BEAR6-and-data-format) in the wiki.
 
 ## Documentation
 
-For a full BEAR documentation please visit our [doc page](https://github.com/european-central-bank/BEAR-toolbox/tree/master/tbx/doc).
+From GitHub, you can easily access the [Wiki](https://github.com/european-central-bank/BEAR-toolbox/wiki). Alternatively once you have BEAR installed or the project open you can run:
 
-## Distribute BEAR
-
-### With other MATLAB users
-Any MATLAB user can download the latest version of BEAR from the GitHub repository. However, if you wanted to create your own custom distribution you can package it as a MATLAB toolbox as follows:
-
-1. Open the `tbx.prj` and edit the main fields such as author, version, and description.
-2. Either click on package or run:
-``` 
-projectFile = 'tbx.prj';
-matlab.addons.toolbox.packageToolbox(projectFile)
+```matlab
+beardoc 
 ```
 
-### With non-MATLAB users
+## Platform support
 
-If you wanted to share BEAR with someone who is not a MATLAB user, there are several routes you can take:
-1. You can use MATLAB Compiler to share the APP as a standalone program. For this, please open the **Application Compiler** from the toolstrip:
-<br/>
+Tested on **Windows 10/11** (MATLAB R2021a - R2026a).
 
-![app toolstrip](/images/AppToolstrip.PNG "Open application compiler")
+**Linux / Linux containers (Cloudera CML)** are intended to be supported, including case-sensitive filesystem handling required in container environments. In practice, support is generally good but may still be less stable than Windows in some setups.
 
-<br/>
-
-2. Select as **MAIN FILE** the appropriate BEAR app from your set of files. For example, `tbx\app\BEARapp20a`.
-
-<br/>
-
-![Compile app](/images/CompilerScreenshot.PNG "Compiler Screenshot")
-
-<br/>
-
-3. Under **Files required for your application to run** add the following in addition to the automatically detected ones:
-
-+ tbx\bear\\+bear\results.xlsx
-+ tbx\replications\data_AAU2009.xlsx
-+ tbx\replications\data_BBE2005.xlsx
-+ tbx\replications\data_BvV2018.xlsx
-+ tbx\replications\data_CH2019.xlsx 
-+ tbx\replications\data_WGP2016.xlsx
-+ tbx\default_bear_data.xlsx
-
-4. Click on Package.
-5. You will get a subfolder with the files that you can use to redistribute the application
-
-### For external language integration
-
-If you wanted to share specific functionality with users of other languages, you can take a look at [Compiler SDK](https://uk.mathworks.com/help/compiler_sdk/index.html). The process is analgous to the previous one but selecting a different target.
 
 ## License
-Use of BEAR implies acceptance of the End User Licence Agreement (EULA) for the Use of the Software “the Bayesian Estimation, Analysis and Regression (BEAR) toolbox”.
-[License](/tbx/doc/BEAR%20End%20User%20Licence%20Agreement.pdf)
+Use of BEAR implies acceptance of the End User Licence Agreement (EULA) for the Use of the Software "the Bayesian Estimation, Analysis and Regression (BEAR) toolbox".
+[License](./BEAR%20End%20User%20Licence%20Agreement.pdf)

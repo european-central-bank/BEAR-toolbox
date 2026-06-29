@@ -1,1 +1,78 @@
+# Autosave files
+*.asv
+*.m~
+*.autosave
+*.slx.r*
+*.mdl.r*
+
+*.zip
+*.mat
+*.gz
+*.*~
+
+# Derived content-obscured files
+*.p
+
+# Compiled MEX files
+*.mex*
+
+# Packaged app and toolbox files
+*.mlappinstall
+*.mltbx
+
+# Deployable archives
+*.ctf
+
+# Generated helpsearch folders
+helpsearch*/
+
+# Code generation folders
+slprj/
+sccprj/
+codegen/
+
+# Cache files
+*.slxc
+
+# Cloud based storage dotfile
+.MATLABDriveTag
+
+# buildtool cache folder
+.buildtool/
+
+# Releases folder
+releases/
+
+tests/results/
 results/
+
+/BEARX-GUI-Examples/MixedFrequency/output/
+/BEARX-GUI-Examples/MixedFrequency/html/
+
+/BEARX-GUI-Examples/PlainTimeInvariant/output/
+/BEARX-GUI-Examples/PlainTimeInvariant/html/
+
+/BEARX-GUI-Examples/SeparablePanel/output/
+/BEARX-GUI-Examples/SeparablePanel/html/
+
+/BEARX-GUI-Examples/test_VAR_Cholesky_iden/output/
+/BEARX-GUI-Examples/test_VAR_Cholesky_iden/html/
+
+/BEARX-GUI-Examples/test_VAR_generalized_iden/output/
+/BEARX-GUI-Examples/test_VAR_generalized_iden/html/
+
+/BEARX-GUI-Examples/test_VAR_shortrun_UNDER_iden/output/
+/BEARX-GUI-Examples/test_VAR_shortrun_UNDER_iden/html/
+
+/BEARX-GUI-Examples/test_VAR_sign_iden/output/
+/BEARX-GUI-Examples/test_VAR_sign_iden/html/
+
+/BEARX-GUI-Examples/test_VAR_reducedform/output/
+/BEARX-GUI-Examples/test_VAR_reducedform/html/
+
+/BEARX-GUI-Examples/Threshold/html/
+/BEARX-GUI-Examples/Threshold/output/
+
+/BEARX-Toolbox/doc/wiki
+
+public/

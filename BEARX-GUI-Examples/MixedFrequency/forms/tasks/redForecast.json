@@ -1,0 +1,45 @@
+{
+  "ForecastSpan": {
+    "value": [
+      "2025-01",
+      "2025-12"
+    ],
+    "type": "span",
+    "label": "Forecast date span"
+  },
+  "StochasticResiduals": {
+    "value": true,
+    "type": "logical",
+    "label": "Generate stochastic residuals in unconditional forecast"
+  },
+  "IncludeInitial": {
+    "value": true,
+    "type": "logical",
+    "label": "Include initial conditions in output table"
+  },
+  "SaveXLS": {
+    "value": true,
+    "type": "logical",
+    "label": "Save output table as an Excel file"
+  },
+  "SaveCSV": {
+    "value": false,
+    "type": "logical",
+    "label": "Save output table as a CSV file"
+  },
+  "SaveMAT": {
+    "value": false,
+    "type": "logical",
+    "label": "Save output table as a MAT file"
+  },
+  "DrawCharts": {
+    "value": true,
+    "type": "logical",
+    "label": "Draw output as charts on the screen"
+  },
+  "SavePDF": {
+    "value": true,
+    "type": "logical",
+    "label": "Save charts as a PDF file"
+  }
+}

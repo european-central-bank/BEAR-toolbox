@@ -1,0 +1,14 @@
+
+nav:
+    - Home:
+        - Welcome to BEAR GUI: index.md
+        - Details of the GUI: details.md
+        - Your notes: notes.md
+    - Reduced-form estimation: estimation
+    - Input data: data
+    - Meta information: meta
+    - Dummy observations: dummies
+    - Structural identification: identification
+    - Tasks to execute: tasks
+    - Matlab script: script
+

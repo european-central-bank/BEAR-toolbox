@@ -1,0 +1,3 @@
+classdef (CaseInsensitiveProperties=true) BetaTV ...
+    < base.estimator.EstimatorSettings
+end

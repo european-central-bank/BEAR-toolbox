@@ -1,0 +1,14 @@
+
+nav:
+    - Selection of tasks: selection.md
+    - General settings: general.md
+    - Reduced-form estimation: estimation.md
+    - Structural estimation: identification.md
+    - Unconditional forecast using reduced-form model: redForecast.md
+    - Unconditional forecast using structural model: structForecast.md
+    - Conditional forecast: conditional.md
+    - Shock responses: responses.md
+    - Shock contributions: contributions.md
+    - Forecast error variance decomposition: fevd.md
+    - Your notes: notes.md
+

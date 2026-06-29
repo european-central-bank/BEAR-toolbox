@@ -1,0 +1,10 @@
+[
+  "Plain estimators",
+  "Time-varying estimators",
+  "Panel estimators with separable units",
+  "Panel estimators with cross-unit dependence",
+  "One-step plain FAVAR estimators",
+  "Two-step plain FAVAR estimators",    
+  "Time-varying FAVAR estimators",
+  "Specialized estimators"
+]
