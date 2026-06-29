@@ -1,0 +1,48 @@
+env:
+  DOCMAKER_GITHUB_TOKEN: ${{ secrets.DOCMAKER_GITHUB_TOKEN }}
+
+name: BEAR Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  publish:
+    name: Publish GitHub release
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+
+    steps:
+      - name: Wait for successful master CI run on this commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for attempt in {1..40}; do
+            RUN_ID="$(gh run list --workflow ci.yml --commit "$GITHUB_SHA" --json databaseId,conclusion,event,headBranch --jq 'map(select(.conclusion=="success" and .event=="push" and .headBranch=="master")) | first | .databaseId')"
+            if [ -n "$RUN_ID" ] && [ "$RUN_ID" != "null" ]; then
+              echo "RUN_ID=$RUN_ID" >> "$GITHUB_ENV"
+              exit 0
+            fi
+            echo "No successful master ci.yml run for $GITHUB_SHA yet. Retry $attempt/40."
+            sleep 15
+          done
+          echo "Timed out waiting for a successful master ci.yml run for $GITHUB_SHA." >&2
+          exit 1
+
+      - name: Download toolbox artifact from CI
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p releases
+          gh run download "$RUN_ID" --name BEARXToolbox-mltbx --dir releases
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v3
+        with:
+          files: releases/BEARtoolbox.mltbx
+          fail_on_unmatched_files: true
+          generate_release_notes: true

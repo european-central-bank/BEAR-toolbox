@@ -106,7 +106,7 @@ gitclone('https://github.com/european-central-bank/BEAR-toolbox.wiki.git');
 cObj = onCleanup(@() rmdir('BEAR-toolbox.wiki','s'));
 
 src  = dir(fullfile('BEAR-toolbox.wiki','**','*.md'));
-dest = 'BEARX-Toolbox\doc\wiki\';
+dest = fullfile('BEARX-Toolbox','doc','wiki');
 if ~isfolder(dest); mkdir(dest); end
 
 for k = 1:numel(src)
