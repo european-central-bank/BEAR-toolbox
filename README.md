@@ -1,6 +1,6 @@
 # BEARX Toolbox
 
-[![Test and Package BEAR](https://github.com/european-central-bank/BEAR-toolbox/actions/workflows/ci.yml/badge.svg?branch=BEAR6-staging)](https://github.com/european-central-bank/BEAR-toolbox/actions/workflows/ci.yml)
+[![Test and Package BEAR](https://github.com/european-central-bank/BEAR-toolbox/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/european-central-bank/BEAR-toolbox/actions/workflows/ci.yml)
 
 **Note:** for old BEAR notes, please go to [BEAR5 readme](./BEAR5doc.md)
 
