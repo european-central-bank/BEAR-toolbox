@@ -74,14 +74,14 @@ You can install BEAR directly from the [Add-Ons panel in MATLAB](https://uk.math
 
 __**From GitHub**__
 
-Download the latest `BEARToolbox.mltbx` file that you will find under the Releases section on the right. 
+Download the latest `BEARtoolbox.mltbx` file that you will find under the Releases section on the right. 
 <br/><br/>
 ![release location in GitHub](/images/releaseLoc.png "release location")
 <br/><br/>
 Once this file has been downloaded, you can double click it from MATLAB to install the toolbox. Or alternatively run:
 
 ```matlab 
-matlab.addons.install('BEARToolbox.mltbx') 
+matlab.addons.install('BEARtoolbox.mltbx') 
 ```
 
 ### For developers

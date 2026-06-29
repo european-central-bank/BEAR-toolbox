@@ -47,7 +47,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: BEARXToolbox-mltbx
-          path: releases/BEARToolbox.mltbx
+          path: releases/BEARtoolbox.mltbx
           if-no-files-found: error
 
       - name: Upload Pages artifact

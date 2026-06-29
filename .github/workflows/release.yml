@@ -43,6 +43,6 @@ jobs:
       - name: Create GitHub release
         uses: softprops/action-gh-release@v3
         with:
-          files: releases/BEARToolbox.mltbx
+          files: releases/BEARtoolbox.mltbx
           fail_on_unmatched_files: true
           generate_release_notes: true
