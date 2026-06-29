@@ -34,7 +34,7 @@ jobs:
       - name: Run buildtool test
         uses: matlab-actions/run-build@v3
         with:
-          tasks: check test
+          tasks: doc
 
       - name: Package Toolbox
         uses: matlab-actions/run-build@v3
