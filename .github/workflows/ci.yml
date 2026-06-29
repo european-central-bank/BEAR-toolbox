@@ -5,7 +5,7 @@ name: BEAR CI
 
 on:
   push:
-    branches: [ master, BEAR6-staging ]
+    branches: [ master, BEAR6 ]
   pull_request:
     branches: [ master ]
   workflow_dispatch:
