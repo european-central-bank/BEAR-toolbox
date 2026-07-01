@@ -122,7 +122,11 @@ for k = 1:numel(src)
     % only touches bare slugs: no dot (no extension), no slash, no colon (URL), no #
     txt = regexprep(txt, '\]\(([^)#./:]+)(#[^)]*)?\)', ']($1.md$2)');
 
-    fid = fopen(fullfile(dest, src(k).name), 'w');
+    destFinal = fullfile(dest, extractAfter(src(k).folder, fullfile(fileparts(bearroot), 'BEAR-toolbox.wiki')));
+    if ~isfolder(destFinal)
+        mkdir(destFinal)
+    end
+    fid = fopen(fullfile(destFinal, src(k).name), 'w');
     fwrite(fid, txt); fclose(fid);
 end
 

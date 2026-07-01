@@ -6,6 +6,8 @@ name: BEAR CI
 on:
   push:
     branches: [ master, BEAR6 ]
+    tags:
+      - "v*.*.*"
   pull_request:
     branches: [ master ]
   workflow_dispatch:
@@ -55,3 +57,25 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: public/
+
+  release:
+    name: Publish GitHub release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download toolbox artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: BEARXToolbox-mltbx
+          path: releases
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v3
+        with:
+          files: releases/BEARtoolbox.mltbx
+          fail_on_unmatched_files: true
+          generate_release_notes: true
